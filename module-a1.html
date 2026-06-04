@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GLG Operations — How We Work | Gunn Law Group</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #141c2c;
+    --navy2: #232e54;
+    --text: #333333;
+    --green: #27ae60;
+    --red: #c0392b;
+    --amber: #f39c12;
+    --bg: #f8f9fa;
+    --white: #ffffff;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(20,28,44,0.10);
+  }
+
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1rem 1.25rem 0.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .header-logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .header-logo span { display: block; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em; opacity: 0.7; text-transform: uppercase; }
+  .module-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .progress-wrap {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: #4fc3f7;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap;
+    min-width: 52px;
+    text-align: right;
+  }
+
+  /* ── MAIN ── */
+  .main-wrap {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* transitions */
+  .screen.slide-in {
+    animation: slideIn 0.3s ease forwards;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    background: var(--navy2);
+    color: var(--white);
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 1.1rem 1.25rem 0.9rem;
+  }
+  .section-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* ── CONTENT CARD ── */
+  .content-card {
+    background: var(--white);
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 1.25rem 1.25rem 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── SUBSECTION ── */
+  .subsection {
+    margin-bottom: 1.4rem;
+  }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--navy2);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--bg);
+  }
+  .subsection p { margin-bottom: 0.6rem; font-size: 0.95rem; }
+  .subsection p:last-child { margin-bottom: 0; }
+  .subsection ul, .subsection ol {
+    padding-left: 1.3rem;
+    font-size: 0.95rem;
+  }
+  .subsection li { margin-bottom: 0.4rem; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+  }
+  .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .callout.green { background: #e8f8ef; border-left: 4px solid var(--green); }
+  .callout.amber { background: #fff8e8; border-left: 4px solid var(--amber); }
+  .callout.red   { background: #fdf0ef; border-left: 4px solid var(--red); }
+  .callout.navy  { background: #eef0f5; border-left: 4px solid var(--navy2); }
+
+  /* ── LIFECYCLE FLOW ── */
+  .lifecycle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .lifecycle-step {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .lifecycle-num {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* ── SCORECARD TABLE (STACKED CARDS on mobile) ── */
+  .scorecard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0.75rem 0;
+  }
+  .scorecard-row {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    align-items: flex-start;
+    border-left: 4px solid var(--navy2);
+  }
+  .scorecard-row.grade-a { border-color: var(--green); }
+  .scorecard-row.grade-b { border-color: #2980b9; }
+  .scorecard-row.grade-c { border-color: var(--amber); }
+  .scorecard-row.grade-d { border-color: var(--red); }
+  .score-grade {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1;
+    width: 28px;
+    flex-shrink: 0;
+  }
+  .grade-a .score-grade { color: var(--green); }
+  .grade-b .score-grade { color: #2980b9; }
+  .grade-c .score-grade { color: var(--amber); }
+  .grade-d .score-grade { color: var(--red); }
+  .score-details { flex: 1; min-width: 180px; }
+  .score-details strong { display: block; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .score-details span { font-size: 0.8rem; color: #666; }
+
+  /* ── DISCIPLINE LADDER ── */
+  .discipline-ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0.75rem 0;
+  }
+  .discipline-step {
+    background: var(--bg);
+    padding: 0.65rem 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .discipline-step:first-child { border-radius: 8px 8px 0 0; }
+  .discipline-step:last-child { border-radius: 0 0 8px 8px; border-bottom: none; }
+  .discipline-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+  /* ── RESOURCE CARDS ── */
+  .resource-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 0.75rem 0;
+  }
+  .resource-card {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+  .resource-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .resource-card strong { display: block; font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--navy2); }
+  .resource-card p { font-size: 0.82rem; color: #555; margin: 0; }
+
+  /* ── ORG CHART ── */
+  .org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .org-node {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-weight: 600;
+    width: 85%;
+    max-width: 300px;
+  }
+  .org-node.secondary {
+    background: var(--navy2);
+    width: 80%;
+  }
+  .org-node.tertiary {
+    background: #4a5568;
+    width: 75%;
+  }
+  .org-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    width: 100%;
+  }
+  .org-row .org-node {
+    flex: 1;
+    max-width: 48%;
+  }
+  .org-connector {
+    font-size: 1.2rem;
+    color: var(--navy2);
+    line-height: 1;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    min-height: 48px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.1s;
+    flex: 1;
+    min-width: 120px;
+  }
+  .btn:active { opacity: 0.8; transform: scale(0.97); }
+  .btn-primary { background: var(--navy); color: var(--white); }
+  .btn-secondary { background: var(--bg); color: var(--navy); border: 2px solid var(--navy); }
+  .btn-green { background: var(--green); color: var(--white); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── QUIZ ── */
+  .quiz-progress {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .quiz-dot {
+    width: 28px;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    transition: background 0.3s;
+  }
+  .quiz-dot.answered { background: var(--navy2); }
+  .quiz-dot.correct  { background: var(--green); }
+  .quiz-dot.wrong    { background: var(--red); }
+
+  .question-num {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--navy2);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .question-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .option-btn {
+    background: var(--bg);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    font-size: 0.92rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    font-family: inherit;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--navy2); background: #eef0f5; }
+  .option-btn.selected { border-color: var(--navy); background: #eef0f5; }
+  .option-btn.correct  { border-color: var(--green); background: #e8f8ef; color: #1a6b3c; font-weight: 600; }
+  .option-btn.wrong    { border-color: var(--red); background: #fdf0ef; color: var(--red); }
+  .option-btn:disabled { cursor: default; }
+  .option-letter {
+    font-weight: 700;
+    color: var(--navy2);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  .feedback-box {
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    display: none;
+  }
+  .feedback-box.correct { background: #e8f8ef; border-left: 4px solid var(--green); color: #1a6b3c; }
+  .feedback-box.wrong   { background: #fdf0ef; border-left: 4px solid var(--red); color: #8b1a1a; }
+
+  /* ── RESULTS ── */
+  .result-hero {
+    text-align: center;
+    padding: 1.5rem 1rem 1rem;
+  }
+  .result-score {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .result-score.pass { color: var(--green); }
+  .result-score.fail { color: var(--red); }
+  .result-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+  .result-badge {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 0.3rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+  .badge-pass { background: #e8f8ef; color: var(--green); }
+  .badge-fail { background: #fdf0ef; color: var(--red); }
+
+  .review-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .review-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #ddd;
+    font-size: 0.88rem;
+  }
+  .review-item.correct { border-color: var(--green); }
+  .review-item.wrong   { border-color: var(--red); }
+  .review-item .ri-q   { font-weight: 600; margin-bottom: 0.3rem; color: var(--navy); }
+  .review-item .ri-ans { font-size: 0.82rem; }
+
+  /* ── CERTIFICATE ── */
+  .cert-wrap {
+    background: var(--white);
+    border: 3px solid var(--navy);
+    border-radius: 12px;
+    padding: 2rem 1.25rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .cert-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--navy2);
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  .cert-firm { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy2); font-weight: 600; margin-bottom: 0.5rem; }
+  .cert-title { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
+  .cert-subtitle { font-size: 0.8rem; color: #666; margin-bottom: 1.2rem; }
+  .cert-presents { font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 0.25rem; }
+  .cert-name { font-size: 1.8rem; font-weight: 700; color: var(--navy2); border-bottom: 2px solid var(--navy2); display: inline-block; padding: 0 0.5rem 0.1rem; margin-bottom: 0.75rem; min-width: 60%; }
+  .cert-for { font-size: 0.85rem; color: #555; margin-bottom: 0.3rem; }
+  .cert-module { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
+  .cert-meta { font-size: 0.8rem; color: #777; }
+  .cert-score { font-size: 1.1rem; font-weight: 700; color: var(--green); margin-top: 0.5rem; }
+  .cert-seal {
+    font-size: 2.5rem;
+    margin: 0.75rem 0 0.25rem;
+    display: block;
+  }
+
+  /* ── NAME INPUT ── */
+  .name-input-wrap {
+    margin-bottom: 1rem;
+  }
+  .name-input-wrap label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy2);
+    margin-bottom: 0.4rem;
+  }
+  .name-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s;
+  }
+  .name-input:focus { outline: none; border-color: var(--navy2); }
+
+  /* ── WELCOME SCREEN ── */
+  .welcome-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .welcome-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .welcome-hero h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .welcome-hero p  { font-size: 0.9rem; opacity: 0.85; line-height: 1.5; }
+  .module-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .module-info-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .module-info-item span:first-child { font-size: 1.2rem; flex-shrink: 0; }
+
+  @media print {
+    .app-header, .btn-row, .screen:not(.active) { display: none !important; }
+    .cert-wrap { border: 3px solid var(--navy) !important; }
+    body { background: white; }
+  }
+
+  @media (max-width: 480px) {
+    .section-title { font-size: 1.1rem; }
+    .content-card { padding: 1rem 0.9rem 1.2rem; }
+    .main-wrap { padding: 1rem 0.75rem 2rem; }
+    .welcome-hero { padding: 1.5rem 1rem; }
+    .welcome-hero h1 { font-size: 1.2rem; }
+    .cert-name { font-size: 1.3rem; }
+    .result-score { font-size: 2.8rem; }
+  }
+
+/* iOS TOUCH FIX */
+button, .btn, .option-btn, [onclick] {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* Ensure screens display properly */
+.screen { display: none; }
+.screen.active { display: block !important; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-top">
+    <div class="header-logo">
+      GUNN LAW GROUP
+      <span>Training & Development</span>
+    </div>
+    <div class="module-badge">MODULE A1</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 / 7</div>
+  </div>
+</header>
+
+<div class="main-wrap">
+
+<!-- ══════════ SCREEN 0: WELCOME ══════════ -->
+<div class="screen active" id="screen-0">
+  <div class="welcome-hero">
+    <div class="welcome-icon">⚖️</div>
+    <h1>GLG Operations —<br>How We Work</h1>
+    <p>Your foundation for success at Gunn Law Group. Every employee completes this module.</p>
+  </div>
+  <div class="content-card" style="border-radius: var(--radius);">
+    <div class="module-info-grid">
+      <div class="module-info-item"><span>📚</span><span><strong>6 Sections</strong> of core content</span></div>
+      <div class="module-info-item"><span>📝</span><span><strong>10-Question Quiz</strong> at the end</span></div>
+      <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (8 of 10)</span></div>
+      <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> generated on pass</span></div>
+      <div class="module-info-item"><span>⏱️</span><span><strong>~20 minutes</strong> estimated time</span></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="go(1)">Start Module →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 1: WELCOME TO GLG ══════════ -->
+<div class="screen" id="screen-1">
+  <div class="section-header">
+    <div class="section-label">Section 1 of 6</div>
+    <div class="section-title">Welcome to Gunn Law Group</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>What We Do</h3>
+      <p>Gunn Law Group is a <strong>personal injury law firm</strong> based in Atlanta, Georgia. We represent people who have been hurt through no fault of their own — in car accidents, trucking crashes, slip and falls, and more.</p>
+      <p>Our job is to make it right. We fight for fair compensation so our clients can rebuild their lives. We are on the injured person's side — always.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Our Mission</h3>
+      <div class="callout navy">
+        <span class="callout-icon">🎯</span>
+        <span>Fight for <strong>fair compensation</strong> for every injured client — with relentless advocacy, systems that work, and a team that holds the line.</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>What Makes Us Different</h3>
+      <ul>
+        <li><strong>Systems:</strong> We don't rely on memory. Every step has a process, template, and deadline. When the system works, clients win.</li>
+        <li><strong>Accountability:</strong> We verify. We follow up. We escalate when needed. No one drops the ball without it being caught.</li>
+        <li><strong>Client Communication:</strong> Our clients are scared, hurt, and waiting. We call them before they call us. We treat them like family.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Your Role Matters</h3>
+      <div class="callout green">
+        <span class="callout-icon">💡</span>
+        <span>There are no unimportant jobs here. Every position — from intake to distribution — directly affects whether a client gets what they deserve. <strong>You are part of that chain.</strong></span>
+      </div>
+      <p>When records come in late, demands go out late. When demands go out late, settlements are delayed. When settlements are delayed, clients suffer. Your work has real consequences for real people.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(0)">← Back</button>
+      <button class="btn btn-primary" onclick="go(2)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 2: HOW THE FIRM WORKS ══════════ -->
+<div class="screen" id="screen-2">
+  <div class="section-header">
+    <div class="section-label">Section 2 of 6</div>
+    <div class="section-title">How the Firm Works</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>Org Chart Overview</h3>
+      <div class="org-chart">
+        <div class="org-node">Managing Attorney</div>
+        <div class="org-connector">↓</div>
+        <div class="org-row">
+          <div class="org-node secondary">Pre-Litigation<br>Department</div>
+          <div class="org-node secondary">Litigation<br>Department</div>
+        </div>
+        <div class="org-connector">↕</div>
+        <div class="org-node tertiary">Administration &amp; Support</div>
+      </div>
+      <p style="font-size:0.85rem; color:#666;">Each department has a Case Manager (CM) who oversees case movement and staff accountability. Your CM is your primary point of contact.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Case Lifecycle — Plain English</h3>
+      <div class="lifecycle">
+        <div class="lifecycle-step"><div class="lifecycle-num">1</div><div><strong>Someone gets hurt</strong> — accident, slip &amp; fall, or other incident</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">2</div><div><strong>They call us</strong> — Intake screens the case and signs the client</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">3</div><div><strong>We send LORs</strong> — Notify insurance we represent the client</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">4</div><div><strong>Client treats</strong> — We monitor treatment and maintain contact</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">5</div><div><strong>We get records</strong> — Request medical records and bills</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">6</div><div><strong>We send a demand</strong> — Attorney sends demand package to insurance</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">7</div><div><strong>Insurance pays or we sue</strong> — Negotiate or file a lawsuit</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">8</div><div><strong>Client gets their money</strong> — Settlement distributed within 14 days</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Your Position in the Machine</h3>
+      <div class="callout amber">
+        <span class="callout-icon">⚙️</span>
+        <span>Every department moves the case forward. Think of it as an assembly line. If one station stops, the whole line backs up. <strong>Know your station. Own your station.</strong></span>
+      </div>
+      <p>Whether you're in intake, pre-lit, records retrieval, negotiations, or distribution — your output is someone else's input. Do your job right, on time, and the client wins faster.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(1)">← Back</button>
+      <button class="btn btn-primary" onclick="go(3)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 3: WHAT WE EXPECT ══════════ -->
+<div class="screen" id="screen-3">
+  <div class="section-header">
+    <div class="section-label">Section 3 of 6</div>
+    <div class="section-title">What We Expect</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>Client Communication Standards</h3>
+      <div class="callout navy">
+        <span class="callout-icon">📞</span>
+        <div>
+          <div style="margin-bottom:0.4rem;"><strong>Pre-Litigation clients:</strong> Contact every <strong>14 days</strong> — no exceptions</div>
+          <div style="margin-bottom:0.4rem;"><strong>Litigation clients:</strong> Contact every <strong>30 days</strong></div>
+          <div><strong>Missed calls:</strong> Return within <strong>24 hours</strong></div>
+        </div>
+      </div>
+      <p>Don't wait for clients to call you. Proactive communication = trust. Trust = cooperation. Cooperation = faster settlements.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>CasePeer — The Rule</h3>
+      <div class="callout red">
+        <span class="callout-icon">💻</span>
+        <span><strong>If it's not documented in CasePeer, it didn't happen.</strong> A conversation, a callback, a status update — if it's not logged, it doesn't exist as far as this firm is concerned.</span>
+      </div>
+      <p>This protects you, the firm, and the client. Document everything. Every call. Every email. Every action taken on a file.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Time Clock &amp; Attendance</h3>
+      <ul>
+        <li><strong>4 punches per day:</strong> Clock in → Clock out for lunch → Clock in from lunch → Clock out EOD</li>
+        <li><strong>7-minute grace period</strong> on tardiness — beyond that, it's documented</li>
+        <li><strong>60-minute lunch maximum</strong> — plan accordingly</li>
+        <li>Attendance issues follow the progressive discipline process</li>
+        <li>If you're going to be late or absent, notify your CM <em>before</em> your shift starts</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Professional Conduct</h3>
+      <ul>
+        <li>Treat every client like they're a family member in crisis — because they are</li>
+        <li>Treat every colleague with respect — we win as a team</li>
+        <li>Dress and communicate professionally at all times</li>
+        <li>Client information stays inside these walls — always</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Chain of Command</h3>
+      <div class="callout green">
+        <span class="callout-icon">📋</span>
+        <div>
+          <strong>Issue with a case?</strong> → Your CM<br>
+          <strong>Issue with your CM?</strong> → Department Head<br>
+          <strong>HR or firm policy question?</strong> → Managing Attorney's office<br>
+          <strong>When in doubt:</strong> Ask up — never guess
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(2)">← Back</button>
+      <button class="btn btn-primary" onclick="go(4)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 4: WHAT'S NOT TOLERATED ══════════ -->
+<div class="screen" id="screen-4">
+  <div class="section-header">
+    <div class="section-label">Section 4 of 6</div>
+    <div class="section-title">What's Not Tolerated</div>
+  </div>
+  <div class="content-card">
+
+    <div class="callout red" style="margin-bottom:1rem;">
+      <span class="callout-icon">🚫</span>
+      <span>These are not "frowned upon" behaviors. These are <strong>fireable offenses</strong> or triggers for immediate disciplinary action. Read every one.</span>
+    </div>
+
+    <div class="subsection">
+      <div class="discipline-ladder">
+        <div class="discipline-step"><div class="discipline-icon">📵</div><div><strong>Zero communication with clients</strong> — Going days or weeks without contacting your clients is abandonment. It harms their case and reflects on the firm.</div></div>
+        <div class="discipline-step"><div class="discipline-icon">📱</div><div><strong>Ignoring callbacks</strong> — Every missed call must be returned within 24 hours. No exceptions. Log every attempt.</div></div>
+        <div class="discipline-step"><div class="discipline-icon">📂</div><div><strong>Cases sitting in wrong status</strong> — CasePeer status must reflect reality at all times. A case in "Treating" for 8 months with no movement is a failure.</div></div>
+        <div class="discipline-step"><div class="discipline-icon">⏰</div><div><strong>Missing deadlines without escalating</strong> — If you can't hit a deadline, say so before it passes. Silence is not acceptable. Escalate early.</div></div>
+        <div class="discipline-step"><div class="discipline-icon">🫵</div><div><strong>Blaming others when you didn't verify</strong> — "I thought they handled it" is not a defense. <em>Delegation is not abdication.</em> If you assigned it, you're responsible for confirming it was done.</div></div>
+        <div class="discipline-step"><div class="discipline-icon">🔐</div><div><strong>Sharing client information outside the firm</strong> — This is a HIPAA and confidentiality violation. It can end your career in this industry. It will end your career here immediately.</div></div>
+      </div>
+    </div>
+
+    <div class="callout amber" style="margin-top:1rem;">
+      <span class="callout-icon">💬</span>
+      <span>If you're struggling, overwhelmed, or unsure — <strong>talk to your CM before something falls through the cracks.</strong> We would rather help you course-correct than have to discipline you.</span>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(3)">← Back</button>
+      <button class="btn btn-primary" onclick="go(5)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 5: HOW YOU'RE MEASURED ══════════ -->
+<div class="screen" id="screen-5">
+  <div class="section-header">
+    <div class="section-label">Section 5 of 6</div>
+    <div class="section-title">How You're Measured</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>Monthly Scorecard</h3>
+      <p>Every employee receives a monthly performance rating. Your rating directly affects your compensation and advancement. Here's what each grade means:</p>
+      <div class="scorecard-grid">
+        <div class="scorecard-row grade-a">
+          <div class="score-grade">A</div>
+          <div class="score-details">
+            <strong>Exceeds Expectations</strong>
+            <span>Merit raise + 100% bonus payout. This is the standard we want everyone striving for.</span>
+          </div>
+        </div>
+        <div class="scorecard-row grade-b">
+          <div class="score-grade">B</div>
+          <div class="score-details">
+            <strong>Meets Expectations</strong>
+            <span>Standard raise + 75% bonus payout. Solid performance, room to grow.</span>
+          </div>
+        </div>
+        <div class="scorecard-row grade-c">
+          <div class="score-grade">C</div>
+          <div class="score-details">
+            <strong>Below Expectations</strong>
+            <span>COLA raise only + 50% bonus. A signal that improvement is needed.</span>
+          </div>
+        </div>
+        <div class="scorecard-row grade-d">
+          <div class="score-grade">D</div>
+          <div class="score-details">
+            <strong>Unsatisfactory</strong>
+            <span>No raise + 0% bonus + Performance Improvement Plan (PIP). Continued D rating leads to termination.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Performance Reviews &amp; Coaching</h3>
+      <p>Scorecards are reviewed monthly with your CM. This isn't just a number — it's a conversation about what's working and what needs to change. We want to see you succeed.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Progressive Discipline</h3>
+      <div class="discipline-ladder">
+        <div class="discipline-step"><div class="discipline-icon">1️⃣</div><div><strong>Coaching</strong> — Informal conversation, guidance, correction</div></div>
+        <div class="discipline-step"><div class="discipline-icon">2️⃣</div><div><strong>Verbal Warning</strong> — Documented discussion, specific improvement required</div></div>
+        <div class="discipline-step"><div class="discipline-icon">3️⃣</div><div><strong>Written Warning</strong> — Formal written notice in your HR file</div></div>
+        <div class="discipline-step"><div class="discipline-icon">4️⃣</div><div><strong>Performance Improvement Plan (PIP)</strong> — Structured plan with measurable goals and timeline</div></div>
+        <div class="discipline-step"><div class="discipline-icon">5️⃣</div><div><strong>Termination</strong> — Employment ends if PIP goals are not met</div></div>
+      </div>
+      <div class="callout green" style="margin-top:0.75rem;">
+        <span class="callout-icon">✅</span>
+        <span>Note: <strong>Verbal warnings</strong> trigger after 3 tardies per pay period. The policy scales with severity and frequency. Coaching is always the first step — we want to help you get it right.</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(4)">← Back</button>
+      <button class="btn btn-primary" onclick="go(6)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 6: YOUR RESOURCES ══════════ -->
+<div class="screen" id="screen-6">
+  <div class="section-header">
+    <div class="section-label">Section 6 of 6</div>
+    <div class="section-title">Your Resources</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <p>You're not expected to memorize everything on day one. You're expected to know where to look. These resources exist so you can always find the right answer.</p>
+      <div class="resource-grid">
+        <div class="resource-card">
+          <div class="resource-icon">📖</div>
+          <div>
+            <strong>Employee Handbook</strong>
+            <p>Located in the shared drive under HR → Policies. Covers all firm policies, time-off, conduct, and benefits.</p>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">📋</div>
+          <div>
+            <strong>Your SOP (Standard Operating Procedures)</strong>
+            <p>Your department's SOP is in the shared drive under your department folder. Read it. Know it. Use it.</p>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">💻</div>
+          <div>
+            <strong>CasePeer Template Quick Reference</strong>
+            <p>All templates are numbered and stored in CasePeer. When in doubt about which template to use, ask your CM.</p>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🔗</div>
+          <div>
+            <strong>Chain of Command Contacts</strong>
+            <p>Posted in the office and in the shared drive. If you need something escalated, use the chain — don't guess or skip levels.</p>
+          </div>
+        </div>
+        <div class="resource-card">
+          <div class="resource-icon">🙋</div>
+          <div>
+            <strong>When in Doubt: Ask, Don't Guess</strong>
+            <p>A wrong guess on a client file can set a case back weeks. Asking takes 30 seconds. Get in the habit of asking before acting when uncertain.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <span class="callout-icon">🎉</span>
+      <span>You've completed all 6 sections! You're ready to take the quiz. <strong>You need 8 out of 10 (80%) to pass</strong> and receive your completion certificate.</span>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(5)">← Back</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Take the Quiz →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 7: QUIZ ══════════ -->
+<div class="screen" id="screen-quiz">
+  <div class="section-header">
+    <div class="section-label" id="quiz-section-label">Question 1 of 10</div>
+    <div class="section-title">Knowledge Check</div>
+  </div>
+  <div class="content-card">
+    <div class="quiz-progress" id="quizDots"></div>
+    <div class="question-num" id="qNum">Question 1 of 10</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options" id="qOptions"></div>
+    <div class="feedback-box" id="qFeedback"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="qNextBtn" onclick="nextQuestion()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 8: RESULTS ══════════ -->
+<div class="screen" id="screen-results">
+  <div class="section-header">
+    <div class="section-label">Quiz Complete</div>
+    <div class="section-title">Your Results</div>
+  </div>
+  <div class="content-card">
+    <div class="result-hero">
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-label" id="resultLabel"></div>
+      <div class="result-badge" id="resultBadge"></div>
+    </div>
+    <div id="reviewSection" style="margin-top:1.25rem;">
+      <h3 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy2);margin-bottom:0.75rem;font-weight:700;">Review</h3>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+    <div class="btn-row" style="margin-top:1.25rem;" id="resultButtons"></div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 9: CERTIFICATE ══════════ -->
+<div class="screen" id="screen-cert">
+  <div class="section-header">
+    <div class="section-label">Completion</div>
+    <div class="section-title">Certificate of Completion</div>
+  </div>
+  <div class="content-card">
+    <div class="name-input-wrap">
+      <label for="certNameInput">Enter your full name for the certificate:</label>
+      <input type="text" id="certNameInput" class="name-input" placeholder="Your Full Name" oninput="updateCertName()">
+    </div>
+    <div class="cert-wrap" id="certWrap">
+      <div class="cert-firm">Gunn Law Group — Atlanta, Georgia</div>
+      <div class="cert-title">Certificate of Completion</div>
+      <div class="cert-subtitle">GLG Training &amp; Development Program</div>
+      <div class="cert-presents">This certifies that</div>
+      <div class="cert-name" id="certNameDisplay">___________________</div>
+      <div class="cert-for">has successfully completed</div>
+      <div class="cert-module">Module A1: GLG Operations — How We Work</div>
+      <span class="cert-seal">⚖️</span>
+      <div class="cert-score" id="certScore"></div>
+      <div class="cert-meta" id="certMeta"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go('results')">← Results</button>
+      <button class="btn btn-green" onclick="window.print()">🖨️ Print Certificate</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main-wrap -->
+
+<script>
+const TOTAL_SECTIONS = 7; // 0=welcome, 1-6=sections, quiz=7
+let currentScreen = 0;
+let quizData = [];
+let currentQ = 0;
+let answers = [];
+let score = 0;
+
+const questions = [
+  {
+    q: "How often must pre-litigation clients be contacted?",
+    options: ["Every 7 days", "Every 14 days", "Every 30 days", "Only when there's an update"],
+    correct: 1,
+    explanation: "Pre-litigation clients must be contacted every 14 days — no exceptions. This keeps clients informed and builds trust."
+  },
+  {
+    q: "If you can't complete a task by the deadline, what should you do?",
+    options: ["Just finish it when you can", "Notify your CM before the deadline", "Wait until someone asks about it", "Delegate to someone else"],
+    correct: 1,
+    explanation: "Always notify your CM before the deadline passes. Silence is not acceptable. Escalating early gives the team a chance to help or adjust."
+  },
+  {
+    q: "What does the 24-hour callback policy mean?",
+    options: ["Call clients back within 24 business hours", "Every missed call must be returned within 24 hours", "Log callbacks within 24 hours", "Only urgent calls need 24-hour response"],
+    correct: 1,
+    explanation: "Every missed call — from any client — must be returned within 24 hours. This applies to all calls, not just urgent ones."
+  },
+  {
+    q: "What happens if something isn't documented in CasePeer?",
+    options: ["It's fine as long as you remember", "You can add it later", "As far as the firm is concerned, it didn't happen", "Your CM will document it"],
+    correct: 2,
+    explanation: "If it's not in CasePeer, it didn't happen. Documentation protects the client, the firm, and you. Log everything."
+  },
+  {
+    q: "What is the lunch break maximum?",
+    options: ["30 minutes", "45 minutes", "60 minutes", "No limit"],
+    correct: 2,
+    explanation: "The maximum lunch break is 60 minutes. You must clock out and clock back in — all 4 punches per day are required."
+  },
+  {
+    q: "A client calls and asks when their case will settle. You should:",
+    options: ["Give them an estimate", "Tell them you don't know", "Take a message and notify the CM within 1 hour", "Transfer them to the attorney"],
+    correct: 2,
+    explanation: "Never estimate a settlement date — this can create unrealistic expectations and complaints. Take a message and notify the CM promptly."
+  },
+  {
+    q: "What scorecard rating results in no raise and a Performance Improvement Plan (PIP)?",
+    options: ["C", "B", "D", "Any rating below A"],
+    correct: 2,
+    explanation: "A 'D' rating means no raise, 0% bonus, and placement on a Performance Improvement Plan. Continued D performance leads to termination."
+  },
+  {
+    q: "How many tardies per pay period trigger a verbal warning?",
+    options: ["1", "2", "3", "5"],
+    correct: 2,
+    explanation: "Three tardies in a pay period triggers a verbal warning. The 7-minute grace period applies, but beyond that it's documented."
+  },
+  {
+    q: "You discover a case has been in 'Treating' status for 8 months with no recent notes. What do you do?",
+    options: ["Nothing, it's not your case", "Flag it to your CM or supervisor", "Change the status yourself", "Call the client"],
+    correct: 1,
+    explanation: "Flag stagnant cases to your CM immediately. CasePeer status must reflect reality. Never ignore a case that looks stuck — it affects the client and the firm."
+  },
+  {
+    q: '"Delegation is not abdication" means:',
+    options: ["You can't delegate tasks", "When you assign a task, you're still responsible for verifying it was done", "Only attorneys can delegate", "Tasks should never be delegated"],
+    correct: 1,
+    explanation: "When you delegate, you remain responsible for the outcome. Always verify that delegated work was actually completed. 'I thought they handled it' is never an acceptable excuse."
+  }
+];
+
+function updateProgress(screen) {
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+  let pct = 0;
+  let txt = '';
+  if (screen === 'quiz' || screen === 'results' || screen === 'cert') {
+    pct = 100;
+    txt = 'Quiz';
+  } else {
+    const s = parseInt(screen);
+    pct = (s / 6) * 100;
+    txt = s === 0 ? 'Intro' : `${s} / 6`;
+  }
+  fill.style.width = pct + '%';
+  label.textContent = txt;
+}
+
+function go(screen) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','slide-in'));
+  let el;
+  if (screen === 'quiz') el = document.getElementById('screen-quiz');
+  else if (screen === 'results') el = document.getElementById('screen-results');
+  else if (screen === 'cert') el = document.getElementById('screen-cert');
+  else el = document.getElementById('screen-' + screen);
+  if (el) { el.classList.add('active','slide-in'); }
+  currentScreen = screen;
+  updateProgress(screen);
+  window.scrollTo(0, 0);
+}
+
+function startQuiz() {
+  currentQ = 0;
+  answers = new Array(questions.length).fill(null);
+  score = 0;
+  renderQuizDots();
+  renderQuestion();
+  go('quiz');
+}
+
+function renderQuizDots() {
+  const d = document.getElementById('quizDots');
+  d.innerHTML = questions.map((_,i) => `<div class="quiz-dot" id="dot-${i}"></div>`).join('');
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('quiz-section-label').textContent = `Question ${currentQ+1} of ${questions.length}`;
+  document.getElementById('qNum').textContent = `Question ${currentQ+1} of ${questions.length}`;
+  document.getElementById('qText').textContent = q.q;
+  const letters = ['A','B','C','D'];
+  document.getElementById('qOptions').innerHTML = q.options.map((opt,i) =>
+    `<button class="option-btn" id="opt-${i}" onclick="selectOption(${i})">
+       <span class="option-letter">${letters[i]}</span> ${opt}
+     </button>`
+  ).join('');
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'none';
+  fb.className = 'feedback-box';
+  document.getElementById('qNextBtn').disabled = true;
+  document.getElementById('qNextBtn').textContent = currentQ < questions.length-1 ? 'Next →' : 'See Results';
+}
+
+function selectOption(idx) {
+  if (answers[currentQ] !== null) return;
+  answers[currentQ] = idx;
+  const q = questions[currentQ];
+  const isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+
+  const opts = document.querySelectorAll('.option-btn');
+  opts.forEach((o,i) => {
+    o.disabled = true;
+    if (i === q.correct) o.classList.add('correct');
+    else if (i === idx && !isCorrect) o.classList.add('wrong');
+  });
+
+  const dot = document.getElementById('dot-' + currentQ);
+  dot.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'block';
+  fb.className = 'feedback-box ' + (isCorrect ? 'correct' : 'wrong');
+  fb.innerHTML = (isCorrect ? '✅ <strong>Correct!</strong> ' : '❌ <strong>Incorrect.</strong> ') + q.explanation;
+
+  document.getElementById('qNextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  const passed = score >= 8;
+  const pct = Math.round((score / questions.length) * 100);
+
+  document.getElementById('resultScore').textContent = `${score}/10`;
+  document.getElementById('resultScore').className = 'result-score ' + (passed ? 'pass' : 'fail');
+  document.getElementById('resultLabel').textContent = passed ? 'You Passed! 🎉' : 'Not Quite — Try Again';
+  const badge = document.getElementById('resultBadge');
+  badge.textContent = passed ? `PASSED — ${pct}%` : `FAILED — ${pct}% (Need 80%)`;
+  badge.className = 'result-badge ' + (passed ? 'badge-pass' : 'badge-fail');
+
+  const letters = ['A','B','C','D'];
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = questions.map((q, i) => {
+    const correct = answers[i] === q.correct;
+    return `<div class="review-item ${correct ? 'correct' : 'wrong'}">
+      <div class="ri-q">${i+1}. ${q.q}</div>
+      <div class="ri-ans">
+        ${correct ? '✅' : '❌'} Your answer: <strong>${letters[answers[i]]}. ${q.options[answers[i]]}</strong>
+        ${!correct ? `<br>✅ Correct: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong>` : ''}
+        ${!correct ? `<br><em style="color:#666;font-size:0.8rem;">${q.explanation}</em>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const btns = document.getElementById('resultButtons');
+  if (passed) {
+    btns.innerHTML = `<button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button>
+                      <button class="btn btn-green" onclick="showCert()">Get Certificate 🏆</button>`;
+  } else {
+    btns.innerHTML = `<button class="btn btn-secondary" onclick="go(1)">Review Content</button>
+                      <button class="btn btn-primary" onclick="startQuiz()">Try Again</button>`;
+  }
+
+  go('results');
+}
+
+function showCert() {
+  const certScore = document.getElementById('certScore');
+  certScore.textContent = `Score: ${score}/10 (${Math.round(score/10*100)}%) — PASSED`;
+  const now = new Date();
+  document.getElementById('certMeta').textContent = `Issued: ${now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'})}`;
+  go('cert');
+}
+
+function updateCertName() {
+  const val = document.getElementById('certNameInput').value.trim();
+  document.getElementById('certNameDisplay').textContent = val || '___________________';
+}
+
+// Init
+updateProgress(0);
+
+// iOS touch event fix - ensure onclick works
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[onclick]').forEach(function(el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var fn = el.getAttribute('onclick');
+      if (fn) { eval(fn); }
+    }, {passive: false});
+  });
+  // Initialize first screen
+  if (!document.querySelector('.screen.active')) {
+    var first = document.getElementById('screen-0');
+    if (first) first.classList.add('active');
+  }
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 2 — PI Case Types, Liability & Your Cases in CasePeer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f8f9fa;
+      color: #333333;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    /* ── Header ── */
+    header {
+      background: #141c2c;
+      color: white;
+      padding: 24px 20px;
+      text-align: center;
+    }
+    header .day-badge {
+      display: inline-block;
+      background: #232e54;
+      color: #aab4c8;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-size: clamp(18px, 5vw, 26px);
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    header p {
+      margin-top: 8px;
+      color: #aab4c8;
+      font-size: 14px;
+    }
+
+    /* ── Progress Bar ── */
+    .progress-wrap {
+      background: #232e54;
+      padding: 12px 20px;
+    }
+    .progress-label {
+      color: #aab4c8;
+      font-size: 12px;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-bar-bg {
+      background: #141c2c;
+      border-radius: 4px;
+      height: 8px;
+      width: 100%;
+    }
+    .progress-bar-fill {
+      background: #27ae60;
+      height: 8px;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* ── Nav Pills ── */
+    .section-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 16px 20px;
+      background: white;
+      border-bottom: 1px solid #e0e3e8;
+      justify-content: center;
+    }
+    .nav-pill {
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 2px solid #e0e3e8;
+      background: white;
+      color: #666;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+    .nav-pill.done::after { content: ' ✓'; }
+
+    /* ── Main Layout ── */
+    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+
+    /* ── Section Cards ── */
+    .section-card {
+      display: none;
+      background: white;
+      margin: 20px 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .section-card.active { display: block; }
+
+    .section-header {
+      background: #141c2c;
+      color: white;
+      padding: 20px 24px;
+    }
+    .section-header .section-num {
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #aab4c8;
+      margin-bottom: 4px;
+    }
+    .section-header h2 {
+      font-size: clamp(16px, 4vw, 22px);
+      font-weight: 700;
+    }
+
+    .section-body { padding: 24px; }
+
+    /* ── Case Type Cards ── */
+    .case-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .case-card {
+      border: 2px solid #e0e3e8;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .case-card-header {
+      background: #232e54;
+      color: white;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .case-icon { font-size: 22px; }
+    .case-name { font-weight: 700; font-size: 15px; }
+    .case-tag {
+      margin-left: auto;
+      background: rgba(255,255,255,0.15);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+    .case-card-body { padding: 14px 16px; }
+    .case-card-body p { margin-bottom: 8px; font-size: 15px; }
+    .case-card-body .example {
+      background: #f0f4f8;
+      border-left: 3px solid #141c2c;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 14px;
+      color: #555;
+    }
+    .case-card-body .example strong { color: #141c2c; }
+
+    /* ── Info Blocks ── */
+    .info-block {
+      background: #f0f4f8;
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    .info-block h3 {
+      color: #141c2c;
+      font-size: 16px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .info-block ul {
+      padding-left: 20px;
+    }
+    .info-block ul li {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .alert-block {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .alert-block h3 { color: #856404; margin-bottom: 8px; }
+    .alert-block p { color: #533f03; font-size: 15px; }
+
+    .success-block {
+      background: #d4edda;
+      border: 2px solid #27ae60;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .success-block h3 { color: #155724; margin-bottom: 8px; }
+    .success-block p { color: #155724; font-size: 15px; }
+
+    .danger-block {
+      background: #f8d7da;
+      border: 2px solid #c0392b;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+    .danger-block p { color: #721c24; font-size: 15px; }
+
+    /* ── Comparison Table ── */
+    .compare-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 560px) {
+      .compare-grid { flex-direction: row; }
+      .compare-grid > * { flex: 1; }
+    }
+    .compare-col {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #e0e3e8;
+    }
+    .compare-col-header {
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 15px;
+      color: white;
+    }
+    .compare-col-header.claim { background: #27ae60; }
+    .compare-col-header.lawsuit { background: #c0392b; }
+    .compare-col-body {
+      padding: 14px 16px;
+      font-size: 14px;
+    }
+    .compare-col-body ul { padding-left: 18px; }
+    .compare-col-body ul li { margin-bottom: 6px; }
+
+    /* ── Status Pipeline ── */
+    .pipeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 16px;
+    }
+    .pipeline-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #e0e3e8;
+    }
+    .pipeline-step:last-child { border-bottom: none; }
+    .step-num {
+      background: #141c2c;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-status {
+      font-weight: 700;
+      color: #141c2c;
+      font-size: 15px;
+    }
+    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+
+    /* ── Role Table ── */
+    .role-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .role-row {
+      border: 2px solid #e0e3e8;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .role-stage {
+      background: #232e54;
+      color: white;
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .role-tasks {
+      padding: 12px 14px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .tagline-block {
+      background: #141c2c;
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 8px;
+    }
+    .tagline-block p {
+      font-size: clamp(15px, 3.5vw, 18px);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .tagline-block .highlight { color: #4fc3f7; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      min-height: 48px;
+      transition: opacity 0.2s, transform 0.1s;
+      text-decoration: none;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #141c2c; color: white; width: 100%; }
+    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+    .btn-success { background: #27ae60; color: white; width: 100%; }
+
+    .section-footer {
+      padding: 16px 24px 24px;
+      border-top: 1px solid #f0f0f0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .section-footer .btn { flex: 1; min-width: 120px; }
+
+    /* ── Quiz ── */
+    #quiz-section { display: none; }
+    #quiz-section.active { display: block; }
+
+    .quiz-header {
+      background: #141c2c;
+      color: white;
+      padding: 20px 24px;
+    }
+    .quiz-header .section-num {
+      font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px;
+    }
+    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+
+    .quiz-body { padding: 20px 24px; }
+
+    .question-block {
+      display: none;
+      margin-bottom: 20px;
+    }
+    .question-block.active { display: block; }
+
+    .q-counter {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 6px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .q-text {
+      font-size: clamp(15px, 3.5vw, 17px);
+      font-weight: 600;
+      color: #141c2c;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border: 2px solid #e0e3e8;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      font-size: 15px;
+      text-align: left;
+      min-height: 52px;
+      transition: all 0.2s;
+      width: 100%;
+    }
+    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+    .option-btn:disabled { cursor: not-allowed; }
+
+    .option-letter {
+      background: #232e54;
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .option-btn.correct .option-letter { background: #27ae60; }
+    .option-btn.incorrect .option-letter { background: #c0392b; }
+
+    .feedback {
+      display: none;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .feedback.show { display: block; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+
+    .quiz-nav {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .quiz-nav .btn { flex: 1; min-width: 120px; }
+
+    /* ── Results ── */
+    #results-section { display: none; }
+    #results-section.active { display: block; }
+
+    .results-card {
+      background: white;
+      margin: 20px 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .results-header {
+      padding: 30px 24px;
+      text-align: center;
+    }
+    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+
+    .results-body { padding: 24px; }
+    .results-breakdown { margin-bottom: 20px; }
+    .breakdown-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item .dot {
+      width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0;
+    }
+    .dot.correct { background: #27ae60; }
+    .dot.incorrect { background: #c0392b; }
+
+    /* ── Certificate ── */
+    #certificate {
+      display: none;
+      background: white;
+      margin: 0 16px 20px;
+      border-radius: 12px;
+      border: 3px solid #141c2c;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    #certificate.show { display: block; }
+    .cert-logo {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: #141c2c;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+    .cert-title {
+      font-size: clamp(18px, 5vw, 26px);
+      font-weight: 700;
+      color: #141c2c;
+      margin-bottom: 8px;
+    }
+    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-name {
+      font-size: clamp(20px, 5vw, 28px);
+      font-weight: 700;
+      color: #141c2c;
+      border-bottom: 2px solid #141c2c;
+      display: inline-block;
+      padding: 0 20px 4px;
+      margin: 6px 0 16px;
+      min-width: 60%;
+    }
+    .cert-module {
+      background: #f0f4f8;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .cert-module strong { color: #141c2c; }
+    .cert-score-badge {
+      display: inline-block;
+      background: #27ae60;
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 24px;
+      border-radius: 30px;
+      margin-bottom: 16px;
+    }
+    .cert-date { font-size: 13px; color: #888; }
+    .cert-sig {
+      margin-top: 20px;
+      border-top: 1px solid #e0e3e8;
+      padding-top: 16px;
+    }
+    .cert-sig-line {
+      border-bottom: 1px solid #333;
+      width: 60%;
+      margin: 0 auto 4px;
+      height: 24px;
+    }
+    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+    .print-btn { margin-top: 16px; }
+
+    @media print {
+      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn { display: none !important; }
+      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+      body { background: white; }
+    }
+
+    /* ── Responsive ── */
+    @media (min-width: 600px) {
+      .case-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="day-badge">Day 2 of 5</div>
+  <h1>PI Case Types, Liability &amp; Your Cases in CasePeer</h1>
+  <p>Gunn Law Group — Legal Assistant Training</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">Section 1 of 5</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<nav class="section-nav" role="navigation" aria-label="Module sections">
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. Case Types</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. Liability</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Claim vs Lawsuit</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. CasePeer</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. Your Role</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
+</nav>
+
+<main>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 1: Types of PI Cases
+  ══════════════════════════════════════════════ -->
+  <div class="section-card active" id="section-0">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>Types of PI Cases We Handle</h2>
+    </div>
+    <div class="section-body">
+
+      <p style="margin-bottom:18px; font-size:15px;">Personal injury (PI) law covers many types of accidents and injuries. Here are the main case types you'll see at Gunn Law Group:</p>
+
+      <div class="case-grid">
+
+        <div class="case-card">
+          <div class="case-card-header">
+            <span class="case-icon">🚗</span>
+            <span class="case-name">Auto Accidents</span>
+            <span class="case-tag">⭐ Most Common</span>
+          </div>
+          <div class="case-card-body">
+            <p>A collision between motor vehicles — rear-end, intersection, highway, or hit-and-run. This is the <strong>majority of our cases</strong>.</p>
+            <div class="example"><strong>Example:</strong> A driver runs a red light and T-bones our client's car at an intersection, causing neck and back injuries.</div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-card-header">
+            <span class="case-icon">🚛</span>
+            <span class="case-name">Trucking Accidents</span>
+            <span class="case-tag">High Value</span>
+          </div>
+          <div class="case-card-body">
+            <p>Accidents involving commercial trucks and CDL drivers, governed by FMCSA federal regulations — higher insurance limits and more complex liability.</p>
+            <div class="example"><strong>Example:</strong> A semi-truck driver, fatigued from exceeding drive-time limits, rear-ends our client on I-285, causing serious injuries.</div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-card-header">
+            <span class="case-icon">🏪</span>
+            <span class="case-name">Premises Liability</span>
+            <span class="case-tag">Property Owner at Fault</span>
+          </div>
+          <div class="case-card-body">
+            <p>Injuries that occur on someone else's property due to unsafe conditions — slip and fall, negligent security. The property owner is responsible.</p>
+            <div class="example"><strong>Example:</strong> Our client slips on a wet floor in a grocery store with no warning signs and breaks their wrist.</div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-card-header">
+            <span class="case-icon">🚶</span>
+            <span class="case-name">Pedestrian &amp; Bicycle Accidents</span>
+          </div>
+          <div class="case-card-body">
+            <p>Cases where a pedestrian or cyclist is struck by a motor vehicle. Injuries tend to be severe because there is no vehicle protection.</p>
+            <div class="example"><strong>Example:</strong> Our client is riding a bicycle in a bike lane when a car door swings open, causing them to crash and suffer a broken collarbone.</div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-card-header">
+            <span class="case-icon">🐕</span>
+            <span class="case-name">Dog Bites</span>
+          </div>
+          <div class="case-card-body">
+            <p>Injuries caused by a dog attack. In Georgia, the dog owner can be held liable if they knew the dog had dangerous tendencies.</p>
+            <div class="example"><strong>Example:</strong> A neighbor's dog escapes the yard and bites our client, requiring stitches and causing infection.</div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-card-header">
+            <span class="case-icon">⚖️</span>
+            <span class="case-name">Wrongful Death</span>
+            <span class="case-tag">Sensitive</span>
+          </div>
+          <div class="case-card-body">
+            <p>Cases where someone's negligence caused another person's death. The family of the deceased brings the claim. These require extra care and sensitivity.</p>
+            <div class="example"><strong>Example:</strong> A drunk driver kills our client's spouse in a car accident. We represent the surviving family to recover damages.</div>
+          </div>
+        </div>
+
+      </div><!-- .case-grid -->
+
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: Liability →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 2: Liability
+  ══════════════════════════════════════════════ -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>What is Liability?</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="info-block">
+        <h3>📖 Key Terms</h3>
+        <ul>
+          <li><strong>Liability</strong> — who is legally at fault for the accident</li>
+          <li><strong>Negligence</strong> — failing to act as a reasonable person would (e.g., running a red light)</li>
+          <li><strong>At-fault</strong> — the person who caused the accident through their negligence</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <p style="font-size:15px; margin-bottom:12px;"><strong>Not all liability is equal. Here's how it breaks down:</strong></p>
+
+        <div class="success-block">
+          <h3>✅ Clear Liability</h3>
+          <p><strong>Example: Rear-end collision.</strong> The driver who hits from behind is almost always at fault. There's very little room for dispute — if you rear-ended someone, you weren't paying attention or following too closely.</p>
+        </div>
+
+        <div class="alert-block">
+          <h3>⚠️ Disputed Liability</h3>
+          <p><strong>Example: Intersection accident.</strong> Both drivers may claim the other ran the red light. Without a witness or camera footage, it's harder to prove who was at fault. These cases require more investigation.</p>
+        </div>
+      </div>
+
+      <div class="danger-block">
+        <h3>⚡ Georgia Comparative Negligence Law — O.C.G.A. § 51-12-33</h3>
+        <p>In Georgia, if our client is <strong>partially at fault</strong>, their recovery is reduced by their percentage of fault.<br><br>
+        <strong>Critical rule: If the client is 50% or more at fault, they recover NOTHING.</strong><br><br>
+        Example: Client is 30% at fault → they receive 70% of damages. Client is 50% at fault → they receive $0.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>🎯 Our Job</h3>
+        <ul>
+          <li>Prove the <strong>other person was at fault</strong></li>
+          <li>Prove our <strong>client was NOT at fault</strong> (or minimize their percentage)</li>
+          <li>Gather evidence: photos, police reports, witness statements, camera footage</li>
+          <li>The stronger the liability, the stronger our negotiating position</li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Claim vs Lawsuit →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 3: Claim vs Lawsuit
+  ══════════════════════════════════════════════ -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>Claim vs. Lawsuit</h2>
+    </div>
+    <div class="section-body">
+
+      <p style="font-size:15px; margin-bottom:18px;">These two words get confused constantly. They are NOT the same thing. Here's the difference:</p>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-col-header claim">📋 CLAIM (Pre-Litigation)</div>
+          <div class="compare-col-body">
+            <ul>
+              <li>Demand for money <strong>from the insurance company</strong></li>
+              <li><strong>No court involved</strong></li>
+              <li>Handled by our pre-lit team</li>
+              <li>Faster for the client</li>
+              <li>Less expensive</li>
+              <li><strong>Most of our cases settle here</strong></li>
+            </ul>
+          </div>
+        </div>
+        <div class="compare-col">
+          <div class="compare-col-header lawsuit">⚖️ LAWSUIT (Litigation)</div>
+          <div class="compare-col-body">
+            <ul>
+              <li>File a complaint <strong>with the court</strong></li>
+              <li>Insurance won't pay fairly</li>
+              <li>Goes to <strong>Landon's team</strong></li>
+              <li>Takes longer</li>
+              <li>More expensive</li>
+              <li>Sometimes necessary for a fair result</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block" style="margin-top:4px;">
+        <h3>🏁 The Goal</h3>
+        <ul>
+          <li>Always try to resolve at the <strong>claim stage</strong> — faster + cheaper for the client</li>
+          <li>If the insurance company refuses to pay fairly, we <strong>file suit</strong></li>
+          <li>Filing suit isn't a failure — it's a tool to get our clients what they deserve</li>
+          <li>When a case moves to litigation, it transfers to Landon's litigation team</li>
+        </ul>
+      </div>
+
+      <div class="alert-block">
+        <h3>📌 What This Means for You</h3>
+        <p>As a Legal Assistant, you primarily work in <strong>pre-litigation (claim stage)</strong>. Your goal is to help move cases forward so they resolve efficiently. If a case goes to litigation, you'll help with the handoff to Landon's team.</p>
+      </div>
+
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: CasePeer →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 4: CasePeer Statuses
+  ══════════════════════════════════════════════ -->
+  <div class="section-card" id="section-3">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>How Cases Move Through CasePeer</h2>
+    </div>
+    <div class="section-body">
+
+      <p style="font-size:15px; margin-bottom:18px;">Every case in CasePeer has a <strong>status</strong> — a label that tells the whole team exactly where the case is in the process. Here are the main statuses in order:</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Intake</div>
+            <div class="step-desc">Client just called in. They have not signed our fee agreement yet. We are evaluating whether to take the case.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Intake Review</div>
+            <div class="step-desc">Client has signed. An attorney is reviewing the case details before it officially opens.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Treating</div>
+            <div class="step-desc">Client is actively going to the doctor for their injuries. We are gathering medical records and monitoring progress.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Pending Demand</div>
+            <div class="step-desc">Client has finished treatment. We are assembling all records, bills, and documentation to build the demand package.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-status">Demanded</div>
+            <div class="step-desc">The demand letter has been sent to the insurance company. We are waiting for their response.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <div class="step-status">Settlement Negotiations</div>
+            <div class="step-desc">Insurance has made an offer. We are negotiating back and forth to reach a fair settlement.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">7</div>
+          <div class="step-content">
+            <div class="step-status">Settled</div>
+            <div class="step-desc">Both sides have agreed on a number. The settlement is confirmed. Now we move to disbursement.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">8</div>
+          <div class="step-content">
+            <div class="step-status">Disbursement</div>
+            <div class="step-desc">Cutting the check to the client. Paying liens, attorney fees, and distributing the client's portion. Often the most complex step.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">9</div>
+          <div class="step-content">
+            <div class="step-status">Closed</div>
+            <div class="step-desc">Everything is paid out. The case is complete and archived.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 Why Status Accuracy Matters</h3>
+        <p>If a case is in the <strong>wrong status, it doesn't get the right attention</strong>.<br><br>
+        A case stuck in "Treating" for 8 months might mean the client stopped going to the doctor — and <strong>nobody noticed</strong>. That's a problem. Cases with stale statuses fall through the cracks.<br><br>
+        <strong>Always flag a status that looks wrong.</strong></p>
+      </div>
+
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: Your Role →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       SECTION 5: Your Role
+  ══════════════════════════════════════════════ -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>Your Role in All This</h2>
+    </div>
+    <div class="section-body">
+
+      <p style="font-size:15px; margin-bottom:18px;">As a <strong>Legal Assistant</strong>, you support the Case Manager (CM) at every stage. Here's what that looks like in practice:</p>
+
+      <div class="role-grid">
+        <div class="role-row">
+          <div class="role-stage">1. Intake</div>
+          <div class="role-tasks">Help set up the case in CasePeer. Enter client info, upload the signed fee agreement, confirm insurance details are captured.</div>
+        </div>
+        <div class="role-row">
+          <div class="role-stage">2. Treating</div>
+          <div class="role-tasks">Request medical records. Follow up every <strong>14 days</strong> on all outstanding requests. Verify the client's health insurance coverage for lien purposes.</div>
+        </div>
+        <div class="role-row">
+          <div class="role-stage">3. Demand</div>
+          <div class="role-tasks">Help assemble the demand package — organize records, bills, photos, and documentation so the CM can send a complete, strong demand.</div>
+        </div>
+        <div class="role-row">
+          <div class="role-stage">4. Settlement</div>
+          <div class="role-tasks">Send lien reduction letters to hospitals, insurers, and government agencies. Track responses. Confirm all liens are resolved before disbursement.</div>
+        </div>
+        <div class="role-row">
+          <div class="role-stage">5. Disbursement</div>
+          <div class="role-tasks">Help prepare the settlement statement. Ensure all payees are identified, amounts are correct, and the client understands what they're receiving.</div>
+        </div>
+      </div>
+
+      <div class="tagline-block">
+        <p>The CM drives. <span class="highlight">You keep it running.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Without consistent follow-up, cases stall. Your attention to detail and follow-through is what moves cases from Treating to Closed.</p>
+      </div>
+
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(3)" ontouchend="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Quiz →</button>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       QUIZ
+  ══════════════════════════════════════════════ -->
+  <div class="section-card" id="quiz-section">
+    <div class="quiz-header">
+      <div class="section-num">Knowledge Check</div>
+      <h2>Quiz — 10 Questions</h2>
+    </div>
+    <div class="quiz-body">
+
+      <!-- Q1 -->
+      <div class="question-block active" id="q1">
+        <div class="q-counter">Question 1 of 10</div>
+        <div class="q-text">What type of case involves a client who slipped on a wet floor in a store?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> Auto accident</button>
+          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Premises liability</button>
+          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> Trucking</button>
+          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Wrongful death</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-block" id="q2">
+        <div class="q-counter">Question 2 of 10</div>
+        <div class="q-text">In Georgia, if our client is found to be 50% at fault for the accident, what happens?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> They get 50% of the damages</button>
+          <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> They get nothing</button>
+          <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> They get 75%</button>
+          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> It doesn't matter</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-block" id="q3">
+        <div class="q-counter">Question 3 of 10</div>
+        <div class="q-text">What is the difference between a "claim" and a "lawsuit"?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> They are the same thing</button>
+          <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> A claim is with insurance, a lawsuit is filed in court</button>
+          <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> A claim is for BI, a lawsuit is for PD</button>
+          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> A lawsuit comes before a claim</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-block" id="q4">
+        <div class="q-counter">Question 4 of 10</div>
+        <div class="q-text">What does "at-fault" mean?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> The client</button>
+          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> The person who caused the accident</button>
+          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> The insurance company</button>
+          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> The attorney</button>
+        </div>
+        <div class="feedback" id="fb4"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-block" id="q5">
+        <div class="q-counter">Question 5 of 10</div>
+        <div class="q-text">Which CasePeer status means the client is actively going to the doctor?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> Intake</button>
+          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">B</span> Demanded</button>
+          <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> Treating</button>
+          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> Settled</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-block" id="q6">
+        <div class="q-counter">Question 6 of 10</div>
+        <div class="q-text">A rear-end collision usually means liability is:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Disputed</button>
+          <button class="option-btn" onclick="answer(6,'b',true)" ontouchend="answer(6,'b',true)"><span class="option-letter">B</span> Clear against the driver who hit from behind</button>
+          <button class="option-btn" onclick="answer(6,'c',false)" ontouchend="answer(6,'c',false)"><span class="option-letter">C</span> Shared equally</button>
+          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Unknown until trial</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-block" id="q7">
+        <div class="q-counter">Question 7 of 10</div>
+        <div class="q-text">What should happen when a case status is wrong in CasePeer?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> Nothing, it doesn't matter</button>
+          <button class="option-btn" onclick="answer(7,'b',true)" ontouchend="answer(7,'b',true)"><span class="option-letter">B</span> It should be flagged and corrected</button>
+          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> Only the attorney can change it</button>
+          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Wait for the monthly review</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-block" id="q8">
+        <div class="q-counter">Question 8 of 10</div>
+        <div class="q-text">What CasePeer status comes right after a settlement is reached?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> Closed</button>
+          <button class="option-btn" onclick="answer(8,'b',false)" ontouchend="answer(8,'b',false)"><span class="option-letter">B</span> Litigation</button>
+          <button class="option-btn" onclick="answer(8,'c',true)" ontouchend="answer(8,'c',true)"><span class="option-letter">C</span> Disbursement</button>
+          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> Demanded</button>
+        </div>
+        <div class="feedback" id="fb8"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-block" id="q9">
+        <div class="q-counter">Question 9 of 10</div>
+        <div class="q-text">Trucking cases are different from regular auto cases because:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> They always go to trial</button>
+          <button class="option-btn" onclick="answer(9,'b',true)" ontouchend="answer(9,'b',true)"><span class="option-letter">B</span> They involve higher insurance limits and more complex regulations</button>
+          <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> They settle faster</button>
+          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> They don't need records</button>
+        </div>
+        <div class="feedback" id="fb9"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next Question →</button>
+        </div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-block" id="q10">
+        <div class="q-counter">Question 10 of 10</div>
+        <div class="q-text">As a Legal Assistant, how often should you follow up on outstanding records requests?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> Once a month</button>
+          <button class="option-btn" onclick="answer(10,'b',true)" ontouchend="answer(10,'b',true)"><span class="option-letter">B</span> Every 14 days</button>
+          <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Only when the CM asks</button>
+          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> Every 7 days</button>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════
+       RESULTS
+  ══════════════════════════════════════════════ -->
+  <div id="results-section">
+    <div class="results-card">
+      <div class="results-header" id="results-header">
+        <div class="results-score" id="results-score"></div>
+        <div class="results-label">Score (80% required to pass)</div>
+        <div class="results-status" id="results-status"></div>
+      </div>
+      <div class="results-body">
+        <div class="results-breakdown" id="results-breakdown"></div>
+        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       CERTIFICATE
+  ══════════════════════════════════════════════ -->
+  <div id="certificate">
+    <div class="cert-logo">Gunn Law Group</div>
+    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 2 of 5</div>
+    <div class="cert-name-label">This certifies that</div>
+    <div class="cert-name" id="cert-name-display">Sydney</div>
+    <div class="cert-module">
+      has successfully completed<br>
+      <strong>Module 2: PI Case Types, Liability &amp; CasePeer Statuses</strong>
+    </div>
+    <div class="cert-score-badge" id="cert-score-display"></div>
+    <div class="cert-date" id="cert-date"></div>
+    <div class="cert-sig">
+      <div class="cert-sig-line"></div>
+      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+    </div>
+    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+  </div>
+
+</main>
+
+<script>
+  // ── State ──
+  const totalSections = 5;
+  let currentSection = 0;
+  const sectionsDone = new Set();
+  const answers = {};
+  const correctAnswers = { 1:'b',2:'b',3:'b',4:'b',5:'c',6:'b',7:'b',8:'c',9:'b',10:'b' };
+  const feedbackText = {
+    1: { correct: "✅ Correct! Slipping on a wet floor in a store = Premises Liability. The property owner has a duty to keep the premises safe.", incorrect: "❌ Not quite. A wet floor in a store is a Premises Liability case — the store owner is responsible for maintaining safe conditions." },
+    2: { correct: "✅ Correct! Under O.C.G.A. § 51-12-33, being 50% or more at fault means the client recovers NOTHING in Georgia.", incorrect: "❌ Incorrect. In Georgia, if the client is 50% or more at fault, they recover zero — not a reduced amount. The rule is harsh but important." },
+    3: { correct: "✅ Correct! A claim = demand to the insurance company (no court). A lawsuit = filed in court when insurance won't pay fairly.", incorrect: "❌ Not quite. A claim is a demand made directly to the insurance company — no court involved. A lawsuit is when we file with the court." },
+    4: { correct: "✅ Correct! At-fault means the person whose negligence caused the accident.", incorrect: "❌ Incorrect. At-fault refers to the other driver — the person who caused the accident through their negligence." },
+    5: { correct: "✅ Correct! 'Treating' status means the client is actively attending medical appointments for their injuries.", incorrect: "❌ Not quite. 'Treating' is the CasePeer status that means the client is actively going to the doctor. Double-check the pipeline from Section 4." },
+    6: { correct: "✅ Correct! Rear-end collisions almost always result in clear liability against the driver who was following too closely.", incorrect: "❌ Incorrect. Rear-end collisions are typically clear liability — the driver who rear-ended the other vehicle is almost always at fault." },
+    7: { correct: "✅ Correct! Wrong statuses mean cases don't get the right attention. Always flag and correct them.", incorrect: "❌ Incorrect. A wrong status is a real problem — it means the case won't get the right attention. Flag it and get it corrected immediately." },
+    8: { correct: "✅ Correct! After 'Settled' comes 'Disbursement' — cutting the check and paying everyone out.", incorrect: "❌ Not quite. After a settlement is reached, the next status is Disbursement — that's when we distribute the funds to the client and pay all liens." },
+    9: { correct: "✅ Correct! Trucking cases involve federal FMCSA regulations and much higher insurance policy limits than standard auto cases.", incorrect: "❌ Incorrect. Trucking cases stand out because of FMCSA federal regulations and higher insurance limits — making them more complex and typically higher value." },
+    10: { correct: "✅ Correct! Every 14 days is the standard follow-up interval for outstanding records requests.", incorrect: "❌ Incorrect. The standard at Gunn Law Group is every 14 days for records follow-up — consistent enough to keep cases moving without being excessive." }
+  };
+
+  // ── Navigation ──
+  function goToSection(idx) {
+    // Hide all sections
+    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+    document.getElementById('quiz-section').classList.remove('active');
+    document.getElementById('results-section').classList.remove('active');
+
+    if (idx === 5) {
+      // Quiz
+      document.getElementById('quiz-section').classList.add('active');
+      updateProgress(5, false);
+    } else {
+      document.getElementById('section-' + idx).classList.add('active');
+      currentSection = idx;
+      sectionsDone.add(idx);
+      updateNavPills();
+      updateProgress(idx, false);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startQuiz() {
+    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+    updateNavPills();
+    goToSection(5);
+    // Reset quiz state
+    resetQuizUI();
+  }
+
+  function resetQuizUI() {
+    document.querySelectorAll('.question-block').forEach((el, i) => {
+      el.classList.toggle('active', i === 0);
+    });
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.disabled = false;
+      btn.classList.remove('correct','incorrect');
+    });
+    document.querySelectorAll('.feedback').forEach(el => {
+      el.classList.remove('show','correct','incorrect');
+      el.textContent = '';
+    });
+    for (let i = 1; i <= 10; i++) {
+      const nb = document.getElementById('next' + i);
+      if (nb) nb.style.display = 'none';
+    }
+  }
+
+  // ── Quiz Logic ──
+  function answer(qNum, chosen, isCorrect) {
+    if (answers[qNum] !== undefined) return; // already answered
+    answers[qNum] = isCorrect;
+
+    const qBlock = document.getElementById('q' + qNum);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = correctAnswers[qNum];
+
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      const letter = btn.querySelector('.option-letter').textContent.toLowerCase();
+      if (letter === correct) btn.classList.add('correct');
+    });
+
+    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+
+    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+
+    document.getElementById('next' + qNum).style.display = 'inline-flex';
+  }
+
+  function showQuestion(num) {
+    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+    document.getElementById('q' + num).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-section').classList.remove('active');
+
+    let correct = 0;
+    const qTexts = [
+      "What type of case involves a client who slipped on a wet floor in a store?",
+      "In Georgia, if our client is 50% at fault, what happens?",
+      "Difference between a \"claim\" and a \"lawsuit\"?",
+      "What does \"at-fault\" mean?",
+      "Which CasePeer status = actively going to the doctor?",
+      "A rear-end collision means liability is:",
+      "What happens when a case status is wrong in CasePeer?",
+      "What status comes right after settlement is reached?",
+      "Why are trucking cases different?",
+      "How often should you follow up on outstanding records requests?"
+    ];
+
+    Object.values(answers).forEach(v => { if (v) correct++; });
+    const pct = Math.round((correct / 10) * 100);
+    const passed = pct >= 80;
+
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.classList.add('active');
+
+    document.getElementById('results-score').textContent = pct + '%';
+    document.getElementById('results-status').textContent = passed ? '🎉 You Passed!' : '❌ Not Quite — Try Again';
+    const hdr = document.getElementById('results-header');
+    hdr.className = 'results-header ' + (passed ? 'pass' : 'fail');
+
+    // Breakdown
+    let html = '';
+    for (let i = 1; i <= 10; i++) {
+      const ok = answers[i];
+      html += `<div class="breakdown-item"><div class="dot ${ok ? 'correct' : 'incorrect'}"></div>Q${i}: ${qTexts[i-1].substring(0,55)}... <strong>${ok ? '✓' : '✗'}</strong></div>`;
+    }
+    document.getElementById('results-breakdown').innerHTML = html;
+
+    if (!passed) {
+      document.getElementById('retake-btn').style.display = 'block';
+    }
+
+    updateProgress(5, passed);
+    updateNavPills();
+
+    // Certificate
+    if (passed) {
+      showCertificate(pct);
+    }
+
+    window.scrollTo(0, 0);
+  }
+
+  function showCertificate(pct) {
+    const cert = document.getElementById('certificate');
+    cert.classList.add('show');
+    document.getElementById('cert-score-display').textContent = pct + '% — Passing Score';
+    const now = new Date();
+    document.getElementById('cert-date').textContent = 'Completed: ' + now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  }
+
+  function retakeQuiz() {
+    // Clear answers
+    for (let k in answers) delete answers[k];
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('certificate').classList.remove('show');
+    document.getElementById('retake-btn').style.display = 'none';
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  // ── Progress ──
+  function updateProgress(idx, quizPassed) {
+    const fill = document.getElementById('progress-fill');
+    const txt = document.getElementById('progress-text');
+    let pct = 0;
+    let label = '';
+    if (idx < 5) {
+      pct = ((idx + 1) / 6) * 100;
+      label = 'Section ' + (idx + 1) + ' of 5';
+    } else {
+      pct = quizPassed ? 100 : 90;
+      label = quizPassed ? 'Module Complete! ✓' : 'Quiz';
+    }
+    fill.style.width = pct + '%';
+    txt.textContent = label;
+  }
+
+  function updateNavPills() {
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      const t = parseInt(pill.dataset.target);
+      pill.classList.remove('active','done');
+      if (t < 5 && sectionsDone.has(t)) pill.classList.add('done');
+    });
+  }
+
+  // ── iOS Safari: prevent double-fire ──
+  document.querySelectorAll('[ontouchend]').forEach(el => {
+    el.addEventListener('touchend', function(e) { e.preventDefault(); });
+  });
+</script>
+
+</body>
+</html>
