@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 5 — Week 1 Review &amp; Comprehensive Assessment</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+    header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
+    header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
+    .progress-wrap { background: #232e54; padding: 12px 20px; }
+    .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
+    .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
+    .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
+    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+    .nav-pill.done::after { content: ' ✓'; }
+    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+    .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .section-card.active { display: block; }
+    .section-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .section-body { padding: 24px; }
+    .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+    .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .info-block ul { padding-left: 20px; }
+    .info-block ul li { margin-bottom: 6px; font-size: 15px; }
+    .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .alert-block h3 { color: #856404; margin-bottom: 8px; }
+    .alert-block p { color: #533f03; font-size: 15px; }
+    .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .success-block h3 { color: #155724; margin-bottom: 8px; }
+    .success-block p { color: #155724; font-size: 15px; }
+    .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+    .danger-block p { color: #721c24; font-size: 15px; }
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+    .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+    .pipeline-step:last-child { border-bottom: none; }
+    .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .step-content { flex: 1; }
+    .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
+    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
+    .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
+    .tagline-block .highlight { color: #4fc3f7; }
+    .review-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    .review-card { border: 2px solid #e0e3e8; border-radius: 10px; overflow: hidden; }
+    .review-card-header { background: #232e54; color: white; padding: 10px 16px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px; }
+    .review-card-body { padding: 14px 16px; font-size: 14px; color: #333; }
+    .review-card-body ul { padding-left: 18px; }
+    .review-card-body ul li { margin-bottom: 5px; }
+    .mistake-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+    .mistake-item:last-child { border-bottom: none; }
+    .mistake-icon { font-size: 22px; flex-shrink: 0; }
+    .mistake-content { flex: 1; }
+    .mistake-title { font-weight: 700; color: #721c24; font-size: 15px; }
+    .mistake-fix { font-size: 14px; color: #333; margin-top: 4px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #141c2c; color: white; width: 100%; }
+    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+    .btn-success { background: #27ae60; color: white; width: 100%; }
+    .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
+    .section-footer .btn { flex: 1; min-width: 120px; }
+    .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .quiz-body { padding: 20px 24px; }
+    .question-block { display: none; margin-bottom: 20px; }
+    .question-block.active { display: block; }
+    .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+    .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
+    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+    .option-btn:disabled { cursor: not-allowed; }
+    .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .option-btn.correct .option-letter { background: #27ae60; }
+    .option-btn.incorrect .option-letter { background: #c0392b; }
+    .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+    .feedback.show { display: block; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+    .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .quiz-nav .btn { flex: 1; min-width: 120px; }
+    #results-section { display: none; }
+    #results-section.active { display: block; }
+    .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .results-header { padding: 30px 24px; text-align: center; }
+    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+    .results-body { padding: 24px; }
+    .results-breakdown { margin-bottom: 20px; }
+    .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot.correct { background: #27ae60; }
+    .dot.incorrect { background: #c0392b; }
+    #feedback-section { display: none; }
+    .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .fb-header { background: #232e54; color: white; padding: 20px 24px; }
+    .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
+    .fb-body { padding: 24px; }
+    .fb-q { margin-bottom: 20px; }
+    .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
+    .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+    .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+    .star-row { display: flex; gap: 10px; font-size: 36px; }
+    .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
+    .star.lit { color: #f39c12; }
+    #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
+    #certificate.show { display: block; }
+    .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
+    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+    .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
+    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
+    .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+    .cert-module strong { color: #141c2c; }
+    .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
+    .cert-date { font-size: 13px; color: #888; }
+    .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
+    .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
+    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+    .print-btn { margin-top: 16px; }
+    @media print {
+      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
+      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="day-badge">Day 5 of 7</div>
+  <h1>Week 1 Review &amp; Comprehensive Assessment</h1>
+  <p>Gunn Law Group — Legal Assistant Training</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">Section 1 of 4</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<nav class="section-nav" role="navigation" aria-label="Module sections">
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. Days 1-4 Review</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. How It Connects</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. A Typical Day</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Common Mistakes</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">📝 Assessment</button>
+</nav>
+
+<main>
+
+  <!-- SECTION 1: Days 1-4 Review -->
+  <div class="section-card active" id="section-0">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>Days 1–4 Key Concepts Review</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">Before the assessment, let's make sure the key concepts from this week are locked in. Here's the essential summary:</p>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="review-card-header">📋 Day 1 — GLG Overview &amp; Your Role</div>
+          <div class="review-card-body">
+            <ul>
+              <li>Gunn Law Group: personal injury firm in Atlanta, GA</li>
+              <li>Your job = Legal Assistant (LA) supporting the Case Manager (CM)</li>
+              <li>Cases move through a pipeline: Intake → Treating → Demand → Settlement → Disbursement → Closed</li>
+              <li>The CM drives. You keep it running. Consistent follow-up is everything.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">⚖️ Day 2 — PI Case Types &amp; CasePeer</div>
+          <div class="review-card-body">
+            <ul>
+              <li>Case types: Auto, Trucking, Premises Liability, Pedestrian/Bicycle, Dog Bites, Wrongful Death</li>
+              <li>Liability = who's at fault. Georgia: 50%+ at fault = zero recovery (O.C.G.A. § 51-12-33)</li>
+              <li>Claim (with insurance) ≠ Lawsuit (in court). Most cases settle at the claim stage.</li>
+              <li>CasePeer status accuracy is critical — wrong status = case falls through the cracks</li>
+            </ul>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">🛡️ Day 3 — Insurance in PI</div>
+          <div class="review-card-body">
+            <ul>
+              <li>BI (Bodily Injury) = injuries to others. PD (Property Damage) = vehicle damage. Both separate.</li>
+              <li>UM = uninsured (no coverage). UIM = underinsured (not enough). Both on client's own policy.</li>
+              <li>MedPay = pays medical bills regardless of fault. Creates a subrogation lien at settlement.</li>
+              <li>Policy limits cap recovery. O.C.G.A. § 33-3-28: insurers must disclose limits within 30 days of written request.</li>
+              <li>NEVER let clients give recorded statements without attorney approval.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="review-card-header">📄 Day 4 — Records, Templates &amp; LORs</div>
+          <div class="review-card-body">
+            <ul>
+              <li>LOR = to the insurance company ("we represent this client" — send within 24-48 hrs)</li>
+              <li>LOP = to the medical provider ("treat now, paid at settlement" — creates a lien)</li>
+              <li>Police reports: get them, look for at-fault driver info, citations, witnesses</li>
+              <li>Medical records: always request records AND billing together. HIPAA auth required.</li>
+              <li>14-day follow-up rule: every outstanding request gets a follow-up every 14 days</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: How It Connects →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: How It Connects -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>How Everything Connects: Intake to Settlement</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">Every step you've learned this week connects to the next. Here's the full picture:</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Intake</div>
+            <div class="step-desc">Client calls in. We evaluate the case. Client signs the fee agreement. <strong>You:</strong> Send LOR to insurance company within 24-48 hours. Open claim. Verify coverage and policy limits. Get HIPAA auth signed. Identify all providers.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Treating</div>
+            <div class="step-desc">Client is going to doctors. This is the longest phase. <strong>You:</strong> Send records requests to every provider (with HIPAA auth). Request records AND bills. Follow up every 14 days. Track MedPay/LOP providers. Monitor client's treatment — are they still going?</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Pending Demand</div>
+            <div class="step-desc">Treatment complete. All records received. <strong>You:</strong> Organize all records and bills for the demand package. Confirm all providers are accounted for. CM reviews and sends the demand letter.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Demanded → Settlement Negotiations</div>
+            <div class="step-desc">Demand sent. Insurer responds with an offer. Negotiating begins. <strong>You:</strong> Track all communications. Send lien reduction letters to LOP providers. Monitor deadlines.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-status">Settled → Disbursement</div>
+            <div class="step-desc">Settlement agreed. <strong>You:</strong> Help prepare the settlement statement. Confirm all lien amounts are final. Ensure LOP/MedPay subrogation liens are identified. Client gets paid after all liens and fees are deducted.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagline-block">
+        <p>The case only moves when <span class="highlight">you keep pushing it forward.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every delay in records, every missed follow-up, every wrong status in CasePeer — it adds weeks to the client's timeline and stalls their recovery. Your work directly affects the client's life.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: A Typical Day →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Typical Day -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>A Typical Day in the Life of a Legal Assistant</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">No two days are exactly the same, but here's what a solid day looks like as a Legal Assistant at GLG:</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">🌅</div>
+          <div class="step-content">
+            <div class="step-status">Morning: Check Your Task List</div>
+            <div class="step-desc">Open CasePeer. Review all tasks due today. What records follow-ups are due? What LOR confirmations are pending? What clients need to be called? Prioritize: urgent tasks first.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📞</div>
+          <div class="step-content">
+            <div class="step-status">Mid-Morning: Calls &amp; Follow-Ups</div>
+            <div class="step-desc">Call providers on the 14-day follow-up list. Confirm claim numbers and adjuster info. Reach out to clients who haven't checked in recently — are they still treating? Log every call in CasePeer.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📬</div>
+          <div class="step-content">
+            <div class="step-status">Midday: Process Incoming Mail &amp; Records</div>
+            <div class="step-desc">Check for incoming records, faxes, and emails. Upload to CasePeer immediately. Flag any records that show concerning treatment gaps or missing billing. Pass anything notable to the CM.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📋</div>
+          <div class="step-content">
+            <div class="step-status">Afternoon: New Cases &amp; Admin</div>
+            <div class="step-desc">Help set up new cases: enter client info in CasePeer, send LORs, prepare records requests with HIPAA auth, order police reports. Use templates to speed everything up.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🌇</div>
+          <div class="step-content">
+            <div class="step-status">End of Day: Update &amp; Set Tomorrow</div>
+            <div class="step-desc">Log all completed tasks. Set follow-up tasks for 14 days out. Update CasePeer notes. Check that all case statuses are accurate. Leave your task list clean for tomorrow.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ The Golden Rule</h3>
+        <p>If it didn't get logged in CasePeer, it didn't happen. Every call, every follow-up, every document received — it goes in the system. This protects the client, protects the firm, and protects you.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Common Mistakes →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Common Mistakes -->
+  <div class="section-card" id="section-3">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>Common Mistakes to Avoid in Week 2</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">These are the most common mistakes new Legal Assistants make. Know them before you make them:</p>
+
+      <div class="danger-block" style="margin-bottom:0; border-radius:10px 10px 0 0;">
+        <div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Letting clients give recorded statements</div>
+              <div class="mistake-fix">✅ Fix: Tell every client on day one — all communication with insurance goes through us. Never talk to the adjuster alone.</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Forgetting to send the LOR within 24-48 hours</div>
+              <div class="mistake-fix">✅ Fix: Make the LOR the FIRST task after a client signs. Before anything else. The insurer can contact them until the LOR arrives.</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Requesting records but not billing (or vice versa)</div>
+              <div class="mistake-fix">✅ Fix: Always request BOTH in the same letter. Records + itemized billing. Every time. No exceptions.</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Missing a 14-day follow-up</div>
+              <div class="mistake-fix">✅ Fix: Set the follow-up task in CasePeer THE DAY you send the request. Don't trust your memory. The task is your backup.</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Leaving case statuses wrong or stale</div>
+              <div class="mistake-fix">✅ Fix: Check statuses regularly. If a client has stopped treating but the status still says "Treating," flag it to the CM today.</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Not logging calls in CasePeer</div>
+              <div class="mistake-fix">✅ Fix: Log EVERY call — even if you didn't reach anyone. "Called [provider] at 2:15pm, no answer, left voicemail." This is your paper trail.</div>
+            </div>
+          </div>
+          <div class="mistake-item">
+            <div class="mistake-icon">❌</div>
+            <div class="mistake-content">
+              <div class="mistake-title">Assuming UM/UIM coverage exists without verifying</div>
+              <div class="mistake-fix">✅ Fix: Always verify our client's own policy — UM/UIM limits, MedPay, health insurance. Never assume. Always confirm.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagline-block" style="margin-top:16px;">
+        <p>Week 2 is about <span class="highlight">applying what you learned.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">These mistakes don't come from not caring — they come from rushing. Slow down on the important steps. Fast follow-up, careful documentation, accurate status updates. That's the job.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Comprehensive Assessment →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ - 15 QUESTIONS -->
+  <div class="section-card" id="quiz-section">
+    <div class="quiz-header">
+      <div class="section-num">Week 1 Comprehensive Assessment</div>
+      <h2>15 Questions — 80% Required to Pass</h2>
+    </div>
+    <div class="quiz-body">
+
+      <div class="question-block active" id="q1">
+        <div class="q-counter">Question 1 of 15</div>
+        <div class="q-text">At Gunn Law Group, what does a Legal Assistant's job primarily involve?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> Arguing cases in court</button>
+          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Supporting the Case Manager with follow-ups, records, and documentation</button>
+          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> Managing the firm's finances</button>
+          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Only handling client intake calls</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q2">
+        <div class="q-counter">Question 2 of 15</div>
+        <div class="q-text">Under Georgia's comparative negligence law, if our client is found 40% at fault, they recover:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> Nothing — 40% is too high</button>
+          <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> 60% of the damages</button>
+          <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> 40% of the damages</button>
+          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 100% — fault doesn't affect recovery</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q3">
+        <div class="q-counter">Question 3 of 15</div>
+        <div class="q-text">Which CasePeer status means the client has FINISHED treatment and we're preparing the demand?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Treating</button>
+          <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> Pending Demand</button>
+          <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> Demanded</button>
+          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Settlement Negotiations</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q4">
+        <div class="q-counter">Question 4 of 15</div>
+        <div class="q-text">BI (Bodily Injury) coverage pays for:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> The at-fault driver's own injuries</button>
+          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> Injuries to OTHER people caused by the at-fault driver</button>
+          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> Property damage only</button>
+          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> Vehicle repair costs</button>
+        </div>
+        <div class="feedback" id="fb4"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q5">
+        <div class="q-counter">Question 5 of 15</div>
+        <div class="q-text">Our client was hurt by an uninsured driver. Which coverage do we pursue?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(5,'a',true)" ontouchend="answer(5,'a',true)"><span class="option-letter">A</span> Uninsured Motorist (UM) on the client's own policy</button>
+          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">B</span> The at-fault driver's BI coverage</button>
+          <button class="option-btn" onclick="answer(5,'c',false)" ontouchend="answer(5,'c',false)"><span class="option-letter">C</span> MedPay only</button>
+          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> We can't recover anything</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q6">
+        <div class="q-counter">Question 6 of 15</div>
+        <div class="q-text">MedPay is unique because it:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Pays the most of any coverage</button>
+          <button class="option-btn" onclick="answer(6,'b',false)" ontouchend="answer(6,'b',false)"><span class="option-letter">B</span> Only pays after a lawsuit is filed</button>
+          <button class="option-btn" onclick="answer(6,'c',true)" ontouchend="answer(6,'c',true)"><span class="option-letter">C</span> Pays for medical bills regardless of fault</button>
+          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Covers lost wages and pain and suffering</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q7">
+        <div class="q-counter">Question 7 of 15</div>
+        <div class="q-text">The LOR (Letter of Representation) must be sent to the insurance company within:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> 30 days of signing the fee agreement</button>
+          <button class="option-btn" onclick="answer(7,'b',true)" ontouchend="answer(7,'b',true)"><span class="option-letter">B</span> 24-48 hours of signing the fee agreement</button>
+          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> After records are received</button>
+          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> When the demand letter is sent</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q8">
+        <div class="q-counter">Question 8 of 15</div>
+        <div class="q-text">A Letter of Protection (LOP) is a promise to:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> The insurer that we won't file a lawsuit</button>
+          <button class="option-btn" onclick="answer(8,'b',false)" ontouchend="answer(8,'b',false)"><span class="option-letter">B</span> The client that we'll win the case</button>
+          <button class="option-btn" onclick="answer(8,'c',true)" ontouchend="answer(8,'c',true)"><span class="option-letter">C</span> A medical provider that they'll be paid from the settlement</button>
+          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> The court that we'll appear at trial</button>
+        </div>
+        <div class="feedback" id="fb8"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q9">
+        <div class="q-counter">Question 9 of 15</div>
+        <div class="q-text">Before requesting medical records from a provider, you must have:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(9,'a',true)" ontouchend="answer(9,'a',true)"><span class="option-letter">A</span> A signed HIPAA authorization from the client</button>
+          <button class="option-btn" onclick="answer(9,'b',false)" ontouchend="answer(9,'b',false)"><span class="option-letter">B</span> Court approval</button>
+          <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> The insurance adjuster's written permission</button>
+          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Only the LOR</button>
+        </div>
+        <div class="feedback" id="fb9"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q10">
+        <div class="q-counter">Question 10 of 15</div>
+        <div class="q-text">The 14-day follow-up rule applies to:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> Client check-ins only</button>
+          <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> Case reviews with the attorney</button>
+          <button class="option-btn" onclick="answer(10,'c',true)" ontouchend="answer(10,'c',true)"><span class="option-letter">C</span> Every outstanding records request and unanswered communication</button>
+          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> Court filings only</button>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next10" style="display:none;" onclick="showQuestion(11)" ontouchend="showQuestion(11)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q11">
+        <div class="q-counter">Question 11 of 15</div>
+        <div class="q-text">O.C.G.A. § 33-3-28 requires insurance companies to disclose policy limits within:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(11,'a',false)" ontouchend="answer(11,'a',false)"><span class="option-letter">A</span> 7 days</button>
+          <button class="option-btn" onclick="answer(11,'b',false)" ontouchend="answer(11,'b',false)"><span class="option-letter">B</span> 14 days</button>
+          <button class="option-btn" onclick="answer(11,'c',true)" ontouchend="answer(11,'c',true)"><span class="option-letter">C</span> 30 days of a written request</button>
+          <button class="option-btn" onclick="answer(11,'d',false)" ontouchend="answer(11,'d',false)"><span class="option-letter">D</span> 90 days</button>
+        </div>
+        <div class="feedback" id="fb11"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next11" style="display:none;" onclick="showQuestion(12)" ontouchend="showQuestion(12)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q12">
+        <div class="q-counter">Question 12 of 15</div>
+        <div class="q-text">What is the difference between a CLAIM and a LAWSUIT?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(12,'a',false)" ontouchend="answer(12,'a',false)"><span class="option-letter">A</span> They are the same thing, just different terminology</button>
+          <button class="option-btn" onclick="answer(12,'b',true)" ontouchend="answer(12,'b',true)"><span class="option-letter">B</span> A claim is negotiated with insurance; a lawsuit is filed in court</button>
+          <button class="option-btn" onclick="answer(12,'c',false)" ontouchend="answer(12,'c',false)"><span class="option-letter">C</span> A lawsuit is resolved faster than a claim</button>
+          <button class="option-btn" onclick="answer(12,'d',false)" ontouchend="answer(12,'d',false)"><span class="option-letter">D</span> Claims are only for property damage; lawsuits are only for injuries</button>
+        </div>
+        <div class="feedback" id="fb12"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next12" style="display:none;" onclick="showQuestion(13)" ontouchend="showQuestion(13)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q13">
+        <div class="q-counter">Question 13 of 15</div>
+        <div class="q-text">Every call you make — even when you don't reach anyone — should be:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(13,'a',false)" ontouchend="answer(13,'a',false)"><span class="option-letter">A</span> Reported to the attorney immediately</button>
+          <button class="option-btn" onclick="answer(13,'b',true)" ontouchend="answer(13,'b',true)"><span class="option-letter">B</span> Logged in CasePeer with date, time, and what happened</button>
+          <button class="option-btn" onclick="answer(13,'c',false)" ontouchend="answer(13,'c',false)"><span class="option-letter">C</span> Ignored if no one answered</button>
+          <button class="option-btn" onclick="answer(13,'d',false)" ontouchend="answer(13,'d',false)"><span class="option-letter">D</span> Written in a personal notebook only</button>
+        </div>
+        <div class="feedback" id="fb13"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next13" style="display:none;" onclick="showQuestion(14)" ontouchend="showQuestion(14)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q14">
+        <div class="q-counter">Question 14 of 15</div>
+        <div class="q-text">UM/UIM stacking in Georgia allows:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(14,'a',false)" ontouchend="answer(14,'a',false)"><span class="option-letter">A</span> Filing claims with multiple courts at once</button>
+          <button class="option-btn" onclick="answer(14,'b',true)" ontouchend="answer(14,'b',true)"><span class="option-letter">B</span> Combining UM/UIM limits from multiple policies to increase available coverage</button>
+          <button class="option-btn" onclick="answer(14,'c',false)" ontouchend="answer(14,'c',false)"><span class="option-letter">C</span> Stacking BI and PD limits together</button>
+          <button class="option-btn" onclick="answer(14,'d',false)" ontouchend="answer(14,'d',false)"><span class="option-letter">D</span> Receiving double payment from two insurance companies</button>
+        </div>
+        <div class="feedback" id="fb14"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next14" style="display:none;" onclick="showQuestion(15)" ontouchend="showQuestion(15)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q15">
+        <div class="q-counter">Question 15 of 15</div>
+        <div class="q-text">When requesting medical records, what must ALWAYS be included in the same request?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(15,'a',false)" ontouchend="answer(15,'a',false)"><span class="option-letter">A</span> The demand letter draft</button>
+          <button class="option-btn" onclick="answer(15,'b',false)" ontouchend="answer(15,'b',false)"><span class="option-letter">B</span> The LOP agreement</button>
+          <button class="option-btn" onclick="answer(15,'c',true)" ontouchend="answer(15,'c',true)"><span class="option-letter">C</span> Both the medical records AND itemized billing</button>
+          <button class="option-btn" onclick="answer(15,'d',false)" ontouchend="answer(15,'d',false)"><span class="option-letter">D</span> The police report</button>
+        </div>
+        <div class="feedback" id="fb15"></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next15" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section">
+    <div class="results-card">
+      <div class="results-header" id="results-header">
+        <div class="results-score" id="results-score"></div>
+        <div class="results-label">Score (80% required to pass — 12/15 correct)</div>
+        <div class="results-status" id="results-status"></div>
+      </div>
+      <div class="results-body">
+        <div class="results-breakdown" id="results-breakdown"></div>
+        <div id="retake-hint" style="display:none; background:#fff3cd; border:2px solid #ffc107; border-radius:10px; padding:16px; margin-bottom:16px; font-size:14px; color:#533f03;"></div>
+        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Assessment</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div id="feedback-section">
+    <div class="fb-card">
+      <div class="fb-header">
+        <div class="section-num">Almost Done!</div>
+        <h2>Quick Feedback — 2 Minutes</h2>
+      </div>
+      <div class="fb-body">
+        <div class="fb-q">
+          <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
+          <div class="star-row" id="star-row">
+            <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
+          </div>
+        </div>
+        <div class="fb-q">
+          <label>2. Was anything confusing?</label>
+          <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
+        </div>
+        <div class="fb-q">
+          <label>3. Which section was most useful?</label>
+          <select id="fb-section">
+            <option value="">— Select a section —</option>
+            <option>Section 1: Days 1-4 Review</option>
+            <option>Section 2: How Everything Connects</option>
+            <option>Section 3: A Typical Day</option>
+            <option>Section 4: Common Mistakes</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>4. How long did this module take?</label>
+          <select id="fb-time">
+            <option value="">— Select —</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60+">60+ minutes</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>5. Any suggestions to improve this module?</label>
+          <textarea id="fb-suggestions" placeholder="Optional..."></textarea>
+        </div>
+        <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div id="certificate">
+    <div class="cert-logo">Gunn Law Group</div>
+    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 5 of 7 · Week 1 Complete</div>
+    <div class="cert-name-label">This certifies that</div>
+    <div class="cert-name" id="cert-name-display">Sydney</div>
+    <div class="cert-module">has successfully completed<br><strong>Module 5: Week 1 Review &amp; Comprehensive Assessment</strong></div>
+    <div class="cert-score-badge" id="cert-score-display"></div>
+    <div class="cert-date" id="cert-date"></div>
+    <div class="cert-sig">
+      <div class="cert-sig-line"></div>
+      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+    </div>
+    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 4;
+  const TOTAL_Q = 15;
+  let currentSection = 0;
+  const sectionsDone = new Set();
+  const answers = {};
+  let lastScore = 0;
+  let starRating = 0;
+
+  const correctAnswers = { 1:'b',2:'b',3:'b',4:'b',5:'a',6:'c',7:'b',8:'c',9:'a',10:'c',11:'c',12:'b',13:'b',14:'b',15:'c' };
+  const feedbackText = {
+    1: { correct: "✅ Correct! Legal Assistants support the Case Manager with follow-ups, records requests, documentation, and keeping cases moving.", incorrect: "❌ Not quite. The Legal Assistant's role is to support the Case Manager — handling records requests, follow-ups, documentation, and keeping cases on track." },
+    2: { correct: "✅ Correct! 40% at fault = 60% recovery. Georgia comparative negligence reduces recovery by fault percentage. 50%+ = zero recovery.", incorrect: "❌ Incorrect. Under O.C.G.A. § 51-12-33, recovery is reduced by the client's fault percentage. 40% at fault = 60% recovery. At 50%+, they get nothing." },
+    3: { correct: "✅ Correct! Pending Demand = treatment is complete, we have the records, and we're building the demand package.", incorrect: "❌ Not quite. 'Pending Demand' is the status after treatment ends and before the demand letter goes out — we're assembling the demand package." },
+    4: { correct: "✅ Correct! BI (Bodily Injury) pays for injuries to OTHER people caused by the at-fault driver. It's our primary target in PI cases.", incorrect: "❌ Incorrect. BI = Bodily Injury = it covers injuries to OTHER people caused by the at-fault driver. That's the main coverage we pursue in PI cases." },
+    5: { correct: "✅ Correct! When the at-fault driver is uninsured, we pursue Uninsured Motorist (UM) coverage on our client's own auto policy.", incorrect: "❌ Not quite. When the at-fault driver has NO insurance, we file a UM (Uninsured Motorist) claim on our client's own policy. Their insurer steps in as if they were the at-fault driver." },
+    6: { correct: "✅ Correct! MedPay pays for medical expenses regardless of fault. Quick, simple, and doesn't require proving the other driver was at fault.", incorrect: "❌ Not quite. MedPay is unique because it pays for medical expenses REGARDLESS of fault. Our client doesn't have to prove anything — it pays automatically." },
+    7: { correct: "✅ Correct! LOR within 24-48 hours. Every day without it = the insurer can contact the client directly and potentially get a recorded statement.", incorrect: "❌ Incorrect. The LOR must go out within 24-48 hours of the client signing. Before that, the insurance company can legally contact the client directly." },
+    8: { correct: "✅ Correct! The LOP is a promise to the medical provider that they'll be paid from the settlement proceeds. It lets clients treat without paying upfront.", incorrect: "❌ Not quite. LOP = Letter of Protection. It goes to the MEDICAL PROVIDER — promising payment from the settlement so the client can get treatment on credit." },
+    9: { correct: "✅ Correct! HIPAA law requires a signed patient authorization before any provider can share records with us.", incorrect: "❌ Incorrect. HIPAA requires a signed authorization from the client before any provider will release records to us. No auth = no records." },
+    10: { correct: "✅ Correct! The 14-day follow-up rule applies to every outstanding records request and unanswered communication — no exceptions.", incorrect: "❌ Not quite. The 14-day rule covers ALL outstanding requests — records, lien letters, adjuster communications. Every 14 days, follow up and log it." },
+    11: { correct: "✅ Correct! O.C.G.A. § 33-3-28: insurers must disclose limits within 30 days of a written request.", incorrect: "❌ Incorrect. Under O.C.G.A. § 33-3-28, insurance companies have 30 days from a written request to disclose policy limits." },
+    12: { correct: "✅ Correct! A claim = negotiated with the insurance company (no court). A lawsuit = filed in court when insurance won't settle fairly.", incorrect: "❌ Incorrect. Claim = we negotiate directly with the insurance company. Lawsuit = we file with the court. Most cases resolve at the claim stage." },
+    13: { correct: "✅ Correct! Log EVERY call — even failed attempts. Date, time, outcome. 'No answer, left voicemail' counts. This is your paper trail.", incorrect: "❌ Incorrect. Log every call in CasePeer — even when no one answers. A record of 'called at 2pm, no answer, left voicemail' is still important documentation." },
+    14: { correct: "✅ Correct! UM/UIM stacking combines limits from multiple policies. If a client has two vehicles with $50K UM each, they may be able to stack for $100K total.", incorrect: "❌ Not quite. Stacking = combining UM/UIM limits from multiple policies. This can significantly increase available coverage and should always be explored." },
+    15: { correct: "✅ Correct! Always request records AND itemized billing in the same request. Records show injuries; billing shows economic damages. Both required for demand.", incorrect: "❌ Incorrect. Always request BOTH medical records AND itemized billing together. You need both for the demand package — injuries and the dollar amounts." }
+  };
+
+  function goToSection(idx) {
+    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('feedback-section').style.display = 'none';
+    document.getElementById('certificate').classList.remove('show');
+    if (idx === 4) {
+      document.getElementById('quiz-section').classList.add('active');
+      updateProgress(4, false);
+    } else {
+      document.getElementById('section-' + idx).classList.add('active');
+      currentSection = idx;
+      sectionsDone.add(idx);
+      updateNavPills();
+      updateProgress(idx, false);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startQuiz() {
+    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+    updateNavPills();
+    goToSection(4);
+    resetQuizUI();
+  }
+
+  function resetQuizUI() {
+    document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
+    document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
+    document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
+    for (let i = 1; i <= TOTAL_Q; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
+  }
+
+  function answer(qNum, chosen, isCorrect) {
+    if (answers[qNum] !== undefined) return;
+    answers[qNum] = isCorrect;
+    const qBlock = document.getElementById('q' + qNum);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = correctAnswers[qNum];
+    buttons.forEach(btn => { btn.disabled = true; const letter = btn.querySelector('.option-letter').textContent.toLowerCase(); if (letter === correct) btn.classList.add('correct'); });
+    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+    document.getElementById('next' + qNum).style.display = 'inline-flex';
+  }
+
+  function showQuestion(num) {
+    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+    document.getElementById('q' + num).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-section').classList.remove('active');
+    let correct = 0;
+    const qLabels = ["LA role at GLG","Comparative negligence at 40%","Status when treatment ends","BI coverage pays for?","Uninsured driver — which coverage?","MedPay unique because?","LOR must be sent within?","LOP is a promise to?","Before requesting records you need?","14-day rule applies to?","O.C.G.A. § 33-3-28 timeline?","Claim vs lawsuit?","Every call should be?","UM/UIM stacking means?","Records request must always include?"];
+    Object.values(answers).forEach(v => { if (v) correct++; });
+    const pct = Math.round((correct / TOTAL_Q) * 100);
+    const passed = pct >= 80;
+    lastScore = pct;
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.classList.add('active');
+    document.getElementById('results-score').textContent = pct + '%';
+    document.getElementById('results-status').textContent = passed ? '🎉 Week 1 Complete!' : '❌ Not Quite — Review and Try Again';
+    document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
+    let html = '';
+    const dayMap = { 1:'Day 1',2:'Day 2',3:'Day 2',4:'Day 3',5:'Day 3',6:'Day 3',7:'Day 4',8:'Day 4',9:'Day 4',10:'Day 4',11:'Day 3',12:'Day 2',13:'Day 4',14:'Day 3',15:'Day 4' };
+    const missed = [];
+    for (let i = 1; i <= TOTAL_Q; i++) {
+      const ok = answers[i];
+      if (!ok) missed.push(dayMap[i]);
+      html += `<div class="breakdown-item"><div class="dot ${ok?'correct':'incorrect'}"></div>Q${i}: ${qLabels[i-1]} <strong>${ok?'✓':'✗'}</strong></div>`;
+    }
+    document.getElementById('results-breakdown').innerHTML = html;
+    if (!passed) {
+      const uniqueMissed = [...new Set(missed)].sort();
+      document.getElementById('retake-hint').style.display = 'block';
+      document.getElementById('retake-hint').innerHTML = `<strong>📖 Review Suggestion:</strong> You missed questions from ${uniqueMissed.join(', ')}. Go back and re-read those modules before retaking the assessment.`;
+      document.getElementById('retake-btn').style.display = 'block';
+    }
+    updateProgress(4, passed);
+    updateNavPills();
+    if (passed) { document.getElementById('feedback-section').style.display = 'block'; }
+    window.scrollTo(0, 0);
+  }
+
+  function setStar(val) { starRating = val; document.querySelectorAll('.star').forEach(s => { s.classList.toggle('lit', parseInt(s.dataset.val) <= val); }); }
+
+  function submitFeedback() {
+    if (!starRating) { alert('Please rate the clarity of the content (1–5 stars).'); return; }
+    document.getElementById('feedback-section').style.display = 'none';
+    showCertificate(lastScore);
+  }
+
+  function showCertificate(pct) {
+    const cert = document.getElementById('certificate');
+    cert.classList.add('show');
+    document.getElementById('cert-score-display').textContent = pct + '% — Week 1 Complete!';
+    const now = new Date();
+    document.getElementById('cert-date').textContent = 'Completed: ' + now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    window.scrollTo(0, cert.offsetTop - 20);
+  }
+
+  function retakeQuiz() {
+    for (let k in answers) delete answers[k];
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('certificate').classList.remove('show');
+    document.getElementById('retake-btn').style.display = 'none';
+    document.getElementById('retake-hint').style.display = 'none';
+    document.getElementById('feedback-section').style.display = 'none';
+    goToSection(4);
+    resetQuizUI();
+  }
+
+  function updateProgress(idx, quizPassed) {
+    const fill = document.getElementById('progress-fill');
+    const txt = document.getElementById('progress-text');
+    let pct = 0, label = '';
+    if (idx < 4) { pct = ((idx + 1) / 5) * 100; label = 'Section ' + (idx + 1) + ' of 4'; }
+    else { pct = quizPassed ? 100 : 90; label = quizPassed ? 'Week 1 Complete! ✓' : 'Assessment'; }
+    fill.style.width = pct + '%';
+    txt.textContent = label;
+  }
+
+  function updateNavPills() {
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      const t = parseInt(pill.dataset.target);
+      pill.classList.remove('active','done');
+      if (t < 4 && sectionsDone.has(t)) pill.classList.add('done');
+    });
+  }
+
+  document.querySelectorAll('[ontouchend]').forEach(el => { el.addEventListener('touchend', function(e) { e.preventDefault(); }); });
+</script>
+</body>
+</html>

@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 3 — Insurance in PI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+    header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
+    header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
+    .progress-wrap { background: #232e54; padding: 12px 20px; }
+    .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
+    .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
+    .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
+    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+    .nav-pill.done::after { content: ' ✓'; }
+    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+    .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .section-card.active { display: block; }
+    .section-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .section-body { padding: 24px; }
+    .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+    .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .info-block ul { padding-left: 20px; }
+    .info-block ul li { margin-bottom: 6px; font-size: 15px; }
+    .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .alert-block h3 { color: #856404; margin-bottom: 8px; }
+    .alert-block p { color: #533f03; font-size: 15px; }
+    .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .success-block h3 { color: #155724; margin-bottom: 8px; }
+    .success-block p { color: #155724; font-size: 15px; }
+    .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+    .danger-block p { color: #721c24; font-size: 15px; }
+    .compare-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+    @media (min-width: 560px) { .compare-grid { flex-direction: row; } .compare-grid > * { flex: 1; } }
+    .compare-col { border-radius: 10px; overflow: hidden; border: 2px solid #e0e3e8; }
+    .compare-col-header { padding: 12px 16px; font-weight: 700; font-size: 15px; color: white; }
+    .compare-col-header.bi { background: #27ae60; }
+    .compare-col-header.pd { background: #2980b9; }
+    .compare-col-header.um { background: #8e44ad; }
+    .compare-col-header.uim { background: #c0392b; }
+    .compare-col-body { padding: 14px 16px; font-size: 14px; }
+    .compare-col-body ul { padding-left: 18px; }
+    .compare-col-body ul li { margin-bottom: 6px; }
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+    .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+    .pipeline-step:last-child { border-bottom: none; }
+    .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .step-content { flex: 1; }
+    .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
+    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
+    .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
+    .tagline-block .highlight { color: #4fc3f7; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #141c2c; color: white; width: 100%; }
+    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+    .btn-success { background: #27ae60; color: white; width: 100%; }
+    .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
+    .section-footer .btn { flex: 1; min-width: 120px; }
+    .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .quiz-body { padding: 20px 24px; }
+    .question-block { display: none; margin-bottom: 20px; }
+    .question-block.active { display: block; }
+    .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+    .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
+    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+    .option-btn:disabled { cursor: not-allowed; }
+    .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .option-btn.correct .option-letter { background: #27ae60; }
+    .option-btn.incorrect .option-letter { background: #c0392b; }
+    .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+    .feedback.show { display: block; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+    .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .quiz-nav .btn { flex: 1; min-width: 120px; }
+    #results-section { display: none; }
+    #results-section.active { display: block; }
+    .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .results-header { padding: 30px 24px; text-align: center; }
+    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+    .results-body { padding: 24px; }
+    .results-breakdown { margin-bottom: 20px; }
+    .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot.correct { background: #27ae60; }
+    .dot.incorrect { background: #c0392b; }
+    /* Feedback Form */
+    #feedback-section { display: none; }
+    .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .fb-header { background: #232e54; color: white; padding: 20px 24px; }
+    .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
+    .fb-body { padding: 24px; }
+    .fb-q { margin-bottom: 20px; }
+    .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
+    .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+    .fb-q textarea:focus { outline: none; border-color: #141c2c; }
+    .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+    .fb-q select:focus { outline: none; border-color: #141c2c; }
+    .star-row { display: flex; gap: 10px; font-size: 36px; }
+    .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
+    .star.lit { color: #f39c12; }
+    #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
+    #certificate.show { display: block; }
+    .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
+    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+    .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
+    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
+    .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+    .cert-module strong { color: #141c2c; }
+    .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
+    .cert-date { font-size: 13px; color: #888; }
+    .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
+    .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
+    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+    .print-btn { margin-top: 16px; }
+    @media print {
+      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
+      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="day-badge">Day 3 of 7</div>
+  <h1>Insurance in Personal Injury</h1>
+  <p>Gunn Law Group — Legal Assistant Training</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">Section 1 of 5</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<nav class="section-nav" role="navigation" aria-label="Module sections">
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. BI vs PD</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. UM/UIM</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. MedPay</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Policy Limits</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. Verifying Coverage</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
+</nav>
+
+<main>
+
+  <!-- SECTION 1: BI vs PD -->
+  <div class="section-card active" id="section-0">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>Bodily Injury (BI) vs. Property Damage (PD)</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">When someone is at fault in an accident, their auto insurance has two main coverages that matter to us:</p>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-col-header bi">🏥 Bodily Injury (BI)</div>
+          <div class="compare-col-body">
+            <ul>
+              <li>Pays for <strong>injuries to other people</strong> caused by the at-fault driver</li>
+              <li>This is <strong>our primary target</strong> in PI cases</li>
+              <li>Covers medical bills, lost wages, pain &amp; suffering</li>
+              <li>Paid by the at-fault driver's insurance company</li>
+              <li>Example: At-fault driver has 25/50 BI → max $25,000 per person</li>
+            </ul>
+          </div>
+        </div>
+        <div class="compare-col">
+          <div class="compare-col-header pd">🚗 Property Damage (PD)</div>
+          <div class="compare-col-body">
+            <ul>
+              <li>Pays for <strong>damage to vehicles or property</strong></li>
+              <li>Handled separately from the injury claim</li>
+              <li>Usually resolved quickly (car repair/total loss)</li>
+              <li>Not our primary focus — but still tracked in CasePeer</li>
+              <li>Example: At-fault driver's PD coverage pays to fix our client's car</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Key Distinction</h3>
+        <p>BI = <strong>who pays for the injuries.</strong> PD = <strong>who pays for the car.</strong> These are separate claims, sometimes with separate adjusters. Never confuse them when talking to insurance companies.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>📖 BI Coverage Format: 25/50/25</h3>
+        <ul>
+          <li><strong>First number (25):</strong> Max per person per accident — $25,000</li>
+          <li><strong>Second number (50):</strong> Max per accident total — $50,000</li>
+          <li><strong>Third number (25):</strong> Property damage max — $25,000</li>
+          <li>Georgia minimum requirement: 25/50/25</li>
+          <li>Always ask: "What are the bodily injury limits?" when opening a claim</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: UM/UIM →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: UM/UIM -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>Uninsured &amp; Underinsured Motorist (UM/UIM)</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-block">
+        <h3>🚫 Uninsured Motorist (UM)</h3>
+        <ul>
+          <li>The at-fault driver has <strong>no insurance at all</strong></li>
+          <li>Our client makes a claim on their <strong>own UM coverage</strong></li>
+          <li>Our client's insurance company pays as if they were the at-fault driver</li>
+          <li>Hit-and-run accidents also trigger UM coverage</li>
+          <li>Always check: does our client have UM coverage? How much?</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h3>⬇️ Underinsured Motorist (UIM)</h3>
+        <ul>
+          <li>The at-fault driver has insurance, but <strong>not enough</strong> to cover all the damages</li>
+          <li>Example: Client has $100,000 in damages; at-fault driver only has $25,000 BI</li>
+          <li>Client's UIM coverage fills the gap: pays the difference up to their UIM limit</li>
+          <li>UIM is one of the most valuable coverages — and most people don't understand they have it</li>
+        </ul>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Real-World Example</h3>
+        <p>Our client suffers $80,000 in medical bills. At-fault driver has 25/50 BI. That means max payout = $25,000 from BI. If our client has $100,000 UIM, we can collect another $55,000 from their own policy (the difference). <strong>Total recovery: $80,000.</strong> Without UIM, the client is stuck at $25,000.</p>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 UM/UIM Stacking in Georgia</h3>
+        <p>Georgia allows "stacking" of UM/UIM policies in some situations. If a client has multiple vehicles or multiple policies, the UM limits may stack (add together) to create a larger pool of available coverage. This can significantly increase recovery. Always flag stacking opportunities to the CM or attorney.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>📌 What You Need to Do</h3>
+        <p>When a new case comes in, always verify: (1) Does the at-fault driver have insurance? (2) What are their BI limits? (3) Does our client have UM/UIM? (4) What are our client's UM/UIM limits? Record everything in CasePeer.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: MedPay →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: MedPay -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>MedPay — The Coverage People Forget</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-block">
+        <h3>💊 What Is MedPay?</h3>
+        <ul>
+          <li>Medical Payments Coverage — an optional add-on to auto insurance</li>
+          <li>Pays for <strong>medical expenses regardless of fault</strong></li>
+          <li>Available to the insured and passengers in their vehicle</li>
+          <li>Pays quickly — no waiting to prove fault</li>
+          <li>Common amounts: $2,000 / $5,000 / $10,000</li>
+          <li>Does NOT affect the BI or UM/UIM claim — it's separate</li>
+        </ul>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Why MedPay Matters</h3>
+        <p>MedPay can pay for early medical treatment while the main BI claim is still being worked. It reduces the amount of unpaid medical bills our client accumulates. Think of it as a small but fast-paying safety net. <strong>Always ask if the client has MedPay on their own policy.</strong></p>
+      </div>
+
+      <div class="compare-grid">
+        <div class="compare-col">
+          <div class="compare-col-header bi">✅ MedPay Covers</div>
+          <div class="compare-col-body">
+            <ul>
+              <li>ER visits</li>
+              <li>Doctor visits</li>
+              <li>Surgery</li>
+              <li>X-rays, MRIs</li>
+              <li>Physical therapy</li>
+              <li>Ambulance</li>
+            </ul>
+          </div>
+        </div>
+        <div class="compare-col">
+          <div class="compare-col-header pd">❌ MedPay Does NOT Cover</div>
+          <div class="compare-col-body">
+            <ul>
+              <li>Lost wages</li>
+              <li>Pain &amp; suffering</li>
+              <li>Vehicle damage</li>
+              <li>Out-of-network providers (sometimes)</li>
+              <li>Pre-existing conditions (usually)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ MedPay Subrogation</h3>
+        <p>If MedPay pays out and then our client also recovers money from the at-fault driver's BI, the client's own insurance company may have a <strong>subrogation lien</strong> — meaning they want their MedPay money back. Track any MedPay lien in CasePeer and flag it at settlement time.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Policy Limits →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Policy Limits -->
+  <div class="section-card" id="section-3">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>Policy Limits — The Cap on Recovery</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">Policy limits are the maximum amount an insurance company will pay on a claim. This is one of the most important numbers in every PI case.</p>
+
+      <div class="info-block">
+        <h3>🔢 How Limits Work</h3>
+        <ul>
+          <li>Every auto insurance policy has a <strong>per-person limit</strong> and a <strong>per-accident limit</strong></li>
+          <li>No matter how severe the injuries, the insurance company will not pay more than the policy limit</li>
+          <li>If damages exceed the limit, the at-fault driver is personally responsible for the rest</li>
+          <li>Most individual drivers have low limits ($25K–$100K)</li>
+          <li>Commercial vehicles (trucks, rideshares) often have much higher limits ($1M+)</li>
+        </ul>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 The Limits Problem</h3>
+        <p>A client can have $200,000 in medical bills, but if the at-fault driver only has 25/50 BI, the most we can get from that policy is <strong>$25,000 per person</strong>. This is why UM/UIM coverage on the client's own policy is so critical — it fills the gap when limits are low. Always tell the attorney when limits appear insufficient for the damages.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Get Limits Early</div>
+            <div class="step-desc">Call the at-fault driver's insurance as soon as a claim is opened. Ask for policy limits. Under O.C.G.A. § 33-3-28, they must disclose within 30 days of a written request.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Record in CasePeer</div>
+            <div class="step-desc">Enter the confirmed limits in the case file — BI limits, PD limits, and any UM/UIM on our client's policy. Always note the date confirmed and who you spoke to.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Flag Low Limits</div>
+            <div class="step-desc">If limits are low relative to the severity of the case, flag it to the CM immediately. This affects case strategy — including whether to pursue UM/UIM or personal assets.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Policy Limit Demands</div>
+            <div class="step-desc">Sometimes we demand the full policy limit. If the insurer refuses and damages clearly exceed limits, that can open up bad faith claims against the insurer. That's an attorney decision — just know it exists.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: Verifying Coverage →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Verifying Coverage -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>Verifying Coverage &amp; Opening a Claim</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">One of your most important early tasks: verify coverage on every new case. Here's the step-by-step process:</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Get the at-fault driver's insurance info</div>
+            <div class="step-desc">From the police report, client, or the claim itself. You need: insurance company name, policy number, and the insured's name and date of birth.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Call the insurance company</div>
+            <div class="step-desc">Call their claims line. Identify yourself: "This is [your name] calling from Gunn Law Group. We represent [client name] regarding an accident on [date]."</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Open the claim (if not already done)</div>
+            <div class="step-desc">Provide: client's name, accident date, accident location, at-fault driver info, brief description of the accident. Get a claim number and adjuster name.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Ask these questions every time</div>
+            <div class="step-desc">"What are the bodily injury limits?" / "Is liability accepted?" / "Is there a recorded statement requirement?" / "What's the adjuster's direct line and email?"</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-status">Document everything in CasePeer</div>
+            <div class="step-desc">Log the call: date, time, who you spoke to, what was confirmed. Enter the claim number, adjuster name, and confirmed limits. This is your paper trail.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 Never Let the Client Give a Recorded Statement</h3>
+        <p>The insurance adjuster may call your client directly and ask for a recorded statement. Your client should <strong>never give a recorded statement without speaking to their attorney first.</strong> Advise clients immediately: all communication goes through us.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Verify coverage early. <span class="highlight">Know the limits before you need them.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">An unknown insurance situation is a ticking clock. The sooner you verify, the better you can protect the client's recovery.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(3)" ontouchend="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Quiz →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section-card" id="quiz-section">
+    <div class="quiz-header">
+      <div class="section-num">Knowledge Check</div>
+      <h2>Quiz — 10 Questions</h2>
+    </div>
+    <div class="quiz-body">
+
+      <div class="question-block active" id="q1">
+        <div class="q-counter">Question 1 of 10</div>
+        <div class="q-text">Bodily Injury (BI) coverage pays for:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> Damage to the at-fault driver's car</button>
+          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Injuries to other people caused by the at-fault driver</button>
+          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> The at-fault driver's own medical bills</button>
+          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Lost wages only</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q2">
+        <div class="q-counter">Question 2 of 10</div>
+        <div class="q-text">What does "25/50/25" mean on a BI policy?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> 25 months of coverage, 50 weeks, 25 days</button>
+          <button class="option-btn" onclick="answer(2,'b',false)" ontouchend="answer(2,'b',false)"><span class="option-letter">B</span> 25% per person, 50% per accident, 25% for PD</button>
+          <button class="option-btn" onclick="answer(2,'c',true)" ontouchend="answer(2,'c',true)"><span class="option-letter">C</span> $25K per person / $50K per accident / $25K property damage</button>
+          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> $25K total, $50K deductible, $25K limit</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q3">
+        <div class="q-counter">Question 3 of 10</div>
+        <div class="q-text">Uninsured Motorist (UM) coverage is used when:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Our client has too much insurance</button>
+          <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> The at-fault driver has no insurance</button>
+          <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> The at-fault driver's limits are too low</button>
+          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> The case goes to litigation</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q4">
+        <div class="q-counter">Question 4 of 10</div>
+        <div class="q-text">Underinsured Motorist (UIM) coverage kicks in when:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> The at-fault driver has no license</button>
+          <button class="option-btn" onclick="answer(4,'b',false)" ontouchend="answer(4,'b',false)"><span class="option-letter">B</span> Our client refuses treatment</button>
+          <button class="option-btn" onclick="answer(4,'c',true)" ontouchend="answer(4,'c',true)"><span class="option-letter">C</span> The at-fault driver's limits are not enough to cover all damages</button>
+          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> Our client's car was totaled</button>
+        </div>
+        <div class="feedback" id="fb4"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q5">
+        <div class="q-counter">Question 5 of 10</div>
+        <div class="q-text">MedPay coverage is unique because it pays:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> Only after the case settles</button>
+          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">B</span> Only if the client is at fault</button>
+          <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> For medical expenses regardless of fault</button>
+          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> For lost wages and pain and suffering</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q6">
+        <div class="q-counter">Question 6 of 10</div>
+        <div class="q-text">What is the MedPay subrogation issue?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> MedPay increases the BI limits</button>
+          <button class="option-btn" onclick="answer(6,'b',true)" ontouchend="answer(6,'b',true)"><span class="option-letter">B</span> The client's insurer may want MedPay repaid after a BI settlement</button>
+          <button class="option-btn" onclick="answer(6,'c',false)" ontouchend="answer(6,'c',false)"><span class="option-letter">C</span> MedPay cannot be used with UM coverage</button>
+          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> MedPay only applies to trucking cases</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q7">
+        <div class="q-counter">Question 7 of 10</div>
+        <div class="q-text">Under O.C.G.A. § 33-3-28, insurance companies must disclose policy limits within:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> 7 days</button>
+          <button class="option-btn" onclick="answer(7,'b',false)" ontouchend="answer(7,'b',false)"><span class="option-letter">B</span> 14 days</button>
+          <button class="option-btn" onclick="answer(7,'c',true)" ontouchend="answer(7,'c',true)"><span class="option-letter">C</span> 30 days of a written request</button>
+          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> 60 days</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q8">
+        <div class="q-counter">Question 8 of 10</div>
+        <div class="q-text">When opening a claim, you should always ask the adjuster for:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> Their personal cell phone number</button>
+          <button class="option-btn" onclick="answer(8,'b',true)" ontouchend="answer(8,'b',true)"><span class="option-letter">B</span> Claim number, adjuster name, BI limits, and their direct contact info</button>
+          <button class="option-btn" onclick="answer(8,'c',false)" ontouchend="answer(8,'c',false)"><span class="option-letter">C</span> Their supervisor's name only</button>
+          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> Whether they think our client was at fault</button>
+        </div>
+        <div class="feedback" id="fb8"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q9">
+        <div class="q-counter">Question 9 of 10</div>
+        <div class="q-text">UM/UIM stacking in Georgia refers to:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> Combining BI and PD into one claim</button>
+          <button class="option-btn" onclick="answer(9,'b',false)" ontouchend="answer(9,'b',false)"><span class="option-letter">C</span> Filing multiple lawsuits at once</button>
+          <button class="option-btn" onclick="answer(9,'c',true)" ontouchend="answer(9,'c',true)"><span class="option-letter">C</span> Adding together UM/UIM limits from multiple policies to increase available coverage</button>
+          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Paying multiple deductibles</button>
+        </div>
+        <div class="feedback" id="fb9"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q10">
+        <div class="q-counter">Question 10 of 10</div>
+        <div class="q-text">A client should give a recorded statement to the at-fault driver's insurance company:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> As soon as possible to be cooperative</button>
+          <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> Only if the adjuster asks nicely</button>
+          <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Within 7 days of the accident</button>
+          <button class="option-btn" onclick="answer(10,'d',true)" ontouchend="answer(10,'d',true)"><span class="option-letter">D</span> Never — without attorney approval first</button>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section">
+    <div class="results-card">
+      <div class="results-header" id="results-header">
+        <div class="results-score" id="results-score"></div>
+        <div class="results-label">Score (80% required to pass)</div>
+        <div class="results-status" id="results-status"></div>
+      </div>
+      <div class="results-body">
+        <div class="results-breakdown" id="results-breakdown"></div>
+        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK QUESTIONNAIRE -->
+  <div id="feedback-section">
+    <div class="fb-card">
+      <div class="fb-header">
+        <div class="section-num">Almost Done!</div>
+        <h2>Quick Feedback — 2 Minutes</h2>
+      </div>
+      <div class="fb-body">
+        <div class="fb-q">
+          <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
+          <div class="star-row" id="star-row">
+            <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
+          </div>
+        </div>
+        <div class="fb-q">
+          <label>2. Was anything confusing?</label>
+          <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
+        </div>
+        <div class="fb-q">
+          <label>3. Which section was most useful?</label>
+          <select id="fb-section">
+            <option value="">— Select a section —</option>
+            <option>Section 1: BI vs PD</option>
+            <option>Section 2: UM/UIM</option>
+            <option>Section 3: MedPay</option>
+            <option>Section 4: Policy Limits</option>
+            <option>Section 5: Verifying Coverage</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>4. How long did this module take?</label>
+          <select id="fb-time">
+            <option value="">— Select —</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60+">60+ minutes</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>5. Any suggestions to improve this module?</label>
+          <textarea id="fb-suggestions" placeholder="Optional — your feedback helps us improve..."></textarea>
+        </div>
+        <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div id="certificate">
+    <div class="cert-logo">Gunn Law Group</div>
+    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 3 of 7</div>
+    <div class="cert-name-label">This certifies that</div>
+    <div class="cert-name" id="cert-name-display">Sydney</div>
+    <div class="cert-module">
+      has successfully completed<br>
+      <strong>Module 3: Insurance in Personal Injury</strong>
+    </div>
+    <div class="cert-score-badge" id="cert-score-display"></div>
+    <div class="cert-date" id="cert-date"></div>
+    <div class="cert-sig">
+      <div class="cert-sig-line"></div>
+      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+    </div>
+    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 5;
+  let currentSection = 0;
+  const sectionsDone = new Set();
+  const answers = {};
+  let lastScore = 0;
+  let starRating = 0;
+
+  const correctAnswers = { 1:'b',2:'c',3:'b',4:'c',5:'c',6:'b',7:'c',8:'b',9:'c',10:'d' };
+  const feedbackText = {
+    1: { correct: "✅ Correct! BI (Bodily Injury) pays for injuries to other people caused by the at-fault driver — that's our primary claim.", incorrect: "❌ Not quite. BI = Bodily Injury. It pays for injuries to OTHER people caused by the at-fault driver. That's our primary target in every PI case." },
+    2: { correct: "✅ Correct! 25/50/25 = $25K per person / $50K per accident total / $25K property damage. Georgia minimum.", incorrect: "❌ Incorrect. 25/50/25 means: $25,000 max per person, $50,000 max per accident total, $25,000 for property damage." },
+    3: { correct: "✅ Correct! UM (Uninsured Motorist) is used when the at-fault driver has NO insurance. We claim on our client's own policy.", incorrect: "❌ Not quite. UM = Uninsured Motorist. It's used when the at-fault driver has zero insurance coverage. Our client claims on their own UM policy." },
+    4: { correct: "✅ Correct! UIM (Underinsured Motorist) fills the gap when the at-fault driver's limits aren't enough to cover all the damages.", incorrect: "❌ Incorrect. UIM = Underinsured Motorist. It applies when the at-fault driver HAS insurance but their limits aren't enough to cover the full damages." },
+    5: { correct: "✅ Correct! MedPay is unique — it pays for medical expenses regardless of who was at fault. It's fast and doesn't wait for the claim to resolve.", incorrect: "❌ Not quite. MedPay pays for medical expenses regardless of fault — that's what makes it unique. Our client doesn't have to prove the other driver was at fault to use it." },
+    6: { correct: "✅ Correct! MedPay subrogation means the client's own insurer wants repayment of the MedPay after the BI claim settles. Always flag this at settlement.", incorrect: "❌ Incorrect. Subrogation means the client's own insurance company paid MedPay, then wants that money back once the BI claim settles. Always track MedPay liens." },
+    7: { correct: "✅ Correct! Under O.C.G.A. § 33-3-28, insurers must disclose limits within 30 days of a written request.", incorrect: "❌ Not quite. O.C.G.A. § 33-3-28 gives insurance companies 30 days from a written request to disclose policy limits. Know this law." },
+    8: { correct: "✅ Correct! Always get the claim number, adjuster name, BI limits, and direct contact info. Document everything.", incorrect: "❌ Incorrect. When opening a claim, the key information to capture is: claim number, adjuster name and direct contact, and confirmed BI limits." },
+    9: { correct: "✅ Correct! Stacking means adding UM/UIM limits from multiple policies together. If a client has two vehicles or multiple policies, limits can stack for a higher total.", incorrect: "❌ Not quite. Stacking = combining UM/UIM limits from multiple policies. More coverage available = better recovery potential for the client." },
+    10: { correct: "✅ Correct! Clients should NEVER give a recorded statement without attorney approval first. It can seriously damage the case.", incorrect: "❌ Incorrect. Clients should NEVER give a recorded statement to any insurance company without speaking to the attorney first. This is a critical rule at GLG." }
+  };
+
+  function goToSection(idx) {
+    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('feedback-section').style.display = 'none';
+    document.getElementById('certificate').classList.remove('show');
+
+    if (idx === 5) {
+      document.getElementById('quiz-section').classList.add('active');
+      updateProgress(5, false);
+    } else {
+      document.getElementById('section-' + idx).classList.add('active');
+      currentSection = idx;
+      sectionsDone.add(idx);
+      updateNavPills();
+      updateProgress(idx, false);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startQuiz() {
+    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+    updateNavPills();
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function resetQuizUI() {
+    document.querySelectorAll('.question-block').forEach((el, i) => {
+      el.classList.toggle('active', i === 0);
+    });
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.disabled = false;
+      btn.classList.remove('correct','incorrect');
+    });
+    document.querySelectorAll('.feedback').forEach(el => {
+      el.classList.remove('show','correct','incorrect');
+      el.textContent = '';
+    });
+    for (let i = 1; i <= 10; i++) {
+      const nb = document.getElementById('next' + i);
+      if (nb) nb.style.display = 'none';
+    }
+  }
+
+  function answer(qNum, chosen, isCorrect) {
+    if (answers[qNum] !== undefined) return;
+    answers[qNum] = isCorrect;
+    const qBlock = document.getElementById('q' + qNum);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = correctAnswers[qNum];
+    buttons.forEach(btn => {
+      btn.disabled = true;
+      const letter = btn.querySelector('.option-letter').textContent.toLowerCase();
+      if (letter === correct) btn.classList.add('correct');
+    });
+    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+    document.getElementById('next' + qNum).style.display = 'inline-flex';
+  }
+
+  function showQuestion(num) {
+    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+    document.getElementById('q' + num).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-section').classList.remove('active');
+    let correct = 0;
+    const qTexts = ["BI coverage pays for?","What does 25/50/25 mean?","UM coverage used when?","UIM kicks in when?","MedPay is unique because?","MedPay subrogation means?","O.C.G.A. § 33-3-28 timeline?","When opening a claim, always ask for?","UM/UIM stacking means?","Client should give recorded statement?"];
+    Object.values(answers).forEach(v => { if (v) correct++; });
+    const pct = Math.round((correct / 10) * 100);
+    const passed = pct >= 80;
+    lastScore = pct;
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.classList.add('active');
+    document.getElementById('results-score').textContent = pct + '%';
+    document.getElementById('results-status').textContent = passed ? '🎉 You Passed!' : '❌ Not Quite — Try Again';
+    const hdr = document.getElementById('results-header');
+    hdr.className = 'results-header ' + (passed ? 'pass' : 'fail');
+    let html = '';
+    for (let i = 1; i <= 10; i++) {
+      const ok = answers[i];
+      html += `<div class="breakdown-item"><div class="dot ${ok ? 'correct' : 'incorrect'}"></div>Q${i}: ${qTexts[i-1].substring(0,55)} <strong>${ok ? '✓' : '✗'}</strong></div>`;
+    }
+    document.getElementById('results-breakdown').innerHTML = html;
+    if (!passed) { document.getElementById('retake-btn').style.display = 'block'; }
+    updateProgress(5, passed);
+    updateNavPills();
+    if (passed) {
+      document.getElementById('feedback-section').style.display = 'block';
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function setStar(val) {
+    starRating = val;
+    document.querySelectorAll('.star').forEach(s => {
+      s.classList.toggle('lit', parseInt(s.dataset.val) <= val);
+    });
+  }
+
+  function submitFeedback() {
+    if (!starRating) { alert('Please rate the clarity of the content (1–5 stars).'); return; }
+    document.getElementById('feedback-section').style.display = 'none';
+    showCertificate(lastScore);
+  }
+
+  function showCertificate(pct) {
+    const cert = document.getElementById('certificate');
+    cert.classList.add('show');
+    document.getElementById('cert-score-display').textContent = pct + '% — Passing Score';
+    const now = new Date();
+    document.getElementById('cert-date').textContent = 'Completed: ' + now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    window.scrollTo(0, cert.offsetTop - 20);
+  }
+
+  function retakeQuiz() {
+    for (let k in answers) delete answers[k];
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('certificate').classList.remove('show');
+    document.getElementById('retake-btn').style.display = 'none';
+    document.getElementById('feedback-section').style.display = 'none';
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function updateProgress(idx, quizPassed) {
+    const fill = document.getElementById('progress-fill');
+    const txt = document.getElementById('progress-text');
+    let pct = 0, label = '';
+    if (idx < 5) { pct = ((idx + 1) / 6) * 100; label = 'Section ' + (idx + 1) + ' of 5'; }
+    else { pct = quizPassed ? 100 : 90; label = quizPassed ? 'Module Complete! ✓' : 'Quiz'; }
+    fill.style.width = pct + '%';
+    txt.textContent = label;
+  }
+
+  function updateNavPills() {
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      const t = parseInt(pill.dataset.target);
+      pill.classList.remove('active','done');
+      if (t < 5 && sectionsDone.has(t)) pill.classList.add('done');
+    });
+  }
+
+  document.querySelectorAll('[ontouchend]').forEach(el => {
+    el.addEventListener('touchend', function(e) { e.preventDefault(); });
+  });
+</script>
+</body>
+</html>

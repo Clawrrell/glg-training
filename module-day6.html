@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 6 — Medical Records Deep Dive</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+    header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
+    header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
+    .progress-wrap { background: #232e54; padding: 12px 20px; }
+    .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
+    .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
+    .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
+    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+    .nav-pill.done::after { content: ' ✓'; }
+    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+    .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .section-card.active { display: block; }
+    .section-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .section-body { padding: 24px; }
+    .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+    .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .info-block ul { padding-left: 20px; }
+    .info-block ul li { margin-bottom: 6px; font-size: 15px; }
+    .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .alert-block h3 { color: #856404; margin-bottom: 8px; }
+    .alert-block p, .alert-block ul { color: #533f03; font-size: 15px; }
+    .alert-block ul { padding-left: 20px; }
+    .alert-block ul li { margin-bottom: 5px; }
+    .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .success-block h3 { color: #155724; margin-bottom: 8px; }
+    .success-block p { color: #155724; font-size: 15px; }
+    .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+    .danger-block p { color: #721c24; font-size: 15px; }
+    .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th { background: #141c2c; color: white; padding: 10px 12px; text-align: left; font-weight: 700; }
+    td { padding: 10px 12px; border-bottom: 1px solid #e0e3e8; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8f9fa; }
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+    .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+    .pipeline-step:last-child { border-bottom: none; }
+    .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .step-content { flex: 1; }
+    .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
+    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
+    .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
+    .tagline-block .highlight { color: #4fc3f7; }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+    .col-card { border: 2px solid #e0e3e8; border-radius: 10px; overflow: hidden; }
+    .col-card-header { background: #232e54; color: white; padding: 10px 14px; font-weight: 700; font-size: 14px; }
+    .col-card-body { padding: 12px 14px; font-size: 14px; color: #333; }
+    .col-card-body ul { padding-left: 16px; }
+    .col-card-body ul li { margin-bottom: 4px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 700; }
+    .badge-red { background: #f8d7da; color: #721c24; }
+    .badge-green { background: #d4edda; color: #155724; }
+    .badge-blue { background: #cce5ff; color: #004085; }
+    .badge-yellow { background: #fff3cd; color: #856404; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #141c2c; color: white; width: 100%; }
+    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+    .btn-success { background: #27ae60; color: white; width: 100%; }
+    .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
+    .section-footer .btn { flex: 1; min-width: 120px; }
+    .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .quiz-body { padding: 20px 24px; }
+    .question-block { display: none; margin-bottom: 20px; }
+    .question-block.active { display: block; }
+    .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+    .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
+    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+    .option-btn:disabled { cursor: not-allowed; }
+    .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .option-btn.correct .option-letter { background: #27ae60; }
+    .option-btn.incorrect .option-letter { background: #c0392b; }
+    .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+    .feedback.show { display: block; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+    .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .quiz-nav .btn { flex: 1; min-width: 120px; }
+    #results-section { display: none; }
+    #results-section.active { display: block; }
+    .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .results-header { padding: 30px 24px; text-align: center; }
+    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+    .results-body { padding: 24px; }
+    .results-breakdown { margin-bottom: 20px; }
+    .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot.correct { background: #27ae60; }
+    .dot.incorrect { background: #c0392b; }
+    #feedback-section { display: none; }
+    .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .fb-header { background: #232e54; color: white; padding: 20px 24px; }
+    .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
+    .fb-body { padding: 24px; }
+    .fb-q { margin-bottom: 20px; }
+    .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
+    .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+    .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+    .star-row { display: flex; gap: 10px; font-size: 36px; }
+    .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
+    .star.lit { color: #f39c12; }
+    #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
+    #certificate.show { display: block; }
+    .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
+    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+    .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
+    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
+    .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+    .cert-module strong { color: #141c2c; }
+    .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
+    .cert-date { font-size: 13px; color: #888; }
+    .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
+    .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
+    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+    .print-btn { margin-top: 16px; }
+    @media print {
+      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
+      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="day-badge">Day 6 of 7</div>
+  <h1>Medical Records Deep Dive</h1>
+  <p>Gunn Law Group — Legal Assistant Training</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">Section 1 of 5</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<nav class="section-nav" role="navigation" aria-label="Module sections">
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. Why Records Matter</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. Types of Records</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Reading Records &amp; Bills</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Gaps &amp; Timeline</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. Red Flags</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
+</nav>
+
+<main>
+
+  <!-- SECTION 1: Why Records Matter -->
+  <div class="section-card active" id="section-0">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>Why Medical Records Drive Case Value</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">Medical records aren't just paperwork — they're the <strong>foundation of every personal injury case</strong>. No records? No case. Weak records? Small settlement. Strong, complete records? Maximum value.</p>
+
+      <div class="info-block">
+        <h3>📋 What Medical Records Prove</h3>
+        <ul>
+          <li><strong>Causation</strong> — the injury was caused by the accident (not pre-existing)</li>
+          <li><strong>Severity</strong> — how serious the injuries are (diagnosis, imaging findings)</li>
+          <li><strong>Treatment</strong> — what was done, by whom, for how long</li>
+          <li><strong>Prognosis</strong> — what the future looks like (ongoing pain, permanent injury)</li>
+          <li><strong>Economic damages</strong> — the actual dollar cost of treatment (from medical bills)</li>
+        </ul>
+      </div>
+
+      <div class="two-col">
+        <div class="col-card">
+          <div class="col-card-header">💰 Records = Money</div>
+          <div class="col-card-body">
+            <ul>
+              <li>Settlement multiplier is based on total medical bills</li>
+              <li>More documented treatment = higher demand</li>
+              <li>Missing records = missing dollars</li>
+              <li>Defense uses gaps to argue exaggeration</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-card">
+          <div class="col-card-header">⚠️ When Records Are Missing</div>
+          <div class="col-card-body">
+            <ul>
+              <li>Insurer questions whether injury happened</li>
+              <li>We can't prove the full extent of harm</li>
+              <li>Liens may surface at settlement we didn't know about</li>
+              <li>Case could get stuck at demand stage</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ The Golden Rule of Records</h3>
+        <p>Always request <strong>both medical records AND itemized billing</strong> in the same letter. Records show the injury. Bills show the money. You need both to build a demand. No exceptions.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Think of medical records as the <span class="highlight">evidence file</span> for the case.</p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">The better the documentation, the stronger the case. Your job is to make sure nothing falls through the cracks.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: Types of Records →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Types of Records -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>Types of Medical Records in PI Cases</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">Different providers create different types of records. You need to know what each one contains and why it matters.</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">🚑</div>
+          <div class="step-content">
+            <div class="step-status">Emergency Room (ER) Records</div>
+            <div class="step-desc">First treatment after the accident. Critical because they document the initial presentation — complaints at the scene, mechanism of injury, and early diagnosis. <strong>Why it matters:</strong> Insurers look at ER records to see what the client complained about immediately after the crash. Complaints consistent with later treatment = strong causation link. Request these FIRST, as soon as the case opens.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🔬</div>
+          <div class="step-content">
+            <div class="step-status">MRI &amp; Imaging Reports</div>
+            <div class="step-desc">X-rays, MRIs, CT scans — objective proof of injury. A herniated disc on an MRI is worth far more than just complaints of back pain. <strong>Why it matters:</strong> Objective findings (things the doctor can see, not just what the patient says) drive up settlement value significantly. Soft tissue injuries with no imaging = lower value. Disc herniations, fractures, and tears = high value. Always request the radiology report AND the images themselves.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🦴</div>
+          <div class="step-content">
+            <div class="step-status">Orthopedic Notes</div>
+            <div class="step-desc">Specialist notes from bone and joint doctors. Often involved in fractures, joint injuries, surgical cases. <strong>Why it matters:</strong> Orthopedic treatment signals more serious injury. Surgical recommendations dramatically increase case value. Look for: diagnosis, referrals, surgical recommendations, functional limitations.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🏥</div>
+          <div class="step-content">
+            <div class="step-status">Physical Therapy (PT) Notes</div>
+            <div class="step-desc">Session-by-session notes from the physical therapist. <strong>Why it matters:</strong> PT notes document consistency of treatment and improvement (or lack thereof). Frequent sessions = active treatment = engaged client. Look for: frequency, number of sessions, therapist's functional notes, discharge status.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">💊</div>
+          <div class="step-content">
+            <div class="step-status">Pain Management Notes</div>
+            <div class="step-desc">Notes from pain management doctors — often involve injections (epidurals, nerve blocks) or prescription management. <strong>Why it matters:</strong> Pain management treatment signals chronic or severe pain that didn't resolve with basic care. Injections are expensive and indicate serious ongoing pain. High value for demand purposes.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🧠</div>
+          <div class="step-content">
+            <div class="step-status">Primary Care &amp; Follow-Up Notes</div>
+            <div class="step-desc">Family doctor or urgent care visits after the accident. <strong>Why it matters:</strong> These often bridge the gap between ER and specialist care. They document ongoing complaints and referrals. If a client went to their PCP complaining of neck pain two weeks post-accident, that's important.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Build the Full Provider List at Intake</h3>
+        <p>During intake, ask the client: Where did you go after the accident? ER? Urgent care? What doctors are you seeing now? Build a complete list and send records requests to every single one — immediately.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Reading Records &amp; Bills →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Reading Records & Bills -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>Reading Records &amp; Medical Bills</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">You don't need to be a doctor — but you do need to know what you're looking at when records arrive. Here's what to focus on.</p>
+
+      <div class="info-block">
+        <h3>🔍 What to Look for in Medical Records</h3>
+        <ul>
+          <li><strong>ICD-10 Diagnosis Codes</strong> — the standardized code for each diagnosis (see below)</li>
+          <li><strong>Treatment dates</strong> — first visit, last visit, any gaps in between</li>
+          <li><strong>Chief complaints</strong> — what the patient reported (neck pain, headaches, etc.)</li>
+          <li><strong>Doctor's findings and opinions</strong> — "patient presents with..." and "in my opinion..."</li>
+          <li><strong>Causation language</strong> — "consistent with motor vehicle accident" is gold</li>
+          <li><strong>Referrals</strong> — being referred to a specialist = more serious injury</li>
+          <li><strong>MMI notation</strong> — "Maximum Medical Improvement" = treatment is done</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h3>📊 ICD-10 Codes — The Basics</h3>
+        <p style="font-size:14px; margin-bottom:10px;">ICD-10 codes are alphanumeric codes that classify every diagnosis. You don't need to memorize them, but you should recognize common ones in PI cases:</p>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Code</th><th>What It Means</th><th>Value Signal</th></tr>
+            <tr><td><strong>S13.4</strong></td><td>Cervical sprain/strain (whiplash)</td><td><span class="badge badge-yellow">Moderate</span></td></tr>
+            <tr><td><strong>M54.5</strong></td><td>Low back pain</td><td><span class="badge badge-yellow">Moderate</span></td></tr>
+            <tr><td><strong>M51.1</strong></td><td>Disc herniation with radiculopathy</td><td><span class="badge badge-green">High</span></td></tr>
+            <tr><td><strong>S72.0</strong></td><td>Femur (hip/thigh) fracture</td><td><span class="badge badge-green">High</span></td></tr>
+            <tr><td><strong>S06.0</strong></td><td>Concussion / traumatic brain injury</td><td><span class="badge badge-green">High</span></td></tr>
+            <tr><td><strong>S43.0</strong></td><td>Shoulder dislocation</td><td><span class="badge badge-green">High</span></td></tr>
+            <tr><td><strong>M79.3</strong></td><td>Panniculitis / soft tissue injury</td><td><span class="badge badge-blue">Lower</span></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3>💵 How to Read a Medical Bill</h3>
+        <p style="font-size:14px; margin-bottom:10px;">Medical bills use CPT codes (Current Procedural Terminology) to identify each service billed:</p>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Term</th><th>What It Means</th></tr>
+            <tr><td><strong>CPT Code</strong></td><td>The procedure code — e.g., 99213 = office visit (moderate complexity)</td></tr>
+            <tr><td><strong>Facility charge</strong></td><td>What the hospital/facility bills (usually higher)</td></tr>
+            <tr><td><strong>Professional charge</strong></td><td>What the doctor personally bills (separate from facility)</td></tr>
+            <tr><td><strong>Billed amount</strong></td><td>The full "list price" — often inflated. This is what we use in the demand.</td></tr>
+            <tr><td><strong>Adjusted/paid amount</strong></td><td>What insurance actually paid (much lower). We focus on the billed amount.</td></tr>
+            <tr><td><strong>Balance due</strong></td><td>What's still owed — often zero if insurance paid, or the full amount if LOP</td></tr>
+          </table>
+        </div>
+        <p style="font-size:14px; margin-top:10px;"><strong>Important:</strong> For demand purposes, we use the <em>billed</em> amount (also called "charges"), not what insurance actually paid. A $10,000 ER bill is a $10,000 ER bill, even if the insurer negotiated it down to $3,000.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Facility vs. Professional Charges</h3>
+        <p>When a client is treated at a hospital or surgery center, you'll often receive TWO separate bills: one from the facility (the hospital) and one from the provider (the doctor or surgeon). Make sure you collect BOTH. They often come from different billing departments and are easy to miss.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Gaps &amp; Timeline →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Gaps & Timeline -->
+  <div class="section-card" id="section-3">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>Treatment Gaps &amp; the Records Timeline</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">One of the most critical skills in this job is spotting treatment gaps — and understanding why they can seriously hurt a case.</p>
+
+      <div class="danger-block">
+        <h3>❌ What Is a Treatment Gap?</h3>
+        <p>A treatment gap is any period of 30 days or more where the client stopped treating with NO documented medical reason. The insurer's position: <strong>"If you were really hurt, you would have kept going to the doctor."</strong></p>
+      </div>
+
+      <div class="info-block">
+        <h3>📉 How Gaps Hurt the Case</h3>
+        <ul>
+          <li>The insurer will reduce the settlement offer, arguing the client "recovered"</li>
+          <li>The attorney's ability to argue ongoing pain is weakened without consistent records</li>
+          <li>The gap becomes ammunition for the defense: "Your client felt fine — look, they stopped treating"</li>
+          <li>A gap near the end of treatment is especially damaging at demand time</li>
+        </ul>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ What You Can Do</h3>
+        <p>When reviewing incoming records, map out the treatment timeline. If you notice a gap, flag it to the Case Manager immediately. The CM may need to reach out to the client to understand why (life circumstances, transportation, etc.) — and get it documented.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>📅 The Records Timeline — What to Expect</h3>
+        <p style="font-size:14px; margin-bottom:12px;">Records don't arrive instantly. Here's the general timeline to know:</p>
+        <div class="pipeline" style="margin-bottom:0;">
+          <div class="pipeline-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <div class="step-status">Day 1 (Case Opens): Send Records Requests</div>
+              <div class="step-desc">Send the request with HIPAA auth to every known provider. Start the 14-day follow-up clock.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <div class="step-status">Days 14–30: First Follow-Up</div>
+              <div class="step-desc">If no records received, call the provider. Confirm they received your request and HIPAA auth. Ask for ETA. Log the call.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <div class="step-status">30–90 Days: Active Treatment Period</div>
+              <div class="step-desc">Client is still treating. Records will be "interim" — not final. Keep following up every 14 days. You'll likely get records in batches.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <div class="step-status">Treatment End: Final Records Request</div>
+              <div class="step-desc">When client finishes treatment, send a final records request for all records THROUGH the date of last visit. Make sure you have everything, not just what you received earlier.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <div class="step-status">All Records In: Ready for Demand</div>
+              <div class="step-desc">Once you have records AND billing from every provider, the CM can build the demand package. No missing records = no demand. Period.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Records Arrive AFTER Treatment Ends</h3>
+        <p>For ongoing treatment, you can only get records for visits that have already happened. You cannot get "future" records. This means you'll often get records in waves — some early, some much later. <strong>Always do a final, comprehensive records pull after the client is done treating.</strong> Don't assume what you received mid-treatment was everything.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: Red Flags →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Red Flags -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>Red Flags to Spot in Medical Records</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">When records come in, you're not just filing them — you're scanning for problems. Here's what to watch for and flag to the Case Manager immediately:</p>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">🚩</div>
+          <div class="step-content">
+            <div class="step-status">Pre-Existing Injuries to the Same Body Part</div>
+            <div class="step-desc">If records show the client already had a bad back before the accident, the insurer will argue we're claiming pre-existing damage. The attorney needs to know this early so they can address it in the demand (aggravation of prior condition is still compensable — but it needs to be handled carefully).</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🚩</div>
+          <div class="step-content">
+            <div class="step-status">Inconsistency Between ER Complaints and Later Treatment</div>
+            <div class="step-desc">Client complained of only wrist pain at the ER, but is now treating for neck and back. The insurer will question whether the neck/back injury was from the accident. Flag this for the CM — there may be a medical explanation, but it needs to be addressed.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🚩</div>
+          <div class="step-content">
+            <div class="step-status">Client Missed Appointments</div>
+            <div class="step-desc">Records often note "patient no-showed" or "patient cancelled." Multiple missed appointments creates the treatment gap problem AND suggests the client isn't compliant. Flag to the CM so they can reach out to the client.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🚩</div>
+          <div class="step-content">
+            <div class="step-status">A Provider You Didn't Know About</div>
+            <div class="step-desc">A record from Provider A mentions that the client was also seeing Provider B — but you never sent a records request to Provider B. This means missing records and possibly a missing lien. Add Provider B to your list immediately.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🚩</div>
+          <div class="step-content">
+            <div class="step-status">Discharge Against Medical Advice (AMA)</div>
+            <div class="step-desc">If a client left the ER or hospital against medical advice, the insurer will use this to argue they weren't following doctor's orders. Flag to CM.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🚩</div>
+          <div class="step-content">
+            <div class="step-status">Records Mention Alcohol or Drug Use at Time of Accident</div>
+            <div class="step-desc">This is a significant legal issue. Flag to the attorney immediately — do not handle this on your own. This affects liability and damages.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagline-block">
+        <p>You are the <span class="highlight">first set of eyes</span> on these records.</p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">You don't have to know how to fix every red flag — but you do need to flag them to the CM immediately. Don't file something that looks concerning and say nothing. Speak up. That's part of your job.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(3)" ontouchend="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Quiz →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section-card" id="quiz-section">
+    <div class="quiz-header">
+      <div class="section-num">Day 6 Quiz</div>
+      <h2>10 Questions — 80% Required to Pass (8/10)</h2>
+    </div>
+    <div class="quiz-body">
+
+      <div class="question-block active" id="q1">
+        <div class="q-counter">Question 1 of 10</div>
+        <div class="q-text">Medical records are important in a PI case primarily because they:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> Allow the attorney to file a lawsuit quickly</button>
+          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Prove causation, severity, and the dollar value of medical treatment</button>
+          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> Convince the client to continue treating</button>
+          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Satisfy the insurer's request for documentation</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q2">
+        <div class="q-counter">Question 2 of 10</div>
+        <div class="q-text">When you request records from a medical provider, you must ALWAYS include:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> The demand letter</button>
+          <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> Both medical records AND itemized billing, plus a signed HIPAA authorization</button>
+          <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> Only the medical records — billing comes later</button>
+          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> A copy of the police report</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q3">
+        <div class="q-counter">Question 3 of 10</div>
+        <div class="q-text">Which type of medical record provides the BEST objective proof of injury (something the doctor can see, not just what the patient reports)?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Physical therapy progress notes</button>
+          <button class="option-btn" onclick="answer(3,'b',false)" ontouchend="answer(3,'b',false)"><span class="option-letter">B</span> Urgent care visit notes</button>
+          <button class="option-btn" onclick="answer(3,'c',true)" ontouchend="answer(3,'c',true)"><span class="option-letter">C</span> MRI and imaging reports showing disc herniations or fractures</button>
+          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Pain management prescription records</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q4">
+        <div class="q-counter">Question 4 of 10</div>
+        <div class="q-text">ICD-10 codes are used in medical records to identify:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> The procedures performed (treatments billed)</button>
+          <button class="option-btn" onclick="answer(4,'b',false)" ontouchend="answer(4,'b',false)"><span class="option-letter">B</span> The insurance policy number</button>
+          <button class="option-btn" onclick="answer(4,'c',true)" ontouchend="answer(4,'c',true)"><span class="option-letter">C</span> The standardized diagnosis code for each condition</button>
+          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> The provider's license number</button>
+        </div>
+        <div class="feedback" id="fb4"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q5">
+        <div class="q-counter">Question 5 of 10</div>
+        <div class="q-text">In a PI demand, which dollar amount do we use from the medical bill?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> The amount the insurer actually paid (negotiated rate)</button>
+          <button class="option-btn" onclick="answer(5,'b',true)" ontouchend="answer(5,'b',true)"><span class="option-letter">B</span> The full billed (charged) amount</button>
+          <button class="option-btn" onclick="answer(5,'c',false)" ontouchend="answer(5,'c',false)"><span class="option-letter">C</span> The balance still owed by the client</button>
+          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> The Medicare-adjusted rate</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q6">
+        <div class="q-counter">Question 6 of 10</div>
+        <div class="q-text">A "treatment gap" in a PI case refers to:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Missing records from one provider</button>
+          <button class="option-btn" onclick="answer(6,'b',false)" ontouchend="answer(6,'b',false)"><span class="option-letter">B</span> When a client changes doctors</button>
+          <button class="option-btn" onclick="answer(6,'c',true)" ontouchend="answer(6,'c',true)"><span class="option-letter">C</span> A period of 30+ days where the client stopped treating with no documented medical reason</button>
+          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> The time between the accident and the first doctor visit</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q7">
+        <div class="q-counter">Question 7 of 10</div>
+        <div class="q-text">You receive records from a physical therapist that mention the client is also seeing a pain management doctor you didn't know about. What do you do?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> File the PT records and wait for the pain management records to show up on their own</button>
+          <button class="option-btn" onclick="answer(7,'b',false)" ontouchend="answer(7,'b',false)"><span class="option-letter">B</span> Nothing — if we didn't know about it, it's not our concern</button>
+          <button class="option-btn" onclick="answer(7,'c',true)" ontouchend="answer(7,'c',true)"><span class="option-letter">C</span> Immediately add the pain management provider and send a records request with HIPAA auth</button>
+          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Ask the client why they didn't mention it</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q8">
+        <div class="q-counter">Question 8 of 10</div>
+        <div class="q-text">CPT codes on a medical bill identify:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> The patient's diagnosis</button>
+          <button class="option-btn" onclick="answer(8,'b',true)" ontouchend="answer(8,'b',true)"><span class="option-letter">B</span> Each specific procedure or service that was billed</button>
+          <button class="option-btn" onclick="answer(8,'c',false)" ontouchend="answer(8,'c',false)"><span class="option-letter">C</span> The insurer's claim number</button>
+          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> The doctor's NPI number</button>
+        </div>
+        <div class="feedback" id="fb8"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q9">
+        <div class="q-counter">Question 9 of 10</div>
+        <div class="q-text">When does a final, comprehensive records request need to be sent?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> Only at the beginning of the case</button>
+          <button class="option-btn" onclick="answer(9,'b',false)" ontouchend="answer(9,'b',false)"><span class="option-letter">B</span> Every 7 days during active treatment</button>
+          <button class="option-btn" onclick="answer(9,'c',true)" ontouchend="answer(9,'c',true)"><span class="option-letter">C</span> After treatment ends — to capture all records through the date of the last visit</button>
+          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Only when the insurer asks for them</button>
+        </div>
+        <div class="feedback" id="fb9"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next →</button></div>
+      </div>
+
+      <div class="question-block" id="q10">
+        <div class="q-counter">Question 10 of 10</div>
+        <div class="q-text">You notice that ER records mention the client left "Against Medical Advice" (AMA). What should you do?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> File the records and don't mention it — it's not your problem</button>
+          <button class="option-btn" onclick="answer(10,'b',true)" ontouchend="answer(10,'b',true)"><span class="option-letter">B</span> Flag it to the Case Manager immediately — this is a red flag that affects the case</button>
+          <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Call the ER to ask why the client left</button>
+          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> Remove the record from the file</button>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section">
+    <div class="results-card">
+      <div class="results-header" id="results-header">
+        <div class="results-score" id="results-score"></div>
+        <div class="results-label">Score (80% required to pass — 8/10 correct)</div>
+        <div class="results-status" id="results-status"></div>
+      </div>
+      <div class="results-body">
+        <div class="results-breakdown" id="results-breakdown"></div>
+        <div id="retake-hint" style="display:none; background:#fff3cd; border:2px solid #ffc107; border-radius:10px; padding:16px; margin-bottom:16px; font-size:14px; color:#533f03;"></div>
+        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div id="feedback-section">
+    <div class="fb-card">
+      <div class="fb-header">
+        <div class="section-num">Almost Done!</div>
+        <h2>Quick Feedback — 2 Minutes</h2>
+      </div>
+      <div class="fb-body">
+        <div class="fb-q">
+          <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
+          <div class="star-row" id="star-row">
+            <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
+          </div>
+        </div>
+        <div class="fb-q">
+          <label>2. Was anything confusing?</label>
+          <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
+        </div>
+        <div class="fb-q">
+          <label>3. Which section was most useful?</label>
+          <select id="fb-section">
+            <option value="">— Select a section —</option>
+            <option>Section 1: Why Medical Records Drive Case Value</option>
+            <option>Section 2: Types of Medical Records in PI Cases</option>
+            <option>Section 3: Reading Records &amp; Medical Bills</option>
+            <option>Section 4: Treatment Gaps &amp; the Records Timeline</option>
+            <option>Section 5: Red Flags to Spot in Medical Records</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>4. How long did this module take?</label>
+          <select id="fb-time">
+            <option value="">— Select —</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60+">60+ minutes</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>5. Any suggestions to improve this module?</label>
+          <textarea id="fb-suggestions" placeholder="Optional..."></textarea>
+        </div>
+        <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div id="certificate">
+    <div class="cert-logo">Gunn Law Group</div>
+    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 6 of 7</div>
+    <div class="cert-name-label">This certifies that</div>
+    <div class="cert-name" id="cert-name-display">Sydney</div>
+    <div class="cert-module">has successfully completed<br><strong>Module 6: Medical Records Deep Dive</strong></div>
+    <div class="cert-score-badge" id="cert-score-display"></div>
+    <div class="cert-date" id="cert-date"></div>
+    <div class="cert-sig">
+      <div class="cert-sig-line"></div>
+      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+    </div>
+    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 5;
+  const TOTAL_Q = 10;
+  let currentSection = 0;
+  const sectionsDone = new Set();
+  const answers = {};
+  let lastScore = 0;
+  let starRating = 0;
+
+  const correctAnswers = { 1:'b', 2:'b', 3:'c', 4:'c', 5:'b', 6:'c', 7:'c', 8:'b', 9:'c', 10:'b' };
+  const feedbackText = {
+    1: { correct: "✅ Correct! Records prove causation (accident caused the injury), severity, treatment history, and the economic value of the case.", incorrect: "❌ Not quite. Medical records are the foundation of a PI case — they prove causation, severity, and the dollar value. Without them, there's no case." },
+    2: { correct: "✅ Correct! Always request records AND itemized billing together, and always include the signed HIPAA authorization.", incorrect: "❌ Incorrect. You must always request BOTH records and itemized billing in the same letter, along with the signed HIPAA auth. Never request one without the other." },
+    3: { correct: "✅ Correct! MRI and imaging reports provide objective, visible proof of injury — herniations, fractures, tears. Much stronger than patient self-reports alone.", incorrect: "❌ Not quite. MRI and imaging reports are the gold standard for objective proof. They show what the doctor can actually see, not just what the patient reports feeling." },
+    4: { correct: "✅ Correct! ICD-10 codes are the standardized codes that classify every diagnosis. They tell you (and the insurer) exactly what injury was documented.", incorrect: "❌ Incorrect. ICD-10 codes identify diagnoses (what the patient has). CPT codes identify procedures (what was done). Know the difference." },
+    5: { correct: "✅ Correct! For demand purposes, we always use the full billed (charged) amount — not what insurance paid, not the negotiated rate.", incorrect: "❌ Incorrect. We use the full billed amount in the demand — that's the 'list price' for treatment. A $10,000 ER bill is a $10,000 ER bill for demand purposes." },
+    6: { correct: "✅ Correct! A treatment gap is a 30+ day period with no treatment and no documented medical reason. Insurers use this to argue the client 'recovered.'", incorrect: "❌ Incorrect. A treatment gap is a prolonged period (30+ days) where the client stopped treating with no documented reason — not just switching doctors or missing one appointment." },
+    7: { correct: "✅ Correct! Any provider you didn't know about needs an immediate records request. Missing records = missing lien = problem at disbursement.", incorrect: "❌ Incorrect. You must act immediately — add that provider and send a records request now. If they have a lien, you need those records before settlement." },
+    8: { correct: "✅ Correct! CPT codes identify each procedure/service billed. ICD-10 = diagnosis; CPT = procedure. Both appear on medical bills.", incorrect: "❌ Incorrect. CPT codes identify procedures (what was done and billed). ICD-10 codes identify diagnoses. Confusing the two is a common mistake." },
+    9: { correct: "✅ Correct! After treatment ends, do a final comprehensive pull to make sure you have all records through the last visit date. Don't rely on what you received during treatment.", incorrect: "❌ Incorrect. The final records pull happens after treatment is complete — to capture everything through the last visit. Mid-treatment records you received earlier may be incomplete." },
+    10: { correct: "✅ Correct! AMA discharge is a red flag that must be flagged to the CM. The insurer can use it to argue the client wasn't following doctor's orders.", incorrect: "❌ Incorrect. AMA (Against Medical Advice) is a red flag — flag it to the CM immediately. It's not your job to handle it, but it absolutely needs to be surfaced." }
+  };
+
+  function goToSection(idx) {
+    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('feedback-section').style.display = 'none';
+    document.getElementById('certificate').classList.remove('show');
+    if (idx === 5) {
+      document.getElementById('quiz-section').classList.add('active');
+      updateProgress(5, false);
+    } else {
+      document.getElementById('section-' + idx).classList.add('active');
+      currentSection = idx;
+      sectionsDone.add(idx);
+      updateNavPills();
+      updateProgress(idx, false);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startQuiz() {
+    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+    updateNavPills();
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function resetQuizUI() {
+    document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
+    document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
+    document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
+    for (let i = 1; i <= TOTAL_Q; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
+    Object.keys(answers).forEach(k => delete answers[k]);
+  }
+
+  function answer(qNum, chosen, isCorrect) {
+    if (answers[qNum] !== undefined) return;
+    answers[qNum] = isCorrect;
+    const qBlock = document.getElementById('q' + qNum);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = correctAnswers[qNum];
+    buttons.forEach(btn => { btn.disabled = true; const letter = btn.querySelector('.option-letter').textContent.toLowerCase(); if (letter === correct) btn.classList.add('correct'); });
+    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+    document.getElementById('next' + qNum).style.display = 'inline-flex';
+  }
+
+  function showQuestion(num) {
+    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+    document.getElementById('q' + num).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-section').classList.remove('active');
+    let correct = 0;
+    const qLabels = [
+      "Why records matter in PI",
+      "What to include in a records request",
+      "Best objective proof of injury",
+      "What ICD-10 codes identify",
+      "Which dollar amount to use in demand",
+      "What a treatment gap is",
+      "Unknown provider found in records",
+      "What CPT codes identify",
+      "When to send final records request",
+      "What to do with AMA notation"
+    ];
+    Object.values(answers).forEach(v => { if (v) correct++; });
+    const pct = Math.round((correct / TOTAL_Q) * 100);
+    const passed = pct >= 80;
+    lastScore = pct;
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.classList.add('active');
+    document.getElementById('results-score').textContent = pct + '%';
+    document.getElementById('results-status').textContent = passed ? '🎉 Day 6 Complete!' : '❌ Keep Studying — Review and Try Again';
+    document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
+    let html = '';
+    for (let i = 1; i <= TOTAL_Q; i++) {
+      const ok = answers[i];
+      html += `<div class="breakdown-item"><div class="dot ${ok ? 'correct' : 'incorrect'}"></div><span>${qLabels[i-1]}: <strong>${ok ? 'Correct ✓' : 'Incorrect ✗'}</strong></span></div>`;
+    }
+    document.getElementById('results-breakdown').innerHTML = html;
+    if (passed) {
+      document.getElementById('feedback-section').style.display = 'block';
+    } else {
+      const hint = document.getElementById('retake-hint');
+      hint.style.display = 'block';
+      hint.innerHTML = `<strong>You scored ${pct}% — you need 80% (8/10) to pass.</strong> Review any sections you're unsure about, then retake.`;
+      document.getElementById('retake-btn').style.display = 'flex';
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function retakeQuiz() {
+    resetQuizUI();
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('quiz-section').classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function updateNavPills() {
+    document.querySelectorAll('.nav-pill').forEach((pill, i) => {
+      pill.classList.remove('active', 'done');
+      if (i < totalSections && sectionsDone.has(i)) pill.classList.add('done');
+      if (i === currentSection) { pill.classList.remove('done'); pill.classList.add('active'); }
+    });
+  }
+
+  function updateProgress(idx, quizMode) {
+    const total = totalSections + 1;
+    const current = quizMode ? total : idx + 1;
+    const pct = Math.round((current / total) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = quizMode ? 'Quiz' : `Section ${idx + 1} of ${totalSections}`;
+  }
+
+  function setStar(val) {
+    starRating = val;
+    document.querySelectorAll('.star').forEach(s => {
+      s.classList.toggle('lit', parseInt(s.dataset.val) <= val);
+    });
+  }
+
+  function submitFeedback() {
+    if (!starRating) { alert('Please rate the content clarity before submitting.'); return; }
+    document.getElementById('feedback-section').style.display = 'none';
+    const cert = document.getElementById('certificate');
+    cert.classList.add('show');
+    document.getElementById('cert-score-display').textContent = lastScore + '% — Passed';
+    document.getElementById('cert-date').textContent = 'Completed: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    window.scrollTo(0, 0);
+  }
+
+  // Init
+  updateNavPills();
+  updateProgress(0, false);
+</script>
+</body>
+</html>
