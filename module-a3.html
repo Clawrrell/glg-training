@@ -1251,7 +1251,7 @@ function showResults() {
   go('results');
 }
 
-function showCert() {
+function showCert(){ var emailDiv = document.getElementById("email-results"); if(emailDiv) emailDiv.style.display="block"; _showCert(); } function _showCert() {
   document.getElementById('certScore').textContent = `Score: ${score}/10 (${Math.round(score/10*100)}%) — PASSED`;
   const now = new Date();
   document.getElementById('certMeta').textContent = `Issued: ${now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'})}`;
@@ -1283,5 +1283,76 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+
+<!-- EMAIL RESULTS SECTION -->
+<div id="email-results" style="display:none;margin-top:20px;padding:20px;background:#f0f7ff;border-radius:8px;border:1px solid #ccc;">
+<h3 style="color:#141c2c;margin-bottom:12px;">Submit Your Results</h3>
+<p style="font-size:.9rem;color:#555;margin-bottom:12px;">Click the button below to email your quiz score and feedback to Harrell.</p>
+
+<div style="margin-bottom:12px;">
+<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How clear was the content? (1-5)</label>
+<select id="fb-clarity" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
+<option value="5">5 - Very Clear</option>
+<option value="4">4 - Mostly Clear</option>
+<option value="3">3 - Somewhat Clear</option>
+<option value="2">2 - Confusing</option>
+<option value="1">1 - Very Confusing</option>
+</select>
+</div>
+
+<div style="margin-bottom:12px;">
+<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Was anything confusing? If yes, what?</label>
+<textarea id="fb-confusing" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
+</div>
+
+<div style="margin-bottom:12px;">
+<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How long did this module take?</label>
+<select id="fb-time" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
+<option value="15 minutes or less">15 minutes or less</option>
+<option value="15-30 minutes">15-30 minutes</option>
+<option value="30-45 minutes">30-45 minutes</option>
+<option value="45-60 minutes">45-60 minutes</option>
+<option value="Over 1 hour">Over 1 hour</option>
+</select>
+</div>
+
+<div style="margin-bottom:16px;">
+<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Any suggestions to make this better?</label>
+<textarea id="fb-suggestions" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
+</div>
+
+<button onclick="sendResults()" style="background:#141c2c;color:#fff;padding:14px 28px;border:none;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1);">📧 Email My Results</button>
+</div>
+
+<script>
+function sendResults() {
+  var nameEl = document.getElementById('cert-name') || document.getElementById('certName');
+  var name = nameEl ? nameEl.value || nameEl.textContent : 'Unknown';
+  var title = document.title || 'Training Module';
+  var scoreText = document.getElementById('score-display') ? document.getElementById('score-display').textContent : (typeof score !== 'undefined' ? score + '/' + questions.length : 'N/A');
+  var clarity = document.getElementById('fb-clarity').value;
+  var confusing = document.getElementById('fb-confusing').value || 'None';
+  var time = document.getElementById('fb-time').value;
+  var suggestions = document.getElementById('fb-suggestions').value || 'None';
+
+  var subject = encodeURIComponent('Training Module Complete: ' + title + ' - ' + name);
+  var body = encodeURIComponent(
+    'TRAINING MODULE COMPLETION REPORT\n' +
+    '================================\n\n' +
+    'Employee: ' + name + '\n' +
+    'Module: ' + title + '\n' +
+    'Score: ' + scoreText + '\n' +
+    'Date: ' + new Date().toLocaleDateString() + '\n\n' +
+    'FEEDBACK:\n' +
+    'Clarity (1-5): ' + clarity + '\n' +
+    'Confusing sections: ' + confusing + '\n' +
+    'Time to complete: ' + time + '\n' +
+    'Suggestions: ' + suggestions + '\n'
+  );
+
+  window.location.href = 'mailto:hgunn@thegunnlawgroup.com?subject=' + subject + '&body=' + body;
+}
+</script>
+
 </body>
 </html>
