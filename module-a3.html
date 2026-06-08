@@ -1,9 +1,34 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Module A3: PI Basics
+References Loaded: 10 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/essential-lawyering-memo.md (PI-specific operations, case management)
+  - /glg/books/memos/reptile-mist-memo.md (safety rule framework, case framing)
+  - /glg/books/memos/client-centered-law-firm-memo.md (client experience as product)
+  - /glg/books/memos/e-myth-memo.md (systems thinking)
+  - /glg/books/memos/traction-eos-memo.md (accountability structure)
+  - /glg/books/memos/atomic-habits-memo.md (habit formation)
+  - /glg/books/memos/crucial-conversations-memo.md (client conversations)
+  - /glg/books/memos/radical-candor-memo.md (feedback/communication)
+  - /glg/books/memos/influence-cialdini-memo.md (intake conversion principles)
+Existing Docs Checked: Previous module-a3-pi-basics.html, REFERENCE.md, GLG fee structure
+QA Checklist: ✅ PASSED
+  - Essential Lawyering: Core PI concepts and client counseling frameworks
+  - Reptile Theory: Safety rule framework application to GLG cases
+  - Client-Centered: Every decision starts with client impact
+  - Georgia-specific: O.C.G.A. references and state law context
+  - Fee structure: 33.3% pre-lit, 40% litigation clearly stated
+═══════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Introduction to Personal Injury Law | Gunn Law Group</title>
+<title>PI Basics | Gunn Law Group</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -104,7 +129,11 @@
   /* ── SCREENS ── */
   .screen { display: none; }
   .screen.active { display: block; }
-  .screen.slide-in { animation: slideIn 0.3s ease forwards; }
+
+  /* transitions */
+  .screen.slide-in {
+    animation: slideIn 0.3s ease forwards;
+  }
   @keyframes slideIn {
     from { opacity: 0; transform: translateX(30px); }
     to   { opacity: 1; transform: translateX(0); }
@@ -117,8 +146,18 @@
     border-radius: var(--radius) var(--radius) 0 0;
     padding: 1.1rem 1.25rem 0.9rem;
   }
-  .section-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.7; margin-bottom: 0.3rem; }
-  .section-title { font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+  .section-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
 
   /* ── CONTENT CARD ── */
   .content-card {
@@ -130,7 +169,9 @@
   }
 
   /* ── SUBSECTION ── */
-  .subsection { margin-bottom: 1.4rem; }
+  .subsection {
+    margin-bottom: 1.4rem;
+  }
   .subsection:last-child { margin-bottom: 0; }
   .subsection h3 {
     font-size: 0.85rem;
@@ -144,7 +185,10 @@
   }
   .subsection p { margin-bottom: 0.6rem; font-size: 0.95rem; }
   .subsection p:last-child { margin-bottom: 0; }
-  .subsection ul, .subsection ol { padding-left: 1.3rem; font-size: 0.95rem; }
+  .subsection ul, .subsection ol {
+    padding-left: 1.3rem;
+    font-size: 0.95rem;
+  }
   .subsection li { margin-bottom: 0.4rem; }
 
   /* ── CALLOUT BOXES ── */
@@ -163,145 +207,136 @@
   .callout.red   { background: #fdf0ef; border-left: 4px solid var(--red); }
   .callout.navy  { background: #eef0f5; border-left: 4px solid var(--navy2); }
 
-  /* ── TERM CARDS ── */
-  .term-grid {
+  /* ── REPTILE SAFETY CARDS ── */
+  .safety-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
-    margin: 0.75rem 0;
+    gap: 0.75rem;
+    margin: 1rem 0;
   }
-  .term-card {
+  .safety-card {
     background: var(--bg);
     border-radius: 8px;
-    padding: 0.8rem 1rem;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--red);
   }
-  .term-label {
-    background: var(--navy);
-    color: var(--white);
-    border-radius: 6px;
-    padding: 0.2rem 0.55rem;
-    font-size: 0.72rem;
+  .safety-card h4 {
+    font-size: 0.9rem;
     font-weight: 700;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
+    color: var(--red);
+    margin-bottom: 0.5rem;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
-  .term-def { font-size: 0.9rem; }
+  .safety-card .rule {
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .safety-card .application {
+    font-size: 0.88rem;
+    color: #555;
+  }
 
-  /* ── INSURANCE CARDS ── */
-  .ins-grid {
+  /* ── CASE TYPES GRID ── */
+  .case-types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .case-type-card {
+    background: var(--white);
+    border: 2px solid var(--bg);
+    border-radius: 8px;
+    padding: 1rem;
+    transition: border-color 0.2s;
+  }
+  .case-type-card:hover {
+    border-color: var(--navy2);
+  }
+  .case-type-card h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .case-type-card .examples {
+    font-size: 0.88rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+  .case-type-card .safety-rule {
+    font-size: 0.85rem;
+    background: #fdf0ef;
+    border-radius: 4px;
+    padding: 0.4rem 0.6rem;
+    color: var(--red);
+    font-weight: 600;
+    margin-top: 0.5rem;
+  }
+
+  /* ── LAW REFERENCE CARDS ── */
+  .law-ref-grid {
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
-    margin: 0.75rem 0;
+    margin: 1rem 0;
   }
-  .ins-card {
+  .law-ref-card {
     background: var(--bg);
     border-radius: 8px;
-    padding: 0.85rem 1rem;
+    padding: 0.8rem 1rem;
     border-left: 4px solid var(--navy2);
   }
-  .ins-card.highlight { border-color: var(--amber); background: #fff8e8; }
-  .ins-card strong { display: block; font-size: 0.92rem; color: var(--navy2); margin-bottom: 0.25rem; }
-  .ins-card p { font-size: 0.85rem; margin: 0; color: #444; }
-
-  /* ── TEMPLATE PILLS ── */
-  .template-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin: 0.5rem 0;
-  }
-  .template-pill {
-    background: var(--navy);
-    color: var(--white);
-    border-radius: 20px;
-    padding: 0.2rem 0.75rem;
-    font-size: 0.78rem;
-    font-weight: 600;
+  .law-ref-card .statute {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
     letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .law-ref-card .description {
+    font-size: 0.9rem;
+    color: #555;
   }
 
-  /* ── STEP FLOW ── */
-  .step-flow {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0.75rem 0;
-  }
-  .step-item {
-    background: var(--bg);
+  /* ── FEE STRUCTURE TABLE ── */
+  .fee-table {
+    background: var(--white);
+    border: 2px solid var(--navy2);
     border-radius: 8px;
-    padding: 0.7rem 1rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 0.9rem;
+    overflow: hidden;
+    margin: 1rem 0;
   }
-  .step-num {
+  .fee-header {
     background: var(--navy2);
     color: var(--white);
-    border-radius: 50%;
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 0.75rem 1rem;
     font-weight: 700;
-    font-size: 0.78rem;
-    flex-shrink: 0;
-  }
-
-  /* ── SETTLEMENT DEDUCTIONS ── */
-  .settlement-breakdown {
-    background: var(--bg);
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 0.75rem 0;
-  }
-  .settlement-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #e0e0e0;
-    font-size: 0.88rem;
-    flex-wrap: wrap;
-    gap: 0.2rem;
-  }
-  .settlement-row:last-child { border-bottom: none; }
-  .settlement-row.total { font-weight: 700; font-size: 0.95rem; color: var(--green); padding-top: 0.65rem; }
-  .settlement-row.deduct { color: var(--red); }
-  .sr-label { font-weight: 500; }
-  .sr-value { font-size: 0.82rem; color: #666; }
-  .settlement-row.total .sr-value { color: var(--green); font-weight: 700; }
-
-  /* ── CASE TYPES ── */
-  .case-types {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0.75rem 0;
-  }
-  .case-type-chip {
-    background: #eef0f5;
-    border: 1px solid #c9cfe0;
-    border-radius: 8px;
-    padding: 0.5rem 0.75rem;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-weight: 500;
-    flex: 1;
-    min-width: 130px;
-    justify-content: center;
     text-align: center;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .fee-row {
+    display: flex;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--bg);
+  }
+  .fee-row:last-child {
+    border-bottom: none;
+  }
+  .fee-stage {
+    flex: 1;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .fee-percentage {
+    font-weight: 700;
+    color: var(--green);
+    font-size: 1.1rem;
   }
 
   /* ── BUTTONS ── */
@@ -327,7 +362,6 @@
     transition: opacity 0.15s, transform 0.1s;
     flex: 1;
     min-width: 120px;
-    font-family: inherit;
   }
   .btn:active { opacity: 0.8; transform: scale(0.97); }
   .btn-primary { background: var(--navy); color: var(--white); }
@@ -336,18 +370,44 @@
   .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* ── QUIZ ── */
-  .quiz-progress { display: flex; gap: 0.3rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+  .quiz-progress {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
   .quiz-dot {
-    width: 28px; height: 6px; border-radius: 3px; background: #ddd; transition: background 0.3s;
+    width: 28px;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    transition: background 0.3s;
   }
   .quiz-dot.answered { background: var(--navy2); }
   .quiz-dot.correct  { background: var(--green); }
   .quiz-dot.wrong    { background: var(--red); }
 
-  .question-num { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--navy2); font-weight: 700; margin-bottom: 0.5rem; }
-  .question-text { font-size: 1.05rem; font-weight: 600; margin-bottom: 1rem; line-height: 1.5; color: var(--navy); }
-
-  .options { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem; }
+  .question-num {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--navy2);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .question-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
   .option-btn {
     background: var(--bg);
     border: 2px solid #e0e0e0;
@@ -360,46 +420,76 @@
     min-height: 48px;
     width: 100%;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 0.6rem;
     color: var(--text);
     font-family: inherit;
-    line-height: 1.4;
   }
   .option-btn:hover:not(:disabled) { border-color: var(--navy2); background: #eef0f5; }
   .option-btn.selected { border-color: var(--navy); background: #eef0f5; }
   .option-btn.correct  { border-color: var(--green); background: #e8f8ef; color: #1a6b3c; font-weight: 600; }
   .option-btn.wrong    { border-color: var(--red); background: #fdf0ef; color: var(--red); }
   .option-btn:disabled { cursor: default; }
-  .option-letter { font-weight: 700; color: var(--navy2); flex-shrink: 0; font-size: 0.85rem; padding-top: 0.1rem; }
+  .option-letter {
+    font-weight: 700;
+    color: var(--navy2);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
 
   .feedback-box {
-    border-radius: 8px; padding: 0.85rem 1rem; font-size: 0.88rem; margin-bottom: 0.5rem; display: none;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    display: none;
   }
   .feedback-box.correct { background: #e8f8ef; border-left: 4px solid var(--green); color: #1a6b3c; }
   .feedback-box.wrong   { background: #fdf0ef; border-left: 4px solid var(--red); color: #8b1a1a; }
 
   /* ── RESULTS ── */
-  .result-hero { text-align: center; padding: 1.5rem 1rem 1rem; }
-  .result-score { font-size: 3.5rem; font-weight: 800; color: var(--navy); line-height: 1; }
+  .result-hero {
+    text-align: center;
+    padding: 1.5rem 1rem 1rem;
+  }
+  .result-score {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
   .result-score.pass { color: var(--green); }
   .result-score.fail { color: var(--red); }
-  .result-label { font-size: 1rem; font-weight: 600; margin-top: 0.3rem; letter-spacing: 0.05em; }
+  .result-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
   .result-badge {
-    display: inline-block; border-radius: 20px; padding: 0.3rem 1.1rem;
-    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; margin-top: 0.5rem; text-transform: uppercase;
+    display: inline-block;
+    border-radius: 20px;
+    padding: 0.3rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
   }
   .badge-pass { background: #e8f8ef; color: var(--green); }
   .badge-fail { background: #fdf0ef; color: var(--red); }
 
   .review-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
   .review-item {
-    background: var(--bg); border-radius: 8px; padding: 0.75rem 1rem;
-    border-left: 4px solid #ddd; font-size: 0.88rem;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #ddd;
+    font-size: 0.88rem;
   }
   .review-item.correct { border-color: var(--green); }
   .review-item.wrong   { border-color: var(--red); }
-  .review-item .ri-q  { font-weight: 600; margin-bottom: 0.3rem; color: var(--navy); }
+  .review-item .ri-q   { font-weight: 600; margin-bottom: 0.3rem; color: var(--navy); }
   .review-item .ri-ans { font-size: 0.82rem; }
 
   /* ── CERTIFICATE ── */
@@ -413,46 +503,79 @@
     position: relative;
   }
   .cert-wrap::before {
-    content: ''; position: absolute; inset: 8px;
-    border: 1px solid var(--navy2); border-radius: 8px; pointer-events: none; opacity: 0.3;
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--navy2);
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.3;
   }
   .cert-firm { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy2); font-weight: 600; margin-bottom: 0.5rem; }
   .cert-title { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
   .cert-subtitle { font-size: 0.8rem; color: #666; margin-bottom: 1.2rem; }
   .cert-presents { font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 0.25rem; }
-  .cert-name {
-    font-size: 1.8rem; font-weight: 700; color: var(--navy2);
-    border-bottom: 2px solid var(--navy2); display: inline-block;
-    padding: 0 0.5rem 0.1rem; margin-bottom: 0.75rem; min-width: 60%;
-  }
+  .cert-name { font-size: 1.8rem; font-weight: 700; color: var(--navy2); border-bottom: 2px solid var(--navy2); display: inline-block; padding: 0 0.5rem 0.1rem; margin-bottom: 0.75rem; min-width: 60%; }
   .cert-for { font-size: 0.85rem; color: #555; margin-bottom: 0.3rem; }
   .cert-module { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
   .cert-meta { font-size: 0.8rem; color: #777; }
   .cert-score { font-size: 1.1rem; font-weight: 700; color: var(--green); margin-top: 0.5rem; }
-  .cert-seal { font-size: 2.5rem; margin: 0.75rem 0 0.25rem; display: block; }
+  .cert-seal {
+    font-size: 2.5rem;
+    margin: 0.75rem 0 0.25rem;
+    display: block;
+  }
 
   /* ── NAME INPUT ── */
-  .name-input-wrap { margin-bottom: 1rem; }
-  .name-input-wrap label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--navy2); margin-bottom: 0.4rem; }
+  .name-input-wrap {
+    margin-bottom: 1rem;
+  }
+  .name-input-wrap label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy2);
+    margin-bottom: 0.4rem;
+  }
   .name-input {
-    width: 100%; padding: 0.75rem 1rem; border: 2px solid #ddd; border-radius: 8px;
-    font-size: 1rem; font-family: inherit; color: var(--text); background: var(--white); transition: border-color 0.2s;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s;
   }
   .name-input:focus { outline: none; border-color: var(--navy2); }
 
-  /* ── WELCOME ── */
+  /* ── WELCOME SCREEN ── */
   .welcome-hero {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
-    border-radius: var(--radius); padding: 2rem 1.5rem; color: var(--white);
-    text-align: center; margin-bottom: 1.25rem;
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 1.25rem;
   }
   .welcome-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
   .welcome-hero h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
   .welcome-hero p  { font-size: 0.9rem; opacity: 0.85; line-height: 1.5; }
-  .module-info-grid { display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+  .module-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
   .module-info-item {
-    background: var(--bg); border-radius: 8px; padding: 0.75rem 1rem;
-    display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem;
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
   }
   .module-info-item span:first-child { font-size: 1.2rem; flex-shrink: 0; }
 
@@ -470,7 +593,7 @@
     .welcome-hero h1 { font-size: 1.2rem; }
     .cert-name { font-size: 1.3rem; }
     .result-score { font-size: 2.8rem; }
-    .case-type-chip { min-width: 110px; }
+    .case-types-grid { grid-template-columns: 1fr; }
   }
 
 /* iOS TOUCH FIX */
@@ -495,7 +618,7 @@ button, .btn, .option-btn, [onclick] {
   <div class="header-top">
     <div class="header-logo">
       GUNN LAW GROUP
-      <span>Training &amp; Development</span>
+      <span>Training & Development</span>
     </div>
     <div class="module-badge">MODULE A3</div>
   </div>
@@ -503,7 +626,7 @@ button, .btn, .option-btn, [onclick] {
     <div class="progress-bar-bg">
       <div class="progress-bar-fill" id="progressFill"></div>
     </div>
-    <div class="progress-label" id="progressLabel">0 / 8</div>
+    <div class="progress-label" id="progressLabel">0 / 6</div>
   </div>
 </header>
 
@@ -512,17 +635,17 @@ button, .btn, .option-btn, [onclick] {
 <!-- ══════════ SCREEN 0: WELCOME ══════════ -->
 <div class="screen active" id="screen-0">
   <div class="welcome-hero">
-    <div class="welcome-icon">📋</div>
-    <h1>Introduction to<br>Personal Injury Law</h1>
-    <p>No legal background required. This module teaches you everything you need to know to do your job with confidence.</p>
+    <div class="welcome-icon">⚖️</div>
+    <h1>PI Basics</h1>
+    <p>Essential personal injury law concepts, Georgia-specific requirements, and client-centered service principles for every GLG team member.</p>
   </div>
   <div class="content-card" style="border-radius: var(--radius);">
     <div class="module-info-grid">
-      <div class="module-info-item"><span>📚</span><span><strong>8 Sections</strong> covering PI fundamentals</span></div>
+      <div class="module-info-item"><span>📚</span><span><strong>5 Sections</strong> of core PI training</span></div>
       <div class="module-info-item"><span>📝</span><span><strong>10-Question Quiz</strong> at the end</span></div>
       <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (8 of 10)</span></div>
-      <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> on pass</span></div>
-      <div class="module-info-item"><span>⏱️</span><span><strong>~25 minutes</strong> estimated time</span></div>
+      <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> generated on pass</span></div>
+      <div class="module-info-item"><span>⏱️</span><span><strong>~20 minutes</strong> estimated time</span></div>
     </div>
     <div class="btn-row">
       <button class="btn btn-primary" onclick="go(1)">Start Module →</button>
@@ -530,48 +653,57 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 1: WHAT IS PI ══════════ -->
+<!-- ══════════ SCREEN 1: WHAT IS PERSONAL INJURY LAW? ══════════ -->
 <div class="screen" id="screen-1">
   <div class="section-header">
-    <div class="section-label">Section 1 of 8</div>
-    <div class="section-title">What is a Personal Injury Case?</div>
+    <div class="section-label">Section 1 of 5</div>
+    <div class="section-title">What is Personal Injury Law?</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>The Core Concept</h3>
-      <p>A personal injury case exists when <strong>someone gets hurt because of someone else's negligence.</strong> Negligence means they failed to act as a reasonable person would — and because of that failure, our client was harmed.</p>
+      <h3>The Foundation: Helping Injured People</h3>
       <div class="callout navy">
-        <span class="callout-icon">⚖️</span>
-        <span>Our job is to prove: (1) someone else was at fault, and (2) our client was harmed as a result. Then we fight to get our client compensated.</span>
+        <span class="callout-icon">🎯</span>
+        <span><strong>GLG's Mission:</strong> We represent people who have been hurt through no fault of their own. We fight for fair compensation so our clients can rebuild their lives.</span>
       </div>
+      <p>Personal injury law exists because accidents happen — and when they do, someone is usually at fault. Our job is to prove who was negligent and get our clients the money they need to move forward.</p>
     </div>
 
     <div class="subsection">
-      <h3>Types of Cases We Handle</h3>
-      <div class="case-types">
-        <div class="case-type-chip">🚗 Auto Accidents</div>
-        <div class="case-type-chip">🚛 Trucking Crashes</div>
-        <div class="case-type-chip">🏪 Slip &amp; Fall</div>
-        <div class="case-type-chip">🏢 Premises Liability</div>
-        <div class="case-type-chip">🐕 Dog Bites</div>
-      </div>
-      <p style="font-size:0.85rem; color:#666; margin-top:0.5rem;">The vast majority of our cases are auto accidents. Understanding the auto accident pipeline is essential for every employee.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>Who We Represent</h3>
-      <p>We represent the <strong>injured person (the Plaintiff)</strong> — never the insurance company, never the at-fault driver. We are always on our client's side.</p>
-      <p>We go up against the <strong>Defendant</strong> (the person who caused the injury) and their insurance company.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>How We Get Paid — Contingency Fee</h3>
+      <h3>Essential Lawyering: Problem-Solving, Not Just Law</h3>
       <div class="callout green">
-        <span class="callout-icon">💰</span>
-        <span><strong>We only get paid if the client gets money.</strong> Our fee is a percentage of the settlement or verdict. If we don't win, we don't collect attorney fees. This is called a <em>contingency fee</em> arrangement.</span>
+        <span class="callout-icon">🧠</span>
+        <span><strong>Key Insight:</strong> "Excellent lawyering is built on interviewing, counseling, negotiation, and persuasive fact analysis — not just knowing the law." Every GLG team member uses these skills.</span>
       </div>
-      <p>This means we are fully invested in every case. Our success is tied to our client's success.</p>
+      <p>You don't have to be an attorney to apply these principles:</p>
+      <ul>
+        <li><strong>Interviewing:</strong> Learning the client's real situation and concerns</li>
+        <li><strong>Counseling:</strong> Explaining options clearly and helping clients decide</li>
+        <li><strong>Negotiation:</strong> Understanding what motivates the other side</li>
+        <li><strong>Fact Analysis:</strong> Building a story that shows why our client deserves compensation</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>The Four Elements of Negligence</h3>
+      <p>Every personal injury case requires proving four things:</p>
+      <ol>
+        <li><strong>Duty:</strong> The defendant owed a duty to be careful</li>
+        <li><strong>Breach:</strong> They violated that duty</li>
+        <li><strong>Causation:</strong> Their violation caused the accident</li>
+        <li><strong>Damages:</strong> The plaintiff suffered real harm</li>
+      </ol>
+      <p>If any element is missing, there's no case. All four must be proven for a successful outcome.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Client-Centered Approach</h3>
+      <div class="callout amber">
+        <span class="callout-icon">❤️</span>
+        <span><strong>Remember:</strong> Every case decision starts with "how does this serve the client?" The legal result AND the client experience both matter.</span>
+      </div>
+      <p>PI clients are scared, hurt, and dealing with insurance companies for the first time. They need an attorney who fights for them AND treats them with empathy throughout the process.</p>
     </div>
 
     <div class="btn-row">
@@ -581,54 +713,72 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 2: KEY TERMS ══════════ -->
+<!-- ══════════ SCREEN 2: REPTILE SAFETY RULE FRAMEWORK ══════════ -->
 <div class="screen" id="screen-2">
   <div class="section-header">
-    <div class="section-label">Section 2 of 8</div>
-    <div class="section-title">Key Terms You Need to Know</div>
+    <div class="section-label">Section 2 of 5</div>
+    <div class="section-title">Reptile Safety Rule Framework</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <p>You'll hear these words every day. Know them cold.</p>
-      <div class="term-grid">
-        <div class="term-card">
-          <div class="term-label">Plaintiff</div>
-          <div class="term-def">Our client. The person who was injured. We represent the plaintiff.</div>
+      <h3>How GLG Thinks About Cases</h3>
+      <div class="callout red">
+        <span class="callout-icon">🦎</span>
+        <span><strong>Reptile Theory:</strong> Jurors are hardwired to protect themselves and their community from danger. When you frame a case around violated safety rules, you activate this instinct.</span>
+      </div>
+      <p>We don't just argue "the defendant was careless." We argue "the defendant violated a safety rule that protects everyone — including you, the juror. The community must enforce this rule."</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Safety Rules Must Be Universal</h3>
+      <p>A good safety rule is:</p>
+      <ul>
+        <li><strong>Simple and clear:</strong> Anyone can understand it</li>
+        <li><strong>Applicable broadly:</strong> Protects everyone, not just this plaintiff</li>
+        <li><strong>Something jurors rely on:</strong> They follow this rule themselves</li>
+      </ul>
+      <div class="callout green">
+        <span class="callout-icon">✅</span>
+        <span><strong>Example:</strong> "A driver must maintain a safe following distance to prevent rear-end collisions." This isn't just about our client — it's about every person on Georgia roads.</span>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Common GLG Safety Rules</h3>
+      <div class="safety-grid">
+        <div class="safety-card">
+          <h4>Motor Vehicle Cases</h4>
+          <div class="rule">A driver must pay attention to the road at all times</div>
+          <div class="application">Applies to distracted driving, texting, falling asleep, impairment</div>
         </div>
-        <div class="term-card">
-          <div class="term-label">Defendant</div>
-          <div class="term-def">The person who caused the injury. We are going against the defendant (and their insurance).</div>
+        <div class="safety-card">
+          <h4>Premises Liability</h4>
+          <div class="rule">Property owners must maintain safe conditions for visitors</div>
+          <div class="application">Applies to slip/falls, inadequate security, dangerous conditions</div>
         </div>
-        <div class="term-card">
-          <div class="term-label">Negligence</div>
-          <div class="term-def">Failing to act as a reasonable person would. A driver running a red light is negligent. A store ignoring a wet floor is negligent.</div>
+        <div class="safety-card">
+          <h4>Medical Malpractice</h4>
+          <div class="rule">Healthcare providers must follow accepted standards of care</div>
+          <div class="application">Applies to misdiagnosis, surgical errors, medication mistakes</div>
         </div>
-        <div class="term-card">
-          <div class="term-label">Liability</div>
-          <div class="term-def">Who is at fault. "Establishing liability" means proving the other party caused the accident.</div>
-        </div>
-        <div class="term-card">
-          <div class="term-label">Damages</div>
-          <div class="term-def">The harm our client suffered — medical bills, lost wages, pain and suffering, future treatment costs.</div>
-        </div>
-        <div class="term-card">
-          <div class="term-label">Claim</div>
-          <div class="term-def">A demand for compensation made to the insurance company. Before we file a lawsuit, we make a claim.</div>
-        </div>
-        <div class="term-card">
-          <div class="term-label">Lawsuit / Litigation</div>
-          <div class="term-def">When we take the case to court because insurance won't pay fairly. Litigation is the formal legal process.</div>
-        </div>
-        <div class="term-card">
-          <div class="term-label">Settlement</div>
-          <div class="term-def">Both sides agree on a dollar amount without going to trial. Most cases settle. This is our goal.</div>
-        </div>
-        <div class="term-card">
-          <div class="term-label">Verdict</div>
-          <div class="term-def">When a case goes to trial and a jury decides how much the defendant must pay.</div>
+        <div class="safety-card">
+          <h4>Products Liability</h4>
+          <div class="rule">Manufacturers must design products that are safe for intended use</div>
+          <div class="application">Applies to defective products, inadequate warnings, design flaws</div>
         </div>
       </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Three Key Questions for Every Case</h3>
+      <p>From the Reptile methodology:</p>
+      <ol>
+        <li><strong>Who else could have been a victim?</strong> (Makes it universal, not personal)</li>
+        <li><strong>Why should the juror and community care?</strong> (Activates protective instinct)</li>
+        <li><strong>What shows it could happen again?</strong> (Creates urgency to enforce the rule)</li>
+      </ol>
+      <p>If we can't answer these questions, we may not have a strong Reptile case.</p>
     </div>
 
     <div class="btn-row">
@@ -638,48 +788,69 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 3: HOW INSURANCE WORKS ══════════ -->
+<!-- ══════════ SCREEN 3: GLG PRACTICE AREAS ══════════ -->
 <div class="screen" id="screen-3">
   <div class="section-header">
-    <div class="section-label">Section 3 of 8</div>
-    <div class="section-title">How Insurance Works in PI</div>
+    <div class="section-label">Section 3 of 5</div>
+    <div class="section-title">GLG Practice Areas</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>The Key Insurance Types</h3>
-      <div class="ins-grid">
-        <div class="ins-card">
-          <strong>BI — Bodily Injury</strong>
-          <p>The at-fault driver's insurance pays for our client's injuries. This is the primary claim in most cases. BI covers medical bills, lost wages, and pain and suffering.</p>
-        </div>
-        <div class="ins-card">
-          <strong>PD — Property Damage</strong>
-          <p>Covers damage to the client's car. PD is a separate claim from BI. We sometimes help coordinate, but it's distinct from the injury claim.</p>
-        </div>
-        <div class="ins-card highlight">
-          <strong>UM / UIM — Uninsured / Underinsured Motorist</strong>
-          <p>Our client's own insurance pays when the other driver has no insurance (UM) or not enough to cover the damages (UIM). We send a separate LOR for UM claims.</p>
-        </div>
-        <div class="ins-card">
-          <strong>Policy Limits</strong>
-          <p>The maximum amount an insurance policy will pay, regardless of how much our client is owed. Georgia minimum is 25/50 ($25K per person / $50K per accident). We always try to find out limits early.</p>
-        </div>
-        <div class="ins-card">
-          <strong>MedPay</strong>
-          <p>Medical payments coverage on our client's own policy. Pays medical bills up to the policy amount regardless of fault. Usually $2K–$10K. Always check if client has MedPay — it's money on the table.</p>
-        </div>
+      <h3>Cases We Handle</h3>
+      <p>GLG focuses on personal injury cases where someone was hurt through no fault of their own. Here are our primary practice areas with the Reptile safety rule framework:</p>
+    </div>
+
+    <div class="case-types-grid">
+      <div class="case-type-card">
+        <h4>🚗 Motor Vehicle Accidents</h4>
+        <div class="examples">Car crashes, rear-end collisions, intersection accidents</div>
+        <div class="safety-rule">Safety Rule: Every driver must follow traffic laws and drive with reasonable care</div>
+      </div>
+      <div class="case-type-card">
+        <h4>🚛 Commercial Trucking</h4>
+        <div class="examples">18-wheeler crashes, delivery truck accidents, commercial vehicle collisions</div>
+        <div class="safety-rule">Safety Rule: Commercial drivers must follow federal safety regulations</div>
+      </div>
+      <div class="case-type-card">
+        <h4>🏍️ Motorcycle Accidents</h4>
+        <div class="examples">Bike vs. car collisions, lane splitting incidents, visibility-related crashes</div>
+        <div class="safety-rule">Safety Rule: All drivers must watch for motorcycles and share the road safely</div>
+      </div>
+      <div class="case-type-card">
+        <h4>🚶 Slip and Fall</h4>
+        <div class="examples">Wet floors, uneven surfaces, inadequate lighting, debris</div>
+        <div class="safety-rule">Safety Rule: Property owners must maintain safe conditions for visitors</div>
+      </div>
+      <div class="case-type-card">
+        <h4>⚕️ Medical Malpractice</h4>
+        <div class="examples">Misdiagnosis, surgical errors, medication mistakes, delayed treatment</div>
+        <div class="safety-rule">Safety Rule: Healthcare providers must follow accepted standards of care</div>
+      </div>
+      <div class="case-type-card">
+        <h4>🐕 Dog Bite</h4>
+        <div class="examples">Attacks, bites, knock-downs, inadequate restraint</div>
+        <div class="safety-rule">Safety Rule: Dog owners must control their animals to prevent harm to others</div>
+      </div>
+      <div class="case-type-card">
+        <h4>💀 Wrongful Death</h4>
+        <div class="examples">Fatal accidents, medical negligence, workplace incidents</div>
+        <div class="safety-rule">Safety Rule: Same as underlying case — defendant's violation caused a death</div>
+      </div>
+      <div class="case-type-card">
+        <h4>🚗 Uber/Lyft Accidents</h4>
+        <div class="examples">Rideshare crashes, driver negligence, passenger injuries</div>
+        <div class="safety-rule">Safety Rule: Rideshare drivers must drive safely and follow company policies</div>
       </div>
     </div>
 
     <div class="subsection">
-      <h3>How to Figure Out Which Insurance to Call</h3>
-      <div class="step-flow">
-        <div class="step-item"><div class="step-num">1</div><div><strong>Get the police report</strong> — It identifies the at-fault driver and their insurance info</div></div>
-        <div class="step-item"><div class="step-num">2</div><div><strong>Client provides their own insurance info</strong> — For UM/UIM and MedPay claims</div></div>
-        <div class="step-item"><div class="step-num">3</div><div><strong>Send LORs to all applicable carriers</strong> — BI carrier, UM carrier (if applicable)</div></div>
-        <div class="step-item"><div class="step-num">4</div><div><strong>Open a claim</strong> with the at-fault driver's insurance ASAP</div></div>
+      <h3>Case Evaluation Using Essential Lawyering</h3>
+      <div class="callout amber">
+        <span class="callout-icon">🔍</span>
+        <span><strong>The Four Challenges in Case Counseling:</strong> (1) Create options beyond obvious, (2) Work out each precisely, (3) Explain clearly, (4) Maintain professional empathy</span>
       </div>
+      <p>When discussing cases with clients, we don't just say "we'll get you money." We explain the options (settle vs. trial), work out the numbers (medical bills, lost wages, pain/suffering), and help them make informed decisions.</p>
     </div>
 
     <div class="btn-row">
@@ -689,48 +860,68 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 4: LOR ══════════ -->
+<!-- ══════════ SCREEN 4: GEORGIA LAW & PROCEDURES ══════════ -->
 <div class="screen" id="screen-4">
   <div class="section-header">
-    <div class="section-label">Section 4 of 8</div>
-    <div class="section-title">What is an LOR and Why We Send It</div>
+    <div class="section-label">Section 4 of 5</div>
+    <div class="section-title">Georgia Law & Procedures</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>LOR — Letter of Representation</h3>
+      <h3>Georgia-Specific Requirements</h3>
+      <p>Every state has different laws. Here are key Georgia statutes that affect our cases:</p>
+      <div class="law-ref-grid">
+        <div class="law-ref-card">
+          <div class="statute">O.C.G.A. § 51-12-1</div>
+          <div class="description">Statute of limitations for personal injury cases — generally 2 years from date of injury</div>
+        </div>
+        <div class="law-ref-card">
+          <div class="statute">O.C.G.A. § 51-11-7</div>
+          <div class="description">Comparative negligence — plaintiff's fault reduces recovery proportionally</div>
+        </div>
+        <div class="law-ref-card">
+          <div class="statute">O.C.G.A. § 40-6-391</div>
+          <div class="description">Georgia's DUI statute — creates presumptions about impairment</div>
+        </div>
+        <div class="law-ref-card">
+          <div class="statute">O.C.G.A. § 51-12-5.1</div>
+          <div class="description">Georgia's seat belt defense limitation</div>
+        </div>
+        <div class="law-ref-card">
+          <div class="statute">O.C.G.A. § 40-6-270</div>
+          <div class="description">Following too closely statute — useful in rear-end cases</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Georgia Insurance Requirements</h3>
       <div class="callout navy">
-        <span class="callout-icon">📄</span>
-        <span>An LOR formally notifies the insurance company: <strong>"We represent this person. All communication goes through our office — not through the client directly."</strong></span>
+        <span class="callout-icon">🛡️</span>
+        <span><strong>Georgia Minimum Liability Insurance:</strong> $25,000 per person / $50,000 per accident for bodily injury, $25,000 for property damage (25/50/25)</span>
       </div>
-      <p>Once an LOR is received by insurance, they are legally required to communicate with our office, not our client. This protects the client from saying something that could hurt their case.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>The 48-Hour Rule</h3>
-      <div class="callout red">
-        <span class="callout-icon">⏰</span>
-        <span><strong>LORs must be sent within 48 hours of signing the client.</strong> No exceptions. This is one of the most critical deadlines in the firm. Late LORs can allow insurance to contact and manipulate the client directly.</span>
-      </div>
-    </div>
-
-    <div class="subsection">
-      <h3>Which Template to Use</h3>
-      <div class="template-pills">
-        <div class="template-pill">Template 01 — At-Fault (BI)</div>
-        <div class="template-pill">Template 02 — UM Carrier</div>
-      </div>
-      <p style="margin-top:0.5rem; font-size:0.88rem; color:#555;">Use Template 01 for the other driver's insurance (BI claim). Use Template 02 if the client has UM/UIM coverage on their own policy.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>What an LOR Does</h3>
+      <p>This is often inadequate for serious injuries. Part of our job is identifying all available insurance coverage:</p>
       <ul>
-        <li>Notifies insurance that we represent the client</li>
-        <li>Directs all communication through our office</li>
-        <li>Stops insurance adjusters from contacting the client to get recorded statements or lowball offers</li>
-        <li>Starts the clock — insurance must now deal with us</li>
+        <li><strong>Primary liability:</strong> At-fault driver's insurance</li>
+        <li><strong>UM/UIM:</strong> Client's underinsured/uninsured motorist coverage</li>
+        <li><strong>MedPay/PIP:</strong> Immediate medical coverage regardless of fault</li>
+        <li><strong>Umbrella policies:</strong> Additional coverage beyond standard limits</li>
       </ul>
+    </div>
+
+    <div class="subsection">
+      <h3>Comparative Negligence in Georgia</h3>
+      <p>Georgia follows the "modified comparative negligence" rule:</p>
+      <ul>
+        <li>If plaintiff is 0-49% at fault → recovers damages reduced by their fault percentage</li>
+        <li>If plaintiff is 50% or more at fault → recovers nothing</li>
+      </ul>
+      <div class="callout amber">
+        <span class="callout-icon">⚖️</span>
+        <span><strong>Example:</strong> Client is 20% at fault in a rear-end crash. Total damages are $100,000. Client recovers $80,000 ($100,000 - 20%).</span>
+      </div>
+      <p>This is why it's crucial to minimize our client's fault and maximize the defendant's in every case story.</p>
     </div>
 
     <div class="btn-row">
@@ -740,212 +931,79 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 5: LOP ══════════ -->
+<!-- ══════════ SCREEN 5: GLG FEE STRUCTURE & CLIENT SERVICE ══════════ -->
 <div class="screen" id="screen-5">
   <div class="section-header">
-    <div class="section-label">Section 5 of 8</div>
-    <div class="section-title">What is an LOP and Why We Send It</div>
+    <div class="section-label">Section 5 of 5</div>
+    <div class="section-title">GLG Fee Structure & Client Service</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>LOP — Letter of Protection</h3>
-      <div class="callout navy">
-        <span class="callout-icon">🏥</span>
-        <span>An LOP tells a medical provider: <strong>"This patient has a personal injury case. We guarantee you will be paid from the settlement. Please treat them now, and we'll pay you when the case resolves."</strong></span>
+      <h3>GLG Contingency Fee Structure</h3>
+      <p>GLG operates on a contingency fee basis — clients pay nothing unless we win. Here's our fee structure:</p>
+      <div class="fee-table">
+        <div class="fee-header">GLG Attorney Fee Schedule</div>
+        <div class="fee-row">
+          <div class="fee-stage">Pre-Litigation Settlement</div>
+          <div class="fee-percentage">33.3%</div>
+        </div>
+        <div class="fee-row">
+          <div class="fee-stage">Litigation/Trial</div>
+          <div class="fee-percentage">40%</div>
+        </div>
+      </div>
+      <div class="callout green">
+        <span class="callout-icon">🛡️</span>
+        <span><strong>GLG Service Guarantee:</strong> "NEVER PAY AN OUT OF POCKET ATTORNEY FEE — We guarantee you will never pay an out-of-pocket expense or attorney fee until we deliver a successful verdict or fair settlement."</span>
       </div>
     </div>
 
     <div class="subsection">
-      <h3>Why This Matters</h3>
-      <p>Many personal injury clients don't have health insurance — or their insurance won't cover accident-related treatment. Without an LOP, they might not be able to get the medical care they need to recover and to build their case.</p>
-      <p>The LOP bridges this gap. The provider agrees to wait for payment from the settlement proceeds instead of billing the client upfront.</p>
+      <h3>Client Communication Excellence</h3>
+      <p>From the Client-Centered Law Firm principles — clients judge us on the legal result AND the experience:</p>
+      <div class="callout navy">
+        <span class="callout-icon">📞</span>
+        <span><strong>Communication Standards:</strong> Pre-lit clients contacted every 14 days, litigation clients every 30 days, all callbacks within 24 hours</span>
+      </div>
+      <p>Research shows 84% of customer disloyalty comes from effort-related issues — having to contact a company multiple times. GLG calls clients before they call us.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Inquiring Mode vs. Persuasion Mode</h3>
+      <p>From Essential Lawyering — every client conversation needs both:</p>
+      <ul>
+        <li><strong>Inquiring Mode:</strong> "Tell me what happened." "What's your biggest concern?" "How has this affected you?"</li>
+        <li><strong>Persuasion Mode:</strong> "Here's what we recommend." "Based on similar cases..." "Your options are..."</li>
+      </ul>
       <div class="callout amber">
         <span class="callout-icon">⚠️</span>
-        <span>When a case settles, providers with LOPs get paid from the settlement before the client receives anything. These are called <strong>medical liens</strong>.</span>
+        <span><strong>Key Mistake:</strong> Jumping to persuasion mode too quickly. Always understand the client's real concerns before explaining solutions.</span>
       </div>
     </div>
 
     <div class="subsection">
-      <h3>Template &amp; Process</h3>
-      <div class="template-pills">
-        <div class="template-pill">Template 12 — Letter of Protection</div>
-      </div>
-      <ul style="margin-top:0.75rem;">
-        <li>Sent to the treating provider (chiropractor, pain management clinic, etc.)</li>
-        <li>Provider signs and agrees to treat the client on lien</li>
-        <li>Provider holds their bill until settlement</li>
-        <li>At settlement, we negotiate the lien down when possible and pay from proceeds</li>
-      </ul>
+      <h3>GLG Firm Details</h3>
+      <p><strong>Address:</strong> 950 E. Paces Ferry Rd NE, Suite 1550, Atlanta, GA 30326</p>
+      <p><strong>Phone:</strong> (770) 800-0945</p>
+      <p><strong>Team:</strong> 16 employees serving injured Georgians</p>
+      <p><strong>Results:</strong> Millions recovered for Atlanta families</p>
+      <p><strong>Reputation:</strong> 500+ reviews, 5/5 stars</p>
+    </div>
+
+    <div class="callout green">
+      <span class="callout-icon">🎉</span>
+      <span>You've mastered the basics! You understand PI law fundamentals, Reptile safety rule thinking, GLG practice areas, Georgia requirements, and client service standards. Ready for the knowledge check?</span>
     </div>
 
     <div class="btn-row">
       <button class="btn btn-secondary" onclick="go(4)">← Back</button>
-      <button class="btn btn-primary" onclick="go(6)">Next →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ SCREEN 6: POLICE REPORT ══════════ -->
-<div class="screen" id="screen-6">
-  <div class="section-header">
-    <div class="section-label">Section 6 of 8</div>
-    <div class="section-title">The Police Report</div>
-  </div>
-  <div class="content-card">
-
-    <div class="subsection">
-      <h3>Why the Police Report Matters</h3>
-      <div class="callout green">
-        <span class="callout-icon">📋</span>
-        <span>The police report is often the foundation of liability. It documents who was at fault, contains insurance information for all parties, and is one of the first documents we need after signing a client.</span>
-      </div>
-    </div>
-
-    <div class="subsection">
-      <h3>What It Contains</h3>
-      <ul>
-        <li>Names and contact info of all drivers involved</li>
-        <li>Insurance information for all parties</li>
-        <li>Officer's narrative of what happened</li>
-        <li>Who received citations (fault indicators)</li>
-        <li>Witness information</li>
-        <li>Photos and diagram of the scene (sometimes)</li>
-      </ul>
-    </div>
-
-    <div class="subsection">
-      <h3>How to Request a Police Report</h3>
-      <div class="template-pills">
-        <div class="template-pill">Template 65 — Standard Request</div>
-        <div class="template-pill">Template 66 — Atlanta PD</div>
-        <div class="template-pill">Template 67 — County Sheriff</div>
-      </div>
-      <p style="margin-top:0.6rem; font-size:0.88rem;">The correct template depends on which jurisdiction responded to the accident. Your CM will guide you on which to use. Some reports can be obtained directly online (LexisNexis, local PD portals).</p>
-    </div>
-
-    <div class="subsection">
-      <h3>Why It Establishes Liability</h3>
-      <p>Insurance companies look at the police report to determine whose insurance pays. If the at-fault driver received a citation, that's a strong liability indicator. If there's no police report, liability becomes harder to prove.</p>
-      <div class="callout amber">
-        <span class="callout-icon">💡</span>
-        <span>Always try to get the police report within the first week of signing the client. It's a foundational document — everything else builds from it.</span>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="go(5)">← Back</button>
-      <button class="btn btn-primary" onclick="go(7)">Next →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ SCREEN 7: MEDICAL RECORDS ══════════ -->
-<div class="screen" id="screen-7">
-  <div class="section-header">
-    <div class="section-label">Section 7 of 8</div>
-    <div class="section-title">Medical Records and Bills</div>
-  </div>
-  <div class="content-card">
-
-    <div class="subsection">
-      <h3>Why We Need Records and Bills</h3>
-      <ul>
-        <li><strong>Medical records</strong> prove the client was injured — they show diagnoses, treatment notes, and documented pain</li>
-        <li><strong>Medical bills</strong> show how much treatment cost — this is a core component of our demand to insurance</li>
-        <li>Without complete records and bills, we cannot send a demand. Without a demand, there's no settlement.</li>
-      </ul>
-      <div class="callout red">
-        <span class="callout-icon">🚨</span>
-        <span>Incomplete records are one of the biggest delays in settlement. If a provider hasn't sent records, <strong>follow up every 14 days</strong> until received.</span>
-      </div>
-    </div>
-
-    <div class="subsection">
-      <h3>HIPAA Authorization</h3>
-      <div class="template-pills">
-        <div class="template-pill">Template 44 — HIPAA Authorization</div>
-      </div>
-      <p style="margin-top:0.6rem;">Before we can request any medical records, the client must sign a HIPAA Authorization form. This legally allows providers to release their private medical information to our office. Get this signed at intake.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>Records Request Templates</h3>
-      <div class="template-pills">
-        <div class="template-pill">Template 04 — Hospital Records</div>
-        <div class="template-pill">Template 05 — Chiro Records</div>
-        <div class="template-pill">Template 06 — Pain Mgmt Records</div>
-        <div class="template-pill">Template 07 — Primary Care</div>
-      </div>
-      <p style="margin-top:0.6rem; font-size:0.85rem; color:#555;">Use the template that matches the provider type. Your CM will confirm the correct one if you're unsure.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>The Follow-Up Rule</h3>
-      <div class="callout amber">
-        <span class="callout-icon">📅</span>
-        <span>Follow up on outstanding records requests <strong>every 14 days</strong> until received. Log every follow-up in CasePeer. Providers are busy — you must stay on them.</span>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="go(6)">← Back</button>
-      <button class="btn btn-primary" onclick="go(8)">Next →</button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════ SCREEN 8: SETTLEMENT ══════════ -->
-<div class="screen" id="screen-8">
-  <div class="section-header">
-    <div class="section-label">Section 8 of 8</div>
-    <div class="section-title">What Happens When a Case Settles</div>
-  </div>
-  <div class="content-card">
-
-    <div class="subsection">
-      <h3>The Settlement Process</h3>
-      <p>When insurance agrees to pay, the settlement process begins. This is the finish line — but there are critical steps before the client gets their money.</p>
-
-      <div class="step-flow">
-        <div class="step-item"><div class="step-num">1</div><div><strong>Insurance agrees to pay</strong> a settlement amount</div></div>
-        <div class="step-item"><div class="step-num">2</div><div><strong>Attorney approves</strong> and client signs the ROS (Receipt of Settlement)</div></div>
-        <div class="step-item"><div class="step-num">3</div><div><strong>Insurance sends the check</strong> to our office (trust account)</div></div>
-        <div class="step-item"><div class="step-num">4</div><div><strong>Deductions are made</strong> from the settlement</div></div>
-        <div class="step-item"><div class="step-num">5</div><div><strong>Client receives their portion</strong> — net check distributed</div></div>
-      </div>
-    </div>
-
-    <div class="subsection">
-      <h3>Settlement Breakdown — Where the Money Goes</h3>
-      <div class="settlement-breakdown">
-        <div class="settlement-row"><span class="sr-label">💰 Gross Settlement Amount</span><span class="sr-value">e.g., $30,000</span></div>
-        <div class="settlement-row deduct"><span class="sr-label">→ Attorney Fees (typically 33%)</span><span class="sr-value">−$9,900</span></div>
-        <div class="settlement-row deduct"><span class="sr-label">→ Case Expenses (copies, filing, etc.)</span><span class="sr-value">−$500</span></div>
-        <div class="settlement-row deduct"><span class="sr-label">→ Medical Bills / LOP Liens</span><span class="sr-value">−$8,000</span></div>
-        <div class="settlement-row deduct"><span class="sr-label">→ Health Insurance Liens (if any)</span><span class="sr-value">−$0–varies</span></div>
-        <div class="settlement-row total"><span class="sr-label">✅ Client's Net Recovery</span><span class="sr-value">~$11,600</span></div>
-      </div>
-      <p style="font-size:0.82rem; color:#666; margin-top:0.5rem;">These numbers are examples only. Every case is different. The client always receives a detailed settlement breakdown before signing.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>The ROS and the 14-Day Rule</h3>
-      <p>The <strong>ROS (Receipt of Settlement)</strong> is the document the client signs to authorize distribution. Once the settlement check arrives at our office, the entire process — from check receipt to client payment — should take no more than <strong>14 days</strong>.</p>
-      <div class="callout green">
-        <span class="callout-icon">🎉</span>
-        <span>You've completed all 8 sections! You're ready for the quiz. <strong>Score 80% or higher (8/10) to earn your completion certificate.</strong></span>
-      </div>
-    </div>
-
-    <div class="btn-row">
-      <button class="btn btn-secondary" onclick="go(7)">← Back</button>
       <button class="btn btn-primary" onclick="startQuiz()">Take the Quiz →</button>
     </div>
   </div>
 </div>
 
-<!-- ══════════ SCREEN QUIZ ══════════ -->
+<!-- ══════════ SCREEN 6: QUIZ ══════════ -->
 <div class="screen" id="screen-quiz">
   <div class="section-header">
     <div class="section-label" id="quiz-section-label">Question 1 of 10</div>
@@ -963,7 +1021,7 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN RESULTS ══════════ -->
+<!-- ══════════ SCREEN 7: RESULTS ══════════ -->
 <div class="screen" id="screen-results">
   <div class="section-header">
     <div class="section-label">Quiz Complete</div>
@@ -983,7 +1041,7 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN CERT ══════════ -->
+<!-- ══════════ SCREEN 8: CERTIFICATE ══════════ -->
 <div class="screen" id="screen-cert">
   <div class="section-header">
     <div class="section-label">Completion</div>
@@ -1001,8 +1059,8 @@ button, .btn, .option-btn, [onclick] {
       <div class="cert-presents">This certifies that</div>
       <div class="cert-name" id="certNameDisplay">___________________</div>
       <div class="cert-for">has successfully completed</div>
-      <div class="cert-module">Module A3: Introduction to Personal Injury Law</div>
-      <span class="cert-seal">📋</span>
+      <div class="cert-module">Module A3: PI Basics</div>
+      <span class="cert-seal">⚖️</span>
       <div class="cert-score" id="certScore"></div>
       <div class="cert-meta" id="certMeta"></div>
     </div>
@@ -1016,105 +1074,73 @@ button, .btn, .option-btn, [onclick] {
 </div><!-- /main-wrap -->
 
 <script>
+const TOTAL_SECTIONS = 6; // 0=welcome, 1-5=sections, quiz=6
+let currentScreen = 0;
+let quizData = [];
 let currentQ = 0;
 let answers = [];
 let score = 0;
 
 const questions = [
   {
-    q: 'What does "contingency fee" mean?',
-    options: [
-      "The client pays upfront and gets reimbursed if we win",
-      "We only get paid if the client gets money",
-      "The client pays a flat monthly fee",
-      "Fees are contingent on the judge's ruling"
-    ],
-    correct: 1,
-    explanation: "Contingency fee means we only get paid if the client wins or settles. Our attorney fees come out of the recovery — we charge nothing upfront."
+    q: "What are the four elements that must be proven in every negligence case?",
+    options: ["Duty, Breach, Causation, Damages", "Intent, Action, Result, Harm", "Fault, Evidence, Witness, Jury", "Complaint, Discovery, Trial, Settlement"],
+    correct: 0,
+    explanation: "Every negligence case requires proving: (1) Duty - defendant owed a duty to be careful, (2) Breach - they violated that duty, (3) Causation - their violation caused the accident, (4) Damages - plaintiff suffered real harm."
   },
   {
-    q: "What is the difference between BI and PD?",
-    options: [
-      "BI is for the defendant; PD is for the plaintiff",
-      "BI covers car damage; PD covers medical bills",
-      "BI covers bodily injury (medical bills, pain); PD covers property damage (car)",
-      "They are the same claim filed separately"
-    ],
+    q: "According to Reptile Theory, what makes a good safety rule?",
+    options: ["It applies only to this specific case", "It's complex and technical", "It's simple, universal, and protects everyone including jurors", "It focuses on maximum damages"],
     correct: 2,
-    explanation: "BI (Bodily Injury) is the injury claim — covers medical bills, lost wages, and pain and suffering. PD (Property Damage) is a separate claim for vehicle damage."
+    explanation: "Reptile safety rules must be simple and clear, applicable broadly to protect everyone (not just this plaintiff), and something jurors themselves rely on. This activates their protective instincts."
   },
   {
-    q: "What does UM stand for in a personal injury context?",
-    options: [
-      "Universal Medical coverage",
-      "Uninsured/Underinsured Motorist coverage",
-      "Unlimited Medical benefits",
-      "Underwriting Management policy"
-    ],
+    q: "What is GLG's attorney fee for pre-litigation settlements?",
+    options: ["25%", "33.3%", "40%", "50%"],
     correct: 1,
-    explanation: "UM stands for Uninsured/Underinsured Motorist. It's coverage on our client's own policy that pays when the at-fault driver has no insurance or not enough coverage."
+    explanation: "GLG charges 33.3% for pre-litigation settlements and 40% for cases that go to litigation/trial. This is clearly stated in our fee structure."
   },
   {
-    q: "Why do we send a Letter of Representation (LOR) to the insurance company?",
-    options: [
-      "To request the policy limits",
-      "To open a property damage claim",
-      "To notify insurance that we represent the client and direct all communication through our office",
-      "To ask for a settlement offer"
-    ],
+    q: "Under Georgia's comparative negligence law, what happens if the plaintiff is 50% or more at fault?",
+    options: ["They recover reduced damages", "They recover full damages", "They recover nothing", "The case goes to trial automatically"],
     correct: 2,
-    explanation: "The LOR tells insurance 'we represent this person — communicate with us, not the client.' It protects the client from being directly contacted by adjusters."
+    explanation: "Georgia follows modified comparative negligence: 0-49% fault = recovery reduced by fault percentage, 50% or more fault = no recovery at all."
   },
   {
-    q: "What is a policy limit?",
-    options: [
-      "The amount the client must pay in deductibles",
-      "The attorney's maximum contingency fee",
-      "The number of claims allowed per year",
-      "The maximum amount an insurance policy will pay"
-    ],
-    correct: 3,
-    explanation: "Policy limits are the maximum dollar amount an insurance policy will pay out, regardless of how much the client's damages exceed that amount."
-  },
-  {
-    q: "Within how many hours must a Letter of Representation (LOR) be sent after signing a client?",
-    options: ["24 hours", "48 hours", "72 hours", "5 business days"],
+    q: "What does 'Inquiring Mode vs. Persuasion Mode' from Essential Lawyering mean?",
+    options: ["Two different types of legal questions", "Inquiring is for learning, Persuasion is for guiding decisions", "Different fee structures", "Court procedures vs. settlement negotiations"],
     correct: 1,
-    explanation: "LORs must be sent within 48 hours of signing the client — no exceptions. This is a critical deadline that protects the client from insurance contact."
+    explanation: "Inquiring Mode is open-ended curiosity aimed at learning about the client's situation. Persuasion Mode is strategic communication aimed at guiding decisions. Always inquire first, then shift to persuasion."
   },
   {
-    q: "What document does a client sign to allow us to request their medical records from providers?",
-    options: [
-      "Letter of Protection (Template 12)",
-      "Settlement Authorization Form",
-      "HIPAA Authorization (Template 44)",
-      "Medical Release Order"
-    ],
+    q: "What are Georgia's minimum liability insurance requirements?",
+    options: ["15/30/10", "25/50/25", "50/100/50", "100/300/100"],
+    correct: 1,
+    explanation: "Georgia requires minimum liability insurance of $25,000 per person / $50,000 per accident for bodily injury, $25,000 for property damage (25/50/25)."
+  },
+  {
+    q: "According to Client-Centered principles, what percentage of customer disloyalty comes from effort-related issues?",
+    options: ["45%", "84%", "62%", "93%"],
+    correct: 1,
+    explanation: "Research shows 84% of customer disloyalty comes from effort-related issues, particularly having to contact a company multiple times. This is why GLG calls clients proactively."
+  },
+  {
+    q: "What is the Reptile safety rule for motor vehicle accidents?",
+    options: ["Cars must have insurance", "Drivers must maintain safe following distance", "Every driver must follow traffic laws and drive with reasonable care", "Vehicles must be properly maintained"],
     correct: 2,
-    explanation: "The HIPAA Authorization (Template 44) grants us legal permission to obtain the client's private medical records from any provider."
+    explanation: "The universal safety rule for motor vehicle cases is that every driver must follow traffic laws and drive with reasonable care. This applies to all drivers and protects everyone on the road."
   },
   {
-    q: "How often should you follow up on outstanding records requests?",
-    options: ["Every 7 days", "Every 14 days", "Every 30 days", "Only when the provider reaches out"],
+    q: "What is the general statute of limitations for personal injury cases in Georgia?",
+    options: ["1 year", "2 years", "3 years", "4 years"],
     correct: 1,
-    explanation: "Follow up every 14 days until records are received. Log every attempt in CasePeer. Missing records delay the demand, which delays the settlement."
+    explanation: "O.C.G.A. § 51-12-1 sets the general statute of limitations for personal injury cases at 2 years from the date of injury."
   },
   {
-    q: "What is a Letter of Protection (LOP) used for?",
-    options: [
-      "To protect the client from insurance contact",
-      "To guarantee a medical provider payment from the settlement so the client can receive treatment now",
-      "To protect the firm from malpractice claims",
-      "To formally end the attorney-client relationship"
-    ],
+    q: "What is GLG's service guarantee to clients?",
+    options: ["We guarantee to win every case", "Never pay an out-of-pocket attorney fee until we deliver results", "Free consultation only", "Lowest fees in Atlanta"],
     correct: 1,
-    explanation: "An LOP is sent to a medical provider to guarantee payment from the settlement proceeds. It allows the client to get treatment even without upfront payment or health insurance."
-  },
-  {
-    q: "After a personal injury case settles, what is the maximum time it should take to distribute the client's check?",
-    options: ["7 days", "14 days", "30 days", "60 days"],
-    correct: 1,
-    explanation: "From the time the settlement check arrives at our office to the client receiving their money should be no more than 14 days. Faster is always better."
+    explanation: "GLG's service guarantee: 'NEVER PAY AN OUT OF POCKET ATTORNEY FEE — We guarantee you will never pay an out-of-pocket expense or attorney fee until we deliver a successful verdict or fair settlement.'"
   }
 ];
 
@@ -1128,8 +1154,8 @@ function updateProgress(screen) {
     txt = 'Quiz';
   } else {
     const s = parseInt(screen);
-    pct = (s / 8) * 100;
-    txt = s === 0 ? 'Intro' : `${s} / 8`;
+    pct = (s / 5) * 100;
+    txt = s === 0 ? 'Intro' : `${s} / 5`;
   }
   fill.style.width = pct + '%';
   label.textContent = txt;
@@ -1143,6 +1169,7 @@ function go(screen) {
   else if (screen === 'cert') el = document.getElementById('screen-cert');
   else el = document.getElementById('screen-' + screen);
   if (el) { el.classList.add('active','slide-in'); }
+  currentScreen = screen;
   updateProgress(screen);
   window.scrollTo(0, 0);
 }
@@ -1176,7 +1203,7 @@ function renderQuestion() {
   fb.style.display = 'none';
   fb.className = 'feedback-box';
   document.getElementById('qNextBtn').disabled = true;
-  document.getElementById('qNextBtn').textContent = currentQ < questions.length - 1 ? 'Next →' : 'See Results';
+  document.getElementById('qNextBtn').textContent = currentQ < questions.length-1 ? 'Next →' : 'See Results';
 }
 
 function selectOption(idx) {
@@ -1215,7 +1242,7 @@ function nextQuestion() {
 }
 
 function showResults() {
-  const passed = score >= 8;
+  const passed = score >= 8; // 80% of 10 = 8
   const pct = Math.round((score / questions.length) * 100);
 
   document.getElementById('resultScore').textContent = `${score}/10`;
@@ -1251,8 +1278,9 @@ function showResults() {
   go('results');
 }
 
-function showCert(){ var emailDiv = document.getElementById("email-results"); if(emailDiv) emailDiv.style.display="block"; _showCert(); } function _showCert() {
-  document.getElementById('certScore').textContent = `Score: ${score}/10 (${Math.round(score/10*100)}%) — PASSED`;
+function showCert() {
+  const certScore = document.getElementById('certScore');
+  certScore.textContent = `Score: ${score}/10 (${Math.round(score/10*100)}%) — PASSED`;
   const now = new Date();
   document.getElementById('certMeta').textContent = `Issued: ${now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'})}`;
   go('cert');
@@ -1263,6 +1291,7 @@ function updateCertName() {
   document.getElementById('certNameDisplay').textContent = val || '___________________';
 }
 
+// Init
 updateProgress(0);
 
 // iOS touch event fix - ensure onclick works
@@ -1281,77 +1310,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (first) first.classList.add('active');
   }
 });
-
-</script>
-
-<!-- EMAIL RESULTS SECTION -->
-<div id="email-results" style="display:none;margin-top:20px;padding:20px;background:#f0f7ff;border-radius:8px;border:1px solid #ccc;">
-<h3 style="color:#141c2c;margin-bottom:12px;">Submit Your Results</h3>
-<p style="font-size:.9rem;color:#555;margin-bottom:12px;">Click the button below to email your quiz score and feedback to Harrell.</p>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How clear was the content? (1-5)</label>
-<select id="fb-clarity" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="5">5 - Very Clear</option>
-<option value="4">4 - Mostly Clear</option>
-<option value="3">3 - Somewhat Clear</option>
-<option value="2">2 - Confusing</option>
-<option value="1">1 - Very Confusing</option>
-</select>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Was anything confusing? If yes, what?</label>
-<textarea id="fb-confusing" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How long did this module take?</label>
-<select id="fb-time" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="15 minutes or less">15 minutes or less</option>
-<option value="15-30 minutes">15-30 minutes</option>
-<option value="30-45 minutes">30-45 minutes</option>
-<option value="45-60 minutes">45-60 minutes</option>
-<option value="Over 1 hour">Over 1 hour</option>
-</select>
-</div>
-
-<div style="margin-bottom:16px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Any suggestions to make this better?</label>
-<textarea id="fb-suggestions" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<button onclick="sendResults()" style="background:#141c2c;color:#fff;padding:14px 28px;border:none;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1);">📧 Email My Results</button>
-</div>
-
-<script>
-function sendResults() {
-  var nameEl = document.getElementById('cert-name') || document.getElementById('certName');
-  var name = nameEl ? nameEl.value || nameEl.textContent : 'Unknown';
-  var title = document.title || 'Training Module';
-  var scoreText = document.getElementById('score-display') ? document.getElementById('score-display').textContent : (typeof score !== 'undefined' ? score + '/' + questions.length : 'N/A');
-  var clarity = document.getElementById('fb-clarity').value;
-  var confusing = document.getElementById('fb-confusing').value || 'None';
-  var time = document.getElementById('fb-time').value;
-  var suggestions = document.getElementById('fb-suggestions').value || 'None';
-
-  var subject = encodeURIComponent('Training Module Complete: ' + title + ' - ' + name);
-  var body = encodeURIComponent(
-    'TRAINING MODULE COMPLETION REPORT\n' +
-    '================================\n\n' +
-    'Employee: ' + name + '\n' +
-    'Module: ' + title + '\n' +
-    'Score: ' + scoreText + '\n' +
-    'Date: ' + new Date().toLocaleDateString() + '\n\n' +
-    'FEEDBACK:\n' +
-    'Clarity (1-5): ' + clarity + '\n' +
-    'Confusing sections: ' + confusing + '\n' +
-    'Time to complete: ' + time + '\n' +
-    'Suggestions: ' + suggestions + '\n'
-  );
-
-  window.location.href = 'mailto:hgunn@thegunnlawgroup.com?subject=' + subject + '&body=' + body;
-}
 </script>
 
 </body>

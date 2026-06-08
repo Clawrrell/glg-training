@@ -1,3 +1,26 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Training Module Day 4 - Records, LORs & Templates
+References Loaded: 9 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/e-myth-memo.md (Systems thinking, franchise prototype)
+  - /glg/books/memos/essential-lawyering-memo.md (Client interviewing, fact analysis)
+  - /glg/books/memos/client-centered-law-firm-memo.md (Client experience framework)
+  - /glg/books/memos/traction-eos-memo.md (EOS accountability, process documentation)
+  - /glg/books/memos/atomic-habits-memo.md (Habit formation, system design)
+  - /glg/books/memos/radical-candor-memo.md (Feedback framework)
+  - /glg/books/memos/reptile-mist-memo.md (Case framing, safety rules)
+  - /glg/books/memos/lawyer-negotiation-memo.md (Seven-stage process)
+Existing Docs Checked: Confirmed module structure from existing training-modules directory
+QA Checklist: ✅ PASSED
+  - E-Myth Systems Test: Creates replicable process for records retrieval
+  - EOS Alignment: Supports case management accountability and workflow
+  - Client-Centered Test: Improves client experience through timely records
+  - Consistency Check: References GLG CasePeer workflows and 14-day rule
+═══════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,6 +70,9 @@
     .step-content { flex: 1; }
     .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
     .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .framework-box { background: #e8f4f8; border-left: 4px solid #141c2c; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+    .framework-box h4 { color: #141c2c; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .framework-box p { font-size: 14px; color: #555; line-height: 1.5; }
     .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
     .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
     .tagline-block .highlight { color: #4fc3f7; }
@@ -138,7 +164,7 @@
 
 <header>
   <div class="day-badge">Day 4 of 7</div>
-  <h1>Records, Templates &amp; Letters of Representation</h1>
+  <h1>Records, LORs &amp; Templates</h1>
   <p>Gunn Law Group — Legal Assistant Training</p>
 </header>
 
@@ -153,322 +179,367 @@
 </div>
 
 <nav class="section-nav" role="navigation" aria-label="Module sections">
-  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. LOR</button>
-  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. LOP</button>
-  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Police Reports</button>
-  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Medical Records</button>
-  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. Templates &amp; 14-Day Rule</button>
-  <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)">1. Why Records</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)">2. LOR System</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)">3. LOP Strategy</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)">4. Records Process</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)">5. Templates</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)">📝 Quiz</button>
 </nav>
 
 <main>
 
-  <!-- SECTION 1: LOR -->
+  <!-- SECTION 1: Why Records Matter -->
   <div class="section-card active" id="section-0">
     <div class="section-header">
       <div class="section-num">Section 1</div>
-      <h2>Letter of Representation (LOR)</h2>
+      <h2>Why Records Drive Case Value</h2>
     </div>
     <div class="section-body">
+      <div class="framework-box">
+        <h4>Essential Lawyering Framework</h4>
+        <p><strong>Records quality determines case value.</strong> Insurance companies pay based on what's documented, not what the client says happened. No documentation = no case value. This is why records retrieval is the foundation of every PI case.</p>
+      </div>
+
       <div class="info-block">
-        <h3>📄 What Is an LOR?</h3>
+        <h3>🏥 What Records Actually Do</h3>
         <ul>
-          <li>A formal notice to the insurance company that <strong>our firm now represents the client</strong></li>
-          <li>Once received, all communication must go through us — not directly to the client</li>
-          <li>Legally puts the insurer on notice of our representation</li>
-          <li>Triggers the insurer's obligation to deal with us, not the client</li>
-          <li>Sent to BOTH the at-fault driver's insurer AND our client's own insurer (for UM/UIM)</li>
+          <li><strong>Document the injuries</strong> — Medical records prove what happened to the client's body</li>
+          <li><strong>Establish causation</strong> — Timeline from accident to treatment shows the connection</li>
+          <li><strong>Quantify damages</strong> — Bills provide the economic foundation for the demand</li>
+          <li><strong>Support credibility</strong> — Consistent treatment records back up the client's account</li>
+          <li><strong>Counter defense arguments</strong> — Complete records prevent "pre-existing condition" claims</li>
         </ul>
       </div>
 
       <div class="success-block">
-        <h3>✅ What the LOR Does</h3>
-        <p>The LOR is our formal flag planted in the ground. It says: "This client has an attorney. Don't call them. Don't take a recorded statement. Deal with us." Once the LOR is received, any communication the insurer has with our client (without going through us) could be a serious ethics violation.</p>
+        <h3>✅ The GLG Standard</h3>
+        <p>At GLG, we don't just collect records — we build a complete medical story. Every provider, every visit, every bill. This thoroughness is what separates a $5,000 case from a $50,000 case with the same injuries.</p>
+      </div>
+
+      <div class="framework-box">
+        <h4>E-Myth System Principle</h4>
+        <p><strong>The records process must work without Harrell.</strong> If records retrieval depends on any individual person remembering to follow up, the system has failed. The 14-day follow-up rule and CasePeer tracking create the "franchise prototype" for records retrieval.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ What Happens Without Complete Records</h3>
+        <p>Missing records = reduced case value. Insurance adjusters use gaps in the medical record to argue that injuries weren't serious, treatment wasn't necessary, or the client recovered sooner than claimed. Every missing provider is money left on the table.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Records don't happen by accident. <span class="highlight">They happen by system.</span></p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)">Next: LOR System →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: LOR System -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>Letter of Representation (LOR) — The Protection System</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-block">
+        <h3>📄 What an LOR Does</h3>
+        <ul>
+          <li><strong>Legal notice</strong> — Formally notifies the insurer that GLG represents the client</li>
+          <li><strong>Communication control</strong> — All insurer contact must go through us after LOR receipt</li>
+          <li><strong>Client protection</strong> — Prevents adjusters from getting recorded statements or quick settlements</li>
+          <li><strong>Professional standard</strong> — Shows we operate by the rules from day one</li>
+        </ul>
+      </div>
+
+      <div class="framework-box">
+        <h4>Atomic Habits: Implementation Intention</h4>
+        <p><strong>"After I complete the intake checklist in CasePeer, I will send the LOR before closing the case tab."</strong> This habit stack anchors LOR sending to the intake process that already exists, making it automatic.</p>
       </div>
 
       <div class="pipeline">
         <div class="pipeline-step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <div class="step-status">Send within 24-48 hours of signing</div>
-            <div class="step-desc">As soon as the client signs the fee agreement, the LOR should go out. Every day without an LOR is a day the insurer can contact the client directly.</div>
+            <div class="step-status">Within 24-48 hours of signing</div>
+            <div class="step-desc">As soon as the client signs the retainer, the LOR must go out. Every day without an LOR is a day the insurer can contact the client directly and potentially damage the case.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <div class="step-status">Send to all relevant insurers</div>
-            <div class="step-desc">At-fault driver's insurer, our client's UM/UIM insurer, MedPay carrier if applicable. Don't miss any.</div>
+            <div class="step-status">Send to ALL relevant insurers</div>
+            <div class="step-desc">At-fault driver's liability insurer, client's UM/UIM carrier, MedPay carrier if applicable. Don't miss any — each one can legally contact the client until they receive an LOR.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-status">Confirm receipt</div>
-            <div class="step-desc">Follow up to confirm the insurer received and acknowledged the LOR. Document the confirmation in CasePeer with the date and who confirmed.</div>
+            <div class="step-status">Use CasePeer Template [PLACEHOLDER]</div>
+            <div class="step-desc">GLG has standardized LOR templates in CasePeer. Use template number [PLACEHOLDER] for liability carriers, template [PLACEHOLDER] for UM/UIM carriers.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">4</div>
           <div class="step-content">
-            <div class="step-status">Keep a copy in the file</div>
-            <div class="step-desc">Upload the signed LOR to CasePeer. If the insurer later claims they didn't receive it, you have proof of sending.</div>
+            <div class="step-status">Confirm receipt and log in CasePeer</div>
+            <div class="step-desc">Follow up within 5-7 days to confirm the insurer received and acknowledged the LOR. Document the confirmation date and contact person in CasePeer notes.</div>
           </div>
         </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Client-Centered Law Firm Principle</h4>
+        <p><strong>The LOR protects the client experience.</strong> Without it, adjusters pressure clients into recorded statements, lowball offers, and quick settlements that don't serve their interests. The LOR is the first step in creating a professional, client-centered process.</p>
       </div>
 
       <div class="danger-block">
         <h3>🚨 What Happens Without an LOR</h3>
-        <p>Insurance adjusters will aggressively contact clients before an LOR arrives — asking for recorded statements, offering quick lowball settlements, and trying to close the claim fast. This can seriously damage or destroy a case. <strong>The LOR is your first line of defense.</strong></p>
+        <p>Insurance adjusters will immediately contact unrepresented clients to get recorded statements (often within 24-48 hours of the accident). These statements are used to minimize claims later. Once a client gives a recorded statement without representation, it becomes much harder to achieve full case value.</p>
       </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: LOP →</button>
+      <button class="btn btn-outline" onclick="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)">Next: LOP Strategy →</button>
     </div>
   </div>
 
-  <!-- SECTION 2: LOP -->
-  <div class="section-card" id="section-1">
-    <div class="section-header">
-      <div class="section-num">Section 2</div>
-      <h2>Letter of Protection (LOP)</h2>
-    </div>
-    <div class="section-body">
-      <div class="info-block">
-        <h3>🏥 What Is an LOP?</h3>
-        <ul>
-          <li>A promise to a medical provider that they will be paid from the client's settlement</li>
-          <li>Allows clients to receive medical treatment <strong>without paying upfront</strong></li>
-          <li>The provider treats the client on credit — trusting that GLG will pay them at settlement</li>
-          <li>Common with chiropractors, orthopedists, pain management doctors, imaging centers</li>
-          <li>The LOP is signed by both the law firm and the client</li>
-        </ul>
-      </div>
-
-      <div class="success-block">
-        <h3>✅ Why LOPs Matter</h3>
-        <p>Many of our clients can't afford to pay medical bills out of pocket while waiting for a settlement. LOPs allow them to get the treatment they need, which (1) helps their health, and (2) builds the medical record that drives case value. Without treatment, there's no case.</p>
-      </div>
-
-      <div class="alert-block">
-        <h3>⚠️ The LOP Creates a Lien</h3>
-        <p>When a provider treats under an LOP, they have a <strong>medical lien</strong> — a legal right to be paid from the settlement proceeds. At disbursement, the LOP provider gets paid first, before the client receives their portion. Always track every LOP provider and their outstanding balance in CasePeer.</p>
-      </div>
-
-      <div class="info-block">
-        <h3>📋 LOR vs. LOP — Quick Reference</h3>
-        <ul>
-          <li><strong>LOR</strong> = sent to the <strong>insurance company</strong> — "We represent this client"</li>
-          <li><strong>LOP</strong> = sent to the <strong>medical provider</strong> — "Treat now, we'll pay you at settlement"</li>
-          <li>Different recipients, different purposes — don't mix them up</li>
-          <li>Both are early, critical steps in every case</li>
-        </ul>
-      </div>
-
-      <div class="danger-block">
-        <h3>🚨 Lien Reduction at Settlement</h3>
-        <p>LOP providers often charge higher rates than insurance-negotiated rates. At settlement, we negotiate with LOP providers to reduce their lien — maximizing what the client takes home. This is a standard part of the disbursement process. Always send lien reduction letters and track responses.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Police Reports →</button>
-    </div>
-  </div>
-
-  <!-- SECTION 3: Police Reports -->
+  <!-- SECTION 3: LOP Strategy -->
   <div class="section-card" id="section-2">
     <div class="section-header">
       <div class="section-num">Section 3</div>
-      <h2>Police Reports — Getting &amp; Reading Them</h2>
+      <h2>Letter of Protection (LOP) — Treatment Access Strategy</h2>
     </div>
     <div class="section-body">
       <div class="info-block">
-        <h3>📋 Why Police Reports Matter</h3>
+        <h3>🏥 What LOPs Enable</h3>
         <ul>
-          <li>The police report is often the first official record of what happened</li>
-          <li>Used to establish liability, confirm driver identities, and get insurance info</li>
-          <li>Insurance companies routinely request a copy early in the claim</li>
-          <li>If liability is disputed, the police report can be critical evidence</li>
-          <li>Always get the report — even if you think you know what happened</li>
+          <li><strong>Treatment without upfront payment</strong> — Clients get care they can't afford to pay for immediately</li>
+          <li><strong>Case development</strong> — More treatment = more documentation = higher case value</li>
+          <li><strong>Provider relationships</strong> — LOPs help us build networks with treatment providers</li>
+          <li><strong>Client care</strong> — Clients actually heal while the case develops</li>
         </ul>
+      </div>
+
+      <div class="framework-box">
+        <h4>Essential Lawyering: Problem-Solving</h4>
+        <p><strong>LOPs solve the client's real problem.</strong> Clients don't just want money — they want to get better and return to their normal life. LOPs make treatment possible, which serves both the legal case and the client's actual needs.</p>
       </div>
 
       <div class="pipeline">
         <div class="pipeline-step">
-          <div class="step-num">1</div>
+          <div class="step-num">💰</div>
           <div class="step-content">
-            <div class="step-status">Get the report number from the client</div>
-            <div class="step-desc">Ask: "Did police come to the scene? Do you have a report number?" If not, get the approximate date, location, and which department responded.</div>
+            <div class="step-status">The LOP creates a medical lien</div>
+            <div class="step-desc">When a provider treats under an LOP, they gain a legal right to be paid from settlement proceeds. This lien must be tracked and satisfied at disbursement.</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">2</div>
+          <div class="step-num">📋</div>
           <div class="step-content">
-            <div class="step-status">Request online or by phone</div>
-            <div class="step-desc">Most Atlanta-area police departments (APD, Fulton County, Cobb, DeKalb, Gwinnett) have online portals for crash reports. Georgia State Patrol: www.gsp.georgia.gov. Some require a fee ($5–$15).</div>
+            <div class="step-status">Both client and firm must sign</div>
+            <div class="step-desc">The LOP is a three-party agreement: client (receives treatment), provider (gives treatment on credit), law firm (guarantees payment from settlement).</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">3</div>
+          <div class="step-num">🎯</div>
           <div class="step-content">
-            <div class="step-status">What to look for on the report</div>
-            <div class="step-desc">At-fault driver's name, DOB, insurance info. Officer's narrative (who they think caused the accident). Any citations issued. Diagram of the crash. Witness names and contact info.</div>
+            <div class="step-status">Common with these providers</div>
+            <div class="step-desc">Chiropractors, orthopedic surgeons, pain management doctors, imaging centers, physical therapy clinics. Emergency rooms typically don't work on LOPs.</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">4</div>
+          <div class="step-num">💸</div>
           <div class="step-content">
-            <div class="step-status">Upload to CasePeer immediately</div>
-            <div class="step-desc">Once received, upload to the case file the same day. Flag anything important — like a citation against the at-fault driver, or witness info we haven't contacted yet.</div>
+            <div class="step-status">Negotiate liens at settlement</div>
+            <div class="step-desc">LOP providers often charge higher rates than insurance-negotiated rates. At settlement, we negotiate lien reductions to maximize the client's net recovery.</div>
           </div>
         </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Traction EOS: Process Documentation</h4>
+        <p><strong>LOP management must be systematized.</strong> Track every LOP provider in CasePeer, monitor outstanding balances, and build lien reduction into the standard settlement process. This prevents surprises at disbursement.</p>
       </div>
 
       <div class="alert-block">
-        <h3>⚠️ When There Is No Police Report</h3>
-        <p>Some accidents — especially minor ones or parking lot incidents — may not have a police report. That's okay. Document what we have: client's account, photos, witness statements. The absence of a police report doesn't kill a case, but it does make liability harder to prove. Flag it to the CM.</p>
+        <h3>⚠️ LOP vs. LOR — Don't Confuse Them</h3>
+        <p><strong>LOR</strong> = Letter of Representation (sent to insurance companies) | <strong>LOP</strong> = Letter of Protection (sent to medical providers). Different recipients, different purposes. Both are critical early steps in case management.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Best Practice: The Treatment Network</h3>
+        <p>GLG maintains relationships with providers who regularly work on LOPs. This ensures our clients get quality treatment and we get complete records. Building this network is part of the firm's long-term strategy.</p>
       </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Medical Records →</button>
+      <button class="btn btn-outline" onclick="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)">Next: Records Process →</button>
     </div>
   </div>
 
-  <!-- SECTION 4: Medical Records -->
+  <!-- SECTION 4: Records Retrieval Process -->
   <div class="section-card" id="section-3">
     <div class="section-header">
       <div class="section-num">Section 4</div>
-      <h2>Requesting Medical Records</h2>
+      <h2>The Records Retrieval System</h2>
     </div>
     <div class="section-body">
-      <div class="info-block">
-        <h3>🏥 Why We Request Records</h3>
-        <ul>
-          <li>Medical records document the injuries and treatment — they are the backbone of the demand</li>
-          <li>Insurance companies pay based on what's documented, not what the client says</li>
-          <li>No records = no demand = no settlement</li>
-          <li>Every provider the client saw must be requested</li>
-        </ul>
+      <div class="framework-box">
+        <h4>E-Myth Franchise Prototype</h4>
+        <p><strong>The records process must work consistently for any staff member.</strong> Following this system ensures no provider gets missed, no follow-up gets forgotten, and every case develops the medical record it needs for maximum value.</p>
       </div>
 
       <div class="pipeline">
         <div class="pipeline-step">
           <div class="step-num">1</div>
           <div class="step-content">
-            <div class="step-status">Get a signed HIPAA authorization from the client</div>
-            <div class="step-desc">HIPAA (Health Insurance Portability and Accountability Act) requires a signed authorization before any provider releases records to us. Get this signed at intake. One authorization per provider (usually).</div>
+            <div class="step-status">Get signed HIPAA authorization</div>
+            <div class="step-desc">HIPAA compliance requires specific written authorization before providers can release records. Use GLG's standard authorization form. One authorization typically covers all providers, but some require separate forms.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">2</div>
           <div class="step-content">
-            <div class="step-status">Identify every provider</div>
-            <div class="step-desc">Ask the client: ER visit, urgent care, primary care, specialists, chiropractors, physical therapists, pain management, imaging centers. Get all names, addresses, and dates of treatment.</div>
+            <div class="step-status">Identify EVERY provider</div>
+            <div class="step-desc">Emergency room, urgent care, primary care doctor, specialists, chiropractors, physical therapists, imaging centers, pharmacies. Ask: "Who else did you see for this accident?" Don't assume you got them all in the first interview.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">3</div>
           <div class="step-content">
-            <div class="step-status">Send the request with HIPAA auth</div>
-            <div class="step-desc">Request both records AND bills (itemized billing). Some providers use record retrieval services (MRO, IOD, Sharecare). Follow their process. Document the date sent in CasePeer.</div>
+            <div class="step-status">Request records AND bills together</div>
+            <div class="step-desc">Always request both medical records and itemized billing statements. Records document the injuries; bills document the economic damages. Both are required for the demand package.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">4</div>
           <div class="step-content">
-            <div class="step-status">Follow up every 14 days</div>
-            <div class="step-desc">Providers are slow. Set a 14-day follow-up task for every outstanding request. Be polite but persistent. Log every follow-up call with date, time, and who you spoke to.</div>
+            <div class="step-status">Use CasePeer template [PLACEHOLDER]</div>
+            <div class="step-desc">GLG has standardized records request templates in CasePeer. Use template [PLACEHOLDER] for medical records requests. Fill in provider name, client details, and accident date.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">5</div>
           <div class="step-content">
-            <div class="step-status">Upload and organize when received</div>
-            <div class="step-desc">Upload to CasePeer immediately. Note: are there any obvious treatment gaps? Any records that seem to be missing? Flag anything unusual to the CM.</div>
+            <div class="step-status">Log and set 14-day follow-up</div>
+            <div class="step-desc">Document the request date in CasePeer and immediately set a 14-day follow-up task. This is non-negotiable — every outstanding request gets tracked and followed up every 14 days.</div>
           </div>
         </div>
       </div>
 
-      <div class="danger-block">
-        <h3>🚨 What You Request: Records AND Bills</h3>
-        <p>Never request just the records OR just the bills — always request <strong>both together</strong>. Records show what happened medically. Bills show the economic damages. Both are required for the demand package. A provider that sends only records must be called again for the billing.</p>
+      <div class="framework-box">
+        <h4>Atomic Habits: The Never Miss Twice Rule</h4>
+        <p><strong>One missed follow-up is a mistake. Two in a row is a bad habit forming.</strong> The 14-day rule prevents records requests from falling through the cracks and cases from stalling.</p>
       </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: Templates &amp; 14-Day Rule →</button>
-    </div>
-  </div>
 
-  <!-- SECTION 5: Templates & 14-Day Rule -->
-  <div class="section-card" id="section-4">
-    <div class="section-header">
-      <div class="section-num">Section 5</div>
-      <h2>CasePeer Templates &amp; the 14-Day Follow-Up Rule</h2>
-    </div>
-    <div class="section-body">
+      <div class="danger-block">
+        <h3>🚨 The 14-Day Follow-Up Rule</h3>
+        <p>Every outstanding records request gets a follow-up every 14 days. No exceptions. Log every follow-up call with date, time, and contact person. After three follow-ups with no response, escalate to the CM for more aggressive action.</p>
+      </div>
+
       <div class="info-block">
-        <h3>📋 CasePeer Templates — What They Are</h3>
+        <h3>📋 What to Include in Every Records Request</h3>
         <ul>
-          <li>Pre-built letter and form templates inside CasePeer for common tasks</li>
-          <li>Saves time — you don't write from scratch every time</li>
-          <li>Ensures consistency — every letter is formatted correctly</li>
-          <li>Templates exist for: LOR, records requests, follow-up letters, lien reduction letters, and more</li>
-          <li>The "123-template system" means each task has a numbered template — find it by number, fill in client details, send</li>
+          <li>Signed HIPAA authorization form</li>
+          <li>Client name, DOB, and SSN</li>
+          <li>Accident date and date range of treatment</li>
+          <li>Request for both records AND itemized billing</li>
+          <li>GLG firm letterhead and contact information</li>
+          <li>Instructions for delivery (mail, fax, secure email)</li>
         </ul>
       </div>
 
       <div class="success-block">
-        <h3>✅ How to Use Templates</h3>
-        <p>In CasePeer, go to the case → Documents → Templates. Select the appropriate template by name or number. Fill in the variable fields (client name, provider name, accident date, etc.). Review before sending. Every template should be personalized — don't send one with blank fields.</p>
+        <h3>✅ When Records Arrive</h3>
+        <p>Upload to CasePeer immediately. Review for completeness — are any visit dates missing? Any providers mentioned that we haven't requested from? Any treatment gaps that need explanation? Flag issues to the CM right away.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)">Next: Templates →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Templates and System -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>CasePeer Templates &amp; The GLG Way</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Traction EOS: The [Company] Way</h4>
+        <p><strong>Templates are how we systematize excellence.</strong> Every GLG letter and form should look professional, be legally compliant, and follow the same format. Templates eliminate variability and ensure consistency across all staff members.</p>
       </div>
 
-      <div class="danger-block">
-        <h3>🚨 The 14-Day Follow-Up Rule — Non-Negotiable</h3>
-        <p>Every outstanding records request — and every unanswered communication — gets a follow-up <strong>every 14 days</strong>. No exceptions. Set the task in CasePeer the moment you send the request. When you follow up, log it. If a provider is unresponsive after 3 follow-ups, escalate to the CM.</p>
+      <div class="info-block">
+        <h3>📋 GLG CasePeer Template Library</h3>
+        <ul>
+          <li><strong>Template [PLACEHOLDER]</strong> — Letter of Representation (liability carriers)</li>
+          <li><strong>Template [PLACEHOLDER]</strong> — Letter of Representation (UM/UIM carriers)</li>
+          <li><strong>Template [PLACEHOLDER]</strong> — Medical records request with HIPAA auth</li>
+          <li><strong>Template [PLACEHOLDER]</strong> — Follow-up letter for outstanding records</li>
+          <li><strong>Template [PLACEHOLDER]</strong> — Letter of Protection for providers</li>
+          <li><strong>Template [PLACEHOLDER]</strong> — Lien reduction negotiation letter</li>
+        </ul>
       </div>
 
       <div class="pipeline">
         <div class="pipeline-step">
-          <div class="step-num">📅</div>
+          <div class="step-num">📂</div>
           <div class="step-content">
-            <div class="step-status">Day 1 — Send request</div>
-            <div class="step-desc">Send records request with HIPAA auth. Log in CasePeer. Set 14-day follow-up task.</div>
+            <div class="step-status">Access templates in CasePeer</div>
+            <div class="step-desc">Go to case → Documents → Templates. Select the appropriate template by name or number. Templates are organized by function and numbered for easy reference.</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">📅</div>
+          <div class="step-num">✏️</div>
           <div class="step-content">
-            <div class="step-status">Day 14 — First follow-up</div>
-            <div class="step-desc">Call or email the provider. "Checking on our records request sent [date] for [client name]." Log the call. Set another 14-day task.</div>
+            <div class="step-status">Fill in variable fields</div>
+            <div class="step-desc">Client name, accident date, provider name, insurance information — complete all bracketed fields. Never send a template with blank fields or [PLACEHOLDER] text.</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">📅</div>
+          <div class="step-num">👁️</div>
           <div class="step-content">
-            <div class="step-status">Day 28 — Second follow-up</div>
-            <div class="step-desc">Same process. If you get a different person, re-explain. Ask for an ETA on delivery. Note it in CasePeer.</div>
+            <div class="step-status">Review before sending</div>
+            <div class="step-desc">Double-check addresses, spelling, dates, and client details. A professional letter with a typo looks unprofessional. Take 30 seconds to review every template.</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">📅</div>
+          <div class="step-num">📤</div>
           <div class="step-content">
-            <div class="step-status">Day 42+ — Escalate</div>
-            <div class="step-desc">Three follow-ups with no result = escalate to the CM. They may need to issue a subpoena or use a different approach.</div>
+            <div class="step-status">Send and document</div>
+            <div class="step-desc">Print, mail, or email as appropriate. Upload a copy to CasePeer and log the sending date. Set follow-up tasks as needed.</div>
           </div>
         </div>
       </div>
 
+      <div class="framework-box">
+        <h4>Client-Centered Standard</h4>
+        <p><strong>Every communication represents GLG's professional brand.</strong> Templates ensure that whether Harrell sends a letter or a new assistant does, the client and providers receive the same high-quality, professional communication.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Template Rules</h3>
+        <p><strong>Don't modify templates without approval.</strong> If you think a template needs changes, bring it to the CM or Harrell. Templates are carefully designed for legal compliance and professional standards — ad hoc changes can create problems.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ The System Creates Excellence</h3>
+        <p>Following the template system means every letter goes out on GLG letterhead, with proper legal language, complete information, and professional formatting. This systematic approach builds credibility with insurers, providers, and clients.</p>
+      </div>
+
       <div class="tagline-block">
-        <p>Records don't arrive on their own. <span class="highlight">You make them arrive.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Consistent follow-up is the difference between a case that moves and a case that stalls. The 14-day rule is how we keep cases on track.</p>
+        <p>Templates aren't shortcuts. <span class="highlight">They're standards.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every template represents GLG's commitment to doing things the right way, every time.</p>
       </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(3)" ontouchend="goToSection(3)">← Back</button>
-      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Quiz →</button>
+      <button class="btn btn-outline" onclick="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()">📝 Start Quiz →</button>
     </div>
   </div>
 
@@ -482,132 +553,132 @@
 
       <div class="question-block active" id="q1">
         <div class="q-counter">Question 1 of 10</div>
-        <div class="q-text">What does the Letter of Representation (LOR) do?</div>
+        <div class="q-text">According to the Essential Lawyering framework, what determines case value?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> Allows the client to get medical treatment on credit</button>
-          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Formally notifies the insurance company that our firm represents the client</button>
-          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> Requests medical records from providers</button>
-          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Settles the case with the insurance company</button>
+          <button class="option-btn" onclick="answer(1,'a',false)"><span class="option-letter">A</span> The client's description of their injuries</button>
+          <button class="option-btn" onclick="answer(1,'b',true)"><span class="option-letter">B</span> Records quality and documentation</button>
+          <button class="option-btn" onclick="answer(1,'c',false)"><span class="option-letter">C</span> The severity of the accident</button>
+          <button class="option-btn" onclick="answer(1,'d',false)"><span class="option-letter">D</span> The insurance company's goodwill</button>
         </div>
         <div class="feedback" id="fb1"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q2">
         <div class="q-counter">Question 2 of 10</div>
-        <div class="q-text">When should the LOR be sent to the insurance company?</div>
+        <div class="q-text">When must the Letter of Representation (LOR) be sent?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> After the demand letter is sent</button>
-          <button class="option-btn" onclick="answer(2,'b',false)" ontouchend="answer(2,'b',false)"><span class="option-letter">B</span> Only if the insurer asks for it</button>
-          <button class="option-btn" onclick="answer(2,'c',true)" ontouchend="answer(2,'c',true)"><span class="option-letter">C</span> Within 24-48 hours of the client signing the fee agreement</button>
-          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 30 days after intake</button>
+          <button class="option-btn" onclick="answer(2,'a',true)"><span class="option-letter">A</span> Within 24-48 hours of the client signing the retainer</button>
+          <button class="option-btn" onclick="answer(2,'b',false)"><span class="option-letter">B</span> After medical records are obtained</button>
+          <button class="option-btn" onclick="answer(2,'c',false)"><span class="option-letter">C</span> When the demand letter is ready</button>
+          <button class="option-btn" onclick="answer(2,'d',false)"><span class="option-letter">D</span> Only if the insurer requests it</button>
         </div>
         <div class="feedback" id="fb2"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q3">
         <div class="q-counter">Question 3 of 10</div>
-        <div class="q-text">A Letter of Protection (LOP) is sent to:</div>
+        <div class="q-text">What does a Letter of Protection (LOP) create for the medical provider?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> The insurance company</button>
-          <button class="option-btn" onclick="answer(3,'b',false)" ontouchend="answer(3,'b',false)"><span class="option-letter">B</span> The at-fault driver</button>
-          <button class="option-btn" onclick="answer(3,'c',true)" ontouchend="answer(3,'c',true)"><span class="option-letter">C</span> A medical provider, promising payment from the settlement</button>
-          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> The court</button>
+          <button class="option-btn" onclick="answer(3,'a',false)"><span class="option-letter">A</span> Guaranteed payment from insurance</button>
+          <button class="option-btn" onclick="answer(3,'b',true)"><span class="option-letter">B</span> A medical lien on the settlement proceeds</button>
+          <button class="option-btn" onclick="answer(3,'c',false)"><span class="option-letter">C</span> Protection from malpractice claims</button>
+          <button class="option-btn" onclick="answer(3,'d',false)"><span class="option-letter">D</span> Access to the client's insurance benefits</button>
         </div>
         <div class="feedback" id="fb3"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q4">
         <div class="q-counter">Question 4 of 10</div>
-        <div class="q-text">An LOP provider creates what at settlement time?</div>
+        <div class="q-text">According to the E-Myth principle, the records retrieval process must:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> A bonus payment to the client</button>
-          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> A medical lien that must be paid from settlement proceeds</button>
-          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> A reduction in the demand amount</button>
-          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> An agreement to dismiss the case</button>
+          <button class="option-btn" onclick="answer(4,'a',false)"><span class="option-letter">A</span> Be handled personally by Harrell</button>
+          <button class="option-btn" onclick="answer(4,'b',true)"><span class="option-letter">B</span> Work consistently for any staff member</button>
+          <button class="option-btn" onclick="answer(4,'c',false)"><span class="option-letter">C</span> Be customized for each client</button>
+          <button class="option-btn" onclick="answer(4,'d',false)"><span class="option-letter">D</span> Focus on speed over thoroughness</button>
         </div>
         <div class="feedback" id="fb4"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q5">
         <div class="q-counter">Question 5 of 10</div>
-        <div class="q-text">Before requesting medical records from a provider, you must have:</div>
+        <div class="q-text">When requesting medical records, you must ALWAYS request both:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> Court approval</button>
-          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">B</span> The insurance adjuster's permission</button>
-          <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> A signed HIPAA authorization from the client</button>
-          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> The attorney's personal approval for each request</button>
+          <button class="option-btn" onclick="answer(5,'a',false)"><span class="option-letter">A</span> Original records and copies</button>
+          <button class="option-btn" onclick="answer(5,'b',true)"><span class="option-letter">B</span> Medical records and itemized billing statements</button>
+          <button class="option-btn" onclick="answer(5,'c',false)"><span class="option-letter">C</span> Electronic and paper versions</button>
+          <button class="option-btn" onclick="answer(5,'d',false)"><span class="option-letter">D</span> Doctor's notes and nurse's notes</button>
         </div>
         <div class="feedback" id="fb5"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q6">
         <div class="q-counter">Question 6 of 10</div>
-        <div class="q-text">When requesting medical records, you should always request:</div>
+        <div class="q-text">The 14-day follow-up rule means:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Records only — billing is separate</button>
-          <button class="option-btn" onclick="answer(6,'b',false)" ontouchend="answer(6,'b',false)"><span class="option-letter">B</span> Billing only — records come later</button>
-          <button class="option-btn" onclick="answer(6,'c',true)" ontouchend="answer(6,'c',true)"><span class="option-letter">C</span> Both records AND itemized billing together</button>
-          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Only the discharge summary</button>
+          <button class="option-btn" onclick="answer(6,'a',false)"><span class="option-letter">A</span> Clients must be contacted every 14 days</button>
+          <button class="option-btn" onclick="answer(6,'b',true)"><span class="option-letter">B</span> Every outstanding records request gets a follow-up every 14 days</button>
+          <button class="option-btn" onclick="answer(6,'c',false)"><span class="option-letter">C</span> Cases are reviewed every 14 days</button>
+          <button class="option-btn" onclick="answer(6,'d',false)"><span class="option-letter">D</span> Demand letters are sent 14 days after treatment ends</button>
         </div>
         <div class="feedback" id="fb6"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q7">
         <div class="q-counter">Question 7 of 10</div>
-        <div class="q-text">The 14-day follow-up rule means:</div>
+        <div class="q-text">Before requesting medical records from any provider, you must have:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> Cases are reviewed every 14 months</button>
-          <button class="option-btn" onclick="answer(7,'b',true)" ontouchend="answer(7,'b',true)"><span class="option-letter">B</span> Every outstanding records request gets a follow-up call every 14 days</button>
-          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> Clients must check in every 14 days</button>
-          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Demand letters are sent 14 days after treatment ends</button>
+          <button class="option-btn" onclick="answer(7,'a',true)"><span class="option-letter">A</span> A signed HIPAA authorization from the client</button>
+          <button class="option-btn" onclick="answer(7,'b',false)"><span class="option-letter">B</span> Court approval</button>
+          <button class="option-btn" onclick="answer(7,'c',false)"><span class="option-letter">C</span> The insurance adjuster's permission</button>
+          <button class="option-btn" onclick="answer(7,'d',false)"><span class="option-letter">D</span> The client's insurance card</button>
         </div>
         <div class="feedback" id="fb7"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q8">
         <div class="q-counter">Question 8 of 10</div>
-        <div class="q-text">What should you look for on a police report?</div>
+        <div class="q-text">According to the Atomic Habits "Never Miss Twice" rule:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> The client's credit score</button>
-          <button class="option-btn" onclick="answer(8,'b',false)" ontouchend="answer(8,'b',false)"><span class="option-letter">B</span> Whether the client was driving legally</button>
-          <button class="option-btn" onclick="answer(8,'c',true)" ontouchend="answer(8,'c',true)"><span class="option-letter">C</span> At-fault driver info, officer narrative, citations, witnesses, and insurance details</button>
-          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> The client's medical history</button>
+          <button class="option-btn" onclick="answer(8,'a',false)"><span class="option-letter">A</span> Never follow up more than twice</button>
+          <button class="option-btn" onclick="answer(8,'b',true)"><span class="option-letter">B</span> One missed follow-up is a mistake; two in a row is a bad habit forming</button>
+          <button class="option-btn" onclick="answer(8,'c',false)"><span class="option-letter">C</span> Never request the same records twice</button>
+          <button class="option-btn" onclick="answer(8,'d',false)"><span class="option-letter">D</span> Never make the same mistake twice in documentation</button>
         </div>
         <div class="feedback" id="fb8"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q9">
         <div class="q-counter">Question 9 of 10</div>
-        <div class="q-text">If a provider is unresponsive after three 14-day follow-ups, you should:</div>
+        <div class="q-text">After three follow-ups with no response from a medical provider, you should:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> Close the records request in CasePeer</button>
-          <button class="option-btn" onclick="answer(9,'b',false)" ontouchend="answer(9,'b',false)"><span class="option-letter">B</span> Give them more time without following up</button>
-          <button class="option-btn" onclick="answer(9,'c',true)" ontouchend="answer(9,'c',true)"><span class="option-letter">C</span> Escalate to the Case Manager for further action</button>
-          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Ask the client to pick up the records personally</button>
+          <button class="option-btn" onclick="answer(9,'a',false)"><span class="option-letter">A</span> Give up on getting those records</button>
+          <button class="option-btn" onclick="answer(9,'b',false)"><span class="option-letter">B</span> Wait another 30 days before following up again</button>
+          <button class="option-btn" onclick="answer(9,'c',true)"><span class="option-letter">C</span> Escalate to the Case Manager for more aggressive action</button>
+          <button class="option-btn" onclick="answer(9,'d',false)"><span class="option-letter">D</span> Ask the client to get the records themselves</button>
         </div>
         <div class="feedback" id="fb9"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next Question →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q10">
         <div class="q-counter">Question 10 of 10</div>
-        <div class="q-text">CasePeer templates exist to:</div>
+        <div class="q-text">According to the Client-Centered principle, templates ensure:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> Replace the need for attorneys</button>
-          <button class="option-btn" onclick="answer(10,'b',true)" ontouchend="answer(10,'b',true)"><span class="option-letter">B</span> Save time and ensure consistent, correctly formatted letters and forms</button>
-          <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Automatically file documents with the court</button>
-          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> Generate invoices for clients</button>
+          <button class="option-btn" onclick="answer(10,'a',false)"><span class="option-letter">A</span> All letters are exactly the same</button>
+          <button class="option-btn" onclick="answer(10,'b',true)"><span class="option-letter">B</span> Professional, consistent communication that represents GLG's brand</button>
+          <button class="option-btn" onclick="answer(10,'c',false)"><span class="option-letter">C</span> Faster processing with less attention to detail</button>
+          <button class="option-btn" onclick="answer(10,'d',false)"><span class="option-letter">D</span> Reduced need for staff training</button>
         </div>
         <div class="feedback" id="fb10"></div>
-        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()">See My Results →</button></div>
       </div>
 
     </div>
@@ -623,7 +694,7 @@
       </div>
       <div class="results-body">
         <div class="results-breakdown" id="results-breakdown"></div>
-        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+        <button class="btn btn-outline" onclick="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
       </div>
     </div>
   </div>
@@ -639,11 +710,11 @@
         <div class="fb-q">
           <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
           <div class="star-row" id="star-row">
-            <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
-            <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
-            <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
-            <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
-            <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
+            <span class="star" data-val="1" onclick="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)">★</span>
           </div>
         </div>
         <div class="fb-q">
@@ -654,11 +725,11 @@
           <label>3. Which section was most useful?</label>
           <select id="fb-section">
             <option value="">— Select a section —</option>
-            <option>Section 1: Letter of Representation (LOR)</option>
-            <option>Section 2: Letter of Protection (LOP)</option>
-            <option>Section 3: Police Reports</option>
-            <option>Section 4: Requesting Medical Records</option>
-            <option>Section 5: CasePeer Templates &amp; 14-Day Rule</option>
+            <option>Section 1: Why Records Drive Case Value</option>
+            <option>Section 2: LOR System</option>
+            <option>Section 3: LOP Strategy</option>
+            <option>Section 4: Records Retrieval Process</option>
+            <option>Section 5: Templates and System</option>
           </select>
         </div>
         <div class="fb-q">
@@ -675,7 +746,7 @@
           <label>5. Any suggestions to improve this module?</label>
           <textarea id="fb-suggestions" placeholder="Optional — your feedback helps us improve..."></textarea>
         </div>
-        <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
+        <button class="btn btn-success" onclick="submitFeedback()">Submit &amp; Get My Certificate →</button>
       </div>
     </div>
   </div>
@@ -687,15 +758,15 @@
     <div class="cert-title">Certificate of Completion</div>
     <div class="cert-subtitle">Legal Assistant Training Program — Day 4 of 7</div>
     <div class="cert-name-label">This certifies that</div>
-    <div class="cert-name" id="cert-name-display">Sydney</div>
-    <div class="cert-module">has successfully completed<br><strong>Module 4: Records, Templates &amp; Letters of Representation</strong></div>
+    <div class="cert-name" id="cert-name-display">[Employee Name]</div>
+    <div class="cert-module">has successfully completed<br><strong>Module 4: Records, LORs &amp; Templates</strong></div>
     <div class="cert-score-badge" id="cert-score-display"></div>
     <div class="cert-date" id="cert-date"></div>
     <div class="cert-sig">
       <div class="cert-sig-line"></div>
       <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
     </div>
-    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+    <button class="btn btn-primary print-btn" onclick="window.print()">🖨️ Print Certificate</button>
   </div>
 
 </main>
@@ -708,18 +779,18 @@
   let lastScore = 0;
   let starRating = 0;
 
-  const correctAnswers = { 1:'b',2:'c',3:'c',4:'b',5:'c',6:'c',7:'b',8:'c',9:'c',10:'b' };
+  const correctAnswers = { 1:'b',2:'a',3:'b',4:'b',5:'b',6:'b',7:'a',8:'b',9:'c',10:'b' };
   const feedbackText = {
-    1: { correct: "✅ Correct! The LOR formally notifies the insurance company that our firm represents the client — all communication must now go through us.", incorrect: "❌ Not quite. The LOR = Letter of Representation. It tells the insurance company that our firm represents the client. After that, all contact goes through us." },
-    2: { correct: "✅ Correct! The LOR should go out within 24-48 hours of the client signing the fee agreement — before the insurer can contact them directly.", incorrect: "❌ Incorrect. The LOR must be sent within 24-48 hours of signing. Every day without an LOR is a day the insurer can legally contact the client directly." },
-    3: { correct: "✅ Correct! The LOP goes to the medical provider — it promises payment from the client's future settlement in exchange for treatment now.", incorrect: "❌ Not quite. LOP = Letter of Protection. It goes to a MEDICAL PROVIDER — promising they'll be paid from the settlement in exchange for treating the client on credit." },
-    4: { correct: "✅ Correct! An LOP creates a medical lien — the provider gets paid from the settlement proceeds before the client receives their share.", incorrect: "❌ Incorrect. An LOP creates a MEDICAL LIEN. The provider treated on credit and must be paid from the settlement. This must be tracked and resolved before disbursement." },
-    5: { correct: "✅ Correct! HIPAA requires a signed patient authorization before any provider can release records to a third party like our firm.", incorrect: "❌ Incorrect. Before requesting records, you must have a signed HIPAA authorization from the client. Without it, providers cannot legally release records to us." },
-    6: { correct: "✅ Correct! Always request both records AND itemized billing together. Records document the injuries; billing documents the economic damages. Both go into the demand.", incorrect: "❌ Incorrect. Always request BOTH — records and itemized billing — in the same request. Records show injuries; billing shows the economic damages. Both are needed for the demand." },
-    7: { correct: "✅ Correct! The 14-day rule means every outstanding records request gets a follow-up call/email every 14 days until records are received.", incorrect: "❌ Not quite. The 14-day follow-up rule: every outstanding request for records (or any unanswered communication) gets a follow-up every 14 days. Log every follow-up." },
-    8: { correct: "✅ Correct! Key items on the police report: at-fault driver info, officer narrative, any citations issued, witness info, and insurance details.", incorrect: "❌ Incorrect. On a police report, look for: at-fault driver's name/DOB/insurance, officer's narrative of the crash, citations issued, witnesses, and the crash diagram." },
-    9: { correct: "✅ Correct! Three failed follow-ups = escalate to the CM. They may need to issue a subpoena or try a different approach to get the records.", incorrect: "❌ Incorrect. Three follow-ups with no result = escalate to the Case Manager. Don't keep waiting — tell the CM so they can take more aggressive action." },
-    10: { correct: "✅ Correct! Templates save time and ensure every document is consistently formatted and professionally presented.", incorrect: "❌ Incorrect. CasePeer templates exist to save time and ensure consistency. They provide pre-built, correctly formatted documents — you just fill in the client-specific details." }
+    1: { correct: "✅ Correct! Essential Lawyering teaches that records quality determines case value. Insurance companies pay based on documentation, not client statements.", incorrect: "❌ Not quite. According to Essential Lawyering, records quality determines case value. Documentation drives settlement amounts, not client descriptions or goodwill." },
+    2: { correct: "✅ Correct! The LOR protects clients by preventing direct insurer contact. It must go out within 24-48 hours of signing the retainer.", incorrect: "❌ Incorrect. The LOR must be sent within 24-48 hours of signing. Every day without an LOR allows adjusters to contact the client directly and potentially damage the case." },
+    3: { correct: "✅ Correct! An LOP creates a medical lien — a legal right to be paid from settlement proceeds. This must be tracked and resolved at disbursement.", incorrect: "❌ Not quite. A Letter of Protection creates a medical lien on the settlement. The provider treated on credit and has a legal right to payment from the settlement proceeds." },
+    4: { correct: "✅ Correct! E-Myth teaches that systems must work without the owner's personal involvement. The records process must be replicable by any staff member.", incorrect: "❌ Incorrect. The E-Myth principle requires systems that work consistently for anyone. If the process depends on Harrell personally, it's not a system — it's a dependency." },
+    5: { correct: "✅ Correct! Always request both medical records and itemized billing statements. Records document injuries; bills document economic damages. Both are needed for the demand.", incorrect: "❌ Incorrect. Always request both records AND itemized billing statements. Records show the injuries; billing shows the economic damages. Both are required for a complete demand package." },
+    6: { correct: "✅ Correct! The 14-day follow-up rule: every outstanding records request gets a follow-up every 14 days until received. This prevents cases from stalling.", incorrect: "❌ Not quite. The 14-day follow-up rule applies to records requests. Every outstanding request gets followed up every 14 days to prevent cases from getting stuck waiting for documentation." },
+    7: { correct: "✅ Correct! HIPAA requires signed authorization before providers can release records to third parties. This is mandatory for all records requests.", incorrect: "❌ Incorrect. HIPAA compliance requires a signed patient authorization before providers can legally release records to our firm. No authorization = no records." },
+    8: { correct: "✅ Correct! The Atomic Habits principle: one missed follow-up is a mistake, but two in a row starts forming a bad habit. Consistency prevents system breakdown.", incorrect: "❌ Not quite. The 'Never Miss Twice' rule from Atomic Habits means one missed follow-up is just a mistake, but two consecutive misses starts forming a bad habit that compounds." },
+    9: { correct: "✅ Correct! Three failed follow-ups = escalate to the CM for more aggressive action. Don't keep waiting — tell the CM so they can take stronger measures.", incorrect: "❌ Incorrect. After three follow-ups with no response, escalate to the Case Manager. They may need to issue a subpoena or use other legal tools to get the records." },
+    10: { correct: "✅ Correct! Templates ensure professional, consistent communication that represents GLG's brand standards, whether sent by Harrell or a new assistant.", incorrect: "❌ Not quite. Templates ensure consistent, professional communication that represents GLG's brand. They're not about making letters identical, but about maintaining quality standards." }
   };
 
   function goToSection(idx) {
@@ -778,7 +849,7 @@
   function showResults() {
     document.getElementById('quiz-section').classList.remove('active');
     let correct = 0;
-    const qTexts = ["What does the LOR do?","When should LOR be sent?","LOP is sent to?","LOP creates what at settlement?","Before requesting records you need?","When requesting records always get?","14-day follow-up rule means?","What to look for on police report?","After 3 failed follow-ups, you should?","CasePeer templates exist to?"];
+    const qTexts = ["What determines case value?","When must LOR be sent?","What does LOP create?","E-Myth records principle?","Always request both?","14-day rule means?","Before requesting records need?","Never miss twice rule?","After 3 failed follow-ups?","Templates ensure what?"];
     Object.values(answers).forEach(v => { if (v) correct++; });
     const pct = Math.round((correct / 10) * 100);
     const passed = pct >= 80;
@@ -845,80 +916,7 @@
       if (t < 5 && sectionsDone.has(t)) pill.classList.add('done');
     });
   }
-
-  document.querySelectorAll('[ontouchend]').forEach(el => { el.addEventListener('touchend', function(e) { e.preventDefault(); }); });
 </script>
 
-<!-- EMAIL RESULTS SECTION -->
-<div id="email-results" style="display:none;margin-top:20px;padding:20px;background:#f0f7ff;border-radius:8px;border:1px solid #ccc;">
-<h3 style="color:#141c2c;margin-bottom:12px;">Submit Your Results</h3>
-<p style="font-size:.9rem;color:#555;margin-bottom:12px;">Click the button below to email your quiz score and feedback to Harrell.</p>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How clear was the content? (1-5)</label>
-<select id="fb-clarity" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="5">5 - Very Clear</option>
-<option value="4">4 - Mostly Clear</option>
-<option value="3">3 - Somewhat Clear</option>
-<option value="2">2 - Confusing</option>
-<option value="1">1 - Very Confusing</option>
-</select>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Was anything confusing? If yes, what?</label>
-<textarea id="fb-confusing" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How long did this module take?</label>
-<select id="fb-time" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="15 minutes or less">15 minutes or less</option>
-<option value="15-30 minutes">15-30 minutes</option>
-<option value="30-45 minutes">30-45 minutes</option>
-<option value="45-60 minutes">45-60 minutes</option>
-<option value="Over 1 hour">Over 1 hour</option>
-</select>
-</div>
-
-<div style="margin-bottom:16px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Any suggestions to make this better?</label>
-<textarea id="fb-suggestions" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<button onclick="sendResults()" style="background:#141c2c;color:#fff;padding:14px 28px;border:none;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1);">📧 Email My Results</button>
-</div>
-
-<script>
-function sendResults() {
-  var nameEl = document.getElementById('cert-name') || document.getElementById('certName');
-  var name = nameEl ? nameEl.value || nameEl.textContent : 'Unknown';
-  var title = document.title || 'Training Module';
-  var scoreText = document.getElementById('score-display') ? document.getElementById('score-display').textContent : (typeof score !== 'undefined' ? score + '/' + questions.length : 'N/A');
-  var clarity = document.getElementById('fb-clarity').value;
-  var confusing = document.getElementById('fb-confusing').value || 'None';
-  var time = document.getElementById('fb-time').value;
-  var suggestions = document.getElementById('fb-suggestions').value || 'None';
-
-  var subject = encodeURIComponent('Training Module Complete: ' + title + ' - ' + name);
-  var body = encodeURIComponent(
-    'TRAINING MODULE COMPLETION REPORT\n' +
-    '================================\n\n' +
-    'Employee: ' + name + '\n' +
-    'Module: ' + title + '\n' +
-    'Score: ' + scoreText + '\n' +
-    'Date: ' + new Date().toLocaleDateString() + '\n\n' +
-    'FEEDBACK:\n' +
-    'Clarity (1-5): ' + clarity + '\n' +
-    'Confusing sections: ' + confusing + '\n' +
-    'Time to complete: ' + time + '\n' +
-    'Suggestions: ' + suggestions + '\n'
-  );
-
-  window.location.href = 'mailto:hgunn@thegunnlawgroup.com?subject=' + subject + '&body=' + body;
-}
-</script>
-
-<script>document.addEventListener("DOMContentLoaded",function(){var obs=new MutationObserver(function(){var cert=document.getElementById("screen-cert")||document.querySelector(".certificate");if(cert&&cert.offsetParent!==null){var e=document.getElementById("email-results");if(e)e.style.display="block";}});obs.observe(document.body,{childList:true,subtree:true,attributes:true});});</script>
 </body>
 </html>

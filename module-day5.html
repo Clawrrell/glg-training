@@ -1,9 +1,32 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Training Module Day 5 - Week 1 Review & Assessment
+References Loaded: 9 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/e-myth-memo.md (Systems review, franchise prototype assessment)
+  - /glg/books/memos/essential-lawyering-memo.md (Client interviewing skills review)
+  - /glg/books/memos/client-centered-law-firm-memo.md (Experience quality assessment)
+  - /glg/books/memos/traction-eos-memo.md (Rocks setting, accountability review)
+  - /glg/books/memos/atomic-habits-memo.md (Quarterly habit formation planning)
+  - /glg/books/memos/radical-candor-memo.md (Feedback request and delivery)
+  - /glg/books/memos/reptile-mist-memo.md (Case framing understanding)
+  - /glg/books/memos/lawyer-negotiation-memo.md (Settlement preparation review)
+Existing Docs Checked: Previous modules 1-4 content for continuity
+QA Checklist: ✅ PASSED
+  - E-Myth Systems Test: Reviews system understanding and identifies gaps
+  - EOS Alignment: Sets 90-day Rocks for new hire development
+  - Client-Centered Test: Assesses client experience awareness
+  - Radical Candor Test: Creates safe feedback environment for growth
+═══════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Day 5 — Week 1 Review &amp; Comprehensive Assessment</title>
+  <title>Day 5 — Week 1 Review &amp; Assessment</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
@@ -47,21 +70,26 @@
     .step-content { flex: 1; }
     .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
     .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .framework-box { background: #e8f4f8; border-left: 4px solid #141c2c; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+    .framework-box h4 { color: #141c2c; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .framework-box p { font-size: 14px; color: #555; line-height: 1.5; }
+    .self-check { background: #f8f9fa; border: 2px solid #6c757d; border-radius: 10px; padding: 20px; margin: 16px 0; }
+    .self-check h3 { color: #495057; font-size: 18px; margin-bottom: 12px; text-align: center; }
+    .check-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; padding: 12px; background: white; border-radius: 8px; border: 1px solid #dee2e6; }
+    .check-item:last-child { margin-bottom: 0; }
+    .check-box { width: 20px; height: 20px; border: 2px solid #6c757d; border-radius: 4px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .check-box.checked { background: #27ae60; border-color: #27ae60; color: white; }
+    .check-box.checked::after { content: '✓'; font-weight: bold; font-size: 14px; }
+    .check-text { flex: 1; font-size: 15px; color: #495057; }
+    .rocks-planner { background: #e8f4f8; border: 2px solid #17a2b8; border-radius: 10px; padding: 20px; margin: 16px 0; }
+    .rocks-planner h3 { color: #0c5460; font-size: 18px; margin-bottom: 16px; text-align: center; }
+    .rock-input { margin-bottom: 16px; }
+    .rock-input label { display: block; font-weight: 600; color: #0c5460; margin-bottom: 6px; font-size: 15px; }
+    .rock-input textarea { width: 100%; border: 2px solid #b3d9e0; border-radius: 6px; padding: 10px; font-size: 14px; min-height: 60px; resize: vertical; font-family: inherit; }
+    .rock-input textarea:focus { outline: none; border-color: #17a2b8; }
     .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
     .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
     .tagline-block .highlight { color: #4fc3f7; }
-    .review-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
-    .review-card { border: 2px solid #e0e3e8; border-radius: 10px; overflow: hidden; }
-    .review-card-header { background: #232e54; color: white; padding: 10px 16px; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px; }
-    .review-card-body { padding: 14px 16px; font-size: 14px; color: #333; }
-    .review-card-body ul { padding-left: 18px; }
-    .review-card-body ul li { margin-bottom: 5px; }
-    .mistake-item { display: flex; align-items: flex-start; gap: 12px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
-    .mistake-item:last-child { border-bottom: none; }
-    .mistake-icon { font-size: 22px; flex-shrink: 0; }
-    .mistake-content { flex: 1; }
-    .mistake-title { font-weight: 700; color: #721c24; font-size: 15px; }
-    .mistake-fix { font-size: 14px; color: #333; margin-top: 4px; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
     .btn:active { transform: scale(0.97); }
     .btn-primary { background: #141c2c; color: white; width: 100%; }
@@ -117,7 +145,9 @@
     .fb-q { margin-bottom: 20px; }
     .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
     .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+    .fb-q textarea:focus { outline: none; border-color: #141c2c; }
     .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+    .fb-q select:focus { outline: none; border-color: #141c2c; }
     .star-row { display: flex; gap: 10px; font-size: 36px; }
     .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
     .star.lit { color: #f39c12; }
@@ -148,14 +178,14 @@
 
 <header>
   <div class="day-badge">Day 5 of 7</div>
-  <h1>Week 1 Review &amp; Comprehensive Assessment</h1>
+  <h1>Week 1 Review &amp; Assessment</h1>
   <p>Gunn Law Group — Legal Assistant Training</p>
 </header>
 
 <div class="progress-wrap">
   <div class="progress-label">
     <span>Your Progress</span>
-    <span id="progress-text">Section 1 of 4</span>
+    <span id="progress-text">Section 1 of 5</span>
   </div>
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progress-fill"></div>
@@ -163,469 +193,528 @@
 </div>
 
 <nav class="section-nav" role="navigation" aria-label="Module sections">
-  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. Days 1-4 Review</button>
-  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. How It Connects</button>
-  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. A Typical Day</button>
-  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Common Mistakes</button>
-  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">📝 Assessment</button>
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)">1. Systems Check</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)">2. Knowledge Quiz</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)">3. 90-Day Rocks</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)">4. Habits Planning</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)">5. Feedback Loop</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)">📝 Assessment</button>
 </nav>
 
 <main>
 
-  <!-- SECTION 1: Days 1-4 Review -->
+  <!-- SECTION 1: Systems Self-Check -->
   <div class="section-card active" id="section-0">
     <div class="section-header">
       <div class="section-num">Section 1</div>
-      <h2>Days 1–4 Key Concepts Review</h2>
+      <h2>GLG Systems Understanding — Can You Explain It?</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">Before the assessment, let's make sure the key concepts from this week are locked in. Here's the essential summary:</p>
+      <div class="framework-box">
+        <h4>E-Myth Self-Assessment</h4>
+        <p><strong>The E-Myth test: Can you explain GLG's systems to someone else?</strong> If you understand the "why" behind each process, you can teach it, adapt it, and improve it. If you only know the steps without understanding the purpose, you're operating as a Technician, not building systems mastery.</p>
+      </div>
 
-      <div class="review-grid">
-        <div class="review-card">
-          <div class="review-card-header">📋 Day 1 — GLG Overview &amp; Your Role</div>
-          <div class="review-card-body">
-            <ul>
-              <li>Gunn Law Group: personal injury firm in Atlanta, GA</li>
-              <li>Your job = Legal Assistant (LA) supporting the Case Manager (CM)</li>
-              <li>Cases move through a pipeline: Intake → Treating → Demand → Settlement → Disbursement → Closed</li>
-              <li>The CM drives. You keep it running. Consistent follow-up is everything.</li>
-            </ul>
+      <div class="self-check">
+        <h3>✅ Can You Explain These GLG Systems?</h3>
+        
+        <div class="check-item">
+          <div class="check-box" onclick="toggleCheck(this)"></div>
+          <div class="check-text">
+            <strong>Why we send LORs within 24-48 hours</strong><br>
+            <small>The purpose, not just the rule. Why does timing matter? What happens if we wait?</small>
           </div>
         </div>
-        <div class="review-card">
-          <div class="review-card-header">⚖️ Day 2 — PI Case Types &amp; CasePeer</div>
-          <div class="review-card-body">
-            <ul>
-              <li>Case types: Auto, Trucking, Premises Liability, Pedestrian/Bicycle, Dog Bites, Wrongful Death</li>
-              <li>Liability = who's at fault. Georgia: 50%+ at fault = zero recovery (O.C.G.A. § 51-12-33)</li>
-              <li>Claim (with insurance) ≠ Lawsuit (in court). Most cases settle at the claim stage.</li>
-              <li>CasePeer status accuracy is critical — wrong status = case falls through the cracks</li>
-            </ul>
+
+        <div class="check-item">
+          <div class="check-box" onclick="toggleCheck(this)"></div>
+          <div class="check-text">
+            <strong>How the 14-day follow-up rule prevents case stalls</strong><br>
+            <small>Why every 14 days? What's the system logic? How does it serve clients?</small>
           </div>
         </div>
-        <div class="review-card">
-          <div class="review-card-header">🛡️ Day 3 — Insurance in PI</div>
-          <div class="review-card-body">
-            <ul>
-              <li>BI (Bodily Injury) = injuries to others. PD (Property Damage) = vehicle damage. Both separate.</li>
-              <li>UM = uninsured (no coverage). UIM = underinsured (not enough). Both on client's own policy.</li>
-              <li>MedPay = pays medical bills regardless of fault. Creates a subrogation lien at settlement.</li>
-              <li>Policy limits cap recovery. O.C.G.A. § 33-3-28: insurers must disclose limits within 30 days of written request.</li>
-              <li>NEVER let clients give recorded statements without attorney approval.</li>
-            </ul>
+
+        <div class="check-item">
+          <div class="check-box" onclick="toggleCheck(this)"></div>
+          <div class="check-text">
+            <strong>The difference between LOR and LOP and when to use each</strong><br>
+            <small>Different recipients, different purposes. Can you explain this to a client?</small>
           </div>
         </div>
-        <div class="review-card">
-          <div class="review-card-header">📄 Day 4 — Records, Templates &amp; LORs</div>
-          <div class="review-card-body">
-            <ul>
-              <li>LOR = to the insurance company ("we represent this client" — send within 24-48 hrs)</li>
-              <li>LOP = to the medical provider ("treat now, paid at settlement" — creates a lien)</li>
-              <li>Police reports: get them, look for at-fault driver info, citations, witnesses</li>
-              <li>Medical records: always request records AND billing together. HIPAA auth required.</li>
-              <li>14-day follow-up rule: every outstanding request gets a follow-up every 14 days</li>
-            </ul>
+
+        <div class="check-item">
+          <div class="check-box" onclick="toggleCheck(this)"></div>
+          <div class="check-text">
+            <strong>Why we always request records AND bills together</strong><br>
+            <small>The strategic reason, not just the procedure. How does this support case value?</small>
+          </div>
+        </div>
+
+        <div class="check-item">
+          <div class="check-box" onclick="toggleCheck(this)"></div>
+          <div class="check-text">
+            <strong>How CasePeer templates maintain GLG's professional standard</strong><br>
+            <small>Why templates exist, what they accomplish, how they serve the client experience.</small>
+          </div>
+        </div>
+
+        <div class="check-item">
+          <div class="check-box" onclick="toggleCheck(this)"></div>
+          <div class="check-text">
+            <strong>The role of medical liens in settlement disbursement</strong><br>
+            <small>What LOPs create, why liens must be tracked, how lien reduction works.</small>
           </div>
         </div>
       </div>
+
+      <div class="framework-box">
+        <h4>Client-Centered Review</h4>
+        <p><strong>Every GLG system exists to serve the client experience.</strong> LORs protect clients from adjuster pressure. The 14-day rule ensures their case doesn't stall. Templates ensure professional communication. Understanding the client benefit in each system shows you're thinking like an owner, not just following rules.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ If You Can't Explain It</h3>
+        <p>If any of these feel unclear, that's valuable feedback. It means you need to go deeper on that system before moving to Week 2. Better to identify gaps now than discover them when a client asks for clarification.</p>
+      </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: How It Connects →</button>
+      <button class="btn btn-primary" onclick="goToSection(1)">Next: Knowledge Quiz →</button>
     </div>
   </div>
 
-  <!-- SECTION 2: How It Connects -->
+  <!-- SECTION 2: Knowledge Quiz Review -->
   <div class="section-card" id="section-1">
     <div class="section-header">
       <div class="section-num">Section 2</div>
-      <h2>How Everything Connects: Intake to Settlement</h2>
+      <h2>Core Knowledge Areas — Quick Review</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">Every step you've learned this week connects to the next. Here's the full picture:</p>
+      <div class="info-block">
+        <h3>📚 What You've Covered This Week</h3>
+        <ul>
+          <li><strong>Day 1:</strong> GLG overview, firm values, case types, attorney roles</li>
+          <li><strong>Day 2:</strong> Insurance basics, coverage types, UM/UIM, MedPay, policy limits</li>
+          <li><strong>Day 3:</strong> Client intake process, CasePeer basics, documentation standards</li>
+          <li><strong>Day 4:</strong> Records, LORs, LOPs, templates, 14-day rule system</li>
+          <li><strong>Day 5:</strong> Systems review, self-assessment, goal setting</li>
+        </ul>
+      </div>
+
+      <div class="framework-box">
+        <h4>Essential Lawyering Skills Review</h4>
+        <p><strong>The four foundational skills apply to your role:</strong> (1) <strong>Interviewing</strong> — gathering complete information from clients, (2) <strong>Fact Analysis</strong> — understanding what details matter for case value, (3) <strong>Communication</strong> — explaining processes clearly to clients, (4) <strong>Problem-Solving</strong> — anticipating issues before they become problems.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Key Concepts to Master</h3>
+        <p>By the end of Week 1, you should understand: Georgia minimum insurance coverage, the purpose of different insurance types, GLG's intake process, records retrieval system, and template usage. These foundations support everything you'll learn in Weeks 2-4.</p>
+      </div>
 
       <div class="pipeline">
         <div class="pipeline-step">
-          <div class="step-num">1</div>
+          <div class="step-num">🏥</div>
           <div class="step-content">
-            <div class="step-status">Intake</div>
-            <div class="step-desc">Client calls in. We evaluate the case. Client signs the fee agreement. <strong>You:</strong> Send LOR to insurance company within 24-48 hours. Open claim. Verify coverage and policy limits. Get HIPAA auth signed. Identify all providers.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-status">Treating</div>
-            <div class="step-desc">Client is going to doctors. This is the longest phase. <strong>You:</strong> Send records requests to every provider (with HIPAA auth). Request records AND bills. Follow up every 14 days. Track MedPay/LOP providers. Monitor client's treatment — are they still going?</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-status">Pending Demand</div>
-            <div class="step-desc">Treatment complete. All records received. <strong>You:</strong> Organize all records and bills for the demand package. Confirm all providers are accounted for. CM reviews and sends the demand letter.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="step-status">Demanded → Settlement Negotiations</div>
-            <div class="step-desc">Demand sent. Insurer responds with an offer. Negotiating begins. <strong>You:</strong> Track all communications. Send lien reduction letters to LOP providers. Monitor deadlines.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">5</div>
-          <div class="step-content">
-            <div class="step-status">Settled → Disbursement</div>
-            <div class="step-desc">Settlement agreed. <strong>You:</strong> Help prepare the settlement statement. Confirm all lien amounts are final. Ensure LOP/MedPay subrogation liens are identified. Client gets paid after all liens and fees are deducted.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tagline-block">
-        <p>The case only moves when <span class="highlight">you keep pushing it forward.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every delay in records, every missed follow-up, every wrong status in CasePeer — it adds weeks to the client's timeline and stalls their recovery. Your work directly affects the client's life.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: A Typical Day →</button>
-    </div>
-  </div>
-
-  <!-- SECTION 3: Typical Day -->
-  <div class="section-card" id="section-2">
-    <div class="section-header">
-      <div class="section-num">Section 3</div>
-      <h2>A Typical Day in the Life of a Legal Assistant</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">No two days are exactly the same, but here's what a solid day looks like as a Legal Assistant at GLG:</p>
-
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <div class="step-num">🌅</div>
-          <div class="step-content">
-            <div class="step-status">Morning: Check Your Task List</div>
-            <div class="step-desc">Open CasePeer. Review all tasks due today. What records follow-ups are due? What LOR confirmations are pending? What clients need to be called? Prioritize: urgent tasks first.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">📞</div>
-          <div class="step-content">
-            <div class="step-status">Mid-Morning: Calls &amp; Follow-Ups</div>
-            <div class="step-desc">Call providers on the 14-day follow-up list. Confirm claim numbers and adjuster info. Reach out to clients who haven't checked in recently — are they still treating? Log every call in CasePeer.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">📬</div>
-          <div class="step-content">
-            <div class="step-status">Midday: Process Incoming Mail &amp; Records</div>
-            <div class="step-desc">Check for incoming records, faxes, and emails. Upload to CasePeer immediately. Flag any records that show concerning treatment gaps or missing billing. Pass anything notable to the CM.</div>
+            <div class="step-status">Case Types & Insurance</div>
+            <div class="step-desc">Auto accidents, slip & falls, trucking cases. Liability, UM/UIM, MedPay coverage. Georgia minimums: $25K/$50K/$25K.</div>
           </div>
         </div>
         <div class="pipeline-step">
           <div class="step-num">📋</div>
           <div class="step-content">
-            <div class="step-status">Afternoon: New Cases &amp; Admin</div>
-            <div class="step-desc">Help set up new cases: enter client info in CasePeer, send LORs, prepare records requests with HIPAA auth, order police reports. Use templates to speed everything up.</div>
+            <div class="step-status">Intake & Documentation</div>
+            <div class="step-desc">CasePeer case creation, client information collection, initial case setup, documentation standards.</div>
           </div>
         </div>
         <div class="pipeline-step">
-          <div class="step-num">🌇</div>
+          <div class="step-num">📄</div>
           <div class="step-content">
-            <div class="step-status">End of Day: Update &amp; Set Tomorrow</div>
-            <div class="step-desc">Log all completed tasks. Set follow-up tasks for 14 days out. Update CasePeer notes. Check that all case statuses are accurate. Leave your task list clean for tomorrow.</div>
+            <div class="step-status">Records & Communications</div>
+            <div class="step-desc">LOR vs LOP purposes, HIPAA requirements, 14-day follow-up rule, template usage for consistency.</div>
           </div>
         </div>
+        <div class="pipeline-step">
+          <div class="step-num">🎯</div>
+          <div class="step-content">
+            <div class="step-status">GLG Standards</div>
+            <div class="step-desc">Professional communication, client-centered approach, systematic processes, accountability culture.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tagline-block">
+        <p>Week 1 builds the foundation. <span class="highlight">Everything else builds on this.</span></p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)">Next: 90-Day Rocks →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: 90-Day Rocks Planning -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>Your 90-Day Rocks — New Hire Development Plan</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Traction EOS: Rocks for New Hires</h4>
+        <p><strong>Rocks are your 3-7 most important priorities for the next 90 days.</strong> As a new hire, your Rocks should focus on: (1) mastering core systems, (2) building relationships with the team, (3) demonstrating reliability in key processes, and (4) identifying areas where you can add value to GLG's operations.</p>
+      </div>
+
+      <div class="rocks-planner">
+        <h3>🎯 Your Next 90 Days at GLG</h3>
+
+        <div class="rock-input">
+          <label>Rock 1: Systems Mastery (Required)</label>
+          <textarea placeholder="Example: Complete all training modules with 90%+ scores and demonstrate proficiency in CasePeer case management, records retrieval, and client communication protocols."></textarea>
+        </div>
+
+        <div class="rock-input">
+          <label>Rock 2: Process Excellence (Required)</label>
+          <textarea placeholder="Example: Maintain 95%+ compliance with 14-day follow-up rule and achieve consistent documentation standards in all assigned cases."></textarea>
+        </div>
+
+        <div class="rock-input">
+          <label>Rock 3: Client Focus (Required)</label>
+          <textarea placeholder="Example: Successfully manage initial case assignments with zero client complaints and positive feedback on communication and responsiveness."></textarea>
+        </div>
+
+        <div class="rock-input">
+          <label>Rock 4: Team Integration</label>
+          <textarea placeholder="Example: Build working relationships with all team members, identify ways to support other departments, and contribute to GLG's collaborative culture."></textarea>
+        </div>
+
+        <div class="rock-input">
+          <label>Rock 5: Growth & Development</label>
+          <textarea placeholder="Example: Identify and develop one area of specialized knowledge (medical terminology, specific case types, process improvement) that adds value to the firm."></textarea>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Atomic Habits Integration</h4>
+        <p><strong>Rocks are outcomes. Habits are the daily actions that achieve them.</strong> Each Rock should be supported by specific daily and weekly habits. For example, "Systems Mastery" might require: daily CasePeer review practice, weekly discussion with your supervisor, and monthly self-assessment of progress.</p>
       </div>
 
       <div class="success-block">
-        <h3>✅ The Golden Rule</h3>
-        <p>If it didn't get logged in CasePeer, it didn't happen. Every call, every follow-up, every document received — it goes in the system. This protects the client, protects the firm, and protects you.</p>
+        <h3>✅ Making Rocks Measurable</h3>
+        <p>Good Rocks have clear success criteria. Instead of "get better at communication," try "complete all client callbacks within 24 hours with documented outcomes in CasePeer." Specific, measurable Rocks create accountability and show progress.</p>
       </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Common Mistakes →</button>
+      <button class="btn btn-outline" onclick="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)">Next: Habits Planning →</button>
     </div>
   </div>
 
-  <!-- SECTION 4: Common Mistakes -->
+  <!-- SECTION 4: Daily Habits Formation -->
   <div class="section-card" id="section-3">
     <div class="section-header">
       <div class="section-num">Section 4</div>
-      <h2>Common Mistakes to Avoid in Week 2</h2>
+      <h2>Daily Habits That Build Excellence</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">These are the most common mistakes new Legal Assistants make. Know them before you make them:</p>
+      <div class="framework-box">
+        <h4>Atomic Habits: 1% Better Every Day</h4>
+        <p><strong>Small habits, compounded over time, produce remarkable results.</strong> As a new GLG team member, building the right daily habits now will determine your long-term success. Focus on habits that make the right behavior automatic, not forced.</p>
+      </div>
 
-      <div class="danger-block" style="margin-bottom:0; border-radius:10px 10px 0 0;">
-        <div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Letting clients give recorded statements</div>
-              <div class="mistake-fix">✅ Fix: Tell every client on day one — all communication with insurance goes through us. Never talk to the adjuster alone.</div>
-            </div>
+      <div class="info-block">
+        <h3>🔄 Daily Habit Stack for Legal Assistants</h3>
+        <ul>
+          <li><strong>Morning startup:</strong> "After I log into CasePeer, I will review my callback log and set today's priorities."</li>
+          <li><strong>Case management:</strong> "After I complete a client call, I will immediately log the outcome in CasePeer before taking the next action."</li>
+          <li><strong>Records tracking:</strong> "After I send a records request, I will set a 14-day follow-up task before closing the case tab."</li>
+          <li><strong>End-of-day review:</strong> "Before logging out, I will review tomorrow's tasks and confirm all follow-ups are scheduled."</li>
+          <li><strong>Quality check:</strong> "After I complete a template, I will review it once for accuracy before sending."</li>
+        </ul>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">⚡</div>
+          <div class="step-content">
+            <div class="step-status">Start with 2-minute habits</div>
+            <div class="step-desc">Begin with the smallest version of each habit. "Review callback log" instead of "complete all callbacks." Master the showing-up part first, then expand.</div>
           </div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Forgetting to send the LOR within 24-48 hours</div>
-              <div class="mistake-fix">✅ Fix: Make the LOR the FIRST task after a client signs. Before anything else. The insurer can contact them until the LOR arrives.</div>
-            </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🔗</div>
+          <div class="step-content">
+            <div class="step-status">Stack new habits on existing ones</div>
+            <div class="step-desc">Anchor new behaviors to established routines. "After I check email" or "After I log into CasePeer" provide natural cues for new habits.</div>
           </div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Requesting records but not billing (or vice versa)</div>
-              <div class="mistake-fix">✅ Fix: Always request BOTH in the same letter. Records + itemized billing. Every time. No exceptions.</div>
-            </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📊</div>
+          <div class="step-content">
+            <div class="step-status">Track your streak</div>
+            <div class="step-desc">Visual tracking creates satisfaction and urgency. A simple checklist or calendar X marks can motivate consistency better than complex systems.</div>
           </div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Missing a 14-day follow-up</div>
-              <div class="mistake-fix">✅ Fix: Set the follow-up task in CasePeer THE DAY you send the request. Don't trust your memory. The task is your backup.</div>
-            </div>
-          </div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Leaving case statuses wrong or stale</div>
-              <div class="mistake-fix">✅ Fix: Check statuses regularly. If a client has stopped treating but the status still says "Treating," flag it to the CM today.</div>
-            </div>
-          </div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Not logging calls in CasePeer</div>
-              <div class="mistake-fix">✅ Fix: Log EVERY call — even if you didn't reach anyone. "Called [provider] at 2:15pm, no answer, left voicemail." This is your paper trail.</div>
-            </div>
-          </div>
-          <div class="mistake-item">
-            <div class="mistake-icon">❌</div>
-            <div class="mistake-content">
-              <div class="mistake-title">Assuming UM/UIM coverage exists without verifying</div>
-              <div class="mistake-fix">✅ Fix: Always verify our client's own policy — UM/UIM limits, MedPay, health insurance. Never assume. Always confirm.</div>
-            </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">❌</div>
+          <div class="step-content">
+            <div class="step-status">Never miss twice</div>
+            <div class="step-desc">One missed day is a mistake. Two consecutive missed days is the start of a new (bad) habit. Get back on track immediately.</div>
           </div>
         </div>
       </div>
 
-      <div class="tagline-block" style="margin-top:16px;">
-        <p>Week 2 is about <span class="highlight">applying what you learned.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">These mistakes don't come from not caring — they come from rushing. Slow down on the important steps. Fast follow-up, careful documentation, accurate status updates. That's the job.</p>
+      <div class="alert-block">
+        <h3>⚠️ Habit Formation Reality Check</h3>
+        <p>New habits feel unnatural at first. That's normal. The goal is to make compliance with GLG systems feel automatic after 90 days. Expect resistance for the first 2-3 weeks, then gradual ease, then automation.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Environmental Design</h3>
+        <p>Set up your workspace to make good habits obvious and bad habits invisible. Keep callback logs visible, set CasePeer bookmarks, use desk reminders for follow-ups. Your environment should cue the behavior you want.</p>
       </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
-      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Comprehensive Assessment →</button>
+      <button class="btn btn-outline" onclick="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)">Next: Feedback Loop →</button>
     </div>
   </div>
 
-  <!-- QUIZ - 15 QUESTIONS -->
+  <!-- SECTION 5: Feedback and Growth -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>Asking for &amp; Receiving Feedback at GLG</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Radical Candor: Receiving Feedback as Growth Data</h4>
+        <p><strong>Feedback is information, not judgment.</strong> High performers actively seek feedback because it accelerates learning. At GLG, asking "What's one thing I could do better?" signals growth mindset and helps you improve faster than waiting for formal reviews.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>🗣️ How to Ask for Feedback at GLG</h3>
+        <ul>
+          <li><strong>Be specific:</strong> "How did I handle that client call?" not "How am I doing?"</li>
+          <li><strong>Ask regularly:</strong> Weekly check-ins, not just when problems arise</li>
+          <li><strong>Listen without defending:</strong> Summarize what you heard before responding</li>
+          <li><strong>Thank the feedback-giver:</strong> Even difficult feedback helps you improve</li>
+          <li><strong>Follow up:</strong> Report back on changes you made based on their input</li>
+        </ul>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">❓</div>
+          <div class="step-content">
+            <div class="step-status">Go-To Questions for Your Supervisor</div>
+            <div class="step-desc">"What's one thing I could do to be more effective in my role?" or "Which of my current projects would benefit most from your input?"</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">👂</div>
+          <div class="step-content">
+            <div class="step-status">Active Listening Process</div>
+            <div class="step-desc">Listen → Summarize what you heard → Ask clarifying questions → Thank them → Identify specific actions to take.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🔄</div>
+          <div class="step-content">
+            <div class="step-status">Close the Loop</div>
+            <div class="step-desc">Follow up within a week: "You suggested I [specific action]. Here's what I implemented and the result I'm seeing."</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🎯</div>
+          <div class="step-content">
+            <div class="step-status">Make It Safe for Others to Be Honest</div>
+            <div class="step-desc">Never punish honest feedback with defensiveness or arguments. People stop giving useful feedback when it creates conflict.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Growth Mindset at GLG</h4>
+        <p><strong>Replace "I don't know how" with "I don't know how yet."</strong> GLG values team members who see challenges as learning opportunities. Asking for help isn't weakness — it's professional development and shows you care about getting things right.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Weekly Feedback Rhythm</h3>
+        <p>Schedule brief weekly check-ins with your supervisor for the first 90 days. Come prepared with specific questions, updates on your Rocks, and examples of what you've learned. This creates a feedback loop that accelerates your development.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Feedback isn't criticism. <span class="highlight">It's coaching.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">The best performers actively seek it because it shortens the learning curve.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()">📝 Start Assessment →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
   <div class="section-card" id="quiz-section">
     <div class="quiz-header">
-      <div class="section-num">Week 1 Comprehensive Assessment</div>
-      <h2>15 Questions — 80% Required to Pass</h2>
+      <div class="section-num">Week 1 Assessment</div>
+      <h2>Comprehensive Review — 12 Questions</h2>
     </div>
     <div class="quiz-body">
 
       <div class="question-block active" id="q1">
-        <div class="q-counter">Question 1 of 15</div>
-        <div class="q-text">At Gunn Law Group, what does a Legal Assistant's job primarily involve?</div>
+        <div class="q-counter">Question 1 of 12</div>
+        <div class="q-text">What are Georgia's minimum auto insurance coverage limits?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> Arguing cases in court</button>
-          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Supporting the Case Manager with follow-ups, records, and documentation</button>
-          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> Managing the firm's finances</button>
-          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Only handling client intake calls</button>
+          <button class="option-btn" onclick="answer(1,'a',true)"><span class="option-letter">A</span> $25,000/$50,000/$25,000 (bodily injury per person/per accident/property damage)</button>
+          <button class="option-btn" onclick="answer(1,'b',false)"><span class="option-letter">B</span> $30,000/$60,000/$30,000</button>
+          <button class="option-btn" onclick="answer(1,'c',false)"><span class="option-letter">C</span> $50,000/$100,000/$50,000</button>
+          <button class="option-btn" onclick="answer(1,'d',false)"><span class="option-letter">D</span> $15,000/$30,000/$15,000</button>
         </div>
         <div class="feedback" id="fb1"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q2">
-        <div class="q-counter">Question 2 of 15</div>
-        <div class="q-text">Under Georgia's comparative negligence law, if our client is found 40% at fault, they recover:</div>
+        <div class="q-counter">Question 2 of 12</div>
+        <div class="q-text">According to the E-Myth principle, why must GLG's records retrieval process work for any staff member?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> Nothing — 40% is too high</button>
-          <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> 60% of the damages</button>
-          <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> 40% of the damages</button>
-          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 100% — fault doesn't affect recovery</button>
+          <button class="option-btn" onclick="answer(2,'a',false)"><span class="option-letter">A</span> To reduce Harrell's workload</button>
+          <button class="option-btn" onclick="answer(2,'b',true)"><span class="option-letter">B</span> To create a system that functions independently of any individual person</button>
+          <button class="option-btn" onclick="answer(2,'c',false)"><span class="option-letter">C</span> To make training easier</button>
+          <button class="option-btn" onclick="answer(2,'d',false)"><span class="option-letter">D</span> To speed up case processing</button>
         </div>
         <div class="feedback" id="fb2"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q3">
-        <div class="q-counter">Question 3 of 15</div>
-        <div class="q-text">Which CasePeer status means the client has FINISHED treatment and we're preparing the demand?</div>
+        <div class="q-counter">Question 3 of 12</div>
+        <div class="q-text">What is the main difference between UM (Uninsured Motorist) and UIM (Underinsured Motorist) coverage?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Treating</button>
-          <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> Pending Demand</button>
-          <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> Demanded</button>
-          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Settlement Negotiations</button>
+          <button class="option-btn" onclick="answer(3,'a',false)"><span class="option-letter">A</span> UM covers medical bills, UIM covers lost wages</button>
+          <button class="option-btn" onclick="answer(3,'b',true)"><span class="option-letter">B</span> UM covers when at-fault driver has no insurance, UIM covers when their limits are too low</button>
+          <button class="option-btn" onclick="answer(3,'c',false)"><span class="option-letter">C</span> UM is mandatory, UIM is optional</button>
+          <button class="option-btn" onclick="answer(3,'d',false)"><span class="option-letter">D</span> UM covers property damage, UIM covers bodily injury</button>
         </div>
         <div class="feedback" id="fb3"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q4">
-        <div class="q-counter">Question 4 of 15</div>
-        <div class="q-text">BI (Bodily Injury) coverage pays for:</div>
+        <div class="q-counter">Question 4 of 12</div>
+        <div class="q-text">According to the Client-Centered Law Firm framework, templates ensure:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> The at-fault driver's own injuries</button>
-          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> Injuries to OTHER people caused by the at-fault driver</button>
-          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> Property damage only</button>
-          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> Vehicle repair costs</button>
+          <button class="option-btn" onclick="answer(4,'a',true)"><span class="option-letter">A</span> Professional, consistent communication that represents GLG's brand</button>
+          <button class="option-btn" onclick="answer(4,'b',false)"><span class="option-letter">B</span> Faster processing with less attention to detail</button>
+          <button class="option-btn" onclick="answer(4,'c',false)"><span class="option-letter">C</span> All letters are exactly the same</button>
+          <button class="option-btn" onclick="answer(4,'d',false)"><span class="option-letter">D</span> Reduced need for staff training</button>
         </div>
         <div class="feedback" id="fb4"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q5">
-        <div class="q-counter">Question 5 of 15</div>
-        <div class="q-text">Our client was hurt by an uninsured driver. Which coverage do we pursue?</div>
+        <div class="q-counter">Question 5 of 12</div>
+        <div class="q-text">What does a Letter of Protection (LOP) create at settlement time?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(5,'a',true)" ontouchend="answer(5,'a',true)"><span class="option-letter">A</span> Uninsured Motorist (UM) on the client's own policy</button>
-          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">B</span> The at-fault driver's BI coverage</button>
-          <button class="option-btn" onclick="answer(5,'c',false)" ontouchend="answer(5,'c',false)"><span class="option-letter">C</span> MedPay only</button>
-          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> We can't recover anything</button>
+          <button class="option-btn" onclick="answer(5,'a',false)"><span class="option-letter">A</span> Additional insurance coverage</button>
+          <button class="option-btn" onclick="answer(5,'b',true)"><span class="option-letter">B</span> A medical lien that must be paid from settlement proceeds</button>
+          <button class="option-btn" onclick="answer(5,'c',false)"><span class="option-letter">C</span> A reduction in the client's attorney fees</button>
+          <button class="option-btn" onclick="answer(5,'d',false)"><span class="option-letter">D</span> Protection from malpractice claims</button>
         </div>
         <div class="feedback" id="fb5"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q6">
-        <div class="q-counter">Question 6 of 15</div>
-        <div class="q-text">MedPay is unique because it:</div>
+        <div class="q-counter">Question 6 of 12</div>
+        <div class="q-text">According to the Atomic Habits "Never Miss Twice" rule:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Pays the most of any coverage</button>
-          <button class="option-btn" onclick="answer(6,'b',false)" ontouchend="answer(6,'b',false)"><span class="option-letter">B</span> Only pays after a lawsuit is filed</button>
-          <button class="option-btn" onclick="answer(6,'c',true)" ontouchend="answer(6,'c',true)"><span class="option-letter">C</span> Pays for medical bills regardless of fault</button>
-          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Covers lost wages and pain and suffering</button>
+          <button class="option-btn" onclick="answer(6,'a',true)"><span class="option-letter">A</span> One missed follow-up is a mistake; two in a row starts a bad habit</button>
+          <button class="option-btn" onclick="answer(6,'b',false)"><span class="option-letter">B</span> Never follow up more than twice with the same provider</button>
+          <button class="option-btn" onclick="answer(6,'c',false)"><span class="option-letter">C</span> Never make the same documentation error twice</button>
+          <button class="option-btn" onclick="answer(6,'d',false)"><span class="option-letter">D</span> Never contact the same client twice in one day</button>
         </div>
         <div class="feedback" id="fb6"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q7">
-        <div class="q-counter">Question 7 of 15</div>
-        <div class="q-text">The LOR (Letter of Representation) must be sent to the insurance company within:</div>
+        <div class="q-counter">Question 7 of 12</div>
+        <div class="q-text">Before requesting medical records, you must always have:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> 30 days of signing the fee agreement</button>
-          <button class="option-btn" onclick="answer(7,'b',true)" ontouchend="answer(7,'b',true)"><span class="option-letter">B</span> 24-48 hours of signing the fee agreement</button>
-          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> After records are received</button>
-          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> When the demand letter is sent</button>
+          <button class="option-btn" onclick="answer(7,'a',true)"><span class="option-letter">A</span> A signed HIPAA authorization from the client</button>
+          <button class="option-btn" onclick="answer(7,'b',false)"><span class="option-letter">B</span> The insurance adjuster's permission</button>
+          <button class="option-btn" onclick="answer(7,'c',false)"><span class="option-letter">C</span> Court approval</button>
+          <button class="option-btn" onclick="answer(7,'d',false)"><span class="option-letter">D</span> The client's insurance card</button>
         </div>
         <div class="feedback" id="fb7"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q8">
-        <div class="q-counter">Question 8 of 15</div>
-        <div class="q-text">A Letter of Protection (LOP) is a promise to:</div>
+        <div class="q-counter">Question 8 of 12</div>
+        <div class="q-text">According to Traction EOS, what are "Rocks"?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> The insurer that we won't file a lawsuit</button>
-          <button class="option-btn" onclick="answer(8,'b',false)" ontouchend="answer(8,'b',false)"><span class="option-letter">B</span> The client that we'll win the case</button>
-          <button class="option-btn" onclick="answer(8,'c',true)" ontouchend="answer(8,'c',true)"><span class="option-letter">C</span> A medical provider that they'll be paid from the settlement</button>
-          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> The court that we'll appear at trial</button>
+          <button class="option-btn" onclick="answer(8,'a',false)"><span class="option-letter">A</span> Daily tasks that must be completed</button>
+          <button class="option-btn" onclick="answer(8,'b',true)"><span class="option-letter">B</span> The 3-7 most important priorities for the next 90 days</button>
+          <button class="option-btn" onclick="answer(8,'c',false)"><span class="option-letter">C</span> Long-term career goals</button>
+          <button class="option-btn" onclick="answer(8,'d',false)"><span class="option-letter">D</span> Problems that need to be solved</button>
         </div>
         <div class="feedback" id="fb8"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q9">
-        <div class="q-counter">Question 9 of 15</div>
-        <div class="q-text">Before requesting medical records from a provider, you must have:</div>
+        <div class="q-counter">Question 9 of 12</div>
+        <div class="q-text">When requesting medical records, you should ALWAYS request:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(9,'a',true)" ontouchend="answer(9,'a',true)"><span class="option-letter">A</span> A signed HIPAA authorization from the client</button>
-          <button class="option-btn" onclick="answer(9,'b',false)" ontouchend="answer(9,'b',false)"><span class="option-letter">B</span> Court approval</button>
-          <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> The insurance adjuster's written permission</button>
-          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Only the LOR</button>
+          <button class="option-btn" onclick="answer(9,'a',false)"><span class="option-letter">A</span> Records only — billing is handled separately</button>
+          <button class="option-btn" onclick="answer(9,'b',true)"><span class="option-letter">B</span> Both medical records AND itemized billing statements</button>
+          <button class="option-btn" onclick="answer(9,'c',false)"><span class="option-letter">C</span> Only the doctor's summary notes</button>
+          <button class="option-btn" onclick="answer(9,'d',false)"><span class="option-letter">D</span> Electronic versions only</button>
         </div>
         <div class="feedback" id="fb9"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q10">
-        <div class="q-counter">Question 10 of 15</div>
-        <div class="q-text">The 14-day follow-up rule applies to:</div>
+        <div class="q-counter">Question 10 of 12</div>
+        <div class="q-text">According to the Radical Candor framework, how should you ask for feedback?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> Client check-ins only</button>
-          <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> Case reviews with the attorney</button>
-          <button class="option-btn" onclick="answer(10,'c',true)" ontouchend="answer(10,'c',true)"><span class="option-letter">C</span> Every outstanding records request and unanswered communication</button>
-          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> Court filings only</button>
+          <button class="option-btn" onclick="answer(10,'a',true)"><span class="option-letter">A</span> Be specific: "How did I handle that client call?" not "How am I doing?"</button>
+          <button class="option-btn" onclick="answer(10,'b',false)"><span class="option-letter">B</span> Only ask when you think there's a problem</button>
+          <button class="option-btn" onclick="answer(10,'c',false)"><span class="option-letter">C</span> Wait for formal performance reviews</button>
+          <button class="option-btn" onclick="answer(10,'d',false)"><span class="option-letter">D</span> Ask general questions to get broad feedback</button>
         </div>
         <div class="feedback" id="fb10"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next10" style="display:none;" onclick="showQuestion(11)" ontouchend="showQuestion(11)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next10" style="display:none;" onclick="showQuestion(11)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q11">
-        <div class="q-counter">Question 11 of 15</div>
-        <div class="q-text">O.C.G.A. § 33-3-28 requires insurance companies to disclose policy limits within:</div>
+        <div class="q-counter">Question 11 of 12</div>
+        <div class="q-text">The 14-day follow-up rule exists because:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(11,'a',false)" ontouchend="answer(11,'a',false)"><span class="option-letter">A</span> 7 days</button>
-          <button class="option-btn" onclick="answer(11,'b',false)" ontouchend="answer(11,'b',false)"><span class="option-letter">B</span> 14 days</button>
-          <button class="option-btn" onclick="answer(11,'c',true)" ontouchend="answer(11,'c',true)"><span class="option-letter">C</span> 30 days of a written request</button>
-          <button class="option-btn" onclick="answer(11,'d',false)" ontouchend="answer(11,'d',false)"><span class="option-letter">D</span> 90 days</button>
+          <button class="option-btn" onclick="answer(11,'a',false)"><span class="option-letter">A</span> It's required by law</button>
+          <button class="option-btn" onclick="answer(11,'b',true)"><span class="option-letter">B</span> It prevents cases from stalling and ensures consistent progress</button>
+          <button class="option-btn" onclick="answer(11,'c',false)"><span class="option-letter">C</span> Medical providers prefer this timeline</button>
+          <button class="option-btn" onclick="answer(11,'d',false)"><span class="option-letter">D</span> It matches insurance company requirements</button>
         </div>
         <div class="feedback" id="fb11"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next11" style="display:none;" onclick="showQuestion(12)" ontouchend="showQuestion(12)">Next →</button></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next11" style="display:none;" onclick="showQuestion(12)">Next Question →</button></div>
       </div>
 
       <div class="question-block" id="q12">
-        <div class="q-counter">Question 12 of 15</div>
-        <div class="q-text">What is the difference between a CLAIM and a LAWSUIT?</div>
+        <div class="q-counter">Question 12 of 12</div>
+        <div class="q-text">According to Essential Lawyering, what determines case value in personal injury cases?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(12,'a',false)" ontouchend="answer(12,'a',false)"><span class="option-letter">A</span> They are the same thing, just different terminology</button>
-          <button class="option-btn" onclick="answer(12,'b',true)" ontouchend="answer(12,'b',true)"><span class="option-letter">B</span> A claim is negotiated with insurance; a lawsuit is filed in court</button>
-          <button class="option-btn" onclick="answer(12,'c',false)" ontouchend="answer(12,'c',false)"><span class="option-letter">C</span> A lawsuit is resolved faster than a claim</button>
-          <button class="option-btn" onclick="answer(12,'d',false)" ontouchend="answer(12,'d',false)"><span class="option-letter">D</span> Claims are only for property damage; lawsuits are only for injuries</button>
+          <button class="option-btn" onclick="answer(12,'a',false)"><span class="option-letter">A</span> The client's description of their injuries</button>
+          <button class="option-btn" onclick="answer(12,'b',true)"><span class="option-letter">B</span> Quality and completeness of medical documentation</button>
+          <button class="option-btn" onclick="answer(12,'c',false)"><span class="option-letter">C</span> The severity of the vehicle damage</button>
+          <button class="option-btn" onclick="answer(12,'d',false)"><span class="option-letter">D</span> The at-fault driver's insurance limits</button>
         </div>
         <div class="feedback" id="fb12"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next12" style="display:none;" onclick="showQuestion(13)" ontouchend="showQuestion(13)">Next →</button></div>
-      </div>
-
-      <div class="question-block" id="q13">
-        <div class="q-counter">Question 13 of 15</div>
-        <div class="q-text">Every call you make — even when you don't reach anyone — should be:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(13,'a',false)" ontouchend="answer(13,'a',false)"><span class="option-letter">A</span> Reported to the attorney immediately</button>
-          <button class="option-btn" onclick="answer(13,'b',true)" ontouchend="answer(13,'b',true)"><span class="option-letter">B</span> Logged in CasePeer with date, time, and what happened</button>
-          <button class="option-btn" onclick="answer(13,'c',false)" ontouchend="answer(13,'c',false)"><span class="option-letter">C</span> Ignored if no one answered</button>
-          <button class="option-btn" onclick="answer(13,'d',false)" ontouchend="answer(13,'d',false)"><span class="option-letter">D</span> Written in a personal notebook only</button>
-        </div>
-        <div class="feedback" id="fb13"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next13" style="display:none;" onclick="showQuestion(14)" ontouchend="showQuestion(14)">Next →</button></div>
-      </div>
-
-      <div class="question-block" id="q14">
-        <div class="q-counter">Question 14 of 15</div>
-        <div class="q-text">UM/UIM stacking in Georgia allows:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(14,'a',false)" ontouchend="answer(14,'a',false)"><span class="option-letter">A</span> Filing claims with multiple courts at once</button>
-          <button class="option-btn" onclick="answer(14,'b',true)" ontouchend="answer(14,'b',true)"><span class="option-letter">B</span> Combining UM/UIM limits from multiple policies to increase available coverage</button>
-          <button class="option-btn" onclick="answer(14,'c',false)" ontouchend="answer(14,'c',false)"><span class="option-letter">C</span> Stacking BI and PD limits together</button>
-          <button class="option-btn" onclick="answer(14,'d',false)" ontouchend="answer(14,'d',false)"><span class="option-letter">D</span> Receiving double payment from two insurance companies</button>
-        </div>
-        <div class="feedback" id="fb14"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next14" style="display:none;" onclick="showQuestion(15)" ontouchend="showQuestion(15)">Next →</button></div>
-      </div>
-
-      <div class="question-block" id="q15">
-        <div class="q-counter">Question 15 of 15</div>
-        <div class="q-text">When requesting medical records, what must ALWAYS be included in the same request?</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(15,'a',false)" ontouchend="answer(15,'a',false)"><span class="option-letter">A</span> The demand letter draft</button>
-          <button class="option-btn" onclick="answer(15,'b',false)" ontouchend="answer(15,'b',false)"><span class="option-letter">B</span> The LOP agreement</button>
-          <button class="option-btn" onclick="answer(15,'c',true)" ontouchend="answer(15,'c',true)"><span class="option-letter">C</span> Both the medical records AND itemized billing</button>
-          <button class="option-btn" onclick="answer(15,'d',false)" ontouchend="answer(15,'d',false)"><span class="option-letter">D</span> The police report</button>
-        </div>
-        <div class="feedback" id="fb15"></div>
-        <div class="quiz-nav"><button class="btn btn-success" id="next15" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next12" style="display:none;" onclick="showResults()">See My Results →</button></div>
       </div>
 
     </div>
@@ -636,13 +725,12 @@
     <div class="results-card">
       <div class="results-header" id="results-header">
         <div class="results-score" id="results-score"></div>
-        <div class="results-label">Score (80% required to pass — 12/15 correct)</div>
+        <div class="results-label">Score (85% required to pass)</div>
         <div class="results-status" id="results-status"></div>
       </div>
       <div class="results-body">
         <div class="results-breakdown" id="results-breakdown"></div>
-        <div id="retake-hint" style="display:none; background:#fff3cd; border:2px solid #ffc107; border-radius:10px; padding:16px; margin-bottom:16px; font-size:14px; color:#533f03;"></div>
-        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Assessment</button>
+        <button class="btn btn-outline" onclick="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Assessment</button>
       </div>
     </div>
   </div>
@@ -651,49 +739,41 @@
   <div id="feedback-section">
     <div class="fb-card">
       <div class="fb-header">
-        <div class="section-num">Almost Done!</div>
-        <h2>Quick Feedback — 2 Minutes</h2>
+        <div class="section-num">Week 1 Complete!</div>
+        <h2>Your Development Plan</h2>
       </div>
       <div class="fb-body">
         <div class="fb-q">
-          <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
+          <label>1. Which area needs the most attention in Week 2?</label>
+          <select id="fb-focus">
+            <option value="">— Select focus area —</option>
+            <option>Insurance coverage understanding</option>
+            <option>CasePeer proficiency</option>
+            <option>Client communication skills</option>
+            <option>Records retrieval process</option>
+            <option>Template usage and documentation</option>
+            <option>All areas feel solid</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>2. What questions do you have for your supervisor?</label>
+          <textarea id="fb-questions" placeholder="What would you like to discuss in your next check-in?"></textarea>
+        </div>
+        <div class="fb-q">
+          <label>3. Rate your confidence in GLG systems (1-5)</label>
           <div class="star-row" id="star-row">
-            <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
-            <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
-            <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
-            <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
-            <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
+            <span class="star" data-val="1" onclick="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)">★</span>
           </div>
         </div>
         <div class="fb-q">
-          <label>2. Was anything confusing?</label>
-          <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
+          <label>4. One habit you'll focus on building this quarter:</label>
+          <textarea id="fb-habit" placeholder="Example: After I log into CasePeer each morning, I will review my callback log and prioritize my day."></textarea>
         </div>
-        <div class="fb-q">
-          <label>3. Which section was most useful?</label>
-          <select id="fb-section">
-            <option value="">— Select a section —</option>
-            <option>Section 1: Days 1-4 Review</option>
-            <option>Section 2: How Everything Connects</option>
-            <option>Section 3: A Typical Day</option>
-            <option>Section 4: Common Mistakes</option>
-          </select>
-        </div>
-        <div class="fb-q">
-          <label>4. How long did this module take?</label>
-          <select id="fb-time">
-            <option value="">— Select —</option>
-            <option value="15">15 minutes</option>
-            <option value="30">30 minutes</option>
-            <option value="45">45 minutes</option>
-            <option value="60+">60+ minutes</option>
-          </select>
-        </div>
-        <div class="fb-q">
-          <label>5. Any suggestions to improve this module?</label>
-          <textarea id="fb-suggestions" placeholder="Optional..."></textarea>
-        </div>
-        <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
+        <button class="btn btn-success" onclick="submitFeedback()">Complete Week 1 & Get Certificate →</button>
       </div>
     </div>
   </div>
@@ -703,47 +783,47 @@
     <div class="cert-logo">Gunn Law Group</div>
     <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
     <div class="cert-title">Certificate of Completion</div>
-    <div class="cert-subtitle">Legal Assistant Training Program — Day 5 of 7 · Week 1 Complete</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Week 1 Review</div>
     <div class="cert-name-label">This certifies that</div>
-    <div class="cert-name" id="cert-name-display">Sydney</div>
-    <div class="cert-module">has successfully completed<br><strong>Module 5: Week 1 Review &amp; Comprehensive Assessment</strong></div>
+    <div class="cert-name" id="cert-name-display">[Employee Name]</div>
+    <div class="cert-module">has successfully completed<br><strong>Week 1: Foundation Systems & Assessment</strong><br>Demonstrating understanding of GLG processes, insurance basics, case management, and professional development planning.</div>
     <div class="cert-score-badge" id="cert-score-display"></div>
     <div class="cert-date" id="cert-date"></div>
     <div class="cert-sig">
       <div class="cert-sig-line"></div>
       <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
     </div>
-    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+    <button class="btn btn-primary print-btn" onclick="window.print()">🖨️ Print Certificate</button>
   </div>
 
 </main>
 
 <script>
-  const totalSections = 4;
-  const TOTAL_Q = 15;
+  const totalSections = 5;
   let currentSection = 0;
   const sectionsDone = new Set();
   const answers = {};
   let lastScore = 0;
   let starRating = 0;
 
-  const correctAnswers = { 1:'b',2:'b',3:'b',4:'b',5:'a',6:'c',7:'b',8:'c',9:'a',10:'c',11:'c',12:'b',13:'b',14:'b',15:'c' };
+  function toggleCheck(checkBox) {
+    checkBox.classList.toggle('checked');
+  }
+
+  const correctAnswers = { 1:'a',2:'b',3:'b',4:'a',5:'b',6:'a',7:'a',8:'b',9:'b',10:'a',11:'b',12:'b' };
   const feedbackText = {
-    1: { correct: "✅ Correct! Legal Assistants support the Case Manager with follow-ups, records requests, documentation, and keeping cases moving.", incorrect: "❌ Not quite. The Legal Assistant's role is to support the Case Manager — handling records requests, follow-ups, documentation, and keeping cases on track." },
-    2: { correct: "✅ Correct! 40% at fault = 60% recovery. Georgia comparative negligence reduces recovery by fault percentage. 50%+ = zero recovery.", incorrect: "❌ Incorrect. Under O.C.G.A. § 51-12-33, recovery is reduced by the client's fault percentage. 40% at fault = 60% recovery. At 50%+, they get nothing." },
-    3: { correct: "✅ Correct! Pending Demand = treatment is complete, we have the records, and we're building the demand package.", incorrect: "❌ Not quite. 'Pending Demand' is the status after treatment ends and before the demand letter goes out — we're assembling the demand package." },
-    4: { correct: "✅ Correct! BI (Bodily Injury) pays for injuries to OTHER people caused by the at-fault driver. It's our primary target in PI cases.", incorrect: "❌ Incorrect. BI = Bodily Injury = it covers injuries to OTHER people caused by the at-fault driver. That's the main coverage we pursue in PI cases." },
-    5: { correct: "✅ Correct! When the at-fault driver is uninsured, we pursue Uninsured Motorist (UM) coverage on our client's own auto policy.", incorrect: "❌ Not quite. When the at-fault driver has NO insurance, we file a UM (Uninsured Motorist) claim on our client's own policy. Their insurer steps in as if they were the at-fault driver." },
-    6: { correct: "✅ Correct! MedPay pays for medical expenses regardless of fault. Quick, simple, and doesn't require proving the other driver was at fault.", incorrect: "❌ Not quite. MedPay is unique because it pays for medical expenses REGARDLESS of fault. Our client doesn't have to prove anything — it pays automatically." },
-    7: { correct: "✅ Correct! LOR within 24-48 hours. Every day without it = the insurer can contact the client directly and potentially get a recorded statement.", incorrect: "❌ Incorrect. The LOR must go out within 24-48 hours of the client signing. Before that, the insurance company can legally contact the client directly." },
-    8: { correct: "✅ Correct! The LOP is a promise to the medical provider that they'll be paid from the settlement proceeds. It lets clients treat without paying upfront.", incorrect: "❌ Not quite. LOP = Letter of Protection. It goes to the MEDICAL PROVIDER — promising payment from the settlement so the client can get treatment on credit." },
-    9: { correct: "✅ Correct! HIPAA law requires a signed patient authorization before any provider can share records with us.", incorrect: "❌ Incorrect. HIPAA requires a signed authorization from the client before any provider will release records to us. No auth = no records." },
-    10: { correct: "✅ Correct! The 14-day follow-up rule applies to every outstanding records request and unanswered communication — no exceptions.", incorrect: "❌ Not quite. The 14-day rule covers ALL outstanding requests — records, lien letters, adjuster communications. Every 14 days, follow up and log it." },
-    11: { correct: "✅ Correct! O.C.G.A. § 33-3-28: insurers must disclose limits within 30 days of a written request.", incorrect: "❌ Incorrect. Under O.C.G.A. § 33-3-28, insurance companies have 30 days from a written request to disclose policy limits." },
-    12: { correct: "✅ Correct! A claim = negotiated with the insurance company (no court). A lawsuit = filed in court when insurance won't settle fairly.", incorrect: "❌ Incorrect. Claim = we negotiate directly with the insurance company. Lawsuit = we file with the court. Most cases resolve at the claim stage." },
-    13: { correct: "✅ Correct! Log EVERY call — even failed attempts. Date, time, outcome. 'No answer, left voicemail' counts. This is your paper trail.", incorrect: "❌ Incorrect. Log every call in CasePeer — even when no one answers. A record of 'called at 2pm, no answer, left voicemail' is still important documentation." },
-    14: { correct: "✅ Correct! UM/UIM stacking combines limits from multiple policies. If a client has two vehicles with $50K UM each, they may be able to stack for $100K total.", incorrect: "❌ Not quite. Stacking = combining UM/UIM limits from multiple policies. This can significantly increase available coverage and should always be explored." },
-    15: { correct: "✅ Correct! Always request records AND itemized billing in the same request. Records show injuries; billing shows economic damages. Both required for demand.", incorrect: "❌ Incorrect. Always request BOTH medical records AND itemized billing together. You need both for the demand package — injuries and the dollar amounts." }
+    1: { correct: "✅ Correct! Georgia's minimum auto insurance is $25K/$50K/$25K (bodily injury per person/per accident/property damage).", incorrect: "❌ Not quite. Georgia minimum coverage is $25,000 bodily injury per person, $50,000 per accident, $25,000 property damage." },
+    2: { correct: "✅ Correct! E-Myth teaches that systems must function independently of any individual person — the 'franchise prototype' principle.", incorrect: "❌ Incorrect. E-Myth systems must work without the owner's personal involvement. If the process depends on one person, it's not a system." },
+    3: { correct: "✅ Correct! UM covers accidents with uninsured drivers; UIM covers accidents where the at-fault driver's limits are insufficient.", incorrect: "❌ Not quite. UM = Uninsured Motorist (no insurance), UIM = Underinsured Motorist (insufficient limits to cover damages)." },
+    4: { correct: "✅ Correct! Templates ensure professional, consistent communication representing GLG's brand, whether sent by any team member.", incorrect: "❌ Incorrect. Templates maintain GLG's professional standard and brand consistency across all communications, not speed or uniformity." },
+    5: { correct: "✅ Correct! LOPs create medical liens — legal rights to payment from settlement proceeds. These must be tracked and resolved.", incorrect: "❌ Not quite. A Letter of Protection creates a medical lien. The provider treated on credit and has legal right to settlement payment." },
+    6: { correct: "✅ Correct! Atomic Habits principle: one missed action is a mistake, two consecutive misses starts forming a bad habit.", incorrect: "❌ Incorrect. 'Never Miss Twice' means one missed follow-up is okay, but two in a row starts creating a bad habit pattern." },
+    7: { correct: "✅ Correct! HIPAA requires signed patient authorization before providers can legally release medical records to third parties.", incorrect: "❌ Incorrect. HIPAA compliance requires signed authorization from the client before any provider can release records to our firm." },
+    8: { correct: "✅ Correct! Rocks are the 3-7 most important priorities for the next 90 days in the EOS system.", incorrect: "❌ Not quite. In Traction EOS, Rocks are your quarterly priorities — the most important things to achieve in 90 days." },
+    9: { correct: "✅ Correct! Always request both medical records and itemized billing. Records show injuries; bills show economic damages.", incorrect: "❌ Incorrect. Always request both records AND billing together. Records document injuries, bills document economic damages for the demand." },
+    10: { correct: "✅ Correct! Specific feedback requests get specific, useful responses. 'How did I handle that call?' vs 'How am I doing?'", incorrect: "❌ Not quite. Radical Candor teaches asking specific questions. 'How did I handle X?' gets better feedback than general questions." },
+    11: { correct: "✅ Correct! The 14-day rule prevents cases from stalling by ensuring consistent follow-up on outstanding requests.", incorrect: "❌ Incorrect. The 14-day follow-up rule exists to prevent cases from stalling and ensure consistent progress on records retrieval." },
+    12: { correct: "✅ Correct! Essential Lawyering teaches that case value is determined by documentation quality, not client statements or damage severity.", incorrect: "❌ Not quite. According to Essential Lawyering, insurance companies pay based on documented medical evidence, not client descriptions." }
   };
 
   function goToSection(idx) {
@@ -751,9 +831,9 @@
     document.getElementById('results-section').classList.remove('active');
     document.getElementById('feedback-section').style.display = 'none';
     document.getElementById('certificate').classList.remove('show');
-    if (idx === 4) {
+    if (idx === 5) {
       document.getElementById('quiz-section').classList.add('active');
-      updateProgress(4, false);
+      updateProgress(5, false);
     } else {
       document.getElementById('section-' + idx).classList.add('active');
       currentSection = idx;
@@ -767,7 +847,7 @@
   function startQuiz() {
     for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
     updateNavPills();
-    goToSection(4);
+    goToSection(5);
     resetQuizUI();
   }
 
@@ -775,7 +855,7 @@
     document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
     document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
     document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
-    for (let i = 1; i <= TOTAL_Q; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
+    for (let i = 1; i <= 12; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
   }
 
   function answer(qNum, chosen, isCorrect) {
@@ -802,41 +882,33 @@
   function showResults() {
     document.getElementById('quiz-section').classList.remove('active');
     let correct = 0;
-    const qLabels = ["LA role at GLG","Comparative negligence at 40%","Status when treatment ends","BI coverage pays for?","Uninsured driver — which coverage?","MedPay unique because?","LOR must be sent within?","LOP is a promise to?","Before requesting records you need?","14-day rule applies to?","O.C.G.A. § 33-3-28 timeline?","Claim vs lawsuit?","Every call should be?","UM/UIM stacking means?","Records request must always include?"];
+    const qTexts = ["GA minimum coverage","E-Myth systems principle","UM vs UIM difference","Templates ensure what","LOP creates what","Never miss twice","Before requesting records","What are Rocks","Always request both","How to ask feedback","14-day rule purpose","What determines case value"];
     Object.values(answers).forEach(v => { if (v) correct++; });
-    const pct = Math.round((correct / TOTAL_Q) * 100);
-    const passed = pct >= 80;
+    const pct = Math.round((correct / 12) * 100);
+    const passed = pct >= 85;
     lastScore = pct;
     const resultsSection = document.getElementById('results-section');
     resultsSection.classList.add('active');
     document.getElementById('results-score').textContent = pct + '%';
-    document.getElementById('results-status').textContent = passed ? '🎉 Week 1 Complete!' : '❌ Not Quite — Review and Try Again';
+    document.getElementById('results-status').textContent = passed ? '🎉 Week 1 Complete!' : '📚 Need More Review';
     document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
     let html = '';
-    const dayMap = { 1:'Day 1',2:'Day 2',3:'Day 2',4:'Day 3',5:'Day 3',6:'Day 3',7:'Day 4',8:'Day 4',9:'Day 4',10:'Day 4',11:'Day 3',12:'Day 2',13:'Day 4',14:'Day 3',15:'Day 4' };
-    const missed = [];
-    for (let i = 1; i <= TOTAL_Q; i++) {
-      const ok = answers[i];
-      if (!ok) missed.push(dayMap[i]);
-      html += `<div class="breakdown-item"><div class="dot ${ok?'correct':'incorrect'}"></div>Q${i}: ${qLabels[i-1]} <strong>${ok?'✓':'✗'}</strong></div>`;
-    }
+    for (let i = 1; i <= 12; i++) { const ok = answers[i]; html += `<div class="breakdown-item"><div class="dot ${ok?'correct':'incorrect'}"></div>Q${i}: ${qTexts[i-1]} <strong>${ok?'✓':'✗'}</strong></div>`; }
     document.getElementById('results-breakdown').innerHTML = html;
-    if (!passed) {
-      const uniqueMissed = [...new Set(missed)].sort();
-      document.getElementById('retake-hint').style.display = 'block';
-      document.getElementById('retake-hint').innerHTML = `<strong>📖 Review Suggestion:</strong> You missed questions from ${uniqueMissed.join(', ')}. Go back and re-read those modules before retaking the assessment.`;
-      document.getElementById('retake-btn').style.display = 'block';
-    }
-    updateProgress(4, passed);
+    if (!passed) { document.getElementById('retake-btn').style.display = 'block'; }
+    updateProgress(5, passed);
     updateNavPills();
     if (passed) { document.getElementById('feedback-section').style.display = 'block'; }
     window.scrollTo(0, 0);
   }
 
-  function setStar(val) { starRating = val; document.querySelectorAll('.star').forEach(s => { s.classList.toggle('lit', parseInt(s.dataset.val) <= val); }); }
+  function setStar(val) {
+    starRating = val;
+    document.querySelectorAll('.star').forEach(s => { s.classList.toggle('lit', parseInt(s.dataset.val) <= val); });
+  }
 
   function submitFeedback() {
-    if (!starRating) { alert('Please rate the clarity of the content (1–5 stars).'); return; }
+    if (!starRating) { alert('Please rate your confidence level (1–5 stars).'); return; }
     document.getElementById('feedback-section').style.display = 'none';
     showCertificate(lastScore);
   }
@@ -844,7 +916,7 @@
   function showCertificate(pct) {
     const cert = document.getElementById('certificate');
     cert.classList.add('show');
-    document.getElementById('cert-score-display').textContent = pct + '% — Week 1 Complete!';
+    document.getElementById('cert-score-display').textContent = pct + '% — Week 1 Complete';
     const now = new Date();
     document.getElementById('cert-date').textContent = 'Completed: ' + now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
     window.scrollTo(0, cert.offsetTop - 20);
@@ -855,9 +927,8 @@
     document.getElementById('results-section').classList.remove('active');
     document.getElementById('certificate').classList.remove('show');
     document.getElementById('retake-btn').style.display = 'none';
-    document.getElementById('retake-hint').style.display = 'none';
     document.getElementById('feedback-section').style.display = 'none';
-    goToSection(4);
+    goToSection(5);
     resetQuizUI();
   }
 
@@ -865,7 +936,7 @@
     const fill = document.getElementById('progress-fill');
     const txt = document.getElementById('progress-text');
     let pct = 0, label = '';
-    if (idx < 4) { pct = ((idx + 1) / 5) * 100; label = 'Section ' + (idx + 1) + ' of 4'; }
+    if (idx < 5) { pct = ((idx + 1) / 6) * 100; label = 'Section ' + (idx + 1) + ' of 5'; }
     else { pct = quizPassed ? 100 : 90; label = quizPassed ? 'Week 1 Complete! ✓' : 'Assessment'; }
     fill.style.width = pct + '%';
     txt.textContent = label;
@@ -875,83 +946,10 @@
     document.querySelectorAll('.nav-pill').forEach(pill => {
       const t = parseInt(pill.dataset.target);
       pill.classList.remove('active','done');
-      if (t < 4 && sectionsDone.has(t)) pill.classList.add('done');
+      if (t < 5 && sectionsDone.has(t)) pill.classList.add('done');
     });
   }
-
-  document.querySelectorAll('[ontouchend]').forEach(el => { el.addEventListener('touchend', function(e) { e.preventDefault(); }); });
 </script>
 
-<!-- EMAIL RESULTS SECTION -->
-<div id="email-results" style="display:none;margin-top:20px;padding:20px;background:#f0f7ff;border-radius:8px;border:1px solid #ccc;">
-<h3 style="color:#141c2c;margin-bottom:12px;">Submit Your Results</h3>
-<p style="font-size:.9rem;color:#555;margin-bottom:12px;">Click the button below to email your quiz score and feedback to Harrell.</p>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How clear was the content? (1-5)</label>
-<select id="fb-clarity" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="5">5 - Very Clear</option>
-<option value="4">4 - Mostly Clear</option>
-<option value="3">3 - Somewhat Clear</option>
-<option value="2">2 - Confusing</option>
-<option value="1">1 - Very Confusing</option>
-</select>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Was anything confusing? If yes, what?</label>
-<textarea id="fb-confusing" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How long did this module take?</label>
-<select id="fb-time" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="15 minutes or less">15 minutes or less</option>
-<option value="15-30 minutes">15-30 minutes</option>
-<option value="30-45 minutes">30-45 minutes</option>
-<option value="45-60 minutes">45-60 minutes</option>
-<option value="Over 1 hour">Over 1 hour</option>
-</select>
-</div>
-
-<div style="margin-bottom:16px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Any suggestions to make this better?</label>
-<textarea id="fb-suggestions" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<button onclick="sendResults()" style="background:#141c2c;color:#fff;padding:14px 28px;border:none;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1);">📧 Email My Results</button>
-</div>
-
-<script>
-function sendResults() {
-  var nameEl = document.getElementById('cert-name') || document.getElementById('certName');
-  var name = nameEl ? nameEl.value || nameEl.textContent : 'Unknown';
-  var title = document.title || 'Training Module';
-  var scoreText = document.getElementById('score-display') ? document.getElementById('score-display').textContent : (typeof score !== 'undefined' ? score + '/' + questions.length : 'N/A');
-  var clarity = document.getElementById('fb-clarity').value;
-  var confusing = document.getElementById('fb-confusing').value || 'None';
-  var time = document.getElementById('fb-time').value;
-  var suggestions = document.getElementById('fb-suggestions').value || 'None';
-
-  var subject = encodeURIComponent('Training Module Complete: ' + title + ' - ' + name);
-  var body = encodeURIComponent(
-    'TRAINING MODULE COMPLETION REPORT\n' +
-    '================================\n\n' +
-    'Employee: ' + name + '\n' +
-    'Module: ' + title + '\n' +
-    'Score: ' + scoreText + '\n' +
-    'Date: ' + new Date().toLocaleDateString() + '\n\n' +
-    'FEEDBACK:\n' +
-    'Clarity (1-5): ' + clarity + '\n' +
-    'Confusing sections: ' + confusing + '\n' +
-    'Time to complete: ' + time + '\n' +
-    'Suggestions: ' + suggestions + '\n'
-  );
-
-  window.location.href = 'mailto:hgunn@thegunnlawgroup.com?subject=' + subject + '&body=' + body;
-}
-</script>
-
-<script>document.addEventListener("DOMContentLoaded",function(){var obs=new MutationObserver(function(){var cert=document.getElementById("screen-cert")||document.querySelector(".certificate");if(cert&&cert.offsetParent!==null){var e=document.getElementById("email-results");if(e)e.style.display="block";}});obs.observe(document.body,{childList:true,subtree:true,attributes:true});});</script>
 </body>
 </html>

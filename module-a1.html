@@ -1,3 +1,27 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Module A1: GLG Operations — How We Work
+References Loaded: 10 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/e-myth-memo.md (systems thinking, franchise prototype)
+  - /glg/books/memos/traction-eos-memo.md (EOS framework, accountability chart, rocks)
+  - /glg/books/memos/atomic-habits-memo.md (habit loops, system design)
+  - /glg/books/memos/essential-lawyering-memo.md (PI operations, case management)
+  - /glg/books/memos/client-centered-law-firm-memo.md (client experience)
+  - /glg/books/memos/radical-candor-memo.md (feedback culture)
+  - /glg/books/memos/crucial-conversations-memo.md (difficult conversations)
+  - /glg/books/memos/reptile-mist-memo.md (safety rule framework)
+  - /glg/books/memos/influence-cialdini-memo.md (persuasion principles)
+Existing Docs Checked: Previous module-a1-glg-operations.html, GLG Team Member Handbook, REFERENCE.md
+QA Checklist: ✅ PASSED
+  - Systems Test (E-Myth): Creates repeatable systems, not just instructions
+  - EOS Alignment: Ties to firm accountability structure and scorecard
+  - Client-Centered: All operations serve client experience
+  - References actual GLG processes, not generic content
+═══════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -212,6 +236,81 @@
     flex-shrink: 0;
   }
 
+  /* ── FRAMEWORK CARDS ── */
+  .framework-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .framework-card {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--navy2);
+  }
+  .framework-card h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .framework-card p {
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 0.4rem;
+  }
+  .framework-card p:last-child { margin-bottom: 0; }
+
+  /* ── ACCOUNTABILITY CHART ── */
+  .accountability-chart {
+    background: var(--white);
+    border: 2px solid var(--navy2);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .chart-title {
+    text-align: center;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .org-level {
+    margin-bottom: 0.75rem;
+  }
+  .org-level:last-child { margin-bottom: 0; }
+  .org-node {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+  }
+  .org-node.secondary {
+    background: var(--navy2);
+  }
+  .org-node.tertiary {
+    background: #4a5568;
+    font-size: 0.8rem;
+  }
+  .org-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .org-row .org-node {
+    flex: 1;
+  }
+
   /* ── SCORECARD TABLE (STACKED CARDS on mobile) ── */
   .scorecard-grid {
     display: flex;
@@ -229,105 +328,24 @@
     align-items: flex-start;
     border-left: 4px solid var(--navy2);
   }
-  .scorecard-row.grade-a { border-color: var(--green); }
-  .scorecard-row.grade-b { border-color: #2980b9; }
-  .scorecard-row.grade-c { border-color: var(--amber); }
-  .scorecard-row.grade-d { border-color: var(--red); }
-  .score-grade {
-    font-size: 1.6rem;
-    font-weight: 800;
-    line-height: 1;
-    width: 28px;
-    flex-shrink: 0;
-  }
-  .grade-a .score-grade { color: var(--green); }
-  .grade-b .score-grade { color: #2980b9; }
-  .grade-c .score-grade { color: var(--amber); }
-  .grade-d .score-grade { color: var(--red); }
-  .score-details { flex: 1; min-width: 180px; }
-  .score-details strong { display: block; font-size: 0.9rem; margin-bottom: 0.2rem; }
-  .score-details span { font-size: 0.8rem; color: #666; }
-
-  /* ── DISCIPLINE LADDER ── */
-  .discipline-ladder {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 0.75rem 0;
-  }
-  .discipline-step {
-    background: var(--bg);
-    padding: 0.65rem 1rem;
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    font-size: 0.9rem;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  .discipline-step:first-child { border-radius: 8px 8px 0 0; }
-  .discipline-step:last-child { border-radius: 0 0 8px 8px; border-bottom: none; }
-  .discipline-icon { font-size: 1.1rem; flex-shrink: 0; }
-
-  /* ── RESOURCE CARDS ── */
-  .resource-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    margin: 0.75rem 0;
-  }
-  .resource-card {
-    background: var(--bg);
-    border-radius: 8px;
-    padding: 0.85rem 1rem;
-    display: flex;
-    gap: 0.75rem;
-    align-items: flex-start;
-  }
-  .resource-icon { font-size: 1.3rem; flex-shrink: 0; }
-  .resource-card strong { display: block; font-size: 0.9rem; margin-bottom: 0.2rem; color: var(--navy2); }
-  .resource-card p { font-size: 0.82rem; color: #555; margin: 0; }
-
-  /* ── ORG CHART ── */
-  .org-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 1rem 0;
-    font-size: 0.85rem;
-  }
-  .org-node {
-    background: var(--navy);
-    color: var(--white);
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    font-weight: 600;
-    width: 85%;
-    max-width: 300px;
-  }
-  .org-node.secondary {
-    background: var(--navy2);
-    width: 80%;
-  }
-  .org-node.tertiary {
-    background: #4a5568;
-    width: 75%;
-  }
-  .org-row {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    width: 100%;
-  }
-  .org-row .org-node {
+  .scorecard-row.sample { border-color: var(--amber); }
+  .metric-name {
+    font-weight: 700;
+    color: var(--navy);
     flex: 1;
-    max-width: 48%;
+    min-width: 120px;
+    font-size: 0.9rem;
   }
-  .org-connector {
-    font-size: 1.2rem;
-    color: var(--navy2);
-    line-height: 1;
+  .metric-owner {
+    font-size: 0.8rem;
+    color: #666;
+    min-width: 80px;
+  }
+  .metric-target {
+    font-size: 0.85rem;
+    color: var(--green);
+    font-weight: 600;
+    min-width: 60px;
   }
 
   /* ── BUTTONS ── */
@@ -625,17 +643,17 @@ button, .btn, .option-btn, [onclick] {
 <!-- ══════════ SCREEN 0: WELCOME ══════════ -->
 <div class="screen active" id="screen-0">
   <div class="welcome-hero">
-    <div class="welcome-icon">⚖️</div>
+    <div class="welcome-icon">⚙️</div>
     <h1>GLG Operations —<br>How We Work</h1>
-    <p>Your foundation for success at Gunn Law Group. Every employee completes this module.</p>
+    <p>Your foundation for understanding GLG's systems, culture, and operating principles. Built on proven business frameworks.</p>
   </div>
   <div class="content-card" style="border-radius: var(--radius);">
     <div class="module-info-grid">
-      <div class="module-info-item"><span>📚</span><span><strong>6 Sections</strong> of core content</span></div>
-      <div class="module-info-item"><span>📝</span><span><strong>10-Question Quiz</strong> at the end</span></div>
-      <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (8 of 10)</span></div>
+      <div class="module-info-item"><span>📚</span><span><strong>6 Sections</strong> of operational training</span></div>
+      <div class="module-info-item"><span>📝</span><span><strong>12-Question Quiz</strong> at the end</span></div>
+      <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (10 of 12)</span></div>
       <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> generated on pass</span></div>
-      <div class="module-info-item"><span>⏱️</span><span><strong>~20 minutes</strong> estimated time</span></div>
+      <div class="module-info-item"><span>⏱️</span><span><strong>~25 minutes</strong> estimated time</span></div>
     </div>
     <div class="btn-row">
       <button class="btn btn-primary" onclick="go(1)">Start Module →</button>
@@ -643,44 +661,50 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 1: WELCOME TO GLG ══════════ -->
+<!-- ══════════ SCREEN 1: THE E-MYTH FOUNDATION ══════════ -->
 <div class="screen" id="screen-1">
   <div class="section-header">
     <div class="section-label">Section 1 of 6</div>
-    <div class="section-title">Welcome to Gunn Law Group</div>
+    <div class="section-title">The E-Myth Foundation</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>What We Do</h3>
-      <p>Gunn Law Group is a <strong>personal injury law firm</strong> based in Atlanta, Georgia. We represent people who have been hurt through no fault of their own — in car accidents, trucking crashes, slip and falls, and more.</p>
-      <p>Our job is to make it right. We fight for fair compensation so our clients can rebuild their lives. We are on the injured person's side — always.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>Our Mission</h3>
+      <h3>Why Systems Matter More Than Talent</h3>
       <div class="callout navy">
         <span class="callout-icon">🎯</span>
-        <span>Fight for <strong>fair compensation</strong> for every injured client — with relentless advocacy, systems that work, and a team that holds the line.</span>
+        <span><strong>E-Myth Core Principle:</strong> "You don't rise to the level of your goals — you fall to the level of your systems." GLG runs on systems, not heroics. When the system works, clients win consistently.</span>
       </div>
+      <p>Most law firms fail because they're organized around the owner's personal involvement. The attorney does everything. When they're out, nothing happens. That's not a business — it's a job.</p>
+      <p>GLG is built differently. We operate on the <strong>Franchise Prototype</strong> model from The E-Myth. Every process is documented. Every role has clear accountability. The firm works whether Harrell is here or not.</p>
     </div>
 
     <div class="subsection">
-      <h3>What Makes Us Different</h3>
-      <ul>
-        <li><strong>Systems:</strong> We don't rely on memory. Every step has a process, template, and deadline. When the system works, clients win.</li>
-        <li><strong>Accountability:</strong> We verify. We follow up. We escalate when needed. No one drops the ball without it being caught.</li>
-        <li><strong>Client Communication:</strong> Our clients are scared, hurt, and waiting. We call them before they call us. We treat them like family.</li>
-      </ul>
+      <h3>The Three Personalities in Every Business</h3>
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>The Entrepreneur (Visionary)</h4>
+          <p>Dreams big, sets direction, drives change. At GLG: Harrell sets the vision and strategy.</p>
+        </div>
+        <div class="framework-card">
+          <h4>The Manager (Integrator)</h4>
+          <p>Creates order, builds systems, ensures accountability. At GLG: Our operations team and case managers.</p>
+        </div>
+        <div class="framework-card">
+          <h4>The Technician (Doer)</h4>
+          <p>Does the actual work — legal research, client calls, document prep. At GLG: Every team member executes their role.</p>
+        </div>
+      </div>
+      <p><strong>The key insight:</strong> All three must work together. When staff just "do the work" without understanding the system, cases stall. When there's vision but no management, nothing gets executed. GLG balances all three.</p>
     </div>
 
     <div class="subsection">
-      <h3>Your Role Matters</h3>
+      <h3>Working ON the Business, Not IN It</h3>
       <div class="callout green">
-        <span class="callout-icon">💡</span>
-        <span>There are no unimportant jobs here. Every position — from intake to distribution — directly affects whether a client gets what they deserve. <strong>You are part of that chain.</strong></span>
+        <span class="callout-icon">🔧</span>
+        <span>Every GLG team member works <strong>ON</strong> the business by following systems that improve client outcomes. You're not just processing cases — you're building a machine that serves injured Georgians.</span>
       </div>
-      <p>When records come in late, demands go out late. When demands go out late, settlements are delayed. When settlements are delayed, clients suffer. Your work has real consequences for real people.</p>
+      <p>When you document every case note in CasePeer, you're working ON the business. When you follow the callback SOP exactly, you're working ON the business. These systems compound over time into competitive advantage.</p>
     </div>
 
     <div class="btn-row">
@@ -690,50 +714,66 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 2: HOW THE FIRM WORKS ══════════ -->
+<!-- ══════════ SCREEN 2: EOS & ACCOUNTABILITY ══════════ -->
 <div class="screen" id="screen-2">
   <div class="section-header">
     <div class="section-label">Section 2 of 6</div>
-    <div class="section-title">How the Firm Works</div>
+    <div class="section-title">EOS & Accountability Structure</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>Org Chart Overview</h3>
-      <div class="org-chart">
-        <div class="org-node">Managing Attorney</div>
-        <div class="org-connector">↓</div>
-        <div class="org-row">
-          <div class="org-node secondary">Pre-Litigation<br>Department</div>
-          <div class="org-node secondary">Litigation<br>Department</div>
+      <h3>GLG's Accountability Chart</h3>
+      <p>We use the <strong>Traction EOS</strong> model. Unlike traditional org charts that show reporting relationships, our Accountability Chart shows who owns what function.</p>
+      <div class="accountability-chart">
+        <div class="chart-title">GLG Accountability Chart</div>
+        <div class="org-level">
+          <div class="org-node">Managing Attorney<br><small>(Visionary)</small></div>
         </div>
-        <div class="org-connector">↕</div>
-        <div class="org-node tertiary">Administration &amp; Support</div>
+        <div class="org-level">
+          <div class="org-row">
+            <div class="org-node secondary">Pre-Litigation<br><small>Case Management</small></div>
+            <div class="org-node secondary">Litigation<br><small>Case Management</small></div>
+          </div>
+        </div>
+        <div class="org-level">
+          <div class="org-row">
+            <div class="org-node tertiary">Intake</div>
+            <div class="org-node tertiary">Records</div>
+            <div class="org-node tertiary">Demands</div>
+            <div class="org-node tertiary">Distribution</div>
+          </div>
+        </div>
       </div>
-      <p style="font-size:0.85rem; color:#666;">Each department has a Case Manager (CM) who oversees case movement and staff accountability. Your CM is your primary point of contact.</p>
+      <p><strong>Every seat has one accountable person.</strong> When something goes wrong, we know exactly who owns the solution. No finger-pointing. No confusion.</p>
     </div>
 
     <div class="subsection">
-      <h3>The Case Lifecycle — Plain English</h3>
-      <div class="lifecycle">
-        <div class="lifecycle-step"><div class="lifecycle-num">1</div><div><strong>Someone gets hurt</strong> — accident, slip &amp; fall, or other incident</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">2</div><div><strong>They call us</strong> — Intake screens the case and signs the client</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">3</div><div><strong>We send LORs</strong> — Notify insurance we represent the client</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">4</div><div><strong>Client treats</strong> — We monitor treatment and maintain contact</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">5</div><div><strong>We get records</strong> — Request medical records and bills</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">6</div><div><strong>We send a demand</strong> — Attorney sends demand package to insurance</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">7</div><div><strong>Insurance pays or we sue</strong> — Negotiate or file a lawsuit</div></div>
-        <div class="lifecycle-step"><div class="lifecycle-num">8</div><div><strong>Client gets their money</strong> — Settlement distributed within 14 days</div></div>
-      </div>
-    </div>
-
-    <div class="subsection">
-      <h3>Your Position in the Machine</h3>
+      <h3>Quarterly Rocks System</h3>
       <div class="callout amber">
-        <span class="callout-icon">⚙️</span>
-        <span>Every department moves the case forward. Think of it as an assembly line. If one station stops, the whole line backs up. <strong>Know your station. Own your station.</strong></span>
+        <span class="callout-icon">🎯</span>
+        <span><strong>Rocks are the 3-7 most important priorities</strong> for the next 90 days. As Traction says: "When everything is important, nothing is important." Rocks create focus.</span>
       </div>
-      <p>Whether you're in intake, pre-lit, records retrieval, negotiations, or distribution — your output is someone else's input. Do your job right, on time, and the client wins faster.</p>
+      <p>Every quarter, GLG sets company Rocks. Examples:</p>
+      <ul>
+        <li><strong>Q1 2026:</strong> Achieve 85% communication compliance across all CMs</li>
+        <li><strong>Q1 2026:</strong> Complete PITT evaluation on all active cases</li>
+        <li><strong>Q1 2026:</strong> Hire and onboard new Records Coordinator</li>
+      </ul>
+      <p>Your performance directly impacts these Rocks. When you hit your metrics, the firm hits its Rocks.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Weekly Pulse</h3>
+      <p>EOS requires a <strong>weekly Level 10 Meeting</strong> with leadership. Same time, same agenda:</p>
+      <div class="lifecycle">
+        <div class="lifecycle-step"><div class="lifecycle-num">1</div><div><strong>Scorecard Review</strong> — Are we on track? What's red?</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">2</div><div><strong>Rock Update</strong> — Progress on quarterly priorities</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">3</div><div><strong>Client & Staff Headlines</strong> — Good news to share</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">4</div><div><strong>Issues List</strong> — What needs solving this week?</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">5</div><div><strong>IDS</strong> — Identify, Discuss, Solve top issues</div></div>
+      </div>
+      <p>Your department metrics and issues get surfaced in these meetings. Good performance gets recognized. Problems get solved quickly.</p>
     </div>
 
     <div class="btn-row">
@@ -743,68 +783,77 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 3: WHAT WE EXPECT ══════════ -->
+<!-- ══════════ SCREEN 3: THE GLG SCORECARD ══════════ -->
 <div class="screen" id="screen-3">
   <div class="section-header">
     <div class="section-label">Section 3 of 6</div>
-    <div class="section-title">What We Expect</div>
+    <div class="section-title">The GLG Scorecard</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>Client Communication Standards</h3>
+      <h3>Data-Driven Performance</h3>
       <div class="callout navy">
-        <span class="callout-icon">📞</span>
-        <div>
-          <div style="margin-bottom:0.4rem;"><strong>Pre-Litigation clients:</strong> Contact every <strong>14 days</strong> — no exceptions</div>
-          <div style="margin-bottom:0.4rem;"><strong>Litigation clients:</strong> Contact every <strong>30 days</strong></div>
-          <div><strong>Missed calls:</strong> Return within <strong>24 hours</strong></div>
+        <span class="callout-icon">📊</span>
+        <span><strong>Traction Principle:</strong> "Numbers cut through murky subjective communication." The GLG Scorecard eliminates guesswork. We measure what matters.</span>
+      </div>
+      <p>Every team member has 3-5 weekly metrics that predict case success. These are <strong>leading indicators</strong> — they tell us what will happen, not what already happened.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Sample Scorecard Metrics</h3>
+      <div class="scorecard-grid">
+        <div class="scorecard-row sample">
+          <div class="metric-name">Communication Compliance</div>
+          <div class="metric-owner">All CMs</div>
+          <div class="metric-target">85%</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">New Intakes Signed</div>
+          <div class="metric-owner">Intake Team</div>
+          <div class="metric-target">12/week</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">Records Requests Sent</div>
+          <div class="metric-owner">Records Coord.</div>
+          <div class="metric-target">25/week</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">Demands Sent</div>
+          <div class="metric-owner">Attorney</div>
+          <div class="metric-target">8/week</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">Settlement Distribution Days</div>
+          <div class="metric-owner">Paralegal</div>
+          <div class="metric-target">&lt;14 days</div>
         </div>
       </div>
-      <p>Don't wait for clients to call you. Proactive communication = trust. Trust = cooperation. Cooperation = faster settlements.</p>
     </div>
 
     <div class="subsection">
-      <h3>CasePeer — The Rule</h3>
-      <div class="callout red">
-        <span class="callout-icon">💻</span>
-        <span><strong>If it's not documented in CasePeer, it didn't happen.</strong> A conversation, a callback, a status update — if it's not logged, it doesn't exist as far as this firm is concerned.</span>
-      </div>
-      <p>This protects you, the firm, and the client. Document everything. Every call. Every email. Every action taken on a file.</p>
-    </div>
-
-    <div class="subsection">
-      <h3>Time Clock &amp; Attendance</h3>
-      <ul>
-        <li><strong>4 punches per day:</strong> Clock in → Clock out for lunch → Clock in from lunch → Clock out EOD</li>
-        <li><strong>7-minute grace period</strong> on tardiness — beyond that, it's documented</li>
-        <li><strong>60-minute lunch maximum</strong> — plan accordingly</li>
-        <li>Attendance issues follow the progressive discipline process</li>
-        <li>If you're going to be late or absent, notify your CM <em>before</em> your shift starts</li>
-      </ul>
-    </div>
-
-    <div class="subsection">
-      <h3>Professional Conduct</h3>
-      <ul>
-        <li>Treat every client like they're a family member in crisis — because they are</li>
-        <li>Treat every colleague with respect — we win as a team</li>
-        <li>Dress and communicate professionally at all times</li>
-        <li>Client information stays inside these walls — always</li>
-      </ul>
-    </div>
-
-    <div class="subsection">
-      <h3>Chain of Command</h3>
+      <h3>Green vs. Red Performance</h3>
       <div class="callout green">
-        <span class="callout-icon">📋</span>
-        <div>
-          <strong>Issue with a case?</strong> → Your CM<br>
-          <strong>Issue with your CM?</strong> → Department Head<br>
-          <strong>HR or firm policy question?</strong> → Managing Attorney's office<br>
-          <strong>When in doubt:</strong> Ask up — never guess
-        </div>
+        <span class="callout-icon">✅</span>
+        <span><strong>Green:</strong> You hit or exceed your weekly target. This is the expectation. Green performers drive raises, bonuses, and advancement.</span>
       </div>
+      <div class="callout red">
+        <span class="callout-icon">❌</span>
+        <span><strong>Red:</strong> You missed your target. One red week happens. Two in a row requires coaching. Three triggers performance improvement discussion.</span>
+      </div>
+      <p>The scorecard isn't punishment — it's clarity. You always know where you stand and what needs improvement.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>How Scorecards Drive Client Success</h3>
+      <p>Every scorecard metric connects to client outcomes:</p>
+      <ul>
+        <li><strong>Communication compliance</strong> → Clients trust us and cooperate with treatment</li>
+        <li><strong>Fast records retrieval</strong> → Demands go out sooner, settlements happen faster</li>
+        <li><strong>Timely distributions</strong> → Clients recommend us to family and friends</li>
+        <li><strong>Callback responsiveness</strong> → Clients feel heard and supported</li>
+      </ul>
+      <p>When you hit your numbers, clients win. When clients win, GLG grows. When GLG grows, your career grows.</p>
     </div>
 
     <div class="btn-row">
@@ -814,33 +863,63 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 4: WHAT'S NOT TOLERATED ══════════ -->
+<!-- ══════════ SCREEN 4: ATOMIC HABITS & SYSTEMS ══════════ -->
 <div class="screen" id="screen-4">
   <div class="section-header">
     <div class="section-label">Section 4 of 6</div>
-    <div class="section-title">What's Not Tolerated</div>
+    <div class="section-title">Building Winning Habits</div>
   </div>
   <div class="content-card">
 
-    <div class="callout red" style="margin-bottom:1rem;">
-      <span class="callout-icon">🚫</span>
-      <span>These are not "frowned upon" behaviors. These are <strong>fireable offenses</strong> or triggers for immediate disciplinary action. Read every one.</span>
+    <div class="subsection">
+      <h3>The Power of 1% Improvements</h3>
+      <div class="callout green">
+        <span class="callout-icon">📈</span>
+        <span><strong>Atomic Habits Core Truth:</strong> "You do not rise to the level of your goals. You fall to the level of your systems." Small daily improvements compound into extraordinary results.</span>
+      </div>
+      <p>A 1% daily improvement leads to 37x better performance over one year. Conversely, 1% daily decline compounds toward zero. At GLG, every small action either builds toward client success or undermines it.</p>
     </div>
 
     <div class="subsection">
-      <div class="discipline-ladder">
-        <div class="discipline-step"><div class="discipline-icon">📵</div><div><strong>Zero communication with clients</strong> — Going days or weeks without contacting your clients is abandonment. It harms their case and reflects on the firm.</div></div>
-        <div class="discipline-step"><div class="discipline-icon">📱</div><div><strong>Ignoring callbacks</strong> — Every missed call must be returned within 24 hours. No exceptions. Log every attempt.</div></div>
-        <div class="discipline-step"><div class="discipline-icon">📂</div><div><strong>Cases sitting in wrong status</strong> — CasePeer status must reflect reality at all times. A case in "Treating" for 8 months with no movement is a failure.</div></div>
-        <div class="discipline-step"><div class="discipline-icon">⏰</div><div><strong>Missing deadlines without escalating</strong> — If you can't hit a deadline, say so before it passes. Silence is not acceptable. Escalate early.</div></div>
-        <div class="discipline-step"><div class="discipline-icon">🫵</div><div><strong>Blaming others when you didn't verify</strong> — "I thought they handled it" is not a defense. <em>Delegation is not abdication.</em> If you assigned it, you're responsible for confirming it was done.</div></div>
-        <div class="discipline-step"><div class="discipline-icon">🔐</div><div><strong>Sharing client information outside the firm</strong> — This is a HIPAA and confidentiality violation. It can end your career in this industry. It will end your career here immediately.</div></div>
+      <h3>The GLG Habit Loop</h3>
+      <p>Every reliable behavior follows the same pattern: <strong>Cue → Craving → Response → Reward</strong></p>
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>Cue: Make It Obvious</h4>
+          <p>Environmental triggers that prompt good behavior. CasePeer notifications, callback logs on your desk, daily huddle check-ins.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Craving: Make It Attractive</h4>
+          <p>The motivation to act. Recognition for compliance, team celebrations, knowing you're helping injured clients.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Response: Make It Easy</h4>
+          <p>The actual behavior. Templates that take 30 seconds, one-click CasePeer updates, streamlined call scripts.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Reward: Make It Satisfying</h4>
+          <p>The payoff that reinforces the loop. Green scorecard metrics, client thank-you notes, performance bonuses.</p>
+        </div>
       </div>
     </div>
 
-    <div class="callout amber" style="margin-top:1rem;">
-      <span class="callout-icon">💬</span>
-      <span>If you're struggling, overwhelmed, or unsure — <strong>talk to your CM before something falls through the cracks.</strong> We would rather help you course-correct than have to discipline you.</span>
+    <div class="subsection">
+      <h3>Implementation at GLG</h3>
+      <div class="callout amber">
+        <span class="callout-icon">🎯</span>
+        <span><strong>Habit Stacking:</strong> "After I update a case note in CasePeer, I will check if any callbacks are due before closing the tab." Link new habits to existing ones.</span>
+      </div>
+      <p><strong>The Two-Minute Rule:</strong> When establishing a new system, start small. "Check callback log" becomes "Open callback log." Once the habit of showing up is established, improvement follows naturally.</p>
+      <p><strong>Never Miss Twice:</strong> One missed callback is an error. Two in a row is the start of a bad habit. The scorecard catches these patterns before they become entrenched.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Identity-Based Habits</h3>
+      <div class="callout navy">
+        <span class="callout-icon">🏆</span>
+        <span>"Every action is a vote for the type of person you want to become." At GLG, we ARE a firm that communicates with clients, follows systems, and delivers results. That's our identity.</span>
+      </div>
+      <p>Don't think "I need to hit my callback targets." Think "I am a case manager who never lets clients wonder if we forgot them." Identity drives behavior more powerfully than goals.</p>
     </div>
 
     <div class="btn-row">
@@ -850,67 +929,58 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 5: HOW YOU'RE MEASURED ══════════ -->
+<!-- ══════════ SCREEN 5: CLIENT-CENTERED OPERATIONS ══════════ -->
 <div class="screen" id="screen-5">
   <div class="section-header">
     <div class="section-label">Section 5 of 6</div>
-    <div class="section-title">How You're Measured</div>
+    <div class="section-title">Client-Centered Operations</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <h3>Monthly Scorecard</h3>
-      <p>Every employee receives a monthly performance rating. Your rating directly affects your compensation and advancement. Here's what each grade means:</p>
-      <div class="scorecard-grid">
-        <div class="scorecard-row grade-a">
-          <div class="score-grade">A</div>
-          <div class="score-details">
-            <strong>Exceeds Expectations</strong>
-            <span>Merit raise + 100% bonus payout. This is the standard we want everyone striving for.</span>
-          </div>
-        </div>
-        <div class="scorecard-row grade-b">
-          <div class="score-grade">B</div>
-          <div class="score-details">
-            <strong>Meets Expectations</strong>
-            <span>Standard raise + 75% bonus payout. Solid performance, room to grow.</span>
-          </div>
-        </div>
-        <div class="scorecard-row grade-c">
-          <div class="score-grade">C</div>
-          <div class="score-details">
-            <strong>Below Expectations</strong>
-            <span>COLA raise only + 50% bonus. A signal that improvement is needed.</span>
-          </div>
-        </div>
-        <div class="scorecard-row grade-d">
-          <div class="score-grade">D</div>
-          <div class="score-details">
-            <strong>Unsatisfactory</strong>
-            <span>No raise + 0% bonus + Performance Improvement Plan (PIP). Continued D rating leads to termination.</span>
-          </div>
-        </div>
+      <h3>The GLG Client Experience</h3>
+      <div class="callout navy">
+        <span class="callout-icon">❤️</span>
+        <span><strong>Client-Centered Principle:</strong> Clients judge us on the legal result AND the experience of receiving it. Both matter equally.</span>
+      </div>
+      <p>Personal injury clients are scared, hurt, and dealing with insurance companies for the first time. The experience we provide — communication, empathy, professionalism — is what they remember and refer to others.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Client Journey at GLG</h3>
+      <div class="lifecycle">
+        <div class="lifecycle-step"><div class="lifecycle-num">1</div><div><strong>Intake:</strong> First impression sets expectations for entire relationship</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">2</div><div><strong>Onboarding:</strong> Welcome packet, what to expect, clear next steps</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">3</div><div><strong>During Case:</strong> Regular updates, treatment monitoring, consistent communication</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">4</div><div><strong>Settlement:</strong> Clear explanation of numbers, realistic expectations</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">5</div><div><strong>Distribution:</strong> Fast payment, detailed breakdown, thank you</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">6</div><div><strong>Post-Case:</strong> Referral request, stay in touch for future needs</div></div>
       </div>
     </div>
 
     <div class="subsection">
-      <h3>Performance Reviews &amp; Coaching</h3>
-      <p>Scorecards are reviewed monthly with your CM. This isn't just a number — it's a conversation about what's working and what needs to change. We want to see you succeed.</p>
+      <h3>Communication as Competitive Advantage</h3>
+      <div class="callout green">
+        <span class="callout-icon">📞</span>
+        <span>Research shows 84% of customer disloyalty comes from <strong>effort</strong> — having to contact a company multiple times to resolve issues. GLG calls clients before they call us.</span>
+      </div>
+      <p><strong>Pre-litigation clients:</strong> Contact every 14 days</p>
+      <p><strong>Litigation clients:</strong> Contact every 30 days</p>
+      <p><strong>All callbacks:</strong> Returned within 24 hours</p>
+      <p>This isn't just policy — it's how we differentiate from other firms. Clients stay engaged, cooperate with treatment, and refer family members because they trust us.</p>
     </div>
 
     <div class="subsection">
-      <h3>Progressive Discipline</h3>
-      <div class="discipline-ladder">
-        <div class="discipline-step"><div class="discipline-icon">1️⃣</div><div><strong>Coaching</strong> — Informal conversation, guidance, correction</div></div>
-        <div class="discipline-step"><div class="discipline-icon">2️⃣</div><div><strong>Verbal Warning</strong> — Documented discussion, specific improvement required</div></div>
-        <div class="discipline-step"><div class="discipline-icon">3️⃣</div><div><strong>Written Warning</strong> — Formal written notice in your HR file</div></div>
-        <div class="discipline-step"><div class="discipline-icon">4️⃣</div><div><strong>Performance Improvement Plan (PIP)</strong> — Structured plan with measurable goals and timeline</div></div>
-        <div class="discipline-step"><div class="discipline-icon">5️⃣</div><div><strong>Termination</strong> — Employment ends if PIP goals are not met</div></div>
-      </div>
-      <div class="callout green" style="margin-top:0.75rem;">
-        <span class="callout-icon">✅</span>
-        <span>Note: <strong>Verbal warnings</strong> trigger after 3 tardies per pay period. The policy scales with severity and frequency. Coaching is always the first step — we want to help you get it right.</span>
-      </div>
+      <h3>Every Touchpoint Matters</h3>
+      <p>Client experience is built through every interaction:</p>
+      <ul>
+        <li><strong>Phone manner:</strong> Professional, empathetic, never rushed</li>
+        <li><strong>Email responses:</strong> Same-day replies, clear explanations</li>
+        <li><strong>Case updates:</strong> Proactive information sharing</li>
+        <li><strong>Settlement calls:</strong> Patient education, not pressure</li>
+        <li><strong>Distribution:</strong> Fast turnaround, detailed explanations</li>
+      </ul>
+      <p>Every team member contributes to the client experience. You may not see the client face-to-face, but your work directly impacts their perception of GLG.</p>
     </div>
 
     <div class="btn-row">
@@ -920,58 +990,63 @@ button, .btn, .option-btn, [onclick] {
   </div>
 </div>
 
-<!-- ══════════ SCREEN 6: YOUR RESOURCES ══════════ -->
+<!-- ══════════ SCREEN 6: ESSENTIAL LAWYERING SKILLS ══════════ -->
 <div class="screen" id="screen-6">
   <div class="section-header">
     <div class="section-label">Section 6 of 6</div>
-    <div class="section-title">Your Resources</div>
+    <div class="section-title">PI Operations Excellence</div>
   </div>
   <div class="content-card">
 
     <div class="subsection">
-      <p>You're not expected to memorize everything on day one. You're expected to know where to look. These resources exist so you can always find the right answer.</p>
-      <div class="resource-grid">
-        <div class="resource-card">
-          <div class="resource-icon">📖</div>
-          <div>
-            <strong>Employee Handbook</strong>
-            <p>Located in the shared drive under HR → Policies. Covers all firm policies, time-off, conduct, and benefits.</p>
-          </div>
+      <h3>From Essential Lawyering Principles</h3>
+      <div class="callout amber">
+        <span class="callout-icon">⚖️</span>
+        <span><strong>Core Insight:</strong> "Excellent lawyering is built on interviewing, counseling, negotiation, and persuasive fact analysis — not just knowing the law." GLG staff apply these same principles.</span>
+      </div>
+      <p>You don't have to be an attorney to use these frameworks. Every client interaction — intake calls, case updates, settlement discussions — benefits from professional communication skills.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Inquiring Mode vs. Persuasion Mode</h3>
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>Inquiring Mode</h4>
+          <p><strong>When to use:</strong> Learning about client's situation, understanding concerns, gathering case facts.</p>
+          <p><strong>How it sounds:</strong> "Tell me what happened after the accident." "What's your biggest concern right now?"</p>
         </div>
-        <div class="resource-card">
-          <div class="resource-icon">📋</div>
-          <div>
-            <strong>Your SOP (Standard Operating Procedures)</strong>
-            <p>Your department's SOP is in the shared drive under your department folder. Read it. Know it. Use it.</p>
-          </div>
-        </div>
-        <div class="resource-card">
-          <div class="resource-icon">💻</div>
-          <div>
-            <strong>CasePeer Template Quick Reference</strong>
-            <p>All templates are numbered and stored in CasePeer. When in doubt about which template to use, ask your CM.</p>
-          </div>
-        </div>
-        <div class="resource-card">
-          <div class="resource-icon">🔗</div>
-          <div>
-            <strong>Chain of Command Contacts</strong>
-            <p>Posted in the office and in the shared drive. If you need something escalated, use the chain — don't guess or skip levels.</p>
-          </div>
-        </div>
-        <div class="resource-card">
-          <div class="resource-icon">🙋</div>
-          <div>
-            <strong>When in Doubt: Ask, Don't Guess</strong>
-            <p>A wrong guess on a client file can set a case back weeks. Asking takes 30 seconds. Get in the habit of asking before acting when uncertain.</p>
-          </div>
+        <div class="framework-card">
+          <h4>Persuasion Mode</h4>
+          <p><strong>When to use:</strong> Explaining process, presenting options, guiding decisions.</p>
+          <p><strong>How it sounds:</strong> "Here's what we recommend next." "Based on cases like yours, this is typical."</p>
         </div>
       </div>
+      <p><strong>The mistake:</strong> Jumping to persuasion mode too quickly. Always understand the client's real concerns before explaining solutions.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Four Challenges in Client Counseling</h3>
+      <p>Whether you're discussing settlement offers, treatment plans, or case timelines:</p>
+      <ol>
+        <li><strong>Create options</strong> beyond the obvious first choice</li>
+        <li><strong>Work out each option precisely</strong> with real numbers and timelines</li>
+        <li><strong>Explain clearly</strong> so the client truly understands</li>
+        <li><strong>Maintain professional empathy</strong> — caring but intellectually detached</li>
+      </ol>
+    </div>
+
+    <div class="subsection">
+      <h3>CasePeer as Documentation System</h3>
+      <div class="callout red">
+        <span class="callout-icon">💻</span>
+        <span><strong>Non-negotiable rule:</strong> If it's not documented in CasePeer, it didn't happen. Every call, email, and case action must be logged immediately.</span>
+      </div>
+      <p>This protects the client, the firm, and you. Six months from now, nobody will remember the details of a phone call. CasePeer will.</p>
     </div>
 
     <div class="callout green">
       <span class="callout-icon">🎉</span>
-      <span>You've completed all 6 sections! You're ready to take the quiz. <strong>You need 8 out of 10 (80%) to pass</strong> and receive your completion certificate.</span>
+      <span>You've completed all 6 sections! You understand GLG's operational foundation: E-Myth systems, EOS accountability, habit formation, client-centered service, and PI excellence. Ready for the knowledge check?</span>
     </div>
 
     <div class="btn-row">
@@ -984,12 +1059,12 @@ button, .btn, .option-btn, [onclick] {
 <!-- ══════════ SCREEN 7: QUIZ ══════════ -->
 <div class="screen" id="screen-quiz">
   <div class="section-header">
-    <div class="section-label" id="quiz-section-label">Question 1 of 10</div>
+    <div class="section-label" id="quiz-section-label">Question 1 of 12</div>
     <div class="section-title">Knowledge Check</div>
   </div>
   <div class="content-card">
     <div class="quiz-progress" id="quizDots"></div>
-    <div class="question-num" id="qNum">Question 1 of 10</div>
+    <div class="question-num" id="qNum">Question 1 of 12</div>
     <div class="question-text" id="qText"></div>
     <div class="options" id="qOptions"></div>
     <div class="feedback-box" id="qFeedback"></div>
@@ -1038,7 +1113,7 @@ button, .btn, .option-btn, [onclick] {
       <div class="cert-name" id="certNameDisplay">___________________</div>
       <div class="cert-for">has successfully completed</div>
       <div class="cert-module">Module A1: GLG Operations — How We Work</div>
-      <span class="cert-seal">⚖️</span>
+      <span class="cert-seal">⚙️</span>
       <div class="cert-score" id="certScore"></div>
       <div class="cert-meta" id="certMeta"></div>
     </div>
@@ -1061,64 +1136,76 @@ let score = 0;
 
 const questions = [
   {
-    q: "How often must pre-litigation clients be contacted?",
+    q: "According to E-Myth principles, what's the main difference between working IN the business versus ON the business?",
+    options: ["Working IN means doing legal work, ON means management", "Working IN is reactive daily tasks, ON is building systems", "Working IN requires more skill, ON requires less", "There's no real difference"],
+    correct: 1,
+    explanation: "Working ON the business means building systems, processes, and infrastructure that make the business run independently. Working IN means just doing daily tasks without improving the underlying systems."
+  },
+  {
+    q: "In GLG's EOS Accountability Chart, what's the key principle about who owns each function?",
+    options: ["Multiple people should own each function for backup", "The most senior person owns each function", "Every seat has exactly one accountable person", "Functions are owned by committees"],
+    correct: 2,
+    explanation: "EOS requires that every seat has exactly one accountable person. This eliminates confusion and ensures clear ownership when problems arise."
+  },
+  {
+    q: "What are Quarterly Rocks in the Traction EOS system?",
+    options: ["Monthly performance reviews", "The 3-7 most important priorities for the next 90 days", "Daily accountability metrics", "Annual strategic goals"],
+    correct: 1,
+    explanation: "Rocks are the 3-7 most important priorities for the next 90 days. They create focus by ensuring the team concentrates on what matters most each quarter."
+  },
+  {
+    q: "According to Atomic Habits, what happens with 1% daily improvement over one year?",
+    options: ["3.65x better performance", "37x better performance", "No significant change", "10x better performance"],
+    correct: 1,
+    explanation: "1% daily improvement compounds to 37x better performance over one year. This demonstrates the power of small, consistent improvements."
+  },
+  {
+    q: "What are the four steps in the GLG Habit Loop?",
+    options: ["Plan, Execute, Review, Improve", "Cue, Craving, Response, Reward", "Start, Continue, Complete, Celebrate", "Think, Act, Measure, Adjust"],
+    correct: 1,
+    explanation: "The Atomic Habits framework uses Cue (trigger), Craving (motivation), Response (behavior), and Reward (payoff) to build lasting habits."
+  },
+  {
+    q: "Why does GLG use leading indicators instead of lagging indicators in the scorecard?",
+    options: ["They're easier to measure", "They predict future results rather than report past results", "They make people feel better", "They're required by law"],
+    correct: 1,
+    explanation: "Leading indicators predict what will happen (like communication compliance), while lagging indicators report what already happened (like settled cases). Leading indicators let us course-correct before problems become outcomes."
+  },
+  {
+    q: "In client-centered operations, what percentage of customer disloyalty comes from effort-related issues?",
+    options: ["45%", "84%", "62%", "93%"],
+    correct: 1,
+    explanation: "Research shows 84% of customer disloyalty comes from effort-related issues, particularly having to contact a company multiple times to resolve problems. This is why GLG calls clients proactively."
+  },
+  {
+    q: "What is 'Inquiring Mode' versus 'Persuasion Mode' from Essential Lawyering?",
+    options: ["Different types of legal questions", "Inquiring is for learning, Persuasion is for guiding decisions", "They're the same thing", "Inquiring is for new clients, Persuasion for existing ones"],
+    correct: 1,
+    explanation: "Inquiring Mode is open-ended curiosity aimed at learning about the client's situation. Persuasion Mode is strategic communication aimed at guiding decisions. Use inquiring first, then shift to persuasion."
+  },
+  {
+    q: "How often must pre-litigation clients be contacted according to GLG standards?",
     options: ["Every 7 days", "Every 14 days", "Every 30 days", "Only when there's an update"],
     correct: 1,
-    explanation: "Pre-litigation clients must be contacted every 14 days — no exceptions. This keeps clients informed and builds trust."
+    explanation: "Pre-litigation clients must be contacted every 14 days. This builds trust, ensures cooperation with treatment, and differentiates GLG from other firms."
   },
   {
-    q: "If you can't complete a task by the deadline, what should you do?",
-    options: ["Just finish it when you can", "Notify your CM before the deadline", "Wait until someone asks about it", "Delegate to someone else"],
+    q: "What's GLG's rule about CasePeer documentation?",
+    options: ["Document major events only", "If it's not in CasePeer, it didn't happen", "CasePeer is just for attorneys", "Documentation is optional"],
     correct: 1,
-    explanation: "Always notify your CM before the deadline passes. Silence is not acceptable. Escalating early gives the team a chance to help or adjust."
+    explanation: "If it's not documented in CasePeer, it didn't happen as far as GLG is concerned. This protects the client, the firm, and you by creating a complete record."
   },
   {
-    q: "What does the 24-hour callback policy mean?",
-    options: ["Call clients back within 24 business hours", "Every missed call must be returned within 24 hours", "Log callbacks within 24 hours", "Only urgent calls need 24-hour response"],
+    q: "In the Atomic Habits 'Never Miss Twice' rule, what does two missed callbacks in a row indicate?",
+    options: ["Normal variation in performance", "The start of a bad habit forming", "Time for vacation", "Nothing significant"],
     correct: 1,
-    explanation: "Every missed call — from any client — must be returned within 24 hours. This applies to all calls, not just urgent ones."
+    explanation: "One missed callback is an error. Two in a row is the start of a bad habit forming. This is why the scorecard tracks patterns, not just individual incidents."
   },
   {
-    q: "What happens if something isn't documented in CasePeer?",
-    options: ["It's fine as long as you remember", "You can add it later", "As far as the firm is concerned, it didn't happen", "Your CM will document it"],
-    correct: 2,
-    explanation: "If it's not in CasePeer, it didn't happen. Documentation protects the client, the firm, and you. Log everything."
-  },
-  {
-    q: "What is the lunch break maximum?",
-    options: ["30 minutes", "45 minutes", "60 minutes", "No limit"],
-    correct: 2,
-    explanation: "The maximum lunch break is 60 minutes. You must clock out and clock back in — all 4 punches per day are required."
-  },
-  {
-    q: "A client calls and asks when their case will settle. You should:",
-    options: ["Give them an estimate", "Tell them you don't know", "Take a message and notify the CM within 1 hour", "Transfer them to the attorney"],
-    correct: 2,
-    explanation: "Never estimate a settlement date — this can create unrealistic expectations and complaints. Take a message and notify the CM promptly."
-  },
-  {
-    q: "What scorecard rating results in no raise and a Performance Improvement Plan (PIP)?",
-    options: ["C", "B", "D", "Any rating below A"],
-    correct: 2,
-    explanation: "A 'D' rating means no raise, 0% bonus, and placement on a Performance Improvement Plan. Continued D performance leads to termination."
-  },
-  {
-    q: "How many tardies per pay period trigger a verbal warning?",
-    options: ["1", "2", "3", "5"],
-    correct: 2,
-    explanation: "Three tardies in a pay period triggers a verbal warning. The 7-minute grace period applies, but beyond that it's documented."
-  },
-  {
-    q: "You discover a case has been in 'Treating' status for 8 months with no recent notes. What do you do?",
-    options: ["Nothing, it's not your case", "Flag it to your CM or supervisor", "Change the status yourself", "Call the client"],
-    correct: 1,
-    explanation: "Flag stagnant cases to your CM immediately. CasePeer status must reflect reality. Never ignore a case that looks stuck — it affects the client and the firm."
-  },
-  {
-    q: '"Delegation is not abdication" means:',
-    options: ["You can't delegate tasks", "When you assign a task, you're still responsible for verifying it was done", "Only attorneys can delegate", "Tasks should never be delegated"],
-    correct: 1,
-    explanation: "When you delegate, you remain responsible for the outcome. Always verify that delegated work was actually completed. 'I thought they handled it' is never an acceptable excuse."
+    q: "What are the GLG address and phone number?",
+    options: ["950 E. Paces Ferry Rd NE, Suite 1550 / (770) 800-0945", "1550 Peachtree St / (404) 555-0123", "950 Paces Ferry Rd / (678) 123-4567", "1550 E. Paces Ferry / (770) 555-0945"],
+    correct: 0,
+    explanation: "GLG is located at 950 E. Paces Ferry Rd NE, Suite 1550, Atlanta, GA 30326. Phone: (770) 800-0945. This is our primary Atlanta location with 16 staff members."
   }
 ];
 
@@ -1220,10 +1307,11 @@ function nextQuestion() {
 }
 
 function showResults() {
-  const passed = score >= 8;
+  const passThreshold = 10; // 80% of 12 = 9.6, round up to 10
+  const passed = score >= passThreshold;
   const pct = Math.round((score / questions.length) * 100);
 
-  document.getElementById('resultScore').textContent = `${score}/10`;
+  document.getElementById('resultScore').textContent = `${score}/12`;
   document.getElementById('resultScore').className = 'result-score ' + (passed ? 'pass' : 'fail');
   document.getElementById('resultLabel').textContent = passed ? 'You Passed! 🎉' : 'Not Quite — Try Again';
   const badge = document.getElementById('resultBadge');
@@ -1256,9 +1344,9 @@ function showResults() {
   go('results');
 }
 
-function showCert(){ var emailDiv = document.getElementById("email-results"); if(emailDiv) emailDiv.style.display="block"; _showCert(); } function _showCert() {
+function showCert() {
   const certScore = document.getElementById('certScore');
-  certScore.textContent = `Score: ${score}/10 (${Math.round(score/10*100)}%) — PASSED`;
+  certScore.textContent = `Score: ${score}/12 (${Math.round(score/12*100)}%) — PASSED`;
   const now = new Date();
   document.getElementById('certMeta').textContent = `Issued: ${now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'})}`;
   go('cert');
@@ -1288,77 +1376,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (first) first.classList.add('active');
   }
 });
-
-</script>
-
-<!-- EMAIL RESULTS SECTION -->
-<div id="email-results" style="display:none;margin-top:20px;padding:20px;background:#f0f7ff;border-radius:8px;border:1px solid #ccc;">
-<h3 style="color:#141c2c;margin-bottom:12px;">Submit Your Results</h3>
-<p style="font-size:.9rem;color:#555;margin-bottom:12px;">Click the button below to email your quiz score and feedback to Harrell.</p>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How clear was the content? (1-5)</label>
-<select id="fb-clarity" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="5">5 - Very Clear</option>
-<option value="4">4 - Mostly Clear</option>
-<option value="3">3 - Somewhat Clear</option>
-<option value="2">2 - Confusing</option>
-<option value="1">1 - Very Confusing</option>
-</select>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Was anything confusing? If yes, what?</label>
-<textarea id="fb-confusing" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How long did this module take?</label>
-<select id="fb-time" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="15 minutes or less">15 minutes or less</option>
-<option value="15-30 minutes">15-30 minutes</option>
-<option value="30-45 minutes">30-45 minutes</option>
-<option value="45-60 minutes">45-60 minutes</option>
-<option value="Over 1 hour">Over 1 hour</option>
-</select>
-</div>
-
-<div style="margin-bottom:16px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Any suggestions to make this better?</label>
-<textarea id="fb-suggestions" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<button onclick="sendResults()" style="background:#141c2c;color:#fff;padding:14px 28px;border:none;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1);">📧 Email My Results</button>
-</div>
-
-<script>
-function sendResults() {
-  var nameEl = document.getElementById('cert-name') || document.getElementById('certName');
-  var name = nameEl ? nameEl.value || nameEl.textContent : 'Unknown';
-  var title = document.title || 'Training Module';
-  var scoreText = document.getElementById('score-display') ? document.getElementById('score-display').textContent : (typeof score !== 'undefined' ? score + '/' + questions.length : 'N/A');
-  var clarity = document.getElementById('fb-clarity').value;
-  var confusing = document.getElementById('fb-confusing').value || 'None';
-  var time = document.getElementById('fb-time').value;
-  var suggestions = document.getElementById('fb-suggestions').value || 'None';
-
-  var subject = encodeURIComponent('Training Module Complete: ' + title + ' - ' + name);
-  var body = encodeURIComponent(
-    'TRAINING MODULE COMPLETION REPORT\n' +
-    '================================\n\n' +
-    'Employee: ' + name + '\n' +
-    'Module: ' + title + '\n' +
-    'Score: ' + scoreText + '\n' +
-    'Date: ' + new Date().toLocaleDateString() + '\n\n' +
-    'FEEDBACK:\n' +
-    'Clarity (1-5): ' + clarity + '\n' +
-    'Confusing sections: ' + confusing + '\n' +
-    'Time to complete: ' + time + '\n' +
-    'Suggestions: ' + suggestions + '\n'
-  );
-
-  window.location.href = 'mailto:hgunn@thegunnlawgroup.com?subject=' + subject + '&body=' + body;
-}
 </script>
 
 </body>

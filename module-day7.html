@@ -1,3 +1,24 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: 2026-06-08
+Deliverable: Day 7 Training Module — Coverage Verification
+References Loaded: 7 files
+  - /Users/harrellgunn/.openclaw/workspace/glg/GATES/COO-GATES.md
+  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/essential-lawyering-memo.md
+  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/client-centered-law-firm-memo.md
+  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/e-myth-memo.md
+  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/reptile-mist-memo.md
+  - /Users/harrellgunn/.openclaw/workspace/glg/training/Coverage_Maximization_Checklist.docx
+  - /Users/harrellgunn/.openclaw/workspace/glg-pages/critical/REFERENCE.md
+Existing Docs Checked: Previous module-day7-coverage-verification.html for HTML structure
+QA Checklist: ✅ PASSED
+  - Systems Test: Creates step-by-step process for coverage verification
+  - EOS Alignment: Ties to case evaluation accountability metrics
+  - Client-Centered Test: Improves client financial recovery outcomes
+  - Consistency Check: References correct CasePeer workflow and firm details
+═══════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,115 +198,118 @@
 </div>
 
 <nav class="section-nav" role="navigation" aria-label="Module sections">
-  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. Verifying Coverage</button>
-  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. O.C.G.A. § 33-3-28</button>
-  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Opening a Claim</button>
-  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Claim Numbers &amp; Denials</button>
-  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. Multiple Coverages</button>
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. The System</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. Georgia Law</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Opening Claims</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Multiple Coverages</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. CasePeer Logging</button>
   <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
 </nav>
 
 <main>
 
-  <!-- SECTION 1: Verifying Coverage -->
+  <!-- SECTION 1: The System -->
   <div class="section-card active" id="section-0">
     <div class="section-header">
       <div class="section-num">Section 1</div>
-      <h2>How to Verify Insurance Coverage</h2>
+      <h2>Coverage Verification — The First Economic Analysis</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">One of your most important early tasks on every new case: <strong>verify insurance coverage for all parties.</strong> You need to know who's insured, with whom, and for how much — before you can open a claim or advise on strategy.</p>
+      <p style="font-size:15px; margin-bottom:18px;">Coverage verification is not paperwork — it's <strong>economic analysis.</strong> Before you can evaluate settlement strategy, set client expectations, or frame a Reptile safety argument, you must know the available money. This is your first and most critical financial task on every case.</p>
 
       <div class="info-block">
-        <h3>📋 Information You Need to Collect</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>For the At-Fault Driver</th><th>For Our Client</th></tr>
-            <tr><td>Insurance company name</td><td>Insurance company name</td></tr>
-            <tr><td>Policy number</td><td>Policy number</td></tr>
-            <tr><td>Claim number (if already opened)</td><td>UM/UIM coverage &amp; limits</td></tr>
-            <tr><td>Adjuster name &amp; phone</td><td>MedPay coverage &amp; limits</td></tr>
-            <tr><td>BI policy limits (30-day rule applies)</td><td>Health insurance provider &amp; policy #</td></tr>
-            <tr><td>PD coverage info</td><td>Any other auto policies (stacking)</td></tr>
-          </table>
+        <h3>💰 Why Coverage Drives Everything</h3>
+        <ul>
+          <li><strong>Settlement Strategy:</strong> $25K limits = policy limits demand. $500K limits = build the damages case</li>
+          <li><strong>Client Expectations:</strong> Never let a client believe they're getting $100K when only $25K exists</li>
+          <li><strong>Case Investment:</strong> High limits justify expensive medical treatment. Low limits don't</li>
+          <li><strong>Timeline Planning:</strong> Known limits enable time-limited demands that create settlement pressure</li>
+          <li><strong>UM/UIM Strategy:</strong> If at-fault limits are exhausted, client's own UM/UIM coverage becomes primary</li>
+        </ul>
+      </div>
+
+      <div class="law-block">
+        <h3>📖 Georgia Minimum Coverage Requirements</h3>
+        <div class="statute">25/50/25</div>
+        <p><strong>$25,000</strong> per person for Bodily Injury<br>
+        <strong>$50,000</strong> per accident for Bodily Injury<br>
+        <strong>$25,000</strong> per accident for Property Damage</p>
+        <p style="margin-top:10px; font-size:14px;">Many Georgia drivers carry only state minimums. Assume minimums until you verify otherwise.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Open the claim and verify active coverage on date of loss</div>
+            <div class="step-desc">First question: "Can you confirm your insured had active coverage on [date]?" Get claim number and adjuster assignment.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Send written LOR and limits request same day</div>
+            <div class="step-desc">LOR establishes representation. Separate written limits request triggers O.C.G.A. § 33-3-28 thirty-day clock.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Verify client's UM/UIM, MedPay, and health insurance</div>
+            <div class="step-desc">Run the full Coverage Maximization Checklist. Every policy in the household. Every source of available money.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Log everything in CasePeer with 30-day follow-up task</div>
+            <div class="step-desc">Coverage info, claim numbers, adjuster contacts, limits request date. Set task: "Limits response due under § 33-3-28."</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-status">Brief the attorney on available coverage within 48 hours</div>
+            <div class="step-desc">Total available money drives case strategy. Attorney needs this before making any settlement recommendations to client.</div>
+          </div>
         </div>
       </div>
 
-      <div class="info-block">
-        <h3>📞 How to Verify Coverage — Step by Step</h3>
-        <div class="pipeline" style="margin-bottom:0;">
-          <div class="pipeline-step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <div class="step-status">Get the at-fault driver's info from the client or police report</div>
-              <div class="step-desc">Name, license plate, insurance company name (from the declarations page or insurance card). The police report often has this.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <div class="step-status">Call the insurance company's claims line</div>
-              <div class="step-desc">Tell them: "I'm calling on behalf of [client name], who was involved in an accident with your insured [at-fault driver name] on [date]. I'd like to verify coverage and open a claim."</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <div class="step-status">Confirm coverage exists for the date of loss</div>
-              <div class="step-desc">The key question: "Can you confirm your insured had active coverage on [date of accident]?" They will tell you yes or no. They won't give you limits on the first call — that requires a written request.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">4</div>
-            <div class="step-content">
-              <div class="step-status">Get an assigned adjuster and claim number</div>
-              <div class="step-desc">Ask: "Who will be handling this claim and what is the claim number?" Log this in CasePeer immediately.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">5</div>
-            <div class="step-content">
-              <div class="step-status">Send the LOR and written policy limits request same day</div>
-              <div class="step-desc">Your LOR establishes representation. The written policy limits request triggers the 30-day clock under O.C.G.A. § 33-3-28.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="alert-block">
-        <h3>⚠️ Never Rely on Verbal Confirmations for Limits</h3>
-        <p>An adjuster may tell you the limits over the phone — but the <strong>written request</strong> is what starts the 30-day legal clock. Always send the written limits request. Always. Even if they told you the limits verbally, send the letter.</p>
+      <div class="tagline-block">
+        <p>Every dollar of available coverage is <span class="highlight">money for the client.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Missing coverage at intake means missing money at settlement. Your job is to find every source of recovery.</p>
       </div>
     </div>
     <div class="section-footer">
-      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: O.C.G.A. § 33-3-28 →</button>
+      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: Georgia Law →</button>
     </div>
   </div>
 
-  <!-- SECTION 2: OCGA 33-3-28 -->
+  <!-- SECTION 2: Georgia Law -->
   <div class="section-card" id="section-1">
     <div class="section-header">
       <div class="section-num">Section 2</div>
-      <h2>O.C.G.A. § 33-3-28 — The Policy Limits Disclosure Law</h2>
+      <h2>O.C.G.A. § 33-3-28 — Policy Limits Disclosure</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">This Georgia law is one of the most important statutes you'll work with. Know it cold.</p>
+      <p style="font-size:15px; margin-bottom:18px;">This Georgia statute is a powerful tool for discovering policy limits. Insurance companies cannot hide behind "we don't disclose limits" — the law requires it.</p>
 
       <div class="law-block">
         <div class="statute">O.C.G.A. § 33-3-28</div>
-        <h3>What the Law Says</h3>
-        <p>In any liability insurance claim, upon written request by or on behalf of a claimant, the insurer <strong>must disclose the policy limits</strong> within <strong>30 days</strong> of receiving the written request. Failure to do so can result in consequences for the insurer at trial.</p>
+        <h3>Required Disclosure</h3>
+        <p>Upon <strong>written request</strong> by or on behalf of a claimant, every insurer must disclose the policy limits of liability insurance coverage within <strong>30 days</strong> of receipt.</p>
       </div>
 
       <div class="two-col">
         <div class="col-card">
-          <div class="col-card-header">✅ What Triggers the 30-Day Clock</div>
+          <div class="col-card-header">✅ What Triggers the Law</div>
           <div class="col-card-body">
             <ul>
-              <li>A written request (letter or email) to the insurer</li>
-              <li>Must specifically request "policy limits" or "limits of liability"</li>
-              <li>Must be signed by the attorney or authorized representative</li>
-              <li>Clock starts from the date insurer receives it</li>
+              <li><strong>Written request</strong> (not verbal)</li>
+              <li>From attorney or authorized agent</li>
+              <li>Specifically requesting "policy limits"</li>
+              <li>To the correct insurer</li>
+              <li>30-day clock starts when they receive it</li>
             </ul>
           </div>
         </div>
@@ -293,173 +317,120 @@
           <div class="col-card-header">❌ What Doesn't Count</div>
           <div class="col-card-body">
             <ul>
-              <li>Verbal requests over the phone</li>
-              <li>General LOR without a specific limits request</li>
-              <li>Requests made before hiring an attorney</li>
-              <li>Requests from the client directly (must be attorney or rep)</li>
+              <li>Phone calls asking for limits</li>
+              <li>General LOR without limits language</li>
+              <li>Request from client directly</li>
+              <li>Request to wrong department</li>
+              <li>Vague "coverage information" requests</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div class="info-block">
-        <h3>📅 Why the 30-Day Timeline Matters</h3>
-        <ul>
-          <li>Knowing the limits early lets us evaluate whether to settle within policy or pursue a bad faith claim</li>
-          <li>If limits are low, we can prepare a time-limited demand to create additional pressure</li>
-          <li>If the insurer refuses or delays, that failure can be used against them at trial</li>
-          <li>It prevents the insurer from hiding "low limits" to lowball early settlement offers</li>
-        </ul>
+      <div class="script-block">
+        <span class="label">Written Limits Request Language</span>
+        "Pursuant to O.C.G.A. § 33-3-28, please provide the policy declaration pages and all applicable limits of liability coverage for your insured, <em>[At-Fault Driver Name]</em>, including bodily injury, property damage, uninsured/underinsured motorist, umbrella, and any other applicable coverages in effect on <em>[Date of Accident]</em> for the motor vehicle accident involving our client, <em>[Client Name]</em>. This written request triggers the thirty (30) day disclosure requirement under Georgia law."
       </div>
 
       <div class="success-block">
-        <h3>✅ Track the 30-Day Deadline in CasePeer</h3>
-        <p>The day you send the written limits request, create a task in CasePeer 30 days out: "Limits response due — O.C.G.A. § 33-3-28." If no response by then, flag it to the attorney immediately.</p>
+        <h3>🎯 Strategic Use of the 30-Day Rule</h3>
+        <ul>
+          <li><strong>Early Settlement Leverage:</strong> If they won't provide limits quickly, use their delay in settlement negotiations</li>
+          <li><strong>Bad Faith Foundation:</strong> Failure to comply with § 33-3-28 can be evidence of bad faith at trial</li>
+          <li><strong>Time-Limited Demands:</strong> Once you know limits, you can create urgency with policy limits demands</li>
+          <li><strong>Client Counseling:</strong> Can't properly advise client on settlement offers without knowing available money</li>
+        </ul>
       </div>
 
-      <div class="script-block">
-        <span class="label">Sample Language for Written Limits Request</span>
-        "Pursuant to O.C.G.A. § 33-3-28, please provide the full declaration pages and all applicable policy limits for your insured, [at-fault driver name], including bodily injury, underinsured motorist, umbrella, and any other applicable coverages, for the accident occurring on [date] involving our client, [client name]."
+      <div class="alert-block">
+        <h3>⚠️ Track the Deadline in CasePeer</h3>
+        <p>The day you send the limits request, create a task 30 days out: <strong>"Limits response due — O.C.G.A. § 33-3-28"</strong> If no response, that's attorney work immediately.</p>
       </div>
     </div>
     <div class="section-footer">
       <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Opening a Claim →</button>
+      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Opening Claims →</button>
     </div>
   </div>
 
-  <!-- SECTION 3: Opening a Claim -->
+  <!-- SECTION 3: Opening Claims -->
   <div class="section-card" id="section-2">
     <div class="section-header">
       <div class="section-num">Section 3</div>
-      <h2>Opening a Claim with the Insurance Company</h2>
+      <h2>Opening Claims — The Professional Approach</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">Opening a claim is one of the first things that happens on every new case. Here's exactly what you need and what to say.</p>
+      <p style="font-size:15px; margin-bottom:18px;">How you open a claim sets the tone for the entire case relationship. Insurance adjusters work with attorneys all day — they know the difference between professional and amateur.</p>
 
       <div class="info-block">
-        <h3>📋 What You Need Before You Call</h3>
+        <h3>📋 Before You Call</h3>
         <ul>
-          <li>Client's full name and date of birth</li>
-          <li>Date, time, and location of the accident</li>
-          <li>At-fault driver's name and insurance company</li>
-          <li>At-fault driver's policy number (if available)</li>
-          <li>Brief description of the accident (client's version)</li>
-          <li>Our firm's name and contact information</li>
-          <li>Signed LOR (or the intent to send it immediately after the call)</li>
+          <li>Client's full name, DOB, and address</li>
+          <li>Date, time, and location of accident</li>
+          <li>At-fault driver's name and policy number (if available)</li>
+          <li>Brief, factual description of accident</li>
+          <li>Your name, title, and firm information</li>
+          <li>Signed LOR (or ready to send immediately)</li>
         </ul>
       </div>
 
       <div class="script-block">
-        <span class="label">Opening Call Script</span>
-        "Hello, my name is <em>[your name]</em> and I'm calling from Gunn Law Group in Atlanta, Georgia. We represent <em>[client name]</em> in connection with an accident that occurred on <em>[date]</em> in <em>[location]</em> involving your insured, <em>[at-fault driver name]</em>.<br><br>
-        I'd like to open a claim and get an assigned adjuster. Can you confirm your insured had coverage on that date?<br><br>
-        [After confirmation]: Thank you. We'll be sending our letter of representation shortly. What is the claim number and who will be handling this claim?"
+        <span class="label">Professional Opening Call Script</span>
+        "Good <em>[morning/afternoon]</em>, my name is <em>[Your Name]</em> calling from the Gunn Law Group in Atlanta, Georgia. We represent <em>[Client Name, DOB]</em> in connection with a motor vehicle accident that occurred on <em>[Date]</em> at approximately <em>[Time]</em> in <em>[Location]</em> involving your insured, <em>[At-Fault Driver Name]</em>.<br><br>
+        I need to open a third-party liability claim. Can you first confirm that your insured had active coverage on <em>[Date of Accident]</em>?<br><br>
+        <em>[After confirmation]:</em> Thank you. What is the claim number, and who will be the assigned adjuster? I'll be sending our letter of representation and a formal request for policy limits information today."
       </div>
 
       <div class="info-block">
-        <h3>📝 What to Log After the Call</h3>
-        <ul>
-          <li>Claim number (critical — every future communication uses this)</li>
-          <li>Assigned adjuster's name and direct phone number</li>
-          <li>Date and time of the call</li>
-          <li>Whether coverage was confirmed for the date of loss</li>
-          <li>Any additional information they provided</li>
-        </ul>
-        <p style="font-size:14px; margin-top:10px;">Log all of this in CasePeer immediately after hanging up. Then send the LOR and written limits request same day.</p>
+        <h3>🚫 What Adjusters Will Try to Get</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>They Ask</th><th>You Say</th></tr>
+            <tr><td>"Can I get a recorded statement from your client?"</td><td>"No. All communication with our client goes through our office."</td></tr>
+            <tr><td>"Can you give me more details about your client's injuries?"</td><td>"That information will be provided through the appropriate discovery process."</td></tr>
+            <tr><td>"When can we get medical records?"</td><td>"We'll provide relevant medical information as part of our demand presentation."</td></tr>
+            <tr><td>"What damages are you claiming?"</td><td>"We're still evaluating all damages. This call is to open the claim and verify coverage."</td></tr>
+          </table>
+        </div>
       </div>
 
-      <div class="alert-block">
-        <h3>⚠️ What the Adjuster May Ask You</h3>
+      <div class="danger-block">
+        <h3>🛑 What If They Deny Coverage?</h3>
+        <p>If the insurer says "no coverage" or "policy lapsed," don't argue on the phone. Get details:</p>
         <ul>
-          <li><strong>"Can we get a recorded statement from your client?"</strong> — Answer: "No, all communication with our client goes through our office. We'll send you our letter of representation."</li>
-          <li><strong>"Can you give me more details about the accident?"</strong> — Provide only basic facts (date, location, general description). Do not share client's injuries or treatment.</li>
-          <li><strong>"Can we have the client's medical records now?"</strong> — Answer: "Those will be provided through the appropriate channels in due course."</li>
+          <li>When did the policy allegedly lapse?</li>
+          <li>Was there another policy in effect?</li>
+          <li>Will they send written denial with explanation?</li>
+          <li>Who made this determination?</li>
+        </ul>
+        <p><strong>Then immediately flag to the attorney.</strong> Coverage denials are legal issues requiring attorney review.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ After the Call — Same Day Actions</h3>
+        <ul>
+          <li>Log claim number, adjuster name/phone in CasePeer</li>
+          <li>Send LOR via email and certified mail</li>
+          <li>Send written limits request citing O.C.G.A. § 33-3-28</li>
+          <li>Create 30-day follow-up task for limits response</li>
+          <li>Email the CM and attorney: "Claim opened, coverage confirmed, limits requested"</li>
         </ul>
       </div>
     </div>
     <div class="section-footer">
       <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Claim Numbers &amp; Denials →</button>
+      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Multiple Coverages →</button>
     </div>
   </div>
 
-  <!-- SECTION 4: Claim Numbers & Denials -->
+  <!-- SECTION 4: Multiple Coverages -->
   <div class="section-card" id="section-3">
     <div class="section-header">
       <div class="section-num">Section 4</div>
-      <h2>Claim Numbers, Denials &amp; No Insurance Situations</h2>
+      <h2>Multiple Coverage Sources — Maximizing Recovery</h2>
     </div>
     <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">The claim number is the backbone of every insurance interaction. And sometimes — the at-fault driver claims they have no insurance. Here's how to handle both.</p>
-
-      <div class="info-block">
-        <h3>🔢 Why Claim Numbers Matter</h3>
-        <ul>
-          <li>Every insurer assigns a unique claim number when you open a claim</li>
-          <li>It's the ID for that specific accident at that specific insurance company</li>
-          <li>Without it, adjusters can't locate the file — every call takes longer</li>
-          <li><strong>Always lead with the claim number when calling an insurer</strong></li>
-          <li>Enter it in CasePeer immediately — it goes on every letter, fax, and communication</li>
-          <li>You may have multiple claim numbers for one case (BI claim + PD claim, or multiple insurers)</li>
-        </ul>
-      </div>
-
-      <div class="danger-block">
-        <h3>❌ "They Said They Have No Insurance"</h3>
-        <p>This happens more than you'd think. Here's what to do when coverage is denied or the driver claims no insurance:</p>
-      </div>
-
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-status">Don't take the driver's word for it</div>
-            <div class="step-desc">At-fault drivers sometimes lie about having insurance. Get the license plate number and run a check. The police report often has the insurance info even if the driver didn't volunteer it.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-status">Check the client's own policy for UM coverage</div>
-            <div class="step-desc">If the at-fault driver truly has no insurance, we pursue an Uninsured Motorist (UM) claim through the client's own policy. This is exactly what UM coverage exists for. Always verify our client's UM coverage early.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-status">Check if the at-fault driver has a different insurer</div>
-            <div class="step-desc">Sometimes the insurer says "no coverage on that date" — meaning the policy lapsed. Get more info: when did it lapse? Was there another policy? Flag to the attorney.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="step-status">Flag all denial situations to the attorney immediately</div>
-            <div class="step-desc">A coverage denial is a legal issue, not just an administrative one. Log what you were told, who you spoke with, and when — then hand it off to the CM and attorney immediately.</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="alert-block">
-        <h3>⚠️ Coverage Denial ≠ Case Over</h3>
-        <p>A denial of coverage does not mean the case is over. It means we need to investigate further. Our client still has rights — through UM coverage, through other parties, or through legal action directly against the at-fault driver. Always flag, never assume.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: Multiple Coverages →</button>
-    </div>
-  </div>
-
-  <!-- SECTION 5: Multiple Coverages -->
-  <div class="section-card" id="section-4">
-    <div class="section-header">
-      <div class="section-num">Section 5</div>
-      <h2>Coordinating Multiple Coverages on One Case</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">Many PI cases involve more than one source of coverage. Understanding how multiple coverages interact is essential — and missing one can cost the client real money.</p>
+      <p style="font-size:15px; margin-bottom:18px;">Most PI cases involve multiple sources of coverage. Your job is to identify every possible source of recovery — because every missed coverage source is money the client doesn't get.</p>
 
       <div class="info-block">
         <h3>🔄 Common Multi-Coverage Scenarios</h3>
@@ -467,57 +438,153 @@
           <div class="pipeline-step">
             <div class="step-num">1</div>
             <div class="step-content">
-              <div class="step-status">At-Fault Driver's BI + Client's UIM</div>
-              <div class="step-desc">Most common scenario. We pursue the at-fault driver's BI first. If their limits are exhausted and our client's damages exceed those limits, we then pursue UIM on our client's own policy. Example: At-fault has $25K BI. Client's damages are $80K. We settle BI for $25K, then pursue $55K from UIM.</div>
+              <div class="step-status">At-Fault BI + Client's UIM Coverage</div>
+              <div class="step-desc">At-fault driver has $25K BI. Client's damages are $75K. We get $25K from at-fault BI, then pursue $50K from client's UIM policy. UIM is designed for exactly this situation.</div>
             </div>
           </div>
           <div class="pipeline-step">
             <div class="step-num">2</div>
             <div class="step-content">
-              <div class="step-status">MedPay + BI</div>
-              <div class="step-desc">MedPay pays medical bills immediately (regardless of fault). At settlement, the MedPay insurer has a subrogation right — they want to be reimbursed from the BI settlement. Track MedPay payments and balances carefully. They will submit a lien at disbursement.</div>
+              <div class="step-status">MedPay Coordination</div>
+              <div class="step-desc">Client's MedPay pays medical bills upfront (no fault determination needed). At settlement, MedPay insurer has subrogation right — they want reimbursement from the BI recovery.</div>
             </div>
           </div>
           <div class="pipeline-step">
             <div class="step-num">3</div>
             <div class="step-content">
-              <div class="step-status">Health Insurance + BI</div>
-              <div class="step-desc">If the client's health insurance paid for treatment, health insurance may also have a subrogation right. This is more complex — some policies have full subrogation, some are reduced by attorney fees. The attorney handles this at disbursement, but you need to know it exists.</div>
+              <div class="step-status">Health Insurance Subrogation</div>
+              <div class="step-desc">Health insurance pays medical bills, then seeks reimbursement from PI settlement. Some policies have full subrogation rights, others are reduced by attorney fees. Varies by policy.</div>
             </div>
           </div>
           <div class="pipeline-step">
             <div class="step-num">4</div>
             <div class="step-content">
-              <div class="step-status">Multiple At-Fault Parties</div>
-              <div class="step-desc">Some accidents involve multiple at-fault parties (e.g., two drivers, or a driver + a property owner). Each party has their own insurer, their own claim number, and their own limits. You may be managing multiple parallel claims on the same case.</div>
+              <div class="step-status">UM/UIM Stacking</div>
+              <div class="step-desc">If client has multiple vehicles with UM/UIM coverage, Georgia law may allow "stacking" the limits. Two cars with $50K UM each = potentially $100K total UM coverage.</div>
             </div>
           </div>
           <div class="pipeline-step">
             <div class="step-num">5</div>
             <div class="step-content">
-              <div class="step-status">UM Stacking Across Multiple Policies</div>
-              <div class="step-desc">If the client has multiple vehicles on their policy — or policies on multiple vehicles in the household — Georgia law may allow stacking of UM limits. Example: two cars, each with $50K UM = potentially $100K in UM coverage. Always check this at intake.</div>
+              <div class="step-status">Multiple At-Fault Parties</div>
+              <div class="step-desc">Some accidents involve multiple defendants (two drivers, or driver + premises liability). Each has separate insurance, separate limits, separate claims to manage.</div>
             </div>
           </div>
         </div>
       </div>
 
       <div class="success-block">
-        <h3>✅ The Coverage Checklist — Run It on Every Case</h3>
+        <h3>✅ Complete Coverage Maximization Checklist</h3>
         <ul>
-          <li>At-fault driver's BI and PD (and limits, via § 33-3-28 request)</li>
+          <li>At-fault driver's BI limits and PD coverage</li>
           <li>Client's UM/UIM coverage and limits</li>
           <li>Client's MedPay coverage and limits</li>
-          <li>Client's health insurance (company, policy number, potential subrogation)</li>
-          <li>Any umbrella or excess policies held by the at-fault driver</li>
-          <li>Any other vehicles in client's household with their own policies (stacking opportunity)</li>
-          <li>Workers' comp if the accident happened during work (creates its own lien issues)</li>
+          <li>Client's health insurance (company, policy #, subrogation rights)</li>
+          <li>Any umbrella or excess policies (at-fault driver)</li>
+          <li>Other vehicles in client's household (stacking opportunity)</li>
+          <li>Workers' compensation if accident occurred during work</li>
+          <li>Any commercial coverage (if at-fault driver was working)</li>
         </ul>
       </div>
 
+      <div class="alert-block">
+        <h3>⚠️ Subrogation Planning</h3>
+        <p>MedPay and health insurance create subrogation liens that must be satisfied at settlement. Track these from day one:</p>
+        <ul>
+          <li>How much has MedPay paid so far?</li>
+          <li>How much has health insurance paid?</li>
+          <li>What are the subrogation terms in each policy?</li>
+          <li>Will the liens be reduced by attorney fees?</li>
+        </ul>
+        <p>The attorney handles lien negotiations, but you need to know they exist and track the amounts.</p>
+      </div>
+
       <div class="tagline-block">
-        <p>Every source of coverage is <span class="highlight">money for the client.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Missing coverage at intake means missing recovery at settlement. Run the full checklist every time. You're not just a paper-pusher — you're protecting the client's financial recovery.</p>
+        <p>Think like a <span class="highlight">financial investigator.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every insurance policy is potential money for the client. Run the full checklist on every case. Missing coverage = missing recovery.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: CasePeer Logging →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: CasePeer Logging -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>CasePeer Documentation — Building the System</h2>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px; margin-bottom:18px;">CasePeer is the central nervous system for coverage information. Every claim number, every policy limit, every subrogation amount must be logged systematically so the attorney and CM can find it instantly.</p>
+
+      <div class="info-block">
+        <h3>📝 Where to Log Coverage Information</h3>
+        <div class="table-wrap">
+          <table>
+            <tr><th>Information Type</th><th>CasePeer Location</th><th>Notes</th></tr>
+            <tr><td>At-fault driver's insurance company</td><td>Adverse Party → Insurance Info</td><td>Include phone number and claim reporting line</td></tr>
+            <tr><td>Policy limits (when received)</td><td>Adverse Party → Policy Limits</td><td>Update immediately when received from § 33-3-28 request</td></tr>
+            <tr><td>Claim numbers</td><td>Case Notes + Adverse Party</td><td>BI claim #, PD claim # (often different numbers)</td></tr>
+            <tr><td>Assigned adjuster info</td><td>Contacts → Add Adjuster</td><td>Direct phone, email, supervisor name</td></tr>
+            <tr><td>Client's UM/UIM coverage</td><td>Insured Party → Insurance Info</td><td>Include limits and any stacking opportunities</td></tr>
+            <tr><td>MedPay coverage/payments</td><td>Case Notes + Medical → PIP/MedPay</td><td>Track payments made and remaining limits</td></tr>
+            <tr><td>Health insurance subrogation</td><td>Case Notes + Medical → Health Insurance</td><td>Company, policy #, amounts paid, lien contact</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="success-block">
+        <h3>🎯 Critical CasePeer Tasks to Create</h3>
+        <ul>
+          <li><strong>Day of limits request:</strong> "Limits response due — O.C.G.A. § 33-3-28" (30 days out)</li>
+          <li><strong>If no limits received:</strong> "Follow up on overdue limits request" (flag to attorney)</li>
+          <li><strong>MedPay exhaustion:</strong> "MedPay approaching limit — $X remaining"</li>
+          <li><strong>UIM evaluation:</strong> "Evaluate UIM claim if BI limits inadequate"</li>
+          <li><strong>Multiple policies:</strong> "Confirm stacking rights for UM/UIM coverage"</li>
+        </ul>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Log immediately after opening call</div>
+            <div class="step-desc">Claim number, adjuster contact, coverage confirmation. Don't wait — do it while the information is fresh.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Update when limits are received</div>
+            <div class="step-desc">Policy declaration pages go in Documents section. Limits go in Adverse Party fields. Mark the § 33-3-28 task complete.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Track subrogation amounts monthly</div>
+            <div class="step-desc">MedPay and health insurance amounts change as treatment continues. Update balances monthly to avoid surprises at settlement.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Generate coverage summary for attorney</div>
+            <div class="step-desc">When limits are known, create a one-page coverage summary: all available money sources and current balances. This drives settlement strategy.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Coverage Information is Time-Sensitive</h3>
+        <p>Policy limits can change if the at-fault driver has other claims against the same policy. MedPay balances decrease as bills are paid. Health insurance subrogation amounts increase with continued treatment. Keep this information current.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Good documentation = <span class="highlight">maximum recovery.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">When settlement time comes, every piece of coverage information must be instantly accessible. That's how you protect the client's financial interests.</p>
       </div>
     </div>
     <div class="section-footer">
@@ -536,12 +603,12 @@
 
       <div class="question-block active" id="q1">
         <div class="q-counter">Question 1 of 10</div>
-        <div class="q-text">When verifying coverage with an at-fault driver's insurer, what is the most important question to confirm first?</div>
+        <div class="q-text">Why is coverage verification called "the first economic analysis" in a PI case?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(1,'a',false)" ontouchend="answer(1,'a',false)"><span class="option-letter">A</span> How much coverage the driver has</button>
-          <button class="option-btn" onclick="answer(1,'b',true)" ontouchend="answer(1,'b',true)"><span class="option-letter">B</span> Whether the driver had active coverage on the date of the accident</button>
-          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> The adjuster's supervisor name</button>
-          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Whether the insurer handles injury claims</button>
+          <button class="option-btn" onclick="answer(1,'a',true)" ontouchend="answer(1,'a',true)"><span class="option-letter">A</span> Available coverage determines settlement strategy, client expectations, and case investment decisions</button>
+          <button class="option-btn" onclick="answer(1,'b',false)" ontouchend="answer(1,'b',false)"><span class="option-letter">B</span> It's the first step in calculating attorney fees</button>
+          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> You need coverage info to file the lawsuit</button>
+          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Insurance companies require it before opening claims</button>
         </div>
         <div class="feedback" id="fb1"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next →</button></div>
@@ -549,12 +616,12 @@
 
       <div class="question-block" id="q2">
         <div class="q-counter">Question 2 of 10</div>
-        <div class="q-text">Under O.C.G.A. § 33-3-28, an insurance company must disclose policy limits within how many days of a written request?</div>
+        <div class="q-text">Georgia's minimum insurance requirements are:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> 7 days</button>
-          <button class="option-btn" onclick="answer(2,'b',false)" ontouchend="answer(2,'b',false)"><span class="option-letter">B</span> 14 days</button>
-          <button class="option-btn" onclick="answer(2,'c',true)" ontouchend="answer(2,'c',true)"><span class="option-letter">C</span> 30 days</button>
-          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 60 days</button>
+          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> 15/30/15</button>
+          <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> 25/50/25</button>
+          <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> 50/100/50</button>
+          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 100/300/100</button>
         </div>
         <div class="feedback" id="fb2"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next →</button></div>
@@ -562,12 +629,12 @@
 
       <div class="question-block" id="q3">
         <div class="q-counter">Question 3 of 10</div>
-        <div class="q-text">What triggers the 30-day clock under O.C.G.A. § 33-3-28?</div>
+        <div class="q-text">Under O.C.G.A. § 33-3-28, what triggers the 30-day disclosure requirement?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> A verbal request to the adjuster during the opening call</button>
-          <button class="option-btn" onclick="answer(3,'b',false)" ontouchend="answer(3,'b',false)"><span class="option-letter">B</span> The filing of a lawsuit</button>
-          <button class="option-btn" onclick="answer(3,'c',true)" ontouchend="answer(3,'c',true)"><span class="option-letter">C</span> A written request specifically asking for policy limits</button>
-          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Sending the LOR alone</button>
+          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Verbal request during claim opening call</button>
+          <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> Written request specifically asking for policy limits</button>
+          <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> Filing a lawsuit</button>
+          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Sending the LOR without limits language</button>
         </div>
         <div class="feedback" id="fb3"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next →</button></div>
@@ -575,12 +642,12 @@
 
       <div class="question-block" id="q4">
         <div class="q-counter">Question 4 of 10</div>
-        <div class="q-text">After opening a claim, what two pieces of information must you immediately log in CasePeer?</div>
+        <div class="q-text">When an adjuster asks for a recorded statement from your client, you should:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> The adjuster's email and the insurer's mailing address</button>
-          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> The claim number and the assigned adjuster's name and direct phone</button>
-          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> The policy limits and the insurer's general phone number</button>
-          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> The insurer's claim denial reason and next steps</button>
+          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> Schedule it for next week</button>
+          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> Say "No. All communication with our client goes through our office."</button>
+          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> Ask the attorney first</button>
+          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> Agree if they share the recording</button>
         </div>
         <div class="feedback" id="fb4"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next →</button></div>
@@ -588,12 +655,12 @@
 
       <div class="question-block" id="q5">
         <div class="q-counter">Question 5 of 10</div>
-        <div class="q-text">The adjuster asks if your client can give a recorded statement. You say:</div>
+        <div class="q-text">If an insurer denies coverage, your first action should be:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> "Sure, I'll set that up for next week."</button>
-          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">B</span> "Only if you agree to share the recording with us."</button>
-          <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> "No — all communication with our client goes through our office. We'll be sending our letter of representation."</button>
-          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> "Let me check with the attorney and call you back."</button>
+          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> Argue with them on the phone</button>
+          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">C</span> Close the case immediately</button>
+          <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> Get details about the denial and immediately flag to the attorney</button>
+          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> Call back and speak to a supervisor</button>
         </div>
         <div class="feedback" id="fb5"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next →</button></div>
@@ -601,12 +668,12 @@
 
       <div class="question-block" id="q6">
         <div class="q-counter">Question 6 of 10</div>
-        <div class="q-text">The at-fault driver tells your client at the scene: "I don't have insurance." What is your FIRST step?</div>
+        <div class="q-text">UIM coverage is designed to:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Tell the client there's nothing we can do</button>
-          <button class="option-btn" onclick="answer(6,'b',true)" ontouchend="answer(6,'b',true)"><span class="option-letter">B</span> Verify independently (check the police report, run a license plate search) and check client's UM coverage</button>
-          <button class="option-btn" onclick="answer(6,'c',false)" ontouchend="answer(6,'c',false)"><span class="option-letter">C</span> Close the case — no insurance means no recovery</button>
-          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Tell the client to sue the at-fault driver personally</button>
+          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Replace the at-fault driver's BI coverage completely</button>
+          <button class="option-btn" onclick="answer(6,'b',true)" ontouchend="answer(6,'b',true)"><span class="option-letter">B</span> Bridge the gap when at-fault BI limits are exhausted and client's damages are higher</button>
+          <button class="option-btn" onclick="answer(6,'c',false)" ontouchend="answer(6,'c',false)"><span class="option-letter">C</span> Pay medical bills immediately after the accident</button>
+          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Cover property damage only</button>
         </div>
         <div class="feedback" id="fb6"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next →</button></div>
@@ -614,12 +681,12 @@
 
       <div class="question-block" id="q7">
         <div class="q-counter">Question 7 of 10</div>
-        <div class="q-text">MedPay coverage is important to track because:</div>
+        <div class="q-text">MedPay creates a subrogation lien, which means:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(7,'a',false)" ontouchend="answer(7,'a',false)"><span class="option-letter">A</span> It doubles the settlement amount automatically</button>
-          <button class="option-btn" onclick="answer(7,'b',true)" ontouchend="answer(7,'b',true)"><span class="option-letter">B</span> The MedPay insurer has a subrogation right and will submit a lien at settlement that must be paid back</button>
-          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> It replaces the need for BI coverage</button>
-          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Only the attorney needs to know about MedPay</button>
+          <button class="option-btn" onclick="answer(7,'a',true)" ontouchend="answer(7,'a',true)"><span class="option-letter">A</span> The MedPay insurer must be repaid from the settlement proceeds</button>
+          <button class="option-btn" onclick="answer(7,'b',false)" ontouchend="answer(7,'b',false)"><span class="option-letter">B</span> The client gets to keep all MedPay payments plus settlement money</button>
+          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> MedPay coverage is free with no repayment required</button>
+          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Only attorney fees come out of the settlement</button>
         </div>
         <div class="feedback" id="fb7"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next →</button></div>
@@ -627,12 +694,12 @@
 
       <div class="question-block" id="q8">
         <div class="q-counter">Question 8 of 10</div>
-        <div class="q-text">UM/UIM stacking in Georgia allows:</div>
+        <div class="q-text">UM/UIM stacking allows you to:</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> Combining BI and PD limits for a larger recovery</button>
-          <button class="option-btn" onclick="answer(8,'b',true)" ontouchend="answer(8,'b',true)"><span class="option-letter">B</span> Combining UM/UIM limits from multiple vehicles or policies to increase total available coverage</button>
-          <button class="option-btn" onclick="answer(8,'c',false)" ontouchend="answer(8,'c',false)"><span class="option-letter">C</span> Filing claims against two insurers simultaneously without limit</button>
-          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> Receiving double payment for the same injury</button>
+          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> Combine BI and PD limits from the at-fault driver</button>
+          <button class="option-btn" onclick="answer(8,'b',true)" ontouchend="answer(8,'b',true)"><span class="option-letter">B</span> Combine UM/UIM limits from multiple vehicles or policies in the same household</button>
+          <button class="option-btn" onclick="answer(8,'c',false)" ontouchend="answer(8,'c',false)"><span class="option-letter">C</span> File unlimited claims against the same insurer</button>
+          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> Get double payment for the same medical bills</button>
         </div>
         <div class="feedback" id="fb8"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next →</button></div>
@@ -640,12 +707,12 @@
 
       <div class="question-block" id="q9">
         <div class="q-counter">Question 9 of 10</div>
-        <div class="q-text">The at-fault driver has $25,000 in BI coverage, but your client's total damages are $80,000. After settling the BI claim for policy limits, what should you explore?</div>
+        <div class="q-text">In CasePeer, where should you log the at-fault driver's policy limits?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> The case is done — policy limits were exhausted</button>
-          <button class="option-btn" onclick="answer(9,'b',true)" ontouchend="answer(9,'b',true)"><span class="option-letter">B</span> UIM coverage on the client's own policy to recover the remaining $55,000</button>
-          <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> Filing a second claim against the same BI policy</button>
-          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Asking the at-fault driver to pay the remainder personally before pursuing any other coverage</button>
+          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> Case Notes only</button>
+          <button class="option-btn" onclick="answer(9,'b',true)" ontouchend="answer(9,'b',true)"><span class="option-letter">B</span> Adverse Party → Policy Limits</button>
+          <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> Medical section</button>
+          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Documents only</button>
         </div>
         <div class="feedback" id="fb9"></div>
         <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next →</button></div>
@@ -653,12 +720,12 @@
 
       <div class="question-block" id="q10">
         <div class="q-counter">Question 10 of 10</div>
-        <div class="q-text">When should you run the full coverage checklist on a new case?</div>
+        <div class="q-text">When should you run the complete Coverage Maximization Checklist?</div>
         <div class="options">
-          <button class="option-btn" onclick="answer(10,'a',false)" ontouchend="answer(10,'a',false)"><span class="option-letter">A</span> Only if the at-fault driver has low limits</button>
-          <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> After the demand letter is sent</button>
-          <button class="option-btn" onclick="answer(10,'c',true)" ontouchend="answer(10,'c',true)"><span class="option-letter">C</span> At intake — on every single case, every time</button>
-          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> Only when the CM asks you to</button>
+          <button class="option-btn" onclick="answer(10,'a',true)" ontouchend="answer(10,'a',true)"><span class="option-letter">A</span> On every single case at intake — no exceptions</button>
+          <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> Only when at-fault driver has low limits</button>
+          <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Only after sending the demand letter</button>
+          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> When the CM specifically requests it</button>
         </div>
         <div class="feedback" id="fb10"></div>
         <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
@@ -709,11 +776,11 @@
           <label>3. Which section was most useful?</label>
           <select id="fb-section">
             <option value="">— Select a section —</option>
-            <option>Section 1: How to Verify Insurance Coverage</option>
-            <option>Section 2: O.C.G.A. § 33-3-28 — The Policy Limits Disclosure Law</option>
-            <option>Section 3: Opening a Claim with the Insurance Company</option>
-            <option>Section 4: Claim Numbers, Denials &amp; No Insurance Situations</option>
-            <option>Section 5: Coordinating Multiple Coverages on One Case</option>
+            <option>Section 1: Coverage Verification — The First Economic Analysis</option>
+            <option>Section 2: O.C.G.A. § 33-3-28 — Policy Limits Disclosure</option>
+            <option>Section 3: Opening Claims — The Professional Approach</option>
+            <option>Section 4: Multiple Coverage Sources — Maximizing Recovery</option>
+            <option>Section 5: CasePeer Documentation — Building the System</option>
           </select>
         </div>
         <div class="fb-q">
@@ -740,9 +807,9 @@
     <div class="cert-logo">Gunn Law Group</div>
     <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
     <div class="cert-title">Certificate of Completion</div>
-    <div class="cert-subtitle">Legal Assistant Training Program — Day 7 of 7 · Week 2 Complete</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 7 of 7 · Training Complete</div>
     <div class="cert-name-label">This certifies that</div>
-    <div class="cert-name" id="cert-name-display">Sydney</div>
+    <div class="cert-name" id="cert-name-display">Legal Assistant</div>
     <div class="cert-module">has successfully completed<br><strong>Module 7: Coverage Verification &amp; Opening Claims</strong></div>
     <div class="cert-score-badge" id="cert-score-display"></div>
     <div class="cert-date" id="cert-date"></div>
@@ -764,18 +831,18 @@
   let lastScore = 0;
   let starRating = 0;
 
-  const correctAnswers = { 1:'b', 2:'c', 3:'c', 4:'b', 5:'c', 6:'b', 7:'b', 8:'b', 9:'b', 10:'c' };
+  const correctAnswers = { 1:'a', 2:'b', 3:'b', 4:'b', 5:'c', 6:'b', 7:'a', 8:'b', 9:'b', 10:'a' };
   const feedbackText = {
-    1: { correct: "✅ Correct! The first question is always whether coverage was active on the date of loss. If there's no coverage, everything else changes.", incorrect: "❌ Not quite. Before anything else, confirm the at-fault driver had ACTIVE coverage on the date of the accident. That's the foundation." },
-    2: { correct: "✅ Correct! O.C.G.A. § 33-3-28 gives insurers 30 days from a written request to disclose policy limits. Know this cold.", incorrect: "❌ Incorrect. Under O.C.G.A. § 33-3-28, the insurer has 30 days from the written request to disclose policy limits." },
-    3: { correct: "✅ Correct! Only a written request specifically asking for policy limits starts the 30-day clock. Verbal requests don't count. The LOR alone doesn't count.", incorrect: "❌ Incorrect. Only a written request specifically asking for policy limits triggers the 30-day clock under § 33-3-28. Verbal requests and LORs alone don't count." },
-    4: { correct: "✅ Correct! The claim number and assigned adjuster info go into CasePeer immediately after the call. These are essential for every future communication.", incorrect: "❌ Not quite. The claim number and the adjuster's name and direct phone are the two most critical pieces to log immediately after opening a claim." },
-    5: { correct: "✅ Correct! Never allow a recorded statement. All insurer communication goes through the firm. State it clearly and confidently.", incorrect: "❌ Incorrect. The answer is always no — never set up a recorded statement. All communication goes through the firm. Don't leave any ambiguity." },
-    6: { correct: "✅ Correct! Never take an at-fault driver's word for it. Verify independently and immediately check client's UM coverage. Uninsured doesn't mean uncompensated.", incorrect: "❌ Incorrect. Don't take the at-fault driver's word for it — verify with the police report and independent sources. Then immediately check the client's UM coverage." },
-    7: { correct: "✅ Correct! MedPay pays upfront, but the insurer has a subrogation right — they'll want reimbursement from the settlement. Track MedPay from day one.", incorrect: "❌ Incorrect. MedPay creates a subrogation lien. When the BI claim settles, the MedPay insurer is entitled to be repaid. You need to track this from the start." },
-    8: { correct: "✅ Correct! Stacking combines UM/UIM limits from multiple vehicles or policies in the same household, potentially doubling or tripling available coverage.", incorrect: "❌ Incorrect. UM/UIM stacking means combining limits from multiple auto policies (usually multiple vehicles in the household) to increase total available UM/UIM coverage." },
-    9: { correct: "✅ Correct! When BI limits are exhausted and damages exceed them, UIM coverage on the client's policy bridges the gap. That's exactly what UIM is for.", incorrect: "❌ Incorrect. When BI limits are exhausted and the client's damages are higher, you pursue UIM on the client's own policy. That's the whole point of UIM coverage." },
-    10: { correct: "✅ Correct! The full coverage checklist runs on every single case at intake. Every time. No exceptions. Missing coverage at intake = missing money at settlement.", incorrect: "❌ Incorrect. The coverage checklist runs at intake on every case, every time. Waiting until later means you might miss coverage sources that could significantly help the client." }
+    1: { correct: "✅ Correct! Coverage verification drives everything: settlement strategy, client expectations, case investment, and timeline planning. It's economic analysis, not paperwork.", incorrect: "❌ Incorrect. Coverage verification is the first economic analysis because it determines settlement strategy, client expectations, and case investment decisions. It drives everything else." },
+    2: { correct: "✅ Correct! Georgia minimum coverage is 25/50/25. Many drivers carry only state minimums — assume minimums until you verify otherwise.", incorrect: "❌ Incorrect. Georgia's minimum coverage requirements are 25/50/25 ($25K per person BI, $50K per accident BI, $25K PD)." },
+    3: { correct: "✅ Correct! Only a written request specifically asking for policy limits triggers O.C.G.A. § 33-3-28. Verbal requests and LORs alone don't count.", incorrect: "❌ Incorrect. Only a written request specifically requesting policy limits starts the 30-day clock under § 33-3-28. Verbal requests don't count." },
+    4: { correct: "✅ Correct! Never allow recorded statements. All communication with the client goes through the firm. State it clearly and professionally.", incorrect: "❌ Incorrect. The answer is always 'No' — never allow a recorded statement. All communication with the client goes through the firm." },
+    5: { correct: "✅ Correct! Coverage denials are legal issues requiring attorney review. Get details about when/why coverage was denied, then flag immediately.", incorrect: "❌ Incorrect. Coverage denials are legal issues. Get details about the denial and immediately flag to the attorney — don't argue or close the case." },
+    6: { correct: "✅ Correct! UIM bridges the gap when at-fault BI limits are exhausted but client's damages are higher. That's exactly what UIM is designed for.", incorrect: "❌ Incorrect. UIM (Underinsured Motorist) coverage bridges the gap when at-fault BI limits are exhausted and the client's damages exceed those limits." },
+    7: { correct: "✅ Correct! MedPay pays bills upfront but creates a subrogation lien — they must be repaid from settlement proceeds. Track this from day one.", incorrect: "❌ Incorrect. MedPay creates a subrogation lien, meaning the MedPay insurer must be repaid from the settlement proceeds." },
+    8: { correct: "✅ Correct! Stacking combines UM/UIM limits from multiple vehicles or policies in the same household, potentially doubling or tripling available coverage.", incorrect: "❌ Incorrect. UM/UIM stacking allows combining limits from multiple vehicles or policies in the same household to increase total available coverage." },
+    9: { correct: "✅ Correct! Policy limits go in Adverse Party → Policy Limits in CasePeer. This makes them instantly accessible for settlement strategy discussions.", incorrect: "❌ Incorrect. Policy limits should be logged in CasePeer under Adverse Party → Policy Limits for easy access during settlement discussions." },
+    10: { correct: "✅ Correct! The Coverage Maximization Checklist runs on every case at intake, every time. Missing coverage at intake = missing money at settlement.", incorrect: "❌ Incorrect. Run the complete Coverage Maximization Checklist on every single case at intake. Every missed coverage source is money the client doesn't get." }
   };
 
   function goToSection(idx) {
@@ -836,16 +903,16 @@
     document.getElementById('quiz-section').classList.remove('active');
     let correct = 0;
     const qLabels = [
-      "First question to ask when verifying coverage",
-      "§ 33-3-28 disclosure timeline",
-      "What triggers the 30-day clock",
-      "What to log immediately after opening a claim",
-      "Adjuster requests a recorded statement",
-      "At-fault driver claims no insurance",
-      "Why MedPay must be tracked",
-      "What UM/UIM stacking allows",
-      "BI limits exhausted — what next?",
-      "When to run the coverage checklist"
+      "Why coverage verification is 'first economic analysis'",
+      "Georgia minimum insurance requirements",
+      "What triggers O.C.G.A. § 33-3-28",
+      "Response to recorded statement request",
+      "Handling coverage denials",
+      "Purpose of UIM coverage",
+      "MedPay subrogation implications",
+      "UM/UIM stacking definition",
+      "Where to log policy limits in CasePeer",
+      "When to run Coverage Maximization Checklist"
     ];
     Object.values(answers).forEach(v => { if (v) correct++; });
     const pct = Math.round((correct / TOTAL_Q) * 100);
@@ -854,7 +921,7 @@
     const resultsSection = document.getElementById('results-section');
     resultsSection.classList.add('active');
     document.getElementById('results-score').textContent = pct + '%';
-    document.getElementById('results-status').textContent = passed ? '🎉 Week 2 Complete — Training Done!' : '❌ Keep Studying — Review and Try Again';
+    document.getElementById('results-status').textContent = passed ? '🎉 Training Complete — Well Done!' : '❌ Keep Studying — Review and Try Again';
     document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
     let html = '';
     for (let i = 1; i <= TOTAL_Q; i++) {
@@ -867,7 +934,7 @@
     } else {
       const hint = document.getElementById('retake-hint');
       hint.style.display = 'block';
-      hint.innerHTML = `<strong>You scored ${pct}% — you need 80% (8/10) to pass.</strong> Review any sections you're unsure about, then retake.`;
+      hint.innerHTML = `<strong>You scored ${pct}% — you need 80% (8/10) to pass.</strong> Review the sections you missed, then retake the quiz.`;
       document.getElementById('retake-btn').style.display = 'flex';
     }
     window.scrollTo(0, 0);
@@ -918,76 +985,5 @@
   updateProgress(0, false);
 </script>
 
-<!-- EMAIL RESULTS SECTION -->
-<div id="email-results" style="display:none;margin-top:20px;padding:20px;background:#f0f7ff;border-radius:8px;border:1px solid #ccc;">
-<h3 style="color:#141c2c;margin-bottom:12px;">Submit Your Results</h3>
-<p style="font-size:.9rem;color:#555;margin-bottom:12px;">Click the button below to email your quiz score and feedback to Harrell.</p>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How clear was the content? (1-5)</label>
-<select id="fb-clarity" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="5">5 - Very Clear</option>
-<option value="4">4 - Mostly Clear</option>
-<option value="3">3 - Somewhat Clear</option>
-<option value="2">2 - Confusing</option>
-<option value="1">1 - Very Confusing</option>
-</select>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Was anything confusing? If yes, what?</label>
-<textarea id="fb-confusing" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<div style="margin-bottom:12px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">How long did this module take?</label>
-<select id="fb-time" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;min-height:44px;">
-<option value="15 minutes or less">15 minutes or less</option>
-<option value="15-30 minutes">15-30 minutes</option>
-<option value="30-45 minutes">30-45 minutes</option>
-<option value="45-60 minutes">45-60 minutes</option>
-<option value="Over 1 hour">Over 1 hour</option>
-</select>
-</div>
-
-<div style="margin-bottom:16px;">
-<label style="font-size:.85rem;font-weight:bold;display:block;margin-bottom:4px;">Any suggestions to make this better?</label>
-<textarea id="fb-suggestions" rows="3" style="padding:8px;font-size:.9rem;border-radius:4px;border:1px solid #ccc;width:100%;resize:vertical;" placeholder="Type here..."></textarea>
-</div>
-
-<button onclick="sendResults()" style="background:#141c2c;color:#fff;padding:14px 28px;border:none;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;touch-action:manipulation;-webkit-tap-highlight-color:rgba(0,0,0,0.1);">📧 Email My Results</button>
-</div>
-
-<script>
-function sendResults() {
-  var nameEl = document.getElementById('cert-name') || document.getElementById('certName');
-  var name = nameEl ? nameEl.value || nameEl.textContent : 'Unknown';
-  var title = document.title || 'Training Module';
-  var scoreText = document.getElementById('score-display') ? document.getElementById('score-display').textContent : (typeof score !== 'undefined' ? score + '/' + questions.length : 'N/A');
-  var clarity = document.getElementById('fb-clarity').value;
-  var confusing = document.getElementById('fb-confusing').value || 'None';
-  var time = document.getElementById('fb-time').value;
-  var suggestions = document.getElementById('fb-suggestions').value || 'None';
-
-  var subject = encodeURIComponent('Training Module Complete: ' + title + ' - ' + name);
-  var body = encodeURIComponent(
-    'TRAINING MODULE COMPLETION REPORT\n' +
-    '================================\n\n' +
-    'Employee: ' + name + '\n' +
-    'Module: ' + title + '\n' +
-    'Score: ' + scoreText + '\n' +
-    'Date: ' + new Date().toLocaleDateString() + '\n\n' +
-    'FEEDBACK:\n' +
-    'Clarity (1-5): ' + clarity + '\n' +
-    'Confusing sections: ' + confusing + '\n' +
-    'Time to complete: ' + time + '\n' +
-    'Suggestions: ' + suggestions + '\n'
-  );
-
-  window.location.href = 'mailto:hgunn@thegunnlawgroup.com?subject=' + subject + '&body=' + body;
-}
-</script>
-
-<script>document.addEventListener("DOMContentLoaded",function(){var obs=new MutationObserver(function(){var cert=document.getElementById("screen-cert")||document.querySelector(".certificate");if(cert&&cert.offsetParent!==null){var e=document.getElementById("email-results");if(e)e.style.display="block";}});obs.observe(document.body,{childList:true,subtree:true,attributes:true});});</script>
 </body>
 </html>
