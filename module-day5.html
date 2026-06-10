@@ -902,8 +902,23 @@ QA Checklist: ✅ PASSED
       <textarea id="fb-suggestions" placeholder="Your suggestion here…"></textarea>
     </div>
 
+    <!-- Score Submission Form -->
+    <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+      <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Sydney Johnson"
+        style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;">
+      <button class="btn btn-primary btn-block" onclick="submitScoreAndBuildCert()">✅ Submit Score &amp; View Certificate</button>
+    </div>
+
+    <!-- Score confirmed banner -->
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #27ae60;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">
+      ✅ Score submitted! Your results have been recorded.
+    </div>
+
     <!-- Certificate -->
-    <div class="cert" id="completion-cert">
+    <div class="cert" id="completion-cert" style="display:none;">
       <div class="cert-logo">⚖️</div>
       <h3>Gunn Law Group</h3>
       <div style="font-size:13px;color:#888;margin-bottom:4px;">Certificate of Completion</div>
@@ -917,8 +932,8 @@ QA Checklist: ✅ PASSED
       <div class="cert-achievements" id="cert-achievements"></div>
     </div>
 
-    <div class="btn-group">
-      <button class="btn btn-success btn-block" onclick="submitResults()">📧 Email Results to Harrell</button>
+    <div class="btn-group" id="cert-action-btns" style="display:none;">
+      <button class="btn btn-secondary btn-block" onclick="submitResults()">📧 Email Results (Backup)</button>
       <button class="btn btn-secondary btn-block" onclick="printCert()">🖨️ Print Certificate</button>
     </div>
 
@@ -1362,10 +1377,67 @@ function buildResults() {
   });
   document.getElementById('cert-achievements').innerHTML = certBadges || '<span style="color:#888;font-size:13px;">Complete the challenge to earn badges</span>';
 
-  // Get name from prompt
-  const name = prompt('Enter your name for the completion certificate:') || 'Training Participant';
+  // Name will be entered via the inline form; cert stays hidden until form submitted
+  // (cert-name-display updated in submitScoreAndBuildCert)
+}
+
+// ═══════════════════════════════════════════════
+// SCORE TRACKER — inline (no external file needed)
+// Replace TRACKER_URL after deploying Apps Script
+// ═══════════════════════════════════════════════
+var TRACKER_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+function submitScoreAndBuildCert() {
+  const nameInput = document.getElementById('trainee-name-input');
+  const name = (nameInput.value || '').trim() || 'Training Participant';
   state.traineeFirstName = name;
+
+  // Update cert fields
   document.getElementById('cert-name-display').textContent = name;
+
+  // Hide form, show cert + action buttons
+  document.getElementById('score-submit-form').style.display = 'none';
+  document.getElementById('completion-cert').style.display = 'block';
+  document.getElementById('cert-action-btns').style.display = 'flex';
+
+  // Submit to tracker
+  const total   = state.totalScore + state.bonusScore;
+  const maxPts  = 200;
+  if (TRACKER_URL && TRACKER_URL !== 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
+    const payload = {
+      employeeName: name,
+      moduleId:     'day5',
+      moduleName:   'Week 1 Mastery Challenge',
+      score:        total,
+      maxScore:     maxPts,
+      passedAt:     new Date().toISOString()
+    };
+    fetch(TRACKER_URL, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload),
+      mode:    'no-cors'
+    })
+    .then(function() {
+      document.getElementById('score-confirmation').style.display = 'block';
+    })
+    .catch(function() {
+      document.getElementById('score-confirmation').innerHTML =
+        '⚠️ Automatic submission failed — please use the Email Results button below.';
+      document.getElementById('score-confirmation').style.background = '#fff3cd';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+      document.getElementById('score-confirmation').style.color = '#856404';
+      document.getElementById('score-confirmation').style.display = 'block';
+    });
+  } else {
+    // Tracker not configured — remind to email
+    document.getElementById('score-confirmation').innerHTML =
+      'ℹ️ Auto-tracking not yet enabled. Please use the <strong>Email Results</strong> button below.';
+    document.getElementById('score-confirmation').style.background = '#e8f0ff';
+    document.getElementById('score-confirmation').style.borderLeftColor = '#3a5bd9';
+    document.getElementById('score-confirmation').style.color = '#1a3480';
+    document.getElementById('score-confirmation').style.display = 'block';
+  }
 }
 
 // ═══════════════════════════════════════════════

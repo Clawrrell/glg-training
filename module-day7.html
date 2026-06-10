@@ -1,988 +1,967 @@
-<!--
-═══════════════════════════════════════════════
-COO GATE MANIFEST
-Date: 2026-06-08
-Deliverable: Day 7 Training Module — Coverage Verification
-References Loaded: 7 files
-  - /Users/harrellgunn/.openclaw/workspace/glg/GATES/COO-GATES.md
-  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/essential-lawyering-memo.md
-  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/client-centered-law-firm-memo.md
-  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/e-myth-memo.md
-  - /Users/harrellgunn/.openclaw/workspace/glg/books/memos/reptile-mist-memo.md
-  - /Users/harrellgunn/.openclaw/workspace/glg/training/Coverage_Maximization_Checklist.docx
-  - /Users/harrellgunn/.openclaw/workspace/glg-pages/critical/REFERENCE.md
-Existing Docs Checked: Previous module-day7-coverage-verification.html for HTML structure
-QA Checklist: ✅ PASSED
-  - Systems Test: Creates step-by-step process for coverage verification
-  - EOS Alignment: Ties to case evaluation accountability metrics
-  - Client-Centered Test: Improves client financial recovery outcomes
-  - Consistency Check: References correct CasePeer workflow and firm details
-═══════════════════════════════════════════════
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Day 7 — Coverage Verification &amp; Opening Claims</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
-    header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
-    header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
-    header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
-    header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
-    .progress-wrap { background: #232e54; padding: 12px 20px; }
-    .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
-    .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
-    .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
-    .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
-    .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
-    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
-    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
-    .nav-pill.done::after { content: ' ✓'; }
-    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
-    .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
-    .section-card.active { display: block; }
-    .section-header { background: #141c2c; color: white; padding: 20px 24px; }
-    .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
-    .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
-    .section-body { padding: 24px; }
-    .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
-    .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-    .info-block ul { padding-left: 20px; }
-    .info-block ul li { margin-bottom: 6px; font-size: 15px; }
-    .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-    .alert-block h3 { color: #856404; margin-bottom: 8px; }
-    .alert-block p, .alert-block ul { color: #533f03; font-size: 15px; }
-    .alert-block ul { padding-left: 20px; }
-    .alert-block ul li { margin-bottom: 5px; }
-    .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-    .success-block h3 { color: #155724; margin-bottom: 8px; }
-    .success-block p, .success-block ul { color: #155724; font-size: 15px; }
-    .success-block ul { padding-left: 20px; }
-    .success-block ul li { margin-bottom: 5px; }
-    .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
-    .danger-block p, .danger-block ul { color: #721c24; font-size: 15px; }
-    .danger-block ul { padding-left: 20px; }
-    .danger-block ul li { margin-bottom: 5px; }
-    .law-block { background: #e8eaf6; border: 2px solid #3949ab; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
-    .law-block h3 { color: #1a237e; margin-bottom: 8px; font-size: 16px; }
-    .law-block p { color: #283593; font-size: 15px; }
-    .law-block .statute { font-size: 18px; font-weight: 800; color: #1a237e; margin-bottom: 8px; }
-    .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
-    .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
-    .pipeline-step:last-child { border-bottom: none; }
-    .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
-    .step-content { flex: 1; }
-    .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
-    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
-    .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
-    .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
-    .tagline-block .highlight { color: #4fc3f7; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-    @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
-    .col-card { border: 2px solid #e0e3e8; border-radius: 10px; overflow: hidden; }
-    .col-card-header { background: #232e54; color: white; padding: 10px 14px; font-weight: 700; font-size: 14px; }
-    .col-card-body { padding: 12px 14px; font-size: 14px; color: #333; }
-    .col-card-body ul { padding-left: 16px; }
-    .col-card-body ul li { margin-bottom: 4px; }
-    .table-wrap { overflow-x: auto; margin-bottom: 16px; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    th { background: #141c2c; color: white; padding: 10px 12px; text-align: left; font-weight: 700; }
-    td { padding: 10px 12px; border-bottom: 1px solid #e0e3e8; vertical-align: top; }
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) td { background: #f8f9fa; }
-    .script-block { background: #1e2a3a; color: #e8f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; font-family: monospace; font-size: 14px; line-height: 1.7; }
-    .script-block .label { color: #4fc3f7; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
-    .script-block em { color: #f39c12; font-style: normal; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
-    .btn:active { transform: scale(0.97); }
-    .btn-primary { background: #141c2c; color: white; width: 100%; }
-    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
-    .btn-success { background: #27ae60; color: white; width: 100%; }
-    .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
-    .section-footer .btn { flex: 1; min-width: 120px; }
-    .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
-    .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
-    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
-    .quiz-body { padding: 20px 24px; }
-    .question-block { display: none; margin-bottom: 20px; }
-    .question-block.active { display: block; }
-    .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
-    .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
-    .options { display: flex; flex-direction: column; gap: 10px; }
-    .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
-    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
-    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
-    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
-    .option-btn:disabled { cursor: not-allowed; }
-    .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
-    .option-btn.correct .option-letter { background: #27ae60; }
-    .option-btn.incorrect .option-letter { background: #c0392b; }
-    .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
-    .feedback.show { display: block; }
-    .feedback.correct { background: #d4edda; color: #155724; }
-    .feedback.incorrect { background: #f8d7da; color: #721c24; }
-    .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
-    .quiz-nav .btn { flex: 1; min-width: 120px; }
-    #results-section { display: none; }
-    #results-section.active { display: block; }
-    .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
-    .results-header { padding: 30px 24px; text-align: center; }
-    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
-    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
-    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
-    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
-    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
-    .results-body { padding: 24px; }
-    .results-breakdown { margin-bottom: 20px; }
-    .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
-    .breakdown-item:last-child { border-bottom: none; }
-    .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-    .dot.correct { background: #27ae60; }
-    .dot.incorrect { background: #c0392b; }
-    #feedback-section { display: none; }
-    .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
-    .fb-header { background: #232e54; color: white; padding: 20px 24px; }
-    .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
-    .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
-    .fb-body { padding: 24px; }
-    .fb-q { margin-bottom: 20px; }
-    .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
-    .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
-    .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
-    .star-row { display: flex; gap: 10px; font-size: 36px; }
-    .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
-    .star.lit { color: #f39c12; }
-    #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
-    #certificate.show { display: block; }
-    .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
-    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
-    .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
-    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
-    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-    .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
-    .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
-    .cert-module strong { color: #141c2c; }
-    .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
-    .cert-date { font-size: 13px; color: #888; }
-    .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
-    .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
-    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
-    .print-btn { margin-top: 16px; }
-    @media print {
-      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
-      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
-      body { background: white; }
-    }
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ <title>Day 7 — Coverage Verification &amp; Opening Claims</title>
+ <style>
+ *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+ header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
+ header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+ header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+ header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
+ .progress-wrap { background: #232e54; padding: 12px 20px; }
+ .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+ .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
+ .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
+ .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
+ .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
+ .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+ .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+ .nav-pill.done::after { content: ' ✓'; }
+ main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+ .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+ .section-card.active { display: block; }
+ .section-header { background: #141c2c; color: white; padding: 20px 24px; }
+ .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+ .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+ .section-body { padding: 24px; }
+ .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+ .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+ .info-block ul { padding-left: 20px; }
+ .info-block ul li { margin-bottom: 6px; font-size: 15px; }
+ .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+ .alert-block h3 { color: #856404; margin-bottom: 8px; }
+ .alert-block p, .alert-block ul { color: #533f03; font-size: 15px; }
+ .alert-block ul { padding-left: 20px; }
+ .alert-block ul li { margin-bottom: 5px; }
+ .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+ .success-block h3 { color: #155724; margin-bottom: 8px; }
+ .success-block p, .success-block ul { color: #155724; font-size: 15px; }
+ .success-block ul { padding-left: 20px; }
+ .success-block ul li { margin-bottom: 5px; }
+ .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+ .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+ .danger-block p, .danger-block ul { color: #721c24; font-size: 15px; }
+ .danger-block ul { padding-left: 20px; }
+ .danger-block ul li { margin-bottom: 5px; }
+ .law-block { background: #e8eaf6; border: 2px solid #3949ab; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+ .law-block h3 { color: #1a237e; margin-bottom: 8px; font-size: 16px; }
+ .law-block p { color: #283593; font-size: 15px; }
+ .law-block .statute { font-size: 18px; font-weight: 800; color: #1a237e; margin-bottom: 8px; }
+ .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+ .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+ .pipeline-step:last-child { border-bottom: none; }
+ .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+ .step-content { flex: 1; }
+ .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
+ .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+ .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
+ .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
+ .tagline-block .highlight { color: #4fc3f7; }
+ .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+ @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+ .col-card { border: 2px solid #e0e3e8; border-radius: 10px; overflow: hidden; }
+ .col-card-header { background: #232e54; color: white; padding: 10px 14px; font-weight: 700; font-size: 14px; }
+ .col-card-body { padding: 12px 14px; font-size: 14px; color: #333; }
+ .col-card-body ul { padding-left: 16px; }
+ .col-card-body ul li { margin-bottom: 4px; }
+ .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+ table { width: 100%; border-collapse: collapse; font-size: 14px; }
+ th { background: #141c2c; color: white; padding: 10px 12px; text-align: left; font-weight: 700; }
+ td { padding: 10px 12px; border-bottom: 1px solid #e0e3e8; vertical-align: top; }
+ tr:last-child td { border-bottom: none; }
+ tr:nth-child(even) td { background: #f8f9fa; }
+ .script-block { background: #1e2a3a; color: #e8f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; font-family: monospace; font-size: 14px; line-height: 1.7; }
+ .script-block .label { color: #4fc3f7; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; display: block; }
+ .script-block em { color: #f39c12; font-style: normal; }
+ .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
+ .btn:active { transform: scale(0.97); }
+ .btn-primary { background: #141c2c; color: white; width: 100%; }
+ .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+ .btn-success { background: #27ae60; color: white; width: 100%; }
+ .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
+ .section-footer .btn { flex: 1; min-width: 120px; }
+ .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
+ .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+ .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+ .quiz-body { padding: 20px 24px; }
+ .question-block { display: none; margin-bottom: 20px; }
+ .question-block.active { display: block; }
+ .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+ .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
+ .options { display: flex; flex-direction: column; gap: 10px; }
+ .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
+ .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+ .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+ .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+ .option-btn:disabled { cursor: not-allowed; }
+ .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+ .option-btn.correct .option-letter { background: #27ae60; }
+ .option-btn.incorrect .option-letter { background: #c0392b; }
+ .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+ .feedback.show { display: block; }
+ .feedback.correct { background: #d4edda; color: #155724; }
+ .feedback.incorrect { background: #f8d7da; color: #721c24; }
+ .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+ .quiz-nav .btn { flex: 1; min-width: 120px; }
+ #results-section { display: none; }
+ #results-section.active { display: block; }
+ .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+ .results-header { padding: 30px 24px; text-align: center; }
+ .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+ .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+ .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+ .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+ .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+ .results-body { padding: 24px; }
+ .results-breakdown { margin-bottom: 20px; }
+ .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+ .breakdown-item:last-child { border-bottom: none; }
+ .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+ .dot.correct { background: #27ae60; }
+ .dot.incorrect { background: #c0392b; }
+ #feedback-section { display: none; }
+ .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+ .fb-header { background: #232e54; color: white; padding: 20px 24px; }
+ .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+ .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
+ .fb-body { padding: 24px; }
+ .fb-q { margin-bottom: 20px; }
+ .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
+ .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+ .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+ .star-row { display: flex; gap: 10px; font-size: 36px; }
+ .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
+ .star.lit { color: #f39c12; }
+ #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
+ #certificate.show { display: block; }
+ .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
+ .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+ .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
+ .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+ .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+ .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
+ .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+ .cert-module strong { color: #141c2c; }
+ .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
+ .cert-date { font-size: 13px; color: #888; }
+ .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
+ .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
+ .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+ .print-btn { margin-top: 16px; }
+ @media print {
+ header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
+ #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+ body { background: white; }
+ }
+ </style>
 </head>
 <body>
 
 <header>
-  <div class="day-badge">Day 7 of 7</div>
-  <h1>Coverage Verification &amp; Opening Claims</h1>
-  <p>Gunn Law Group — Legal Assistant Training</p>
+ <div class="day-badge">Day 7 of 7</div>
+ <h1>Coverage Verification &amp; Opening Claims</h1>
+ <p>Gunn Law Group — Legal Assistant Training</p>
 </header>
 
 <div class="progress-wrap">
-  <div class="progress-label">
-    <span>Your Progress</span>
-    <span id="progress-text">Section 1 of 5</span>
-  </div>
-  <div class="progress-bar-bg">
-    <div class="progress-bar-fill" id="progress-fill"></div>
-  </div>
+ <div class="progress-label">
+ <span>Your Progress</span>
+ <span id="progress-text">Section 1 of 5</span>
+ </div>
+ <div class="progress-bar-bg">
+ <div class="progress-bar-fill" id="progress-fill"></div>
+ </div>
 </div>
 
 <nav class="section-nav" role="navigation" aria-label="Module sections">
-  <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. The System</button>
-  <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. Georgia Law</button>
-  <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Opening Claims</button>
-  <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Multiple Coverages</button>
-  <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. CasePeer Logging</button>
-  <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
+ <button class="nav-pill active" data-target="0" onclick="goToSection(0)" ontouchend="goToSection(0)">1. The System</button>
+ <button class="nav-pill" data-target="1" onclick="goToSection(1)" ontouchend="goToSection(1)">2. Georgia Law</button>
+ <button class="nav-pill" data-target="2" onclick="goToSection(2)" ontouchend="goToSection(2)">3. Opening Claims</button>
+ <button class="nav-pill" data-target="3" onclick="goToSection(3)" ontouchend="goToSection(3)">4. Multiple Coverages</button>
+ <button class="nav-pill" data-target="4" onclick="goToSection(4)" ontouchend="goToSection(4)">5. CasePeer Logging</button>
+ <button class="nav-pill" data-target="5" onclick="goToSection(5)" ontouchend="goToSection(5)">📝 Quiz</button>
 </nav>
 
 <main>
 
-  <!-- SECTION 1: The System -->
-  <div class="section-card active" id="section-0">
-    <div class="section-header">
-      <div class="section-num">Section 1</div>
-      <h2>Coverage Verification — The First Economic Analysis</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">Coverage verification is not paperwork — it's <strong>economic analysis.</strong> Before you can evaluate settlement strategy, set client expectations, or frame a Reptile safety argument, you must know the available money. This is your first and most critical financial task on every case.</p>
+ <!-- SECTION 1: The System -->
+ <div class="section-card active" id="section-0">
+ <div class="section-header">
+ <div class="section-num">Section 1</div>
+ <h2>Coverage Verification — The First Economic Analysis</h2>
+ </div>
+ <div class="section-body">
+ <p style="font-size:15px; margin-bottom:18px;">Coverage verification is not paperwork — it's <strong>economic analysis.</strong> Before you can evaluate settlement strategy, set client expectations, or frame a PI strategy safety argument, you must know the available money. This is your first and most critical financial task on every case.</p>
 
-      <div class="info-block">
-        <h3>💰 Why Coverage Drives Everything</h3>
-        <ul>
-          <li><strong>Settlement Strategy:</strong> $25K limits = policy limits demand. $500K limits = build the damages case</li>
-          <li><strong>Client Expectations:</strong> Never let a client believe they're getting $100K when only $25K exists</li>
-          <li><strong>Case Investment:</strong> High limits justify expensive medical treatment. Low limits don't</li>
-          <li><strong>Timeline Planning:</strong> Known limits enable time-limited demands that create settlement pressure</li>
-          <li><strong>UM/UIM Strategy:</strong> If at-fault limits are exhausted, client's own UM/UIM coverage becomes primary</li>
-        </ul>
-      </div>
+ <div class="info-block">
+ <h3>💰 Why Coverage Drives Everything</h3>
+ <ul>
+ <li><strong>Settlement Strategy:</strong> $25K limits = policy limits demand. $500K limits = build the damages case</li>
+ <li><strong>Client Expectations:</strong> Never let a client believe they're getting $100K when only $25K exists</li>
+ <li><strong>Case Investment:</strong> High limits justify expensive medical treatment. Low limits don't</li>
+ <li><strong>Timeline Planning:</strong> Known limits enable time-limited demands that create settlement pressure</li>
+ <li><strong>UM/UIM Strategy:</strong> If at-fault limits are exhausted, client's own UM/UIM coverage becomes primary</li>
+ </ul>
+ </div>
 
-      <div class="law-block">
-        <h3>📖 Georgia Minimum Coverage Requirements</h3>
-        <div class="statute">25/50/25</div>
-        <p><strong>$25,000</strong> per person for Bodily Injury<br>
-        <strong>$50,000</strong> per accident for Bodily Injury<br>
-        <strong>$25,000</strong> per accident for Property Damage</p>
-        <p style="margin-top:10px; font-size:14px;">Many Georgia drivers carry only state minimums. Assume minimums until you verify otherwise.</p>
-      </div>
+ <div class="law-block">
+ <h3>📖 Georgia Minimum Coverage Requirements</h3>
+ <div class="statute">25/50/25</div>
+ <p><strong>$25,000</strong> per person for Bodily Injury<br>
+ <strong>$50,000</strong> per accident for Bodily Injury<br>
+ <strong>$25,000</strong> per accident for Property Damage</p>
+ <p style="margin-top:10px; font-size:14px;">Many Georgia drivers carry only state minimums. Assume minimums until you verify otherwise.</p>
+ </div>
 
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-status">Open the claim and verify active coverage on date of loss</div>
-            <div class="step-desc">First question: "Can you confirm your insured had active coverage on [date]?" Get claim number and adjuster assignment.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-status">Send written LOR and limits request same day</div>
-            <div class="step-desc">LOR establishes representation. Separate written limits request triggers O.C.G.A. § 33-3-28 thirty-day clock.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-status">Verify client's UM/UIM, MedPay, and health insurance</div>
-            <div class="step-desc">Run the full Coverage Maximization Checklist. Every policy in the household. Every source of available money.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="step-status">Log everything in CasePeer with 30-day follow-up task</div>
-            <div class="step-desc">Coverage info, claim numbers, adjuster contacts, limits request date. Set task: "Limits response due under § 33-3-28."</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">5</div>
-          <div class="step-content">
-            <div class="step-status">Brief the attorney on available coverage within 48 hours</div>
-            <div class="step-desc">Total available money drives case strategy. Attorney needs this before making any settlement recommendations to client.</div>
-          </div>
-        </div>
-      </div>
+ <div class="pipeline">
+ <div class="pipeline-step">
+ <div class="step-num">1</div>
+ <div class="step-content">
+ <div class="step-status">Open the claim and verify active coverage on date of loss</div>
+ <div class="step-desc">First question: "Can you confirm your insured had active coverage on [date]?" Get claim number and adjuster assignment.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">2</div>
+ <div class="step-content">
+ <div class="step-status">Send written LOR and limits request same day</div>
+ <div class="step-desc">LOR establishes representation. Separate written limits request triggers O.C.G.A. § 33-3-28 thirty-day clock.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">3</div>
+ <div class="step-content">
+ <div class="step-status">Verify client's UM/UIM, MedPay, and health insurance</div>
+ <div class="step-desc">Run the full Coverage Maximization Checklist. Every policy in the household. Every source of available money.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">4</div>
+ <div class="step-content">
+ <div class="step-status">Log everything in CasePeer with 30-day follow-up task</div>
+ <div class="step-desc">Coverage info, claim numbers, adjuster contacts, limits request date. Set task: "Limits response due under § 33-3-28."</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">5</div>
+ <div class="step-content">
+ <div class="step-status">Brief the attorney on available coverage within 48 hours</div>
+ <div class="step-desc">Total available money drives case strategy. Attorney needs this before making any settlement recommendations to client.</div>
+ </div>
+ </div>
+ </div>
 
-      <div class="tagline-block">
-        <p>Every dollar of available coverage is <span class="highlight">money for the client.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Missing coverage at intake means missing money at settlement. Your job is to find every source of recovery.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: Georgia Law →</button>
-    </div>
-  </div>
+ <div class="tagline-block">
+ <p>Every dollar of available coverage is <span class="highlight">money for the client.</span></p>
+ <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Missing coverage at intake means missing money at settlement. Your job is to find every source of recovery.</p>
+ </div>
+ </div>
+ <div class="section-footer">
+ <button class="btn btn-primary" onclick="goToSection(1)" ontouchend="goToSection(1)">Next: Georgia Law →</button>
+ </div>
+ </div>
 
-  <!-- SECTION 2: Georgia Law -->
-  <div class="section-card" id="section-1">
-    <div class="section-header">
-      <div class="section-num">Section 2</div>
-      <h2>O.C.G.A. § 33-3-28 — Policy Limits Disclosure</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">This Georgia statute is a powerful tool for discovering policy limits. Insurance companies cannot hide behind "we don't disclose limits" — the law requires it.</p>
+ <!-- SECTION 2: Georgia Law -->
+ <div class="section-card" id="section-1">
+ <div class="section-header">
+ <div class="section-num">Section 2</div>
+ <h2>O.C.G.A. § 33-3-28 — Policy Limits Disclosure</h2>
+ </div>
+ <div class="section-body">
+ <p style="font-size:15px; margin-bottom:18px;">This Georgia statute is a powerful tool for discovering policy limits. Insurance companies cannot hide behind "we don't disclose limits" — the law requires it.</p>
 
-      <div class="law-block">
-        <div class="statute">O.C.G.A. § 33-3-28</div>
-        <h3>Required Disclosure</h3>
-        <p>Upon <strong>written request</strong> by or on behalf of a claimant, every insurer must disclose the policy limits of liability insurance coverage within <strong>30 days</strong> of receipt.</p>
-      </div>
+ <div class="law-block">
+ <div class="statute">O.C.G.A. § 33-3-28</div>
+ <h3>Required Disclosure</h3>
+ <p>Upon <strong>written request</strong> by or on behalf of a claimant, every insurer must disclose the policy limits of liability insurance coverage within <strong>30 days</strong> of receipt.</p>
+ </div>
 
-      <div class="two-col">
-        <div class="col-card">
-          <div class="col-card-header">✅ What Triggers the Law</div>
-          <div class="col-card-body">
-            <ul>
-              <li><strong>Written request</strong> (not verbal)</li>
-              <li>From attorney or authorized agent</li>
-              <li>Specifically requesting "policy limits"</li>
-              <li>To the correct insurer</li>
-              <li>30-day clock starts when they receive it</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-card">
-          <div class="col-card-header">❌ What Doesn't Count</div>
-          <div class="col-card-body">
-            <ul>
-              <li>Phone calls asking for limits</li>
-              <li>General LOR without limits language</li>
-              <li>Request from client directly</li>
-              <li>Request to wrong department</li>
-              <li>Vague "coverage information" requests</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+ <div class="two-col">
+ <div class="col-card">
+ <div class="col-card-header">✅ What Triggers the Law</div>
+ <div class="col-card-body">
+ <ul>
+ <li><strong>Written request</strong> (not verbal)</li>
+ <li>From attorney or authorized agent</li>
+ <li>Specifically requesting "policy limits"</li>
+ <li>To the correct insurer</li>
+ <li>30-day clock starts when they receive it</li>
+ </ul>
+ </div>
+ </div>
+ <div class="col-card">
+ <div class="col-card-header">❌ What Doesn't Count</div>
+ <div class="col-card-body">
+ <ul>
+ <li>Phone calls asking for limits</li>
+ <li>General LOR without limits language</li>
+ <li>Request from client directly</li>
+ <li>Request to wrong department</li>
+ <li>Vague "coverage information" requests</li>
+ </ul>
+ </div>
+ </div>
+ </div>
 
-      <div class="script-block">
-        <span class="label">Written Limits Request Language</span>
-        "Pursuant to O.C.G.A. § 33-3-28, please provide the policy declaration pages and all applicable limits of liability coverage for your insured, <em>[At-Fault Driver Name]</em>, including bodily injury, property damage, uninsured/underinsured motorist, umbrella, and any other applicable coverages in effect on <em>[Date of Accident]</em> for the motor vehicle accident involving our client, <em>[Client Name]</em>. This written request triggers the thirty (30) day disclosure requirement under Georgia law."
-      </div>
+ <div class="script-block">
+ <span class="label">Written Limits Request Language</span>
+ "Pursuant to O.C.G.A. § 33-3-28, please provide the policy declaration pages and all applicable limits of liability coverage for your insured, <em>[At-Fault Driver Name]</em>, including bodily injury, property damage, uninsured/underinsured motorist, umbrella, and any other applicable coverages in effect on <em>[Date of Accident]</em> for the motor vehicle accident involving our client, <em>[Client Name]</em>. This written request triggers the thirty (30) day disclosure requirement under Georgia law."
+ </div>
 
-      <div class="success-block">
-        <h3>🎯 Strategic Use of the 30-Day Rule</h3>
-        <ul>
-          <li><strong>Early Settlement Leverage:</strong> If they won't provide limits quickly, use their delay in settlement negotiations</li>
-          <li><strong>Bad Faith Foundation:</strong> Failure to comply with § 33-3-28 can be evidence of bad faith at trial</li>
-          <li><strong>Time-Limited Demands:</strong> Once you know limits, you can create urgency with policy limits demands</li>
-          <li><strong>Client Counseling:</strong> Can't properly advise client on settlement offers without knowing available money</li>
-        </ul>
-      </div>
+ <div class="success-block">
+ <h3>🎯 Strategic Use of the 30-Day Rule</h3>
+ <ul>
+ <li><strong>Early Settlement Leverage:</strong> If they won't provide limits quickly, use their delay in settlement negotiations</li>
+ <li><strong>Bad Faith Foundation:</strong> Failure to comply with § 33-3-28 can be evidence of bad faith at trial</li>
+ <li><strong>Time-Limited Demands:</strong> Once you know limits, you can create urgency with policy limits demands</li>
+ <li><strong>Client Counseling:</strong> Can't properly advise client on settlement offers without knowing available money</li>
+ </ul>
+ </div>
 
-      <div class="alert-block">
-        <h3>⚠️ Track the Deadline in CasePeer</h3>
-        <p>The day you send the limits request, create a task 30 days out: <strong>"Limits response due — O.C.G.A. § 33-3-28"</strong> If no response, that's attorney work immediately.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Opening Claims →</button>
-    </div>
-  </div>
+ <div class="alert-block">
+ <h3>⚠️ Track the Deadline in CasePeer</h3>
+ <p>The day you send the limits request, create a task 30 days out: <strong>"Limits response due — O.C.G.A. § 33-3-28"</strong> If no response, that's attorney work immediately.</p>
+ </div>
+ </div>
+ <div class="section-footer">
+ <button class="btn btn-outline" onclick="goToSection(0)" ontouchend="goToSection(0)">← Back</button>
+ <button class="btn btn-primary" onclick="goToSection(2)" ontouchend="goToSection(2)">Next: Opening Claims →</button>
+ </div>
+ </div>
 
-  <!-- SECTION 3: Opening Claims -->
-  <div class="section-card" id="section-2">
-    <div class="section-header">
-      <div class="section-num">Section 3</div>
-      <h2>Opening Claims — The Professional Approach</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">How you open a claim sets the tone for the entire case relationship. Insurance adjusters work with attorneys all day — they know the difference between professional and amateur.</p>
+ <!-- SECTION 3: Opening Claims -->
+ <div class="section-card" id="section-2">
+ <div class="section-header">
+ <div class="section-num">Section 3</div>
+ <h2>Opening Claims — The Professional Approach</h2>
+ </div>
+ <div class="section-body">
+ <p style="font-size:15px; margin-bottom:18px;">How you open a claim sets the tone for the entire case relationship. Insurance adjusters work with attorneys all day — they know the difference between professional and amateur.</p>
 
-      <div class="info-block">
-        <h3>📋 Before You Call</h3>
-        <ul>
-          <li>Client's full name, DOB, and address</li>
-          <li>Date, time, and location of accident</li>
-          <li>At-fault driver's name and policy number (if available)</li>
-          <li>Brief, factual description of accident</li>
-          <li>Your name, title, and firm information</li>
-          <li>Signed LOR (or ready to send immediately)</li>
-        </ul>
-      </div>
+ <div class="info-block">
+ <h3>📋 Before You Call</h3>
+ <ul>
+ <li>Client's full name, DOB, and address</li>
+ <li>Date, time, and location of accident</li>
+ <li>At-fault driver's name and policy number (if available)</li>
+ <li>Brief, factual description of accident</li>
+ <li>Your name, title, and firm information</li>
+ <li>Signed LOR (or ready to send immediately)</li>
+ </ul>
+ </div>
 
-      <div class="script-block">
-        <span class="label">Professional Opening Call Script</span>
-        "Good <em>[morning/afternoon]</em>, my name is <em>[Your Name]</em> calling from the Gunn Law Group in Atlanta, Georgia. We represent <em>[Client Name, DOB]</em> in connection with a motor vehicle accident that occurred on <em>[Date]</em> at approximately <em>[Time]</em> in <em>[Location]</em> involving your insured, <em>[At-Fault Driver Name]</em>.<br><br>
-        I need to open a third-party liability claim. Can you first confirm that your insured had active coverage on <em>[Date of Accident]</em>?<br><br>
-        <em>[After confirmation]:</em> Thank you. What is the claim number, and who will be the assigned adjuster? I'll be sending our letter of representation and a formal request for policy limits information today."
-      </div>
+ <div class="script-block">
+ <span class="label">Professional Opening Call Script</span>
+ "Good <em>[morning/afternoon]</em>, my name is <em>[Your Name]</em> calling from the Gunn Law Group in Atlanta, Georgia. We represent <em>[Client Name, DOB]</em> in connection with a motor vehicle accident that occurred on <em>[Date]</em> at approximately <em>[Time]</em> in <em>[Location]</em> involving your insured, <em>[At-Fault Driver Name]</em>.<br><br>
+ I need to open a third-party liability claim. Can you first confirm that your insured had active coverage on <em>[Date of Accident]</em>?<br><br>
+ <em>[After confirmation]:</em> Thank you. What is the claim number, and who will be the assigned adjuster? I'll be sending our letter of representation and a formal request for policy limits information today."
+ </div>
 
-      <div class="info-block">
-        <h3>🚫 What Adjusters Will Try to Get</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>They Ask</th><th>You Say</th></tr>
-            <tr><td>"Can I get a recorded statement from your client?"</td><td>"No. All communication with our client goes through our office."</td></tr>
-            <tr><td>"Can you give me more details about your client's injuries?"</td><td>"That information will be provided through the appropriate discovery process."</td></tr>
-            <tr><td>"When can we get medical records?"</td><td>"We'll provide relevant medical information as part of our demand presentation."</td></tr>
-            <tr><td>"What damages are you claiming?"</td><td>"We're still evaluating all damages. This call is to open the claim and verify coverage."</td></tr>
-          </table>
-        </div>
-      </div>
+ <div class="info-block">
+ <h3>🚫 What Adjusters Will Try to Get</h3>
+ <div class="table-wrap">
+ <table>
+ <tr><th>They Ask</th><th>You Say</th></tr>
+ <tr><td>"Can I get a recorded statement from your client?"</td><td>"No. All communication with our client goes through our office."</td></tr>
+ <tr><td>"Can you give me more details about your client's injuries?"</td><td>"That information will be provided through the appropriate discovery process."</td></tr>
+ <tr><td>"When can we get medical records?"</td><td>"We'll provide relevant medical information as part of our demand presentation."</td></tr>
+ <tr><td>"What damages are you claiming?"</td><td>"We're still evaluating all damages. This call is to open the claim and verify coverage."</td></tr>
+ </table>
+ </div>
+ </div>
 
-      <div class="danger-block">
-        <h3>🛑 What If They Deny Coverage?</h3>
-        <p>If the insurer says "no coverage" or "policy lapsed," don't argue on the phone. Get details:</p>
-        <ul>
-          <li>When did the policy allegedly lapse?</li>
-          <li>Was there another policy in effect?</li>
-          <li>Will they send written denial with explanation?</li>
-          <li>Who made this determination?</li>
-        </ul>
-        <p><strong>Then immediately flag to the attorney.</strong> Coverage denials are legal issues requiring attorney review.</p>
-      </div>
+ <div class="danger-block">
+ <h3>🛑 What If They Deny Coverage?</h3>
+ <p>If the insurer says "no coverage" or "policy lapsed," don't argue on the phone. Get details:</p>
+ <ul>
+ <li>When did the policy allegedly lapse?</li>
+ <li>Was there another policy in effect?</li>
+ <li>Will they send written denial with explanation?</li>
+ <li>Who made this determination?</li>
+ </ul>
+ <p><strong>Then immediately flag to the attorney.</strong> Coverage denials are legal issues requiring attorney review.</p>
+ </div>
 
-      <div class="success-block">
-        <h3>✅ After the Call — Same Day Actions</h3>
-        <ul>
-          <li>Log claim number, adjuster name/phone in CasePeer</li>
-          <li>Send LOR via email and certified mail</li>
-          <li>Send written limits request citing O.C.G.A. § 33-3-28</li>
-          <li>Create 30-day follow-up task for limits response</li>
-          <li>Email the CM and attorney: "Claim opened, coverage confirmed, limits requested"</li>
-        </ul>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Multiple Coverages →</button>
-    </div>
-  </div>
+ <div class="success-block">
+ <h3>✅ After the Call — Same Day Actions</h3>
+ <ul>
+ <li>Log claim number, adjuster name/phone in CasePeer</li>
+ <li>Send LOR via email and certified mail</li>
+ <li>Send written limits request citing O.C.G.A. § 33-3-28</li>
+ <li>Create 30-day follow-up task for limits response</li>
+ <li>Email the CM and attorney: "Claim opened, coverage confirmed, limits requested"</li>
+ </ul>
+ </div>
+ </div>
+ <div class="section-footer">
+ <button class="btn btn-outline" onclick="goToSection(1)" ontouchend="goToSection(1)">← Back</button>
+ <button class="btn btn-primary" onclick="goToSection(3)" ontouchend="goToSection(3)">Next: Multiple Coverages →</button>
+ </div>
+ </div>
 
-  <!-- SECTION 4: Multiple Coverages -->
-  <div class="section-card" id="section-3">
-    <div class="section-header">
-      <div class="section-num">Section 4</div>
-      <h2>Multiple Coverage Sources — Maximizing Recovery</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">Most PI cases involve multiple sources of coverage. Your job is to identify every possible source of recovery — because every missed coverage source is money the client doesn't get.</p>
+ <!-- SECTION 4: Multiple Coverages -->
+ <div class="section-card" id="section-3">
+ <div class="section-header">
+ <div class="section-num">Section 4</div>
+ <h2>Multiple Coverage Sources — Maximizing Recovery</h2>
+ </div>
+ <div class="section-body">
+ <p style="font-size:15px; margin-bottom:18px;">Most PI cases involve multiple sources of coverage. Your job is to identify every possible source of recovery — because every missed coverage source is money the client doesn't get.</p>
 
-      <div class="info-block">
-        <h3>🔄 Common Multi-Coverage Scenarios</h3>
-        <div class="pipeline" style="margin-bottom:0;">
-          <div class="pipeline-step">
-            <div class="step-num">1</div>
-            <div class="step-content">
-              <div class="step-status">At-Fault BI + Client's UIM Coverage</div>
-              <div class="step-desc">At-fault driver has $25K BI. Client's damages are $75K. We get $25K from at-fault BI, then pursue $50K from client's UIM policy. UIM is designed for exactly this situation.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">2</div>
-            <div class="step-content">
-              <div class="step-status">MedPay Coordination</div>
-              <div class="step-desc">Client's MedPay pays medical bills upfront (no fault determination needed). At settlement, MedPay insurer has subrogation right — they want reimbursement from the BI recovery.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">3</div>
-            <div class="step-content">
-              <div class="step-status">Health Insurance Subrogation</div>
-              <div class="step-desc">Health insurance pays medical bills, then seeks reimbursement from PI settlement. Some policies have full subrogation rights, others are reduced by attorney fees. Varies by policy.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">4</div>
-            <div class="step-content">
-              <div class="step-status">UM/UIM Stacking</div>
-              <div class="step-desc">If client has multiple vehicles with UM/UIM coverage, Georgia law may allow "stacking" the limits. Two cars with $50K UM each = potentially $100K total UM coverage.</div>
-            </div>
-          </div>
-          <div class="pipeline-step">
-            <div class="step-num">5</div>
-            <div class="step-content">
-              <div class="step-status">Multiple At-Fault Parties</div>
-              <div class="step-desc">Some accidents involve multiple defendants (two drivers, or driver + premises liability). Each has separate insurance, separate limits, separate claims to manage.</div>
-            </div>
-          </div>
-        </div>
-      </div>
+ <div class="info-block">
+ <h3>🔄 Common Multi-Coverage Scenarios</h3>
+ <div class="pipeline" style="margin-bottom:0;">
+ <div class="pipeline-step">
+ <div class="step-num">1</div>
+ <div class="step-content">
+ <div class="step-status">At-Fault BI + Client's UIM Coverage</div>
+ <div class="step-desc">At-fault driver has $25K BI. Client's damages are $75K. We get $25K from at-fault BI, then pursue $50K from client's UIM policy. UIM is designed for exactly this situation.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">2</div>
+ <div class="step-content">
+ <div class="step-status">MedPay Coordination</div>
+ <div class="step-desc">Client's MedPay pays medical bills upfront (no fault determination needed). At settlement, MedPay insurer has subrogation right — they want reimbursement from the BI recovery.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">3</div>
+ <div class="step-content">
+ <div class="step-status">Health Insurance Subrogation</div>
+ <div class="step-desc">Health insurance pays medical bills, then seeks reimbursement from PI settlement. Some policies have full subrogation rights, others are reduced by attorney fees. Varies by policy.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">4</div>
+ <div class="step-content">
+ <div class="step-status">UM/UIM Stacking</div>
+ <div class="step-desc">If client has multiple vehicles with UM/UIM coverage, Georgia law may allow "stacking" the limits. Two cars with $50K UM each = potentially $100K total UM coverage.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">5</div>
+ <div class="step-content">
+ <div class="step-status">Multiple At-Fault Parties</div>
+ <div class="step-desc">Some accidents involve multiple defendants (two drivers, or driver + premises liability). Each has separate insurance, separate limits, separate claims to manage.</div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-      <div class="success-block">
-        <h3>✅ Complete Coverage Maximization Checklist</h3>
-        <ul>
-          <li>At-fault driver's BI limits and PD coverage</li>
-          <li>Client's UM/UIM coverage and limits</li>
-          <li>Client's MedPay coverage and limits</li>
-          <li>Client's health insurance (company, policy #, subrogation rights)</li>
-          <li>Any umbrella or excess policies (at-fault driver)</li>
-          <li>Other vehicles in client's household (stacking opportunity)</li>
-          <li>Workers' compensation if accident occurred during work</li>
-          <li>Any commercial coverage (if at-fault driver was working)</li>
-        </ul>
-      </div>
+ <div class="success-block">
+ <h3>✅ Complete Coverage Maximization Checklist</h3>
+ <ul>
+ <li>At-fault driver's BI limits and PD coverage</li>
+ <li>Client's UM/UIM coverage and limits</li>
+ <li>Client's MedPay coverage and limits</li>
+ <li>Client's health insurance (company, policy #, subrogation rights)</li>
+ <li>Any umbrella or excess policies (at-fault driver)</li>
+ <li>Other vehicles in client's household (stacking opportunity)</li>
+ <li>Workers' compensation if accident occurred during work</li>
+ <li>Any commercial coverage (if at-fault driver was working)</li>
+ </ul>
+ </div>
 
-      <div class="alert-block">
-        <h3>⚠️ Subrogation Planning</h3>
-        <p>MedPay and health insurance create subrogation liens that must be satisfied at settlement. Track these from day one:</p>
-        <ul>
-          <li>How much has MedPay paid so far?</li>
-          <li>How much has health insurance paid?</li>
-          <li>What are the subrogation terms in each policy?</li>
-          <li>Will the liens be reduced by attorney fees?</li>
-        </ul>
-        <p>The attorney handles lien negotiations, but you need to know they exist and track the amounts.</p>
-      </div>
+ <div class="alert-block">
+ <h3>⚠️ Subrogation Planning</h3>
+ <p>MedPay and health insurance create subrogation liens that must be satisfied at settlement. Track these from day one:</p>
+ <ul>
+ <li>How much has MedPay paid so far?</li>
+ <li>How much has health insurance paid?</li>
+ <li>What are the subrogation terms in each policy?</li>
+ <li>Will the liens be reduced by attorney fees?</li>
+ </ul>
+ <p>The attorney handles lien negotiations, but you need to know they exist and track the amounts.</p>
+ </div>
 
-      <div class="tagline-block">
-        <p>Think like a <span class="highlight">financial investigator.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every insurance policy is potential money for the client. Run the full checklist on every case. Missing coverage = missing recovery.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
-      <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: CasePeer Logging →</button>
-    </div>
-  </div>
+ <div class="tagline-block">
+ <p>Think like a <span class="highlight">financial investigator.</span></p>
+ <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every insurance policy is potential money for the client. Run the full checklist on every case. Missing coverage = missing recovery.</p>
+ </div>
+ </div>
+ <div class="section-footer">
+ <button class="btn btn-outline" onclick="goToSection(2)" ontouchend="goToSection(2)">← Back</button>
+ <button class="btn btn-primary" onclick="goToSection(4)" ontouchend="goToSection(4)">Next: CasePeer Logging →</button>
+ </div>
+ </div>
 
-  <!-- SECTION 5: CasePeer Logging -->
-  <div class="section-card" id="section-4">
-    <div class="section-header">
-      <div class="section-num">Section 5</div>
-      <h2>CasePeer Documentation — Building the System</h2>
-    </div>
-    <div class="section-body">
-      <p style="font-size:15px; margin-bottom:18px;">CasePeer is the central nervous system for coverage information. Every claim number, every policy limit, every subrogation amount must be logged systematically so the attorney and CM can find it instantly.</p>
+ <!-- SECTION 5: CasePeer Logging -->
+ <div class="section-card" id="section-4">
+ <div class="section-header">
+ <div class="section-num">Section 5</div>
+ <h2>CasePeer Documentation — Building the System</h2>
+ </div>
+ <div class="section-body">
+ <p style="font-size:15px; margin-bottom:18px;">CasePeer is the central nervous system for coverage information. Every claim number, every policy limit, every subrogation amount must be logged systematically so the attorney and CM can find it instantly.</p>
 
-      <div class="info-block">
-        <h3>📝 Where to Log Coverage Information</h3>
-        <div class="table-wrap">
-          <table>
-            <tr><th>Information Type</th><th>CasePeer Location</th><th>Notes</th></tr>
-            <tr><td>At-fault driver's insurance company</td><td>Adverse Party → Insurance Info</td><td>Include phone number and claim reporting line</td></tr>
-            <tr><td>Policy limits (when received)</td><td>Adverse Party → Policy Limits</td><td>Update immediately when received from § 33-3-28 request</td></tr>
-            <tr><td>Claim numbers</td><td>Case Notes + Adverse Party</td><td>BI claim #, PD claim # (often different numbers)</td></tr>
-            <tr><td>Assigned adjuster info</td><td>Contacts → Add Adjuster</td><td>Direct phone, email, supervisor name</td></tr>
-            <tr><td>Client's UM/UIM coverage</td><td>Insured Party → Insurance Info</td><td>Include limits and any stacking opportunities</td></tr>
-            <tr><td>MedPay coverage/payments</td><td>Case Notes + Medical → PIP/MedPay</td><td>Track payments made and remaining limits</td></tr>
-            <tr><td>Health insurance subrogation</td><td>Case Notes + Medical → Health Insurance</td><td>Company, policy #, amounts paid, lien contact</td></tr>
-          </table>
-        </div>
-      </div>
+ <div class="info-block">
+ <h3>📝 Where to Log Coverage Information</h3>
+ <div class="table-wrap">
+ <table>
+ <tr><th>Information Type</th><th>CasePeer Location</th><th>Notes</th></tr>
+ <tr><td>At-fault driver's insurance company</td><td>Adverse Party → Insurance Info</td><td>Include phone number and claim reporting line</td></tr>
+ <tr><td>Policy limits (when received)</td><td>Adverse Party → Policy Limits</td><td>Update immediately when received from § 33-3-28 request</td></tr>
+ <tr><td>Claim numbers</td><td>Case Notes + Adverse Party</td><td>BI claim #, PD claim # (often different numbers)</td></tr>
+ <tr><td>Assigned adjuster info</td><td>Contacts → Add Adjuster</td><td>Direct phone, email, supervisor name</td></tr>
+ <tr><td>Client's UM/UIM coverage</td><td>Insured Party → Insurance Info</td><td>Include limits and any stacking opportunities</td></tr>
+ <tr><td>MedPay coverage/payments</td><td>Case Notes + Medical → PIP/MedPay</td><td>Track payments made and remaining limits</td></tr>
+ <tr><td>Health insurance subrogation</td><td>Case Notes + Medical → Health Insurance</td><td>Company, policy #, amounts paid, lien contact</td></tr>
+ </table>
+ </div>
+ </div>
 
-      <div class="success-block">
-        <h3>🎯 Critical CasePeer Tasks to Create</h3>
-        <ul>
-          <li><strong>Day of limits request:</strong> "Limits response due — O.C.G.A. § 33-3-28" (30 days out)</li>
-          <li><strong>If no limits received:</strong> "Follow up on overdue limits request" (flag to attorney)</li>
-          <li><strong>MedPay exhaustion:</strong> "MedPay approaching limit — $X remaining"</li>
-          <li><strong>UIM evaluation:</strong> "Evaluate UIM claim if BI limits inadequate"</li>
-          <li><strong>Multiple policies:</strong> "Confirm stacking rights for UM/UIM coverage"</li>
-        </ul>
-      </div>
+ <div class="success-block">
+ <h3>🎯 Critical CasePeer Tasks to Create</h3>
+ <ul>
+ <li><strong>Day of limits request:</strong> "Limits response due — O.C.G.A. § 33-3-28" (30 days out)</li>
+ <li><strong>If no limits received:</strong> "Follow up on overdue limits request" (flag to attorney)</li>
+ <li><strong>MedPay exhaustion:</strong> "MedPay approaching limit — $X remaining"</li>
+ <li><strong>UIM evaluation:</strong> "Evaluate UIM claim if BI limits inadequate"</li>
+ <li><strong>Multiple policies:</strong> "Confirm stacking rights for UM/UIM coverage"</li>
+ </ul>
+ </div>
 
-      <div class="pipeline">
-        <div class="pipeline-step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-status">Log immediately after opening call</div>
-            <div class="step-desc">Claim number, adjuster contact, coverage confirmation. Don't wait — do it while the information is fresh.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-status">Update when limits are received</div>
-            <div class="step-desc">Policy declaration pages go in Documents section. Limits go in Adverse Party fields. Mark the § 33-3-28 task complete.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-status">Track subrogation amounts monthly</div>
-            <div class="step-desc">MedPay and health insurance amounts change as treatment continues. Update balances monthly to avoid surprises at settlement.</div>
-          </div>
-        </div>
-        <div class="pipeline-step">
-          <div class="step-num">4</div>
-          <div class="step-content">
-            <div class="step-status">Generate coverage summary for attorney</div>
-            <div class="step-desc">When limits are known, create a one-page coverage summary: all available money sources and current balances. This drives settlement strategy.</div>
-          </div>
-        </div>
-      </div>
+ <div class="pipeline">
+ <div class="pipeline-step">
+ <div class="step-num">1</div>
+ <div class="step-content">
+ <div class="step-status">Log immediately after opening call</div>
+ <div class="step-desc">Claim number, adjuster contact, coverage confirmation. Don't wait — do it while the information is fresh.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">2</div>
+ <div class="step-content">
+ <div class="step-status">Update when limits are received</div>
+ <div class="step-desc">Policy declaration pages go in Documents section. Limits go in Adverse Party fields. Mark the § 33-3-28 task complete.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">3</div>
+ <div class="step-content">
+ <div class="step-status">Track subrogation amounts monthly</div>
+ <div class="step-desc">MedPay and health insurance amounts change as treatment continues. Update balances monthly to avoid surprises at settlement.</div>
+ </div>
+ </div>
+ <div class="pipeline-step">
+ <div class="step-num">4</div>
+ <div class="step-content">
+ <div class="step-status">Generate coverage summary for attorney</div>
+ <div class="step-desc">When limits are known, create a one-page coverage summary: all available money sources and current balances. This drives settlement strategy.</div>
+ </div>
+ </div>
+ </div>
 
-      <div class="alert-block">
-        <h3>⚠️ Coverage Information is Time-Sensitive</h3>
-        <p>Policy limits can change if the at-fault driver has other claims against the same policy. MedPay balances decrease as bills are paid. Health insurance subrogation amounts increase with continued treatment. Keep this information current.</p>
-      </div>
+ <div class="alert-block">
+ <h3>⚠️ Coverage Information is Time-Sensitive</h3>
+ <p>Policy limits can change if the at-fault driver has other claims against the same policy. MedPay balances decrease as bills are paid. Health insurance subrogation amounts increase with continued treatment. Keep this information current.</p>
+ </div>
 
-      <div class="tagline-block">
-        <p>Good documentation = <span class="highlight">maximum recovery.</span></p>
-        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">When settlement time comes, every piece of coverage information must be instantly accessible. That's how you protect the client's financial interests.</p>
-      </div>
-    </div>
-    <div class="section-footer">
-      <button class="btn btn-outline" onclick="goToSection(3)" ontouchend="goToSection(3)">← Back</button>
-      <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Quiz →</button>
-    </div>
-  </div>
+ <div class="tagline-block">
+ <p>Good documentation = <span class="highlight">maximum recovery.</span></p>
+ <p style="margin-top:10px; font-size:14px; color:#aab4c8;">When settlement time comes, every piece of coverage information must be instantly accessible. That's how you protect the client's financial interests.</p>
+ </div>
+ </div>
+ <div class="section-footer">
+ <button class="btn btn-outline" onclick="goToSection(3)" ontouchend="goToSection(3)">← Back</button>
+ <button class="btn btn-success" onclick="startQuiz()" ontouchend="startQuiz()">📝 Start Quiz →</button>
+ </div>
+ </div>
 
-  <!-- QUIZ -->
-  <div class="section-card" id="quiz-section">
-    <div class="quiz-header">
-      <div class="section-num">Day 7 Quiz</div>
-      <h2>10 Questions — 80% Required to Pass (8/10)</h2>
-    </div>
-    <div class="quiz-body">
+ <!-- QUIZ -->
+ <div class="section-card" id="quiz-section">
+ <div class="quiz-header">
+ <div class="section-num">Day 7 Quiz</div>
+ <h2>10 Questions — 80% Required to Pass (8/10)</h2>
+ </div>
+ <div class="quiz-body">
 
-      <div class="question-block active" id="q1">
-        <div class="q-counter">Question 1 of 10</div>
-        <div class="q-text">Why is coverage verification called "the first economic analysis" in a PI case?</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(1,'a',true)" ontouchend="answer(1,'a',true)"><span class="option-letter">A</span> Available coverage determines settlement strategy, client expectations, and case investment decisions</button>
-          <button class="option-btn" onclick="answer(1,'b',false)" ontouchend="answer(1,'b',false)"><span class="option-letter">B</span> It's the first step in calculating attorney fees</button>
-          <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> You need coverage info to file the lawsuit</button>
-          <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Insurance companies require it before opening claims</button>
-        </div>
-        <div class="feedback" id="fb1"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next →</button></div>
-      </div>
+ <div class="question-block active" id="q1">
+ <div class="q-counter">Question 1 of 10</div>
+ <div class="q-text">Why is coverage verification called "the first economic analysis" in a PI case?</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(1,'a',true)" ontouchend="answer(1,'a',true)"><span class="option-letter">A</span> Available coverage determines settlement strategy, client expectations, and case investment decisions</button>
+ <button class="option-btn" onclick="answer(1,'b',false)" ontouchend="answer(1,'b',false)"><span class="option-letter">B</span> It's the first step in calculating attorney fees</button>
+ <button class="option-btn" onclick="answer(1,'c',false)" ontouchend="answer(1,'c',false)"><span class="option-letter">C</span> You need coverage info to file the lawsuit</button>
+ <button class="option-btn" onclick="answer(1,'d',false)" ontouchend="answer(1,'d',false)"><span class="option-letter">D</span> Insurance companies require it before opening claims</button>
+ </div>
+ <div class="feedback" id="fb1"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)" ontouchend="showQuestion(2)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q2">
-        <div class="q-counter">Question 2 of 10</div>
-        <div class="q-text">Georgia's minimum insurance requirements are:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> 15/30/15</button>
-          <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> 25/50/25</button>
-          <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> 50/100/50</button>
-          <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 100/300/100</button>
-        </div>
-        <div class="feedback" id="fb2"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q2">
+ <div class="q-counter">Question 2 of 10</div>
+ <div class="q-text">Georgia's minimum insurance requirements are:</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(2,'a',false)" ontouchend="answer(2,'a',false)"><span class="option-letter">A</span> 15/30/15</button>
+ <button class="option-btn" onclick="answer(2,'b',true)" ontouchend="answer(2,'b',true)"><span class="option-letter">B</span> 25/50/25</button>
+ <button class="option-btn" onclick="answer(2,'c',false)" ontouchend="answer(2,'c',false)"><span class="option-letter">C</span> 50/100/50</button>
+ <button class="option-btn" onclick="answer(2,'d',false)" ontouchend="answer(2,'d',false)"><span class="option-letter">D</span> 100/300/100</button>
+ </div>
+ <div class="feedback" id="fb2"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)" ontouchend="showQuestion(3)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q3">
-        <div class="q-counter">Question 3 of 10</div>
-        <div class="q-text">Under O.C.G.A. § 33-3-28, what triggers the 30-day disclosure requirement?</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Verbal request during claim opening call</button>
-          <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> Written request specifically asking for policy limits</button>
-          <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> Filing a lawsuit</button>
-          <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Sending the LOR without limits language</button>
-        </div>
-        <div class="feedback" id="fb3"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q3">
+ <div class="q-counter">Question 3 of 10</div>
+ <div class="q-text">Under O.C.G.A. § 33-3-28, what triggers the 30-day disclosure requirement?</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(3,'a',false)" ontouchend="answer(3,'a',false)"><span class="option-letter">A</span> Verbal request during claim opening call</button>
+ <button class="option-btn" onclick="answer(3,'b',true)" ontouchend="answer(3,'b',true)"><span class="option-letter">B</span> Written request specifically asking for policy limits</button>
+ <button class="option-btn" onclick="answer(3,'c',false)" ontouchend="answer(3,'c',false)"><span class="option-letter">C</span> Filing a lawsuit</button>
+ <button class="option-btn" onclick="answer(3,'d',false)" ontouchend="answer(3,'d',false)"><span class="option-letter">D</span> Sending the LOR without limits language</button>
+ </div>
+ <div class="feedback" id="fb3"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)" ontouchend="showQuestion(4)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q4">
-        <div class="q-counter">Question 4 of 10</div>
-        <div class="q-text">When an adjuster asks for a recorded statement from your client, you should:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> Schedule it for next week</button>
-          <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> Say "No. All communication with our client goes through our office."</button>
-          <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> Ask the attorney first</button>
-          <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> Agree if they share the recording</button>
-        </div>
-        <div class="feedback" id="fb4"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q4">
+ <div class="q-counter">Question 4 of 10</div>
+ <div class="q-text">When an adjuster asks for a recorded statement from your client, you should:</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(4,'a',false)" ontouchend="answer(4,'a',false)"><span class="option-letter">A</span> Schedule it for next week</button>
+ <button class="option-btn" onclick="answer(4,'b',true)" ontouchend="answer(4,'b',true)"><span class="option-letter">B</span> Say "No. All communication with our client goes through our office."</button>
+ <button class="option-btn" onclick="answer(4,'c',false)" ontouchend="answer(4,'c',false)"><span class="option-letter">C</span> Ask the attorney first</button>
+ <button class="option-btn" onclick="answer(4,'d',false)" ontouchend="answer(4,'d',false)"><span class="option-letter">D</span> Agree if they share the recording</button>
+ </div>
+ <div class="feedback" id="fb4"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)" ontouchend="showQuestion(5)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q5">
-        <div class="q-counter">Question 5 of 10</div>
-        <div class="q-text">If an insurer denies coverage, your first action should be:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> Argue with them on the phone</button>
-          <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">C</span> Close the case immediately</button>
-          <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> Get details about the denial and immediately flag to the attorney</button>
-          <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> Call back and speak to a supervisor</button>
-        </div>
-        <div class="feedback" id="fb5"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q5">
+ <div class="q-counter">Question 5 of 10</div>
+ <div class="q-text">If an insurer denies coverage, your first action should be:</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(5,'a',false)" ontouchend="answer(5,'a',false)"><span class="option-letter">A</span> Argue with them on the phone</button>
+ <button class="option-btn" onclick="answer(5,'b',false)" ontouchend="answer(5,'b',false)"><span class="option-letter">C</span> Close the case immediately</button>
+ <button class="option-btn" onclick="answer(5,'c',true)" ontouchend="answer(5,'c',true)"><span class="option-letter">C</span> Get details about the denial and immediately flag to the attorney</button>
+ <button class="option-btn" onclick="answer(5,'d',false)" ontouchend="answer(5,'d',false)"><span class="option-letter">D</span> Call back and speak to a supervisor</button>
+ </div>
+ <div class="feedback" id="fb5"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)" ontouchend="showQuestion(6)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q6">
-        <div class="q-counter">Question 6 of 10</div>
-        <div class="q-text">UIM coverage is designed to:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Replace the at-fault driver's BI coverage completely</button>
-          <button class="option-btn" onclick="answer(6,'b',true)" ontouchend="answer(6,'b',true)"><span class="option-letter">B</span> Bridge the gap when at-fault BI limits are exhausted and client's damages are higher</button>
-          <button class="option-btn" onclick="answer(6,'c',false)" ontouchend="answer(6,'c',false)"><span class="option-letter">C</span> Pay medical bills immediately after the accident</button>
-          <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Cover property damage only</button>
-        </div>
-        <div class="feedback" id="fb6"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q6">
+ <div class="q-counter">Question 6 of 10</div>
+ <div class="q-text">UIM coverage is designed to:</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(6,'a',false)" ontouchend="answer(6,'a',false)"><span class="option-letter">A</span> Replace the at-fault driver's BI coverage completely</button>
+ <button class="option-btn" onclick="answer(6,'b',true)" ontouchend="answer(6,'b',true)"><span class="option-letter">B</span> Bridge the gap when at-fault BI limits are exhausted and client's damages are higher</button>
+ <button class="option-btn" onclick="answer(6,'c',false)" ontouchend="answer(6,'c',false)"><span class="option-letter">C</span> Pay medical bills immediately after the accident</button>
+ <button class="option-btn" onclick="answer(6,'d',false)" ontouchend="answer(6,'d',false)"><span class="option-letter">D</span> Cover property damage only</button>
+ </div>
+ <div class="feedback" id="fb6"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)" ontouchend="showQuestion(7)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q7">
-        <div class="q-counter">Question 7 of 10</div>
-        <div class="q-text">MedPay creates a subrogation lien, which means:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(7,'a',true)" ontouchend="answer(7,'a',true)"><span class="option-letter">A</span> The MedPay insurer must be repaid from the settlement proceeds</button>
-          <button class="option-btn" onclick="answer(7,'b',false)" ontouchend="answer(7,'b',false)"><span class="option-letter">B</span> The client gets to keep all MedPay payments plus settlement money</button>
-          <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> MedPay coverage is free with no repayment required</button>
-          <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Only attorney fees come out of the settlement</button>
-        </div>
-        <div class="feedback" id="fb7"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q7">
+ <div class="q-counter">Question 7 of 10</div>
+ <div class="q-text">MedPay creates a subrogation lien, which means:</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(7,'a',true)" ontouchend="answer(7,'a',true)"><span class="option-letter">A</span> The MedPay insurer must be repaid from the settlement proceeds</button>
+ <button class="option-btn" onclick="answer(7,'b',false)" ontouchend="answer(7,'b',false)"><span class="option-letter">B</span> The client gets to keep all MedPay payments plus settlement money</button>
+ <button class="option-btn" onclick="answer(7,'c',false)" ontouchend="answer(7,'c',false)"><span class="option-letter">C</span> MedPay coverage is free with no repayment required</button>
+ <button class="option-btn" onclick="answer(7,'d',false)" ontouchend="answer(7,'d',false)"><span class="option-letter">D</span> Only attorney fees come out of the settlement</button>
+ </div>
+ <div class="feedback" id="fb7"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)" ontouchend="showQuestion(8)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q8">
-        <div class="q-counter">Question 8 of 10</div>
-        <div class="q-text">UM/UIM stacking allows you to:</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> Combine BI and PD limits from the at-fault driver</button>
-          <button class="option-btn" onclick="answer(8,'b',true)" ontouchend="answer(8,'b',true)"><span class="option-letter">B</span> Combine UM/UIM limits from multiple vehicles or policies in the same household</button>
-          <button class="option-btn" onclick="answer(8,'c',false)" ontouchend="answer(8,'c',false)"><span class="option-letter">C</span> File unlimited claims against the same insurer</button>
-          <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> Get double payment for the same medical bills</button>
-        </div>
-        <div class="feedback" id="fb8"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q8">
+ <div class="q-counter">Question 8 of 10</div>
+ <div class="q-text">UM/UIM stacking allows you to:</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(8,'a',false)" ontouchend="answer(8,'a',false)"><span class="option-letter">A</span> Combine BI and PD limits from the at-fault driver</button>
+ <button class="option-btn" onclick="answer(8,'b',true)" ontouchend="answer(8,'b',true)"><span class="option-letter">B</span> Combine UM/UIM limits from multiple vehicles or policies in the same household</button>
+ <button class="option-btn" onclick="answer(8,'c',false)" ontouchend="answer(8,'c',false)"><span class="option-letter">C</span> File unlimited claims against the same insurer</button>
+ <button class="option-btn" onclick="answer(8,'d',false)" ontouchend="answer(8,'d',false)"><span class="option-letter">D</span> Get double payment for the same medical bills</button>
+ </div>
+ <div class="feedback" id="fb8"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)" ontouchend="showQuestion(9)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q9">
-        <div class="q-counter">Question 9 of 10</div>
-        <div class="q-text">In CasePeer, where should you log the at-fault driver's policy limits?</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> Case Notes only</button>
-          <button class="option-btn" onclick="answer(9,'b',true)" ontouchend="answer(9,'b',true)"><span class="option-letter">B</span> Adverse Party → Policy Limits</button>
-          <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> Medical section</button>
-          <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Documents only</button>
-        </div>
-        <div class="feedback" id="fb9"></div>
-        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next →</button></div>
-      </div>
+ <div class="question-block" id="q9">
+ <div class="q-counter">Question 9 of 10</div>
+ <div class="q-text">In CasePeer, where should you log the at-fault driver's policy limits?</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(9,'a',false)" ontouchend="answer(9,'a',false)"><span class="option-letter">A</span> Case Notes only</button>
+ <button class="option-btn" onclick="answer(9,'b',true)" ontouchend="answer(9,'b',true)"><span class="option-letter">B</span> Adverse Party → Policy Limits</button>
+ <button class="option-btn" onclick="answer(9,'c',false)" ontouchend="answer(9,'c',false)"><span class="option-letter">C</span> Medical section</button>
+ <button class="option-btn" onclick="answer(9,'d',false)" ontouchend="answer(9,'d',false)"><span class="option-letter">D</span> Documents only</button>
+ </div>
+ <div class="feedback" id="fb9"></div>
+ <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)" ontouchend="showQuestion(10)">Next →</button></div>
+ </div>
 
-      <div class="question-block" id="q10">
-        <div class="q-counter">Question 10 of 10</div>
-        <div class="q-text">When should you run the complete Coverage Maximization Checklist?</div>
-        <div class="options">
-          <button class="option-btn" onclick="answer(10,'a',true)" ontouchend="answer(10,'a',true)"><span class="option-letter">A</span> On every single case at intake — no exceptions</button>
-          <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> Only when at-fault driver has low limits</button>
-          <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Only after sending the demand letter</button>
-          <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> When the CM specifically requests it</button>
-        </div>
-        <div class="feedback" id="fb10"></div>
-        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
-      </div>
+ <div class="question-block" id="q10">
+ <div class="q-counter">Question 10 of 10</div>
+ <div class="q-text">When should you run the complete Coverage Maximization Checklist?</div>
+ <div class="options">
+ <button class="option-btn" onclick="answer(10,'a',true)" ontouchend="answer(10,'a',true)"><span class="option-letter">A</span> On every single case at intake — no exceptions</button>
+ <button class="option-btn" onclick="answer(10,'b',false)" ontouchend="answer(10,'b',false)"><span class="option-letter">B</span> Only when at-fault driver has low limits</button>
+ <button class="option-btn" onclick="answer(10,'c',false)" ontouchend="answer(10,'c',false)"><span class="option-letter">C</span> Only after sending the demand letter</button>
+ <button class="option-btn" onclick="answer(10,'d',false)" ontouchend="answer(10,'d',false)"><span class="option-letter">D</span> When the CM specifically requests it</button>
+ </div>
+ <div class="feedback" id="fb10"></div>
+ <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()" ontouchend="showResults()">See My Results →</button></div>
+ </div>
 
-    </div>
-  </div>
+ </div>
+ </div>
 
-  <!-- RESULTS -->
-  <div id="results-section">
-    <div class="results-card">
-      <div class="results-header" id="results-header">
-        <div class="results-score" id="results-score"></div>
-        <div class="results-label">Score (80% required to pass — 8/10 correct)</div>
-        <div class="results-status" id="results-status"></div>
-      </div>
-      <div class="results-body">
-        <div class="results-breakdown" id="results-breakdown"></div>
-        <div id="retake-hint" style="display:none; background:#fff3cd; border:2px solid #ffc107; border-radius:10px; padding:16px; margin-bottom:16px; font-size:14px; color:#533f03;"></div>
-        <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
-      </div>
-    </div>
-  </div>
+ <!-- RESULTS -->
+ <div id="results-section">
+ <div class="results-card">
+ <div class="results-header" id="results-header">
+ <div class="results-score" id="results-score"></div>
+ <div class="results-label">Score (80% required to pass — 8/10 correct)</div>
+ <div class="results-status" id="results-status"></div>
+ </div>
+ <div class="results-body">
+ <div class="results-breakdown" id="results-breakdown"></div>
+ <div id="retake-hint" style="display:none; background:#fff3cd; border:2px solid #ffc107; border-radius:10px; padding:16px; margin-bottom:16px; font-size:14px; color:#533f03;"></div>
+ <button class="btn btn-outline" onclick="retakeQuiz()" ontouchend="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+ </div>
+ </div>
+ </div>
 
-  <!-- FEEDBACK -->
-  <div id="feedback-section">
-    <div class="fb-card">
-      <div class="fb-header">
-        <div class="section-num">Almost Done!</div>
-        <h2>Quick Feedback — 2 Minutes</h2>
-      </div>
-      <div class="fb-body">
-        <div class="fb-q">
-          <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
-          <div class="star-row" id="star-row">
-            <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
-            <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
-            <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
-            <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
-            <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
-          </div>
-        </div>
-        <div class="fb-q">
-          <label>2. Was anything confusing?</label>
-          <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
-        </div>
-        <div class="fb-q">
-          <label>3. Which section was most useful?</label>
-          <select id="fb-section">
-            <option value="">— Select a section —</option>
-            <option>Section 1: Coverage Verification — The First Economic Analysis</option>
-            <option>Section 2: O.C.G.A. § 33-3-28 — Policy Limits Disclosure</option>
-            <option>Section 3: Opening Claims — The Professional Approach</option>
-            <option>Section 4: Multiple Coverage Sources — Maximizing Recovery</option>
-            <option>Section 5: CasePeer Documentation — Building the System</option>
-          </select>
-        </div>
-        <div class="fb-q">
-          <label>4. How long did this module take?</label>
-          <select id="fb-time">
-            <option value="">— Select —</option>
-            <option value="15">15 minutes</option>
-            <option value="30">30 minutes</option>
-            <option value="45">45 minutes</option>
-            <option value="60+">60+ minutes</option>
-          </select>
-        </div>
-        <div class="fb-q">
-          <label>5. Any suggestions to improve this module?</label>
-          <textarea id="fb-suggestions" placeholder="Optional..."></textarea>
-        </div>
-        <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
-      </div>
-    </div>
-  </div>
+ <!-- FEEDBACK -->
+ <div id="feedback-section">
+ <div class="fb-card">
+ <div class="fb-header">
+ <div class="section-num">Almost Done!</div>
+ <h2>Quick Feedback — 2 Minutes</h2>
+ </div>
+ <div class="fb-body">
+ <div class="fb-q">
+ <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
+ <div class="star-row" id="star-row">
+ <span class="star" data-val="1" onclick="setStar(1)" ontouchend="setStar(1)">★</span>
+ <span class="star" data-val="2" onclick="setStar(2)" ontouchend="setStar(2)">★</span>
+ <span class="star" data-val="3" onclick="setStar(3)" ontouchend="setStar(3)">★</span>
+ <span class="star" data-val="4" onclick="setStar(4)" ontouchend="setStar(4)">★</span>
+ <span class="star" data-val="5" onclick="setStar(5)" ontouchend="setStar(5)">★</span>
+ </div>
+ </div>
+ <div class="fb-q">
+ <label>2. Was anything confusing?</label>
+ <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
+ </div>
+ <div class="fb-q">
+ <label>3. Which section was most useful?</label>
+ <select id="fb-section">
+ <option value="">— Select a section —</option>
+ <option>Section 1: Coverage Verification — The First Economic Analysis</option>
+ <option>Section 2: O.C.G.A. § 33-3-28 — Policy Limits Disclosure</option>
+ <option>Section 3: Opening Claims — The Professional Approach</option>
+ <option>Section 4: Multiple Coverage Sources — Maximizing Recovery</option>
+ <option>Section 5: CasePeer Documentation — Building the System</option>
+ </select>
+ </div>
+ <div class="fb-q">
+ <label>4. How long did this module take?</label>
+ <select id="fb-time">
+ <option value="">— Select —</option>
+ <option value="15">15 minutes</option>
+ <option value="30">30 minutes</option>
+ <option value="45">45 minutes</option>
+ <option value="60+">60+ minutes</option>
+ </select>
+ </div>
+ <div class="fb-q">
+ <label>5. Any suggestions to improve this module?</label>
+ <textarea id="fb-suggestions" placeholder="Optional..."></textarea>
+ </div>
+ <button class="btn btn-success" onclick="submitFeedback()" ontouchend="submitFeedback()">Submit &amp; Get My Certificate →</button>
+ </div>
+ </div>
+ </div>
 
-  <!-- CERTIFICATE -->
-  <div id="certificate">
-    <div class="cert-logo">Gunn Law Group</div>
-    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
-    <div class="cert-title">Certificate of Completion</div>
-    <div class="cert-subtitle">Legal Assistant Training Program — Day 7 of 7 · Training Complete</div>
-    <div class="cert-name-label">This certifies that</div>
-    <div class="cert-name" id="cert-name-display">Legal Assistant</div>
-    <div class="cert-module">has successfully completed<br><strong>Module 7: Coverage Verification &amp; Opening Claims</strong></div>
-    <div class="cert-score-badge" id="cert-score-display"></div>
-    <div class="cert-date" id="cert-date"></div>
-    <div class="cert-sig">
-      <div class="cert-sig-line"></div>
-      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
-    </div>
-    <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
-  </div>
+ <!-- CERTIFICATE -->
+ <div id="certificate">
+ <div class="cert-logo">Gunn Law Group</div>
+ <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+ <div class="cert-title">Certificate of Completion</div>
+ <div class="cert-subtitle">Legal Assistant Training Program — Day 7 of 7 · Training Complete</div>
+ <div class="cert-name-label">This certifies that</div>
+ <div class="cert-name" id="cert-name-display">Legal Assistant</div>
+ <div class="cert-module">has successfully completed<br><strong>Module 7: Coverage Verification &amp; Opening Claims</strong></div>
+ <div class="cert-score-badge" id="cert-score-display"></div>
+ <div class="cert-date" id="cert-date"></div>
+ <div class="cert-sig">
+ <div class="cert-sig-line"></div>
+ <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+ </div>
+ <button class="btn btn-primary print-btn" onclick="window.print()" ontouchend="window.print()">🖨️ Print Certificate</button>
+ </div>
 
 </main>
 
 <script>
-  const totalSections = 5;
-  const TOTAL_Q = 10;
-  let currentSection = 0;
-  const sectionsDone = new Set();
-  const answers = {};
-  let lastScore = 0;
-  let starRating = 0;
+ const totalSections = 5;
+ const TOTAL_Q = 10;
+ let currentSection = 0;
+ const sectionsDone = new Set();
+ const answers = {};
+ let lastScore = 0;
+ let starRating = 0;
 
-  const correctAnswers = { 1:'a', 2:'b', 3:'b', 4:'b', 5:'c', 6:'b', 7:'a', 8:'b', 9:'b', 10:'a' };
-  const feedbackText = {
-    1: { correct: "✅ Correct! Coverage verification drives everything: settlement strategy, client expectations, case investment, and timeline planning. It's economic analysis, not paperwork.", incorrect: "❌ Incorrect. Coverage verification is the first economic analysis because it determines settlement strategy, client expectations, and case investment decisions. It drives everything else." },
-    2: { correct: "✅ Correct! Georgia minimum coverage is 25/50/25. Many drivers carry only state minimums — assume minimums until you verify otherwise.", incorrect: "❌ Incorrect. Georgia's minimum coverage requirements are 25/50/25 ($25K per person BI, $50K per accident BI, $25K PD)." },
-    3: { correct: "✅ Correct! Only a written request specifically asking for policy limits triggers O.C.G.A. § 33-3-28. Verbal requests and LORs alone don't count.", incorrect: "❌ Incorrect. Only a written request specifically requesting policy limits starts the 30-day clock under § 33-3-28. Verbal requests don't count." },
-    4: { correct: "✅ Correct! Never allow recorded statements. All communication with the client goes through the firm. State it clearly and professionally.", incorrect: "❌ Incorrect. The answer is always 'No' — never allow a recorded statement. All communication with the client goes through the firm." },
-    5: { correct: "✅ Correct! Coverage denials are legal issues requiring attorney review. Get details about when/why coverage was denied, then flag immediately.", incorrect: "❌ Incorrect. Coverage denials are legal issues. Get details about the denial and immediately flag to the attorney — don't argue or close the case." },
-    6: { correct: "✅ Correct! UIM bridges the gap when at-fault BI limits are exhausted but client's damages are higher. That's exactly what UIM is designed for.", incorrect: "❌ Incorrect. UIM (Underinsured Motorist) coverage bridges the gap when at-fault BI limits are exhausted and the client's damages exceed those limits." },
-    7: { correct: "✅ Correct! MedPay pays bills upfront but creates a subrogation lien — they must be repaid from settlement proceeds. Track this from day one.", incorrect: "❌ Incorrect. MedPay creates a subrogation lien, meaning the MedPay insurer must be repaid from the settlement proceeds." },
-    8: { correct: "✅ Correct! Stacking combines UM/UIM limits from multiple vehicles or policies in the same household, potentially doubling or tripling available coverage.", incorrect: "❌ Incorrect. UM/UIM stacking allows combining limits from multiple vehicles or policies in the same household to increase total available coverage." },
-    9: { correct: "✅ Correct! Policy limits go in Adverse Party → Policy Limits in CasePeer. This makes them instantly accessible for settlement strategy discussions.", incorrect: "❌ Incorrect. Policy limits should be logged in CasePeer under Adverse Party → Policy Limits for easy access during settlement discussions." },
-    10: { correct: "✅ Correct! The Coverage Maximization Checklist runs on every case at intake, every time. Missing coverage at intake = missing money at settlement.", incorrect: "❌ Incorrect. Run the complete Coverage Maximization Checklist on every single case at intake. Every missed coverage source is money the client doesn't get." }
-  };
+ const correctAnswers = { 1:'a', 2:'b', 3:'b', 4:'b', 5:'c', 6:'b', 7:'a', 8:'b', 9:'b', 10:'a' };
+ const feedbackText = {
+ 1: { correct: "✅ Correct! Coverage verification drives everything: settlement strategy, client expectations, case investment, and timeline planning. It's economic analysis, not paperwork.", incorrect: "❌ Incorrect. Coverage verification is the first economic analysis because it determines settlement strategy, client expectations, and case investment decisions. It drives everything else." },
+ 2: { correct: "✅ Correct! Georgia minimum coverage is 25/50/25. Many drivers carry only state minimums — assume minimums until you verify otherwise.", incorrect: "❌ Incorrect. Georgia's minimum coverage requirements are 25/50/25 ($25K per person BI, $50K per accident BI, $25K PD)." },
+ 3: { correct: "✅ Correct! Only a written request specifically asking for policy limits triggers O.C.G.A. § 33-3-28. Verbal requests and LORs alone don't count.", incorrect: "❌ Incorrect. Only a written request specifically requesting policy limits starts the 30-day clock under § 33-3-28. Verbal requests don't count." },
+ 4: { correct: "✅ Correct! Never allow recorded statements. All communication with the client goes through the firm. State it clearly and professionally.", incorrect: "❌ Incorrect. The answer is always 'No' — never allow a recorded statement. All communication with the client goes through the firm." },
+ 5: { correct: "✅ Correct! Coverage denials are legal issues requiring attorney review. Get details about when/why coverage was denied, then flag immediately.", incorrect: "❌ Incorrect. Coverage denials are legal issues. Get details about the denial and immediately flag to the attorney — don't argue or close the case." },
+ 6: { correct: "✅ Correct! UIM bridges the gap when at-fault BI limits are exhausted but client's damages are higher. That's exactly what UIM is designed for.", incorrect: "❌ Incorrect. UIM (Underinsured Motorist) coverage bridges the gap when at-fault BI limits are exhausted and the client's damages exceed those limits." },
+ 7: { correct: "✅ Correct! MedPay pays bills upfront but creates a subrogation lien — they must be repaid from settlement proceeds. Track this from day one.", incorrect: "❌ Incorrect. MedPay creates a subrogation lien, meaning the MedPay insurer must be repaid from the settlement proceeds." },
+ 8: { correct: "✅ Correct! Stacking combines UM/UIM limits from multiple vehicles or policies in the same household, potentially doubling or tripling available coverage.", incorrect: "❌ Incorrect. UM/UIM stacking allows combining limits from multiple vehicles or policies in the same household to increase total available coverage." },
+ 9: { correct: "✅ Correct! Policy limits go in Adverse Party → Policy Limits in CasePeer. This makes them instantly accessible for settlement strategy discussions.", incorrect: "❌ Incorrect. Policy limits should be logged in CasePeer under Adverse Party → Policy Limits for easy access during settlement discussions." },
+ 10: { correct: "✅ Correct! The Coverage Maximization Checklist runs on every case at intake, every time. Missing coverage at intake = missing money at settlement.", incorrect: "❌ Incorrect. Run the complete Coverage Maximization Checklist on every single case at intake. Every missed coverage source is money the client doesn't get." }
+ };
 
-  function goToSection(idx) {
-    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
-    document.getElementById('results-section').classList.remove('active');
-    document.getElementById('feedback-section').style.display = 'none';
-    document.getElementById('certificate').classList.remove('show');
-    if (idx === 5) {
-      document.getElementById('quiz-section').classList.add('active');
-      updateProgress(5, false);
-    } else {
-      document.getElementById('section-' + idx).classList.add('active');
-      currentSection = idx;
-      sectionsDone.add(idx);
-      updateNavPills();
-      updateProgress(idx, false);
-    }
-    window.scrollTo(0, 0);
-  }
+ function goToSection(idx) {
+ document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+ document.getElementById('results-section').classList.remove('active');
+ document.getElementById('feedback-section').style.display = 'none';
+ document.getElementById('certificate').classList.remove('show');
+ if (idx === 5) {
+ document.getElementById('quiz-section').classList.add('active');
+ updateProgress(5, false);
+ } else {
+ document.getElementById('section-' + idx).classList.add('active');
+ currentSection = idx;
+ sectionsDone.add(idx);
+ updateNavPills();
+ updateProgress(idx, false);
+ }
+ window.scrollTo(0, 0);
+ }
 
-  function startQuiz() {
-    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
-    updateNavPills();
-    goToSection(5);
-    resetQuizUI();
-  }
+ function startQuiz() {
+ for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+ updateNavPills();
+ goToSection(5);
+ resetQuizUI();
+ }
 
-  function resetQuizUI() {
-    document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
-    document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
-    document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
-    for (let i = 1; i <= TOTAL_Q; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
-    Object.keys(answers).forEach(k => delete answers[k]);
-  }
+ function resetQuizUI() {
+ document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
+ document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
+ document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
+ for (let i = 1; i <= TOTAL_Q; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
+ Object.keys(answers).forEach(k => delete answers[k]);
+ }
 
-  function answer(qNum, chosen, isCorrect) {
-    if (answers[qNum] !== undefined) return;
-    answers[qNum] = isCorrect;
-    const qBlock = document.getElementById('q' + qNum);
-    const buttons = qBlock.querySelectorAll('.option-btn');
-    const fb = document.getElementById('fb' + qNum);
-    const correct = correctAnswers[qNum];
-    buttons.forEach(btn => { btn.disabled = true; const letter = btn.querySelector('.option-letter').textContent.toLowerCase(); if (letter === correct) btn.classList.add('correct'); });
-    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
-    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
-    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
-    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
-    document.getElementById('next' + qNum).style.display = 'inline-flex';
-  }
+ function answer(qNum, chosen, isCorrect) {
+ if (answers[qNum] !== undefined) return;
+ answers[qNum] = isCorrect;
+ const qBlock = document.getElementById('q' + qNum);
+ const buttons = qBlock.querySelectorAll('.option-btn');
+ const fb = document.getElementById('fb' + qNum);
+ const correct = correctAnswers[qNum];
+ buttons.forEach(btn => { btn.disabled = true; const letter = btn.querySelector('.option-letter').textContent.toLowerCase(); if (letter === correct) btn.classList.add('correct'); });
+ const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+ if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+ fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+ fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+ document.getElementById('next' + qNum).style.display = 'inline-flex';
+ }
 
-  function showQuestion(num) {
-    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
-    document.getElementById('q' + num).classList.add('active');
-    window.scrollTo(0, 0);
-  }
+ function showQuestion(num) {
+ document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+ document.getElementById('q' + num).classList.add('active');
+ window.scrollTo(0, 0);
+ }
 
-  function showResults() {
-    document.getElementById('quiz-section').classList.remove('active');
-    let correct = 0;
-    const qLabels = [
-      "Why coverage verification is 'first economic analysis'",
-      "Georgia minimum insurance requirements",
-      "What triggers O.C.G.A. § 33-3-28",
-      "Response to recorded statement request",
-      "Handling coverage denials",
-      "Purpose of UIM coverage",
-      "MedPay subrogation implications",
-      "UM/UIM stacking definition",
-      "Where to log policy limits in CasePeer",
-      "When to run Coverage Maximization Checklist"
-    ];
-    Object.values(answers).forEach(v => { if (v) correct++; });
-    const pct = Math.round((correct / TOTAL_Q) * 100);
-    const passed = pct >= 80;
-    lastScore = pct;
-    const resultsSection = document.getElementById('results-section');
-    resultsSection.classList.add('active');
-    document.getElementById('results-score').textContent = pct + '%';
-    document.getElementById('results-status').textContent = passed ? '🎉 Training Complete — Well Done!' : '❌ Keep Studying — Review and Try Again';
-    document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
-    let html = '';
-    for (let i = 1; i <= TOTAL_Q; i++) {
-      const ok = answers[i];
-      html += `<div class="breakdown-item"><div class="dot ${ok ? 'correct' : 'incorrect'}"></div><span>${qLabels[i-1]}: <strong>${ok ? 'Correct ✓' : 'Incorrect ✗'}</strong></span></div>`;
-    }
-    document.getElementById('results-breakdown').innerHTML = html;
-    if (passed) {
-      document.getElementById('feedback-section').style.display = 'block';
-    } else {
-      const hint = document.getElementById('retake-hint');
-      hint.style.display = 'block';
-      hint.innerHTML = `<strong>You scored ${pct}% — you need 80% (8/10) to pass.</strong> Review the sections you missed, then retake the quiz.`;
-      document.getElementById('retake-btn').style.display = 'flex';
-    }
-    window.scrollTo(0, 0);
-  }
+ function showResults() {
+ document.getElementById('quiz-section').classList.remove('active');
+ let correct = 0;
+ const qLabels = [
+ "Why coverage verification is 'first economic analysis'",
+ "Georgia minimum insurance requirements",
+ "What triggers O.C.G.A. § 33-3-28",
+ "Response to recorded statement request",
+ "Handling coverage denials",
+ "Purpose of UIM coverage",
+ "MedPay subrogation implications",
+ "UM/UIM stacking definition",
+ "Where to log policy limits in CasePeer",
+ "When to run Coverage Maximization Checklist"
+ ];
+ Object.values(answers).forEach(v => { if (v) correct++; });
+ const pct = Math.round((correct / TOTAL_Q) * 100);
+ const passed = pct >= 80;
+ lastScore = pct;
+ const resultsSection = document.getElementById('results-section');
+ resultsSection.classList.add('active');
+ document.getElementById('results-score').textContent = pct + '%';
+ document.getElementById('results-status').textContent = passed ? '🎉 Training Complete — Well Done!' : '❌ Keep Studying — Review and Try Again';
+ document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
+ let html = '';
+ for (let i = 1; i <= TOTAL_Q; i++) {
+ const ok = answers[i];
+ html += `<div class="breakdown-item"><div class="dot ${ok ? 'correct' : 'incorrect'}"></div><span>${qLabels[i-1]}: <strong>${ok ? 'Correct ✓' : 'Incorrect ✗'}</strong></span></div>`;
+ }
+ document.getElementById('results-breakdown').innerHTML = html;
+ if (passed) {
+ document.getElementById('feedback-section').style.display = 'block';
+ } else {
+ const hint = document.getElementById('retake-hint');
+ hint.style.display = 'block';
+ hint.innerHTML = `<strong>You scored ${pct}% — you need 80% (8/10) to pass.</strong> Review the sections you missed, then retake the quiz.`;
+ document.getElementById('retake-btn').style.display = 'flex';
+ }
+ window.scrollTo(0, 0);
+ }
 
-  function retakeQuiz() {
-    resetQuizUI();
-    document.getElementById('results-section').classList.remove('active');
-    document.getElementById('quiz-section').classList.add('active');
-    window.scrollTo(0, 0);
-  }
+ function retakeQuiz() {
+ resetQuizUI();
+ document.getElementById('results-section').classList.remove('active');
+ document.getElementById('quiz-section').classList.add('active');
+ window.scrollTo(0, 0);
+ }
 
-  function updateNavPills() {
-    document.querySelectorAll('.nav-pill').forEach((pill, i) => {
-      pill.classList.remove('active', 'done');
-      if (i < totalSections && sectionsDone.has(i)) pill.classList.add('done');
-      if (i === currentSection) { pill.classList.remove('done'); pill.classList.add('active'); }
-    });
-  }
+ function updateNavPills() {
+ document.querySelectorAll('.nav-pill').forEach((pill, i) => {
+ pill.classList.remove('active', 'done');
+ if (i < totalSections && sectionsDone.has(i)) pill.classList.add('done');
+ if (i === currentSection) { pill.classList.remove('done'); pill.classList.add('active'); }
+ });
+ }
 
-  function updateProgress(idx, quizMode) {
-    const total = totalSections + 1;
-    const current = quizMode ? total : idx + 1;
-    const pct = Math.round((current / total) * 100);
-    document.getElementById('progress-fill').style.width = pct + '%';
-    document.getElementById('progress-text').textContent = quizMode ? 'Quiz' : `Section ${idx + 1} of ${totalSections}`;
-  }
+ function updateProgress(idx, quizMode) {
+ const total = totalSections + 1;
+ const current = quizMode ? total : idx + 1;
+ const pct = Math.round((current / total) * 100);
+ document.getElementById('progress-fill').style.width = pct + '%';
+ document.getElementById('progress-text').textContent = quizMode ? 'Quiz' : `Section ${idx + 1} of ${totalSections}`;
+ }
 
-  function setStar(val) {
-    starRating = val;
-    document.querySelectorAll('.star').forEach(s => {
-      s.classList.toggle('lit', parseInt(s.dataset.val) <= val);
-    });
-  }
+ function setStar(val) {
+ starRating = val;
+ document.querySelectorAll('.star').forEach(s => {
+ s.classList.toggle('lit', parseInt(s.dataset.val) <= val);
+ });
+ }
 
-  function submitFeedback() {
-    if (!starRating) { alert('Please rate the content clarity before submitting.'); return; }
-    document.getElementById('feedback-section').style.display = 'none';
-    const cert = document.getElementById('certificate');
-    cert.classList.add('show');
-    document.getElementById('cert-score-display').textContent = lastScore + '% — Passed';
-    document.getElementById('cert-date').textContent = 'Completed: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    window.scrollTo(0, 0);
-  }
+ function submitFeedback() {
+ if (!starRating) { alert('Please rate the content clarity before submitting.'); return; }
+ document.getElementById('feedback-section').style.display = 'none';
+ const cert = document.getElementById('certificate');
+ cert.classList.add('show');
+ document.getElementById('cert-score-display').textContent = lastScore + '% — Passed';
+ document.getElementById('cert-date').textContent = 'Completed: ' + new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+ window.scrollTo(0, 0);
+ }
 
-  // Init
-  updateNavPills();
-  updateProgress(0, false);
+ // Init
+ updateNavPills();
+ updateProgress(0, false);
 </script>
 
 </body>
