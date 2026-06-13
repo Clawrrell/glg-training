@@ -1486,12 +1486,12 @@ function showToast(msg, color) {
 // BUILD RESULTS
 // ═══════════════════════════════════════════════
 function buildResults() {
-  var baseTotal = state.totalScore;
-  var pct = Math.round((baseTotal / 200) * 100);
+  var total = state.totalScore + state.bonusScore;
+  var pct = Math.round((total / 200) * 100);
   var pass = pct >= 70;
 
   var hdr = document.getElementById('results-header-wrap');
-  hdr.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '"><div class="results-grade">' + pct + '%</div><div class="results-label">' + (pass ? '🎉 Medical Records Mastery Complete!' : '📚 Keep Studying') + '</div><div class="results-sub">' + baseTotal + ' / 200 points · ' + state.bonusScore + ' bonus pts</div></div>';
+  hdr.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '"><div class="results-grade">' + pct + '%</div><div class="results-label">' + (pass ? '🎉 Medical Records Mastery Complete!' : '📚 Keep Studying') + '</div><div class="results-sub">' + total + ' / 200 points · ' + state.bonusScore + ' bonus pts</div></div>';
 
   var sections = [
     {n:'The Foundation', key:1},
@@ -1554,7 +1554,7 @@ function buildResults() {
 // ═══════════════════════════════════════════════
 // SCORE TRACKER
 // ═══════════════════════════════════════════════
-var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
 
 function submitScoreAndBuildCert() {
   var nameInput = document.getElementById('trainee-name-input');
@@ -1566,12 +1566,12 @@ function submitScoreAndBuildCert() {
   document.getElementById('completion-cert').style.display = 'block';
   document.getElementById('cert-action-btns').style.display = 'flex';
 
-  var baseTotal = state.totalScore;
+  var total = state.totalScore + state.bonusScore;
   var payload = {
     employeeName: name,
     moduleId: 'day6',
     moduleName: 'Medical Records Mastery',
-    score: baseTotal,
+    score: total,
     maxScore: 200,
     passedAt: new Date().toISOString()
   };
@@ -1601,8 +1601,8 @@ function submitScoreAndBuildCert() {
 // SUBMIT RESULTS (EMAIL)
 // ═══════════════════════════════════════════════
 function submitResults() {
-  var baseTotal = state.totalScore;
-  var pct = Math.round((baseTotal / 200) * 100);
+  var total = state.totalScore + state.bonusScore;
+  var pct = Math.round((total / 200) * 100);
   var badges = [];
   if ((state.sectionScores[1]||0)>=30) badges.push('Records Foundation');
   if ((state.sectionScores[2]||0)>=30) badges.push('Request Expert');

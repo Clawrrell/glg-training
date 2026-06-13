@@ -11,7 +11,7 @@ References Loaded: 7 files
   - /glg/books/memos/addie-instructional-design-memo.md (systematic design architecture)
   - /glg/books/memos/map-it-training-design-memo.md (behavior-first, action mapping)
   - /glg/books/memos/talk-to-the-elephant-memo.md (emotional engagement, behavior change)
-Existing Docs Checked: module-day5-week1-review-v2.html (prior version), Modules A1, A3, Days 2-4 for content continuity
+Existing Docs Checked: module-day5-week1-review.html (prior version), Days 1-4 modules for content continuity
 QA Checklist: ✅ PASSED
   - Forces recall, does not re-teach content
   - Mixed question types across all four days (interleaved)
@@ -278,14 +278,13 @@ QA Checklist: ✅ PASSED
       <div class="scenario-tag">⚡ Monday Morning · 9:04 AM</div>
       <h3>Your CM just got pulled into a partner meeting. She's gone for 90 minutes and she needs you to handle three things while she's out.</h3>
       <p>You've been here one week. You know the playbook. This is your first chance to prove it — in a real situation, with real cases, where real clients are counting on us.</p>
-      <p style="margin-top:12px;">The next seven sections will test <span class="highlight">everything you learned in Modules A1, A3, and Days 2–4.</span> Not just what you remember — what you can <span class="highlight">actually do.</span></p>
+      <p style="margin-top:12px;">The next seven sections will test <span class="highlight">everything you learned in Days 1 through 4.</span> Not just what you remember — what you can <span class="highlight">actually do.</span></p>
     </div>
 
     <div class="info-block">
       <h4>📋 What This Challenge Covers</h4>
       <ul>
-        <li><strong>Module A1:</strong> GLG operations, standards, CasePeer, scorecards</li>
-        <li><strong>Module A3:</strong> PI fundamentals — negligence, statute of limitations, case lifecycle</li>
+        <li><strong>Day 1:</strong> GLG operations, standards, CasePeer, scorecards</li>
         <li><strong>Day 2:</strong> PI case types, liability, government entities</li>
         <li><strong>Day 3:</strong> Insurance — BI, PD, UM/UIM, MedPay, policy limits</li>
         <li><strong>Day 4:</strong> LORs, LOPs, police reports, CasePeer templates</li>
@@ -908,7 +907,7 @@ QA Checklist: ✅ PASSED
       <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
       <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
       <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
-      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+      <input type="text" id="trainee-name-input" placeholder="e.g. Sydney Johnson"
         style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;">
       <button class="btn btn-primary btn-block" onclick="submitScoreAndBuildCert()">✅ Submit Score &amp; View Certificate</button>
     </div>
@@ -1359,7 +1358,7 @@ function buildResults() {
 
   // Review links
   let reviewHtml = '';
-  if ((state.sectionScores[2] || 0) < 40) reviewHtml += `<a class="review-link" href="#" onclick="goToSection(1);return false;">↩ Review: GLG Operations (Module A1)</a>`;
+  if ((state.sectionScores[2] || 0) < 40) reviewHtml += `<a class="review-link" href="#" onclick="goToSection(1);return false;">↩ Review: GLG Operations (Day 1)</a>`;
   if ((state.sectionScores[3] || 0) < 40) reviewHtml += `<a class="review-link" href="#" onclick="goToSection(2);return false;">↩ Review: PI Case Types (Day 2)</a>`;
   if ((state.sectionScores[4] || 0) < 40) reviewHtml += `<a class="review-link" href="#" onclick="goToSection(3);return false;">↩ Review: Insurance (Day 3)</a>`;
   if ((state.sectionScores[5] || 0) < 40) reviewHtml += `<a class="review-link" href="#" onclick="goToSection(4);return false;">↩ Review: LORs & Templates (Day 4)</a>`;
@@ -1386,7 +1385,7 @@ function buildResults() {
 // SCORE TRACKER — inline (no external file needed)
 // Replace TRACKER_URL after deploying Apps Script
 // ═══════════════════════════════════════════════
-var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
 
 function submitScoreAndBuildCert() {
   const nameInput = document.getElementById('trainee-name-input');

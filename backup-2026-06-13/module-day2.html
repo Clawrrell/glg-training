@@ -16,16 +16,9 @@ References Loaded: 10 files
   - /glg/books/memos/influence-cialdini-memo.md (case presentation principles)
 Existing Docs Checked: Previous module-day2-pi-case-types.html, REFERENCE.md, GLG practice areas
 QA Checklist: ✅ PASSED
-Competency Gate Mapping:
-  - Gate: 30-Day Gate — Case Type Recognition
-  - Milestone: 30-Day Checkpoint
-  - Competency: Can identify all GLG case types, understand key legal elements, safety rules, and route cases correctly in CasePeer
-  - Roles: CM, LA, Intake
-  - Requirement: 80%+ base score to pass gate
-  - Caseload Impact: Gate passage required before handling case intake independently (~25% caseload at Day 30)
   - GLG Practice Areas: All 9 actual practice areas covered with examples
-  - Safety rule framework: Safety rule identified for each case type
-  - Case evaluation criteria for each type
+  - Reptile Framework: Safety rule identified for each case type
+  - Essential Lawyering: Case evaluation criteria for each type
   - CasePeer Integration: References to actual statuses and workflow
   - [PLACEHOLDER] notes used for specific templates/workflows not yet verified
 ═══════════════════════════════════════════════
@@ -523,13 +516,6 @@ Competency Gate Mapping:
   }
   .name-input:focus { outline: none; border-color: var(--navy2); }
 
-  /* ── FEEDBACK FORM ── */
-  .fb-question { margin-bottom: 18px; }
-  .fb-question label { display: block; font-weight: 700; color: var(--navy); font-size: 15px; margin-bottom: 8px; }
-  .fb-question select, .fb-question textarea { width: 100%; padding: 12px; border: 2px solid #e0e3e8; border-radius: 8px; font-size: 14px; font-family: inherit; background: #fff; color: #333; -webkit-appearance: none; }
-  .fb-question select:focus, .fb-question textarea:focus { outline: none; border-color: var(--navy); }
-  .fb-question textarea { resize: vertical; min-height: 80px; }
-
   /* ── WELCOME SCREEN ── */
   .welcome-hero {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
@@ -616,7 +602,7 @@ button, .btn, .option-btn, [onclick] {
   <div class="welcome-hero">
     <div class="welcome-icon">📋</div>
     <h1>PI Case Types</h1>
-    <p>Deep dive into GLG's practice areas: case evaluation, safety rules, CasePeer workflow, and client service for each type.</p>
+    <p>Deep dive into GLG's practice areas: case evaluation, Reptile safety rules, CasePeer workflow, and client service for each type.</p>
   </div>
   <div class="content-card" style="border-radius: var(--radius);">
     <div class="module-info-grid">
@@ -625,16 +611,6 @@ button, .btn, .option-btn, [onclick] {
       <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (10 of 12)</span></div>
       <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> generated on pass</span></div>
       <div class="module-info-item"><span>⏱️</span><span><strong>~30 minutes</strong> estimated time</span></div>
-    </div>
-    <div style="background:#f0f7ff;border-left:4px solid #2980b9;border-radius:8px;padding:14px 16px;margin:12px 0;">
-      <h4 style="margin:0 0 6px;color:#2c3e50;font-size:14px;">📋 Competency Gate: Case Type Recognition</h4>
-      <p style="font-size:13px;color:#555;margin:0 0 6px;">This module maps to your <strong>30-Day Competency Gate</strong>. Passing confirms you can identify all GLG case types, understand their key legal elements, and route cases correctly in CasePeer.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
-        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Day 30 Gate</span>
-        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">CM · LA · Intake</span>
-        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">80% Required</span>
-        <span style="background:#fff3e0;color:#e65100;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">~25% Caseload Gate</span>
-      </div>
     </div>
     <div class="btn-row">
       <button class="btn btn-primary" onclick="go(1)">Start Module →</button>
@@ -669,12 +645,12 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Every driver must follow traffic laws and operate their vehicle with reasonable care to protect all road users</div>
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Who violated the safety rule? (speeding, following too close, running light)</li>
@@ -740,12 +716,12 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Commercial drivers must follow federal safety regulations and operate with extra care due to their vehicle's size and potential for catastrophic harm</div>
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Driver logbook compliance? (Hours of Service violations)</li>
@@ -761,7 +737,7 @@ button, .btn, .option-btn, [onclick] {
         <div class="case-section">
           <h4>Special Considerations</h4>
           <p><strong>Evidence preservation is critical:</strong> Trucking companies have sophisticated legal teams and preserve evidence quickly. GLG must act fast to secure driver logs, maintenance records, and electronic data.</p>
-          <p><strong>Federal regulations apply:</strong> FMCSA rules create specific safety standards that strengthen safety rule arguments.</p>
+          <p><strong>Federal regulations apply:</strong> FMCSA rules create specific safety standards that strengthen Reptile arguments.</p>
         </div>
 
         <div class="case-section">
@@ -810,12 +786,12 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">All drivers must actively look for motorcycles and share the road safely — motorcyclists have the same rights as any other vehicle operator</div>
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Visibility factors? (time of day, weather, motorcycle lighting)</li>
@@ -876,12 +852,12 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Property owners must maintain safe conditions for all visitors and warn of known hazards that could cause serious injury</div>
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Was the hazard visible and obvious?</li>
@@ -948,12 +924,12 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Healthcare providers must follow accepted standards of medical care to protect every patient who entrusts them with their health and safety</div>
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>What is the standard of care that should have been followed?</li>
@@ -1020,7 +996,7 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Dog owners must control their animals and prevent them from harming others, especially children and visitors who cannot protect themselves</div>
         </div>
 
@@ -1032,7 +1008,7 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Prior incidents or aggressive behavior by this dog?</li>
@@ -1093,7 +1069,7 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Same safety rule as underlying case — but the violation was so severe it took someone's life, leaving family members to suffer the ultimate consequence</div>
         </div>
 
@@ -1106,7 +1082,7 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Who are the statutory beneficiaries?</li>
@@ -1166,7 +1142,7 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Rideshare drivers must drive safely and follow all traffic laws while carrying passengers who have entrusted them with their safety</div>
         </div>
 
@@ -1182,7 +1158,7 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>Driver's status at time of accident?</li>
@@ -1243,12 +1219,12 @@ button, .btn, .option-btn, [onclick] {
         </div>
 
         <div class="safety-rule-box">
-          <div class="rule-label">Safety Rule</div>
+          <div class="rule-label">Reptile Safety Rule</div>
           <div class="rule-text">Property owners must maintain safe conditions and provide adequate security to protect all visitors from foreseeable harm</div>
         </div>
 
         <div class="case-section">
-          <h4>Case Evaluation Checklist</h4>
+          <h4>Case Evaluation Checklist (Essential Lawyering)</h4>
           <div class="eval-checklist">
             <ul>
               <li>What specific hazard or security failure occurred?</li>
@@ -1284,7 +1260,7 @@ button, .btn, .option-btn, [onclick] {
 
     <div class="callout green">
       <span class="callout-icon">🎉</span>
-      <span>You've learned about all 9 GLG case types! You understand the safety rule approach, case evaluation criteria, and client service considerations for each practice area. Ready to test your knowledge?</span>
+      <span>You've learned about all 9 GLG case types! You understand the Reptile safety rule approach, case evaluation criteria, and client service considerations for each practice area. Ready to test your knowledge?</span>
     </div>
 
     <div class="btn-row">
@@ -1339,51 +1315,12 @@ button, .btn, .option-btn, [onclick] {
     <div class="section-title">Certificate of Completion</div>
   </div>
   <div class="content-card">
-    <!-- Feedback Form -->
-    <div style="margin-bottom:20px;">
-      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:14px;">📝 Quick Feedback</h4>
-      <div class="fb-question">
-        <label>How clear was the content? (1 = confusing, 5 = crystal clear)</label>
-        <select id="fb-clarity">
-          <option value="">Select rating…</option>
-          <option>1 — Very confusing</option>
-          <option>2 — Somewhat confusing</option>
-          <option>3 — Mostly clear</option>
-          <option>4 — Clear</option>
-          <option>5 — Crystal clear</option>
-        </select>
-      </div>
-      <div class="fb-question">
-        <label>How was the difficulty level?</label>
-        <select id="fb-difficulty">
-          <option value="">Select…</option>
-          <option>Too easy — I already knew all of this</option>
-          <option>About right — challenging but fair</option>
-          <option>Too hard — needs more context</option>
-          <option>Mixed — some sections were hard, some easy</option>
-        </select>
-      </div>
-      <div class="fb-question">
-        <label>Did this module feel like a real work situation?</label>
-        <select id="fb-realistic">
-          <option value="">Select…</option>
-          <option>Yes — felt like actual GLG work</option>
-          <option>Mostly — a few parts felt generic</option>
-          <option>Not really — too textbook-style</option>
-        </select>
-      </div>
-      <div class="fb-question">
-        <label>What's one thing that would make this training better?</label>
-        <textarea id="fb-suggestions" placeholder="Your suggestion here…"></textarea>
-      </div>
-    </div>
-
     <!-- Score Submission Form -->
     <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;">
       <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
       <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
       <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
-      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+      <input type="text" id="trainee-name-input" placeholder="e.g. Sydney Johnson"
         style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;">
       <button class="btn" onclick="submitScoreAndBuildCert()" style="background:#188038;color:white;padding:12px 24px;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;">✅ Submit Score &amp; View Certificate</button>
     </div>
@@ -1420,20 +1357,20 @@ let quizData = [];
 let currentQ = 0;
 let answers = [];
 let score = 0;
-var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+var TRACKER_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
 
 const questions = [
   {
-    q: "What is the safety rule for motor vehicle accidents?",
+    q: "What is the Reptile safety rule for motor vehicle accidents?",
     options: ["Cars must have insurance", "Every driver must follow traffic laws and drive with reasonable care", "Drivers must maintain their vehicles", "Speed limits must be obeyed"],
     correct: 1,
-    explanation: "The universal safety rule for motor vehicle cases is that every driver must follow traffic laws and drive with reasonable care to protect all road users."
+    explanation: "The universal Reptile safety rule for motor vehicle cases is that every driver must follow traffic laws and drive with reasonable care to protect all road users."
   },
   {
     q: "What federal regulations strengthen trucking accident cases?",
     options: ["DOT regulations", "FMCSA (Federal Motor Carrier Safety Administration) rules", "EPA emissions standards", "IRS tax codes"],
     correct: 1,
-    explanation: "FMCSA regulations govern commercial drivers and create specific safety standards that strengthen safety rule arguments in trucking cases."
+    explanation: "FMCSA regulations govern commercial drivers and create specific safety standards that strengthen Reptile arguments in trucking cases."
   },
   {
     q: "What is a key challenge in motorcycle accident cases?",
@@ -1484,16 +1421,16 @@ const questions = [
     explanation: "Crime statistics, prior similar incidents, and security assessments help prove the owner knew or should have known about security risks."
   },
   {
-    q: "According to GLG's case evaluation principles, what should be included in case evaluation?",
+    q: "According to Essential Lawyering principles, what should be included in case evaluation?",
     options: ["Only the legal issues", "Creating options, working out each precisely, explaining clearly, and maintaining empathy", "Just the damages calculation", "Only the client's story"],
     correct: 1,
-    explanation: "The Four Challenges in counseling: create options beyond the obvious, work out each precisely, explain clearly, and maintain professional empathy."
+    explanation: "The Four Challenges in counseling from Essential Lawyering: create options beyond the obvious, work out each precisely, explain clearly, and maintain professional empathy."
   },
   {
-    q: "What makes a good safety rule?",
+    q: "What makes a good Reptile safety rule?",
     options: ["It's complex and technical", "It's simple, universal, and protects everyone including jurors", "It only applies to this specific case", "It maximizes damages"],
     correct: 1,
-    explanation: "Safety rules must be simple and clear, applicable broadly to protect everyone (not just this plaintiff), and something jurors themselves rely on."
+    explanation: "Reptile safety rules must be simple and clear, applicable broadly to protect everyone (not just this plaintiff), and something jurors themselves rely on."
   }
 ];
 
@@ -1653,20 +1590,14 @@ function submitScoreAndBuildCert() {
   document.getElementById('score-submit-form').style.display = 'none';
   document.getElementById('cert-content').style.display = 'block';
 
-  if (TRACKER_URL && TRACKER_URL !== 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec') {
+  if (TRACKER_URL && TRACKER_URL !== 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE') {
     var payload = {
       employeeName: name,
       moduleId: 'day2',
       moduleName: 'PI Case Types',
       score: score,
       maxScore: 12,
-      passedAt: new Date().toISOString(),
-      feedback: {
-        clarity: document.getElementById('fb-clarity').value || '',
-        difficulty: document.getElementById('fb-difficulty').value || '',
-        realistic: document.getElementById('fb-realistic').value || '',
-        suggestions: document.getElementById('fb-suggestions').value || ''
-      }
+      passedAt: new Date().toISOString()
     };
     fetch(TRACKER_URL, {
       method: 'POST',
