@@ -52,40 +52,40 @@ Competency Gate Mapping:
     .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
 
     /* ── HEADER ── */
-    header{background:#000000;color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
-    .day-badge{display:inline-block;background:#1a1a1a;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header{background:linear-gradient(135deg,#141C2C 0%,#0E1420 100%);color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#1C2433;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
     header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;}
     header h1{color:#ffffff;}
     header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
-    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1a1a1a;border-radius:10px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1C2433;border-radius:10px;}
     .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
     .score-value{color:#fff;font-size:22px;font-weight:800;}
 
     /* ── PROGRESS ── */
-    .progress-wrap{background:#1a1a1a;padding:10px 16px;}
+    .progress-wrap{background:#1C2433;padding:10px 16px;}
     .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
-    .progress-bg{background:#000000;border-radius:4px;height:6px;width:100%;}
+    .progress-bg{background:#0E1420;border-radius:4px;height:6px;width:100%;}
     .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
 
     /* ── NAV PILLS ── */
     .section-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
     .nav-pill{padding:8px 12px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
-    .nav-pill.active{background:#000000;color:#fff;border-color:#000000;}
-    .nav-pill.done{border-color:#27ae60;color:#27ae60;}
+    .nav-pill.active{background:#00339B;color:#fff;border-color:#00339B;}
+    .nav-pill.done{border-color:#10774A;color:#10774A;}
     .nav-pill.done::after{content:' ✓';}
 
     /* ── MAIN / CARDS ── */
     main{max-width:800px;margin:0 auto;padding:0 0 60px;}
     .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;}
     .section-card.active{display:block;}
-    .section-header{background:#000000;color:#fff;padding:18px 20px;}
+    .section-header{background:#141C2C;color:#fff;padding:18px 20px;}
     .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
     .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
     .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
     .section-body{padding:20px;}
 
     /* ── SCENARIO BOX ── */
-    .scenario{background:linear-gradient(135deg,#1a1a1a 0%,#000000 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;}
+    .scenario{background:#141C2C;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border-left:3px solid #dcb161;}
     .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
     .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
     .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
@@ -101,27 +101,27 @@ Competency Gate Mapping:
 
     /* ── QUESTIONS ── */
     .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
-    .question-block.answered{border-color:#27ae60;}
-    .question-block.answered-wrong{border-color:#c0392b;}
+    .question-block.answered{border-color:#10774A;}
+    .question-block.answered-wrong{border-color:#870101;}
     .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
     .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
     .options{display:flex;flex-direction:column;gap:10px;}
     .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
     .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
-    .option-btn.correct{border-color:#27ae60!important;background:#e8f8ee!important;color:#1a5e30!important;}
-    .option-btn.incorrect{border-color:#c0392b!important;background:#fce8e8!important;color:#7b1a1a!important;}
+    .option-btn.correct{border-color:#10774A!important;background:#e8f8ee!important;color:#10774A!important;}
+    .option-btn.incorrect{border-color:#870101!important;background:#fce8e8!important;color:#870101!important;}
     .option-btn.disabled{pointer-events:none;opacity:.75;}
-    .opt-letter{background:#000000;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;border:1px solid #333;}
+    .opt-letter{background:#141C2C;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
     .opt-text{flex:1;line-height:1.5;}
 
     /* ── FEEDBACK ── */
     .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
-    .feedback-box.correct{background:#d4edda;border-left:4px solid #27ae60;color:#155724;}
-    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #c0392b;color:#721c24;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #870101;color:#721c24;}
     .feedback-box.show{display:block;}
 
     /* ── POINTS TOAST ── */
-    .points-toast{position:fixed;top:80px;right:16px;background:#27ae60;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast{position:fixed;top:80px;right:16px;background:#10774A;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
     .points-toast.show{transform:translateY(0);opacity:1;}
 
     /* ── SECTION SCORE ── */
@@ -139,20 +139,20 @@ Competency Gate Mapping:
     .case-detail:last-child{border-bottom:none;}
     .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
     .case-val{color:#444;}
-    .case-val .flag{display:inline-block;background:#c0392b;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag{display:inline-block;background:#870101;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
     .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
-    .case-val .flag-ok{display:inline-block;background:#27ae60;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#10774A;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
 
     /* ── LIEN CARDS ── */
     .lien-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
     .lien-card{background:#f0f4f8;border-radius:10px;padding:14px;border-left:4px solid #232e54;}
     .lien-card h5{font-size:13px;font-weight:800;color:#141c2c;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
     .lien-card p{font-size:13px;color:#555;line-height:1.5;}
-    .lien-card.hospital{border-left-color:#c0392b;}
+    .lien-card.hospital{border-left-color:#870101;}
     .lien-card.insurance{border-left-color:#3498db;}
     .lien-card.medicare{border-left-color:#9b59b6;}
     .lien-card.erisa{border-left-color:#f39c12;}
-    .lien-card.medicaid{border-left-color:#27ae60;}
+    .lien-card.medicaid{border-left-color:#10774A;}
     .lien-card.billing{border-left-color:#95a5a6;}
 
     /* ── CHECKLIST ── */
@@ -170,22 +170,22 @@ Competency Gate Mapping:
     .timeline-item::before{content:'';position:absolute;left:15px;top:36px;bottom:-10px;width:2px;background:#e0e3e8;}
     .timeline-item:last-child::before{display:none;}
     .timeline-dot{width:32px;height:32px;border-radius:50%;background:#141c2c;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;z-index:1;}
-    .timeline-dot.urgent{background:#c0392b;}
+    .timeline-dot.urgent{background:#870101;}
     .timeline-dot.important{background:#f39c12;}
     .timeline-content{flex:1;}
     .timeline-day{font-weight:800;color:#141c2c;font-size:13px;}
     .timeline-desc{font-size:13px;color:#555;line-height:1.5;}
 
     /* ── BOSS CHALLENGE ── */
-    .boss-header{background:linear-gradient(135deg,#c0392b 0%,#922b21 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;}
+    .boss-header{background:linear-gradient(135deg,#870101 0%,#6b0000 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;}
     .boss-header .boss-icon{font-size:36px;margin-bottom:8px;}
     .boss-header h3{font-size:clamp(16px,4vw,20px);font-weight:800;margin-bottom:6px;}
     .boss-header p{font-size:13px;opacity:.9;}
 
     /* ── RESULTS ── */
     .results-header{padding:28px 20px;text-align:center;color:#fff;border-radius:0;}
-    .results-header.pass{background:linear-gradient(135deg,#27ae60,#1e8449);}
-    .results-header.fail{background:linear-gradient(135deg,#c0392b,#922b21);}
+    .results-header.pass{background:linear-gradient(135deg,#10774A,#0a5c38);}
+    .results-header.fail{background:linear-gradient(135deg,#870101,#6b0000);}
     .results-grade{font-size:56px;font-weight:900;line-height:1;}
     .results-label{font-size:16px;margin-top:6px;opacity:.9;}
     .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
@@ -223,8 +223,8 @@ Competency Gate Mapping:
     .btn-primary:hover{background:#232e54;}
     .btn-secondary{background:#f0f4f8;color:#141c2c;}
     .btn-secondary:hover{background:#e0e5ec;}
-    .btn-success{background:#27ae60;color:#fff;}
-    .btn-danger{background:#c0392b;color:#fff;}
+    .btn-success{background:#10774A;color:#fff;}
+    .btn-danger{background:#870101;color:#fff;}
     .btn-warning{background:#f39c12;color:#fff;}
     .btn-block{width:100%;margin-top:12px;}
     .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
@@ -232,8 +232,8 @@ Competency Gate Mapping:
     /* ── CALLOUT ── */
     .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
     .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
-    .callout-danger{background:#fce8e8;border-left:4px solid #c0392b;color:#721c24;}
-    .callout-success{background:#d4edda;border-left:4px solid #27ae60;color:#155724;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
     .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
     .callout strong{font-weight:700;}
 
@@ -243,8 +243,8 @@ Competency Gate Mapping:
     .calc-table td:first-child{font-weight:600;color:#141c2c;}
     .calc-table td:last-child{text-align:right;font-weight:700;}
     .calc-table tr.total td{border-top:2px solid #141c2c;font-weight:800;font-size:15px;}
-    .calc-table tr.total td:last-child{color:#27ae60;}
-    .calc-table tr.deduction td:last-child{color:#c0392b;}
+    .calc-table tr.total td:last-child{color:#10774A;}
+    .calc-table tr.deduction td:last-child{color:#870101;}
     .calc-table tr.hold td:last-child{color:#f39c12;}
 
     /* ── UTILITIES ── */
@@ -929,7 +929,7 @@ Competency Gate Mapping:
         <div class="timeline-dot urgent">D0</div>
         <div class="timeline-content">
           <div class="timeline-day">Day 0: Settlement Confirmed</div>
-          <div class="timeline-desc">Log in CasePeer → Status: <strong>Settled</strong>. Notify client within 24 hours — <span style="color:#c0392b;font-weight:700;">before the insurance company tells them.</span></div>
+          <div class="timeline-desc">Log in CasePeer → Status: <strong>Settled</strong>. Notify client within 24 hours — <span style="color:#870101;font-weight:700;">before the insurance company tells them.</span></div>
         </div>
       </div>
       <div class="timeline-item">
@@ -1259,7 +1259,7 @@ Competency Gate Mapping:
       style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;">
     <button class="btn btn-success btn-block" onclick="submitScoreAndBuildCert()">✅ Submit Score &amp; View Certificate</button>
   </div>
-  <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #27ae60;color:#155724;border-radius:8px;padding:14px 16px;margin:0 0 16px;font-size:14px;font-weight:600;">
+  <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #10774A;color:#155724;border-radius:8px;padding:14px 16px;margin:0 0 16px;font-size:14px;font-weight:600;">
     ✅ Score submitted! Your results have been recorded.
   </div>
 </div>
@@ -1593,7 +1593,7 @@ function buildResults() {
     + '<div class="breakdown-row"><span class="breakdown-name">Lien Negotiation</span><span class="breakdown-pts">' + (sectionScores['s4']||0) + '/30</span></div>'
     + '<div class="breakdown-row"><span class="breakdown-name">Post-Settlement Process</span><span class="breakdown-pts">' + (sectionScores['s5']||0) + '/30</span></div>'
     + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (base)</span><span class="breakdown-pts">' + (sectionScores['s6']||0) + '/30</span></div>'
-    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#27ae60;font-size:18px;">' + baseScore + '/200</span></div>'
+    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#10774A;font-size:18px;">' + baseScore + '/200</span></div>'
     + '<div class="breakdown-row"><span class="breakdown-name">Bonus Points</span><span class="breakdown-pts" style="color:#f39c12;">' + bonusPoints + ' pts</span></div>'
     + '</div>'
     + '<div class="info-block"><h4>🏅 Achievements Earned</h4>'
