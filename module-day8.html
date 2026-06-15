@@ -49,26 +49,28 @@ Competency Gate Mapping:
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
+    .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
 
     /* ── HEADER ── */
-    header{background:#141c2c;color:#fff;padding:20px 16px 16px;text-align:center;}
-    .day-badge{display:inline-block;background:#232e54;color:#aab4c8;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header{background:#000000;color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#1a1a1a;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
     header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;}
-    header p{margin-top:6px;color:#aab4c8;font-size:13px;}
-    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#232e54;border-radius:10px;}
-    .score-label{color:#aab4c8;font-size:12px;font-weight:600;}
+    header h1{color:#ffffff;}
+    header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1a1a1a;border-radius:10px;}
+    .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
     .score-value{color:#fff;font-size:22px;font-weight:800;}
 
     /* ── PROGRESS ── */
-    .progress-wrap{background:#232e54;padding:10px 16px;}
-    .progress-meta{color:#aab4c8;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
-    .progress-bg{background:#141c2c;border-radius:4px;height:6px;width:100%;}
-    .progress-fill{background:#27ae60;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+    .progress-wrap{background:#1a1a1a;padding:10px 16px;}
+    .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#000000;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
 
     /* ── NAV PILLS ── */
     .section-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
     .nav-pill{padding:8px 12px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
-    .nav-pill.active{background:#141c2c;color:#fff;border-color:#141c2c;}
+    .nav-pill.active{background:#000000;color:#fff;border-color:#000000;}
     .nav-pill.done{border-color:#27ae60;color:#27ae60;}
     .nav-pill.done::after{content:' ✓';}
 
@@ -76,15 +78,15 @@ Competency Gate Mapping:
     main{max-width:800px;margin:0 auto;padding:0 0 60px;}
     .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;}
     .section-card.active{display:block;}
-    .section-header{background:#141c2c;color:#fff;padding:18px 20px;}
-    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#aab4c8;margin-bottom:4px;}
+    .section-header{background:#000000;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
     .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
-    .section-subhead{color:#aab4c8;font-size:13px;margin-top:4px;}
+    .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
     .section-body{padding:20px;}
 
     /* ── SCENARIO BOX ── */
-    .scenario{background:linear-gradient(135deg,#232e54 0%,#141c2c 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;}
-    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#aab4c8;margin-bottom:8px;}
+    .scenario{background:linear-gradient(135deg,#1a1a1a 0%,#000000 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
     .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
     .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
     .scenario .highlight{color:#f39c12;font-weight:700;}
@@ -109,7 +111,7 @@ Competency Gate Mapping:
     .option-btn.correct{border-color:#27ae60!important;background:#e8f8ee!important;color:#1a5e30!important;}
     .option-btn.incorrect{border-color:#c0392b!important;background:#fce8e8!important;color:#7b1a1a!important;}
     .option-btn.disabled{pointer-events:none;opacity:.75;}
-    .opt-letter{background:#232e54;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-letter{background:#000000;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;border:1px solid #333;}
     .opt-text{flex:1;line-height:1.5;}
 
     /* ── FEEDBACK ── */
@@ -267,6 +269,7 @@ Competency Gate Mapping:
 
 <!-- HEADER -->
 <header>
+  <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
   <div class="day-badge">Day 8 · Liens & Post-Settlement</div>
   <h1>Lien Basics & Post-Settlement Process</h1>
   <p>Gunn Law Group · New Hire Training (NH-8)</p>
