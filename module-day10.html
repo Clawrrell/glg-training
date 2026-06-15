@@ -1,0 +1,1430 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 15, 2026
+Deliverable: Training Module Day 10 — Week 2 Review & Assessment
+References Loaded:
+  - module-day9-client-communication.html (CSS/JS template)
+  - module-day5-week1-review-v2.html (structural model)
+  - module-day6-medical-records.html (content source)
+  - module-day7-coverage-verification.html (content source)
+  - module-day8-lien-basics-v2.html (content source)
+  - module-day9-client-communication.html (content source)
+QA Checklist: ✅ PASSED
+  - Forces recall — does NOT re-teach content
+  - Single continuous case thread (Darius Shepherd) spanning Sections 2–6
+  - New complex case (Simone Carter) for Boss Challenge
+  - Mixed question types across all four days (interleaved)
+  - Progressive difficulty: section review → integration → Boss Challenge crisis
+  - Points + achievement badges + immediate consequence-based feedback
+  - Mobile-first, 44px tap targets, no horizontal scroll
+  - Zero book/framework names in visible output
+  - Base score tracked SEPARATELY from bonus score
+  - CRITICAL: submitScoreAndBuildCert submits state.baseScore only (NOT base+bonus)
+  - maxScore = 200 always
+  - 20 base questions × 10 pts = 200 max base
+  - Bonus: 5 pts per first-try correct (base questions) + Boss Challenge bonus
+  - Pass threshold: 85% = 170/200 base
+  - Wrong answer = locked immediately (assessment behavior, not learning module)
+Competency Gate:
+  - Gate: 60-Day Gate — Week 2 Comprehensive Assessment
+  - Milestone: Week 2 Completion
+  - Roles: CM, LA
+  - Requirement: 85%+ base (170/200)
+  - Caseload Impact: Must pass to progress to role-specific training tracks
+moduleId: day10
+moduleName: Week 2 Review & Assessment
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 10 — Week 2 Review &amp; Assessment | Gunn Law Group</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
+
+    /* ── HEADER ── */
+    header{background:linear-gradient(135deg,#141C2C 0%,#0E1420 100%);color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#1C2433;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;color:#ffffff;}
+    header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1C2433;border-radius:10px;}
+    .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
+    .score-value{color:#fff;font-size:22px;font-weight:800;}
+
+    /* ── PROGRESS ── */
+    .progress-wrap{background:#1C2433;padding:10px 16px;}
+    .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#0E1420;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+
+    /* ── NAV PILLS ── */
+    .section-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
+    .nav-pill{padding:7px 11px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:11px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+    .nav-pill.active{background:#141C2C;color:#fff;border-color:#141C2C;}
+    .nav-pill.done{border-color:#10774A;color:#10774A;}
+    .nav-pill.done::after{content:' ✓';}
+
+    /* ── MAIN / CARDS ── */
+    main{max-width:800px;margin:0 auto;padding:0 0 60px;}
+    .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;}
+    .section-card.active{display:block;}
+    .section-header{background:#141C2C;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
+    .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
+    .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
+    .section-body{padding:20px;}
+
+    /* ── SCENARIO BOX ── */
+    .scenario{background:#141C2C;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border-left:3px solid #dcb161;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
+    .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
+    .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
+    .scenario .highlight{color:#dcb161;font-weight:700;}
+    .scenario .urgent{color:#e74c3c;font-weight:700;}
+
+    /* ── INFO BLOCKS ── */
+    .info-block{background:#f0f4f8;border-radius:10px;padding:16px;margin-bottom:14px;}
+    .info-block h4{color:#141c2c;font-size:14px;font-weight:700;margin-bottom:8px;}
+    .info-block p,.info-block li{font-size:14px;color:#444;line-height:1.6;}
+    .info-block ul,.info-block ol{padding-left:18px;}
+
+    /* ── QUESTIONS ── */
+    .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
+    .question-block.answered{border-color:#10774A;}
+    .question-block.answered-wrong{border-color:#870101;}
+    .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
+    .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
+    .options{display:flex;flex-direction:column;gap:10px;}
+    .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
+    .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
+    .option-btn.correct{border-color:#10774A!important;background:#e8f8ee!important;color:#10774A!important;}
+    .option-btn.incorrect{border-color:#870101!important;background:#fce8e8!important;color:#870101!important;}
+    .option-btn.disabled{pointer-events:none;opacity:.75;}
+    .opt-letter{background:#141C2C;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-text{flex:1;line-height:1.5;}
+
+    /* ── FEEDBACK ── */
+    .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #870101;color:#721c24;}
+    .feedback-box.show{display:block;}
+
+    /* ── POINTS TOAST ── */
+    .points-toast{position:fixed;top:80px;right:16px;background:#10774A;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast.show{transform:translateY(0);opacity:1;}
+    .points-toast.bonus{background:#dcb161;color:#141C2C;}
+
+    /* ── SECTION SCORE ── */
+    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;}
+    .section-score .score-display{font-size:32px;font-weight:800;color:#141c2c;}
+    .section-score .score-label{font-size:13px;color:#666;margin-top:2px;}
+
+    /* ── CASE FILE ── */
+    .case-file{background:#fff;border:2px solid #141c2c;border-radius:12px;padding:18px;margin-bottom:20px;}
+    .case-file-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #f0f4f8;}
+    .case-file-icon{background:#141c2c;color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .case-file-title{font-weight:800;color:#141c2c;font-size:15px;}
+    .case-file-sub{font-size:12px;color:#888;}
+    .case-detail{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px;}
+    .case-detail:last-child{border-bottom:none;}
+    .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
+    .case-val{color:#444;}
+    .case-val .flag{display:inline-block;background:#870101;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#10774A;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+
+    /* ── BOSS CHALLENGE ── */
+    .boss-header{background:linear-gradient(135deg,#870101 0%,#5a0000 100%);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;}
+    .boss-header .boss-icon{font-size:40px;margin-bottom:10px;}
+    .boss-header h3{font-size:clamp(17px,4.5vw,22px);font-weight:800;margin-bottom:8px;}
+    .boss-header p{font-size:14px;opacity:.9;line-height:1.5;}
+    .boss-q-badge{display:inline-block;background:#dcb161;color:#141C2C;font-size:11px;font-weight:800;padding:3px 10px;border-radius:12px;margin-bottom:8px;letter-spacing:.5px;}
+
+    /* ── RESULTS ── */
+    .results-header{padding:28px 20px;text-align:center;color:#fff;}
+    .results-header.pass{background:linear-gradient(135deg,#10774A,#0a5c38);}
+    .results-header.fail{background:linear-gradient(135deg,#870101,#6b0000);}
+    .results-grade{font-size:56px;font-weight:900;line-height:1;}
+    .results-label{font-size:16px;margin-top:6px;opacity:.9;}
+    .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
+    .breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f4f8;font-size:15px;}
+    .breakdown-row:last-child{border-bottom:none;}
+    .breakdown-name{color:#333;font-weight:600;}
+    .breakdown-pts{font-weight:800;color:#141c2c;}
+    .achievement-grid{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+    .badge{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:2px solid #e0e3e8;color:#888;background:#f8f9fa;}
+    .badge.earned{border-color:#dcb161;background:#fffaed;color:#7a5c00;}
+    .badge .badge-icon{font-size:20px;}
+
+    /* ── FEEDBACK FORM ── */
+    .fb-rating-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
+    .fb-rating-btn{padding:8px 14px;border:2px solid #e0e3e8;border-radius:8px;background:#fff;font-size:13px;font-weight:700;cursor:pointer;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+    .fb-rating-btn.selected{border-color:#141C2C;background:#141C2C;color:#fff;}
+    .fb-q{margin-bottom:18px;}
+    .fb-q label{display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:8px;}
+    .fb-q textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;color:#333;resize:vertical;min-height:80px;}
+    .fb-q textarea:focus{outline:none;border-color:#141c2c;}
+
+    /* ── CERTIFICATE ── */
+    .cert{border:3px solid #141c2c;border-radius:14px;padding:24px;text-align:center;margin-top:20px;background:#fff;}
+    .cert-logo{font-size:32px;margin-bottom:8px;}
+    .cert h3{font-size:18px;font-weight:800;color:#141c2c;margin-bottom:4px;}
+    .cert-name{font-size:22px;font-weight:800;color:#141C2C;margin:12px 0 4px;}
+    .cert-details{font-size:13px;color:#666;line-height:1.9;}
+    .cert-achievements{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}
+    .cert-badge{background:#dcb161;color:#141C2C;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
+    .btn-primary{background:#141C2C;color:#fff;}
+    .btn-primary:hover{background:#232e54;}
+    .btn-secondary{background:#f0f4f8;color:#141c2c;}
+    .btn-block{width:100%;margin-top:12px;}
+    .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
+    .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
+    .callout strong{font-weight:700;}
+
+    /* ── DIVIDER / TAGS / UTILS ── */
+    .divider{border:none;border-top:2px solid #f0f4f8;margin:16px 0;}
+    .tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+    .tag-warn{background:#fff3cd;color:#856404;}
+    .tag-danger{background:#fce8e8;color:#7b1a1a;}
+    .tag-success{background:#d4edda;color:#155724;}
+    .tag-info{background:#d6e8f8;color:#174a7e;}
+    .tag-gold{background:#fffaed;color:#7a5c00;border:1px solid #dcb161;}
+    .text-center{text-align:center;}
+    .mt-4{margin-top:16px;}
+    .mb-4{margin-bottom:16px;}
+
+    /* ── SCORE CONFIRM ── */
+    .score-confirm{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;background:#d4edda;border-left:4px solid #10774A;color:#155724;display:none;}
+
+    /* ── ERROR ── */
+    .fb-error{background:#fce8e8;border-left:4px solid #870101;color:#721c24;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:14px;display:none;}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header>
+  <div class="day-badge">Day 10 · Week 2 Review</div>
+  <h1>Week 2 Comprehensive Assessment</h1>
+  <p>Gunn Law Group · Legal Assistant Training</p>
+  <div class="score-bar">
+    <div>
+      <div class="score-label">BASE SCORE</div>
+      <div class="score-value" id="total-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">POSSIBLE</div>
+      <div class="score-value">200</div>
+    </div>
+    <div>
+      <div class="score-label">BONUS</div>
+      <div class="score-value" id="bonus-score">0</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="prog-label">Section 1 of 9</span>
+    <span id="prog-pct">0%</span>
+  </div>
+  <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="section-nav" id="section-nav">
+  <button class="nav-pill active" id="nav-0" onclick="goToSection(0)">1. Intro</button>
+  <button class="nav-pill" id="nav-1" onclick="goToSection(1)">2. Day 6</button>
+  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. Day 7</button>
+  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Day 8</button>
+  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. Day 9</button>
+  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. Integrate</button>
+  <button class="nav-pill" id="nav-6" onclick="goToSection(6)">7. Boss</button>
+  <button class="nav-pill" id="nav-7" onclick="goToSection(7)">8. Results</button>
+  <button class="nav-pill" id="nav-8" onclick="goToSection(8)">9. Feedback</button>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     SECTION 0 — INTRO / WELCOME
+════════════════════════════════════════════ -->
+<div class="section-card active" id="section-0">
+  <div class="section-header">
+    <div class="section-num">Section 1 · Week 2 Capstone</div>
+    <h2>Welcome to the Week 2 Assessment</h2>
+    <div class="section-subhead">Four days. Four domains. One exam.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">⚡ Monday Morning · Week 3 Begins</div>
+      <h3>You just completed four of the hardest training days in this program. Now it's time to prove you retained it.</h3>
+      <p>This assessment tests everything from Days 6–9 — not in isolation, but the way you'll actually use it: as an integrated system where one day's knowledge feeds directly into the next.</p>
+      <p style="margin-top:10px;">You'll follow a <span class="highlight">single case thread</span> through four review sections, then tackle integration scenarios that mix days together, and finally face the Boss Challenge — a full-blown crisis requiring everything at once.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>📋 What This Assessment Covers</h4>
+      <ul>
+        <li><strong>Day 6 — Medical Records:</strong> HIPAA authorization, records requests, 14-day follow-up rule, demand readiness</li>
+        <li><strong>Day 7 — Coverage Verification:</strong> BI/UM/UIM verification, opening claims, O.C.G.A. 33-3-28, recorded statements</li>
+        <li><strong>Day 8 — Liens &amp; Post-Settlement:</strong> GSCCCA verification, Made Whole doctrine, ERISA, disbursement math</li>
+        <li><strong>Day 9 — Client Communication:</strong> 14-day contact rule, CasePeer logging, settlement calls, difficult conversations</li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h4>🎯 Scoring System</h4>
+      <ul>
+        <li>20 base questions × <strong>10 points</strong> = 200 max base score</li>
+        <li>First-try correct = <strong>+5 bonus points</strong> per question</li>
+        <li>Wrong answer = <strong>0 points, question locked</strong> — see the answer and learn from it</li>
+        <li>Boss Challenge = <strong>bonus points only</strong> (won't hurt your base score)</li>
+        <li><strong>Pass threshold: 85% = 170 / 200 base points</strong></li>
+      </ul>
+    </div>
+
+    <div class="callout callout-info">
+      <strong>📁 Your case thread:</strong> Sections 2–6 follow <strong>Darius Shepherd</strong> — a real case situation that builds from records, to coverage, to liens, to communication. Pay attention to the facts — they compound.
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Assessment rules:</strong> No re-teaching here. This module assumes you know the material. Wrong answers reveal the correct answer immediately and lock the question. Come prepared.
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary btn-block" onclick="goToSection(1)">Begin Assessment — Day 6: Medical Records →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — DAY 6: MEDICAL RECORDS REVIEW
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-1">
+  <div class="section-header">
+    <div class="section-num">Section 2 · Day 6 Review · Up to 40 pts</div>
+    <h2>Medical Records Review</h2>
+    <div class="section-subhead">HIPAA, records requests, 14-day follow-up, demand readiness</div>
+  </div>
+  <div class="section-body">
+
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">📁</div>
+        <div>
+          <div class="case-file-title">Case Thread — Darius Shepherd</div>
+          <div class="case-file-sub">Tracking through all 4 review sections</div>
+        </div>
+      </div>
+      <div class="case-detail"><div class="case-key">Client</div><div class="case-val">Darius Shepherd, 38</div></div>
+      <div class="case-detail"><div class="case-key">Accident</div><div class="case-val">June 1, 2026 — rear-ended at red light by Falcon Express LLC delivery truck</div></div>
+      <div class="case-detail"><div class="case-key">Injuries</div><div class="case-val">Cervical strain, right shoulder injury</div></div>
+      <div class="case-detail"><div class="case-key">ER Treatment</div><div class="case-val">Emory Decatur Hospital · Bill: $12,400</div></div>
+      <div class="case-detail"><div class="case-key">Follow-Up</div><div class="case-val">Dr. Maria Rosario (Chiropractor) · 6 weeks · Bill: $3,200</div></div>
+      <div class="case-detail"><div class="case-key">At-Fault Insurance</div><div class="case-val">State Farm BI 25/50 (Falcon Express driver)</div></div>
+      <div class="case-detail"><div class="case-key">Client Insurance</div><div class="case-val">Allstate UM/UIM $50K · MedPay $5K · BCBS Health (ERISA employer plan)</div></div>
+    </div>
+
+    <!-- Q1: HIPAA Authorization -->
+    <div class="question-block" id="s2-1-block">
+      <div class="q-num">Question 1 of 4 — HIPAA Authorization</div>
+      <div class="q-text">You need to request Darius's emergency records from Emory Decatur Hospital. The billing department asks: "What authorization do you have to request these records?" What document are they looking for — and what must it contain?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s2-1','a',false)" id="s2-1-a"><span class="opt-letter">A</span><span class="opt-text">The Letter of Representation — it proves we represent Darius and authorizes the request</span></button>
+        <button class="option-btn" onclick="answer('s2-1','b',true)" id="s2-1-b"><span class="opt-letter">B</span><span class="opt-text">A HIPAA-compliant medical records authorization signed by Darius — containing his name, date of birth, type of records requested, releasing provider, receiving party, purpose, and his signature and date</span></button>
+        <button class="option-btn" onclick="answer('s2-1','c',false)" id="s2-1-c"><span class="opt-letter">C</span><span class="opt-text">A subpoena — that's the only document providers are legally required to honor</span></button>
+        <button class="option-btn" onclick="answer('s2-1','d',false)" id="s2-1-d"><span class="opt-letter">D</span><span class="opt-text">A fax cover sheet signed by the attorney on file</span></button>
+      </div>
+      <div class="feedback-box" id="s2-1-fb"></div>
+    </div>
+
+    <!-- Q2: 14-Day Follow-Up -->
+    <div class="question-block" id="s2-2-block">
+      <div class="q-num">Question 2 of 4 — 14-Day Follow-Up Rule</div>
+      <div class="q-text">You sent the HIPAA-authorized records request to Emory Decatur on June 3rd. Today is June 18th — 15 days have passed. No records have arrived. What does GLG's 14-day follow-up rule require you to do right now?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s2-2','a',false)" id="s2-2-a"><span class="opt-letter">A</span><span class="opt-text">Wait — Georgia law gives providers 30 days to respond. We're still within the legal window.</span></button>
+        <button class="option-btn" onclick="answer('s2-2','b',true)" id="s2-2-b"><span class="opt-letter">B</span><span class="opt-text">The 14-day trigger passed yesterday. Follow up with Emory Decatur TODAY, log the follow-up attempt in CasePeer with the date and outcome, and escalate to your CM if the provider is still unresponsive after follow-up.</span></button>
+        <button class="option-btn" onclick="answer('s2-2','c',false)" id="s2-2-c"><span class="opt-letter">C</span><span class="opt-text">Send Darius to Emory in person to pick up his own records — it's faster.</span></button>
+        <button class="option-btn" onclick="answer('s2-2','d',false)" id="s2-2-d"><span class="opt-letter">D</span><span class="opt-text">Send a second HIPAA authorization — the first one may have expired after 14 days.</span></button>
+      </div>
+      <div class="feedback-box" id="s2-2-fb"></div>
+    </div>
+
+    <!-- Q3: ER Records Causation -->
+    <div class="question-block" id="s2-3-block">
+      <div class="q-num">Question 3 of 4 — ER Records and Causation</div>
+      <div class="q-text">Dr. Rosario's chiropractic records have arrived but Emory's ER records are still outstanding. Your supervising attorney asks: "Can we build the demand with what we have?" What do you tell her?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s2-3','a',false)" id="s2-3-a"><span class="opt-letter">A</span><span class="opt-text">Yes — Dr. Rosario's records document the injury thoroughly. The ER visit was just intake.</span></button>
+        <button class="option-btn" onclick="answer('s2-3','b',false)" id="s2-3-b"><span class="opt-letter">B</span><span class="opt-text">Yes, but flag it — we can include a note that ER records are pending.</span></button>
+        <button class="option-btn" onclick="answer('s2-3','c',true)" id="s2-3-c"><span class="opt-letter">C</span><span class="opt-text">No — ER records establish the critical first link between the accident and the diagnosed injuries. Without them, State Farm will challenge causation and argue the injuries arose after the accident or from another source. The demand is incomplete without them.</span></button>
+        <button class="option-btn" onclick="answer('s2-3','d',false)" id="s2-3-d"><span class="opt-letter">D</span><span class="opt-text">Only if Darius had surgery — otherwise chiropractic records are sufficient for a demand.</span></button>
+      </div>
+      <div class="feedback-box" id="s2-3-fb"></div>
+    </div>
+
+    <!-- Q4: Supplemental Records -->
+    <div class="question-block" id="s2-4-block">
+      <div class="q-num">Question 4 of 4 — Records Gap</div>
+      <div class="q-text">Emory's records arrive and cover only the initial ER visit (June 1). Darius mentioned during intake that he had a follow-up appointment at Emory on June 8. The June 8 records are missing. What do you do?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s2-4','a',false)" id="s2-4-a"><span class="opt-letter">A</span><span class="opt-text">The initial visit is what matters — the follow-up probably just confirmed the same diagnosis.</span></button>
+        <button class="option-btn" onclick="answer('s2-4','b',false)" id="s2-4-b"><span class="opt-letter">B</span><span class="opt-text">Ask Darius to describe what the doctor said on June 8 and add it as a case note.</span></button>
+        <button class="option-btn" onclick="answer('s2-4','c',false)" id="s2-4-c"><span class="opt-letter">C</span><span class="opt-text">Wait until we get closer to sending the demand — then fill in any gaps at once.</span></button>
+        <button class="option-btn" onclick="answer('s2-4','d',true)" id="s2-4-d"><span class="opt-letter">D</span><span class="opt-text">Send a supplemental records request to Emory Decatur for the June 8 visit immediately. Incomplete records equal an incomplete demand — every follow-up visit may contain updated diagnoses, prescriptions, or referrals that support case value.</span></button>
+      </div>
+      <div class="feedback-box" id="s2-4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s1-score" style="display:none;">
+      <div class="score-display" id="s1-score-val">—</div>
+      <div class="score-label">Section 2 Score · Day 6: Medical Records (out of 40)</div>
+    </div>
+    <div class="btn-group" id="s1-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(2)">Next: Day 7 — Coverage Verification →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — DAY 7: COVERAGE VERIFICATION REVIEW
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-2">
+  <div class="section-header">
+    <div class="section-num">Section 3 · Day 7 Review · Up to 40 pts</div>
+    <h2>Coverage Verification Review</h2>
+    <div class="section-subhead">BI/UM/UIM, opening claims, O.C.G.A. 33-3-28, recorded statements</div>
+  </div>
+  <div class="section-body">
+
+    <div class="callout callout-info">
+      <strong>📁 Still Darius Shepherd.</strong> Cervical strain, right shoulder injury. At-fault: Falcon Express LLC driver with State Farm BI 25/50. Darius has Allstate UM/UIM $50K.
+    </div>
+
+    <!-- Q5: Open BI Claim -->
+    <div class="question-block" id="s3-1-block">
+      <div class="q-num">Question 1 of 4 — Opening the BI Claim</div>
+      <div class="q-text">You need to open an insurance claim for Darius. The at-fault driver's employer (Falcon Express LLC) carries State Farm. Darius has Allstate UM/UIM on his own policy. Which carrier do you contact FIRST — and what do you say?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s3-1','a',false)" id="s3-1-a"><span class="opt-letter">A</span><span class="opt-text">Call Darius's Allstate policy first — it's easier to work with our client's own carrier and they're more cooperative.</span></button>
+        <button class="option-btn" onclick="answer('s3-1','b',true)" id="s3-1-b"><span class="opt-letter">B</span><span class="opt-text">Call State Farm first — they insure the at-fault party. Identify yourself as GLG representing Darius Shepherd, provide accident date and details, verify BI coverage, and open the bodily injury claim. Get a claim number. UM/UIM comes later if State Farm's limits are insufficient.</span></button>
+        <button class="option-btn" onclick="answer('s3-1','c',false)" id="s3-1-c"><span class="opt-letter">C</span><span class="opt-text">Call both simultaneously — it doesn't matter which order you open claims.</span></button>
+        <button class="option-btn" onclick="answer('s3-1','d',false)" id="s3-1-d"><span class="opt-letter">D</span><span class="opt-text">Send a demand letter first — that opens the claim automatically.</span></button>
+      </div>
+      <div class="feedback-box" id="s3-1-fb"></div>
+    </div>
+
+    <!-- Q6: OCGA 33-3-28 -->
+    <div class="question-block" id="s3-2-block">
+      <div class="q-num">Question 2 of 4 — O.C.G.A. 33-3-28</div>
+      <div class="q-text">You've called State Farm three times over three weeks requesting coverage limit information for the Falcon Express driver's policy. They keep saying "it's under review." You haven't received written confirmation of the limits. What is your legal tool — and how do you use it?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s3-2','a',true)" id="s3-2-a"><span class="opt-letter">A</span><span class="opt-text">O.C.G.A. § 33-3-28 requires insurers to respond to a written coverage inquiry within 30 days. Send a formal written request by certified mail, start the 30-day clock. Non-compliance is evidence of bad faith and strengthens the case.</span></button>
+        <button class="option-btn" onclick="answer('s3-2','b',false)" id="s3-2-b"><span class="opt-letter">B</span><span class="opt-text">File a complaint with the Georgia Department of Insurance — that forces a response within 5 business days.</span></button>
+        <button class="option-btn" onclick="answer('s3-2','c',false)" id="s3-2-c"><span class="opt-letter">C</span><span class="opt-text">Federal law gives insurers 90 days to respond — we haven't hit the threshold yet.</span></button>
+        <button class="option-btn" onclick="answer('s3-2','d',false)" id="s3-2-d"><span class="opt-letter">D</span><span class="opt-text">Request the limits from the Georgia DMV — they have all policy information on file.</span></button>
+      </div>
+      <div class="feedback-box" id="s3-2-fb"></div>
+    </div>
+
+    <!-- Q7: UM/UIM Trigger -->
+    <div class="question-block" id="s3-3-block">
+      <div class="q-num">Question 3 of 4 — When UM/UIM Activates</div>
+      <div class="q-text">State Farm confirms the Falcon Express driver has a 25/50 BI policy. Darius's total medical bills are $15,600 with ongoing treatment expected. You estimate total damages at $60,000–$75,000. What must you do RIGHT NOW regarding Darius's Allstate policy?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s3-3','a',false)" id="s3-3-a"><span class="opt-letter">A</span><span class="opt-text">Nothing yet — UM/UIM is only triggered after State Farm's claim is fully resolved.</span></button>
+        <button class="option-btn" onclick="answer('s3-3','b',true)" id="s3-3-b"><span class="opt-letter">B</span><span class="opt-text">Send an LOR to Allstate NOW and open the UM/UIM claim. State Farm's $25K limit is likely insufficient for $60K–$75K in damages. Delay in notifying the UM/UIM carrier can give Allstate grounds to deny coverage. Don't wait for State Farm to exhaust limits first.</span></button>
+        <button class="option-btn" onclick="answer('s3-3','c',false)" id="s3-3-c"><span class="opt-letter">C</span><span class="opt-text">UM/UIM only applies if the at-fault driver was uninsured — State Farm has coverage, so UM/UIM isn't relevant.</span></button>
+        <button class="option-btn" onclick="answer('s3-3','d',false)" id="s3-3-d"><span class="opt-letter">D</span><span class="opt-text">Have Darius call Allstate himself — he's the policyholder and has authority to open the claim.</span></button>
+      </div>
+      <div class="feedback-box" id="s3-3-fb"></div>
+    </div>
+
+    <!-- Q8: Recorded Statement -->
+    <div class="question-block" id="s3-4-block">
+      <div class="q-num">Question 4 of 4 — Recorded Statement Protection</div>
+      <div class="q-text">The State Farm adjuster calls you and says: "We'd like to schedule a recorded statement with Mr. Shepherd as part of our claims investigation. Can you set that up?" What is your response?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s3-4','a',false)" id="s3-4-a"><span class="opt-letter">A</span><span class="opt-text">Schedule the recorded statement — it's required by Georgia law and refusing creates bad faith issues for our client.</span></button>
+        <button class="option-btn" onclick="answer('s3-4','b',false)" id="s3-4-b"><span class="opt-letter">B</span><span class="opt-text">Ask Darius if he'd like to give a recorded statement and let him decide.</span></button>
+        <button class="option-btn" onclick="answer('s3-4','c',false)" id="s3-4-c"><span class="opt-letter">C</span><span class="opt-text">Tell State Farm to submit their questions in writing and we'll respond in writing.</span></button>
+        <button class="option-btn" onclick="answer('s3-4','d',true)" id="s3-4-d"><span class="opt-letter">D</span><span class="opt-text">"Mr. Shepherd is represented by our firm. All communications regarding this claim must go through us. We will not be arranging a recorded statement with the adverse carrier." End of discussion. Log the call in CasePeer.</span></button>
+      </div>
+      <div class="feedback-box" id="s3-4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s2-score" style="display:none;">
+      <div class="score-display" id="s2-score-val">—</div>
+      <div class="score-label">Section 3 Score · Day 7: Coverage Verification (out of 40)</div>
+    </div>
+    <div class="btn-group" id="s2-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(3)">Next: Day 8 — Liens &amp; Post-Settlement →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — DAY 8: LIENS & POST-SETTLEMENT REVIEW
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-3">
+  <div class="section-header">
+    <div class="section-num">Section 4 · Day 8 Review · Up to 40 pts</div>
+    <h2>Liens &amp; Post-Settlement Review</h2>
+    <div class="section-subhead">GSCCCA verification, Made Whole, ERISA, disbursement math</div>
+  </div>
+  <div class="section-body">
+
+    <div class="callout callout-info">
+      <strong>📁 Still Darius Shepherd.</strong> Case is progressing. Emory Decatur Hospital has been in contact about a lien. Darius's BCBS plan (employer-sponsored) paid $4,100 in bills. Settlement discussions are beginning.
+    </div>
+
+    <!-- Q9: GSCCCA Verification -->
+    <div class="question-block" id="s4-1-block">
+      <div class="q-num">Question 1 of 4 — Hospital Lien Verification</div>
+      <div class="q-text">Emory Decatur's billing manager calls and says: "We have a hospital lien on the Shepherd case for $8,400. We'll need to be paid from the settlement." Before you log this as a verified lien in CasePeer, what is your required first step?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s4-1','a',false)" id="s4-1-a"><span class="opt-letter">A</span><span class="opt-text">Log the $8,400 in CasePeer immediately — the hospital has no reason to lie about a lien.</span></button>
+        <button class="option-btn" onclick="answer('s4-1','b',true)" id="s4-1-b"><span class="opt-letter">B</span><span class="opt-text">Verify on GSCCCA.org before logging anything. A phone call from a hospital is NOT proof of a filed lien. The lien must be filed with the clerk of superior court, within 75 days of discharge, with certified mail notice sent at least 15 days before settlement. GSCCCA is the authoritative source.</span></button>
+        <button class="option-btn" onclick="answer('s4-1','c',false)" id="s4-1-c"><span class="opt-letter">C</span><span class="opt-text">Ask Emory to mail a copy of the lien letter — that's sufficient documentation for CasePeer.</span></button>
+        <button class="option-btn" onclick="answer('s4-1','d',false)" id="s4-1-d"><span class="opt-letter">D</span><span class="opt-text">Tell Emory we'll address their lien claim at settlement — there's no need to verify now.</span></button>
+      </div>
+      <div class="feedback-box" id="s4-1-fb"></div>
+    </div>
+
+    <!-- Q10: Made Whole Doctrine -->
+    <div class="question-block" id="s4-2-block">
+      <div class="q-num">Question 2 of 4 — Made Whole Doctrine</div>
+      <div class="q-text">Darius's BCBS plan paid $4,100 of his medical bills and now asserts subrogation rights against settlement proceeds. State Farm is offering $28,000. After fees (33.3%) and the verified Emory lien ($8,400), Darius's net recovery would be approximately $6,200. Is BCBS automatically entitled to the full $4,100 in subrogation?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s4-2','a',false)" id="s4-2-a"><span class="opt-letter">A</span><span class="opt-text">Yes — BCBS paid the bills, so subrogation rights are absolute under all circumstances.</span></button>
+        <button class="option-btn" onclick="answer('s4-2','b',false)" id="s4-2-b"><span class="opt-letter">B</span><span class="opt-text">Only if BCBS files a motion in court — informal subrogation claims have no legal force.</span></button>
+        <button class="option-btn" onclick="answer('s4-2','c',true)" id="s4-2-c"><span class="opt-letter">C</span><span class="opt-text">Under Georgia's Made Whole Doctrine, BCBS may NOT be entitled to full reimbursement if Darius hasn't been fully compensated for his total damages. If $28K doesn't cover all his losses, he hasn't been "made whole" — and we can argue to reduce or eliminate BCBS's subrogation claim. However: this doctrine does NOT apply to ERISA plans.</span></button>
+        <button class="option-btn" onclick="answer('s4-2','d',false)" id="s4-2-d"><span class="opt-letter">D</span><span class="opt-text">The Made Whole Doctrine eliminates all subrogation claims once a case settles for less than policy limits.</span></button>
+      </div>
+      <div class="feedback-box" id="s4-2-fb"></div>
+    </div>
+
+    <!-- Q11: ERISA -->
+    <div class="question-block" id="s4-3-block">
+      <div class="q-num">Question 3 of 4 — ERISA Plans</div>
+      <div class="q-text">You discover that Darius's BCBS health plan is an employer-sponsored ERISA plan. This changes everything about how you handle the $4,100 subrogation claim. Why?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s4-3','a',false)" id="s4-3-a"><span class="opt-letter">A</span><span class="opt-text">ERISA plans are governed by state law — the Georgia Made Whole Doctrine still applies, same as any other health plan.</span></button>
+        <button class="option-btn" onclick="answer('s4-3','b',true)" id="s4-3-b"><span class="opt-letter">B</span><span class="opt-text">ERISA (federal law) explicitly preempts state law, which means Georgia's Made Whole Doctrine does NOT apply to this plan. BCBS has a federal reimbursement right that cannot be eliminated by state equitable doctrine — it must be negotiated, not argued away. Always check the plan documents for ERISA designation at intake.</span></button>
+        <button class="option-btn" onclick="answer('s4-3','c',false)" id="s4-3-c"><span class="opt-letter">C</span><span class="opt-text">ERISA plans are required to waive subrogation when the client's net recovery falls below $15,000.</span></button>
+        <button class="option-btn" onclick="answer('s4-3','d',false)" id="s4-3-d"><span class="opt-letter">D</span><span class="opt-text">ERISA plans have a 6-month window to assert subrogation — if they haven't acted in 6 months, the claim is waived.</span></button>
+      </div>
+      <div class="feedback-box" id="s4-3-fb"></div>
+    </div>
+
+    <!-- Q12: Disbursement Math -->
+    <div class="question-block" id="s4-4-block">
+      <div class="q-num">Question 4 of 4 — Settlement Disbursement Math</div>
+      <div class="q-text">Darius's case settles for <strong>$40,000</strong>. Final figures: Attorney fee 33.3% · Case expenses $1,200 · Emory lien (verified on GSCCCA) $8,400 · BCBS ERISA subrogation (negotiated) $2,800. What is Darius's net recovery?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s4-4','a',true)" id="s4-4-a"><span class="opt-letter">A</span><span class="opt-text">$40,000 − $13,320 (fee) − $1,200 (expenses) − $8,400 (lien) − $2,800 (subrogation) = <strong>$14,280</strong></span></button>
+        <button class="option-btn" onclick="answer('s4-4','b',false)" id="s4-4-b"><span class="opt-letter">B</span><span class="opt-text">$40,000 − $8,400 (lien) − $2,800 (subrogation) = <strong>$28,800</strong></span></button>
+        <button class="option-btn" onclick="answer('s4-4','c',false)" id="s4-4-c"><span class="opt-letter">C</span><span class="opt-text">$40,000 − $13,320 (fee) = <strong>$26,680</strong></span></button>
+        <button class="option-btn" onclick="answer('s4-4','d',false)" id="s4-4-d"><span class="opt-letter">D</span><span class="opt-text">$40,000 − $13,320 (fee) − $8,400 (lien) = <strong>$18,280</strong></span></button>
+      </div>
+      <div class="feedback-box" id="s4-4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s3-score" style="display:none;">
+      <div class="score-display" id="s3-score-val">—</div>
+      <div class="score-label">Section 4 Score · Day 8: Liens &amp; Post-Settlement (out of 40)</div>
+    </div>
+    <div class="btn-group" id="s3-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(4)">Next: Day 9 — Client Communication →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — DAY 9: CLIENT COMMUNICATION REVIEW
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-4">
+  <div class="section-header">
+    <div class="section-num">Section 5 · Day 9 Review · Up to 40 pts</div>
+    <h2>Client Communication Review</h2>
+    <div class="section-subhead">14-day rule, CasePeer logging, settlement calls, difficult conversations</div>
+  </div>
+  <div class="section-body">
+
+    <div class="callout callout-info">
+      <strong>📁 Still Darius Shepherd.</strong> Case is in pre-litigation. Records are being gathered, coverage verified. Now let's see how well you communicate with Darius and document everything.
+    </div>
+
+    <!-- Q13: 14-Day Contact Rule -->
+    <div class="question-block" id="s5-1-block">
+      <div class="q-num">Question 1 of 4 — 14-Day Contact Rule</div>
+      <div class="q-text">You last spoke with Darius on June 1st — intake day. It's now June 18th. You've been slammed with new cases. Which of the following statements is TRUE?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s5-1','a',false)" id="s5-1-a"><span class="opt-letter">A</span><span class="opt-text">You're fine — you just spoke to him 17 days ago and there's nothing new to report yet.</span></button>
+        <button class="option-btn" onclick="answer('s5-1','b',true)" id="s5-1-b"><span class="opt-letter">B</span><span class="opt-text">You have violated the 14-day contact rule. Pre-litigation clients require contact at minimum every 14 days — contact was due June 15th. Being busy is not an excuse. Call Darius TODAY, log it properly in CasePeer, and don't let it slip again.</span></button>
+        <button class="option-btn" onclick="answer('s5-1','c',false)" id="s5-1-c"><span class="opt-letter">C</span><span class="opt-text">The 14-day rule doesn't apply until after records have been gathered — we're still in the intake phase.</span></button>
+        <button class="option-btn" onclick="answer('s5-1','d',false)" id="s5-1-d"><span class="opt-letter">D</span><span class="opt-text">You can reset the 14-day clock retroactively by sending a text message today.</span></button>
+      </div>
+      <div class="feedback-box" id="s5-1-fb"></div>
+    </div>
+
+    <!-- Q14: CasePeer Note Quality -->
+    <div class="question-block" id="s5-2-block">
+      <div class="q-num">Question 2 of 4 — CasePeer Note Compliance</div>
+      <div class="q-text">You just finished a call with Darius on June 18th. He confirmed he's still treating with Dr. Rosario twice a week, his right shoulder is still painful, and he asked when the records would be sent. Which CasePeer note entry is complete and compliant?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s5-2','a',false)" id="s5-2-a"><span class="opt-letter">A</span><span class="opt-text">"6/18 — Called Darius. He's still treating. Shoulder still hurts. Will call again."</span></button>
+        <button class="option-btn" onclick="answer('s5-2','b',false)" id="s5-2-b"><span class="opt-letter">B</span><span class="opt-text">"June 18 — spoke with client. Treatment ongoing with chiropractor. He asked about records timeline. Advised still pending."</span></button>
+        <button class="option-btn" onclick="answer('s5-2','c',true)" id="s5-2-c"><span class="opt-letter">C</span><span class="opt-text">"06/18/2026 · Phone — Outbound · Darius Shepherd · (404) 555-0183 · Client treating with Dr. Rosario twice weekly; right shoulder still painful. Client asked: 'When will my records be sent?' — Advised ER records follow-up sent 6/17, demand timeline TBD per CM. Follow-up text sent. Next contact by 07/02/2026."</span></button>
+        <button class="option-btn" onclick="answer('s5-2','d',false)" id="s5-2-d"><span class="opt-letter">D</span><span class="opt-text">"06/18/2026 — Treatment ongoing. Client OK. Will follow up next month."</span></button>
+      </div>
+      <div class="feedback-box" id="s5-2-fb"></div>
+    </div>
+
+    <!-- Q15: Settlement Call Prep -->
+    <div class="question-block" id="s5-3-block">
+      <div class="q-num">Question 3 of 4 — Settlement Offer Call Preparation</div>
+      <div class="q-text">State Farm offers $28,000 to settle Darius's case. Your attorney reviews it and says: "Counter at $65,000 — the BI limits support it and the medical record is solid." Before you call Darius to discuss the offer, what do you NEED to have prepared?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s5-3','a',false)" id="s5-3-a"><span class="opt-letter">A</span><span class="opt-text">Just the $28K offer number — call Darius now and see how he reacts before going into detail.</span></button>
+        <button class="option-btn" onclick="answer('s5-3','b',false)" id="s5-3-b"><span class="opt-letter">B</span><span class="opt-text">The gross offer and the attorney's recommendation — that's all Darius needs to decide.</span></button>
+        <button class="option-btn" onclick="answer('s5-3','c',true)" id="s5-3-c"><span class="opt-letter">C</span><span class="opt-text">The complete breakdown BEFORE calling: gross offer ($28K) → attorney fee (33.3% = $9,324) → expenses ($1,200) → Emory lien ($8,400) → BCBS subrogation (TBD) → estimated net. Plus the attorney's recommendation and reasoning. Never call with just the gross number — Darius will think he's getting $28K and be blindsided by the net.</span></button>
+        <button class="option-btn" onclick="answer('s5-3','d',false)" id="s5-3-d"><span class="opt-letter">D</span><span class="opt-text">Email Darius the offer details and wait for his response — written communication is better for documentation.</span></button>
+      </div>
+      <div class="feedback-box" id="s5-3-fb"></div>
+    </div>
+
+    <!-- Q16: Difficult Conversation -->
+    <div class="question-block" id="s5-4-block">
+      <div class="q-num">Question 4 of 4 — Difficult Conversation</div>
+      <div class="q-text">You've walked Darius through the $28K offer breakdown. His estimated net is around $6,000 after fees, lien, and subrogation. He says: <em>"Are you kidding me? I've been dealing with this for 7 months and I'm getting SIX THOUSAND DOLLARS? This is a joke."</em> What is your response?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s5-4','a',false)" id="s5-4-a"><span class="opt-letter">A</span><span class="opt-text">"I understand your frustration, but that's how personal injury cases work. There's not much we can do about fees and liens."</span></button>
+        <button class="option-btn" onclick="answer('s5-4','b',true)" id="s5-4-b"><span class="opt-letter">B</span><span class="opt-text">First validate: "Darius, I hear you — seven months of pain and a net of six thousand is genuinely unacceptable. You're right to be frustrated." Then redirect: "That's EXACTLY why the attorney is countering at $65,000 — this offer doesn't reflect what your case is worth. We're not done." Then empower: "Keep documenting every symptom and continue treatment — it's what makes the counter stick."</span></button>
+        <button class="option-btn" onclick="answer('s5-4','c',false)" id="s5-4-c"><span class="opt-letter">C</span><span class="opt-text">"If you feel that way, you might want to consider finding a different attorney who can do better."</span></button>
+        <button class="option-btn" onclick="answer('s5-4','d',false)" id="s5-4-d"><span class="opt-letter">D</span><span class="opt-text">Let him vent, then tell him: "I'll have the attorney call you directly." Transfer the difficult conversation to someone else.</span></button>
+      </div>
+      <div class="feedback-box" id="s5-4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s4-score" style="display:none;">
+      <div class="score-display" id="s4-score-val">—</div>
+      <div class="score-label">Section 5 Score · Day 9: Client Communication (out of 40)</div>
+    </div>
+    <div class="btn-group" id="s4-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(5)">Next: Integration Scenarios →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — INTEGRATION SCENARIOS
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-5">
+  <div class="section-header">
+    <div class="section-num">Section 6 · Integration · Up to 40 pts</div>
+    <h2>Integration Scenarios</h2>
+    <div class="section-subhead">Days 6–9 combined — the way the work actually happens</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">⚡ Still Darius Shepherd — Full Case Complexity</div>
+      <h3>Now the days collide. Each question requires knowledge from more than one training day. This is what real case management looks like.</h3>
+      <p>No hints. No section labels. Just the case.</p>
+    </div>
+
+    <!-- Q17: LOP + UM/UIM Simultaneous -->
+    <div class="question-block" id="s6-1-block">
+      <div class="q-num">Question 1 of 4 — Multi-Domain Crisis</div>
+      <div class="q-text">Two things land on the same day: (1) Dr. Rosario's billing manager calls to say Darius owes $3,200 and will be sent to collections if not paid within 10 days. (2) State Farm's claims adjuster reveals the Falcon Express driver actually had a personal policy — only 15/30, not the commercial coverage you assumed. Coverage gap just grew significantly. In order — what are your two priority actions?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s6-1','a',false)" id="s6-1-a"><span class="opt-letter">A</span><span class="opt-text">(1) Call Darius about the billing issue; (2) Accept the $15K BI limit since that's all there is</span></button>
+        <button class="option-btn" onclick="answer('s6-1','b',true)" id="s6-1-b"><span class="opt-letter">B</span><span class="opt-text">(1) Send Dr. Rosario a Letter of Protection TODAY — stops collections, protects Darius's credit, gets paid at settlement; (2) Immediately notify Allstate's UM/UIM claim of the coverage update — $15K BI against $60K–$75K in damages means UM/UIM must be activated now. Delay can trigger coverage defenses on the Allstate side.</span></button>
+        <button class="option-btn" onclick="answer('s6-1','c',false)" id="s6-1-c"><span class="opt-letter">C</span><span class="opt-text">(1) Pay Dr. Rosario's bill from the firm's trust account; (2) File suit against the at-fault driver personally</span></button>
+        <button class="option-btn" onclick="answer('s6-1','d',false)" id="s6-1-d"><span class="opt-letter">D</span><span class="opt-text">(1) Advise Darius to negotiate directly with Dr. Rosario; (2) Accept State Farm's $15K and look for other defendants</span></button>
+      </div>
+      <div class="feedback-box" id="s6-1-fb"></div>
+    </div>
+
+    <!-- Q18: Treatment Gap + Demand -->
+    <div class="question-block" id="s6-2-block">
+      <div class="q-num">Question 2 of 4 — Treatment Gap Meets Demand Deadline</div>
+      <div class="q-text">During your June 18th check-in call, Darius mentions he stopped going to Dr. Rosario two weeks ago because "the shoulder is feeling a lot better." You were also planning to finalize and send the demand package this week. What is the CORRECT sequence of actions?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s6-2','a',false)" id="s6-2-a"><span class="opt-letter">A</span><span class="opt-text">Great news — a natural treatment end is actually ideal timing. Finalize the demand now while the case value is clear.</span></button>
+        <button class="option-btn" onclick="answer('s6-2','b',true)" id="s6-2-b"><span class="opt-letter">B</span><span class="opt-text">(1) Do NOT send the demand — treatment stoppage affects case value and demand strategy. (2) Probe why he stopped: financial barrier? Actually resolved? Transportation issues? (3) Escalate to the attorney IMMEDIATELY — this is above case manager authority. (4) Attorney decides whether to build the demand at current treatment level or push for continued care. Log everything precisely.</span></button>
+        <button class="option-btn" onclick="answer('s6-2','c',false)" id="s6-2-c"><span class="opt-letter">C</span><span class="opt-text">Log the treatment gap in CasePeer and proceed with the demand — treatment is Darius's personal decision.</span></button>
+        <button class="option-btn" onclick="answer('s6-2','d',false)" id="s6-2-d"><span class="opt-letter">D</span><span class="opt-text">Tell Darius to restart treatment next week so the demand reflects a full treatment course.</span></button>
+      </div>
+      <div class="feedback-box" id="s6-2-fb"></div>
+    </div>
+
+    <!-- Q19: Disbursement Math (harder) -->
+    <div class="question-block" id="s6-3-block">
+      <div class="q-num">Question 3 of 4 — Final Settlement Math</div>
+      <div class="q-text">Darius's case ultimately settles for <strong>$42,500</strong>. Final verified figures: Attorney fee 33.3% · Case expenses $1,450 · Emory lien negotiated to $7,800 (down from $8,400) · BCBS ERISA subrogation negotiated to $2,200 (down from $4,100). What is Darius's net recovery?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s6-3','a',true)" id="s6-3-a"><span class="opt-letter">A</span><span class="opt-text">$42,500 − $14,153 (33.3% fee) − $1,450 (expenses) − $7,800 (lien) − $2,200 (subrogation) = <strong>$16,897</strong></span></button>
+        <button class="option-btn" onclick="answer('s6-3','b',false)" id="s6-3-b"><span class="opt-letter">B</span><span class="opt-text">$42,500 − $14,153 (fee) − $7,800 (lien) = <strong>$20,547</strong></span></button>
+        <button class="option-btn" onclick="answer('s6-3','c',false)" id="s6-3-c"><span class="opt-letter">C</span><span class="opt-text">$42,500 − $7,800 (lien) − $2,200 (subrogation) = <strong>$32,500</strong></span></button>
+        <button class="option-btn" onclick="answer('s6-3','d',false)" id="s6-3-d"><span class="opt-letter">D</span><span class="opt-text">$42,500 − $14,153 (fee) − $1,450 (expenses) = <strong>$26,897</strong></span></button>
+      </div>
+      <div class="feedback-box" id="s6-3-fb"></div>
+    </div>
+
+    <!-- Q20: Multiple Simultaneous Issues -->
+    <div class="question-block" id="s6-4-block">
+      <div class="q-num">Question 4 of 4 — All Days at Once</div>
+      <div class="q-text">It's Day 14 after signing Darius's retainer. During your required check-in call, he mentions three things: (1) The State Farm adjuster called him directly yesterday asking to "just chat"; (2) His right shoulder "feels about 80% better — maybe I don't need more chiro"; (3) "So what are we looking at, ballpark, for what I'll get?" In the right priority order — what do you address first, second, and third?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('s6-4','a',false)" id="s6-4-a"><span class="opt-letter">A</span><span class="opt-text">First: case value question; Second: State Farm contact; Third: treatment advice</span></button>
+        <button class="option-btn" onclick="answer('s6-4','b',false)" id="s6-4-b"><span class="opt-letter">B</span><span class="opt-text">First: treatment guidance; Second: State Farm warning; Third: decline to answer case value</span></button>
+        <button class="option-btn" onclick="answer('s6-4','c',false)" id="s6-4-c"><span class="opt-letter">C</span><span class="opt-text">First: case value ballpark; Second: treatment encouragement; Third: tell him the adjuster is harmless</span></button>
+        <button class="option-btn" onclick="answer('s6-4','d',true)" id="s6-4-d"><span class="opt-letter">D</span><span class="opt-text">First: "Do NOT speak with the State Farm adjuster — you're represented. Tell them to contact us at (770) 800-0945." This is urgent; damage done in that conversation cannot be undone. Second: "I'm glad you're improving — please continue with Dr. Rosario through the full course of care. Stopping early gives the adjuster ammunition." Third: "We're still gathering records — your attorney will review case value as the case develops. No estimates yet." Log all three topics in CasePeer.</span></button>
+      </div>
+      <div class="feedback-box" id="s6-4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s5-score" style="display:none;">
+      <div class="score-display" id="s5-score-val">—</div>
+      <div class="score-label">Section 6 Score · Integration Scenarios (out of 40)</div>
+    </div>
+    <div class="btn-group" id="s5-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(6)">Next: Boss Challenge →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — BOSS CHALLENGE
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-6">
+  <div class="section-header">
+    <div class="section-num">Section 7 · Boss Challenge · Bonus Points Only</div>
+    <h2>The Boss Challenge</h2>
+    <div class="section-subhead">New case. Full crisis. Everything at once.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="boss-header">
+      <div class="boss-icon">🔴</div>
+      <h3>This is the hardest scenario in Week 2.</h3>
+      <p>New case. Multiple compounding crises. All four days tested simultaneously. These questions are <strong>bonus only</strong> — they won't reduce your base score, but top performers earn significant bonus points here. Handle it.</p>
+    </div>
+
+    <!-- New Case File: Simone Carter -->
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">🚨</div>
+        <div>
+          <div class="case-file-title">Inherited Case — Simone Carter · CRISIS</div>
+          <div class="case-file-sub">Prior CM left the firm. You've been assigned this case. Nothing has been done right.</div>
+        </div>
+      </div>
+      <div class="case-detail"><div class="case-key">Client</div><div class="case-val">Simone Carter, 44</div></div>
+      <div class="case-detail"><div class="case-key">Accident Date</div><div class="case-val">March 17, 2026 — T-boned at intersection, at-fault driver ran red light <span class="flag">90 DAYS AGO</span></div></div>
+      <div class="case-detail"><div class="case-key">Injuries</div><div class="case-val">Fractured ribs (3), right shoulder surgery (rotator cuff), ongoing pain management</div></div>
+      <div class="case-detail"><div class="case-key">Providers</div><div class="case-val">Grady Hospital (ER, day-of) · Piedmont Orthopedics (3 months) · Pain Management Clinic (ongoing)</div></div>
+      <div class="case-detail"><div class="case-key">At-Fault Insurance</div><div class="case-val">Allstate BI 25/50 <span class="flag-warn">INSUFFICIENT</span></div></div>
+      <div class="case-detail"><div class="case-key">Client Insurance</div><div class="case-val">Nationwide UM/UIM $100K <span class="flag-warn">NEVER NOTIFIED</span></div></div>
+      <div class="case-detail"><div class="case-key">Health Insurance</div><div class="case-val">BCBS Employer Plan — ERISA · Paid $18,000 in medical bills · Subrogation claim pending</div></div>
+      <div class="case-detail"><div class="case-key">Records Status</div><div class="case-val"><span class="flag">NOT REQUESTED</span> from any provider — 90 days post-accident</div></div>
+      <div class="case-detail"><div class="case-key">Last Client Contact</div><div class="case-val">17 days ago — <span class="flag">14-DAY RULE VIOLATION</span></div></div>
+      <div class="case-detail"><div class="case-key">Grady Lien</div><div class="case-val">Filed — but date of filing needs verification</div></div>
+    </div>
+
+    <!-- BOSS Q1: First Priority -->
+    <div class="question-block" id="boss-1-block">
+      <div class="boss-q-badge">BONUS · Up to 15 pts</div>
+      <div class="q-num">Boss Question 1 of 5 — First Priority</div>
+      <div class="q-text">You've just inherited this case. In the next 60 seconds, before you touch CasePeer, before you call any insurance company, before you request any records — what is your FIRST action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('boss-1','a',false)" id="boss-1-a"><span class="opt-letter">A</span><span class="opt-text">Open the Nationwide UM/UIM claim immediately — 90-day delay could trigger coverage defenses and that's the most money at risk</span></button>
+        <button class="option-btn" onclick="answer('boss-1','b',true)" id="boss-1-b"><span class="opt-letter">B</span><span class="opt-text">Call Simone RIGHT NOW. She hasn't been contacted in 17 days — that's a violation. Before anything else, restore the client relationship, hear her voice, learn what's happened since the last contact, and confirm she hasn't spoken to Allstate or Nationwide directly. Everything else depends on this call happening first.</span></button>
+        <button class="option-btn" onclick="answer('boss-1','c',false)" id="boss-1-c"><span class="opt-letter">C</span><span class="opt-text">Send simultaneous records requests to all three providers — every day of delay at 90 days is a demand deadline risk</span></button>
+        <button class="option-btn" onclick="answer('boss-1','d',false)" id="boss-1-d"><span class="opt-letter">D</span><span class="opt-text">Flag the ERISA plan to the attorney — it's the most complex legal issue in the file</span></button>
+      </div>
+      <div class="feedback-box" id="boss-1-fb"></div>
+    </div>
+
+    <!-- BOSS Q2: Records Strategy -->
+    <div class="question-block" id="boss-2-block">
+      <div class="boss-q-badge">BONUS · Up to 15 pts</div>
+      <div class="q-num">Boss Question 2 of 5 — Records Strategy</div>
+      <div class="q-text">During your call, Simone confirms she's treated at all three providers — Grady (ER), Piedmont Orthopedics, and Pain Management Clinic. No records have been requested from any of them. Your CM flags that the demand package needs to go out in 3 weeks. What is your complete records strategy?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('boss-2','a',false)" id="boss-2-a"><span class="opt-letter">A</span><span class="opt-text">Request only Grady's ER records first — that's the most critical for causation. Request the others as they become relevant.</span></button>
+        <button class="option-btn" onclick="answer('boss-2','b',true)" id="boss-2-b"><span class="opt-letter">B</span><span class="opt-text">Send HIPAA-authorized requests to ALL THREE providers simultaneously today. Calendar 14-day follow-up reminders for each. Flag the 3-week demand deadline to the CM immediately — if any records haven't arrived in 14 days, you'll need either an extension or a priority follow-up with that provider. Do not request piecemeal when you're on a tight timeline.</span></button>
+        <button class="option-btn" onclick="answer('boss-2','c',false)" id="boss-2-c"><span class="opt-letter">C</span><span class="opt-text">Request records and wait — providers are legally required to respond within 30 days and that's within the demand window.</span></button>
+        <button class="option-btn" onclick="answer('boss-2','d',false)" id="boss-2-d"><span class="opt-letter">D</span><span class="opt-text">Ask Simone to request her own records from each provider since she's the patient — it's faster.</span></button>
+      </div>
+      <div class="feedback-box" id="boss-2-fb"></div>
+    </div>
+
+    <!-- BOSS Q3: Coverage Stack -->
+    <div class="question-block" id="boss-3-block">
+      <div class="boss-q-badge">BONUS · Up to 10 pts</div>
+      <div class="q-num">Boss Question 3 of 5 — Coverage Assessment</div>
+      <div class="q-text">Allstate confirms the at-fault driver's BI limit is 25/50. Simone's estimated total damages (medicals + surgery + pain and suffering) are $80,000–$120,000. Simone has Nationwide UM/UIM with a $100K limit. What is the full recoverable coverage picture — and what do you need to do immediately?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('boss-3','a',false)" id="boss-3-a"><span class="opt-letter">A</span><span class="opt-text">State Farm's $25K BI is the ceiling — government insurance caps prevent additional recovery</span></button>
+        <button class="option-btn" onclick="answer('boss-3','b',true)" id="boss-3-b"><span class="opt-letter">B</span><span class="opt-text">Allstate BI ($25K) + Nationwide UM/UIM ($100K) = up to $125,000 in potential coverage. UM/UIM activates because Allstate's limits are clearly insufficient for $80K–$120K in damages. CRITICAL: Nationwide was never notified. Send the LOR to Nationwide TODAY and document the date — any further delay risks a notice defense. Log the gap in CasePeer and flag to the attorney.</span></button>
+        <button class="option-btn" onclick="answer('boss-3','c',false)" id="boss-3-c"><span class="opt-letter">C</span><span class="opt-text">File suit against the at-fault driver personally to reach beyond the $25K policy limit</span></button>
+        <button class="option-btn" onclick="answer('boss-3','d',false)" id="boss-3-d"><span class="opt-letter">D</span><span class="opt-text">UM/UIM only activates after the at-fault's BI policy is fully paid out — wait for Allstate to settle first</span></button>
+      </div>
+      <div class="feedback-box" id="boss-3-fb"></div>
+    </div>
+
+    <!-- BOSS Q4: ERISA Disbursement -->
+    <div class="question-block" id="boss-4-block">
+      <div class="boss-q-badge">BONUS · Up to 10 pts</div>
+      <div class="q-num">Boss Question 4 of 5 — ERISA Negotiation &amp; Disbursement</div>
+      <div class="q-text">Simone's case settles for <strong>$90,000</strong>. Final figures: Attorney fee 33.3% = $29,970 · Case expenses $2,100 · Grady hospital lien (verified on GSCCCA) = $11,200 · BCBS ERISA plan originally demanded $18,000 in subrogation but attorney negotiated it to $12,000 under the common fund doctrine. What is Simone's net recovery?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('boss-4','a',false)" id="boss-4-a"><span class="opt-letter">A</span><span class="opt-text">$90,000 − $29,970 − $2,100 − $11,200 − $18,000 = <strong>$28,730</strong> (using original ERISA demand)</span></button>
+        <button class="option-btn" onclick="answer('boss-4','b',true)" id="boss-4-b"><span class="opt-letter">B</span><span class="opt-text">$90,000 − $29,970 (fee) − $2,100 (expenses) − $11,200 (Grady lien) − $12,000 (negotiated ERISA) = <strong>$34,730</strong></span></button>
+        <button class="option-btn" onclick="answer('boss-4','c',false)" id="boss-4-c"><span class="opt-letter">C</span><span class="opt-text">$90,000 − $11,200 (lien) − $12,000 (ERISA) = <strong>$66,800</strong></span></button>
+        <button class="option-btn" onclick="answer('boss-4','d',false)" id="boss-4-d"><span class="opt-letter">D</span><span class="opt-text">$90,000 − $29,970 (fee) = <strong>$60,030</strong></span></button>
+      </div>
+      <div class="feedback-box" id="boss-4-fb"></div>
+    </div>
+
+    <!-- BOSS Q5: Crisis Triage -->
+    <div class="question-block" id="boss-5-block">
+      <div class="boss-q-badge">BONUS · Up to 20 pts</div>
+      <div class="q-num">Boss Question 5 of 5 — Crisis Triage (Final Test)</div>
+      <div class="q-text">Three days before the settlement call with Simone, three things go wrong simultaneously: <br><br>
+      <strong>(1)</strong> You discover Grady's hospital lien was filed on day <em>80</em> after discharge — Georgia statute requires filing within <em>75</em> days. <br>
+      <strong>(2)</strong> Simone texts you: "I'm going to call the attorney directly — I don't feel like anyone is managing my case."<br>
+      <strong>(3)</strong> A collection agency contacts Simone about a $2,100 Piedmont Orthopedics balance you weren't aware of.<br><br>
+      In order of PRIORITY — what is your action sequence?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('boss-5','a',false)" id="boss-5-a"><span class="opt-letter">A</span><span class="opt-text">(1) Handle the Grady lien defect first — that's $11,200 at stake; (2) Address Simone's text; (3) Issue an LOP to Piedmont before settlement</span></button>
+        <button class="option-btn" onclick="answer('boss-5','b',true)" id="boss-5-b"><span class="opt-letter">B</span><span class="opt-text">(1) Call Simone IMMEDIATELY — a client threatening to go around you is a relationship emergency. Restore trust NOW before anything else. (2) In that same call or right after: flag the Grady lien timing defect to the attorney — a lien filed on day 80 may be legally INVALID under Georgia's 75-day requirement, which could free up $11,200 for Simone. (3) Issue an LOP or direct communication to Piedmont today to stop collections before the settlement call.</span></button>
+        <button class="option-btn" onclick="answer('boss-5','c',false)" id="boss-5-c"><span class="opt-letter">C</span><span class="opt-text">(1) Brief the attorney on all three issues first; (2) Don't call Simone until you have all the answers; (3) Address Piedmont after the settlement</span></button>
+        <button class="option-btn" onclick="answer('boss-5','d',false)" id="boss-5-d"><span class="opt-letter">D</span><span class="opt-text">(1) Handle Piedmont collections first; (2) Prepare the lien analysis; (3) Let the attorney handle Simone's frustration</span></button>
+      </div>
+      <div class="feedback-box" id="boss-5-fb"></div>
+    </div>
+
+    <div class="section-score" id="s6-score" style="display:none;">
+      <div class="score-display" id="s6-score-val">—</div>
+      <div class="score-label">Boss Challenge Score (bonus points)</div>
+    </div>
+    <div class="btn-group" id="s6-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="finishModule()">See Final Results →</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7 — RESULTS
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-7">
+  <div id="results-header-wrap"></div>
+  <div class="section-body">
+    <div id="results-body"></div>
+    <div class="score-confirm" id="score-confirmation"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8 — FEEDBACK + CERTIFICATE
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-8">
+  <div class="section-header">
+    <div class="section-num">Section 9 · Feedback &amp; Certificate</div>
+    <h2>Module Feedback</h2>
+    <div class="section-subhead">Your input improves training for the next person.</div>
+  </div>
+  <div class="section-body">
+
+    <div id="score-submit-form" style="display:none;">
+      <div class="info-block">
+        <h4>📊 Before We Generate Your Certificate</h4>
+        <p>Rate this module honestly — your feedback is used to improve every future training session.</p>
+      </div>
+
+      <div class="fb-q">
+        <label>How clear were the questions and answer choices?</label>
+        <div class="fb-rating-row" id="fb-clarity">
+          <button class="fb-rating-btn" onclick="setRating('clarity','1',this)">1 — Very confusing</button>
+          <button class="fb-rating-btn" onclick="setRating('clarity','2',this)">2</button>
+          <button class="fb-rating-btn" onclick="setRating('clarity','3',this)">3 — OK</button>
+          <button class="fb-rating-btn" onclick="setRating('clarity','4',this)">4</button>
+          <button class="fb-rating-btn" onclick="setRating('clarity','5',this)">5 — Crystal clear</button>
+        </div>
+      </div>
+
+      <div class="fb-q">
+        <label>How difficult was this assessment?</label>
+        <div class="fb-rating-row" id="fb-difficulty">
+          <button class="fb-rating-btn" onclick="setRating('difficulty','1',this)">1 — Too easy</button>
+          <button class="fb-rating-btn" onclick="setRating('difficulty','2',this)">2</button>
+          <button class="fb-rating-btn" onclick="setRating('difficulty','3',this)">3 — About right</button>
+          <button class="fb-rating-btn" onclick="setRating('difficulty','4',this)">4</button>
+          <button class="fb-rating-btn" onclick="setRating('difficulty','5',this)">5 — Too hard</button>
+        </div>
+      </div>
+
+      <div class="fb-q">
+        <label>How realistic were the scenarios to actual case management?</label>
+        <div class="fb-rating-row" id="fb-realism">
+          <button class="fb-rating-btn" onclick="setRating('realism','1',this)">1 — Not realistic</button>
+          <button class="fb-rating-btn" onclick="setRating('realism','2',this)">2</button>
+          <button class="fb-rating-btn" onclick="setRating('realism','3',this)">3 — Somewhat</button>
+          <button class="fb-rating-btn" onclick="setRating('realism','4',this)">4</button>
+          <button class="fb-rating-btn" onclick="setRating('realism','5',this)">5 — Very realistic</button>
+        </div>
+      </div>
+
+      <div class="fb-q">
+        <label>Name one thing you'd change about this module:</label>
+        <textarea id="fb-change" placeholder="Be specific. What question was misleading? What topic needed more context?" rows="4"></textarea>
+      </div>
+
+      <div class="fb-error" id="fb-error">⚠️ Please complete all ratings and the open-ended question before submitting.</div>
+
+      <button class="btn btn-primary btn-block" onclick="submitFeedback()">Submit Feedback &amp; Get My Certificate →</button>
+    </div>
+
+    <div id="cert-container" style="display:none;"></div>
+
+  </div>
+</div>
+
+</main>
+
+<!-- TOAST -->
+<div class="points-toast" id="points-toast">+10</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// CONFIGURATION
+// ═══════════════════════════════════════════════
+var TRACKER_URL = (window._TRACKER_URL || '');
+var TOTAL_SECTIONS = 9;
+var PASS_THRESHOLD = 170;
+var BASE_MAX = 200;
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+var baseScore = 0;
+var bonusPoints = 0;
+var currentSection = 0;
+var qDone = {};
+var firstAttemptStillAvailable = {};  // true until a wrong answer is given
+var sectionScores = {};  // sectionIdx (1-6) -> points
+
+// ═══════════════════════════════════════════════
+// QUESTION CONFIG  (section 1-5 = base pts; section 6 = boss/bonus)
+// ═══════════════════════════════════════════════
+var Q_CONFIG = {
+  // Section 1 — Day 6: Medical Records (section card idx 1)
+  's2-1': {section: 1, pts: 10, isBonus: false, correct: 'b'},
+  's2-2': {section: 1, pts: 10, isBonus: false, correct: 'b'},
+  's2-3': {section: 1, pts: 10, isBonus: false, correct: 'c'},
+  's2-4': {section: 1, pts: 10, isBonus: false, correct: 'd'},
+  // Section 2 — Day 7: Coverage Verification (section card idx 2)
+  's3-1': {section: 2, pts: 10, isBonus: false, correct: 'b'},
+  's3-2': {section: 2, pts: 10, isBonus: false, correct: 'a'},
+  's3-3': {section: 2, pts: 10, isBonus: false, correct: 'b'},
+  's3-4': {section: 2, pts: 10, isBonus: false, correct: 'd'},
+  // Section 3 — Day 8: Liens & Post-Settlement (section card idx 3)
+  's4-1': {section: 3, pts: 10, isBonus: false, correct: 'b'},
+  's4-2': {section: 3, pts: 10, isBonus: false, correct: 'c'},
+  's4-3': {section: 3, pts: 10, isBonus: false, correct: 'b'},
+  's4-4': {section: 3, pts: 10, isBonus: false, correct: 'a'},
+  // Section 4 — Day 9: Client Communication (section card idx 4)
+  's5-1': {section: 4, pts: 10, isBonus: false, correct: 'b'},
+  's5-2': {section: 4, pts: 10, isBonus: false, correct: 'c'},
+  's5-3': {section: 4, pts: 10, isBonus: false, correct: 'c'},
+  's5-4': {section: 4, pts: 10, isBonus: false, correct: 'b'},
+  // Section 5 — Integration (section card idx 5)
+  's6-1': {section: 5, pts: 10, isBonus: false, correct: 'b'},
+  's6-2': {section: 5, pts: 10, isBonus: false, correct: 'b'},
+  's6-3': {section: 5, pts: 10, isBonus: false, correct: 'a'},
+  's6-4': {section: 5, pts: 10, isBonus: false, correct: 'd'},
+  // Boss Challenge (section card idx 6 — bonus only)
+  'boss-1': {section: 6, pts: 0, isBonus: true, bonusPts: 15, correct: 'b'},
+  'boss-2': {section: 6, pts: 0, isBonus: true, bonusPts: 15, correct: 'b'},
+  'boss-3': {section: 6, pts: 0, isBonus: true, bonusPts: 10, correct: 'b'},
+  'boss-4': {section: 6, pts: 0, isBonus: true, bonusPts: 10, correct: 'b'},
+  'boss-5': {section: 6, pts: 0, isBonus: true, bonusPts: 20, correct: 'b'}
+};
+
+// Section questions map (for completion detection)
+var SECTION_QUESTIONS = {
+  1: ['s2-1','s2-2','s2-3','s2-4'],
+  2: ['s3-1','s3-2','s3-3','s3-4'],
+  3: ['s4-1','s4-2','s4-3','s4-4'],
+  4: ['s5-1','s5-2','s5-3','s5-4'],
+  5: ['s6-1','s6-2','s6-3','s6-4'],
+  6: ['boss-1','boss-2','boss-3','boss-4','boss-5']
+};
+
+// ═══════════════════════════════════════════════
+// FEEDBACK TEXT
+// ═══════════════════════════════════════════════
+var FEEDBACK = {
+  's2-1': {
+    t: '✅ Correct. A valid HIPAA authorization must include: patient name, date of birth, specific type of records requested, name of the covered entity releasing records, name of the receiving party, purpose of the disclosure, and the patient\'s signature with date. Without every element, the provider can legally refuse — and they often do.',
+    f: '❌ Only a HIPAA-compliant patient authorization gives a covered entity legal permission to release records to a third party. An LOR notifies insurers about representation — it has no authority over medical providers. Subpoenas are for litigation. Fax cover sheets have zero legal standing.'
+  },
+  's2-2': {
+    t: '✅ Correct. GLG\'s 14-day follow-up rule is an internal performance standard, not just a legal deadline. Once 14 days pass without a response, you follow up immediately and log it. "Providers have 30 days by law" is true but irrelevant — GLG doesn\'t wait 30 days. Escalate to your CM if the provider is still unresponsive after follow-up.',
+    f: '❌ The 14-day rule means follow up on day 15 — not day 30. "Georgia law gives them 30 days" may be technically accurate but doesn\'t override GLG\'s internal standard. Waiting costs case value and misses deadlines. Log every follow-up attempt with date, method, and outcome.'
+  },
+  's2-3': {
+    t: '✅ Correct. ER records establish three irreplaceable things: (1) the initial diagnosis linking the accident to the injury — proving causation; (2) injuries observed at the time of the accident, before any potential alternative cause; (3) a baseline for comparing treatment progression. Without them, a defense attorney will argue the injuries arose days or weeks later from an unrelated cause.',
+    f: '❌ "The ER visit was just intake" is a common and expensive mistake. ER records are the causation anchor — they document the injury within hours of the accident. Chiropractic records document treatment progress, but they can\'t substitute for the initial diagnosis. No ER records = no causation proof = weaker demand.'
+  },
+  's2-4': {
+    t: '✅ Correct. When you discover a gap in received records, you send a supplemental request immediately — not later. Follow-up visits often contain updated diagnoses, prescription changes, referrals to specialists, and additional evidence of injury severity and progression. "The first visit is enough" is a false assumption that can cost Darius money.',
+    f: '❌ Incomplete records equal an incomplete demand. A June 8 follow-up visit could contain a specialist referral, a new diagnosis, or evidence of worsening injury — all of which increase case value. "The first visit covers it" is exactly the argument an insurance adjuster wants to make. Request supplemental records immediately when you find a gap.'
+  },
+  's3-1': {
+    t: '✅ Correct. At-fault party first, always. The liability insurer (State Farm, covering the Falcon Express driver) is the primary claims target. You call them, identify yourself and your client, provide accident details, verify BI coverage, and get a claim number. UM/UIM comes later only if the at-fault limits are insufficient for the total damages.',
+    f: '❌ Opening your client\'s UM/UIM claim first is premature — it creates a complex parallel claim before you know whether State Farm\'s limits are even insufficient. Always lead with the at-fault carrier, get a claim number, verify coverage, and only then evaluate whether to open the UM/UIM claim on the client\'s own policy.'
+  },
+  's3-2': {
+    t: '✅ Correct. O.C.G.A. § 33-3-28 is Georgia\'s coverage inquiry statute. A written request for coverage information (limits, policy type, coverage confirmation) triggers a 30-day response obligation for the insurer. Send by certified mail, start the clock, and document everything. Non-compliance is bad faith evidence — powerful leverage if the case goes to litigation.',
+    f: '❌ O.C.G.A. § 33-3-28 is the correct tool. A Georgia Department of Insurance complaint is a separate process and does not have a 5-day turnaround. Federal law does not give insurers 90 days for coverage inquiries. The DMV does not maintain insurance policy information. The statute is your direct, documented leverage — use it.'
+  },
+  's3-3': {
+    t: '✅ Correct. UM/UIM (underinsured motorist coverage) activates when the at-fault party\'s coverage is INSUFFICIENT for the client\'s actual damages. With $25K BI against $60K–$75K in estimated damages, the gap is obvious and immediate. Send the LOR to Allstate NOW. Notice delay can give the UM/UIM carrier grounds to raise coverage defenses — courts take notice requirements seriously.',
+    f: '❌ UM/UIM does not wait for State Farm to exhaust its limits. The trigger is insufficient coverage relative to estimated damages — not exhaustion. "UM/UIM only applies if the at-fault driver was uninsured" is wrong — UIM covers UNDERinsured drivers too (that\'s the \'I\' in UIM). Send the LOR to Allstate today and document it.'
+  },
+  's3-4': {
+    t: '✅ Correct — and the firmness of your response matters. Once a client is represented, the adverse carrier (the at-fault party\'s insurer) cannot take a recorded statement from the client. Everything goes through the firm. "Just chat" is an adjuster tactic. Your response is clear, non-negotiable, and documented in CasePeer. No exceptions, no flexibility.',
+    f: '❌ State Farm has no right to take a recorded statement from a represented client. This is a fundamental representation protection. "It\'s required by Georgia law" is false. Letting Darius decide without guidance violates your duty — he\'s likely to agree because he wants to seem cooperative. The correct answer is a flat refusal on behalf of the firm, logged in CasePeer.'
+  },
+  's4-1': {
+    t: '✅ Correct. GSCCCA.org (Georgia Superior Court Clerks\' Cooperative Authority) is the authoritative database for filed liens in Georgia. A hospital lien call or letter proves nothing — hospitals routinely assert lien claims that were never properly filed. A valid Georgia hospital lien requires: (1) filed with superior court, (2) within 75 days of discharge, (3) certified mail notice to the at-fault party at least 15 days before settlement. Verify all three.',
+    f: '❌ "No reason to lie" doesn\'t mean the lien was actually filed. Hospitals send lien letters all the time for liens that were filed late, incorrectly, or not at all. Logging an unverified number in CasePeer and then discovering it\'s invalid mid-settlement is a serious problem. GSCCCA first. Always.'
+  },
+  's4-2': {
+    t: '✅ Correct. Georgia\'s Made Whole Doctrine is an equitable principle: the subrogee (health plan) cannot recover before the insured (Darius) has been fully compensated for all losses. If the $28K offer doesn\'t cover Darius\'s total damages, he hasn\'t been made whole — and BCBS\'s subrogation claim can be reduced or eliminated. CRITICAL EXCEPTION: This doctrine does NOT apply to ERISA plans, which are governed by federal law.',
+    f: '❌ BCBS subrogation rights are not absolute under Georgia law. The Made Whole Doctrine limits recovery when the insured hasn\'t been fully compensated. However — and this is a major caveat — this doctrine does NOT apply to ERISA plans. That distinction will matter in the next question.'
+  },
+  's4-3': {
+    t: '✅ Correct. ERISA (Employee Retirement Income Security Act) governs most employer-sponsored health plans and preempts state law. This means Georgia\'s Made Whole Doctrine DOES NOT apply to Darius\'s BCBS plan. BCBS has a federal reimbursement right under the plan terms. We negotiate the amount — potentially using the common fund doctrine — but we cannot simply argue Made Whole and expect it to stick. Always check plan documents for ERISA designation at intake.',
+    f: '❌ Federal law preempts state law. ERISA plans are not subject to state equitable doctrines like Made Whole. If Darius\'s BCBS plan is governed by ERISA (which most employer-sponsored plans are), BCBS has a reimbursement right that requires negotiation, not just a state law argument. The ERISA designation should have been identified at intake from the plan documents.'
+  },
+  's4-4': {
+    t: '✅ Correct. Settlement disbursement order: (1) Attorney fees from gross, (2) Case expenses, (3) Valid liens (verified hospital, ERISA, etc.), (4) Subrogation claims, (5) Net to client. $40,000 − $13,320 (33.3% of $40,000) − $1,200 (expenses) − $8,400 (Emory lien) − $2,800 (negotiated BCBS) = $14,280. Always use negotiated final figures — not original demands — in the disbursement statement.',
+    f: '❌ All four deductions must be included: attorney fee (33.3% of gross = $13,320), case expenses ($1,200), the verified Emory hospital lien ($8,400), and the negotiated BCBS subrogation ($2,800). Skipping any line item creates an incorrect disbursement statement, which leads to overpaying the client — a recoverable error that damages trust and creates a firm liability.'
+  },
+  's5-1': {
+    t: '✅ Correct. 17 days is 17 days — there\'s no grace period, no exception for "nothing to report," and no excuse for being busy. The 14-day rule exists precisely because clients need consistent contact to maintain trust and know their case is being managed. Three days late is a violation. Call TODAY, log it properly with date, method, client name, and what was discussed, and reset the next-contact reminder for 14 days out.',
+    f: '❌ "17 days is close enough" and "nothing to update" are the two most common rationalizations for 14-day rule violations. Neither is acceptable at GLG. Pre-litigation clients require minimum contact every 14 days — the contact IS the update. Contact was due June 15th. Today is June 18th. That\'s a violation. Call now.'
+  },
+  's5-2': {
+    t: '✅ Correct. A complete CasePeer note requires seven elements: (1) full date MM/DD/YYYY, (2) method (Phone — Outbound/Inbound), (3) client name and phone number, (4) specific case status covered in the call, (5) any client questions and your responses verbatim or summarized, (6) confirmation that follow-up text was sent, (7) specific next contact date. Option C has all seven. Options A, B, and D fail on multiple elements.',
+    f: '❌ Options A, B, and D are all non-compliant CasePeer notes. They\'re missing method, phone number, specific topics covered, client questions/responses, follow-up text confirmation, and/or next contact date. A note that fails a compliance audit doesn\'t just reflect poorly on you — it creates a gap in the case record that can be used against the firm if a client ever challenges whether they received proper service.'
+  },
+  's5-3': {
+    t: '✅ Correct. The settlement call script requires four things prepared BEFORE dialing: (1) gross offer, (2) complete itemized breakdown — fee calculation, all expenses, verified liens, and subrogation amounts, (3) net-to-client figure, (4) attorney recommendation and reasoning. If you call with just "$28,000," Darius hears "$28,000 in my pocket." The discovery that his net is closer to $6K in the middle of an unprepared call creates a trust crisis.',
+    f: '❌ A gross number without a breakdown is a setup for client shock and disappointment. Every settlement offer call requires the full financial picture BEFORE you dial. If you don\'t know the net number, you don\'t make the call yet. The attorney\'s recommendation and rationale are also required — you\'re presenting an offer, not asking for a decision without guidance.'
+  },
+  's5-4': {
+    t: '✅ Correct. The difficult conversation protocol: (1) VALIDATE — name the specific cause of frustration authentically, don\'t minimize it; (2) REDIRECT — the $28K is the opening offer, not the settlement. The counter strategy IS the answer to his frustration; (3) EMPOWER — give Darius something actionable he controls. The sequence: safety first, then information. Jumping to information before safety means Darius can\'t hear it.',
+    f: '❌ "That\'s how PI cases work" invalidates the frustration and creates defensiveness. "Find another attorney" is abandonment. Transferring the difficult conversation is avoidance — your job is to be present for it. The correct sequence is validate → redirect to the counter strategy → empower with actionable steps. Darius\'s frustration is completely valid; meet it that way.'
+  },
+  's6-1': {
+    t: '✅ Correct. Two simultaneous alarms, two immediate actions: (1) LOP to Dr. Rosario — protects Darius\'s credit, stops collections, secures the provider relationship for the duration of the case; (2) UM/UIM notification to Allstate — a $15K BI limit against $60K–$75K in damages is a massive coverage gap. Every day of delay in notifying the UM/UIM carrier is a day Allstate can argue late notice. Both actions today, both logged in CasePeer.',
+    f: '❌ "Accept the $15K and close the file" is a catastrophic miss — Darius is owed far more than $15K. Paying bills from the firm account is not how it works. Having Darius negotiate directly with his provider violates our duty to manage his case. LOP + UM/UIM notification is the correct two-punch response to this simultaneous crisis.'
+  },
+  's6-2': {
+    t: '✅ Correct. Treatment stoppage is not just a communication note — it\'s a case strategy decision that is ABOVE case manager authority. Four required steps: (1) Probe the real reason — financial? Actually resolved? Transportation? Each has a different solution; (2) Do NOT send the demand until the attorney decides; (3) Escalate to attorney immediately — this changes the entire demand strategy; (4) Log everything precisely. "He feels a lot better" as a verbatim log note could become a defense exhibit.',
+    f: '❌ "Proceed with the demand as planned" ignores that the demand must reflect current medical status. A 2-week treatment gap raises the adjuster\'s favorite question: "If he was really injured, why did he stop treatment?" The demand cannot be finalized without the attorney evaluating the impact of the treatment stoppage. Escalate first.'
+  },
+  's6-3': {
+    t: '✅ Correct. Always use negotiated final figures in disbursement math — not original demands. $42,500 × 33.3% = $14,152.50 (rounded to $14,153) in attorney fees. Full calculation: $42,500 − $14,153 − $1,450 − $7,800 − $2,200 = $16,897. Every cent matters in disbursement — incorrect math creates under or overpayment and requires a corrected disbursement statement, which damages client trust.',
+    f: '❌ The full calculation: $42,500 (gross) − $14,153 (33.3% fee) − $1,450 (expenses) − $7,800 (negotiated lien) − $2,200 (negotiated ERISA subrogation) = $16,897. Using the un-negotiated lien ($8,400) or un-negotiated subrogation ($4,100) gives a lower incorrect net. Always use final negotiated figures. The difference between $16,897 and any of the wrong options is money Darius may never get back.'
+  },
+  's6-4': {
+    t: '✅ Correct. Priority 1 is the recorded statement warning — this is an emergency. If Darius speaks to the State Farm adjuster before you intervene, anything he says can be used against him and you cannot undo it. Priority 2 is treatment guidance — "80% better" is exactly what adjusters want on record as a reason to reduce the offer. Priority 3 is case value — no estimates per the client communication protocol. All three addressed, all three logged.',
+    f: '❌ The recorded statement warning is always Priority 1 when an adverse adjuster has contacted a represented client. Damage from an uncoached recorded statement is irreversible. Treatment guidance is Priority 2 — premature treatment cessation costs case value. Case value estimates are never given to clients — redirect to treatment and let the attorney address value when the time comes. Order matters here.'
+  },
+  'boss-1': {
+    t: '✅ Correct — and the reasoning matters. Client relationship failures cascade. If Simone doesn\'t trust GLG after 90 days of inaction, she may already be consulting other attorneys. A 17-day contact gap is a violation that needs immediate repair before you can execute any other strategy effectively. Call first, learn the current state from her perspective, confirm she hasn\'t done anything that complicates the case (like talking to Allstate), and then sequence everything else.',
+    f: '❌ Every one of the other actions is important — but none of them matter if the client is about to fire the firm. The UM/UIM notice delay is serious, but Simone calling another attorney ends the case for us entirely. The relationship is always the foundation. Call first. Document the call. Then execute the claims/records/ERISA strategy.'
+  },
+  'boss-2': {
+    t: '✅ Correct. Simultaneous requests to all three providers is the only acceptable strategy when you have a 3-week demand deadline and zero records in hand. Piecemeal requests lose 14 days between each batch. The 14-day follow-up must be calendared for ALL three the day requests go out. The CM flag is critical — if records don\'t arrive on time, the demand deadline may need to move, and that decision belongs to the attorney.',
+    f: '❌ Sequential records requests when facing a 3-week demand deadline is a case management failure. Every provider gets a simultaneous HIPAA-authorized request on the same day — with 14-day follow-up reminders calendared immediately. The demand timeline must be flagged to the CM because "I\'ll request records and wait" at this stage could blow the deadline entirely.'
+  },
+  'boss-3': {
+    t: '✅ Correct. Full coverage picture: Allstate BI ($25K) + Nationwide UM/UIM ($100K) = up to $125K total potential recovery. UM/UIM activates now because the at-fault\'s $25K is clearly insufficient for $80K–$120K in damages. The Nationwide notice gap is a time bomb — send the LOR today and document the exact date. Courts have reduced or eliminated UM/UIM recovery for unreasonable notice delays. This correction cannot wait.',
+    f: '❌ UM/UIM is not capped by the at-fault\'s policy or limited to uninsured drivers — it covers underinsured drivers when coverage is insufficient for actual damages. Stacking Allstate BI + Nationwide UM/UIM is the correct analysis. The critical action is notifying Nationwide TODAY — a 90-day delay in notifying the UM/UIM carrier without good cause is a serious exposure that must be addressed before it becomes a denial.'
+  },
+  'boss-4': {
+    f: '❌ The disbursement statement must use negotiated final figures — not original demands. Using the full $18,000 ERISA demand gives Option A ($28,730), which is $6,000 less than Simone should receive. The common fund doctrine allows reduction of ERISA subrogation when the attorney\'s work recovered the settlement. Always confirm the final negotiated number before building the disbursement statement.'
+  },
+  'boss-5': {
+    t: '✅ Correct — and the order matters critically. (1) Simone texting she\'s going around you is a client relationship emergency — by the time you\'ve briefed the attorney on everything, she may have already made contact with another firm. Call immediately. (2) The Grady lien timing defect (day 80 vs. 75-day requirement) is a potential $11,200 windfall for Simone — flag it to the attorney right after the call. (3) Piedmont collections must be stopped before settlement with an LOP or direct communication.',
+    f: '❌ Waiting to call Simone until you have all the answers is the most common crisis management mistake. Option C loses Simone by the time you\'re ready. Option D ignores the client relationship entirely. Option A addresses money before the human — wrong priority. Call Simone first, restore trust, then handle the lien defect and Piedmont.'
+  }
+};
+
+// ═══════════════════════════════════════════════
+// RATINGS STATE
+// ═══════════════════════════════════════════════
+var ratings = {};
+
+// ═══════════════════════════════════════════════
+// ANSWER HANDLER
+// ═══════════════════════════════════════════════
+function answer(qId, choice, isCorrect) {
+  if (qDone[qId]) return;
+
+  var cfg = Q_CONFIG[qId];
+  var block = document.getElementById(qId + '-block');
+  var fb = document.getElementById(qId + '-fb');
+  var btns = block.querySelectorAll('.option-btn');
+
+  // Lock all buttons immediately
+  btns.forEach(function(b){ b.classList.add('disabled'); });
+
+  var clickedBtn = document.getElementById(qId + '-' + choice);
+  var correctBtn = document.getElementById(qId + '-' + cfg.correct);
+
+  if (isCorrect) {
+    clickedBtn.classList.add('correct');
+    block.classList.add('answered');
+    qDone[qId] = true;
+
+    if (!cfg.isBonus) {
+      baseScore += cfg.pts;
+      sectionScores[cfg.section] = (sectionScores[cfg.section] || 0) + cfg.pts;
+      var isFirst = (firstAttemptStillAvailable[qId] !== false);
+      if (isFirst) {
+        bonusPoints += 5;
+        showToast('+' + cfg.pts + ' pts  +5 bonus ⚡', false);
+      } else {
+        showToast('+' + cfg.pts + ' pts', false);
+      }
+    } else {
+      var bonusPts = (firstAttemptStillAvailable[qId] !== false) ? cfg.bonusPts : Math.floor(cfg.bonusPts / 3);
+      bonusPoints += bonusPts;
+      sectionScores[cfg.section] = (sectionScores[cfg.section] || 0) + bonusPts;
+      qDone[qId] = true;
+      showToast('+' + bonusPts + ' BONUS ⚡', true);
+    }
+
+    document.getElementById('total-score').textContent = baseScore;
+    document.getElementById('bonus-score').textContent = bonusPoints;
+    fb.className = 'feedback-box correct show';
+
+  } else {
+    clickedBtn.classList.add('incorrect');
+    if (correctBtn) {
+      correctBtn.classList.remove('disabled');
+      correctBtn.classList.add('correct');
+      correctBtn.classList.add('disabled');
+    }
+    block.classList.add('answered-wrong');
+    firstAttemptStillAvailable[qId] = false;
+    qDone[qId] = true;
+    fb.className = 'feedback-box incorrect show';
+  }
+
+  var fbData = FEEDBACK[qId];
+  fb.innerHTML = fbData ? (isCorrect ? fbData.t : fbData.f) : (isCorrect ? '✅ Correct!' : '❌ Incorrect.');
+
+  updateProgress();
+  checkSectionComplete(cfg.section);
+}
+
+// ═══════════════════════════════════════════════
+// SECTION COMPLETION CHECK
+// ═══════════════════════════════════════════════
+function checkSectionComplete(sectionIdx) {
+  var qs = SECTION_QUESTIONS[sectionIdx];
+  if (!qs) return;
+
+  var allDone = qs.every(function(q){ return !!qDone[q]; });
+  if (!allDone) return;
+
+  var scoreEl = document.getElementById('s' + sectionIdx + '-score');
+  var scoreVal = document.getElementById('s' + sectionIdx + '-score-val');
+  var nextEl   = document.getElementById('s' + sectionIdx + '-next');
+
+  var pts = sectionScores[sectionIdx] || 0;
+
+  if (scoreVal) {
+    scoreVal.textContent = sectionIdx <= 5 ? (pts + ' / 40') : (pts + ' bonus pts earned');
+  }
+  if (scoreEl) scoreEl.style.display = 'block';
+  if (nextEl)  nextEl.style.display  = 'flex';
+
+  var pill = document.getElementById('nav-' + sectionIdx);
+  if (pill) pill.classList.add('done');
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+function goToSection(idx) {
+  document.querySelectorAll('.section-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.nav-pill').forEach(function(p){ p.classList.remove('active'); });
+
+  var card = document.getElementById('section-' + idx);
+  var pill = document.getElementById('nav-' + idx);
+  if (card) card.classList.add('active');
+  if (pill) pill.classList.add('active');
+
+  currentSection = idx;
+  var pct = Math.round((idx / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-label').textContent = 'Section ' + (idx + 1) + ' of ' + TOTAL_SECTIONS;
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════
+// PROGRESS BAR
+// ═══════════════════════════════════════════════
+function updateProgress() {
+  var baseQs = Object.keys(Q_CONFIG).filter(function(k){ return !Q_CONFIG[k].isBonus; });
+  var answered = baseQs.filter(function(k){ return !!qDone[k]; }).length;
+  var pct = Math.round((answered / baseQs.length) * 100);
+  var navPct = Math.round((currentSection / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = Math.max(pct, navPct) + '%';
+  document.getElementById('prog-pct').textContent = Math.max(pct, navPct) + '%';
+}
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+function showToast(msg, isBonus) {
+  var t = document.getElementById('points-toast');
+  t.textContent = msg;
+  t.className = 'points-toast' + (isBonus ? ' bonus' : '') + ' show';
+  setTimeout(function(){ t.classList.remove('show'); }, 1800);
+}
+
+// ═══════════════════════════════════════════════
+// FINISH MODULE
+// ═══════════════════════════════════════════════
+function finishModule() {
+  goToSection(7);
+  buildResults();
+}
+
+// ═══════════════════════════════════════════════
+// BUILD RESULTS
+// ═══════════════════════════════════════════════
+function buildResults() {
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
+
+  var headerEl = document.getElementById('results-header-wrap');
+  headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
+    + '<div class="results-grade">' + pct + '%</div>'
+    + '<div class="results-label">' + (pass ? '🏆 Assessment Passed — Week 2 Complete!' : '📚 Not Yet — 85% Required to Pass') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '</div>';
+
+  var badges = [];
+  if (baseScore >= 200) badges.push({icon:'🌟', name:'Perfect Score'});
+  if (baseScore >= 190) badges.push({icon:'🔥', name:'Week 2 Expert'});
+  if ((sectionScores[1]||0) === 40) badges.push({icon:'📄', name:'Records Master'});
+  if ((sectionScores[2]||0) === 40) badges.push({icon:'🔍', name:'Coverage Pro'});
+  if ((sectionScores[3]||0) === 40) badges.push({icon:'⚖️', name:'Lien Specialist'});
+  if ((sectionScores[4]||0) === 40) badges.push({icon:'📞', name:'Comms Expert'});
+  if ((sectionScores[5]||0) === 40) badges.push({icon:'🔗', name:'Integration Ace'});
+  if (bonusPoints >= 50) badges.push({icon:'💎', name:'Boss Conqueror'});
+  if (bonusPoints >= 25) badges.push({icon:'⚡', name:'Boss Fighter'});
+  if (pass) badges.push({icon:'🎓', name:'Week 2 Complete'});
+
+  var badgeHTML = '';
+  badges.forEach(function(b){
+    badgeHTML += '<div class="badge earned"><span class="badge-icon">' + b.icon + '</span>' + b.name + '</div>';
+  });
+
+  var bodyEl = document.getElementById('results-body');
+  bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
+    + '<div class="score-display">' + baseScore + '/200</div>'
+    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
+    + '</div>'
+    + '<div class="info-block"><h4>📊 Section Breakdown</h4>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Day 6: Medical Records</span><span class="breakdown-pts">' + (sectionScores[1]||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Day 7: Coverage Verification</span><span class="breakdown-pts">' + (sectionScores[2]||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Day 8: Liens &amp; Post-Settlement</span><span class="breakdown-pts">' + (sectionScores[3]||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Day 9: Client Communication</span><span class="breakdown-pts">' + (sectionScores[4]||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Integration Scenarios</span><span class="breakdown-pts">' + (sectionScores[5]||0) + '/40</span></div>'
+    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#10774A;font-size:18px;">' + baseScore + '/200</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (bonus)</span><span class="breakdown-pts" style="color:#dcb161;">' + (sectionScores[6]||0) + ' pts</span></div>'
+    + '</div>'
+    + '<div class="info-block"><h4>🏅 Achievements Earned</h4>'
+    + (badgeHTML ? '<div class="achievement-grid">' + badgeHTML + '</div>' : '<p style="color:#888;">Score higher to earn achievement badges.</p>')
+    + '</div>'
+    + '<div class="callout ' + (pass ? 'callout-success' : 'callout-warn') + '">'
+    + (pass
+        ? '<strong>✅ Gate Unlocked: 60-Day Gate — Week 2 Comprehensive Assessment.</strong> You have demonstrated competency across medical records, coverage verification, liens &amp; post-settlement, and client communication. You are cleared to progress to role-specific training tracks.'
+        : '<strong>⚠️ Gate Not Cleared.</strong> You need 170/200 (85%) to pass. Review the sections where you missed questions — the feedback explains exactly what to remember. Retake when ready.')
+    + '</div>'
+    + '<div class="btn-group">'
+    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete →</button>'
+    + '</div>';
+
+  submitScoreToTracker();
+  document.getElementById('score-submit-form').style.display = 'block';
+}
+
+// ═══════════════════════════════════════════════
+// AUTO-SUBMIT SCORE
+// CRITICAL: Submit baseScore ONLY — not base+bonus
+// ═══════════════════════════════════════════════
+function submitScoreToTracker() {
+  if (!TRACKER_URL) return;
+  var payload = {
+    moduleId:   'day10',
+    moduleName: 'Week 2 Review & Assessment',
+    score:      baseScore,   // BASE ONLY
+    maxScore:   200,
+    bonusScore: bonusPoints,
+    passedAt:   new Date().toISOString()
+  };
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+    mode: 'no-cors'
+  }).then(function(){
+    var el = document.getElementById('score-confirmation');
+    if (el) { el.innerHTML = '✅ Score submitted automatically.'; el.style.display = 'block'; }
+  }).catch(function(){
+    var el = document.getElementById('score-confirmation');
+    if (el) { el.innerHTML = '⚠️ Auto-submit failed — use the Email Results option below.'; el.style.display = 'block'; }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// FEEDBACK RATINGS
+// ═══════════════════════════════════════════════
+function setRating(field, val, btn) {
+  ratings[field] = val;
+  var row = document.getElementById('fb-' + field);
+  if (row) row.querySelectorAll('.fb-rating-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+}
+
+// ═══════════════════════════════════════════════
+// SUBMIT FEEDBACK + CERTIFICATE
+// ═══════════════════════════════════════════════
+function submitFeedback() {
+  var change = (document.getElementById('fb-change').value || '').trim();
+  var errEl = document.getElementById('fb-error');
+
+  if (!ratings.clarity || !ratings.difficulty || !ratings.realism || !change) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  var name = prompt('Enter your full name to complete the module:');
+  if (!name || !name.trim()) { alert('Name is required to submit.'); return; }
+  name = name.trim();
+
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+
+  var payload = {
+    employeeName: name,
+    moduleId:     'day10',
+    moduleName:   'Week 2 Review & Assessment',
+    score:        baseScore,  // BASE ONLY
+    maxScore:     200,
+    bonusScore:   bonusPoints,
+    passedAt:     new Date().toISOString(),
+    feedback: {
+      clarity:    ratings.clarity,
+      difficulty: ratings.difficulty,
+      realism:    ratings.realism,
+      change:     change
+    }
+  };
+
+  if (TRACKER_URL) {
+    fetch(TRACKER_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+  }
+
+  showCertificate(name, pct);
+}
+
+function showCertificate(name, pct) {
+  var pass = baseScore >= PASS_THRESHOLD;
+  var certContainer = document.getElementById('cert-container');
+  document.getElementById('score-submit-form').style.display = 'none';
+
+  var earned = [];
+  if (baseScore >= 200) earned.push('🌟 Perfect Score');
+  if (bonusPoints >= 50) earned.push('💎 Boss Conqueror');
+  if ((sectionScores[1]||0) === 40 && (sectionScores[2]||0) === 40 && (sectionScores[3]||0) === 40 && (sectionScores[4]||0) === 40) earned.push('🎯 Week 2 Sweep');
+  earned.push('🎓 Day 10 Complete');
+
+  certContainer.innerHTML = '<div class="cert">'
+    + '<div class="cert-logo">🏆</div>'
+    + '<h3>Certificate of Completion</h3>'
+    + '<div style="font-size:13px;color:#888;margin-bottom:8px;">Gunn Law Group Training System</div>'
+    + '<div class="cert-name">' + name + '</div>'
+    + '<div class="cert-details">'
+    + 'Day 10: Week 2 Review &amp; Assessment<br>'
+    + 'Score: <strong>' + baseScore + '/200 (' + pct + '%)</strong> &nbsp;·&nbsp; Bonus: <strong>' + bonusPoints + ' pts</strong><br>'
+    + 'Gate Status: <strong>' + (pass ? '✅ PASSED — 60-Day Gate Cleared' : '⚠️ Not Yet Passed — Retake Required') + '</strong><br>'
+    + 'Completed: ' + new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
+    + '</div>'
+    + '<div class="cert-achievements">' + earned.map(function(b){ return '<span class="cert-badge">' + b + '</span>'; }).join('') + '</div>'
+    + '</div>'
+    + '<div class="callout callout-' + (pass ? 'success' : 'warn') + '" style="margin-top:16px;">'
+    + (pass
+        ? '<strong>✅ Week 2 Complete, ' + name.split(' ')[0] + '.</strong> Medical records, coverage verification, liens, and client communication are now part of your operating system. Up next: role-specific training tracks where you apply these skills in your exact position.'
+        : '<strong>⚠️ ' + name.split(' ')[0] + ', the gate requires 85%.</strong> Each feedback box is your study guide — review what went wrong and retake. You have everything you need to pass.')
+    + '</div>'
+    + '<div class="callout callout-info" style="margin-top:12px;"><strong>📅 Up Next: Role-Specific Training Tracks.</strong> Case Manager and Legal Assistant tracks diverge here. Your track determines skill focus: demand preparation, client intake depth, court filing support, or discovery coordination.</div>';
+
+  certContainer.style.display = 'block';
+  document.getElementById('nav-8').classList.add('done');
+}
+
+// Init
+goToSection(0);
+</script>
+</body>
+</html>
