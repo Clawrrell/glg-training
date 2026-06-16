@@ -213,6 +213,20 @@ moduleName: Week 2 Review & Assessment
     /* ── ERROR ── */
     .fb-error{background:#fce8e8;border-left:4px solid #870101;color:#721c24;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:14px;display:none;}
   .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
+
+/* ── GAMIFICATION ANIMATIONS ── */
+@keyframes streakPop { 0%{transform:translateX(-50%) scale(0.5);opacity:0} 50%{transform:translateX(-50%) scale(1.15)} 100%{transform:translateX(-50%) scale(1);opacity:1} }
+@keyframes fadeUp { to{opacity:0;transform:translateX(-50%) translateY(-20px);} }
+@keyframes scaleBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes scaleCelebrate { 0%{transform:scale(1) rotate(0)} 25%{transform:scale(1.2) rotate(-8deg)} 50%{transform:scale(1.15) rotate(5deg)} 75%{transform:scale(1.1) rotate(-3deg)} 100%{transform:scale(1) rotate(0)} }
+@keyframes scaleTilt { 0%{transform:rotate(0)} 30%{transform:rotate(10deg)} 70%{transform:rotate(-8deg)} 100%{transform:rotate(0)} }
+@keyframes scaleTriumph { 0%{transform:scale(1)} 20%{transform:scale(1.3)} 40%{transform:scale(1.25) rotate(-5deg)} 60%{transform:scale(1.25) rotate(5deg)} 80%{transform:scale(1.3)} 100%{transform:scale(1)} }
+@keyframes badgeFlip { 0%{transform:rotateY(90deg) scale(0.5);opacity:0} 60%{transform:rotateY(-10deg) scale(1.05)} 100%{transform:rotateY(0) scale(1);opacity:1} }
+@keyframes correctPulse { 0%{box-shadow:0 0 0 0 rgba(39,174,96,0.4)} 70%{box-shadow:0 0 0 12px rgba(39,174,96,0)} 100%{box-shadow:0 0 0 0 rgba(39,174,96,0)} }
+@keyframes incorrectShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+@keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+.option-btn.correct { animation: correctPulse 0.6s ease-out; }
+.option-btn.incorrect { animation: incorrectShake 0.4s ease-out; }
 </style>
 </head>
 <body>
@@ -239,8 +253,16 @@ moduleName: Week 2 Review & Assessment
       <div class="score-label">BONUS</div>
       <div class="score-value" id="bonus-score">0</div>
     </div>
+    <div>
+      <div class="score-label">STREAK</div>
+      <div class="score-value" id="streak-display">0 🔥</div>
+    </div>
   </div>
 </header>
+<!-- Sound Toggle -->
+<button id="soundToggle" style="position:fixed;top:12px;right:12px;z-index:10000;background:#1C2433;color:#c0c0c0;border:1px solid #333;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;" onclick="toggleSound()" title="Toggle Sound">🔇</button>
+<!-- Global Progress Bar -->
+<div id="globalProgress" style="position:fixed;top:0;left:0;width:100%;height:4px;background:#1C2433;z-index:9999;"><div id="globalProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,#dcb161,#e8c87a);transition:width 0.5s ease;"></div></div>
 
 <!-- PROGRESS -->
 <div class="progress-wrap">
@@ -855,6 +877,7 @@ moduleName: Week 2 Review & Assessment
   <div id="results-header-wrap"></div>
   <div class="section-body">
     <div id="results-body"></div>
+    <div id="badgeContainer" style="text-align:center;margin:16px 0;"></div>
     <div class="score-confirm" id="score-confirmation"></div>
   </div>
 </div>
@@ -947,6 +970,17 @@ var currentSection = 0;
 var qDone = {};
 var firstAttemptStillAvailable = {};  // true until a wrong answer is given
 var sectionScores = {};  // sectionIdx (1-6) -> points
+
+// ── GAMIFICATION STATE ──
+var audioCtx = null;
+var soundEnabled = false;
+var streakCount = 0;
+var maxStreak = 0;
+var moduleStartTime = Date.now();
+var questionsFirstTry = 0;
+var totalQuestionsAnswered = 0;
+var incorrectCount = 0;
+var milestonesTriggered = {};
 
 // ═══════════════════════════════════════════════
 // QUESTION CONFIG  (section 1-5 = base pts; section 6 = boss/bonus)
@@ -1165,6 +1199,13 @@ function answer(qId, choice, isCorrect) {
   var fbData = FEEDBACK[qId];
   fb.innerHTML = fbData ? (isCorrect ? fbData.t : fbData.f) : (isCorrect ? '✅ Correct!' : '❌ Incorrect.');
 
+  // Gamification hooks
+  updateStreak(isCorrect);
+  gavelReact(isCorrect ? 'correct' : 'incorrect');
+  var totalQs = Object.keys(Q_CONFIG).length;
+  var answeredCount = Object.keys(qDone).length;
+  updateGlobalProgress(answeredCount, totalQs);
+
   updateProgress();
   checkSectionComplete(cfg.section);
 }
@@ -1249,6 +1290,13 @@ function finishModule() {
 // BUILD RESULTS
 // ═══════════════════════════════════════════════
 function buildResults() {
+  // Gamification completion hooks
+  gavelReact('complete');
+  playCompleteFanfare();
+  spawnParticles(document.querySelector('header'));
+  var totalQs = Object.keys(Q_CONFIG).length;
+  updateGlobalProgress(totalQs, totalQs);
+
   var pct = Math.round((baseScore / BASE_MAX) * 100);
   var pass = baseScore >= PASS_THRESHOLD;
 
@@ -1303,6 +1351,14 @@ function buildResults() {
     + '</div>';
 
   submitScoreToTracker();
+
+  // Render gamification achievement badges
+  var badgeContainer = document.getElementById('badgeContainer');
+  if (badgeContainer) {
+    var gamBadges = calculateBadges();
+    renderBadges(gamBadges, badgeContainer);
+  }
+
   document.getElementById('score-submit-form').style.display = 'block';
 }
 
@@ -1318,6 +1374,9 @@ function submitScoreToTracker() {
     score:      baseScore,   // BASE ONLY
     maxScore:   200,
     bonusScore: bonusPoints,
+    maxStreak:  maxStreak,
+    badges:     calculateBadges().map(function(b){ return b.name; }).join(', '),
+    elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
     passedAt:   new Date().toISOString()
   };
   fetch(TRACKER_URL, {
@@ -1370,6 +1429,9 @@ function submitFeedback() {
     score:        baseScore,  // BASE ONLY
     maxScore:     200,
     bonusScore:   bonusPoints,
+    maxStreak:    maxStreak,
+    badges:       calculateBadges().map(function(b){ return b.name; }).join(', '),
+    elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
     passedAt:     new Date().toISOString(),
     feedback: {
       clarity:    ratings.clarity,
@@ -1425,6 +1487,249 @@ function showCertificate(name, pct) {
   certContainer.style.display = 'block';
   document.getElementById('nav-8').classList.add('done');
 }
+
+// ══════════════════════════════════════
+// GLG GAMIFICATION ENGINE v1.0 — DAY 10
+// ══════════════════════════════════════
+
+// ── SOUND ENGINE (Web Audio API) ──
+function initAudio() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  if (soundEnabled) initAudio();
+  document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+  localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
+}
+
+function playTone(freq, duration, type, gain) {
+  if (!soundEnabled || !audioCtx) return;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.type = type || 'sine';
+  o.frequency.value = freq;
+  g.gain.value = gain || 0.15;
+  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(); o.stop(audioCtx.currentTime + duration);
+}
+
+function playCorrectChime() {
+  var variations = [
+    function(){ playTone(523, 0.15, 'sine', 0.12); setTimeout(function(){ playTone(659, 0.2, 'sine', 0.1); }, 100); },
+    function(){ playTone(587, 0.15, 'sine', 0.12); setTimeout(function(){ playTone(784, 0.2, 'sine', 0.1); }, 120); },
+    function(){ playTone(440, 0.12, 'sine', 0.12); setTimeout(function(){ playTone(554, 0.15, 'sine', 0.1); }, 80); setTimeout(function(){ playTone(659, 0.2, 'sine', 0.08); }, 180); }
+  ];
+  variations[Math.floor(Math.random() * 3)]();
+}
+
+function playIncorrectTone() {
+  playTone(220, 0.25, 'triangle', 0.08);
+}
+
+var streakSoundTimeout = null;
+function playStreakChime(count) {
+  if (streakSoundTimeout) { clearTimeout(streakSoundTimeout); streakSoundTimeout = null; }
+  var baseFreq = Math.min(440 + (count * 25), 600);
+  playTone(baseFreq, 0.12, 'sine', 0.1);
+  streakSoundTimeout = setTimeout(function(){
+    playTone(baseFreq * 1.2, 0.12, 'sine', 0.08);
+    streakSoundTimeout = setTimeout(function(){
+      playTone(baseFreq * 1.4, 0.18, 'sine', 0.06);
+      streakSoundTimeout = null;
+    }, 120);
+  }, 100);
+}
+
+function playSectionFanfare() {
+  [523, 587, 659, 784].forEach(function(f, i) {
+    setTimeout(function(){ playTone(f, 0.15, 'sine', 0.1); }, i * 100);
+  });
+}
+
+function playBadgeChime() {
+  [880, 1047, 1319].forEach(function(f, i) {
+    setTimeout(function(){ playTone(f, 0.12, 'triangle', 0.08); }, i * 80);
+  });
+}
+
+function playCompleteFanfare() {
+  var notes = [392, 440, 494, 523, 587, 659, 784, 1047];
+  notes.forEach(function(f, i) {
+    setTimeout(function(){ playTone(f, 0.2 + (i * 0.03), 'sine', 0.12 - (i * 0.01)); }, i * 150);
+  });
+}
+
+// ── STREAK SYSTEM ──
+function updateStreak(isCorrect) {
+  if (isCorrect) {
+    streakCount++;
+    if (streakCount > maxStreak) maxStreak = streakCount;
+    questionsFirstTry++;
+    var el = document.getElementById('streak-display');
+    if (el) el.textContent = streakCount + ' 🔥';
+    if (streakCount >= 3) {
+      playStreakChime(streakCount);
+      showStreakBadge(streakCount);
+    } else {
+      playCorrectChime();
+    }
+    if (streakCount === 5) spawnParticles(document.querySelector('.score-bar'));
+  } else {
+    if (streakCount >= 3) showStreakEnd();
+    streakCount = 0;
+    incorrectCount++;
+    var el = document.getElementById('streak-display');
+    if (el) el.textContent = '0 🔥';
+    playIncorrectTone();
+  }
+  totalQuestionsAnswered++;
+}
+
+function showStreakBadge(count) {
+  var badge = document.createElement('div');
+  badge.className = 'streak-badge';
+  badge.textContent = count + ' in a row! 🔥';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#dcb161,#e8c87a);color:#141C2C;padding:8px 20px;border-radius:20px;font-weight:700;font-size:14px;z-index:10001;animation:streakPop 0.4s ease-out,fadeUp 0.4s ease-in 1.5s forwards;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 2000);
+}
+
+function showStreakEnd() {
+  var badge = document.createElement('div');
+  badge.textContent = 'Streak ended';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#333;color:#999;padding:6px 16px;border-radius:16px;font-size:12px;z-index:10001;opacity:0.8;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 1500);
+}
+
+// ── MILESTONE TOASTS ──
+function checkMilestone(current, total) {
+  var pct = Math.round((current / total) * 100);
+  var milestones = {25: 'Quarter complete! 💪', 50: 'Halfway there! 🎯', 75: 'Almost there! ⚡', 100: 'Final stretch! 🏆'};
+  for (var m in milestones) {
+    if (pct >= parseInt(m) && !milestonesTriggered[m]) {
+      milestonesTriggered[m] = true;
+      showMilestoneToast(milestones[m]);
+      playSectionFanfare();
+    }
+  }
+}
+
+function showMilestoneToast(msg) {
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;top:-50px;left:50%;transform:translateX(-50%);background:#141C2C;color:#dcb161;padding:10px 24px;border-radius:12px;font-weight:700;font-size:14px;z-index:10002;transition:top 0.4s ease;box-shadow:0 4px 20px rgba(0,0,0,0.3);';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.top = '20px'; });
+  setTimeout(function(){ t.style.top = '-50px'; setTimeout(function(){ t.remove(); }, 500); }, 2500);
+}
+
+// ── GLOBAL PROGRESS BAR ──
+function updateGlobalProgress(current, total) {
+  var fill = document.getElementById('globalProgressFill');
+  if (fill) fill.style.width = Math.round((current / total) * 100) + '%';
+  checkMilestone(current, total);
+}
+
+// ── PARTICLES (gold champagne burst) ──
+function spawnParticles(anchor) {
+  var rect = anchor ? anchor.getBoundingClientRect() : {left: window.innerWidth/2, top: window.innerHeight/2};
+  for (var i = 0; i < 20; i++) {
+    var p = document.createElement('div');
+    var size = 4 + Math.random() * 6;
+    var angle = (Math.PI * 2 * i) / 20 + (Math.random() * 0.3);
+    var dist = 60 + Math.random() * 80;
+    p.style.cssText = 'position:fixed;width:' + size + 'px;height:' + size + 'px;background:#dcb161;border-radius:50%;left:' + (rect.left + rect.width/2) + 'px;top:' + (rect.top) + 'px;z-index:10003;pointer-events:none;opacity:1;transition:all 0.8s ease-out;';
+    document.body.appendChild(p);
+    requestAnimationFrame(function(pp, a, d) { return function() {
+      pp.style.left = (parseFloat(pp.style.left) + Math.cos(a) * d) + 'px';
+      pp.style.top = (parseFloat(pp.style.top) + Math.sin(a) * d) + 'px';
+      pp.style.opacity = '0';
+    }; }(p, angle, dist));
+    setTimeout(function(pp){ pp.remove(); }.bind(null, p), 900);
+  }
+}
+
+// ── GAVEL / SCALES MASCOT ──
+function initGavel() {
+  var gavel = document.createElement('div');
+  gavel.id = 'gavelMascot';
+  gavel.innerHTML = '<svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:58px;">'
+    + '<rect x="27" y="18" width="6" height="38" rx="1.5" fill="#8B7D3C"/>'
+    + '<rect x="18" y="54" width="24" height="5" rx="2.5" fill="#6B5E2E"/>'
+    + '<rect x="22" y="52" width="16" height="4" rx="1" fill="#8B7D3C"/>'
+    + '<rect x="6" y="16" width="48" height="4" rx="2" fill="#8B7D3C"/>'
+    + '<circle cx="30" cy="12" r="5" fill="#dcb161" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<text x="30" y="14.5" text-anchor="middle" font-size="7" font-weight="bold" fill="#141C2C">⚖</text>'
+    + '<line x1="12" y1="20" x2="12" y2="32" stroke="#8B7D3C" stroke-width="1.5" id="leftChain"/>'
+    + '<line x1="48" y1="20" x2="48" y2="32" stroke="#8B7D3C" stroke-width="1.5" id="rightChain"/>'
+    + '<path d="M4 33 Q8 38 12 33 Q16 38 20 33" stroke="#dcb161" stroke-width="1.5" fill="none" id="leftPan"/>'
+    + '<ellipse cx="12" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3" id="leftPanFill"/>'
+    + '<path d="M40 33 Q44 38 48 33 Q52 38 56 33" stroke="#dcb161" stroke-width="1.5" fill="none" id="rightPan"/>'
+    + '<ellipse cx="48" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3" id="rightPanFill"/>'
+    + '</svg>';
+  gavel.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9998;cursor:pointer;animation:scaleBob 3s ease-in-out infinite;opacity:0.7;transition:opacity 0.3s,transform 0.3s;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));';
+  gavel.onmouseenter = function(){ this.style.opacity='1';this.style.transform='scale(1.1)'; };
+  gavel.onmouseleave = function(){ this.style.opacity='0.7';this.style.transform='scale(1)'; };
+  document.body.appendChild(gavel);
+}
+
+function gavelReact(type) {
+  var g = document.getElementById('gavelMascot');
+  if (!g) return;
+  g.style.animation = 'none';
+  void g.offsetHeight;
+  if (type === 'correct') {
+    g.style.animation = 'scaleCelebrate 0.5s ease-out, scaleBob 3s ease-in-out 0.6s infinite';
+  } else if (type === 'incorrect') {
+    g.style.animation = 'scaleTilt 0.6s ease-in-out, scaleBob 3s ease-in-out 0.7s infinite';
+  } else if (type === 'complete') {
+    g.style.animation = 'scaleTriumph 1.5s ease-in-out, scaleBob 3s ease-in-out 1.6s infinite';
+    g.style.opacity = '1';
+    g.style.transform = 'scale(1.15)';
+  }
+}
+
+// ── ACHIEVEMENT BADGES ──
+function calculateBadges() {
+  var badges = [];
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var elapsed = (Date.now() - moduleStartTime) / 60000;
+  var baseQCount = Object.keys(Q_CONFIG).filter(function(k){ return !Q_CONFIG[k].isBonus; }).length;
+  if (questionsFirstTry === baseQCount && incorrectCount === 0) badges.push({icon:'⭐', name:'Perfect Pass', desc:'All correct on first try'});
+  if (incorrectCount === 0 && totalQuestionsAnswered > 0) badges.push({icon:'🎯', name:'No Stumbles', desc:'Zero incorrect'});
+  if (elapsed < 25) badges.push({icon:'⚡', name:'Speed Run', desc:'Under 25 minutes'});
+  if (pct >= 90) badges.push({icon:'🏆', name:'Master', desc:'Above 90%'});
+  if (incorrectCount > 3 && pct >= 70) badges.push({icon:'💪', name:'Persistent', desc:'Finished despite struggles'});
+  return badges;
+}
+
+function renderBadges(badges, container) {
+  badges.forEach(function(b, i) {
+    setTimeout(function() {
+      var el = document.createElement('span');
+      el.className = 'achievement-badge';
+      el.textContent = b.icon + ' ' + b.name;
+      el.title = b.desc;
+      el.style.cssText = 'display:inline-block;background:#dcb161;color:#141C2C;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;margin:4px;animation:badgeFlip 0.5s ease-out;';
+      container.appendChild(el);
+      playBadgeChime();
+    }, i * 400);
+  });
+}
+
+// ── GAMIFICATION INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('glg_sound') === '1') {
+    soundEnabled = true;
+    var btn = document.getElementById('soundToggle');
+    if (btn) btn.textContent = '🔊';
+  }
+  initGavel();
+});
 
 // Init
 goToSection(0);
