@@ -27,6 +27,9 @@ function doPost(e) {
     var score        = Number(data.score)    || 0;
     var maxScore     = Number(data.maxScore) || 100;
     var bonusScore   = Number(data.bonusScore) || 0;
+    var maxStreak    = Number(data.maxStreak)  || 0;
+    var badges       = data.badges       || '';
+    var elapsedMin   = Number(data.elapsedMinutes) || 0;
     var passedAt     = data.passedAt     || new Date().toISOString();
 
     var pct     = maxScore > 0 ? Math.round((score / maxScore) * 100) : 0;
@@ -35,7 +38,7 @@ function doPost(e) {
     var ts      = new Date(passedAt);
 
     // 1. Log to Google Sheet
-    logToSheet(ts, employeeName, moduleId, moduleName, score, maxScore, bonusScore, pct, status);
+    logToSheet(ts, employeeName, moduleId, moduleName, score, maxScore, bonusScore, pct, status, maxStreak, badges, elapsedMin);
 
     // 2. Send Teams notification
     notifyTeams(employeeName, moduleName, score, maxScore, pct, passed, ts);
@@ -61,7 +64,7 @@ function doGet(e) {
 // ──────────────────────────────────────────────
 // LOG ROW TO GOOGLE SHEET
 // ──────────────────────────────────────────────
-function logToSheet(ts, employeeName, moduleId, moduleName, score, maxScore, bonusScore, pct, status) {
+function logToSheet(ts, employeeName, moduleId, moduleName, score, maxScore, bonusScore, pct, status, maxStreak, badges, elapsedMin) {
   var ss    = SpreadsheetApp.openById(SHEET_ID);
   var sheet = ss.getSheetByName(SHEET_TAB);
 
@@ -77,11 +80,14 @@ function logToSheet(ts, employeeName, moduleId, moduleName, score, maxScore, bon
       "Max Score",
       "Bonus Score",
       "Percentage",
-      "Pass/Fail"
+      "Pass/Fail",
+      "Max Streak",
+      "Badges",
+      "Time (min)"
     ]);
 
     // Format header row
-    var header = sheet.getRange(1, 1, 1, 9);
+    var header = sheet.getRange(1, 1, 1, 12);
     header.setFontWeight("bold");
     header.setBackground("#141c2c");
     header.setFontColor("#ffffff");
@@ -97,7 +103,10 @@ function logToSheet(ts, employeeName, moduleId, moduleName, score, maxScore, bon
     maxScore,
     bonusScore,
     pct + "%",
-    status
+    status,
+    maxStreak,
+    badges,
+    elapsedMin
   ]);
 }
 
