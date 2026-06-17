@@ -1165,6 +1165,9 @@ function buildResults() {
 // SUBMIT RESULTS
 // ═══════════════════════════════════════════════
 function submitResults() {
+ var traineeName = state.traineeFirstName || prompt('Enter your name for the score tracker:') || 'Trainee';
+ state.traineeFirstName = traineeName;
+ submitScoreToTracker(traineeName);
  var pct = Math.min(100, Math.round((state.totalScore / 200) * 100));
  var total = state.totalScore + state.bonusScore;
  var badges = [];
@@ -1219,7 +1222,9 @@ function retakeModule() {
 // ══════════════════════════════════════
 // GLG GAMIFICATION ENGINE v1.0 — NH-11
 // ══════════════════════════════════════
+var TRACKER_URL='https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
 var audioCtx=null,soundEnabled=false,streakCount=0,maxStreak=0,moduleStartTime=Date.now(),questionsFirstTry=0,totalQuestionsAnswered=0,incorrectCount=0,milestonesTriggered={};
+function submitScoreToTracker(employeeName){if(!TRACKER_URL)return;var payload={employeeName:employeeName||'Anonymous',moduleId:'nh11',moduleName:'NH-11 Week 2 Review & Assessment',score:state.totalScore,maxScore:200,bonusScore:state.bonusScore,maxStreak:maxStreak,badges:calculateGamificationBadges().map(function(b){return b.name;}).join(', '),elapsedMinutes:Math.round((Date.now()-moduleStartTime)/60000),passedAt:new Date().toISOString()};fetch(TRACKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),mode:'no-cors'}).then(function(){var el=document.getElementById('submit-confirm');if(el){el.innerHTML='\u2705 Score submitted to tracker.';el.style.display='block';}}).catch(function(){var el=document.getElementById('submit-confirm');if(el){el.innerHTML='\u26A0\uFE0F Auto-submit failed \u2014 use Email Results option.';el.style.display='block';}});}
 function initAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();}
 function toggleSound(){soundEnabled=!soundEnabled;if(soundEnabled)initAudio();document.getElementById('soundToggle').textContent=soundEnabled?'\uD83D\uDD0A':'\uD83D\uDD07';localStorage.setItem('glg_sound',soundEnabled?'1':'0');}
 function playTone(f,d,t,g){if(!soundEnabled||!audioCtx)return;var o=audioCtx.createOscillator(),gn=audioCtx.createGain();o.type=t||'sine';o.frequency.value=f;gn.gain.value=g||0.15;gn.gain.exponentialRampToValueAtTime(0.001,audioCtx.currentTime+d);o.connect(gn);gn.connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+d);}
