@@ -1757,9 +1757,9 @@ function showResults() {
     var badges = calculateBadges();
     renderBadges(badges, badgeContainer);
   }
-  reviewList.innerHTML = questions.map(function(q, i) {
+  var reviewItems = questions.map(function(q, i) {
     var correct = answers[i] === q.correct;
-    return '<div class="review-item ' + (correct ? 'correct' : 'wrong') + '">'
+    return '<div class="review-item ' + (correct ? 'correct' : 'wrong') + '" style="opacity:0;transform:translateY(8px);transition:opacity 0.25s ease,transform 0.25s ease;" data-review-idx="' + i + '">'
       + '<div class="ri-q">' + (i+1) + '. ' + q.q + '</div>'
       + '<div class="ri-ans">'
       + (correct ? '✅' : '❌') + ' Your answer: <strong>' + letters[answers[i]] + '. ' + q.options[answers[i]] + '</strong>'
@@ -1767,6 +1767,16 @@ function showResults() {
       + (!correct ? '<br><em style="color:#666;font-size:0.8rem;">' + q.explanation + '</em>' : '')
       + '</div></div>';
   }).join('');
+  reviewList.innerHTML = reviewItems;
+  // Staggered reveal with tick sound for each review item
+  var reviewEls = reviewList.querySelectorAll('[data-review-idx]');
+  reviewEls.forEach(function(el, i) {
+    setTimeout(function() {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      playTickSound();
+    }, i * 150);
+  });
 
   var btns = document.getElementById('resultButtons');
   if (passed) {
@@ -1950,6 +1960,24 @@ function playDing() {
   setTimeout(function(){ playTone(659, 0.18, 'sine', 0.11); }, 100);
 }
 
+// SOUND 3: Subtle lower-pitch tone (~0.2s) on incorrect answer
+function playWrongTone() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  // Single low tone: ~320 Hz, short, quiet — feedback without punishment
+  playTone(320, 0.2, 'sine', 0.08);
+}
+
+// SOUND 4: Quick tick/pop (~0.05s) for review-list item reveal
+function playTickSound() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  // Short high click: ~800 Hz, very brief
+  playTone(800, 0.05, 'triangle', 0.06);
+}
+
 // SOUND 2: Celebratory ta-da fanfare (~1.5s) on certificate reveal
 function playTaDa() {
   if (!soundEnabled) return;
@@ -1991,7 +2019,7 @@ function playTaDa() {
 
 // Stubs for removed functions — prevents errors if called from unmodified code paths
 function playCorrectChime() { playDing(); }
-function playIncorrectTone() { /* removed — no sound on wrong answer */ }
+function playIncorrectTone() { playWrongTone(); }
 function playStreakChime() { playDing(); }
 function playSectionFanfare() { /* removed */ }
 function playBadgeChime() { /* removed */ }
@@ -2015,7 +2043,8 @@ function updateStreak(isCorrect) {
     incorrectCount++;
     var el = document.getElementById('streak-display');
     if (el) el.textContent = '0 🔥';
-    // No sound on incorrect answer
+    // Subtle low-pitch tone on incorrect answer
+    playWrongTone();
   }
   totalQuestionsAnswered++;
 }
