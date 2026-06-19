@@ -34,7 +34,7 @@ Competency Gate Mapping:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>GLG Operations — How We Work | Gunn Law Group</title>
+<title>NH-1 — GLG Operations & Culture | Gunn Law Group</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -670,19 +670,22 @@ Competency Gate Mapping:
 
   /* ══ CERTIFICATE ══ */
   .cert-wrap {
-    background: var(--white);
-    border: 3px solid var(--navy);
+    background: linear-gradient(180deg, #ffffff 0%, #fafaf5 100%);
+    border: 4px double var(--navy);
     border-radius: 14px;
-    padding: 2.25rem 1.5rem;
+    padding: 2.5rem 1.75rem;
     text-align: center;
     margin-bottom: 1rem;
     position: relative;
-    box-shadow: 0 8px 32px rgba(20,28,44,0.14);
-    animation: certReveal 0.6s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) both;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(20,28,44,0.10);
+    animation: certPopIn 0.8s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;
   }
-  @keyframes certReveal {
-    from { opacity: 0; transform: scale(0.93); }
-    to   { opacity: 1; transform: scale(1); }
+  @keyframes certPopIn {
+    0%   { opacity: 0; transform: scale(0.7); box-shadow: 0 2px 8px rgba(20,28,44,0.05); }
+    60%  { opacity: 1; transform: scale(1.04); box-shadow: 0 8px 32px rgba(20,28,44,0.18); }
+    80%  { transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); box-shadow: 0 10px 40px rgba(20,28,44,0.16); }
   }
   .cert-wrap::before {
     content: '';
@@ -693,16 +696,34 @@ Competency Gate Mapping:
     pointer-events: none;
     opacity: 0.45;
   }
-  .cert-firm     { font-family: var(--font-b); font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy2); font-weight: 600; margin-bottom: 0.6rem; }
-  .cert-title    { font-family: var(--font-h); font-size: clamp(1.3rem,5vw,1.7rem); font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
-  .cert-subtitle { font-family: var(--font-b); font-size: 0.8rem; color: #888; margin-bottom: 1.4rem; }
-  .cert-presents { font-family: var(--font-b); font-size: 0.85rem; color: #777; font-style: italic; margin-bottom: 0.3rem; }
-  .cert-name     { font-family: var(--font-h); font-size: clamp(1.3rem,5vw,1.9rem); font-weight: 700; color: var(--navy2); border-bottom: 2px solid var(--gold); display: inline-block; padding: 0 0.5rem 0.15rem; margin-bottom: 0.85rem; min-width: 60%; }
-  .cert-for      { font-family: var(--font-b); font-size: 0.85rem; color: #666; margin-bottom: 0.35rem; }
-  .cert-module   { font-family: var(--font-h); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 1.1rem; }
-  .cert-meta     { font-family: var(--font-b); font-size: 0.8rem; color: #888; }
-  .cert-score    { font-family: var(--font-b); font-size: 1.1rem; font-weight: 700; color: var(--green); margin-top: 0.5rem; }
-  .cert-seal     { font-size: 2.5rem; margin: 0.85rem 0 0.3rem; display: block; }
+  .cert-wrap::after {
+    content: '\2696\FE0F';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 180px;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cert-firm     { font-family: var(--font-b); font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy2); font-weight: 600; margin-bottom: 0.6rem; position: relative; z-index: 1; }
+  .cert-title    { font-family: var(--font-h); font-size: clamp(1.5rem,5vw,1.9rem); font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.04em; position: relative; z-index: 1; }
+  .cert-subtitle { font-family: var(--font-b); font-size: 0.8rem; color: #888; margin-bottom: 1.4rem; position: relative; z-index: 1; }
+  .cert-presents { font-family: var(--font-b); font-size: 0.85rem; color: #777; font-style: italic; margin-bottom: 0.3rem; position: relative; z-index: 1; }
+  .cert-name     { font-family: var(--font-h); font-size: clamp(1.6rem,6vw,2.2rem); font-weight: 700; color: var(--navy2); font-style: italic; border-bottom: 2px solid var(--gold); display: inline-block; padding: 0 0.75rem 0.2rem; margin-bottom: 0.85rem; min-width: 60%; position: relative; z-index: 1; }
+  .cert-for      { font-family: var(--font-b); font-size: 0.85rem; color: #666; margin-bottom: 0.35rem; position: relative; z-index: 1; }
+  .cert-module   { font-family: var(--font-h); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 1.1rem; position: relative; z-index: 1; }
+  .cert-meta     { font-family: var(--font-b); font-size: 0.8rem; color: #888; position: relative; z-index: 1; }
+  .cert-score    { font-family: var(--font-b); font-size: 1.1rem; font-weight: 700; color: var(--green); margin-top: 0.5rem; position: relative; z-index: 1; }
+  .cert-seal     { font-size: 2.5rem; margin: 0.85rem 0 0.3rem; display: block; position: relative; z-index: 1; }
+  .cert-signature { margin-top: 1.5rem; position: relative; z-index: 1; }
+  .cert-sig-line  { width: 200px; border-top: 1px solid var(--navy); margin: 0 auto 0.3rem; }
+  .cert-sig-name  { font-family: var(--font-h); font-size: 1rem; font-weight: 600; color: var(--navy); font-style: italic; }
+  .cert-sig-title { font-family: var(--font-b); font-size: 0.75rem; color: #888; letter-spacing: 0.05em; }
+  .cert-badges    { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 14px; position: relative; z-index: 1; }
+  .cert-badge-pill { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.68rem; font-weight: 700; padding: 4px 12px; border-radius: 14px; letter-spacing: 0.03em; animation: badgeFlip 0.5s ease-out backwards; }
+  #confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10005; }
 
   /* ══ NAME INPUT ══ */
   .name-input-wrap { margin-bottom: 1rem; }
@@ -792,7 +813,8 @@ Competency Gate Mapping:
   /* ══ PRINT ══ */
   @media print {
     .app-header, .section-nav, .btn-row, .screen:not(.active), .top-bar { display: none !important; }
-    .cert-wrap { border: 3px solid var(--navy) !important; box-shadow: none !important; animation: none !important; }
+    .cert-wrap { border: 4px double var(--navy) !important; box-shadow: none !important; animation: none !important; }
+    #confettiCanvas { display: none !important; }
     body { background: white; }
   }
 
@@ -854,8 +876,8 @@ header p { margin-top:6px;color:#c0c0c0;font-size:13px; }
 <!-- HEADER -->
 <header>
   <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
-  <div class="day-badge">Day 1 · GLG Operations</div>
-  <h1>How We Work + Introduction to PI Law</h1>
+  <div class="day-badge">NH-1 · GLG Operations & Culture</div>
+  <h1>NH-1 — GLG Operations & Culture</h1>
   <p>Gunn Law Group · New Hire Training</p>
   <div class="score-bar">
     <div>
@@ -898,8 +920,8 @@ header p { margin-top:6px;color:#c0c0c0;font-size:13px; }
 <!-- ══════════ SCREEN 0: WELCOME ══════════ -->
 <div class="screen active" id="screen-0">
   <div class="welcome-hero">
-    <div class="welcome-icon">⚙️</div>
-    <h1>GLG Operations —<br>How We Work</h1>
+    <div class="welcome-icon">⚖️</div>
+    <h1>NH-1 — GLG Operations<br>& Culture</h1>
     <p>Your foundation for understanding GLG's systems, culture, and operating principles. Built on proven business frameworks.</p>
   </div>
   <div class="content-card" style="border-radius: var(--radius);">
@@ -1419,6 +1441,7 @@ header p { margin-top:6px;color:#c0c0c0;font-size:13px; }
       ✅ Score submitted! Your results have been recorded.
     </div>
     <div id="cert-content" style="display:none;">
+      <canvas id="confettiCanvas"></canvas>
       <div class="cert-wrap" id="certWrap">
         <div class="cert-firm">Gunn Law Group — Atlanta, Georgia</div>
         <div class="cert-title">Certificate of Completion</div>
@@ -1426,10 +1449,16 @@ header p { margin-top:6px;color:#c0c0c0;font-size:13px; }
         <div class="cert-presents">This certifies that</div>
         <div class="cert-name" id="certNameDisplay">___________________</div>
         <div class="cert-for">has successfully completed</div>
-        <div class="cert-module">Module A1: GLG Operations — How We Work</div>
-        <span class="cert-seal">⚙️</span>
+        <div class="cert-module">NH-1 — GLG Operations &amp; Culture</div>
+        <span class="cert-seal">⚖️</span>
         <div class="cert-score" id="certScore"></div>
         <div class="cert-meta" id="certMeta"></div>
+        <div class="cert-badges" id="certBadges"></div>
+        <div class="cert-signature">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">Harrell Gunn</div>
+          <div class="cert-sig-title">Managing Attorney</div>
+        </div>
       </div>
       <div class="btn-row">
         <button class="btn btn-secondary" onclick="go('results')">← Results</button>
@@ -1610,6 +1639,9 @@ function go(screen) {
 }
 
 function startQuiz() {
+  // Prime AudioContext on first user interaction for autoplay policy
+  if (!audioCtx) { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
   currentQ = 0;
   answers = new Array(questions.length).fill(null);
   score = 0;
@@ -1667,7 +1699,7 @@ function selectOption(idx) {
 
   // Gamification hooks
   updateStreak(isCorrect);
-  gavelReact(isCorrect ? 'correct' : 'incorrect');
+  mascotReact(isCorrect ? 'correct' : 'incorrect');
   updateGlobalProgress(currentQ + 1, questions.length);
 }
 
@@ -1695,8 +1727,8 @@ function animateCounter(start, end, max, el, duration) {
 }
 
 function showResults() {
-  gavelReact('complete');
-  playCompleteFanfare();
+  mascotReact('complete');
+  // Sound removed from results screen — ta-da plays on cert reveal only
   spawnParticles(document.querySelector('header'));
   updateGlobalProgress(questions.length, questions.length);
   var passThreshold = 10; // 80% of 12 = 9.6, round up to 10
@@ -1772,11 +1804,33 @@ function submitScoreAndBuildCert() {
   document.getElementById('score-submit-form').style.display = 'none';
   document.getElementById('cert-content').style.display = 'block';
 
+  // Render badge pills on certificate
+  var certBadgesEl = document.getElementById('certBadges');
+  if (certBadgesEl) {
+    var badges = calculateBadges();
+    badges.push({icon: '\ud83c\udf93', name: 'NH-1 Complete', desc: 'Completed module NH-1'});
+    certBadgesEl.innerHTML = '';
+    badges.forEach(function(b, i) {
+      var pill = document.createElement('span');
+      pill.className = 'cert-badge-pill';
+      pill.textContent = b.icon + ' ' + b.name;
+      pill.style.animationDelay = (i * 0.15) + 's';
+      certBadgesEl.appendChild(pill);
+    });
+  }
+
+  // Trigger celebration effects after a short delay
+  setTimeout(function() {
+    launchConfetti();
+    playTaDa();
+    mascotReact('complete');
+  }, 350);
+
   if (TRACKER_URL) {
     var payload = {
       employeeName: name,
       moduleId: 'a1',
-      moduleName: 'GLG Operations — How We Work',
+      moduleName: 'NH-1 — GLG Operations & Culture',
       score: score,
       maxScore: 12,
       bonusScore: 0,
@@ -1841,6 +1895,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // ══════════════════════════════════════
 
 // ── SOUND ENGINE (Web Audio API) ──
+// TWO sounds only: "ding" on correct answer, "ta-da" on certificate reveal.
+// Reliability: audioCtx.resume() called before EVERY playback attempt.
+// AudioContext created on first user interaction to satisfy autoplay policy.
 var audioCtx = null;
 var soundEnabled = false;
 var streakCount = 0;
@@ -1850,76 +1907,95 @@ var questionsFirstTry = 0;
 var totalQuestionsAnswered = 0;
 var incorrectCount = 0;
 
-function initAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+function ensureAudioCtx() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    catch(e) { console.warn('Web Audio not supported', e); return false; }
+  }
+  // ALWAYS resume — this is the key reliability fix.
+  // AudioContext can re-enter 'suspended' after idle, tab switch, or autoplay policy.
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(function(){});
+  }
+  return true;
 }
 
 function toggleSound() {
   soundEnabled = !soundEnabled;
-  if (soundEnabled) initAudio();
+  if (soundEnabled) ensureAudioCtx();
   document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
   localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
 }
 
-function playTone(freq, duration, type, gain) {
+function playTone(freq, duration, type, gainVal) {
   if (!soundEnabled || !audioCtx) return;
+  // Resume before every single playback for reliability
+  if (audioCtx.state === 'suspended') { audioCtx.resume().catch(function(){}); }
   var o = audioCtx.createOscillator();
   var g = audioCtx.createGain();
   o.type = type || 'sine';
   o.frequency.value = freq;
-  g.gain.value = gain || 0.15;
+  g.gain.value = gainVal || 0.15;
   g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
   o.connect(g); g.connect(audioCtx.destination);
   o.start(); o.stop(audioCtx.currentTime + duration);
 }
 
-function playCorrectChime() {
-  var variations = [
-    function(){ playTone(523, 0.15, 'sine', 0.12); setTimeout(function(){ playTone(659, 0.2, 'sine', 0.1); }, 100); },
-    function(){ playTone(587, 0.15, 'sine', 0.12); setTimeout(function(){ playTone(784, 0.2, 'sine', 0.1); }, 120); },
-    function(){ playTone(440, 0.12, 'sine', 0.12); setTimeout(function(){ playTone(554, 0.15, 'sine', 0.1); }, 80); setTimeout(function(){ playTone(659, 0.2, 'sine', 0.08); }, 180); }
+// SOUND 1: Simple clean ding (~0.3s) on correct answer
+function playDing() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  // Two-tone ascending ding: C5 → E5
+  playTone(523, 0.15, 'sine', 0.13);
+  setTimeout(function(){ playTone(659, 0.18, 'sine', 0.11); }, 100);
+}
+
+// SOUND 2: Celebratory ta-da fanfare (~1.5s) on certificate reveal
+function playTaDa() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+  // Rich ta-da: opening chord hit + ascending arpeggio + triumphant final chord
+  var notes = [
+    // Opening chord hit (C4 + E4 + G4)
+    {f: 262, t: 0,    d: 0.30, type: 'triangle', g: 0.14},
+    {f: 330, t: 0,    d: 0.30, type: 'sine',     g: 0.11},
+    {f: 392, t: 0,    d: 0.30, type: 'sine',     g: 0.09},
+    // Ascending arpeggio
+    {f: 523, t: 0.15, d: 0.22, type: 'sine',     g: 0.13},  // C5
+    {f: 659, t: 0.30, d: 0.22, type: 'sine',     g: 0.12},  // E5
+    {f: 784, t: 0.45, d: 0.22, type: 'sine',     g: 0.11},  // G5
+    // Final triumphant chord (C5 + E5 + G5 + C6)
+    {f: 523, t: 0.65, d: 0.80, type: 'sine',     g: 0.13},
+    {f: 659, t: 0.65, d: 0.80, type: 'sine',     g: 0.11},
+    {f: 784, t: 0.65, d: 0.80, type: 'sine',     g: 0.09},
+    {f: 1047,t: 0.65, d: 0.80, type: 'triangle', g: 0.07},
+    // Shimmer on top
+    {f: 1319,t: 0.75, d: 0.55, type: 'sine',     g: 0.04},
+    {f: 1568,t: 0.85, d: 0.45, type: 'sine',     g: 0.03}
   ];
-  variations[Math.floor(Math.random() * 3)]();
-}
-
-function playIncorrectTone() {
-  playTone(220, 0.25, 'triangle', 0.08);
-}
-
-var streakSoundTimeout = null;
-function playStreakChime(count) {
-  // Cancel any lingering streak sounds
-  if (streakSoundTimeout) { clearTimeout(streakSoundTimeout); streakSoundTimeout = null; }
-  // Gentle ascending — cap the frequency so it doesn't get shrill
-  var baseFreq = Math.min(440 + (count * 25), 600);
-  playTone(baseFreq, 0.12, 'sine', 0.1);
-  streakSoundTimeout = setTimeout(function(){
-    playTone(baseFreq * 1.2, 0.12, 'sine', 0.08);
-    streakSoundTimeout = setTimeout(function(){
-      playTone(baseFreq * 1.4, 0.18, 'sine', 0.06);
-      streakSoundTimeout = null;
-    }, 120);
-  }, 100);
-}
-
-function playSectionFanfare() {
-  [523, 587, 659, 784].forEach(function(f, i) {
-    setTimeout(function(){ playTone(f, 0.15, 'sine', 0.1); }, i * 100);
+  notes.forEach(function(n) {
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = n.type || 'sine';
+    osc.frequency.value = n.f;
+    gain.gain.setValueAtTime(n.g, now + n.t);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now + n.t);
+    osc.stop(now + n.t + n.d + 0.05);
   });
 }
 
-function playBadgeChime() {
-  [880, 1047, 1319].forEach(function(f, i) {
-    setTimeout(function(){ playTone(f, 0.12, 'triangle', 0.08); }, i * 80);
-  });
-}
-
-function playCompleteFanfare() {
-  var notes = [392, 440, 494, 523, 587, 659, 784, 1047];
-  notes.forEach(function(f, i) {
-    setTimeout(function(){ playTone(f, 0.2 + (i * 0.03), 'sine', 0.12 - (i * 0.01)); }, i * 150);
-  });
-}
+// Stubs for removed functions — prevents errors if called from unmodified code paths
+function playCorrectChime() { playDing(); }
+function playIncorrectTone() { /* removed — no sound on wrong answer */ }
+function playStreakChime() { playDing(); }
+function playSectionFanfare() { /* removed */ }
+function playBadgeChime() { /* removed */ }
+function playCompleteFanfare() { /* removed — ta-da plays on cert reveal instead */ }
 
 // ── STREAK SYSTEM ──
 function updateStreak(isCorrect) {
@@ -1929,12 +2005,9 @@ function updateStreak(isCorrect) {
     questionsFirstTry++;
     var el = document.getElementById('streak-display');
     if (el) el.textContent = streakCount + ' 🔥';
-    if (streakCount >= 3) {
-      playStreakChime(streakCount);
-      showStreakBadge(streakCount);
-    } else {
-      playCorrectChime();
-    }
+    // Simple ding on every correct answer
+    playDing();
+    if (streakCount >= 3) showStreakBadge(streakCount);
     if (streakCount === 5) spawnParticles(document.querySelector('.score-bar'));
   } else {
     if (streakCount >= 3) showStreakEnd();
@@ -1942,7 +2015,7 @@ function updateStreak(isCorrect) {
     incorrectCount++;
     var el = document.getElementById('streak-display');
     if (el) el.textContent = '0 🔥';
-    playIncorrectTone();
+    // No sound on incorrect answer
   }
   totalQuestionsAnswered++;
 }
@@ -1973,7 +2046,6 @@ function checkMilestone(current, total) {
     if (pct >= parseInt(m) && !milestonesTriggered[m]) {
       milestonesTriggered[m] = true;
       showToast(milestones[m]);
-      playSectionFanfare();
     }
   }
 }
@@ -2013,10 +2085,10 @@ function spawnParticles(anchor) {
   }
 }
 
-// ── GAVEL MASCOT ──
-function initGavel() {
+// ── SCALES OF JUSTICE MASCOT ──
+function initMascot() {
   var gavel = document.createElement('div');
-  gavel.id = 'gavelMascot';
+  gavel.id = 'mascotFloat';
   // Scales of Justice mascot — professional, animated, recognizable
   gavel.innerHTML = '<svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:58px;">'
     // Pillar
@@ -2046,8 +2118,8 @@ function initGavel() {
   document.body.appendChild(gavel);
 }
 
-function gavelReact(type) {
-  var g = document.getElementById('gavelMascot');
+function mascotReact(type) {
+  var g = document.getElementById('mascotFloat');
   if (!g) return;
   g.style.animation = 'none';
   void g.offsetHeight;
@@ -2060,6 +2132,72 @@ function gavelReact(type) {
     g.style.opacity = '1';
     g.style.transform = 'scale(1.15)';
   }
+}
+
+// ── CONFETTI SYSTEM (Canvas-based, GLG colors only) ──
+var confettiActive = false;
+function launchConfetti() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var colors = ['#dcb161', '#c0c0c0', '#141c2c']; // gold, silver, navy
+  var particles = [];
+  var cx = canvas.width / 2;
+  var cy = canvas.height / 2;
+  for (var i = 0; i < 150; i++) {
+    var angle = Math.random() * Math.PI * 2;
+    var speed = 3 + Math.random() * 9;
+    particles.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      w: 4 + Math.random() * 6,
+      h: 2 + Math.random() * 4,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12,
+      gravity: 0.10 + Math.random() * 0.08,
+      opacity: 1,
+      shape: Math.random() > 0.4 ? 'rect' : 'circle'
+    });
+  }
+  confettiActive = true;
+  var startTime = Date.now();
+  function animate() {
+    if (!confettiActive) return;
+    var elapsed = Date.now() - startTime;
+    if (elapsed > 4000) {
+      confettiActive = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      p.x += p.vx;
+      p.vy += p.gravity;
+      p.y += p.vy;
+      p.vx *= 0.99;
+      p.rotation += p.rotSpeed;
+      if (elapsed > 2500) p.opacity = Math.max(0, p.opacity - 0.02);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
 }
 
 // ── ACHIEVEMENT BADGES ──
@@ -2085,7 +2223,6 @@ function renderBadges(badges, container) {
       el.title = b.desc;
       el.style.cssText = 'display:inline-block;background:#dcb161;color:#141C2C;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;margin:4px;animation:badgeFlip 0.5s ease-out;';
       container.appendChild(el);
-      playBadgeChime();
     }, i * 400);
   });
 }
@@ -2097,7 +2234,16 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('soundToggle');
     if (btn) btn.textContent = '🔊';
   }
-  initGavel();
+  // Create AudioContext on first user interaction (any click/tap)
+  // This satisfies browser autoplay policy on all platforms.
+  function initAudioOnFirstClick() {
+    ensureAudioCtx();
+    document.removeEventListener('click', initAudioOnFirstClick);
+    document.removeEventListener('touchstart', initAudioOnFirstClick);
+  }
+  document.addEventListener('click', initAudioOnFirstClick);
+  document.addEventListener('touchstart', initAudioOnFirstClick);
+  initMascot();
 });
 
 </script>

@@ -692,6 +692,11 @@ var qDone = {};
 var firstAttemptStillAvailable = {};  // true until a wrong answer is given
 var sectionScores = {};  // sectionIdx (1-6) -> points
 
+// ── ANSWER RANDOMIZATION (Re-take Mode) ──
+var COMPLETION_KEY = 'glg_module_nh11_completed';
+var isRetake = false;
+try { isRetake = !!localStorage.getItem(COMPLETION_KEY); } catch(e) {}
+
 // ── GAMIFICATION STATE ──
 var audioCtx = null;
 var soundEnabled = false;
@@ -982,6 +987,9 @@ function buildResults() {
     + '</div>';
 
   submitScoreToTracker();
+
+  // Mark module completed for answer randomization on re-take
+  markModuleCompleted();
 
   // Render gamification achievement badges
   var badgeContainer = document.getElementById('badgeContainer');
@@ -1352,6 +1360,49 @@ function renderBadges(badges, container) {
   });
 }
 
+// ═══════════════════════════════════════════════
+// ANSWER RANDOMIZATION — Fisher-Yates Shuffle
+// First attempt: original order preserved (verified A=5/B=5/C=5/D=5 parity)
+// Re-take: options shuffled per question; correct answer tracked by
+//          element ID + hardcoded isCorrect in onclick, NOT by position.
+// ═══════════════════════════════════════════════
+function fisherYatesShuffle(arr) {
+  for (var i = arr.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+  return arr;
+}
+
+function shuffleAllOptions() {
+  if (!isRetake) return;
+  var letters = ['A', 'B', 'C', 'D'];
+  var questionBlocks = document.querySelectorAll('.question-block');
+  for (var qi = 0; qi < questionBlocks.length; qi++) {
+    var block = questionBlocks[qi];
+    var optionsContainer = block.querySelector('.options');
+    if (!optionsContainer) continue;
+    var buttons = [];
+    var raw = optionsContainer.querySelectorAll('.option-btn');
+    for (var bi = 0; bi < raw.length; bi++) buttons.push(raw[bi]);
+    if (buttons.length < 2) continue;
+    fisherYatesShuffle(buttons);
+    // Re-append in shuffled order (moves DOM elements)
+    for (var si = 0; si < buttons.length; si++) {
+      optionsContainer.appendChild(buttons[si]);
+      // Update visual letter label to match new position
+      var letterSpan = buttons[si].querySelector('.opt-letter');
+      if (letterSpan) letterSpan.textContent = letters[si];
+    }
+  }
+}
+
+function markModuleCompleted() {
+  try { localStorage.setItem(COMPLETION_KEY, new Date().toISOString()); } catch(e) {}
+}
+
 // ── GAMIFICATION INIT ──
 document.addEventListener('DOMContentLoaded', function() {
   if (localStorage.getItem('glg_sound') === '1') {
@@ -1360,6 +1411,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btn) btn.textContent = '🔊';
   }
   initGavel();
+  shuffleAllOptions();
 });
 
 // Init
