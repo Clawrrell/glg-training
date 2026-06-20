@@ -1,5 +1,5 @@
 <!--
-LA-1 — Records Retrieval & Follow-Up (Polished)
+LA-1 — Records Retrieval & Follow-Up (Polished, Chassis-Fixed)
 Built: June 17, 2026 | Base: site/module-nh11.html
 CasePeer Stages: Treating, Pending Demand | moduleId: la1
 Answer Key: A=5 B=5 C=5 D=5 | Distractor Parity: verified
@@ -10,7 +10,7 @@ Boss Challenge: Marcus Thompson, GLG-2026-0731
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>LA-1 — Records Retrieval &amp; Assessment | Gunn Law Group</title>
+  <title>LA-1 — Records Retrieval &amp; Follow-Up | Gunn Law Group</title>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
@@ -130,24 +130,52 @@ Boss Challenge: Marcus Thompson, GLG-2026-0731
     .badge.earned{border-color:#dcb161;background:#fffaed;color:#7a5c00;}
     .badge .badge-icon{font-size:20px;}
 
-    /* ── FEEDBACK FORM ── */
-    .fb-rating-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:6px;}
-    .fb-rating-btn{padding:8px 14px;border:2px solid #e0e3e8;border-radius:8px;background:#fff;font-size:13px;font-weight:700;cursor:pointer;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
-    .fb-rating-btn.selected{border-color:#141C2C;background:#141C2C;color:#fff;}
-    .fb-q{margin-bottom:18px;}
-    .fb-q label{display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:8px;}
-    .fb-q textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;color:#333;resize:vertical;min-height:80px;}
-    .fb-q textarea:focus{outline:none;border-color:#141c2c;}
+    /* (old fb-rating-btn styles removed — using dropdown selectors) */
 
-    /* ── CERTIFICATE ── */
-    .cert{border:4px double #141c2c;border-radius:14px;padding:32px 24px;text-align:center;margin-top:20px;background:linear-gradient(180deg,#fff 0%,#fafaf5 100%);position:relative;overflow:hidden;}
-    .cert::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('glg-crest-silver.png') center center no-repeat;background-size:200px;opacity:0.04;pointer-events:none;}
-    .cert-logo{font-size:40px;margin-bottom:10px;}
-    .cert h3{font-size:22px;font-weight:800;color:#141c2c;margin-bottom:4px;letter-spacing:0.5px;text-transform:uppercase;}
-    .cert-name{font-size:28px;font-weight:800;color:#141C2C;margin:16px 0 6px;font-style:italic;}
-    .cert-details{font-size:13px;color:#666;line-height:1.9;}
-    .cert-achievements{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}
-    .cert-badge{background:#dcb161;color:#141C2C;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
+    /* ── CERTIFICATE (NH-1 chassis) ── */
+    .cert-wrap{background:linear-gradient(180deg,#ffffff 0%,#fafaf5 100%);border:4px double #141c2c;border-radius:14px;padding:2.5rem 1.75rem;text-align:center;margin-bottom:1rem;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(20,28,44,0.10);animation:certPopIn 0.8s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;}
+    @keyframes certPopIn{0%{opacity:0;transform:scale(0.7);box-shadow:0 2px 8px rgba(20,28,44,0.05)}60%{opacity:1;transform:scale(1.04);box-shadow:0 8px 32px rgba(20,28,44,0.18)}80%{transform:scale(0.98)}100%{opacity:1;transform:scale(1);box-shadow:0 10px 40px rgba(20,28,44,0.16)}}
+    .cert-wrap::before{content:'';position:absolute;inset:10px;border:1px solid #dcb161;border-radius:8px;pointer-events:none;opacity:0.45;}
+    .cert-wrap::after{content:'\2696\FE0F';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:180px;opacity:0.03;pointer-events:none;z-index:0;}
+    .cert-firm{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:#232e54;font-weight:600;margin-bottom:0.6rem;position:relative;z-index:1;}
+    .cert-title{font-size:clamp(1.5rem,5vw,1.9rem);font-weight:800;color:#141c2c;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.04em;position:relative;z-index:1;}
+    .cert-subtitle{font-size:0.8rem;color:#888;margin-bottom:1.4rem;position:relative;z-index:1;}
+    .cert-presents{font-size:0.85rem;color:#777;font-style:italic;margin-bottom:0.3rem;position:relative;z-index:1;}
+    .cert-name{font-size:clamp(1.6rem,6vw,2.2rem);font-weight:700;color:#232e54;font-style:italic;border-bottom:2px solid #dcb161;display:inline-block;padding:0 0.75rem 0.2rem;margin-bottom:0.85rem;min-width:60%;position:relative;z-index:1;}
+    .cert-for{font-size:0.85rem;color:#666;margin-bottom:0.35rem;position:relative;z-index:1;}
+    .cert-module{font-size:1.05rem;font-weight:600;color:#141c2c;margin-bottom:1.1rem;position:relative;z-index:1;}
+    .cert-meta{font-size:0.8rem;color:#888;position:relative;z-index:1;}
+    .cert-score{font-size:1.1rem;font-weight:700;color:#10774A;margin-top:0.5rem;position:relative;z-index:1;}
+    .cert-seal{font-size:2.5rem;margin:0.85rem 0 0.3rem;display:block;position:relative;z-index:1;}
+    .cert-signature{margin-top:1.5rem;position:relative;z-index:1;}
+    .cert-sig-line{width:200px;border-top:1px solid #141c2c;margin:0 auto 0.3rem;}
+    .cert-sig-name{font-size:1rem;font-weight:600;color:#141c2c;font-style:italic;}
+    .cert-sig-title{font-size:0.75rem;color:#888;letter-spacing:0.05em;}
+    .cert-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;position:relative;z-index:1;}
+    .cert-badge-pill{display:inline-block;background:#dcb161;color:#141C2C;font-size:0.68rem;font-weight:700;padding:4px 12px;border-radius:14px;letter-spacing:0.03em;animation:badgeFlip 0.5s ease-out backwards;}
+    #confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10005;}
+
+    /* ── REVIEW LIST (NH-1 chassis) ── */
+    .review-list{display:flex;flex-direction:column;gap:0.65rem;margin-top:1rem;}
+    .review-item{background:#f8f9fa;border-radius:10px;padding:0.8rem 1.1rem;border-left:4px solid #ddd;font-size:0.88rem;transition:transform 0.15s ease;}
+    .review-item:hover{transform:translateX(2px);}
+    .review-item.correct{border-color:#10774A;}
+    .review-item.wrong{border-color:#870101;}
+    .review-item .ri-q{font-weight:600;margin-bottom:0.35rem;color:#141c2c;}
+    .review-item .ri-ans{font-size:0.82rem;}
+
+    /* ── NAME INPUT (NH-1 chassis) ── */
+    .name-input-wrap{margin-bottom:1rem;}
+    .name-input-wrap label{display:block;font-size:0.85rem;font-weight:600;color:#232e54;margin-bottom:0.4rem;}
+    .name-input{width:100%;padding:0.82rem 1rem;border:2px solid #e0e3e8;border-radius:9px;font-size:1rem;color:#333;background:#fff;transition:border-color 0.2s ease,box-shadow 0.2s ease;-webkit-appearance:none;}
+    .name-input:focus{outline:none;border-color:#232e54;box-shadow:0 0 0 3px rgba(35,46,84,0.1);}
+
+    /* ── FEEDBACK FORM (NH-1 chassis: dropdowns) ── */
+    .fb-question{margin-bottom:18px;}
+    .fb-question label{display:block;font-weight:700;color:#141c2c;font-size:15px;margin-bottom:8px;}
+    .fb-question select,.fb-question textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:9px;font-size:14px;background:#fff;color:#333;-webkit-appearance:none;transition:border-color 0.2s ease;font-family:inherit;}
+    .fb-question select:focus,.fb-question textarea:focus{outline:none;border-color:#141c2c;}
+    .fb-question textarea{resize:vertical;min-height:80px;}
 
     /* ── BUTTONS ── */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
@@ -207,8 +235,8 @@ Boss Challenge: Marcus Thompson, GLG-2026-0731
 <header>
   
   <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
-<div class="day-badge">LA-1 · Records Retrieval</div>
-  <h1>LA-1 — Records Retrieval &amp; Assessment</h1>
+<div class="day-badge">LA-1 · Records Retrieval & Follow-Up</div>
+  <h1>LA-1 — Records Retrieval &amp; Follow-Up</h1>
   <p>Gunn Law Group · Legal Assistant Training</p>
   <div class="score-bar">
     <div>
@@ -638,6 +666,7 @@ Boss Challenge: Marcus Thompson, GLG-2026-0731
   <div id="results-header-wrap"></div>
   <div class="section-body">
     <div id="results-body"></div>
+    <div class="review-list" id="reviewList"></div>
     <div id="badgeContainer" style="text-align:center;margin:16px 0;"></div>
     <div class="score-confirm" id="score-confirmation"></div>
   </div>
@@ -649,61 +678,85 @@ Boss Challenge: Marcus Thompson, GLG-2026-0731
 <div class="section-card" id="section-8">
   <div class="section-header">
     <div class="section-num">Section 9 · Feedback &amp; Certificate</div>
-    <h2>Module Feedback</h2>
+    <h2>Certificate of Completion</h2>
     <div class="section-subhead">Your input improves training for the next person.</div>
   </div>
   <div class="section-body">
-
-    <div id="score-submit-form" style="display:none;">
-      <div class="info-block">
-        <h4>📊 Before We Generate Your Certificate</h4>
-        <p>Rate this module honestly — your feedback is used to improve every future training session.</p>
+    <!-- Feedback Form (dropdown selectors — NH-1 chassis) -->
+    <div style="margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:14px;">📝 Quick Feedback</h4>
+      <div class="fb-question">
+        <label>How clear was the content? (1 = confusing, 5 = crystal clear)</label>
+        <select id="fb-clarity">
+          <option value="">Select rating…</option>
+          <option>1 — Very confusing</option>
+          <option>2 — Somewhat confusing</option>
+          <option>3 — Mostly clear</option>
+          <option>4 — Clear</option>
+          <option>5 — Crystal clear</option>
+        </select>
       </div>
-
-      <div class="fb-q">
-        <label>How clear were the questions and answer choices?</label>
-        <div class="fb-rating-row" id="fb-clarity">
-          <button class="fb-rating-btn" onclick="setRating('clarity','1',this)">1 — Very confusing</button>
-          <button class="fb-rating-btn" onclick="setRating('clarity','2',this)">2</button>
-          <button class="fb-rating-btn" onclick="setRating('clarity','3',this)">3 — OK</button>
-          <button class="fb-rating-btn" onclick="setRating('clarity','4',this)">4</button>
-          <button class="fb-rating-btn" onclick="setRating('clarity','5',this)">5 — Crystal clear</button>
-        </div>
+      <div class="fb-question">
+        <label>How was the difficulty level?</label>
+        <select id="fb-difficulty">
+          <option value="">Select…</option>
+          <option>Too easy — I already knew all of this</option>
+          <option>About right — challenging but fair</option>
+          <option>Too hard — needs more context</option>
+          <option>Mixed — some sections were hard, some easy</option>
+        </select>
       </div>
-
-      <div class="fb-q">
-        <label>How difficult was this assessment?</label>
-        <div class="fb-rating-row" id="fb-difficulty">
-          <button class="fb-rating-btn" onclick="setRating('difficulty','1',this)">1 — Too easy</button>
-          <button class="fb-rating-btn" onclick="setRating('difficulty','2',this)">2</button>
-          <button class="fb-rating-btn" onclick="setRating('difficulty','3',this)">3 — About right</button>
-          <button class="fb-rating-btn" onclick="setRating('difficulty','4',this)">4</button>
-          <button class="fb-rating-btn" onclick="setRating('difficulty','5',this)">5 — Too hard</button>
-        </div>
+      <div class="fb-question">
+        <label>Did this module feel like a real work situation?</label>
+        <select id="fb-realistic">
+          <option value="">Select…</option>
+          <option>Yes — felt like actual GLG work</option>
+          <option>Mostly — a few parts felt generic</option>
+          <option>Not really — too textbook-style</option>
+        </select>
       </div>
-
-      <div class="fb-q">
-        <label>How realistic were the scenarios to actual case management?</label>
-        <div class="fb-rating-row" id="fb-realism">
-          <button class="fb-rating-btn" onclick="setRating('realism','1',this)">1 — Not realistic</button>
-          <button class="fb-rating-btn" onclick="setRating('realism','2',this)">2</button>
-          <button class="fb-rating-btn" onclick="setRating('realism','3',this)">3 — Somewhat</button>
-          <button class="fb-rating-btn" onclick="setRating('realism','4',this)">4</button>
-          <button class="fb-rating-btn" onclick="setRating('realism','5',this)">5 — Very realistic</button>
-        </div>
+      <div class="fb-question">
+        <label>What's one thing that would make this training better?</label>
+        <textarea id="fb-suggestions" placeholder="Your suggestion here…"></textarea>
       </div>
-
-      <div class="fb-q">
-        <label>Name one thing you'd change about this module:</label>
-        <textarea id="fb-change" placeholder="Be specific. What question was misleading? What topic needed more context?" rows="4"></textarea>
-      </div>
-
-      <div class="fb-error" id="fb-error">⚠️ Please complete all ratings and the open-ended question before submitting.</div>
-
-      <button class="btn btn-primary btn-block" onclick="submitFeedback()">Submit Feedback &amp; Get My Certificate →</button>
     </div>
 
-    <div id="cert-container" style="display:none;"></div>
+    <!-- Score Submission Form (inline name entry — NH-1 chassis) -->
+    <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;display:none;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+      <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name" class="name-input" style="margin-bottom:12px;">
+      <button class="btn" onclick="submitScoreAndBuildCert()" style="background:#188038;color:white;padding:12px 24px;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;">✅ Submit Score &amp; View Certificate</button>
+    </div>
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #10774A;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">✅ Score submitted! Your results have been recorded.</div>
+
+    <!-- Certificate content (hidden until submit) -->
+    <div id="cert-content" style="display:none;">
+      <canvas id="confettiCanvas"></canvas>
+      <div class="cert-wrap" id="certWrap">
+        <div class="cert-firm">Gunn Law Group — Atlanta, Georgia</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-subtitle">GLG Training &amp; Development Program</div>
+        <div class="cert-presents">This certifies that</div>
+        <div class="cert-name" id="certNameDisplay">___________________</div>
+        <div class="cert-for">has successfully completed</div>
+        <div class="cert-module">LA-1 — Records Retrieval &amp; Follow-Up</div>
+        <span class="cert-seal">⚖️</span>
+        <div class="cert-score" id="certScore"></div>
+        <div class="cert-meta" id="certMeta"></div>
+        <div class="cert-badges" id="certBadges"></div>
+        <div class="cert-signature">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">Harrell Gunn</div>
+          <div class="cert-sig-title">Managing Attorney</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="btn btn-secondary" style="flex:1;" onclick="goToSection(7)">← Results</button>
+        <button class="btn" style="flex:1;background:#10774A;color:#fff;" onclick="window.print()">🖨️ Print Certificate</button>
+      </div>
+    </div>
 
   </div>
 </div>
@@ -719,7 +772,7 @@ Boss Challenge: Marcus Thompson, GLG-2026-0731
 // ═══════════════════════════════════════════════
 var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
 var TOTAL_SECTIONS = 9;
-var PASS_THRESHOLD = 160;
+var PASS_THRESHOLD = 170;
 var BASE_MAX = 200;
 
 // ═══════════════════════════════════════════════
@@ -802,10 +855,7 @@ var FEEDBACK = {
   'q19': {t:'✅ All requests go out the same day. Every day of delay extends the demand hold. Simultaneous requests, 14-day follow-ups set for each, everything logged in CasePeer immediately.',f:'❌ Never stagger records requests when a demand is waiting. All providers get requests the same day. Set individual 14-day follow-up tasks for each. Log everything immediately. Speed is the priority.'},
   'q20': {t:'✅ Third and final attempt: call at a different time, get a specific person\'s name in billing, document the full conversation. If this fails, the next step is paralegal escalation for attorney intervention.',f:'❌ The third attempt should maximize chances of success: different time of day, specific person in billing, full documentation. Faxing again, escalating early, or visiting in person are not the standard procedure.'}
 }
-// ═══════════════════════════════════════════════
-// RATINGS STATE
-// ═══════════════════════════════════════════════
-var ratings = {};
+// Ratings state removed — using dropdown selectors (NH-1 chassis)
 
 // ═══════════════════════════════════════════════
 // ANSWER HANDLER
@@ -869,7 +919,7 @@ function answer(qId, choice, isCorrect) {
 
   // Gamification hooks
   updateStreak(isCorrect);
-  gavelReact(isCorrect ? 'correct' : 'incorrect');
+  mascotReact(isCorrect ? 'correct' : 'incorrect');
   var totalQs = Object.keys(Q_CONFIG).length;
   var answeredCount = Object.keys(qDone).length;
   updateGlobalProgress(answeredCount, totalQs);
@@ -954,13 +1004,13 @@ function finishModule() {
   buildResults();
 }
 
-// ═══════════════════════════════════════════════
-// BUILD RESULTS
-// ═══════════════════════════════════════════════
+function showResults() {
+  finishModule();
+}
+
 function buildResults() {
   // Gamification completion hooks
-  gavelReact('complete');
-  playCompleteFanfare();
+  mascotReact('complete');
   spawnParticles(document.querySelector('header'));
   var totalQs = Object.keys(Q_CONFIG).length;
   updateGlobalProgress(totalQs, totalQs);
@@ -971,51 +1021,78 @@ function buildResults() {
   var headerEl = document.getElementById('results-header-wrap');
   headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
     + '<div class="results-grade">' + pct + '%</div>'
-    + '<div class="results-label">' + (pass ? '🏆 Assessment Passed — Week 2 Complete!' : '📚 Not Yet — 85% Required to Pass') + '</div>'
-    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '<div class="results-label">' + (pass ? '\ud83c\udfc6 Assessment Passed!' : '\ud83d\udcda Not Yet \u2014 85% Required to Pass') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts \u00b7 ' + bonusPoints + ' bonus pts</div>'
     + '</div>';
 
-  var badges = [];
-  if (baseScore >= 200) badges.push({icon:'🌟', name:'Perfect Score'});
-  if (baseScore >= 190) badges.push({icon:'🔥', name:'Week 2 Expert'});
-  if ((sectionScores[1]||0) === 40) badges.push({icon:'📄', name:'Records Master'});
-  if ((sectionScores[2]||0) === 40) badges.push({icon:'🔍', name:'Coverage Pro'});
-  if ((sectionScores[3]||0) === 40) badges.push({icon:'⚖️', name:'Lien Specialist'});
-  if ((sectionScores[4]||0) === 40) badges.push({icon:'📞', name:'Comms Expert'});
-  if ((sectionScores[5]||0) === 40) badges.push({icon:'🔗', name:'Integration Ace'});
-  if (bonusPoints >= 50) badges.push({icon:'💎', name:'Boss Conqueror'});
-  if (bonusPoints >= 25) badges.push({icon:'⚡', name:'Boss Fighter'});
-  if (pass) badges.push({icon:'🎓', name:'Week 2 Complete'});
+  // Per-question review list (NH-1 chassis)
+  var letters = ['a','b','c','d'];
+  var letterLabels = ['A','B','C','D'];
+  var reviewList = document.getElementById('reviewList');
+  var reviewHTML = '';
+  Object.keys(Q_CONFIG).forEach(function(qId, idx) {
+    var cfg = Q_CONFIG[qId];
+    var block = document.getElementById(qId + '-block');
+    if (!block) return;
+    var qText = block.querySelector('.q-text');
+    var questionText = qText ? qText.textContent : 'Question ' + (idx+1);
+    var isAnswered = !!qDone[qId];
+    var wasCorrect = isAnswered && block.classList.contains('answered');
+    var correctLetter = cfg.correct.toUpperCase();
+    // Find the correct answer text
+    var correctBtn = document.getElementById(qId + '-' + cfg.correct);
+    var correctText = correctBtn ? correctBtn.querySelector('.opt-text').textContent : '';
+    // Find user's answer
+    var userAnswer = '(not answered)';
+    var userLetter = '';
+    if (isAnswered) {
+      letters.forEach(function(l, li) {
+        var btn = document.getElementById(qId + '-' + l);
+        if (btn && (btn.classList.contains('correct') || btn.classList.contains('incorrect'))) {
+          if (btn.classList.contains('incorrect') || (btn.classList.contains('correct') && !block.classList.contains('answered-wrong'))) {
+            userAnswer = btn.querySelector('.opt-text').textContent;
+            userLetter = letterLabels[li];
+          }
+        }
+      });
+      // If block is answered (correct), find the correct button
+      if (wasCorrect && !userLetter) {
+        userAnswer = correctText;
+        userLetter = correctLetter;
+      }
+    }
 
-  var badgeHTML = '';
-  badges.forEach(function(b){
-    badgeHTML += '<div class="badge earned"><span class="badge-icon">' + b.icon + '</span>' + b.name + '</div>';
+    reviewHTML += '<div class="review-item ' + (wasCorrect ? 'correct' : 'wrong') + '" style="opacity:0;transform:translateY(8px);transition:opacity 0.25s ease,transform 0.25s ease;" data-review-idx="' + idx + '">'
+      + '<div class="ri-q">' + (idx+1) + '. ' + questionText + '</div>'
+      + '<div class="ri-ans">'
+      + (wasCorrect ? '\u2705' : '\u274c') + ' Your answer: <strong>' + userLetter + '. ' + userAnswer + '</strong>'
+      + (!wasCorrect ? '<br>\u2705 Correct: <strong>' + correctLetter + '. ' + correctText + '</strong>' : '')
+      + '</div></div>';
+  });
+  reviewList.innerHTML = reviewHTML;
+
+  // Staggered reveal with tick sound for each review item
+  var reviewEls = reviewList.querySelectorAll('[data-review-idx]');
+  reviewEls.forEach(function(el, i) {
+    setTimeout(function() {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      playTickSound();
+    }, i * 150);
   });
 
   var bodyEl = document.getElementById('results-body');
   bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
     + '<div class="score-display">' + baseScore + '/200</div>'
-    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
-    + '</div>'
-    + '<div class="info-block"><h4>📊 Section Breakdown</h4>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Day 6: Medical Records</span><span class="breakdown-pts">' + (sectionScores[1]||0) + '/40</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Day 7: Coverage Verification</span><span class="breakdown-pts">' + (sectionScores[2]||0) + '/40</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Day 8: Liens &amp; Post-Settlement</span><span class="breakdown-pts">' + (sectionScores[3]||0) + '/40</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Day 9: Client Communication</span><span class="breakdown-pts">' + (sectionScores[4]||0) + '/40</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Integration Scenarios</span><span class="breakdown-pts">' + (sectionScores[5]||0) + '/40</span></div>'
-    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#10774A;font-size:18px;">' + baseScore + '/200</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (bonus)</span><span class="breakdown-pts" style="color:#dcb161;">' + (sectionScores[6]||0) + ' pts</span></div>'
-    + '</div>'
-    + '<div class="info-block"><h4>🏅 Achievements Earned</h4>'
-    + (badgeHTML ? '<div class="achievement-grid">' + badgeHTML + '</div>' : '<p style="color:#888;">Score higher to earn achievement badges.</p>')
+    + '<div class="score-label">Base Score \u00b7 ' + bonusPoints + ' Bonus Points</div>'
     + '</div>'
     + '<div class="callout ' + (pass ? 'callout-success' : 'callout-warn') + '">'
     + (pass
-        ? '<strong>✅ Gate Unlocked: 60-Day Gate — Week 2 Comprehensive Assessment.</strong> You have demonstrated competency across medical records, coverage verification, liens &amp; post-settlement, and client communication. You are cleared to progress to role-specific training tracks.'
-        : '<strong>⚠️ Gate Not Cleared.</strong> You need 170/200 (85%) to pass. Review the sections where you missed questions — the feedback explains exactly what to remember. Retake when ready.')
+        ? '<strong>\u2705 Gate Passed.</strong> You have demonstrated competency in records retrieval, provider identification, follow-up cadence, and CasePeer documentation. You are cleared to progress.'
+        : '<strong>\u26a0\ufe0f Gate Not Cleared.</strong> You need 170/200 (85%) to pass. Review the sections where you missed questions \u2014 the feedback explains exactly what to remember. Retake when ready.')
     + '</div>'
     + '<div class="btn-group">'
-    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete →</button>'
+    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete \u2192</button>'
     + '</div>';
 
   submitScoreToTracker();
@@ -1030,6 +1107,7 @@ function buildResults() {
   document.getElementById('score-submit-form').style.display = 'block';
 }
 
+
 // ═══════════════════════════════════════════════
 // AUTO-SUBMIT SCORE
 // CRITICAL: Submit baseScore ONLY — not base+bonus
@@ -1038,7 +1116,7 @@ function submitScoreToTracker() {
   if (!TRACKER_URL) return;
   var payload = {
     moduleId:   'la1',
-    moduleName: 'LA-1 Records Retrieval & Assessment',
+    moduleName: 'LA-1 Records Retrieval & Follow-Up',
     score:      baseScore,   // BASE ONLY
     maxScore:   200,
     bonusScore: bonusPoints,
@@ -1061,174 +1139,186 @@ function submitScoreToTracker() {
   });
 }
 
-// ═══════════════════════════════════════════════
-// FEEDBACK RATINGS
-// ═══════════════════════════════════════════════
-function setRating(field, val, btn) {
-  ratings[field] = val;
-  var row = document.getElementById('fb-' + field);
-  if (row) row.querySelectorAll('.fb-rating-btn').forEach(function(b){ b.classList.remove('selected'); });
-  btn.classList.add('selected');
-}
-
-// ═══════════════════════════════════════════════
-// SUBMIT FEEDBACK + CERTIFICATE
-// ═══════════════════════════════════════════════
-function submitFeedback() {
-  var change = (document.getElementById('fb-change').value || '').trim();
-  var errEl = document.getElementById('fb-error');
-
-  if (!ratings.clarity || !ratings.difficulty || !ratings.realism || !change) {
-    errEl.style.display = 'block';
-    return;
-  }
-  errEl.style.display = 'none';
-
-  var name = prompt('Enter your full name to complete the module:');
-  if (!name || !name.trim()) { alert('Name is required to submit.'); return; }
-  name = name.trim();
-
-  var pct = Math.round((baseScore / BASE_MAX) * 100);
-
-  var payload = {
-    employeeName: name,
-    moduleId:     'la1',
-    moduleName:   'LA-1 Records Retrieval & Assessment',
-    score:        baseScore,  // BASE ONLY
-    maxScore:     200,
-    bonusScore:   bonusPoints,
-    maxStreak:    maxStreak,
-    badges:       calculateBadges().map(function(b){ return b.name; }).join(', '),
-    elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
-    passedAt:     new Date().toISOString(),
-    feedback: {
-      clarity:    ratings.clarity,
-      difficulty: ratings.difficulty,
-      realism:    ratings.realism,
-      change:     change
-    }
-  };
-
-  if (TRACKER_URL) {
-    fetch(TRACKER_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(payload)
-    }).catch(function(){});
-  }
-
-  showCertificate(name, pct);
-}
-
-function showCertificate(name, pct) {
-  var pass = baseScore >= PASS_THRESHOLD;
-  var certContainer = document.getElementById('cert-container');
-  document.getElementById('score-submit-form').style.display = 'none';
-
-  var earned = [];
-  if (baseScore >= 200) earned.push('🌟 Perfect Score');
-  if (bonusPoints >= 50) earned.push('💎 Boss Conqueror');
-  if ((sectionScores[1]||0) === 40 && (sectionScores[2]||0) === 40 && (sectionScores[3]||0) === 40 && (sectionScores[4]||0) === 40) earned.push('🎯 Week 2 Sweep');
-  earned.push('🎓 LA-1 Complete');
-
-  certContainer.innerHTML = '<div class="cert">'
-    + '<div class="cert-logo">🏆</div>'
-    + '<h3>Certificate of Completion</h3>'
-    + '<div style="font-size:13px;color:#888;margin-bottom:8px;">Gunn Law Group Training System</div>'
-    + '<div class="cert-name">' + name + '</div>'
-    + '<div class="cert-details">'
-    + 'LA-1: Records Retrieval &amp; Assessment<br>'
-    + 'Score: <strong>' + baseScore + '/200 (' + pct + '%)</strong> &nbsp;·&nbsp; Bonus: <strong>' + bonusPoints + ' pts</strong><br>'
-    + 'Gate Status: <strong>' + (pass ? '✅ PASSED — 60-Day Gate Cleared' : '⚠️ Not Yet Passed — Retake Required') + '</strong><br>'
-    + 'Completed: ' + new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
-    + '</div>'
-    + '<div class="cert-achievements">' + earned.map(function(b){ return '<span class="cert-badge">' + b + '</span>'; }).join('') + '</div>'
-    + '</div>'
-    + '<div class="callout callout-' + (pass ? 'success' : 'warn') + '" style="margin-top:16px;">'
-    + (pass
-        ? '<strong>✅ Week 2 Complete, ' + name.split(' ')[0] + '.</strong> Medical records, coverage verification, liens, and client communication are now part of your operating system. Up next: the next LA module. Every skill tested here is now part of your operating system.'
-        : '<strong>⚠️ ' + name.split(' ')[0] + ', the gate requires 85%.</strong> Each feedback box is your study guide — review what went wrong and retake. You have everything you need to pass.')
-    + '</div>'
-    + '<div class="callout callout-info" style="margin-top:12px;"><strong>📅 Up Next: Role-Specific Training Tracks.</strong> Case Manager and Legal Assistant tracks diverge here. Your track determines skill focus: demand preparation, client intake depth, court filing support, or discovery coordination.</div>';
-
-  certContainer.style.display = 'block';
-  document.getElementById('nav-8').classList.add('done');
-}
+// Old setRating removed — using dropdown selectors
 
 // ══════════════════════════════════════
+// SUBMIT SCORE + BUILD CERT (NH-1 chassis)
+// ══════════════════════════════════════
+function submitScoreAndBuildCert() {
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('certNameDisplay').textContent = name;
+  document.getElementById('score-submit-form').style.display = 'none';
+  document.getElementById('cert-content').style.display = 'block';
+
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
+  document.getElementById('certScore').textContent = 'Score: ' + baseScore + '/200 (' + pct + '%) \u2014 ' + (pass ? 'PASSED' : 'NOT PASSED');
+  var now = new Date();
+  document.getElementById('certMeta').textContent = 'Issued: ' + now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+
+  // Render badge pills on certificate
+  var certBadgesEl = document.getElementById('certBadges');
+  if (certBadgesEl) {
+    var badges = calculateBadges();
+    badges.push({icon: '\ud83c\udf93', name: 'LA-1 Complete', desc: 'Completed module LA-1'});
+    certBadgesEl.innerHTML = '';
+    badges.forEach(function(b, i) {
+      var pill = document.createElement('span');
+      pill.className = 'cert-badge-pill';
+      pill.textContent = b.icon + ' ' + b.name;
+      pill.style.animationDelay = (i * 0.15) + 's';
+      certBadgesEl.appendChild(pill);
+    });
+  }
+
+  // Trigger celebration effects after a short delay
+  setTimeout(function() {
+    launchConfetti();
+    playTaDa();
+    mascotReact('complete');
+  }, 350);
+
+  // Submit to tracker
+  if (TRACKER_URL) {
+    var payload = {
+      employeeName: name,
+      moduleId: 'la1',
+      moduleName: 'LA-1 Records Retrieval & Follow-Up',
+      score: baseScore,
+      maxScore: 200,
+      bonusScore: bonusPoints,
+      maxStreak: maxStreak,
+      badges: calculateBadges().map(function(b){ return b.name; }).join(', '),
+      elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
+      passedAt: new Date().toISOString(),
+      feedback: {
+        clarity: document.getElementById('fb-clarity').value || '',
+        difficulty: document.getElementById('fb-difficulty').value || '',
+        realistic: document.getElementById('fb-realistic').value || '',
+        suggestions: document.getElementById('fb-suggestions').value || ''
+      }
+    };
+    fetch(TRACKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    }).then(function() {
+      document.getElementById('score-confirmation').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('score-confirmation').innerHTML = '\u26a0\ufe0f Auto-submission failed \u2014 please screenshot your results and email to hgunn@thegunnlawgroup.com';
+      document.getElementById('score-confirmation').style.background = '#fff3cd';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+      document.getElementById('score-confirmation').style.color = '#856404';
+      document.getElementById('score-confirmation').style.display = 'block';
+    });
+  }
+}
+
 // GLG GAMIFICATION ENGINE v1.0 — DAY 10
 // ══════════════════════════════════════
 
-// ── SOUND ENGINE (Web Audio API) ──
-function initAudio() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+// ── SOUND ENGINE (NH-1 chassis — Web Audio API) ──
+// ensureAudioCtx + playDing + playWrongTone + playTickSound + playTaDa
+// audioCtx.resume() before EVERY playback for reliability.
+
+function ensureAudioCtx() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+    catch(e) { console.warn('Web Audio not supported', e); return false; }
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(function(){});
+  }
+  return true;
 }
 
 function toggleSound() {
   soundEnabled = !soundEnabled;
-  if (soundEnabled) initAudio();
-  document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+  if (soundEnabled) ensureAudioCtx();
+  document.getElementById('soundToggle').textContent = soundEnabled ? '\ud83d\udd0a' : '\ud83d\udd07';
   localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
 }
 
-function playTone(freq, duration, type, gain) {
+function playTone(freq, duration, type, gainVal) {
   if (!soundEnabled || !audioCtx) return;
+  if (audioCtx.state === 'suspended') { audioCtx.resume().catch(function(){}); }
   var o = audioCtx.createOscillator();
   var g = audioCtx.createGain();
   o.type = type || 'sine';
   o.frequency.value = freq;
-  g.gain.value = gain || 0.15;
+  g.gain.value = gainVal || 0.15;
   g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
   o.connect(g); g.connect(audioCtx.destination);
   o.start(); o.stop(audioCtx.currentTime + duration);
 }
 
-function playCorrectChime() {
-  var variations = [
-    function(){ playTone(523, 0.15, 'sine', 0.12); setTimeout(function(){ playTone(659, 0.2, 'sine', 0.1); }, 100); },
-    function(){ playTone(587, 0.15, 'sine', 0.12); setTimeout(function(){ playTone(784, 0.2, 'sine', 0.1); }, 120); },
-    function(){ playTone(440, 0.12, 'sine', 0.12); setTimeout(function(){ playTone(554, 0.15, 'sine', 0.1); }, 80); setTimeout(function(){ playTone(659, 0.2, 'sine', 0.08); }, 180); }
+// SOUND 1: Simple clean ding (~0.3s) on correct answer
+function playDing() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  playTone(523, 0.15, 'sine', 0.13);
+  setTimeout(function(){ playTone(659, 0.18, 'sine', 0.11); }, 100);
+}
+
+// SOUND 2: Subtle lower-pitch tone (~0.2s) on incorrect answer
+function playWrongTone() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(320, 0.2, 'sine', 0.08);
+}
+
+// SOUND 3: Quick tick/pop (~0.05s) for review-list item reveal
+function playTickSound() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(800, 0.05, 'triangle', 0.06);
+}
+
+// SOUND 4: Celebratory ta-da fanfare (~1.5s) on certificate reveal
+function playTaDa() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+  var notes = [
+    {f: 262, t: 0,    d: 0.30, type: 'triangle', g: 0.14},
+    {f: 330, t: 0,    d: 0.30, type: 'sine',     g: 0.11},
+    {f: 392, t: 0,    d: 0.30, type: 'sine',     g: 0.09},
+    {f: 523, t: 0.15, d: 0.22, type: 'sine',     g: 0.13},
+    {f: 659, t: 0.30, d: 0.22, type: 'sine',     g: 0.12},
+    {f: 784, t: 0.45, d: 0.22, type: 'sine',     g: 0.11},
+    {f: 523, t: 0.65, d: 0.80, type: 'sine',     g: 0.13},
+    {f: 659, t: 0.65, d: 0.80, type: 'sine',     g: 0.11},
+    {f: 784, t: 0.65, d: 0.80, type: 'sine',     g: 0.09},
+    {f: 1047,t: 0.65, d: 0.80, type: 'triangle', g: 0.07},
+    {f: 1319,t: 0.75, d: 0.55, type: 'sine',     g: 0.04},
+    {f: 1568,t: 0.85, d: 0.45, type: 'sine',     g: 0.03}
   ];
-  variations[Math.floor(Math.random() * 3)]();
-}
-
-function playIncorrectTone() {
-  playTone(220, 0.25, 'triangle', 0.08);
-}
-
-var streakSoundTimeout = null;
-function playStreakChime(count) {
-  if (streakSoundTimeout) { clearTimeout(streakSoundTimeout); streakSoundTimeout = null; }
-  var baseFreq = Math.min(440 + (count * 25), 600);
-  playTone(baseFreq, 0.12, 'sine', 0.1);
-  streakSoundTimeout = setTimeout(function(){
-    playTone(baseFreq * 1.2, 0.12, 'sine', 0.08);
-    streakSoundTimeout = setTimeout(function(){
-      playTone(baseFreq * 1.4, 0.18, 'sine', 0.06);
-      streakSoundTimeout = null;
-    }, 120);
-  }, 100);
-}
-
-function playSectionFanfare() {
-  [523, 587, 659, 784].forEach(function(f, i) {
-    setTimeout(function(){ playTone(f, 0.15, 'sine', 0.1); }, i * 100);
+  notes.forEach(function(n) {
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = n.type || 'sine';
+    osc.frequency.value = n.f;
+    gain.gain.setValueAtTime(n.g, now + n.t);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start(now + n.t);
+    osc.stop(now + n.t + n.d + 0.05);
   });
 }
 
-function playBadgeChime() {
-  [880, 1047, 1319].forEach(function(f, i) {
-    setTimeout(function(){ playTone(f, 0.12, 'triangle', 0.08); }, i * 80);
-  });
-}
-
-function playCompleteFanfare() {
-  var notes = [392, 440, 494, 523, 587, 659, 784, 1047];
-  notes.forEach(function(f, i) {
-    setTimeout(function(){ playTone(f, 0.2 + (i * 0.03), 'sine', 0.12 - (i * 0.01)); }, i * 150);
-  });
-}
+// Stubs for removed functions
+function playCorrectChime() { playDing(); }
+function playIncorrectTone() { playWrongTone(); }
+function playStreakChime() { playDing(); }
+function playSectionFanfare() { /* removed */ }
+function playBadgeChime() { /* removed */ }
+function playCompleteFanfare() { /* removed — ta-da plays on cert reveal instead */ }
 
 // ── STREAK SYSTEM ──
 function updateStreak(isCorrect) {
@@ -1238,12 +1328,9 @@ function updateStreak(isCorrect) {
     questionsFirstTry++;
     var el = document.getElementById('streak-display');
     if (el) el.textContent = streakCount + ' 🔥';
-    if (streakCount >= 3) {
-      playStreakChime(streakCount);
-      showStreakBadge(streakCount);
-    } else {
-      playCorrectChime();
-    }
+    // Simple ding on every correct answer
+    playDing();
+    if (streakCount >= 3) showStreakBadge(streakCount);
     if (streakCount === 5) spawnParticles(document.querySelector('.score-bar'));
   } else {
     if (streakCount >= 3) showStreakEnd();
@@ -1251,7 +1338,8 @@ function updateStreak(isCorrect) {
     incorrectCount++;
     var el = document.getElementById('streak-display');
     if (el) el.textContent = '0 🔥';
-    playIncorrectTone();
+    // Subtle low-pitch tone on incorrect answer
+    playWrongTone();
   }
   totalQuestionsAnswered++;
 }
@@ -1322,9 +1410,9 @@ function spawnParticles(anchor) {
 }
 
 // ── GAVEL / SCALES MASCOT ──
-function initGavel() {
+function initMascot() {
   var gavel = document.createElement('div');
-  gavel.id = 'gavelMascot';
+  gavel.id = 'mascotFloat';
   gavel.innerHTML = '<svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:58px;">'
     + '<rect x="27" y="18" width="6" height="38" rx="1.5" fill="#8B7D3C"/>'
     + '<rect x="18" y="54" width="24" height="5" rx="2.5" fill="#6B5E2E"/>'
@@ -1345,8 +1433,8 @@ function initGavel() {
   document.body.appendChild(gavel);
 }
 
-function gavelReact(type) {
-  var g = document.getElementById('gavelMascot');
+function mascotReact(type) {
+  var g = document.getElementById('mascotFloat');
   if (!g) return;
   g.style.animation = 'none';
   void g.offsetHeight;
@@ -1359,6 +1447,72 @@ function gavelReact(type) {
     g.style.opacity = '1';
     g.style.transform = 'scale(1.15)';
   }
+}
+
+// ── CONFETTI SYSTEM (Canvas-based, GLG colors — NH-1 chassis) ──
+var confettiActive = false;
+function launchConfetti() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var colors = ['#dcb161', '#c0c0c0', '#141c2c'];
+  var particles = [];
+  var cx = canvas.width / 2;
+  var cy = canvas.height / 2;
+  for (var i = 0; i < 150; i++) {
+    var angle = Math.random() * Math.PI * 2;
+    var speed = 3 + Math.random() * 9;
+    particles.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      w: 4 + Math.random() * 6,
+      h: 2 + Math.random() * 4,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12,
+      gravity: 0.10 + Math.random() * 0.08,
+      opacity: 1,
+      shape: Math.random() > 0.4 ? 'rect' : 'circle'
+    });
+  }
+  confettiActive = true;
+  var startTime = Date.now();
+  function animate() {
+    if (!confettiActive) return;
+    var elapsed = Date.now() - startTime;
+    if (elapsed > 4000) {
+      confettiActive = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      p.x += p.vx;
+      p.vy += p.gravity;
+      p.y += p.vy;
+      p.vx *= 0.99;
+      p.rotation += p.rotSpeed;
+      if (elapsed > 2500) p.opacity = Math.max(0, p.opacity - 0.02);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.w / 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
 }
 
 // ── ACHIEVEMENT BADGES ──
@@ -1396,7 +1550,15 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('soundToggle');
     if (btn) btn.textContent = '🔊';
   }
-  initGavel();
+  // Create AudioContext on first user interaction (any click/tap)
+  function initAudioOnFirstClick() {
+    ensureAudioCtx();
+    document.removeEventListener('click', initAudioOnFirstClick);
+    document.removeEventListener('touchstart', initAudioOnFirstClick);
+  }
+  document.addEventListener('click', initAudioOnFirstClick);
+  document.addEventListener('touchstart', initAudioOnFirstClick);
+  initMascot();
 });
 
 // Init
