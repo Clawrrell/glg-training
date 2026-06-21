@@ -958,6 +958,11 @@ function checkSectionComplete(sectionIdx) {
 // NAVIGATION
 // ═══════════════════════════════════════════════
 function goToSection(idx) {
+  // Certificate gate: section 8 (Feedback + Certificate) requires passing score
+  if (idx === 8 && !window._la1Passed) {
+    showToast('\u26a0\ufe0f 85% required for certificate', false);
+    return;
+  }
   document.querySelectorAll('.section-card').forEach(function(c){ c.classList.remove('active'); });
   document.querySelectorAll('.nav-pill').forEach(function(p){ p.classList.remove('active'); });
 
@@ -1006,6 +1011,32 @@ function finishModule() {
 
 function showResults() {
   finishModule();
+}
+
+// Reset quiz state and restart (for Try Again on fail)
+function restartQuiz() {
+  baseScore = 0;
+  bonusPoints = 0;
+  qDone = {};
+  firstAttemptStillAvailable = {};
+  sectionScores = {};
+  streakCount = 0;
+  maxStreak = 0;
+  questionsFirstTry = 0;
+  moduleStartTime = Date.now();
+  // Reset all question blocks to unanswered state
+  document.querySelectorAll('.q-block').forEach(function(block) {
+    block.classList.remove('answered', 'answered-wrong');
+    block.querySelectorAll('.opt-btn').forEach(function(btn) {
+      btn.classList.remove('correct', 'incorrect');
+      btn.disabled = false;
+    });
+    var fb = block.querySelector('.q-feedback');
+    if (fb) fb.style.display = 'none';
+  });
+  // Re-init firstAttemptStillAvailable
+  Object.keys(Q_CONFIG).forEach(function(k) { firstAttemptStillAvailable[k] = true; });
+  goToSection(0);
 }
 
 function buildResults() {
@@ -1081,7 +1112,21 @@ function buildResults() {
     }, i * 150);
   });
 
+  // Set global pass flag for certificate gate
+  window._la1Passed = pass;
+
   var bodyEl = document.getElementById('results-body');
+  var buttonsHtml;
+  if (pass) {
+    buttonsHtml = '<div class="btn-group">'
+      + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback &amp; Get Certificate \u2192</button>'
+      + '</div>';
+  } else {
+    buttonsHtml = '<div class="btn-group" style="display:flex;gap:10px;">'
+      + '<button class="btn btn-secondary" style="flex:1;" onclick="goToSection(0)">Review Content</button>'
+      + '<button class="btn btn-primary" style="flex:1;" onclick="restartQuiz()">Try Again</button>'
+      + '</div>';
+  }
   bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
     + '<div class="score-display">' + baseScore + '/200</div>'
     + '<div class="score-label">Base Score \u00b7 ' + bonusPoints + ' Bonus Points</div>'
@@ -1091,9 +1136,7 @@ function buildResults() {
         ? '<strong>\u2705 Gate Passed.</strong> You have demonstrated competency in records retrieval, provider identification, follow-up cadence, and CasePeer documentation. You are cleared to progress.'
         : '<strong>\u26a0\ufe0f Gate Not Cleared.</strong> You need 170/200 (85%) to pass. Review the sections where you missed questions \u2014 the feedback explains exactly what to remember. Retake when ready.')
     + '</div>'
-    + '<div class="btn-group">'
-    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete \u2192</button>'
-    + '</div>';
+    + buttonsHtml;
 
   submitScoreToTracker();
 
@@ -1104,7 +1147,10 @@ function buildResults() {
     renderBadges(gamBadges, badgeContainer);
   }
 
-  document.getElementById('score-submit-form').style.display = 'block';
+  // Only show score submission form if passed (certificate gate)
+  if (pass) {
+    document.getElementById('score-submit-form').style.display = 'block';
+  }
 }
 
 
@@ -1145,6 +1191,11 @@ function submitScoreToTracker() {
 // SUBMIT SCORE + BUILD CERT (NH-1 chassis)
 // ══════════════════════════════════════
 function submitScoreAndBuildCert() {
+  // Safety gate: cannot generate certificate without passing
+  if (!window._la1Passed) {
+    showToast('\u26a0\ufe0f 85% required for certificate', false);
+    return;
+  }
   var nameInput = document.getElementById('trainee-name-input');
   var name = (nameInput.value || '').trim() || 'Training Participant';
   document.getElementById('certNameDisplay').textContent = name;
@@ -1550,14 +1601,31 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('soundToggle');
     if (btn) btn.textContent = '🔊';
   }
-  // Create AudioContext on first user interaction (any click/tap)
+  // Create AudioContext on first user interaction (any click/tap/touchend).
+  // iOS Safari requires AudioContext creation + resume() inside a user gesture.
+  // touchend is the most reliable gesture event on iOS.
   function initAudioOnFirstClick() {
     ensureAudioCtx();
     document.removeEventListener('click', initAudioOnFirstClick);
     document.removeEventListener('touchstart', initAudioOnFirstClick);
+    document.removeEventListener('touchend', initAudioOnFirstClick);
   }
   document.addEventListener('click', initAudioOnFirstClick);
   document.addEventListener('touchstart', initAudioOnFirstClick);
+  document.addEventListener('touchend', initAudioOnFirstClick);
+
+  // PERSISTENT iOS AudioContext fix: iOS can re-suspend AudioContext after
+  // idle, tab switch, or lock screen. Unlike initAudioOnFirstClick (one-shot),
+  // this fires on EVERY touch/click to keep AudioContext alive.
+  function resumeAudioOnGesture() {
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+  document.addEventListener('touchstart', resumeAudioOnGesture, true);
+  document.addEventListener('touchend', resumeAudioOnGesture, true);
+  document.addEventListener('click', resumeAudioOnGesture, true);
+
   initMascot();
 });
 

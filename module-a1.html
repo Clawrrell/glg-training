@@ -2263,15 +2263,31 @@ document.addEventListener('DOMContentLoaded', function() {
     var btn = document.getElementById('soundToggle');
     if (btn) btn.textContent = '🔊';
   }
-  // Create AudioContext on first user interaction (any click/tap)
-  // This satisfies browser autoplay policy on all platforms.
+  // Create AudioContext on first user interaction (any click/tap/touchend).
+  // iOS Safari requires AudioContext creation + resume() inside a user gesture.
+  // touchend is the most reliable gesture event on iOS.
   function initAudioOnFirstClick() {
     ensureAudioCtx();
     document.removeEventListener('click', initAudioOnFirstClick);
     document.removeEventListener('touchstart', initAudioOnFirstClick);
+    document.removeEventListener('touchend', initAudioOnFirstClick);
   }
   document.addEventListener('click', initAudioOnFirstClick);
   document.addEventListener('touchstart', initAudioOnFirstClick);
+  document.addEventListener('touchend', initAudioOnFirstClick);
+
+  // PERSISTENT iOS AudioContext fix: iOS can re-suspend AudioContext after
+  // idle, tab switch, or lock screen. Unlike initAudioOnFirstClick (one-shot),
+  // this fires on EVERY touch/click to keep AudioContext alive.
+  function resumeAudioOnGesture() {
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  }
+  document.addEventListener('touchstart', resumeAudioOnGesture, true);
+  document.addEventListener('touchend', resumeAudioOnGesture, true);
+  document.addEventListener('click', resumeAudioOnGesture, true);
+
   initMascot();
 });
 
