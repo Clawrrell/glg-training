@@ -1,0 +1,1878 @@
+<!--
+LA-2 — LOR & Document Generation
+Built: June 2026 | Base: site/module-la1.html (LA-track canonical chassis)
+CasePeer Stages: Intake, Treating, Pending Demand, Settling | moduleId: la2
+Base: 20 questions × 10 pts = 200 | Bonus: 6 questions (50 max bonus) | Pass: 170/200 (85%)
+Answer Key: q1→C q2→C q3→B q4→A  q5→A q6→C q7→A q8→C q9→D(bonus)
+            q10→D q11→A q12→B q13→A  q14→A q15→A q16→A q17→D q18→A(bonus)
+            q19→C q20→A q21→C q22→A  q23→D(bonus) q24→A(bonus) q25→C(bonus) q26→B(bonus)
+Boss Challenge: Alicia Morgan, GLG-2026-0893
+Sources: CasePeer_Template_Quick_Reference.md, Demand_Package_Preparation_Guide.md,
+         Holt_Demand_Checklist.md, CasePeer_Basics_Training.md, Communication_Logging_Standards.md
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LA-2 — LOR &amp; Document Generation | Gunn Law Group</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
+
+    /* ── HEADER ── */
+    header{background:linear-gradient(135deg,#141C2C 0%,#0E1420 100%);color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#1C2433;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;color:#ffffff;}
+    header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1C2433;border-radius:10px;}
+    .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
+    .score-value{color:#fff;font-size:22px;font-weight:800;}
+
+    /* ── PROGRESS ── */
+    .progress-wrap{background:#1C2433;padding:10px 16px;}
+    .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#0E1420;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+
+    /* ── NAV PILLS ── */
+    .section-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
+    .nav-pill{padding:7px 11px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:11px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+    .nav-pill.active{background:#141C2C;color:#fff;border-color:#141C2C;}
+    .nav-pill.done{border-color:#10774A;color:#10774A;}
+    .nav-pill.done::after{content:' ✓';}
+
+    /* ── MAIN / CARDS ── */
+    main{max-width:800px;margin:0 auto;padding:0 0 60px;}
+    .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:visible;}
+    .section-card.active{display:block;}
+    .section-header{background:#141C2C;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
+    .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
+    .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
+    .section-body{padding:20px;}
+
+    /* ── SCENARIO BOX ── */
+    .scenario{background:#141C2C;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border-left:3px solid #dcb161;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
+    .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
+    .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
+    .scenario .highlight{color:#dcb161;font-weight:700;}
+    .scenario .urgent{color:#e74c3c;font-weight:700;}
+
+    /* ── INFO BLOCKS ── */
+    .info-block{background:#f0f4f8;border-radius:10px;padding:16px;margin-bottom:14px;}
+    .info-block h4{color:#141c2c;font-size:14px;font-weight:700;margin-bottom:8px;}
+    .info-block p,.info-block li{font-size:14px;color:#444;line-height:1.6;}
+    .info-block ul,.info-block ol{padding-left:18px;}
+
+    /* ── QUESTIONS ── */
+    .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
+    .question-block.answered{border-color:#10774A;}
+    .question-block.answered-wrong{border-color:#870101;}
+    .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
+    .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
+    .options{display:flex;flex-direction:column;gap:10px;}
+    .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
+    .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
+    .option-btn.correct{border-color:#10774A!important;background:#e8f8ee!important;color:#10774A!important;}
+    .option-btn.incorrect{border-color:#870101!important;background:#fce8e8!important;color:#870101!important;}
+    .option-btn.disabled{pointer-events:none;opacity:.75;}
+    .opt-letter{background:#141C2C;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-text{flex:1;line-height:1.5;}
+
+    /* ── FEEDBACK ── */
+    .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #870101;color:#721c24;}
+    .feedback-box.show{display:block;}
+
+    /* ── POINTS TOAST ── */
+    .points-toast{position:fixed;top:80px;right:16px;background:#10774A;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast.show{transform:translateY(0);opacity:1;}
+    .points-toast.bonus{background:#dcb161;color:#141C2C;}
+
+    /* ── SECTION SCORE ── */
+    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;}
+    .section-score .score-display{font-size:32px;font-weight:800;color:#141c2c;}
+    .section-score .score-label{font-size:13px;color:#666;margin-top:2px;}
+
+    /* ── CASE FILE ── */
+    .case-file{background:#fff;border:2px solid #141c2c;border-radius:12px;padding:18px;margin-bottom:20px;}
+    .case-file-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #f0f4f8;}
+    .case-file-icon{background:#141c2c;color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .case-file-title{font-weight:800;color:#141c2c;font-size:15px;}
+    .case-file-sub{font-size:12px;color:#888;}
+    .case-detail{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px;}
+    .case-detail:last-child{border-bottom:none;}
+    .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
+    .case-val{color:#444;}
+    .case-val .flag{display:inline-block;background:#870101;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#10774A;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+
+    /* ── BOSS CHALLENGE ── */
+    .boss-header{background:linear-gradient(135deg,#870101 0%,#5a0000 100%);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;}
+    .boss-header .boss-icon{font-size:40px;margin-bottom:10px;}
+    .boss-header h3{font-size:clamp(17px,4.5vw,22px);font-weight:800;margin-bottom:8px;}
+    .boss-header p{font-size:14px;opacity:.9;line-height:1.5;}
+    .boss-q-badge{display:inline-block;background:#dcb161;color:#141C2C;font-size:11px;font-weight:800;padding:3px 10px;border-radius:12px;margin-bottom:8px;letter-spacing:.5px;}
+
+    /* ── RESULTS ── */
+    .results-header{padding:28px 20px;text-align:center;color:#fff;}
+    .results-header.pass{background:linear-gradient(135deg,#10774A,#0a5c38);}
+    .results-header.fail{background:linear-gradient(135deg,#870101,#6b0000);}
+    .results-grade{font-size:56px;font-weight:900;line-height:1;}
+    .results-label{font-size:16px;margin-top:6px;opacity:.9;}
+    .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
+    .breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f4f8;font-size:15px;}
+    .breakdown-row:last-child{border-bottom:none;}
+    .breakdown-name{color:#333;font-weight:600;}
+    .breakdown-pts{font-weight:800;color:#141c2c;}
+    .achievement-grid{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+    .badge{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:2px solid #e0e3e8;color:#888;background:#f8f9fa;}
+    .badge.earned{border-color:#dcb161;background:#fffaed;color:#7a5c00;}
+    .badge .badge-icon{font-size:20px;}
+
+    /* ── CERTIFICATE ── */
+    .cert-wrap{background:linear-gradient(180deg,#ffffff 0%,#fafaf5 100%);border:4px double #141c2c;border-radius:14px;padding:2.5rem 1.75rem;text-align:center;margin-bottom:1rem;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(20,28,44,0.10);animation:certPopIn 0.8s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;}
+    @keyframes certPopIn{0%{opacity:0;transform:scale(0.7);box-shadow:0 2px 8px rgba(20,28,44,0.05)}60%{opacity:1;transform:scale(1.04);box-shadow:0 8px 32px rgba(20,28,44,0.18)}80%{transform:scale(0.98)}100%{opacity:1;transform:scale(1);box-shadow:0 10px 40px rgba(20,28,44,0.16)}}
+    .cert-wrap::before{content:'';position:absolute;inset:10px;border:1px solid #dcb161;border-radius:8px;pointer-events:none;opacity:0.45;}
+    .cert-wrap::after{content:'\2696\FE0F';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:180px;opacity:0.03;pointer-events:none;z-index:0;}
+    .cert-firm{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:#232e54;font-weight:600;margin-bottom:0.6rem;position:relative;z-index:1;}
+    .cert-title{font-size:clamp(1.5rem,5vw,1.9rem);font-weight:800;color:#141c2c;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.04em;position:relative;z-index:1;}
+    .cert-subtitle{font-size:0.8rem;color:#888;margin-bottom:1.4rem;position:relative;z-index:1;}
+    .cert-presents{font-size:0.85rem;color:#777;font-style:italic;margin-bottom:0.3rem;position:relative;z-index:1;}
+    .cert-name{font-size:clamp(1.6rem,6vw,2.2rem);font-weight:700;color:#232e54;font-style:italic;border-bottom:2px solid #dcb161;display:inline-block;padding:0 0.75rem 0.2rem;margin-bottom:0.85rem;min-width:60%;position:relative;z-index:1;}
+    .cert-for{font-size:0.85rem;color:#666;margin-bottom:0.35rem;position:relative;z-index:1;}
+    .cert-module{font-size:1.05rem;font-weight:600;color:#141c2c;margin-bottom:1.1rem;position:relative;z-index:1;}
+    .cert-meta{font-size:0.8rem;color:#888;position:relative;z-index:1;}
+    .cert-score{font-size:1.1rem;font-weight:700;color:#10774A;margin-top:0.5rem;position:relative;z-index:1;}
+    .cert-seal{font-size:2.5rem;margin:0.85rem 0 0.3rem;display:block;position:relative;z-index:1;}
+    .cert-signature{margin-top:1.5rem;position:relative;z-index:1;}
+    .cert-sig-line{width:200px;border-top:1px solid #141c2c;margin:0 auto 0.3rem;}
+    .cert-sig-name{font-size:1rem;font-weight:600;color:#141c2c;font-style:italic;}
+    .cert-sig-title{font-size:0.75rem;color:#888;letter-spacing:0.05em;}
+    .cert-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;position:relative;z-index:1;}
+    .cert-badge-pill{display:inline-block;background:#dcb161;color:#141C2C;font-size:0.68rem;font-weight:700;padding:4px 12px;border-radius:14px;letter-spacing:0.03em;animation:badgeFlip 0.5s ease-out backwards;}
+    #confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10005;}
+
+    /* ── REVIEW LIST ── */
+    .review-list{display:flex;flex-direction:column;gap:0.65rem;margin-top:1rem;}
+    .review-item{background:#f8f9fa;border-radius:10px;padding:0.8rem 1.1rem;border-left:4px solid #ddd;font-size:0.88rem;transition:transform 0.15s ease;}
+    .review-item:hover{transform:translateX(2px);}
+    .review-item.correct{border-color:#10774A;}
+    .review-item.wrong{border-color:#870101;}
+    .review-item .ri-q{font-weight:600;margin-bottom:0.35rem;color:#141c2c;}
+    .review-item .ri-ans{font-size:0.82rem;}
+
+    /* ── NAME INPUT ── */
+    .name-input-wrap{margin-bottom:1rem;}
+    .name-input-wrap label{display:block;font-size:0.85rem;font-weight:600;color:#232e54;margin-bottom:0.4rem;}
+    .name-input{width:100%;padding:0.82rem 1rem;border:2px solid #e0e3e8;border-radius:9px;font-size:1rem;color:#333;background:#fff;transition:border-color 0.2s ease,box-shadow 0.2s ease;-webkit-appearance:none;}
+    .name-input:focus{outline:none;border-color:#232e54;box-shadow:0 0 0 3px rgba(35,46,84,0.1);}
+
+    /* ── FEEDBACK FORM ── */
+    .fb-question{margin-bottom:18px;}
+    .fb-question label{display:block;font-weight:700;color:#141c2c;font-size:15px;margin-bottom:8px;}
+    .fb-question select,.fb-question textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:9px;font-size:14px;background:#fff;color:#333;-webkit-appearance:none;transition:border-color 0.2s ease;font-family:inherit;}
+    .fb-question select:focus,.fb-question textarea:focus{outline:none;border-color:#141c2c;}
+    .fb-question textarea{resize:vertical;min-height:80px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
+    .btn-primary{background:#141C2C;color:#fff;}
+    .btn-primary:hover{background:#232e54;}
+    .btn-secondary{background:#f0f4f8;color:#141c2c;}
+    .btn-block{width:100%;margin-top:12px;}
+    .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
+    .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
+    .callout strong{font-weight:700;}
+
+    /* ── DIVIDER / TAGS / UTILS ── */
+    .divider{border:none;border-top:2px solid #f0f4f8;margin:16px 0;}
+    .tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+    .tag-warn{background:#fff3cd;color:#856404;}
+    .tag-danger{background:#fce8e8;color:#7b1a1a;}
+    .tag-success{background:#d4edda;color:#155724;}
+    .tag-info{background:#d6e8f8;color:#174a7e;}
+    .tag-gold{background:#fffaed;color:#7a5c00;border:1px solid #dcb161;}
+    .text-center{text-align:center;}
+    .mt-4{margin-top:16px;}
+    .mb-4{margin-bottom:16px;}
+
+    /* ── SCORE CONFIRM ── */
+    .score-confirm{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;background:#d4edda;border-left:4px solid #10774A;color:#155724;display:none;}
+
+    /* ── ERROR ── */
+    .fb-error{background:#fce8e8;border-left:4px solid #870101;color:#721c24;border-radius:8px;padding:12px 16px;margin-bottom:14px;font-size:14px;display:none;}
+
+    .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
+
+    /* ── TEMPLATE REFERENCE TABLE ── */
+    .template-ref{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px;}
+    .template-ref th{background:#141c2c;color:#dcb161;padding:8px 10px;text-align:left;font-weight:700;}
+    .template-ref td{padding:7px 10px;border-bottom:1px solid #e0e3e8;vertical-align:top;}
+    .template-ref tr:last-child td{border-bottom:none;}
+    .template-ref tr:nth-child(even) td{background:#f8f9fa;}
+    .tmpl-num{font-weight:800;color:#141c2c;white-space:nowrap;}
+    .tmpl-warn{background:#fff3cd !important;font-weight:700;}
+
+    /* ── GAMIFICATION ANIMATIONS ── */
+    @keyframes streakPop{0%{transform:translateX(-50%) scale(0.5);opacity:0}50%{transform:translateX(-50%) scale(1.15)}100%{transform:translateX(-50%) scale(1);opacity:1}}
+    @keyframes fadeUp{to{opacity:0;transform:translateX(-50%) translateY(-20px);}}
+    @keyframes scaleBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes scaleCelebrate{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.2) rotate(-8deg)}50%{transform:scale(1.15) rotate(5deg)}75%{transform:scale(1.1) rotate(-3deg)}100%{transform:scale(1) rotate(0)}}
+    @keyframes scaleTilt{0%{transform:rotate(0)}30%{transform:rotate(10deg)}70%{transform:rotate(-8deg)}100%{transform:rotate(0)}}
+    @keyframes scaleTriumph{0%{transform:scale(1)}20%{transform:scale(1.3)}40%{transform:scale(1.25) rotate(-5deg)}60%{transform:scale(1.25) rotate(5deg)}80%{transform:scale(1.3)}100%{transform:scale(1)}}
+    @keyframes badgeFlip{0%{transform:rotateY(90deg) scale(0.5);opacity:0}60%{transform:rotateY(-10deg) scale(1.05)}100%{transform:rotateY(0) scale(1);opacity:1}}
+    @keyframes correctPulse{0%{box-shadow:0 0 0 0 rgba(39,174,96,0.4)}70%{box-shadow:0 0 0 12px rgba(39,174,96,0)}100%{box-shadow:0 0 0 0 rgba(39,174,96,0)}}
+    @keyframes incorrectShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+    .option-btn.correct{animation:correctPulse 0.6s ease-out;}
+    .option-btn.incorrect{animation:incorrectShake 0.4s ease-out;}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header>
+  <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
+  <div class="day-badge">LA-2 · LOR &amp; Document Generation</div>
+  <h1>LA-2 — LOR &amp; Document Generation</h1>
+  <p>Gunn Law Group · Legal Assistant Training</p>
+  <div class="score-bar">
+    <div>
+      <div class="score-label">BASE SCORE</div>
+      <div class="score-value" id="total-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">POSSIBLE</div>
+      <div class="score-value">200</div>
+    </div>
+    <div>
+      <div class="score-label">BONUS</div>
+      <div class="score-value" id="bonus-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">STREAK</div>
+      <div class="score-value" id="streak-display">0 🔥</div>
+    </div>
+  </div>
+</header>
+
+<!-- Sound Toggle -->
+<button id="soundToggle" style="position:fixed;top:12px;right:12px;z-index:10000;background:#1C2433;color:#c0c0c0;border:1px solid #333;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;" onclick="toggleSound()" title="Toggle Sound">🔇</button>
+<!-- Global Progress Bar -->
+<div id="globalProgress" style="position:fixed;top:0;left:0;width:100%;height:4px;background:#1C2433;z-index:9999;"><div id="globalProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,#dcb161,#e8c87a);transition:width 0.5s ease;"></div></div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="prog-label">Section 1 of 9</span>
+    <span id="prog-pct">0%</span>
+  </div>
+  <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="section-nav" id="section-nav">
+  <button class="nav-pill active" id="nav-0" onclick="goToSection(0)">1. Intro</button>
+  <button class="nav-pill" id="nav-1" onclick="goToSection(1)">2. Templates</button>
+  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. LOR Types</button>
+  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Med Records</button>
+  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. Demand/Settle</button>
+  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. CasePeer</button>
+  <button class="nav-pill" id="nav-6" onclick="goToSection(6)">7. Boss</button>
+  <button class="nav-pill" id="nav-7" onclick="goToSection(7)">8. Results</button>
+  <button class="nav-pill" id="nav-8" onclick="goToSection(8)">9. Feedback</button>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     SECTION 0 — INTRO / WELCOME
+════════════════════════════════════════════ -->
+<div class="section-card active" id="section-0">
+  <div class="section-header">
+    <div class="section-num">Section 1 · Welcome</div>
+    <h2>LOR &amp; Document Generation</h2>
+    <div class="section-subhead">Templates are the firm&rsquo;s franchise prototype. Use them exactly.</div>
+  </div>
+  <div class="section-body">
+    <div class="scenario">
+      <div class="scenario-tag">LA Track — Module 2</div>
+      <h3>A letter sent with the wrong template costs more than a stamp.</h3>
+      <p>Last month, an LA generated <span class="highlight">Template #09</span> for a demand package. The right number. But they pulled it from the <span class="urgent">Property Damage section</span> instead of the Demand section. The insurance adjuster received a property damage authorization for a <span class="highlight">$250,000 injuries case</span>. The client called the next day: <em>&ldquo;I thought you were demanding money, not authorizing my property claim.&rdquo;</em> Three weeks of credibility lost. One wrong section click.</p>
+    </div>
+    <div class="info-block">
+      <h4>&#128203; What You Will Learn</h4>
+      <ul>
+        <li>Why GLG uses numbered templates &mdash; the E-Myth franchise prototype principle</li>
+        <li>LOR types: At-Fault (#01), UM (#02), Spanish (#41), UM On Notice (#62)</li>
+        <li>Medical records &amp; bills templates (#04&ndash;07, #74, #75)</li>
+        <li>Demand templates (#08, #09), Holt demands (#32), and settlement paperwork (#106, #109)</li>
+        <li>CasePeer template workflow: generate, log, follow up, correct errors</li>
+        <li>The #09 dual-context trap &mdash; the single most dangerous click in the system</li>
+      </ul>
+    </div>
+    <div class="callout callout-warn"><strong>Prerequisite:</strong> LA-1 knowledge is tested in this module. The 14-day follow-up rule and records request protocols from LA-1 are embedded in LA-2 questions.</div>
+    <div class="callout callout-info"><strong>GLG has 42+ templates in CasePeer.</strong> You are not memorizing all 42. You are learning which template to reach for in each situation &mdash; and more importantly, why the wrong template is so costly.</div>
+    <div class="btn-group"><button class="btn btn-primary btn-block" onclick="goToSection(1)">Begin: The Template System &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — THE TEMPLATE SYSTEM (q1–q4)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-1">
+  <div class="section-header">
+    <div class="section-num">Section 2 · Template System · Up to 40 pts</div>
+    <h2>The LOR System — Why Templates Matter</h2>
+    <div class="section-subhead">The E-Myth franchise prototype applied to legal correspondence.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>&#9878; The Franchise Prototype</h4>
+      <p>In <em>The E-Myth Revisited</em>, Michael Gerber describes the franchise prototype as a &ldquo;systems solution to what would otherwise depend on each individual&rsquo;s judgment.&rdquo; GLG&rsquo;s 42+ CasePeer templates are that prototype. Every LOR, every demand letter, every HIPAA authorization — generated from a tested, compliant template so that quality never depends on who is at the keyboard that day.</p>
+    </div>
+    <div class="info-block">
+      <h4>&#128203; The Intake Package — What Goes Out First</h4>
+      <ul>
+        <li><strong>Within 48 hours of signing:</strong> Welcome letter, HIPAA Authorization, LOR to carrier(s)</li>
+        <li><strong>Within 72 hours:</strong> Records requests to all identified providers</li>
+        <li>Every template has a number. Every number has one correct context. Verify before generating.</li>
+      </ul>
+    </div>
+    <div class="callout callout-danger"><strong>&#9888; The #09 trap:</strong> Template #09 exists in TWO separate CasePeer sections &mdash; one as a Property Damage Authorization, one as the Female Demand Letter. Same number. Completely different documents. Completely different consequences. Always check which section you&rsquo;re in before clicking Generate.</div>
+
+    <div class="question-block" id="q1-block">
+      <div class="q-num">Question 1 of 26 &middot; 10 pts</div>
+      <div class="q-text">Why does GLG use numbered templates instead of drafting letters from scratch each time?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q1','a',false)" id="q1-a"><span class="opt-letter">A</span><span class="opt-text">To save time by letting LAs write in their own style using a base structure — templates are starting points that can be freely customized for each case.</span></button>
+        <button class="option-btn" onclick="answer('q1','b',false)" id="q1-b"><span class="opt-letter">B</span><span class="opt-text">Because the Georgia Bar requires standardized correspondence formats for personal injury firms handling insurance claims.</span></button>
+        <button class="option-btn" onclick="answer('q1','c',true)" id="q1-c"><span class="opt-letter">C</span><span class="opt-text">To ensure consistency, compliance, and speed — every client receives the same professional quality regardless of which staff member generates the document.</span></button>
+        <button class="option-btn" onclick="answer('q1','d',false)" id="q1-d"><span class="opt-letter">D</span><span class="opt-text">To reduce training time since new hires can start generating documents on day one without needing legal knowledge or supervision.</span></button>
+      </div>
+      <div class="feedback-box" id="q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="q2-block">
+      <div class="q-num">Question 2 of 26 &middot; 10 pts</div>
+      <div class="q-text">An LA generates Template #09 for a female client&rsquo;s demand package. They pull #09 from the Property Damage section instead of the Demand section. What is the MOST LIKELY consequence?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q2','a',false)" id="q2-a"><span class="opt-letter">A</span><span class="opt-text">The client won&rsquo;t notice because both templates have the same GLG header and formatting — the content difference is subtle enough to go undetected.</span></button>
+        <button class="option-btn" onclick="answer('q2','b',false)" id="q2-b"><span class="opt-letter">B</span><span class="opt-text">CasePeer will reject the template because the software validates that template numbers match the current case stage before allowing generation.</span></button>
+        <button class="option-btn" onclick="answer('q2','c',true)" id="q2-c"><span class="opt-letter">C</span><span class="opt-text">The insurance adjuster receives a property damage authorization instead of a $250K injuries demand — destroying the firm&rsquo;s credibility and delaying the case by weeks.</span></button>
+        <button class="option-btn" onclick="answer('q2','d',false)" id="q2-d"><span class="opt-letter">D</span><span class="opt-text">The paralegal will catch the error during their quality review process before the document is sent to the insurance carrier.</span></button>
+      </div>
+      <div class="feedback-box" id="q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="q3-block">
+      <div class="q-num">Question 3 of 26 &middot; 10 pts &middot; LA-1 Callback</div>
+      <div class="q-text">Based on your LA-1 training on records follow-up: when a records request gets no response, what is the firm&rsquo;s follow-up deadline and template?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q3','a',false)" id="q3-a"><span class="opt-letter">A</span><span class="opt-text">7 business days — then place a call to the provider and document the call in CasePeer as the first formal follow-up attempt.</span></button>
+        <button class="option-btn" onclick="answer('q3','b',true)" id="q3-b"><span class="opt-letter">B</span><span class="opt-text">14 days from the send date — generate Template #74 Follow-Up Records Request and log the follow-up in CasePeer immediately.</span></button>
+        <button class="option-btn" onclick="answer('q3','c',false)" id="q3-c"><span class="opt-letter">C</span><span class="opt-text">30 calendar days — this matches the provider&rsquo;s legal response window under HIPAA and is the appropriate internal follow-up trigger.</span></button>
+        <button class="option-btn" onclick="answer('q3','d',false)" id="q3-d"><span class="opt-letter">D</span><span class="opt-text">Follow up only when the paralegal or CM asks about the outstanding records during their weekly case review.</span></button>
+      </div>
+      <div class="feedback-box" id="q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="q4-block">
+      <div class="q-num">Question 4 of 26 &middot; 10 pts</div>
+      <div class="q-text">A new client signs the retainer agreement on Monday morning. The intake package must go out within 48 hours. Which template generates the HIPAA authorization form that providers require before releasing records?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q4','a',true)" id="q4-a"><span class="opt-letter">A</span><span class="opt-text">Template #44 — HIPAA Authorization. It goes out in the welcome package and is required before any provider will release records to the firm.</span></button>
+        <button class="option-btn" onclick="answer('q4','b',false)" id="q4-b"><span class="opt-letter">B</span><span class="opt-text">Template #12 — Letter of Protection. This authorizes providers to bill GLG for treatment and is the same as the HIPAA authorization for records purposes.</span></button>
+        <button class="option-btn" onclick="answer('q4','c',false)" id="q4-c"><span class="opt-letter">C</span><span class="opt-text">Template #65 — Accident Report Request. This requests the police report and authorizes law enforcement agencies to release incident documentation.</span></button>
+        <button class="option-btn" onclick="answer('q4','d',false)" id="q4-d"><span class="opt-letter">D</span><span class="opt-text">No template needed — HIPAA authorization is a standard form from the provider&rsquo;s office that the client signs when they check in for treatment.</span></button>
+      </div>
+      <div class="feedback-box" id="q4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s1-score" style="display:none;"><div class="score-display" id="s1-score-val"></div><div class="score-label">Section 2 Score</div></div>
+    <div class="btn-group" id="s1-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(2)">Next: LOR Types &amp; When to Use Each &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — LOR TYPES (q5–q9)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-2">
+  <div class="section-header">
+    <div class="section-num">Section 3 · LOR Types · Up to 40 pts</div>
+    <h2>LOR Types &amp; When to Use Each</h2>
+    <div class="section-subhead">One accident. Multiple carriers. Different templates for each relationship.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>&#128203; LOR Quick Reference</h4>
+      <table class="template-ref">
+        <tr><th>Template</th><th>Name</th><th>Used For</th></tr>
+        <tr><td class="tmpl-num">#01</td><td>LOR At-Fault</td><td>Opens the liability claim with the at-fault driver&rsquo;s carrier</td></tr>
+        <tr><td class="tmpl-num">#02</td><td>LOR UM</td><td>Formally opens the Uninsured/Underinsured Motorist claim</td></tr>
+        <tr><td class="tmpl-num">#41</td><td>LOR Spanish</td><td>Spanish-language version of At-Fault LOR for Spanish-speaking clients</td></tr>
+        <tr><td class="tmpl-num">#40</td><td>Welcome Spanish</td><td>Spanish-language welcome letter for Spanish-speaking clients</td></tr>
+        <tr><td class="tmpl-num">#62</td><td>UM Insurer On Notice</td><td>Protective notice to UM carrier that a UM claim MAY follow — NOT the same as opening the claim (#02)</td></tr>
+        <tr><td class="tmpl-num">#65</td><td>Accident Report Request</td><td>Requests police/accident report from law enforcement</td></tr>
+        <tr><td class="tmpl-num">#31</td><td>Spoliation Letter</td><td>Preserves evidence (commercial vehicles, cameras, black boxes)</td></tr>
+        <tr class="tmpl-warn"><td class="tmpl-num">&#9888; #09</td><td>DUAL CONTEXT</td><td>Property Damage section = PD Auth. Demand section = Female Demand. VERIFY SECTION.</td></tr>
+      </table>
+    </div>
+    <div class="callout callout-warn"><strong>Bilingual clients:</strong> Spanish-preferred clients get BOTH a Spanish LOR (#41) for their own records AND an English LOR (#01) to the carrier. The carrier operates in English. The client communication is in Spanish. Both versions are required.</div>
+
+    <div class="question-block" id="q5-block">
+      <div class="q-num">Question 5 of 26 &middot; 10 pts</div>
+      <div class="q-text">A new client was rear-ended by a driver who ran a red light. The police report confirms the other driver is 100% at fault. Which template opens the claim with the at-fault carrier?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q5','a',true)" id="q5-a"><span class="opt-letter">A</span><span class="opt-text">Template #01 — LOR At-Fault. This establishes GLG as counsel of record and opens the liability claim with the at-fault driver&rsquo;s insurance carrier.</span></button>
+        <button class="option-btn" onclick="answer('q5','b',false)" id="q5-b"><span class="opt-letter">B</span><span class="opt-text">Template #02 — LOR UM. This is the standard LOR for all new claims, regardless of fault determination at the time of intake.</span></button>
+        <button class="option-btn" onclick="answer('q5','c',false)" id="q5-c"><span class="opt-letter">C</span><span class="opt-text">Template #62 — UM Insurer On Notice. This puts the carrier on notice immediately and is the first LOR sent in all motor vehicle accident cases.</span></button>
+        <button class="option-btn" onclick="answer('q5','d',false)" id="q5-d"><span class="opt-letter">D</span><span class="opt-text">Template #31 — Spoliation Letter. This is sent first in all accident cases to preserve the at-fault driver&rsquo;s insurance records and claims data.</span></button>
+      </div>
+      <div class="feedback-box" id="q5-fb"></div>
+    </div>
+
+    <div class="question-block" id="q6-block">
+      <div class="q-num">Question 6 of 26 &middot; 10 pts</div>
+      <div class="q-text">The client&rsquo;s UM carrier needs to be put on notice that a UM claim may follow — but the UM claim itself has not been formally opened yet. Which template, and what is it NOT?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q6','a',false)" id="q6-a"><span class="opt-letter">A</span><span class="opt-text">Template #02 — this opens the UM claim AND puts the carrier on notice simultaneously, handling both functions in a single document.</span></button>
+        <button class="option-btn" onclick="answer('q6','b',false)" id="q6-b"><span class="opt-letter">B</span><span class="opt-text">Template #01 — send the same At-Fault LOR to both the liability carrier and the UM carrier. Both carriers get the same notice at the same time.</span></button>
+        <button class="option-btn" onclick="answer('q6','c',true)" id="q6-c"><span class="opt-letter">C</span><span class="opt-text">Template #62 — UM Insurer On Notice. This is NOT Template #02, which formally opens the UM claim itself. #62 is a protective notice; the UM claim can be opened later if needed.</span></button>
+        <button class="option-btn" onclick="answer('q6','d',false)" id="q6-d"><span class="opt-letter">D</span><span class="opt-text">Template #41 — the Spanish-language LOR serves as both the formal UM notice and the at-fault LOR for cases with any UM exposure.</span></button>
+      </div>
+      <div class="feedback-box" id="q6-fb"></div>
+    </div>
+
+    <div class="question-block" id="q7-block">
+      <div class="q-num">Question 7 of 26 &middot; 10 pts</div>
+      <div class="q-text">The CM tells you the client is bilingual and Spanish-preferred. The paralegal says &ldquo;send everything in Spanish AND English.&rdquo; For the initial at-fault LOR to the carrier, which templates do you generate?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q7','a',true)" id="q7-a"><span class="opt-letter">A</span><span class="opt-text">Template #01 (English LOR At-Fault) + Template #41 (Spanish LOR) — both to the same carrier. Bilingual client = both language versions are generated.</span></button>
+        <button class="option-btn" onclick="answer('q7','b',false)" id="q7-b"><span class="opt-letter">B</span><span class="opt-text">Template #41 (Spanish LOR) only — Spanish-preferred means Spanish language takes precedence and English versions are not generated for bilingual clients.</span></button>
+        <button class="option-btn" onclick="answer('q7','c',false)" id="q7-c"><span class="opt-letter">C</span><span class="opt-text">Template #01 (English LOR) only — the insurance carrier operates in English and only the English version matters for the firm&rsquo;s claim opening communication.</span></button>
+        <button class="option-btn" onclick="answer('q7','d',false)" id="q7-d"><span class="opt-letter">D</span><span class="opt-text">Template #40 (Spanish Welcome) + Template #41 (Spanish LOR) — the welcome and LOR are always sent together in the client&rsquo;s preferred language only.</span></button>
+      </div>
+      <div class="feedback-box" id="q7-fb"></div>
+    </div>
+
+    <div class="question-block" id="q8-block">
+      <div class="q-num">Question 8 of 26 &middot; 10 pts</div>
+      <div class="q-text">A client was injured as a passenger in a friend&rsquo;s car. The friend&rsquo;s carrier is Geico. The at-fault driver who rear-ended them is insured by Progressive. The client&rsquo;s own UM carrier is Allstate. How many separate LOR or notice templates do you generate at intake?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q8','a',false)" id="q8-a"><span class="opt-letter">A</span><span class="opt-text">One — Template #01 to Progressive (at-fault carrier) only. The client is a passenger, so their own carrier and the friend&rsquo;s carrier are not involved in the liability claim.</span></button>
+        <button class="option-btn" onclick="answer('q8','b',false)" id="q8-b"><span class="opt-letter">B</span><span class="opt-text">Two — Template #01 to Progressive + Template #02 or #62 to Allstate (UM carrier). The friend&rsquo;s carrier is not involved because the client wasn&rsquo;t driving.</span></button>
+        <button class="option-btn" onclick="answer('q8','c',true)" id="q8-c"><span class="opt-letter">C</span><span class="opt-text">Three — Template #01 to Progressive (at-fault) + Template #01 to Geico (friend&rsquo;s carrier, which may have med-pay or liability coverage for passengers) + Template #62 to Allstate (UM notice).</span></button>
+        <button class="option-btn" onclick="answer('q8','d',false)" id="q8-d"><span class="opt-letter">D</span><span class="opt-text">Four — one LOR to each of the three carriers plus a Spoliation Letter to all parties to preserve the vehicles and any dashcam footage from the collision.</span></button>
+      </div>
+      <div class="feedback-box" id="q8-fb"></div>
+    </div>
+
+    <div class="question-block" id="q9-block">
+      <div class="q-num">Question 9 of 26 &middot; BONUS &middot; 15 pts &middot; Generation Activity</div>
+      <div class="q-text">New client Maria Gonzalez. Spanish-speaking. Rear-ended by an uninsured driver. Three providers identified. Maria&rsquo;s own carrier is State Farm. Which template sequence is complete and in the correct order for her intake package?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q9','a',false)" id="q9-a"><span class="opt-letter">A</span><span class="opt-text">#41 Spanish LOR, #02 UM LOR, #44 HIPAA Auth — just the three essential documents for a Spanish-speaking UM case.</span></button>
+        <button class="option-btn" onclick="answer('q9','b',false)" id="q9-b"><span class="opt-letter">B</span><span class="opt-text">#41 Spanish LOR, #40 Spanish Welcome, #44 HIPAA Auth, #02 UM LOR — four documents covering language, welcome, auth, and UM claim opening.</span></button>
+        <button class="option-btn" onclick="answer('q9','c',false)" id="q9-c"><span class="opt-letter">C</span><span class="opt-text">#01 At-Fault LOR, #44 HIPAA Auth, #02 UM LOR, #62 UM On Notice, #65 Accident Report — all coverage bases, but missing Spanish templates for a Spanish-speaking client.</span></button>
+        <button class="option-btn" onclick="answer('q9','d',true)" id="q9-d"><span class="opt-letter">D</span><span class="opt-text">#41 Spanish LOR (to at-fault — uninsured, but document sent), #40 Spanish Welcome, #44 HIPAA Auth, #02 UM LOR to State Farm, #62 UM On Notice to State Farm, #65 Accident Report Request — full sequence, NO #01 because there is no at-fault carrier to contact.</span></button>
+      </div>
+      <div class="feedback-box" id="q9-fb"></div>
+    </div>
+
+    <div class="section-score" id="s2-score" style="display:none;"><div class="score-display" id="s2-score-val"></div><div class="score-label">Section 3 Score</div></div>
+    <div class="btn-group" id="s2-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(3)">Next: Medical Records &amp; Bills Templates &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — MEDICAL RECORDS & BILLS (q10–q13)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-3">
+  <div class="section-header">
+    <div class="section-num">Section 4 · Medical Records &amp; Bills · Up to 40 pts</div>
+    <h2>Medical Records &amp; Bills Templates</h2>
+    <div class="section-subhead">Precision matters. Request exactly what you need.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>&#128203; Records &amp; Bills Template Reference</h4>
+      <table class="template-ref">
+        <tr><th>Template</th><th>Name</th><th>Used For</th></tr>
+        <tr><td class="tmpl-num">#04</td><td>Full Medical Records Request</td><td>Request all records AND bills from a provider</td></tr>
+        <tr><td class="tmpl-num">#05</td><td>Bills Only Request</td><td>Billing statements only — no treatment notes</td></tr>
+        <tr><td class="tmpl-num">#06</td><td>Medical Records Only</td><td>Treatment notes, SOAP notes, clinical records — no bills</td></tr>
+        <tr><td class="tmpl-num">#07</td><td>SOAP Notes Only</td><td>Narrow request for just the clinical progress notes</td></tr>
+        <tr><td class="tmpl-num">#12</td><td>Letter of Protection (LOP)</td><td>Authorizes provider to defer billing until case settles</td></tr>
+        <tr><td class="tmpl-num">#14</td><td>Treatment Gap Letter</td><td>Explains a gap in treatment to the adjuster</td></tr>
+        <tr><td class="tmpl-num">#74</td><td>Follow-Up Records Request</td><td>14-day follow-up when provider has not responded</td></tr>
+        <tr><td class="tmpl-num">#75</td><td>Updated Records Request</td><td>Request for updated records from a provider who has already sent initial records</td></tr>
+      </table>
+    </div>
+    <div class="callout callout-info"><strong>Specificity saves time.</strong> Sending a &ldquo;Full Records Request&rdquo; (#04) when you only need what is missing creates re-processing work for the provider and often delays the actual delivery. Use the most targeted template available.</div>
+    <div class="callout callout-warn"><strong>Treatment gaps matter.</strong> A gap in treatment &mdash; even if the client just missed appointments &mdash; is something adjusters use to reduce demand value. Never file and forget. Flag every gap to the CM.</div>
+
+    <div class="question-block" id="q10-block">
+      <div class="q-num">Question 10 of 26 &middot; 10 pts</div>
+      <div class="q-text">A provider sends billing records but no treatment notes. Which template requests the missing clinical records without re-requesting the bills you already have?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q10','a',false)" id="q10-a"><span class="opt-letter">A</span><span class="opt-text">Template #04 — Full Medical Records. This is the standard request that ensures you receive everything from the provider, including whatever may have been missed initially.</span></button>
+        <button class="option-btn" onclick="answer('q10','b',false)" id="q10-b"><span class="opt-letter">B</span><span class="opt-text">Template #05 — Bills Only Request. Since the provider already has your request on file, a bills-only follow-up will prompt them to resend the complete package.</span></button>
+        <button class="option-btn" onclick="answer('q10','c',false)" id="q10-c"><span class="opt-letter">C</span><span class="opt-text">Template #07 — SOAP Notes Only. This is the precise template for clinical documentation and is the standard choice when billing records arrive without treatment notes.</span></button>
+        <button class="option-btn" onclick="answer('q10','d',true)" id="q10-d"><span class="opt-letter">D</span><span class="opt-text">Template #06 — Medical Records Only. This targets the missing treatment notes specifically without re-requesting billing records you already received.</span></button>
+      </div>
+      <div class="feedback-box" id="q10-fb"></div>
+    </div>
+
+    <div class="question-block" id="q11-block">
+      <div class="q-num">Question 11 of 26 &middot; 10 pts</div>
+      <div class="q-text">It has been 14 days since the initial records request with no response from the provider. What are the next TWO required steps?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q11','a',true)" id="q11-a"><span class="opt-letter">A</span><span class="opt-text">Generate Template #74 Follow-Up Records Request AND log the follow-up in CasePeer with the date, provider, and next 14-day follow-up task set. Both steps are required.</span></button>
+        <button class="option-btn" onclick="answer('q11','b',false)" id="q11-b"><span class="opt-letter">B</span><span class="opt-text">Call the provider directly and document the call in CasePeer, then wait another 14 days before sending any written follow-up communication.</span></button>
+        <button class="option-btn" onclick="answer('q11','c',false)" id="q11-c"><span class="opt-letter">C</span><span class="opt-text">Escalate immediately to the paralegal since 14 days with no response indicates a non-responsive provider requiring attorney-level intervention.</span></button>
+        <button class="option-btn" onclick="answer('q11','d',false)" id="q11-d"><span class="opt-letter">D</span><span class="opt-text">Generate Template #75 Updated Records Request since the original request is now stale and a fresh request with new authorization is more likely to succeed.</span></button>
+      </div>
+      <div class="feedback-box" id="q11-fb"></div>
+    </div>
+
+    <div class="question-block" id="q12-block">
+      <div class="q-num">Question 12 of 26 &middot; 10 pts · Cross-Topic</div>
+      <div class="q-text">Records arrive from a treating chiropractor showing a 3-week gap between visits in the middle of an active treatment course. Based on your understanding of how medical records affect case value, what should you do?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q12','a',false)" id="q12-a"><span class="opt-letter">A</span><span class="opt-text">File the records as received — gaps in treatment are the client&rsquo;s personal decision and have no bearing on the demand value or how the adjuster evaluates the case.</span></button>
+        <button class="option-btn" onclick="answer('q12','b',true)" id="q12-b"><span class="opt-letter">B</span><span class="opt-text">Flag the gap to the CM immediately — treatment gaps weaken the demand and may need a written explanation via Template #14 Treatment Gap Letter to address the adjuster&rsquo;s likely objection.</span></button>
+        <button class="option-btn" onclick="answer('q12','c',false)" id="q12-c"><span class="opt-letter">C</span><span class="opt-text">Request supplemental records from the provider to fill the gap — the missing visit notes may have been accidentally excluded from the records production.</span></button>
+        <button class="option-btn" onclick="answer('q12','d',false)" id="q12-d"><span class="opt-letter">D</span><span class="opt-text">Note it in CasePeer but wait until demand preparation to address it — the paralegal will assess whether the gap needs explaining when they build the demand package.</span></button>
+      </div>
+      <div class="feedback-box" id="q12-fb"></div>
+    </div>
+
+    <div class="question-block" id="q13-block">
+      <div class="q-num">Question 13 of 26 &middot; 10 pts</div>
+      <div class="q-text">A client&rsquo;s ER visit generates billing from multiple sources. Beyond the hospital facility itself, which THREE separate entities bill independently and each require their own records request?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q13','a',true)" id="q13-a"><span class="opt-letter">A</span><span class="opt-text">ER physician group (the doctor who treated the patient), radiology group (the radiologist who read the imaging), and ambulance/EMS — each is a completely separate billing entity from the hospital.</span></button>
+        <button class="option-btn" onclick="answer('q13','b',false)" id="q13-b"><span class="opt-letter">B</span><span class="opt-text">Attending physician, specialist called in for consultation, and the hospital pharmacy — these three additional providers commonly generate separate bills in an ER visit.</span></button>
+        <button class="option-btn" onclick="answer('q13','c',false)" id="q13-c"><span class="opt-letter">C</span><span class="opt-text">Admitting nurse, discharge planner, and billing department — these are the three people who handled the patient and each generates a separate billing record.</span></button>
+        <button class="option-btn" onclick="answer('q13','d',false)" id="q13-d"><span class="opt-letter">D</span><span class="opt-text">Emergency room, urgent care (if visited first), and primary care physician — these three facilities are routinely involved in a post-accident treatment chain.</span></button>
+      </div>
+      <div class="feedback-box" id="q13-fb"></div>
+    </div>
+
+    <div class="section-score" id="s3-score" style="display:none;"><div class="score-display" id="s3-score-val"></div><div class="score-label">Section 4 Score</div></div>
+    <div class="btn-group" id="s3-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(4)">Next: Demand &amp; Settlement Templates &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — DEMAND & SETTLEMENT (q14–q18)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-4">
+  <div class="section-header">
+    <div class="section-num">Section 5 · Demand &amp; Settlement · Up to 40 pts</div>
+    <h2>Demand &amp; Settlement Templates</h2>
+    <div class="section-subhead">From demand to close — every stage has a template.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>&#128203; Demand &amp; Settlement Reference</h4>
+      <table class="template-ref">
+        <tr><th>Template</th><th>Name</th><th>Used For</th></tr>
+        <tr><td class="tmpl-num">#08</td><td>Demand Letter (Male)</td><td>Demand package for male clients</td></tr>
+        <tr class="tmpl-warn"><td class="tmpl-num">&#9888; #09</td><td>Demand Letter (Female) / PD Auth</td><td>DEMAND section = Female Demand. PD section = PD Authorization. VERIFY CONTEXT.</td></tr>
+        <tr><td class="tmpl-num">#22</td><td>30-Day Follow-Up Demand</td><td>No response from adjuster after 30 days</td></tr>
+        <tr><td class="tmpl-num">#23</td><td>Counteroffer Letter</td><td>Responding to a low offer from the carrier</td></tr>
+        <tr><td class="tmpl-num">#24</td><td>Policy Limits Demand</td><td>Formal demand for full policy limits — specific criteria required</td></tr>
+        <tr><td class="tmpl-num">#32</td><td>Holt Demand</td><td>O.C.G.A. § 9-11-67.1 statutory demand — attorney-directed, 6 required elements</td></tr>
+        <tr><td class="tmpl-num">#106</td><td>Settlement Statement</td><td>Documents proceeds, fees, liens, and client net at settlement</td></tr>
+        <tr><td class="tmpl-num">#109</td><td>Release of Claims</td><td>Client releases all claims in exchange for settlement payment</td></tr>
+      </table>
+    </div>
+    <div class="callout callout-danger"><strong>Holt Demand Alert:</strong> Template #32 requires ALL SIX statutory components under O.C.G.A. § 9-11-67.1. ONE missing element = invalid Holt demand = ZERO statutory penalties. The LA prepares the template only on attorney direction. Never generate #32 without explicit instruction from the managing attorney.</div>
+
+    <div class="question-block" id="q14-block">
+      <div class="q-num">Question 14 of 26 &middot; 10 pts</div>
+      <div class="q-text">The CM says the demand was sent 35 days ago with no response from the adjuster. What is the correct template and CasePeer action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q14','a',true)" id="q14-a"><span class="opt-letter">A</span><span class="opt-text">Template #22 — 30-Day Follow-Up Demand. Generate and send it, log in CasePeer with date and send method, and flag the non-responsive adjuster to the CM.</span></button>
+        <button class="option-btn" onclick="answer('q14','b',false)" id="q14-b"><span class="opt-letter">B</span><span class="opt-text">Template #23 — Counteroffer. An adjuster who hasn&rsquo;t responded within 35 days is effectively rejecting the demand, and a counteroffer resets the clock with a new number.</span></button>
+        <button class="option-btn" onclick="answer('q14','c',false)" id="q14-c"><span class="opt-letter">C</span><span class="opt-text">Template #24 — Policy Limits Demand. Escalating to policy limits at 35 days demonstrates seriousness and often prompts an adjuster response when the original demand was ignored.</span></button>
+        <button class="option-btn" onclick="answer('q14','d',false)" id="q14-d"><span class="opt-letter">D</span><span class="opt-text">Wait until 45 days before following up — Georgia law gives insurance companies 45 days to respond to a personal injury demand under O.C.G.A. § 33-6-34.</span></button>
+      </div>
+      <div class="feedback-box" id="q14-fb"></div>
+    </div>
+
+    <div class="question-block" id="q15-block">
+      <div class="q-num">Question 15 of 26 &middot; 10 pts</div>
+      <div class="q-text">What is a Holt demand and when does the attorney direct you to generate Template #32?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q15','a',true)" id="q15-a"><span class="opt-letter">A</span><span class="opt-text">A Holt demand is a time-limited statutory offer under O.C.G.A. § 9-11-67.1 that triggers statutory penalties if the insurer rejects it and the plaintiff later wins more at trial. Template #32 is used when the attorney determines policy limits are available and maximum statutory leverage is warranted.</span></button>
+        <button class="option-btn" onclick="answer('q15','b',false)" id="q15-b"><span class="opt-letter">B</span><span class="opt-text">A Holt demand is a standard demand letter with a hard deadline — Template #32 is used when the adjuster hasn&rsquo;t responded to the original demand within 30 days and a deadline is needed.</span></button>
+        <button class="option-btn" onclick="answer('q15','c',false)" id="q15-c"><span class="opt-letter">C</span><span class="opt-text">A Holt demand is a litigation-stage demand filed with the court as a pre-trial settlement attempt — Template #32 is generated after the suit is filed and discovery has closed.</span></button>
+        <button class="option-btn" onclick="answer('q15','d',false)" id="q15-d"><span class="opt-letter">D</span><span class="opt-text">A Holt demand is any demand that &ldquo;holds&rdquo; the settlement offer open for a specific time period — Template #32 is used for any policy limits demand when the firm wants a 30-day response deadline.</span></button>
+      </div>
+      <div class="feedback-box" id="q15-fb"></div>
+    </div>
+
+    <div class="question-block" id="q16-block">
+      <div class="q-num">Question 16 of 26 &middot; 10 pts</div>
+      <div class="q-text">A settlement offer comes in and the CM says &ldquo;we&rsquo;re accepting — generate the settlement paperwork.&rdquo; What are the TWO templates required to close the case?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q16','a',true)" id="q16-a"><span class="opt-letter">A</span><span class="opt-text">Template #109 (Release of Claims) + Template #106 (Settlement Statement). The release closes the claim; the settlement statement documents how the proceeds are distributed.</span></button>
+        <button class="option-btn" onclick="answer('q16','b',false)" id="q16-b"><span class="opt-letter">B</span><span class="opt-text">Template #22 (30-Day Follow-Up) + Template #109 (Release). The follow-up confirms the offer before the release is generated and sent to the carrier.</span></button>
+        <button class="option-btn" onclick="answer('q16','c',false)" id="q16-c"><span class="opt-letter">C</span><span class="opt-text">Template #106 (Settlement Statement) + Template #23 (Counteroffer Acceptance). The counteroffer acceptance document closes the negotiation and the statement handles disbursement.</span></button>
+        <button class="option-btn" onclick="answer('q16','d',false)" id="q16-d"><span class="opt-letter">D</span><span class="opt-text">Template #109 (Release of Claims) + Template #12 (Letter of Protection). The LOP must be formally closed with the provider network before the release is sent to the carrier.</span></button>
+      </div>
+      <div class="feedback-box" id="q16-fb"></div>
+    </div>
+
+    <div class="question-block" id="q17-block">
+      <div class="q-num">Question 17 of 26 &middot; 10 pts</div>
+      <div class="q-text">A Holt demand under O.C.G.A. § 9-11-67.1 has SIX required components. If even ONE component is missing, what is the legal consequence?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q17','a',false)" id="q17-a"><span class="opt-letter">A</span><span class="opt-text">The insurance company can formally request the missing component and the demand remains valid during a cure period, with all statutory benefits preserved.</span></button>
+        <button class="option-btn" onclick="answer('q17','b',false)" id="q17-b"><span class="opt-letter">B</span><span class="opt-text">The demand is still legally valid but the statutory penalties for rejection are reduced to half — the firm loses some but not all of its leverage.</span></button>
+        <button class="option-btn" onclick="answer('q17','c',false)" id="q17-c"><span class="opt-letter">C</span><span class="opt-text">The court may waive the missing requirement if the remaining five components are substantially compliant with the statute&rsquo;s intent.</span></button>
+        <button class="option-btn" onclick="answer('q17','d',true)" id="q17-d"><span class="opt-letter">D</span><span class="opt-text">The demand is NOT a valid Holt demand and ALL statutory penalties are forfeited — the firm loses its most powerful pre-suit leverage tool entirely. No cure, no reduction, no waiver.</span></button>
+      </div>
+      <div class="feedback-box" id="q17-fb"></div>
+    </div>
+
+    <div class="question-block" id="q18-block">
+      <div class="q-num">Question 18 of 26 &middot; BONUS &middot; 10 pts &middot; Self-Assessment</div>
+      <div class="q-text">Calibration check: Could you name the 8-step template sequence for moving a case from the Treating stage to the Demand stage — without looking at the Quick Reference guide? Choose the answer that best reflects your current knowledge level.</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q18','a',true)" id="q18-a"><span class="opt-letter">A</span><span class="opt-text">Yes — I can name all 8 steps: (1) Verify all records received, (2) Run Demand Package Prep Guide checklist, (3) Generate #08 or #09, (4) Attach records chronologically, (5) Attach bills summary, (6) Generate supporting docs, (7) Log send in CasePeer, (8) Set 30-day follow-up with Template #22.</span></button>
+        <button class="option-btn" onclick="answer('q18','b',false)" id="q18-b"><span class="opt-letter">B</span><span class="opt-text">I know most of it — records verified, generate demand, attach documents, log in CasePeer — but I would need to check the Quick Reference for the exact order and template numbers.</span></button>
+        <button class="option-btn" onclick="answer('q18','c',false)" id="q18-c"><span class="opt-letter">C</span><span class="opt-text">Not confident — I know a demand letter is involved but would need to review the Demand Package Preparation Guide from start to finish before attempting it.</span></button>
+        <button class="option-btn" onclick="answer('q18','d',false)" id="q18-d"><span class="opt-letter">D</span><span class="opt-text">I have not seen this process yet — the Treating to Demand transition was not covered in my onboarding and I would need additional training before attempting it.</span></button>
+      </div>
+      <div class="feedback-box" id="q18-fb"></div>
+    </div>
+
+    <div class="section-score" id="s4-score" style="display:none;"><div class="score-display" id="s4-score-val"></div><div class="score-label">Section 5 Score</div></div>
+    <div class="btn-group" id="s4-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(5)">Next: CasePeer Template Workflow &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — CASEPEER WORKFLOW (q19–q22)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-5">
+  <div class="section-header">
+    <div class="section-num">Section 6 · CasePeer Workflow · Up to 40 pts</div>
+    <h2>CasePeer Template Workflow — Hands-On</h2>
+    <div class="section-subhead">Generate. Log. Follow up. Fix errors the right way.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>&#128203; Template Workflow — Step by Step</h4>
+      <ol>
+        <li>Navigate to the correct CasePeer section (verify the section before touching the template)</li>
+        <li>Select template by number — confirm the full template name matches your intent</li>
+        <li>Fill in all required fields: client name, carrier, adjuster, addresses, date</li>
+        <li>Generate PDF — review it before sending</li>
+        <li>Send via appropriate method (fax, mail, certified mail per template type)</li>
+        <li>Log the send in CasePeer: date, recipient, template number used</li>
+        <li>Set follow-up task (14 days for records; 30 days for demand)</li>
+      </ol>
+    </div>
+    <div class="callout callout-danger"><strong>Error rule:</strong> If a generated document has incorrect information, DELETE it and REGENERATE from scratch. Never manually edit template output with PDF tools, Word, or any other software. Template output is a firm document &mdash; you do not alter it.</div>
+    <div class="callout callout-warn"><strong>If it is not logged in CasePeer, it did not happen.</strong> The send log is the firm&rsquo;s documentation that the letter went out. No log = no record = no accountability.</div>
+
+    <div class="question-block" id="q19-block">
+      <div class="q-num">Question 19 of 26 &middot; 10 pts</div>
+      <div class="q-text">After generating and sending an LOR to the at-fault carrier, what must you do in CasePeer?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q19','a',false)" id="q19-a"><span class="opt-letter">A</span><span class="opt-text">Mark the case status as &ldquo;LOR Sent&rdquo; in the case stage dropdown — this updates the CasePeer dashboard so the CM can see the claim has been opened.</span></button>
+        <button class="option-btn" onclick="answer('q19','b',false)" id="q19-b"><span class="opt-letter">B</span><span class="opt-text">Forward the generated PDF to the managing attorney for review before filing it in the case notes — all carrier correspondence requires attorney sign-off.</span></button>
+        <button class="option-btn" onclick="answer('q19','c',true)" id="q19-c"><span class="opt-letter">C</span><span class="opt-text">Log the send in case notes with the date, carrier/recipient name, template number used, and set a 14-day follow-up task. Both the log and the follow-up task are required.</span></button>
+        <button class="option-btn" onclick="answer('q19','d',false)" id="q19-d"><span class="opt-letter">D</span><span class="opt-text">Upload the PDF to the case&rsquo;s OneDrive folder and paste the shared link into CasePeer notes — this creates a document trail without requiring additional CasePeer entries.</span></button>
+      </div>
+      <div class="feedback-box" id="q19-fb"></div>
+    </div>
+
+    <div class="question-block" id="q20-block">
+      <div class="q-num">Question 20 of 26 &middot; 10 pts</div>
+      <div class="q-text">You review a generated LOR and notice the provider name is incorrect — it shows the wrong chiropractor. What is the correct procedure?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q20','a',true)" id="q20-a"><span class="opt-letter">A</span><span class="opt-text">Delete the incorrect document entirely. Regenerate from CasePeer with the correct provider name. Do NOT manually edit template output under any circumstances.</span></button>
+        <button class="option-btn" onclick="answer('q20','b',false)" id="q20-b"><span class="opt-letter">B</span><span class="opt-text">Open the PDF in a PDF editor and correct the provider name — this is a minor administrative fix that doesn&rsquo;t require regenerating the entire document.</span></button>
+        <button class="option-btn" onclick="answer('q20','c',false)" id="q20-c"><span class="opt-letter">C</span><span class="opt-text">Send it anyway with a cover note explaining the correct provider name — the carrier will understand the clarification and the letter is otherwise complete and accurate.</span></button>
+        <button class="option-btn" onclick="answer('q20','d',false)" id="q20-d"><span class="opt-letter">D</span><span class="opt-text">Forward it to the paralegal for correction since they have elevated permissions in CasePeer that allow editing of generated template output that LAs cannot access.</span></button>
+      </div>
+      <div class="feedback-box" id="q20-fb"></div>
+    </div>
+
+    <div class="question-block" id="q21-block">
+      <div class="q-num">Question 21 of 26 &middot; 10 pts &middot; NH-1 Retrieval</div>
+      <div class="q-text">Per GLG&rsquo;s operating system principle (from your NH-1 training), what core concept does the template workflow embody?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q21','a',false)" id="q21-a"><span class="opt-letter">A</span><span class="opt-text">The client-centered principle — templates ensure every client receives personalized correspondence that reflects the specific details of their individual case.</span></button>
+        <button class="option-btn" onclick="answer('q21','b',false)" id="q21-b"><span class="opt-letter">B</span><span class="opt-text">The delegation principle — templates allow non-attorneys to generate legally precise correspondence that would otherwise require attorney drafting for every case.</span></button>
+        <button class="option-btn" onclick="answer('q21','c',true)" id="q21-c"><span class="opt-letter">C</span><span class="opt-text">The E-Myth franchise prototype — systems create consistent quality so the output depends on the system, not on the individual operating it. Templates ARE the system.</span></button>
+        <button class="option-btn" onclick="answer('q21','d',false)" id="q21-d"><span class="opt-letter">D</span><span class="opt-text">The accountability principle — templates create a numbered paper trail that management can audit to evaluate individual staff performance on a case-by-case basis.</span></button>
+      </div>
+      <div class="feedback-box" id="q21-fb"></div>
+    </div>
+
+    <div class="question-block" id="q22-block">
+      <div class="q-num">Question 22 of 26 &middot; 10 pts</div>
+      <div class="q-text">You are generating templates for a new case. CasePeer shows Template #09 appearing in BOTH the Property Damage section AND the Demand section. What must you do BEFORE clicking Generate?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q22','a',true)" id="q22-a"><span class="opt-letter">A</span><span class="opt-text">Verify which section you are currently in — the Property Damage section produces a PD Authorization; the Demand section produces a Female Demand Letter. Same number, completely different documents.</span></button>
+        <button class="option-btn" onclick="answer('q22','b',false)" id="q22-b"><span class="opt-letter">B</span><span class="opt-text">It doesn&rsquo;t matter which section you access Template #09 from — CasePeer automatically serves the correct version based on the case&rsquo;s current stage in the system.</span></button>
+        <button class="option-btn" onclick="answer('q22','c',false)" id="q22-c"><span class="opt-letter">C</span><span class="opt-text">Generate from whichever section loads first and verify the content afterward — a quick review before sending will catch any section mismatch before it reaches the carrier.</span></button>
+        <button class="option-btn" onclick="answer('q22','d',false)" id="q22-d"><span class="opt-letter">D</span><span class="opt-text">Ask the paralegal which version of #09 to pull — this is a judgment call about case strategy that is above the LA&rsquo;s decision-making authority.</span></button>
+      </div>
+      <div class="feedback-box" id="q22-fb"></div>
+    </div>
+
+    <div class="section-score" id="s5-score" style="display:none;"><div class="score-display" id="s5-score-val"></div><div class="score-label">Section 6 Score</div></div>
+    <div class="btn-group" id="s5-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(6)">Next: Boss Challenge — The Alicia Morgan Case &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — BOSS CHALLENGE (q23–q26)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-6">
+  <div class="section-header">
+    <div class="section-num">Section 7 · Boss Challenge · Bonus Points Only</div>
+    <h2>The Boss Challenge</h2>
+  </div>
+  <div class="section-body">
+    <div class="boss-header">
+      <div class="boss-icon">&#9878;&#65039;</div>
+      <h3>The Alicia Morgan Case &mdash; Everything at Once</h3>
+      <p>Multiple carriers. Bilingual client. Commercial vehicle. Incomplete records. Real conditions. No safety net.</p>
+    </div>
+
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">&#128220;</div>
+        <div>
+          <div class="case-file-title">Case File</div>
+          <div class="case-file-sub">Case #GLG-2026-0893 &middot; Alicia Morgan</div>
+        </div>
+      </div>
+      <div class="case-detail"><div class="case-key">Client</div><div class="case-val">Alicia Morgan, 34 — Bilingual, Spanish-preferred</div></div>
+      <div class="case-detail"><div class="case-key">Accident</div><div class="case-val">T-boned at intersection by a commercial vehicle (company truck). Multiple injuries. Second vehicle (hit-and-run, unidentified) contributed to the collision.</div></div>
+      <div class="case-detail"><div class="case-key">Carriers</div><div class="case-val">At-fault: Progressive Commercial Insurance. UM carrier: State Farm.</div></div>
+      <div class="case-detail"><div class="case-key">Providers</div><div class="case-val">3 providers identified at intake. Records requests pending for all three.</div></div>
+      <div class="case-detail"><div class="case-key">Situation</div><div class="case-val">Alicia calls in upset — received an ER bill and doesn&rsquo;t understand it. <span class="flag-warn">CM in a meeting for 2 hours.</span> Paralegal says: <em>&ldquo;Handle the intake templates and records requests. I&rsquo;ll deal with the client call when I&rsquo;m out.&rdquo;</em></div></div>
+    </div>
+
+    <div class="question-block" id="q23-block">
+      <div class="q-num">Boss Task 1 &middot; Question 23 &middot; Bonus 15 pts</div>
+      <div class="q-text">Generate the complete intake template package for Alicia Morgan. Which set and order of templates is correct?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q23','a',false)" id="q23-a"><span class="opt-letter">A</span><span class="opt-text">#01 At-Fault LOR to Progressive, #02 UM LOR to State Farm, #41 Spanish LOR, #44 HIPAA, #62 UM On Notice, #65 Accident Report — complete coverage but Spanish LOR is placed third instead of first for a Spanish-preferred client.</span></button>
+        <button class="option-btn" onclick="answer('q23','b',false)" id="q23-b"><span class="opt-letter">B</span><span class="opt-text">#41 Spanish LOR, #02 UM LOR to State Farm, #44 HIPAA Auth, #62 UM On Notice, #65 Accident Report, #31 Spoliation Letter — includes Spoliation for the commercial vehicle but skips the at-fault LOR to Progressive.</span></button>
+        <button class="option-btn" onclick="answer('q23','c',false)" id="q23-c"><span class="opt-letter">C</span><span class="opt-text">#01 At-Fault LOR to Progressive, #41 Spanish Welcome, #44 HIPAA Auth, #02 UM LOR to State Farm, #62 UM On Notice to State Farm, #65 Accident Report — close, but skips the Spanish LOR (#41) and uses the Welcome letter in its place for the initial carrier notice.</span></button>
+        <button class="option-btn" onclick="answer('q23','d',true)" id="q23-d"><span class="opt-letter">D</span><span class="opt-text">#41 Spanish LOR to Progressive Commercial, #40 Spanish Welcome to client, #44 HIPAA Auth, #01 At-Fault LOR to Progressive (English), #02 UM LOR to State Farm, #62 UM On Notice to State Farm, #65 Accident Report Request — Spanish-preferred = Spanish first, then English carrier copy, both carriers addressed.</span></button>
+      </div>
+      <div class="feedback-box" id="q23-fb"></div>
+    </div>
+
+    <div class="question-block" id="q24-block">
+      <div class="q-num">Boss Task 2 &middot; Question 24 &middot; Bonus 15 pts</div>
+      <div class="q-text">30 days later: records received from 2 of 3 providers. Peachtree Imaging has not responded to the original records request. What is the next step?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q24','a',true)" id="q24-a"><span class="opt-letter">A</span><span class="opt-text">Generate Template #74 Follow-Up Records Request for Peachtree Imaging, log the follow-up in CasePeer with date and provider, and set the next 14-day follow-up task.</span></button>
+        <button class="option-btn" onclick="answer('q24','b',false)" id="q24-b"><span class="opt-letter">B</span><span class="opt-text">Call Peachtree Imaging directly and request the records verbally — 30 days of non-response indicates a phone call is more effective than another written request.</span></button>
+        <button class="option-btn" onclick="answer('q24','c',false)" id="q24-c"><span class="opt-letter">C</span><span class="opt-text">Escalate to the paralegal immediately — 30 days of non-response exceeds the firm&rsquo;s escalation threshold and requires attorney-level follow-up with the provider.</span></button>
+        <button class="option-btn" onclick="answer('q24','d',false)" id="q24-d"><span class="opt-letter">D</span><span class="opt-text">Generate Template #75 Updated Records Request — since 30 days have passed, any records that do arrive should be the most current version of Peachtree&rsquo;s imaging documentation.</span></button>
+      </div>
+      <div class="feedback-box" id="q24-fb"></div>
+    </div>
+
+    <div class="question-block" id="q25-block">
+      <div class="q-num">Boss Task 3 &middot; Question 25 &middot; Bonus 10 pts</div>
+      <div class="q-text">Treatment is complete. The CM says Alicia&rsquo;s case is ready for demand — but there are TWO demand tracks: one to Progressive Commercial (at-fault liability) and one to State Farm (UM claim). Which template approach is correct?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q25','a',false)" id="q25-a"><span class="opt-letter">A</span><span class="opt-text">Template #08 (Male Demand) to Progressive and Template #09 (Female Demand) to State Farm — the UM carrier always receives the gender-specific version while the at-fault carrier gets the standard version.</span></button>
+        <button class="option-btn" onclick="answer('q25','b',false)" id="q25-b"><span class="opt-letter">B</span><span class="opt-text">Template #09 (Female Demand) to Progressive Commercial for both the liability claim and the UM claim — send one combined demand package to both carriers since it&rsquo;s the same accident.</span></button>
+        <button class="option-btn" onclick="answer('q25','c',true)" id="q25-c"><span class="opt-letter">C</span><span class="opt-text">Template #09 (Female Demand, from the Demand section) to Progressive Commercial for the liability claim. Separate Template #09 (Female Demand, from the Demand section) to State Farm for the UM claim — each carrier gets their own complete demand package. CRITICAL: verify both are pulled from the Demand section, not the PD section.</span></button>
+        <button class="option-btn" onclick="answer('q25','d',false)" id="q25-d"><span class="opt-letter">D</span><span class="opt-text">Send one combined demand package to both carriers simultaneously since they&rsquo;re for the same accident — separate demand packages are only needed when the cases involve different accidents.</span></button>
+      </div>
+      <div class="feedback-box" id="q25-fb"></div>
+    </div>
+
+    <div class="question-block" id="q26-block">
+      <div class="q-num">Boss Task 4 &middot; Question 26 &middot; Bonus 10 pts</div>
+      <div class="q-text">45 days after sending both demands: Progressive has not responded at all. State Farm responded with a low offer. What two templates do you need and which goes to which carrier?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q26','a',false)" id="q26-a"><span class="opt-letter">A</span><span class="opt-text">Template #22 (30-Day Follow-Up) to Progressive + Template #24 (Policy Limits Demand) to State Farm — the low offer from State Farm triggers a policy limits escalation.</span></button>
+        <button class="option-btn" onclick="answer('q26','b',true)" id="q26-b"><span class="opt-letter">B</span><span class="opt-text">Template #22 (30-Day Follow-Up Demand) to Progressive (no response in 45 days) + Template #23 (Counteroffer) to State Farm (they responded with a number that needs to be countered).</span></button>
+        <button class="option-btn" onclick="answer('q26','c',false)" id="q26-c"><span class="opt-letter">C</span><span class="opt-text">Template #32 (Holt Demand) to Progressive (escalate to statutory leverage) + Template #23 (Counteroffer) to State Farm — the Holt demand is the appropriate escalation for a non-responsive carrier.</span></button>
+        <button class="option-btn" onclick="answer('q26','d',false)" id="q26-d"><span class="opt-letter">D</span><span class="opt-text">Escalate both carriers to the paralegal for direction — the LA does not generate demand follow-up templates; that responsibility belongs to the CM and paralegal team.</span></button>
+      </div>
+      <div class="feedback-box" id="q26-fb"></div>
+    </div>
+
+    <div class="section-score" id="s6-score" style="display:none;"><div class="score-display" id="s6-score-val"></div><div class="score-label">Boss Challenge Bonus Score</div></div>
+    <div class="btn-group" id="s6-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="showResults()">See Results &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7 — RESULTS
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-7">
+  <div id="results-header-wrap"></div>
+  <div class="section-body">
+    <div id="results-body"></div>
+    <div class="review-list" id="reviewList"></div>
+    <div id="badgeContainer" style="text-align:center;margin:16px 0;"></div>
+    <div class="score-confirm" id="score-confirmation"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8 — FEEDBACK + CERTIFICATE
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-8">
+  <div class="section-header">
+    <div class="section-num">Section 9 · Feedback &amp; Certificate</div>
+    <h2>Certificate of Completion</h2>
+    <div class="section-subhead">Your input improves training for the next person.</div>
+  </div>
+  <div class="section-body">
+
+    <!-- Feedback Form -->
+    <div style="margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:14px;">&#128203; Quick Feedback</h4>
+      <div class="fb-question">
+        <label>How clear was the content? (1 = confusing, 5 = crystal clear)</label>
+        <select id="fb-clarity">
+          <option value="">Select rating…</option>
+          <option>1 — Very confusing</option>
+          <option>2 — Somewhat confusing</option>
+          <option>3 — Mostly clear</option>
+          <option>4 — Clear</option>
+          <option>5 — Crystal clear</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>How was the difficulty level?</label>
+        <select id="fb-difficulty">
+          <option value="">Select…</option>
+          <option>Too easy — I already knew all of this</option>
+          <option>About right — challenging but fair</option>
+          <option>Too hard — needs more context</option>
+          <option>Mixed — some sections were hard, some easy</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>Did this module feel like a real work situation?</label>
+        <select id="fb-realistic">
+          <option value="">Select…</option>
+          <option>Yes — felt like actual GLG work</option>
+          <option>Mostly — a few parts felt generic</option>
+          <option>Not really — too textbook-style</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>What&rsquo;s one thing that would make this training better?</label>
+        <textarea id="fb-suggestions" placeholder="Your suggestion here…"></textarea>
+      </div>
+    </div>
+
+    <!-- Reflection Prompt (Make It Stick) -->
+    <div class="callout callout-info" style="margin-bottom:20px;">
+      <strong>&#129504; Reflection:</strong> Think about a real case you&rsquo;ve seen at GLG (or a scenario you can imagine). Which 3 templates from this module would have been most critical — and what would have gone wrong if they were sent late, sent to the wrong carrier, or generated from the wrong CasePeer section? Write your answer in the suggestions field above or discuss with your CM.
+    </div>
+
+    <!-- Score Submission Form -->
+    <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;display:none;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">&#128203; Submit Your Score</h4>
+      <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name" class="name-input" style="margin-bottom:12px;">
+      <button class="btn" onclick="submitScoreAndBuildCert()" style="background:#188038;color:white;padding:12px 24px;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;">&#9989; Submit Score &amp; View Certificate</button>
+    </div>
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #10774A;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">&#9989; Score submitted! Your results have been recorded.</div>
+
+    <!-- Certificate (hidden until submit) -->
+    <div id="cert-content" style="display:none;">
+      <canvas id="confettiCanvas"></canvas>
+      <div class="cert-wrap" id="certWrap">
+        <div class="cert-firm">Gunn Law Group — Atlanta, Georgia</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-subtitle">GLG Training &amp; Development Program</div>
+        <div class="cert-presents">This certifies that</div>
+        <div class="cert-name" id="certNameDisplay">___________________</div>
+        <div class="cert-for">has successfully completed</div>
+        <div class="cert-module">LA-2 — LOR &amp; Document Generation</div>
+        <span class="cert-seal">&#9878;&#65039;</span>
+        <div class="cert-score" id="certScore"></div>
+        <div class="cert-meta" id="certMeta"></div>
+        <div class="cert-badges" id="certBadges"></div>
+        <div class="cert-signature">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">Harrell Gunn</div>
+          <div class="cert-sig-title">Managing Attorney</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:16px;">
+        <button class="btn btn-secondary" style="flex:1;" onclick="goToSection(7)">&larr; Results</button>
+        <button class="btn" style="flex:1;background:#10774A;color:#fff;" onclick="window.print()">&#128424;&#65039; Print Certificate</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</main>
+
+<!-- TOAST -->
+<div class="points-toast" id="points-toast">+10</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// CONFIGURATION
+// ═══════════════════════════════════════════════
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
+var TOTAL_SECTIONS = 9;
+var PASS_THRESHOLD = 170;
+var BASE_MAX = 200;
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+var baseScore = 0;
+var bonusPoints = 0;
+var currentSection = 0;
+var qDone = {};
+var firstAttemptStillAvailable = {};
+var sectionScores = {};
+
+// ── GAMIFICATION STATE ──
+var audioCtx = null;
+var soundEnabled = false;
+var _audioKeepalive = null;
+var streakCount = 0;
+var maxStreak = 0;
+var moduleStartTime = Date.now();
+var questionsFirstTry = 0;
+var totalQuestionsAnswered = 0;
+var incorrectCount = 0;
+var milestonesTriggered = {};
+
+// ═══════════════════════════════════════════════
+// QUESTION CONFIG
+// section 1-5 = base pts (10 each); section 6 = boss bonus only
+// ═══════════════════════════════════════════════
+var Q_CONFIG = {
+  'q1':  {section:1, pts:10, isBonus:false, correct:'c'},
+  'q2':  {section:1, pts:10, isBonus:false, correct:'c'},
+  'q3':  {section:1, pts:10, isBonus:false, correct:'b'},
+  'q4':  {section:1, pts:10, isBonus:false, correct:'a'},
+  'q5':  {section:2, pts:10, isBonus:false, correct:'a'},
+  'q6':  {section:2, pts:10, isBonus:false, correct:'c'},
+  'q7':  {section:2, pts:10, isBonus:false, correct:'a'},
+  'q8':  {section:2, pts:10, isBonus:false, correct:'c'},
+  'q9':  {section:2, pts:0,  isBonus:true,  bonusPts:15, correct:'d'},
+  'q10': {section:3, pts:10, isBonus:false, correct:'d'},
+  'q11': {section:3, pts:10, isBonus:false, correct:'a'},
+  'q12': {section:3, pts:10, isBonus:false, correct:'b'},
+  'q13': {section:3, pts:10, isBonus:false, correct:'a'},
+  'q14': {section:4, pts:10, isBonus:false, correct:'a'},
+  'q15': {section:4, pts:10, isBonus:false, correct:'a'},
+  'q16': {section:4, pts:10, isBonus:false, correct:'a'},
+  'q17': {section:4, pts:10, isBonus:false, correct:'d'},
+  'q18': {section:4, pts:0,  isBonus:true,  bonusPts:10, correct:'a'},
+  'q19': {section:5, pts:10, isBonus:false, correct:'c'},
+  'q20': {section:5, pts:10, isBonus:false, correct:'a'},
+  'q21': {section:5, pts:10, isBonus:false, correct:'c'},
+  'q22': {section:5, pts:10, isBonus:false, correct:'a'},
+  'q23': {section:6, pts:0,  isBonus:true,  bonusPts:15, correct:'d'},
+  'q24': {section:6, pts:0,  isBonus:true,  bonusPts:15, correct:'a'},
+  'q25': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'c'},
+  'q26': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'b'}
+};
+
+// Section questions map (all questions including bonus, for completion detection)
+var SECTION_QUESTIONS = {
+  1: ['q1','q2','q3','q4'],
+  2: ['q5','q6','q7','q8','q9'],
+  3: ['q10','q11','q12','q13'],
+  4: ['q14','q15','q16','q17','q18'],
+  5: ['q19','q20','q21','q22'],
+  6: ['q23','q24','q25','q26']
+};
+
+// ═══════════════════════════════════════════════
+// FEEDBACK TEXT
+// ═══════════════════════════════════════════════
+var FEEDBACK = {
+  'q1': {
+    t: '✅ Consistency, compliance, speed. Templates are the franchise prototype — E-Myth principle. Every letter that leaves this firm reflects GLG\'s standard, not the individual\'s style. Quality depends on the system, not who is at the keyboard.',
+    f: '❌ Templates aren\'t shortcuts or Bar requirements. They\'re the firm\'s operating system. E-Myth: "The franchise prototype is a systems solution to what would otherwise depend on each individual\'s judgment." Templates = consistent quality at scale.'
+  },
+  'q2': {
+    t: '✅ Template #09 is the single most dangerous trap in our system — same number, two completely different documents. PD Authorization in the PD section. Female Demand Letter in the Demand section. The adjuster got a PD auth for a $250K injuries case. Credibility destroyed. Always verify which section you\'re in.',
+    f: '❌ CasePeer does NOT validate template-stage mismatches. The paralegal does NOT always catch it. The client notices when the adjuster calls confused. This is the #09 trap — same number, completely different documents, completely different consequences.'
+  },
+  'q3': {
+    t: '✅ 14 days from the send date — that\'s the LA-1 baseline. Template #74 Follow-Up Records Request + CasePeer log. The clock starts on the SEND date, not when the paralegal asks about it. This rule doesn\'t change in LA-2.',
+    f: '❌ LA-1 established the 14-day follow-up rule. Not 7 days, not 30, not "when asked." 14 days → Template #74 → CasePeer logged. This is non-negotiable carry-forward knowledge.'
+  },
+  'q4': {
+    t: '✅ Template #44 is the HIPAA Authorization. It goes out in the 48-hour welcome package. No #44 = no records = no demand. Template #12 (LOP) is completely different — it authorizes billing to be deferred to settlement. Never confuse these two.',
+    f: '❌ Template #44 = HIPAA Authorization (providers release records). Template #12 = Letter of Protection (providers defer billing to settlement). Two different functions, two different templates. #44 in the welcome package. #12 at treatment intake.'
+  },
+  'q5': {
+    t: '✅ Template #01 — LOR At-Fault. This opens the liability claim with the at-fault carrier and establishes GLG as counsel of record. #02 is for the UM claim (client\'s own carrier). #62 is a protective notice before formally opening UM. #31 is for evidence preservation.',
+    f: '❌ Template #01 = At-Fault LOR. Template #02 = UM LOR (client\'s own carrier, for UM/UIM claim). These are different carriers, different relationships, different templates. The at-fault carrier gets #01.'
+  },
+  'q6': {
+    t: '✅ Template #62 — UM Insurer On Notice. Critical distinction: #62 puts the carrier on notice that a UM claim MAY follow. Template #02 formally OPENS the UM claim. You need both at different stages. #62 first (protective), then #02 when the UM claim is formally opened.',
+    f: '❌ #62 ≠ #02. Template #62 = UM On Notice (protective, early notice). Template #02 = LOR UM (formally opens the UM claim). Using the wrong one skips a procedural step and can create coverage gaps.'
+  },
+  'q7': {
+    t: '✅ Bilingual + Spanish-preferred = BOTH versions. Template #01 (English) goes to the carrier — they operate in English. Template #41 (Spanish) goes in the client file and client communication. Never send only Spanish when the carrier operates in English.',
+    f: '❌ Spanish-preferred means Spanish for client communication — but the carrier operates in English. Generate #01 for the carrier AND #41 for the client file. Both. Not one or the other.'
+  },
+  'q8': {
+    t: '✅ Three LORs for a passenger case. At-fault driver\'s carrier (Progressive) gets #01. Friend\'s carrier (Geico) gets #01 — the friend\'s policy may have med-pay or liability coverage for passengers. Client\'s UM carrier (Allstate) gets #62 on notice. One LOR is never enough when multiple carriers exist.',
+    f: '❌ Passenger cases are multi-carrier situations. At-fault driver\'s carrier. Friend\'s carrier (med-pay is commonly available for passengers). Client\'s own UM carrier. Each requires its own notice. Missing one = missing potential coverage.'
+  },
+  'q9': {
+    t: '✅ Full sequence for Spanish-speaking uninsured accident: #41 Spanish LOR (to at-fault — even uninsured, send the notice), #40 Spanish Welcome, #44 HIPAA Auth, #02 UM LOR to State Farm, #62 UM On Notice to State Farm, #65 Accident Report. NO #01 at-fault LOR — there is no at-fault carrier to contact for an uninsured driver.',
+    f: '❌ Maria is Spanish-speaking (Spanish templates first: #41, #40) + uninsured driver (no at-fault carrier, so NO #01). UM coverage (#02, #62 to State Farm) + HIPAA (#44) + accident report (#65). The sequence matters. Missing #62 means UM carrier is not on notice. Missing #65 means no police report.'
+  },
+  'q10': {
+    t: '✅ Template #06 — Medical Records Only. The billing records already arrived, so #04 (Full) would re-request what you have. #05 (Bills Only) is the opposite of what you need. #07 (SOAP Notes) is too narrow. #06 is precise: treatment notes, no bills.',
+    f: '❌ Specificity matters. You already have bills → don\'t request them again (#04 or #05). You need the missing records only → #06 Medical Records Only. Using #04 wastes the provider\'s time and often delays the actual delivery of what you need.'
+  },
+  'q11': {
+    t: '✅ 14 days → Template #74 Follow-Up Records Request + CasePeer log with date, provider, and next 14-day task. Two steps, both required. The template is the written follow-up. The log and follow-up task ensure the chain continues.',
+    f: '❌ Phone calls alone are not the template-based written follow-up. After 14 days with no response, the required steps are: (1) Generate Template #74, (2) Send it, (3) Log it in CasePeer, (4) Set the next 14-day follow-up task. All four.'
+  },
+  'q12': {
+    t: '✅ Treatment gaps weaken demands. A 3-week gap in active treatment = adjuster ammunition. Flag to the CM immediately. Template #14 Treatment Gap Letter may be needed to explain it. Don\'t wait for demand prep — that\'s too late.',
+    f: '❌ Treatment gaps are never just "the client\'s personal decision" in the context of a demand. Adjusters use them to reduce offers. Flag immediately. Template #14 exists specifically to address this. "File and wait" loses leverage.'
+  },
+  'q13': {
+    t: '✅ One ER visit = at minimum: hospital facility + ER physician group + radiology group + ambulance/EMS. Each bills independently with their own tax ID and billing department. Missing any one = missing recoverable damages on the demand.',
+    f: '❌ Hospital facility records do NOT include the ER physician group, radiology group, or ambulance. These are completely separate legal entities with their own billing. This is the #1 records mistake in PI practice.'
+  },
+  'q14': {
+    t: '✅ Template #22 — 30-Day Follow-Up Demand. At 35 days, the 30-day window has already passed. Generate #22, log in CasePeer, flag to CM. #23 needs a number to counter. #24 has specific criteria. The 30-day standard is the firm\'s rule, not Georgia law\'s 45-day window.',
+    f: '❌ The 30-day follow-up is GLG\'s internal standard, not Georgia law. At 35 days, use #22.'
+  },
+  'q15': {
+    t: '✅ Holt demand = O.C.G.A. § 9-11-67.1 statutory offer. If the insurer rejects it and the plaintiff wins more at trial, the insurer faces statutory penalties. Template #32 is attorney-directed — used when policy limits are clearly available and maximum pre-suit leverage is needed.',
+    f: '❌ Holt is not a standard deadline demand. It is a specific statutory mechanism under O.C.G.A. § 9-11-67.1 with six required elements. If done right, it is the firm\'s most powerful pre-suit tool. If done wrong, all statutory benefits are lost.'
+  },
+  'q16': {
+    t: '✅ Settlement = two documents: Release (#109) closes the claim. Settlement Statement (#106) documents proceeds, fees, liens, and client net. Both are required for every settlement. No other combination is correct.',
+    f: '❌ #22 is demand follow-up. #23 is a counteroffer — not an acceptance. #12 is for treatment authorization, separate from settlement closing. Settlement paperwork = #109 Release + #106 Settlement Statement. Always both.'
+  },
+  'q17': {
+    t: '✅ O.C.G.A. § 9-11-67.1 allows no exceptions. All six components are required. One missing element = invalid Holt demand = zero statutory penalties. No cure period, no reduced penalties, no court waiver. This is why the attorney reviews every Holt demand before it goes out.',
+    f: '❌ The statute does not provide for a cure period, reduced penalties, or substantial compliance. All six elements are required. One missing = invalid = forfeited leverage. This is why Template #32 is ALWAYS attorney-directed.'
+  },
+  'q18': {
+    t: '✅ The 8-step Treating → Demand sequence: (1) Verify all records received, (2) Demand Package Prep Guide checklist, (3) Generate #08 or #09 from Demand section, (4) Attach records chronologically, (5) Attach bills summary, (6) Supporting documents, (7) Log send in CasePeer, (8) Set 30-day follow-up with Template #22. Know this cold.',
+    f: '❌ The Treating → Demand sequence is one of the most important workflows you will run. It must be: Records verified → Checklist → Generate demand (correct section!) → Attach records → Bills → Supporting docs → Log in CasePeer → Set #22 follow-up. Eight steps. None optional.'
+  },
+  'q19': {
+    t: '✅ Log in CasePeer: date sent, carrier/recipient name, template number used, and set the 14-day follow-up task. Both the log AND the follow-up task are required. No log = no record the letter went out. No task = no follow-up trigger.',
+    f: '❌ Status dropdowns are not logs. Attorney review is not required for LORs. OneDrive without CasePeer note = invisible to CM. The complete LOR send log requires: date + recipient + template number + 14-day follow-up task. All four, immediately after sending.'
+  },
+  'q20': {
+    t: '✅ Delete the incorrect document. Regenerate from CasePeer with correct information. Template output is a firm document — you never manually edit it with PDF tools, Word, or any other software. Clean slate: delete and regenerate.',
+    f: '❌ PDF editing of template output is never acceptable. It creates unofficial documents, introduces errors, and bypasses the template\'s formatting controls. Delete. Regenerate. That is the only correct error correction procedure.'
+  },
+  'q21': {
+    t: '✅ E-Myth franchise prototype: the system creates consistent quality independent of the individual. Templates ARE that system. When you use a template correctly, you are operating the franchise prototype exactly as Gerber described. This is why GLG has 42+ templates.',
+    f: '❌ Delegation and accountability are side effects of the template system. The core design principle is the franchise prototype: quality depends on the system, not the individual. Personalization and attorney sign-off are separate concerns.'
+  },
+  'q22': {
+    t: '✅ Always verify the section before clicking Generate. Template #09 in the Property Damage section = PD Authorization. Template #09 in the Demand section = Female Demand Letter. Same number. Completely different documents. Completely different consequences. Section verification is not optional.',
+    f: '❌ CasePeer does NOT auto-serve the correct version based on case stage. "Generate from whichever loads first" is how a $250K demand goes to an adjuster as a PD auth. Check the section. Every. Single. Time. The #09 trap is real.'
+  },
+  'q23': {
+    t: '✅ Full Alicia intake: #41 Spanish LOR to Progressive (Spanish-preferred = Spanish first), #40 Spanish Welcome to client, #44 HIPAA Auth, #01 At-Fault LOR to Progressive (English carrier copy), #02 UM LOR to State Farm, #62 UM On Notice to State Farm, #65 Accident Report. Both carriers addressed. Spanish templates first.',
+    f: '❌ Bilingual Spanish-preferred client = Spanish templates FIRST. Both carriers (Progressive Commercial at-fault AND State Farm UM) need attention. Skipping #41 means the client has no Spanish LOR on file. Skipping #62 means State Farm is not on notice. Skipping #65 means no accident report.'
+  },
+  'q24': {
+    t: '✅ 30 days since the initial request = the first 14-day follow-up was already due at day 14. This is the second follow-up cycle. Generate Template #74 Follow-Up Records Request for Peachtree Imaging, log it in CasePeer, set the next 14-day task. Not yet escalation time.',
+    f: '❌ Template #75 is for updating already-received records — not for following up on non-responsive providers. 30 days is NOT the escalation threshold (that comes after 3 documented attempts). Template #74 + CasePeer log + next 14-day task.'
+  },
+  'q25': {
+    t: '✅ Alicia is female → Template #09 (Female Demand Letter) for BOTH carriers. Each carrier gets their own separate complete demand package. CRITICAL: pull #09 from the Demand section each time, not the PD section. Two carriers = two packages = two CasePeer logs.',
+    f: '❌ Alicia is female = Template #09 (Female Demand) for both. UM demand is NOT the same as re-sending the UM LOR. Two separate carriers = two separate demand packages. And the #09 dual-context trap applies to BOTH generations — verify section for each.'
+  },
+  'q26': {
+    t: '✅ Two fronts, two templates: Progressive (45-day no response) → Template #22 (30-Day Follow-Up Demand). State Farm (low offer received) → Template #23 (Counteroffer). The LA generates both; the CM/paralegal directs the negotiation strategy. Clean, correct, documented.',
+    f: '❌ Template #32 Holt demand is attorney-directed — not an LA-initiated escalation for non-responsive carriers. Template #24 Policy Limits has specific criteria. Two different situations = two different tools: #22 for silence, #23 for a low number.'
+  }
+};
+
+// ═══════════════════════════════════════════════
+// ANSWER HANDLER
+// ═══════════════════════════════════════════════
+function answer(qId, choice, isCorrect) {
+  if (qDone[qId]) return;
+
+  var cfg = Q_CONFIG[qId];
+  var block = document.getElementById(qId + '-block');
+  var fb = document.getElementById(qId + '-fb');
+  var btns = block.querySelectorAll('.option-btn');
+
+  // Lock all buttons immediately
+  btns.forEach(function(b){ b.classList.add('disabled'); });
+
+  var clickedBtn = document.getElementById(qId + '-' + choice);
+  var correctBtn = document.getElementById(qId + '-' + cfg.correct);
+
+  if (isCorrect) {
+    clickedBtn.classList.add('correct');
+    block.classList.add('answered');
+    qDone[qId] = true;
+
+    if (!cfg.isBonus) {
+      baseScore += cfg.pts;
+      sectionScores[cfg.section] = (sectionScores[cfg.section] || 0) + cfg.pts;
+      var isFirst = (firstAttemptStillAvailable[qId] !== false);
+      if (isFirst) {
+        bonusPoints += 5;
+        showToast('+' + cfg.pts + ' pts  +5 bonus ⚡', false);
+      } else {
+        showToast('+' + cfg.pts + ' pts', false);
+      }
+    } else {
+      var bonusPts = (firstAttemptStillAvailable[qId] !== false) ? cfg.bonusPts : Math.floor(cfg.bonusPts / 3);
+      bonusPoints += bonusPts;
+      sectionScores[cfg.section] = (sectionScores[cfg.section] || 0) + bonusPts;
+      showToast('+' + bonusPts + ' BONUS ⚡', true);
+    }
+
+    document.getElementById('total-score').textContent = baseScore;
+    document.getElementById('bonus-score').textContent = bonusPoints;
+    fb.className = 'feedback-box correct show';
+
+  } else {
+    clickedBtn.classList.add('incorrect');
+    if (correctBtn) {
+      correctBtn.classList.remove('disabled');
+      correctBtn.classList.add('correct');
+      correctBtn.classList.add('disabled');
+    }
+    block.classList.add('answered-wrong');
+    firstAttemptStillAvailable[qId] = false;
+    qDone[qId] = true;
+    fb.className = 'feedback-box incorrect show';
+  }
+
+  var fbData = FEEDBACK[qId];
+  fb.innerHTML = fbData ? (isCorrect ? fbData.t : fbData.f) : (isCorrect ? '✅ Correct!' : '❌ Incorrect.');
+
+  // Gamification hooks
+  updateStreak(isCorrect);
+  mascotReact(isCorrect ? 'correct' : 'incorrect');
+  var totalQs = Object.keys(Q_CONFIG).length;
+  var answeredCount = Object.keys(qDone).length;
+  updateGlobalProgress(answeredCount, totalQs);
+
+  updateProgress();
+  checkSectionComplete(cfg.section);
+}
+
+// ═══════════════════════════════════════════════
+// SECTION COMPLETION CHECK
+// ═══════════════════════════════════════════════
+function checkSectionComplete(sectionIdx) {
+  var qs = SECTION_QUESTIONS[sectionIdx];
+  if (!qs) return;
+
+  var allDone = qs.every(function(q){ return !!qDone[q]; });
+  if (!allDone) return;
+
+  var scoreEl = document.getElementById('s' + sectionIdx + '-score');
+  var scoreVal = document.getElementById('s' + sectionIdx + '-score-val');
+  var nextEl   = document.getElementById('s' + sectionIdx + '-next');
+
+  var pts = sectionScores[sectionIdx] || 0;
+
+  if (scoreVal) {
+    scoreVal.textContent = sectionIdx <= 5 ? (pts + ' / 40 pts') : (pts + ' bonus pts earned');
+  }
+  if (scoreEl) scoreEl.style.display = 'block';
+  if (nextEl)  nextEl.style.display  = 'flex';
+
+  var pill = document.getElementById('nav-' + sectionIdx);
+  if (pill) pill.classList.add('done');
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+function goToSection(idx) {
+  // Certificate gate: section 8 requires passing score
+  if (idx === 8 && !window._la2Passed) {
+    showToast('⚠️ 85% required for certificate', false);
+    return;
+  }
+  document.querySelectorAll('.section-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.nav-pill').forEach(function(p){ p.classList.remove('active'); });
+
+  var card = document.getElementById('section-' + idx);
+  var pill = document.getElementById('nav-' + idx);
+  if (card) card.classList.add('active');
+  if (pill) pill.classList.add('active');
+
+  currentSection = idx;
+  var pct = Math.round((idx / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-label').textContent = 'Section ' + (idx + 1) + ' of ' + TOTAL_SECTIONS;
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════
+// PROGRESS BAR
+// ═══════════════════════════════════════════════
+function updateProgress() {
+  var baseQs = Object.keys(Q_CONFIG).filter(function(k){ return !Q_CONFIG[k].isBonus; });
+  var answered = baseQs.filter(function(k){ return !!qDone[k]; }).length;
+  var pct = Math.round((answered / baseQs.length) * 100);
+  var navPct = Math.round((currentSection / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = Math.max(pct, navPct) + '%';
+  document.getElementById('prog-pct').textContent = Math.max(pct, navPct) + '%';
+}
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+function showToast(msg, isBonus) {
+  var t = document.getElementById('points-toast');
+  t.textContent = msg;
+  t.className = 'points-toast' + (isBonus ? ' bonus' : '') + ' show';
+  setTimeout(function(){ t.classList.remove('show'); }, 1800);
+}
+
+// ═══════════════════════════════════════════════
+// FINISH MODULE
+// ═══════════════════════════════════════════════
+function showResults() {
+  goToSection(7);
+  buildResults();
+}
+
+// Reset quiz for Try Again on fail
+function restartQuiz() {
+  baseScore = 0;
+  bonusPoints = 0;
+  qDone = {};
+  firstAttemptStillAvailable = {};
+  sectionScores = {};
+  streakCount = 0;
+  maxStreak = 0;
+  questionsFirstTry = 0;
+  moduleStartTime = Date.now();
+  window._la2Passed = false;
+
+  // Reset all question blocks
+  document.querySelectorAll('.question-block').forEach(function(block) {
+    block.classList.remove('answered', 'answered-wrong');
+    block.querySelectorAll('.option-btn').forEach(function(btn) {
+      btn.classList.remove('correct', 'incorrect', 'disabled');
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    });
+    var fb = block.querySelector('.feedback-box');
+    if (fb) { fb.className = 'feedback-box'; fb.innerHTML = ''; }
+  });
+
+  // Reset section scores and nav pills
+  for (var i = 1; i <= 6; i++) {
+    var scoreEl = document.getElementById('s' + i + '-score');
+    var nextEl = document.getElementById('s' + i + '-next');
+    if (scoreEl) scoreEl.style.display = 'none';
+    if (nextEl) nextEl.style.display = 'none';
+    var pill = document.getElementById('nav-' + i);
+    if (pill) pill.classList.remove('done');
+  }
+
+  // Reset score display
+  document.getElementById('total-score').textContent = '0';
+  document.getElementById('bonus-score').textContent = '0';
+  document.getElementById('streak-display').textContent = '0 🔥';
+
+  // Re-init firstAttemptStillAvailable
+  Object.keys(Q_CONFIG).forEach(function(k) { firstAttemptStillAvailable[k] = true; });
+
+  goToSection(0);
+}
+
+function buildResults() {
+  mascotReact('complete');
+  spawnParticles(document.querySelector('header'));
+  var totalQs = Object.keys(Q_CONFIG).length;
+  updateGlobalProgress(totalQs, totalQs);
+
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
+
+  var headerEl = document.getElementById('results-header-wrap');
+  headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
+    + '<div class="results-grade">' + pct + '%</div>'
+    + '<div class="results-label">' + (pass ? '🏆 Assessment Passed!' : '📚 Not Yet — 85% Required to Pass') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '</div>';
+
+  // Per-question review list with staggered reveal
+  var letters = ['a','b','c','d'];
+  var letterLabels = ['A','B','C','D'];
+  var reviewList = document.getElementById('reviewList');
+  var reviewHTML = '';
+  Object.keys(Q_CONFIG).forEach(function(qId, idx) {
+    var cfg = Q_CONFIG[qId];
+    var block = document.getElementById(qId + '-block');
+    if (!block) return;
+    var qText = block.querySelector('.q-text');
+    var questionText = qText ? qText.textContent : 'Question ' + (idx+1);
+    var isAnswered = !!qDone[qId];
+    var wasCorrect = isAnswered && block.classList.contains('answered');
+    var correctLetter = cfg.correct.toUpperCase();
+    var correctBtn = document.getElementById(qId + '-' + cfg.correct);
+    var correctText = correctBtn ? correctBtn.querySelector('.opt-text').textContent : '';
+    var userAnswer = '(not answered)';
+    var userLetter = '';
+    if (isAnswered) {
+      letters.forEach(function(l, li) {
+        var btn = document.getElementById(qId + '-' + l);
+        if (btn && (btn.classList.contains('correct') || btn.classList.contains('incorrect'))) {
+          if (btn.classList.contains('incorrect') || (btn.classList.contains('correct') && !block.classList.contains('answered-wrong'))) {
+            userAnswer = btn.querySelector('.opt-text').textContent;
+            userLetter = letterLabels[li];
+          }
+        }
+      });
+      if (wasCorrect && !userLetter) {
+        userAnswer = correctText;
+        userLetter = correctLetter;
+      }
+    }
+
+    reviewHTML += '<div class="review-item ' + (wasCorrect ? 'correct' : 'wrong') + '" style="opacity:0;transform:translateY(8px);transition:opacity 0.25s ease,transform 0.25s ease;" data-review-idx="' + idx + '">'
+      + '<div class="ri-q">' + (idx+1) + '. ' + questionText.substring(0,120) + (questionText.length>120?'…':'') + '</div>'
+      + '<div class="ri-ans">'
+      + (wasCorrect ? '✅' : '❌') + ' Your answer: <strong>' + userLetter + '. ' + userAnswer.substring(0,100) + (userAnswer.length>100?'…':'') + '</strong>'
+      + (!wasCorrect ? '<br>✅ Correct: <strong>' + correctLetter + '. ' + correctText.substring(0,100) + (correctText.length>100?'…':'') + '</strong>' : '')
+      + '</div></div>';
+  });
+  reviewList.innerHTML = reviewHTML;
+
+  // Staggered reveal
+  var reviewEls = reviewList.querySelectorAll('[data-review-idx]');
+  reviewEls.forEach(function(el, i) {
+    setTimeout(function() {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      playTickSound();
+    }, i * 120);
+  });
+
+  // Set global pass flag for certificate gate
+  window._la2Passed = pass;
+
+  var bodyEl = document.getElementById('results-body');
+  var buttonsHtml;
+  if (pass) {
+    buttonsHtml = '<div class="btn-group">'
+      + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback &amp; Get Certificate →</button>'
+      + '</div>';
+  } else {
+    buttonsHtml = '<div class="btn-group" style="display:flex;gap:10px;">'
+      + '<button class="btn btn-secondary" style="flex:1;" onclick="goToSection(0)">Review Content</button>'
+      + '<button class="btn btn-primary" style="flex:1;" onclick="restartQuiz()">Try Again</button>'
+      + '</div>';
+  }
+  bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
+    + '<div class="score-display">' + baseScore + '/200</div>'
+    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
+    + '</div>'
+    + '<div class="callout ' + (pass ? 'callout-success' : 'callout-warn') + '">'
+    + (pass
+        ? '<strong>✅ Gate Passed.</strong> You have demonstrated competency in GLG\'s template system, LOR types, medical records workflows, demand preparation, and CasePeer documentation. You are cleared to progress to LA-3.'
+        : '<strong>⚠️ Gate Not Cleared.</strong> You need 170/200 (85%) to pass. Review the sections where you missed questions — the feedback explains exactly what to remember. Retake when ready.')
+    + '</div>'
+    + buttonsHtml;
+
+  submitScoreToTracker();
+
+  // Render gamification achievement badges
+  var badgeContainer = document.getElementById('badgeContainer');
+  if (badgeContainer) {
+    var gamBadges = calculateBadges();
+    renderBadges(gamBadges, badgeContainer);
+  }
+
+  if (pass) {
+    document.getElementById('score-submit-form').style.display = 'block';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// AUTO-SUBMIT SCORE (base only)
+// ═══════════════════════════════════════════════
+function submitScoreToTracker() {
+  if (!TRACKER_URL) return;
+  var payload = {
+    moduleId:   'la2',
+    moduleName: 'LA-2 LOR & Document Generation',
+    score:      baseScore,
+    maxScore:   200,
+    bonusScore: bonusPoints,
+    maxStreak:  maxStreak,
+    badges:     calculateBadges().map(function(b){ return b.name; }).join(', '),
+    elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
+    passedAt:   new Date().toISOString()
+  };
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+    mode: 'no-cors'
+  }).then(function(){
+    var el = document.getElementById('score-confirmation');
+    if (el) { el.innerHTML = '✅ Score submitted automatically.'; el.style.display = 'block'; }
+  }).catch(function(){
+    var el = document.getElementById('score-confirmation');
+    if (el) { el.innerHTML = '⚠️ Auto-submit failed — screenshot results and email hgunn@thegunnlawgroup.com'; el.style.display = 'block'; }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// SUBMIT SCORE + BUILD CERTIFICATE
+// ═══════════════════════════════════════════════
+function submitScoreAndBuildCert() {
+  if (!window._la2Passed) {
+    showToast('⚠️ 85% required for certificate', false);
+    return;
+  }
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('certNameDisplay').textContent = name;
+  document.getElementById('score-submit-form').style.display = 'none';
+  document.getElementById('cert-content').style.display = 'block';
+
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
+  document.getElementById('certScore').textContent = 'Score: ' + baseScore + '/200 (' + pct + '%) — ' + (pass ? 'PASSED' : 'NOT PASSED');
+  var now = new Date();
+  document.getElementById('certMeta').textContent = 'Issued: ' + now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+
+  var certBadgesEl = document.getElementById('certBadges');
+  if (certBadgesEl) {
+    var badges = calculateBadges();
+    badges.push({icon: '🎓', name: 'LA-2 Complete', desc: 'Completed module LA-2'});
+    certBadgesEl.innerHTML = '';
+    badges.forEach(function(b, i) {
+      var pill = document.createElement('span');
+      pill.className = 'cert-badge-pill';
+      pill.textContent = b.icon + ' ' + b.name;
+      pill.style.animationDelay = (i * 0.15) + 's';
+      certBadgesEl.appendChild(pill);
+    });
+  }
+
+  setTimeout(function() {
+    launchConfetti();
+    playTaDa();
+    mascotReact('complete');
+  }, 350);
+
+  if (TRACKER_URL) {
+    var payload = {
+      employeeName: name,
+      moduleId: 'la2',
+      moduleName: 'LA-2 LOR & Document Generation',
+      score: baseScore,
+      maxScore: 200,
+      bonusScore: bonusPoints,
+      maxStreak: maxStreak,
+      badges: calculateBadges().map(function(b){ return b.name; }).join(', '),
+      elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
+      passedAt: new Date().toISOString(),
+      feedback: {
+        clarity: document.getElementById('fb-clarity').value || '',
+        difficulty: document.getElementById('fb-difficulty').value || '',
+        realistic: document.getElementById('fb-realistic').value || '',
+        suggestions: document.getElementById('fb-suggestions').value || ''
+      }
+    };
+    fetch(TRACKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    }).then(function() {
+      document.getElementById('score-confirmation').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please screenshot your results and email to hgunn@thegunnlawgroup.com';
+      document.getElementById('score-confirmation').style.background = '#fff3cd';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+      document.getElementById('score-confirmation').style.color = '#856404';
+      document.getElementById('score-confirmation').style.display = 'block';
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════
+// GLG GAMIFICATION ENGINE v1.0 — LA-2 CHASSIS
+// ═══════════════════════════════════════════════
+
+// ── SOUND ENGINE (Web Audio API) ──
+function ensureAudioCtx() {
+  if (!audioCtx) {
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    } catch(e) { return false; }
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume().catch(function(){});
+  }
+  if (!_audioKeepalive && audioCtx) {
+    try {
+      var silentOsc = audioCtx.createOscillator();
+      var silentGain = audioCtx.createGain();
+      silentGain.gain.value = 0;
+      silentOsc.connect(silentGain);
+      silentGain.connect(audioCtx.destination);
+      silentOsc.start();
+      _audioKeepalive = silentOsc;
+    } catch(e) {}
+  }
+  return true;
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  if (soundEnabled) ensureAudioCtx();
+  document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+  localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
+}
+
+function playTone(freq, duration, type, gainVal, scheduleAt) {
+  if (!soundEnabled || !audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+  var startTime = (scheduleAt !== undefined) ? audioCtx.currentTime + scheduleAt : audioCtx.currentTime;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.type = type || 'sine';
+  o.frequency.value = freq;
+  g.gain.setValueAtTime(gainVal || 0.15, startTime);
+  g.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(startTime); o.stop(startTime + duration + 0.01);
+}
+
+function playDing() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  playTone(523, 0.15, 'sine', 0.13, 0);
+  playTone(659, 0.18, 'sine', 0.11, 0.1);
+}
+
+function playWrongTone() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(520, 0.12, 'triangle', 0.12, 0);
+  playTone(440, 0.15, 'triangle', 0.10, 0.08);
+}
+
+function playTickSound() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(800, 0.05, 'triangle', 0.06);
+}
+
+function playTaDa() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+  var notes = [
+    {f:262,t:0,d:0.30,type:'triangle',g:0.14},{f:330,t:0,d:0.30,type:'sine',g:0.11},
+    {f:392,t:0,d:0.30,type:'sine',g:0.09},{f:523,t:0.15,d:0.22,type:'sine',g:0.13},
+    {f:659,t:0.30,d:0.22,type:'sine',g:0.12},{f:784,t:0.45,d:0.22,type:'sine',g:0.11},
+    {f:523,t:0.65,d:0.80,type:'sine',g:0.13},{f:659,t:0.65,d:0.80,type:'sine',g:0.11},
+    {f:784,t:0.65,d:0.80,type:'sine',g:0.09},{f:1047,t:0.65,d:0.80,type:'triangle',g:0.07},
+    {f:1319,t:0.75,d:0.55,type:'sine',g:0.04},{f:1568,t:0.85,d:0.45,type:'sine',g:0.03}
+  ];
+  notes.forEach(function(n) {
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = n.type || 'sine';
+    osc.frequency.value = n.f;
+    gain.gain.setValueAtTime(n.g, now + n.t);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(now + n.t); osc.stop(now + n.t + n.d + 0.05);
+  });
+}
+
+function playCorrectChime() { playDing(); }
+function playIncorrectTone() { playWrongTone(); }
+function playStreakChime() { playDing(); }
+function playSectionFanfare() {}
+function playBadgeChime() {}
+function playCompleteFanfare() {}
+
+// ── STREAK SYSTEM ──
+function updateStreak(isCorrect) {
+  if (isCorrect) {
+    streakCount++;
+    if (streakCount > maxStreak) maxStreak = streakCount;
+    questionsFirstTry++;
+    var el = document.getElementById('streak-display');
+    if (el) el.textContent = streakCount + ' 🔥';
+    playDing();
+    if (streakCount >= 3) showStreakBadge(streakCount);
+    if (streakCount === 5) spawnParticles(document.querySelector('.score-bar'));
+  } else {
+    if (streakCount >= 3) showStreakEnd();
+    streakCount = 0;
+    incorrectCount++;
+    var el = document.getElementById('streak-display');
+    if (el) el.textContent = '0 🔥';
+    playWrongTone();
+  }
+  totalQuestionsAnswered++;
+}
+
+function showStreakBadge(count) {
+  var badge = document.createElement('div');
+  badge.textContent = count + ' in a row! 🔥';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#dcb161,#e8c87a);color:#141C2C;padding:8px 20px;border-radius:20px;font-weight:700;font-size:14px;z-index:10001;animation:streakPop 0.4s ease-out,fadeUp 0.4s ease-in 1.5s forwards;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 2000);
+}
+
+function showStreakEnd() {
+  var badge = document.createElement('div');
+  badge.textContent = 'Streak ended';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#333;color:#999;padding:6px 16px;border-radius:16px;font-size:12px;z-index:10001;opacity:0.8;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 1500);
+}
+
+// ── MILESTONE TOASTS ──
+function checkMilestone(current, total) {
+  var pct = Math.round((current / total) * 100);
+  var milestones = {25:'Quarter complete! 💪',50:'Halfway there! 🎯',75:'Almost there! ⚡',100:'Final stretch! 🏆'};
+  for (var m in milestones) {
+    if (pct >= parseInt(m) && !milestonesTriggered[m]) {
+      milestonesTriggered[m] = true;
+      showMilestoneToast(milestones[m]);
+    }
+  }
+}
+
+function showMilestoneToast(msg) {
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;top:-50px;left:50%;transform:translateX(-50%);background:#141C2C;color:#dcb161;padding:10px 24px;border-radius:12px;font-weight:700;font-size:14px;z-index:10002;transition:top 0.4s ease;box-shadow:0 4px 20px rgba(0,0,0,0.3);';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.top = '20px'; });
+  setTimeout(function(){ t.style.top = '-50px'; setTimeout(function(){ t.remove(); }, 500); }, 2500);
+}
+
+// ── GLOBAL PROGRESS BAR ──
+function updateGlobalProgress(current, total) {
+  var fill = document.getElementById('globalProgressFill');
+  if (fill) fill.style.width = Math.round((current / total) * 100) + '%';
+  checkMilestone(current, total);
+}
+
+// ── PARTICLES ──
+function spawnParticles(anchor) {
+  var rect = anchor ? anchor.getBoundingClientRect() : {left:window.innerWidth/2,top:window.innerHeight/2,width:0};
+  for (var i = 0; i < 20; i++) {
+    var p = document.createElement('div');
+    var size = 4 + Math.random() * 6;
+    var angle = (Math.PI * 2 * i) / 20 + (Math.random() * 0.3);
+    var dist = 60 + Math.random() * 80;
+    p.style.cssText = 'position:fixed;width:' + size + 'px;height:' + size + 'px;background:#dcb161;border-radius:50%;left:' + (rect.left + rect.width/2) + 'px;top:' + (rect.top) + 'px;z-index:10003;pointer-events:none;opacity:1;transition:all 0.8s ease-out;';
+    document.body.appendChild(p);
+    requestAnimationFrame(function(pp, a, d) { return function() {
+      pp.style.left = (parseFloat(pp.style.left) + Math.cos(a) * d) + 'px';
+      pp.style.top = (parseFloat(pp.style.top) + Math.sin(a) * d) + 'px';
+      pp.style.opacity = '0';
+    }; }(p, angle, dist));
+    setTimeout(function(pp){ pp.remove(); }.bind(null, p), 900);
+  }
+}
+
+// ── MASCOT (Scales of Justice) ──
+function initMascot() {
+  var gavel = document.createElement('div');
+  gavel.id = 'mascotFloat';
+  gavel.innerHTML = '<svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:58px;">'
+    + '<rect x="27" y="18" width="6" height="38" rx="1.5" fill="#8B7D3C"/>'
+    + '<rect x="18" y="54" width="24" height="5" rx="2.5" fill="#6B5E2E"/>'
+    + '<rect x="22" y="52" width="16" height="4" rx="1" fill="#8B7D3C"/>'
+    + '<rect x="6" y="16" width="48" height="4" rx="2" fill="#8B7D3C"/>'
+    + '<circle cx="30" cy="12" r="5" fill="#dcb161" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<text x="30" y="14.5" text-anchor="middle" font-size="7" font-weight="bold" fill="#141C2C">⚖</text>'
+    + '<line x1="12" y1="20" x2="12" y2="32" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<line x1="48" y1="20" x2="48" y2="32" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<path d="M4 33 Q8 38 12 33 Q16 38 20 33" stroke="#dcb161" stroke-width="1.5" fill="none"/>'
+    + '<ellipse cx="12" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3"/>'
+    + '<path d="M40 33 Q44 38 48 33 Q52 38 56 33" stroke="#dcb161" stroke-width="1.5" fill="none"/>'
+    + '<ellipse cx="48" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3"/>'
+    + '</svg>';
+  gavel.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9998;cursor:pointer;animation:scaleBob 3s ease-in-out infinite;opacity:0.7;transition:opacity 0.3s,transform 0.3s;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));';
+  gavel.onmouseenter = function(){ this.style.opacity='1';this.style.transform='scale(1.1)'; };
+  gavel.onmouseleave = function(){ this.style.opacity='0.7';this.style.transform='scale(1)'; };
+  document.body.appendChild(gavel);
+}
+
+function mascotReact(type) {
+  var g = document.getElementById('mascotFloat');
+  if (!g) return;
+  g.style.animation = 'none';
+  void g.offsetHeight;
+  if (type === 'correct') {
+    g.style.animation = 'scaleCelebrate 0.5s ease-out, scaleBob 3s ease-in-out 0.6s infinite';
+  } else if (type === 'incorrect') {
+    g.style.animation = 'scaleTilt 0.6s ease-in-out, scaleBob 3s ease-in-out 0.7s infinite';
+  } else if (type === 'complete') {
+    g.style.animation = 'scaleTriumph 1.5s ease-in-out, scaleBob 3s ease-in-out 1.6s infinite';
+    g.style.opacity = '1';
+    g.style.transform = 'scale(1.15)';
+  }
+}
+
+// ── CONFETTI SYSTEM ──
+var confettiActive = false;
+function launchConfetti() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var colors = ['#dcb161','#c0c0c0','#141c2c'];
+  var particles = [];
+  var cx = canvas.width / 2;
+  var cy = canvas.height / 2;
+  for (var i = 0; i < 150; i++) {
+    var angle = Math.random() * Math.PI * 2;
+    var speed = 3 + Math.random() * 9;
+    particles.push({
+      x:cx, y:cy,
+      vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed-5,
+      color:colors[Math.floor(Math.random()*colors.length)],
+      w:4+Math.random()*6, h:2+Math.random()*4,
+      rotation:Math.random()*360, rotSpeed:(Math.random()-0.5)*12,
+      gravity:0.10+Math.random()*0.08, opacity:1,
+      shape:Math.random()>0.4?'rect':'circle'
+    });
+  }
+  confettiActive = true;
+  var startTime = Date.now();
+  function animate() {
+    if (!confettiActive) return;
+    var elapsed = Date.now() - startTime;
+    if (elapsed > 4000) {
+      confettiActive = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      p.x+=p.vx; p.vy+=p.gravity; p.y+=p.vy; p.vx*=0.99; p.rotation+=p.rotSpeed;
+      if (elapsed>2500) p.opacity=Math.max(0,p.opacity-0.02);
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rotation*Math.PI/180);
+      ctx.globalAlpha=p.opacity; ctx.fillStyle=p.color;
+      if (p.shape==='rect'){ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);}
+      else{ctx.beginPath();ctx.arc(0,0,p.w/2,0,Math.PI*2);ctx.fill();}
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+// ── ACHIEVEMENT BADGES ──
+function calculateBadges() {
+  var badges = [];
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var elapsed = (Date.now() - moduleStartTime) / 60000;
+  var baseQCount = Object.keys(Q_CONFIG).filter(function(k){ return !Q_CONFIG[k].isBonus; }).length;
+  if (questionsFirstTry === baseQCount && incorrectCount === 0) badges.push({icon:'⭐', name:'Perfect Pass', desc:'All correct on first try'});
+  if (incorrectCount === 0 && totalQuestionsAnswered > 0) badges.push({icon:'🎯', name:'No Stumbles', desc:'Zero incorrect'});
+  if (elapsed < 30) badges.push({icon:'⚡', name:'Speed Run', desc:'Under 30 minutes'});
+  if (pct >= 90) badges.push({icon:'🏆', name:'Master', desc:'Above 90%'});
+  if (incorrectCount > 3 && pct >= 70) badges.push({icon:'💪', name:'Persistent', desc:'Finished despite struggles'});
+  return badges;
+}
+
+function renderBadges(badges, container) {
+  badges.forEach(function(b, i) {
+    setTimeout(function() {
+      var el = document.createElement('span');
+      el.textContent = b.icon + ' ' + b.name;
+      el.title = b.desc;
+      el.style.cssText = 'display:inline-block;background:#dcb161;color:#141C2C;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;margin:4px;animation:badgeFlip 0.5s ease-out;';
+      container.appendChild(el);
+    }, i * 400);
+  });
+}
+
+// ── GAMIFICATION INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('glg_sound') === '1') {
+    soundEnabled = true;
+    var btn = document.getElementById('soundToggle');
+    if (btn) btn.textContent = '🔊';
+  }
+
+  function initAudioOnFirstClick() {
+    ensureAudioCtx();
+    document.removeEventListener('click', initAudioOnFirstClick);
+    document.removeEventListener('touchstart', initAudioOnFirstClick);
+    document.removeEventListener('touchend', initAudioOnFirstClick);
+  }
+  document.addEventListener('click', initAudioOnFirstClick);
+  document.addEventListener('touchstart', initAudioOnFirstClick);
+  document.addEventListener('touchend', initAudioOnFirstClick);
+
+  function resumeAudioOnGesture() {
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  document.addEventListener('touchstart', resumeAudioOnGesture, true);
+  document.addEventListener('touchend', resumeAudioOnGesture, true);
+  document.addEventListener('click', resumeAudioOnGesture, true);
+
+  initMascot();
+});
+
+// Init
+goToSection(0);
+</script>
+</body>
+</html>
