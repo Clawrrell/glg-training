@@ -1798,8 +1798,11 @@ document.addEventListener('DOMContentLoaded', function() {
 // ══════════════════════════════════════
 
 // ── SOUND ENGINE (Web Audio API) ──
+// iOS fix: silent buffer keeps AudioContext permanently alive after first gesture.
+// All tones use WebAudio scheduling (not setTimeout) for reliability.
 var audioCtx = null;
 var soundEnabled = false;
+var _audioKeepalive = null;
 var streakCount = 0;
 var maxStreak = 0;
 var moduleStartTime = Date.now();
@@ -1809,11 +1812,28 @@ var incorrectCount = 0;
 
 function ensureAudioCtx() {
   if (!audioCtx) {
-    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-    catch(e) { console.warn('Web Audio not supported', e); return false; }
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      console.log('[GLG Sound] AudioContext created, state:', audioCtx.state, 'sampleRate:', audioCtx.sampleRate);
+    } catch(e) { console.warn('[GLG Sound] Web Audio not supported', e); return false; }
   }
   if (audioCtx.state === 'suspended') {
-    audioCtx.resume().catch(function(){});
+    console.log('[GLG Sound] AudioContext suspended, calling resume()');
+    audioCtx.resume().then(function() {
+      console.log('[GLG Sound] AudioContext resumed, state:', audioCtx.state);
+    }).catch(function(e) { console.warn('[GLG Sound] resume() failed:', e); });
+  }
+  if (!_audioKeepalive && audioCtx) {
+    try {
+      var silentOsc = audioCtx.createOscillator();
+      var silentGain = audioCtx.createGain();
+      silentGain.gain.value = 0;
+      silentOsc.connect(silentGain);
+      silentGain.connect(audioCtx.destination);
+      silentOsc.start();
+      _audioKeepalive = silentOsc;
+      console.log('[GLG Sound] Silent keepalive started (iOS suspend prevention)');
+    } catch(e) { console.warn('[GLG Sound] Keepalive failed:', e); }
   }
   return true;
 }
@@ -1825,31 +1845,37 @@ function toggleSound() {
   localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
 }
 
-function playTone(freq, duration, type, gainVal) {
+function playTone(freq, duration, type, gainVal, scheduleAt) {
   if (!soundEnabled || !audioCtx) return;
-  if (audioCtx.state === 'suspended') { audioCtx.resume().catch(function(){}); }
+  if (audioCtx.state === 'suspended') {
+    console.log('[GLG Sound] playTone: context suspended, resuming before', freq, 'Hz');
+    audioCtx.resume().catch(function(){});
+  }
+  var startTime = (scheduleAt !== undefined) ? audioCtx.currentTime + scheduleAt : audioCtx.currentTime;
   var o = audioCtx.createOscillator();
   var g = audioCtx.createGain();
   o.type = type || 'sine';
   o.frequency.value = freq;
-  g.gain.value = gainVal || 0.15;
-  g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+  g.gain.setValueAtTime(gainVal || 0.15, startTime);
+  g.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
   o.connect(g); g.connect(audioCtx.destination);
-  o.start(); o.stop(audioCtx.currentTime + duration);
+  o.start(startTime); o.stop(startTime + duration + 0.01);
+  console.log('[GLG Sound] playTone:', freq, 'Hz', type, 'gain:', gainVal, 'state:', audioCtx.state, 'at:', startTime.toFixed(3));
 }
 
 function playDing() {
   if (!soundEnabled) return;
   ensureAudioCtx();
-  playTone(523, 0.15, 'sine', 0.13);
-  setTimeout(function(){ playTone(659, 0.18, 'sine', 0.11); }, 100);
+  playTone(523, 0.15, 'sine', 0.13, 0);
+  playTone(659, 0.18, 'sine', 0.11, 0.1);
 }
 
 function playWrongTone() {
   if (!soundEnabled) return;
   ensureAudioCtx();
   if (!audioCtx) return;
-  playTone(320, 0.2, 'sine', 0.08);
+  playTone(520, 0.12, 'triangle', 0.12, 0);
+  playTone(440, 0.15, 'triangle', 0.10, 0.08);
 }
 
 function playTickSound() {
