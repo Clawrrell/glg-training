@@ -1,0 +1,2005 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST — REGROUNDED
+Date: June 20, 2026
+Deliverable: NH-3 — PI Case Types (module-a4.html)
+Regrounding Agent: Claw / COO Subagent
+References Loaded: 8 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/canonical-sops/Case_Timeline_Treatment_Progression.md (case lifecycle, CasePeer workflow)
+  - /glg/canonical-sops/Client_Communication_SOP_PreLit.md (communication standards)
+  - /glg/canonical-sops/CasePeer_Template_Quick_Reference.md ([PLACEHOLDER] resolution)
+  - /glg/books/memos/reptile-mist-memo.md (safety rule framework)
+  - /glg/books/memos/essential-lawyering-memo.md (case evaluation, Four Challenges)
+  - /glg/books/memos/injury-case-playbook-memo.md (PI case strategy)
+  - /glg/books/memos/georgia-hb1344-memo.md (insurance reform)
+  - /glg/books/memos/georgia-tort-claims-act-memo.md (government entity cases)
+Chassis Source: module-a1.html (NH-1 canonical — 11 elements propagated)
+QA Checklist:
+  ✅ Title fixed: "NH-3 — PI Case Types | Gunn Law Group"
+  ✅ [PLACEHOLDER] × 3 resolved with actual CasePeer template references
+  ✅ Med mal affidavit timing corrected: 120 days → filed with complaint (45-day exception)
+  ✅ Sound engine: _audioKeepalive, playTone(), playWrongTone() 520/440Hz triangle, playDing()
+  ✅ Mascot: ⚖️ floating scales of justice
+  ✅ Certificate: pass gate, confetti canvas, Harrell Gunn signature
+  ✅ Tracker URL: canonical Apps Script endpoint
+  ✅ Module ID: 'nh3'
+  ✅ restartQuiz() / startQuiz() on fail path
+  ✅ Per-question review list with staggered reveal
+  ✅ Streaks, badges, milestone toasts, particles
+Competency Gate Mapping:
+  - Gate: 30-Day Gate — Case Type Recognition
+  - Milestone: 30-Day Checkpoint
+  - Requirement: 80%+ to pass (10/12)
+  - Roles: CM, LA, Intake
+Citation Log: /glg/training/manifests/NH-3_CITATION_LOG.md
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>NH-3 — PI Case Types | Gunn Law Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & NORMALIZE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ul { list-style: none; }
+ol { list-style: none; }
+button { background: none; border: none; font-family: inherit; font-size: inherit; line-height: inherit; }
+input, select, textarea { font-family: inherit; font-size: inherit; }
+a { text-decoration: none; color: inherit; }
+img { max-width: 100%; display: block; }
+
+:root {
+  --navy:     #141c2c;
+  --navy2:    #232e54;
+  --gold:     #dcb161;
+  --gold-lt:  #f0d89a;
+  --gold-bg:  #fdf8ee;
+  --text:     #333333;
+  --green:    #27ae60;
+  --green-dk: #1a6b3c;
+  --red:      #c0392b;
+  --amber:    #f39c12;
+  --bg:       #f8f9fa;
+  --white:    #ffffff;
+  --radius:   12px;
+  --shadow:   0 2px 16px rgba(20,28,44,0.10);
+  --shadow-lg:0 6px 28px rgba(20,28,44,0.18);
+  --font-h:   'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-b:   'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html, body {
+  width: 100%; max-width: 100%; overflow-x: hidden;
+  background: var(--bg); color: var(--text);
+  font-family: var(--font-b); font-size: 1rem; line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ══ TOP PROGRESS BAR ══ */
+.top-bar { position: fixed; top: 0; left: 0; right: 0; height: 3px; background: rgba(0,0,0,0.22); z-index: 9999; }
+.top-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 100%); width: 0%; transition: width 0.65s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 0 8px rgba(220,177,97,0.7); }
+
+/* ══ HEADER ══ */
+.app-header {
+  background: linear-gradient(160deg, #141c2c 0%, #0e1420 100%);
+  color: var(--white);
+  padding: 1.1rem 1.25rem 0.85rem;
+  position: sticky; top: 3px; z-index: 100;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.32);
+  border-bottom: 1px solid rgba(220,177,97,0.18);
+}
+.glg-logo { display: block; margin: 0 auto 10px; max-height: 50px; width: auto; }
+.header-top { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.header-logo {
+  font-family: var(--font-h); font-size: clamp(1.0rem, 3.5vw, 1.2rem); font-weight: 700;
+  color: var(--white); letter-spacing: 0.03em; line-height: 1.2; margin-bottom: 0.15rem;
+}
+.header-logo span { display: block; font-family: var(--font-b); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+.module-badge {
+  background: linear-gradient(135deg, var(--gold) 0%, #c9a04a 100%);
+  color: var(--navy); border-radius: 20px; padding: 0.25rem 0.85rem;
+  font-family: var(--font-b); font-size: 0.68rem; letter-spacing: 0.12em;
+  font-weight: 800; white-space: nowrap; text-transform: uppercase; flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(220,177,97,0.45);
+}
+.score-bar-mini {
+  display: flex; align-items: center; gap: 10px; margin-top: 6px;
+  padding: 6px 10px; background: rgba(0,0,0,0.22); border-radius: 8px;
+  flex-wrap: wrap;
+}
+.score-item { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.score-lbl { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.55); font-weight: 600; }
+.score-val { font-size: 0.95rem; font-weight: 800; color: var(--white); line-height: 1; }
+.progress-wrap { display: flex; align-items: center; gap: 0.65rem; padding-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.07); margin-top: 0.5rem; }
+.progress-bar-bg { flex: 1; height: 5px; background: rgba(255,255,255,0.13); border-radius: 6px; overflow: hidden; }
+.progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 100%); border-radius: 6px; transition: width 0.55s ease; width: 0%; box-shadow: 0 0 6px rgba(220,177,97,0.55); }
+.progress-label { font-family: var(--font-b); font-size: 0.65rem; color: rgba(255,255,255,0.68); white-space: nowrap; min-width: 48px; text-align: right; }
+
+/* ══ SECTION NAV PILLS ══ */
+.section-nav {
+  display: flex; flex-wrap: nowrap; gap: 6px;
+  padding: 0.65rem 1rem;
+  background: var(--white); border-bottom: 2px solid #e8eaed;
+  overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  position: sticky; top: calc(3px + 7.5rem); z-index: 99;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+}
+.section-nav::-webkit-scrollbar { display: none; }
+.nav-pill {
+  padding: 0.38rem 0.75rem; border-radius: 20px; border: 2px solid #e0e3e8;
+  background: var(--white); color: #aaa; font-family: var(--font-b);
+  font-size: 0.68rem; font-weight: 600; cursor: default; min-height: 32px;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.2rem;
+  transition: all 0.25s ease; white-space: nowrap; letter-spacing: 0.02em; flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-pill.done { border-color: var(--gold); background: var(--gold-bg); color: #7a5d0f; cursor: pointer; }
+.nav-pill.done:hover { background: var(--gold); color: var(--navy); transform: translateY(-2px); box-shadow: 0 3px 10px rgba(220,177,97,0.45); }
+.nav-pill.active { border-color: var(--navy); background: var(--navy); color: var(--white); cursor: default; box-shadow: 0 2px 8px rgba(20,28,44,0.3); }
+.nav-pill.done::after { content: ' ✓'; opacity: 0.8; }
+
+/* ══ MAIN WRAP ══ */
+.main-wrap { width: 100%; max-width: 720px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+
+/* ══ SCREENS ══ */
+.screen { display: none; }
+.screen.active { display: block !important; }
+.screen.fade-enter { animation: sectionEnter 0.35s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+@keyframes sectionEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ══ SECTION HEADER ══ */
+.section-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  color: var(--white); border-radius: var(--radius) var(--radius) 0 0;
+  padding: 1.2rem 1.4rem 1rem; border-bottom: 3px solid var(--gold);
+}
+.section-label { font-family: var(--font-b); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.35rem; font-weight: 600; }
+.section-title { font-family: var(--font-h); font-size: clamp(1.1rem, 4vw, 1.35rem); font-weight: 700; line-height: 1.3; }
+
+/* ══ CONTENT CARD ══ */
+.content-card { background: var(--white); border-radius: 0 0 var(--radius) var(--radius); padding: 1.4rem 1.4rem 1.75rem; box-shadow: var(--shadow); margin-bottom: 1.25rem; }
+
+/* ══ SUBSECTIONS ══ */
+.subsection { margin-bottom: 1.5rem; }
+.subsection:last-child { margin-bottom: 0; }
+.subsection h3 { font-family: var(--font-b); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.13em; color: var(--navy2); font-weight: 700; margin-bottom: 0.7rem; padding-bottom: 0.4rem; border-bottom: 2px solid #eff0f2; }
+.subsection p { margin-bottom: 0.65rem; font-size: 0.95rem; }
+.subsection p:last-child { margin-bottom: 0; }
+.subsection ul { padding-left: 1.4rem; font-size: 0.95rem; list-style: disc; }
+.subsection ol { padding-left: 1.4rem; font-size: 0.95rem; list-style: decimal; }
+.subsection li { margin-bottom: 0.45rem; }
+
+/* ══ CALLOUT BOXES ══ */
+.callout { border-radius: 10px; padding: 1rem 1.1rem; margin: 1.1rem 0; display: flex; gap: 0.8rem; align-items: flex-start; font-size: 0.9rem; line-height: 1.6; }
+.callout-icon { font-size: 1.15rem; flex-shrink: 0; margin-top: 0.1rem; }
+.callout.green { background: #e8f8ef; border-left: 4px solid var(--green); }
+.callout.amber { background: #fff8e8; border-left: 4px solid var(--amber); }
+.callout.red   { background: #fdf0ef; border-left: 4px solid var(--red); }
+.callout.navy  { background: #eef0f6; border-left: 4px solid var(--navy2); }
+
+/* ══ CASE TYPE CARDS ══ */
+.case-type-detailed { background: var(--white); border: 2px solid var(--bg); border-radius: 8px; margin: 1.25rem 0; overflow: hidden; }
+.case-type-header { background: var(--navy); color: var(--white); padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; }
+.case-type-icon { font-size: 1.8rem; flex-shrink: 0; }
+.case-type-title { font-family: var(--font-h); font-size: 1.1rem; font-weight: 700; }
+.case-type-body { padding: 1.25rem; }
+.case-section { margin-bottom: 1rem; }
+.case-section:last-child { margin-bottom: 0; }
+.case-section h4 { font-family: var(--font-b); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--navy2); font-weight: 700; margin-bottom: 0.4rem; }
+.case-section p, .case-section li { font-size: 0.88rem; color: #555; }
+.safety-rule-box { background: #fdf0ef; border-left: 4px solid var(--red); border-radius: 4px; padding: 0.6rem 0.8rem; margin: 0.5rem 0; }
+.safety-rule-box .rule-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); font-weight: 700; margin-bottom: 0.3rem; }
+.safety-rule-box .rule-text { font-size: 0.85rem; font-weight: 600; color: var(--red); }
+
+/* ══ STATUS WORKFLOW ══ */
+.status-flow { display: flex; flex-direction: column; gap: 0.3rem; margin: 0.5rem 0; }
+.status-step { background: var(--bg); border-radius: 4px; padding: 0.4rem 0.6rem; font-size: 0.8rem; color: var(--navy); border-left: 3px solid var(--navy2); }
+
+/* ══ EVAL CHECKLIST ══ */
+.eval-checklist { background: var(--bg); border-radius: 6px; padding: 0.8rem 1rem; margin: 0.5rem 0; }
+.eval-checklist ul { font-size: 0.85rem; padding-left: 1.2rem; list-style: disc; }
+.eval-checklist li { margin-bottom: 0.3rem; color: #555; }
+
+/* ══ TEMPLATE REF BOX ══ */
+.template-ref { background: #eef0f6; border-left: 4px solid var(--navy2); border-radius: 6px; padding: 0.7rem 0.9rem; margin: 0.4rem 0; font-size: 0.85rem; }
+.template-ref .t-num { font-weight: 700; color: var(--navy); }
+.template-ref .t-name { font-style: italic; color: #555; }
+.template-ref .t-use { font-size: 0.78rem; color: #777; display: block; margin-top: 0.15rem; }
+
+/* ══ BUTTONS ══ */
+.btn-row { display: flex; gap: 0.75rem; margin-top: 1.4rem; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem;
+  padding: 0.82rem 1.5rem; border-radius: 9px; font-family: var(--font-b);
+  font-size: 0.95rem; font-weight: 600; border: none; cursor: pointer; min-height: 48px;
+  text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex: 1; min-width: 120px; letter-spacing: 0.015em;
+  -webkit-appearance: none; -webkit-tap-highlight-color: transparent;
+  user-select: none; -webkit-user-select: none;
+}
+.btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.btn:active:not(:disabled) { transform: scale(0.97); }
+.btn-primary   { background: var(--navy); color: var(--white); }
+.btn-primary:hover:not(:disabled) { background: var(--navy2); }
+.btn-secondary { background: var(--bg); color: var(--navy); border: 2px solid var(--navy); }
+.btn-secondary:hover:not(:disabled) { background: var(--navy); color: var(--white); }
+.btn-green     { background: var(--green); color: var(--white); }
+.btn-green:hover:not(:disabled) { background: #219a52; }
+.btn:disabled  { opacity: 0.4; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+/* ══ QUIZ ══ */
+.quiz-progress { display: flex; gap: 0.3rem; margin-bottom: 1.3rem; flex-wrap: wrap; }
+.quiz-dot { width: 28px; height: 6px; border-radius: 3px; background: #e0e3e8; transition: background 0.3s ease; }
+.quiz-dot.answered { background: var(--navy2); }
+.quiz-dot.correct  { background: var(--green); }
+.quiz-dot.wrong    { background: var(--red); }
+.question-num { font-family: var(--font-b); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--navy2); font-weight: 700; margin-bottom: 0.55rem; }
+.question-text { font-family: var(--font-h); font-size: clamp(1rem, 3.5vw, 1.08rem); font-weight: 600; margin-bottom: 1.1rem; line-height: 1.55; color: var(--navy); }
+.options { display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1rem; }
+.option-btn {
+  background: var(--bg); border: 2px solid #e0e3e8; border-radius: 10px;
+  padding: 0.85rem 1.1rem; font-family: var(--font-b); font-size: 0.92rem;
+  text-align: left; cursor: pointer; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  min-height: 48px; width: 100%; display: flex; align-items: center; gap: 0.7rem;
+  color: var(--text); -webkit-appearance: none; -webkit-tap-highlight-color: transparent;
+  user-select: none; -webkit-user-select: none;
+}
+.option-btn:hover:not(:disabled) { border-color: var(--navy2); background: #eef0f6; transform: translateY(-2px); }
+.option-btn.correct { border-color: var(--green) !important; background: #e8f8ef !important; color: var(--green-dk) !important; font-weight: 600; animation: correctPulse 0.6s ease-out; }
+.option-btn.wrong   { border-color: var(--red) !important; background: #fdf0ef !important; color: var(--red) !important; animation: wrongShake 0.4s ease-out; }
+.option-btn:disabled { cursor: default; }
+.option-letter { font-weight: 700; color: var(--navy2); flex-shrink: 0; font-size: 0.82rem; background: rgba(35,46,84,0.09); border-radius: 5px; padding: 0.15rem 0.45rem; }
+.option-btn.correct .option-letter { background: rgba(39,174,96,0.15); color: var(--green-dk); }
+.option-btn.wrong   .option-letter { background: rgba(192,57,43,0.12); color: var(--red); }
+.feedback-box { border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.88rem; line-height: 1.6; margin-top: 0.6rem; display: none; animation: feedbackReveal 0.3s ease forwards; }
+@keyframes feedbackReveal { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+.feedback-box.correct { background: #e8f8ef; border-left: 4px solid var(--green); color: #145c32; }
+.feedback-box.wrong   { background: #fdf0ef; border-left: 4px solid var(--red);   color: #8b1a1a; }
+
+/* ══ RESULTS ══ */
+.result-hero { text-align: center; padding: 1.75rem 1rem 1.25rem; }
+.result-score { font-family: var(--font-h); font-size: clamp(2.8rem,10vw,3.8rem); font-weight: 800; color: var(--navy); line-height: 1; animation: scoreReveal 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+@keyframes scoreReveal { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+.result-score.pass { color: var(--green); }
+.result-score.fail { color: var(--red); }
+.result-banner { display: inline-block; border-radius: 10px; padding: 0.75rem 2rem; font-family: var(--font-h); font-size: 1.05rem; font-weight: 700; letter-spacing: 0.03em; margin: 0.75rem auto 0.25rem; animation: bannerSlide 0.5s 0.3s both; }
+@keyframes bannerSlide { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.result-banner.pass { background: linear-gradient(135deg, var(--green) 0%, #1e8a4c 100%); color: var(--white); box-shadow: 0 4px 18px rgba(39,174,96,0.4); }
+.result-banner.fail { background: linear-gradient(135deg, var(--red) 0%, #a53228 100%); color: var(--white); box-shadow: 0 4px 18px rgba(192,57,43,0.4); }
+.result-label { font-family: var(--font-b); font-size: 1rem; font-weight: 600; margin-top: 0.3rem; letter-spacing: 0.04em; }
+.result-badge { display: inline-block; border-radius: 20px; padding: 0.3rem 1.1rem; font-family: var(--font-b); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; margin-top: 0.5rem; text-transform: uppercase; }
+.badge-pass { background: #e8f8ef; color: var(--green); }
+.badge-fail { background: #fdf0ef; color: var(--red); }
+.review-list { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1rem; }
+.review-item { background: var(--bg); border-radius: 10px; padding: 0.8rem 1.1rem; border-left: 4px solid #ddd; font-size: 0.88rem; }
+.review-item.correct { border-color: var(--green); }
+.review-item.wrong   { border-color: var(--red); }
+.review-item .ri-q   { font-weight: 600; margin-bottom: 0.35rem; color: var(--navy); }
+.review-item .ri-ans { font-size: 0.82rem; }
+
+/* ══ CERTIFICATE ══ */
+.cert-wrap {
+  background: linear-gradient(180deg, #ffffff 0%, #fafaf5 100%);
+  border: 4px double var(--navy); border-radius: 14px;
+  padding: 2.5rem 1.75rem; text-align: center; margin-bottom: 1rem;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(20,28,44,0.10);
+  animation: certPopIn 0.8s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes certPopIn {
+  0%   { opacity: 0; transform: scale(0.7); }
+  60%  { opacity: 1; transform: scale(1.04); }
+  80%  { transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.cert-wrap::before { content: ''; position: absolute; inset: 10px; border: 1px solid var(--gold); border-radius: 8px; pointer-events: none; opacity: 0.45; }
+.cert-wrap::after  { content: '⚖️'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 180px; opacity: 0.03; pointer-events: none; z-index: 0; }
+.cert-firm     { font-family: var(--font-b); font-size: 0.67rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--navy2); font-weight: 600; margin-bottom: 0.6rem; position: relative; z-index: 1; }
+.cert-title    { font-family: var(--font-h); font-size: clamp(1.5rem,5vw,1.9rem); font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.04em; position: relative; z-index: 1; }
+.cert-subtitle { font-family: var(--font-b); font-size: 0.8rem; color: #888; margin-bottom: 1.4rem; position: relative; z-index: 1; }
+.cert-presents { font-family: var(--font-b); font-size: 0.85rem; color: #777; font-style: italic; margin-bottom: 0.3rem; position: relative; z-index: 1; }
+.cert-name     { font-family: var(--font-h); font-size: clamp(1.6rem,6vw,2.2rem); font-weight: 700; color: var(--navy2); font-style: italic; border-bottom: 2px solid var(--gold); display: inline-block; padding: 0 0.75rem 0.2rem; margin-bottom: 0.85rem; min-width: 60%; position: relative; z-index: 1; }
+.cert-for      { font-family: var(--font-b); font-size: 0.85rem; color: #666; margin-bottom: 0.35rem; position: relative; z-index: 1; }
+.cert-module   { font-family: var(--font-h); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 1.1rem; position: relative; z-index: 1; }
+.cert-meta     { font-family: var(--font-b); font-size: 0.8rem; color: #888; position: relative; z-index: 1; }
+.cert-score    { font-family: var(--font-b); font-size: 1.1rem; font-weight: 700; color: var(--green); margin-top: 0.5rem; position: relative; z-index: 1; }
+.cert-seal     { font-size: 2.5rem; margin: 0.85rem 0 0.3rem; display: block; position: relative; z-index: 1; }
+.cert-signature { margin-top: 1.5rem; position: relative; z-index: 1; }
+.cert-sig-line  { width: 200px; border-top: 1px solid var(--navy); margin: 0 auto 0.3rem; }
+.cert-sig-name  { font-family: var(--font-h); font-size: 1rem; font-weight: 600; color: var(--navy); font-style: italic; }
+.cert-sig-title { font-family: var(--font-b); font-size: 0.75rem; color: #888; letter-spacing: 0.05em; }
+.cert-badges    { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 14px; position: relative; z-index: 1; }
+.cert-badge-pill { display: inline-block; background: var(--gold); color: var(--navy); font-size: 0.68rem; font-weight: 700; padding: 4px 12px; border-radius: 14px; letter-spacing: 0.03em; animation: badgeFlip 0.5s ease-out backwards; }
+#confettiCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10005; }
+
+/* ══ NAME INPUT / FEEDBACK FORM ══ */
+.name-input-wrap label { display: block; font-family: var(--font-b); font-size: 0.85rem; font-weight: 600; color: var(--navy2); margin-bottom: 0.4rem; }
+.name-input { width: 100%; padding: 0.82rem 1rem; border: 2px solid #e0e3e8; border-radius: 9px; font-family: var(--font-b); font-size: 1rem; color: var(--text); background: var(--white); transition: border-color 0.2s; -webkit-appearance: none; }
+.name-input:focus { outline: none; border-color: var(--navy2); }
+.fb-question { margin-bottom: 18px; }
+.fb-question label { display: block; font-family: var(--font-b); font-weight: 700; color: var(--navy); font-size: 15px; margin-bottom: 8px; }
+.fb-question select, .fb-question textarea { width: 100%; padding: 12px; border: 2px solid #e0e3e8; border-radius: 9px; font-family: var(--font-b); font-size: 14px; background: var(--white); color: #333; -webkit-appearance: none; }
+.fb-question select:focus, .fb-question textarea:focus { outline: none; border-color: var(--navy); }
+.fb-question textarea { resize: vertical; min-height: 80px; }
+
+/* ══ WELCOME SCREEN ══ */
+.welcome-hero { background: linear-gradient(160deg, var(--navy) 0%, var(--navy2) 100%); border-radius: var(--radius); padding: 2.25rem 1.75rem; color: var(--white); text-align: center; margin-bottom: 1.25rem; position: relative; overflow: hidden; box-shadow: var(--shadow); }
+.welcome-icon { font-size: 2.75rem; margin-bottom: 0.6rem; }
+.welcome-hero h1 { font-family: var(--font-h); font-size: clamp(1.2rem, 5vw, 1.6rem); font-weight: 800; margin-bottom: 0.5rem; line-height: 1.25; }
+.welcome-hero p { font-size: 0.9rem; opacity: 0.85; line-height: 1.6; }
+.module-info-grid { display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+.module-info-item { background: var(--bg); border-radius: 9px; padding: 0.8rem 1.1rem; display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; }
+.module-info-item span:first-child { font-size: 1.25rem; flex-shrink: 0; }
+
+/* ══ GAMIFICATION ANIMATIONS ══ */
+@keyframes streakPop { 0%{transform:translateX(-50%) scale(0.5);opacity:0} 50%{transform:translateX(-50%) scale(1.15)} 100%{transform:translateX(-50%) scale(1);opacity:1} }
+@keyframes fadeUp { to{opacity:0;transform:translateX(-50%) translateY(-20px);} }
+@keyframes scaleBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes scaleCelebrate { 0%{transform:scale(1) rotate(0)} 25%{transform:scale(1.2) rotate(-8deg)} 50%{transform:scale(1.15) rotate(5deg)} 75%{transform:scale(1.1) rotate(-3deg)} 100%{transform:scale(1) rotate(0)} }
+@keyframes scaleTilt { 0%{transform:rotate(0)} 30%{transform:rotate(10deg)} 70%{transform:rotate(-8deg)} 100%{transform:rotate(0)} }
+@keyframes scaleTriumph { 0%{transform:scale(1)} 20%{transform:scale(1.3)} 40%{transform:scale(1.25) rotate(-5deg)} 60%{transform:scale(1.25) rotate(5deg)} 80%{transform:scale(1.3)} 100%{transform:scale(1)} }
+@keyframes badgeFlip { 0%{transform:rotateY(90deg) scale(0.5);opacity:0} 60%{transform:rotateY(-10deg) scale(1.05)} 100%{transform:rotateY(0) scale(1);opacity:1} }
+@keyframes correctPulse { 0%{box-shadow:0 0 0 0 rgba(39,174,96,0.4)} 70%{box-shadow:0 0 0 12px rgba(39,174,96,0)} 100%{box-shadow:0 0 0 0 rgba(39,174,96,0)} }
+@keyframes wrongShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-4px)} 80%{transform:translateX(4px)} }
+
+/* ══ PRINT ══ */
+@media print {
+  .app-header, .section-nav, .btn-row, .screen:not(.active), .top-bar { display: none !important; }
+  .cert-wrap { border: 4px double var(--navy) !important; box-shadow: none !important; animation: none !important; }
+  #confettiCanvas { display: none !important; }
+  body { background: white; }
+}
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 480px) {
+  .section-title { font-size: 1.1rem; }
+  .content-card { padding: 1rem 1rem 1.3rem; }
+  .main-wrap { padding: 1rem 0.75rem 2.5rem; }
+  .welcome-hero { padding: 1.75rem 1.25rem; }
+  .cert-name { font-size: 1.3rem; }
+  .result-score { font-size: 2.8rem; }
+  .section-nav { top: calc(3px + 7rem); }
+}
+
+/* ══ iOS TOUCH FIX ══ */
+button, .btn, .option-btn, [onclick] {
+  cursor: pointer !important; -webkit-tap-highlight-color: rgba(0,0,0,0.07);
+  touch-action: manipulation; -webkit-appearance: none;
+  user-select: none; -webkit-user-select: none;
+}
+.screen { display: none; }
+.screen.active { display: block !important; }
+</style>
+</head>
+<body>
+
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<!-- FIXED TOP PROGRESS BAR -->
+<div class="top-bar" role="progressbar" aria-label="Course progress">
+  <div class="top-bar-fill" id="topBarFill"></div>
+</div>
+
+<!-- SOUND TOGGLE -->
+<button id="soundToggle" style="position:fixed;top:12px;right:12px;z-index:10000;background:rgba(28,36,51,0.85);color:#c0c0c0;border:1px solid rgba(220,177,97,0.3);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;backdrop-filter:blur(4px);" onclick="toggleSound()" title="Toggle Sound">🔇</button>
+
+<!-- GLOBAL PROGRESS BAR (behind top-bar) -->
+<div id="globalProgress" style="position:fixed;top:0;left:0;width:100%;height:4px;background:#1C2433;z-index:9998;">
+  <div id="globalProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,#dcb161,#e8c87a);transition:width 0.5s ease;"></div>
+</div>
+
+<!-- HEADER -->
+<header class="app-header">
+  <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
+  <div class="header-top">
+    <div class="header-logo">
+      Gunn Law Group
+      <span>Training &amp; Development</span>
+    </div>
+    <div class="module-badge">NH-3</div>
+  </div>
+  <div class="score-bar-mini">
+    <div class="score-item"><div class="score-lbl">Score</div><div class="score-val" id="hdr-score">0/12</div></div>
+    <div class="score-item"><div class="score-lbl">Streak</div><div class="score-val" id="streak-display">0 🔥</div></div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 / 9</div>
+  </div>
+</header>
+
+<!-- SECTION NAV PILLS -->
+<nav class="section-nav" id="sectionNav" aria-label="Course sections">
+  <button class="nav-pill active" id="pill-0">Intro</button>
+  <button class="nav-pill" id="pill-1">1·MVA</button>
+  <button class="nav-pill" id="pill-2">2·Truck</button>
+  <button class="nav-pill" id="pill-3">3·Moto</button>
+  <button class="nav-pill" id="pill-4">4·S&amp;F</button>
+  <button class="nav-pill" id="pill-5">5·MedMal</button>
+  <button class="nav-pill" id="pill-6">6·Dog</button>
+  <button class="nav-pill" id="pill-7">7·WD</button>
+  <button class="nav-pill" id="pill-8">8·Uber</button>
+  <button class="nav-pill" id="pill-9">9·Prem</button>
+  <button class="nav-pill" id="pill-quiz">Quiz</button>
+</nav>
+
+<div class="main-wrap">
+
+<!-- ══════════ SCREEN 0: WELCOME ══════════ -->
+<div class="screen active" id="screen-0">
+  <div class="welcome-hero">
+    <div class="welcome-icon">⚖️</div>
+    <h1>NH-3 — PI Case Types</h1>
+    <p>Deep dive into GLG's 9 practice areas: safety rules, case evaluation, CasePeer workflow, and client service standards for each type.</p>
+  </div>
+  <div class="content-card" style="border-radius: var(--radius);">
+    <div class="module-info-grid">
+      <div class="module-info-item"><span>📚</span><span><strong>9 Case Types</strong> covered in detail</span></div>
+      <div class="module-info-item"><span>📝</span><span><strong>12-Question Quiz</strong> at the end</span></div>
+      <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (10 of 12)</span></div>
+      <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> generated on pass</span></div>
+      <div class="module-info-item"><span>⏱️</span><span><strong>~30 minutes</strong> estimated time</span></div>
+    </div>
+    <div style="background:#f0f7ff;border-left:4px solid #2980b9;border-radius:8px;padding:14px 16px;margin:12px 0;">
+      <h4 style="margin:0 0 6px;color:#2c3e50;font-size:14px;">📋 Competency Gate: Case Type Recognition</h4>
+      <p style="font-size:13px;color:#555;margin:0 0 6px;">This module maps to your <strong>30-Day Competency Gate</strong>. Passing confirms you can identify all GLG case types, understand key legal elements, and route cases correctly in CasePeer.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Day 30 Gate</span>
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">CM · LA · Intake</span>
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">80% Required</span>
+        <span style="background:#fff3e0;color:#e65100;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">~25% Caseload Gate</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="go(1)">Start Module →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 1: MOTOR VEHICLE ACCIDENTS ══════════ -->
+<div class="screen" id="screen-1">
+  <div class="section-header">
+    <div class="section-label">Case Type 1 of 9</div>
+    <div class="section-title">Motor Vehicle Accidents</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🚗</div>
+        <div class="case-type-title">Car Crashes &amp; Vehicle Collisions</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Rear-end collisions (most common GLG case type)</li>
+            <li>Intersection crashes (T-bone, failure to yield)</li>
+            <li>Head-on collisions</li>
+            <li>Hit and run accidents</li>
+            <li>Distracted driving (texting, phone use)</li>
+            <li>Impaired driving (DUI/DWI)</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Every driver must follow traffic laws and operate their vehicle with reasonable care to protect all road users</div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Who violated the safety rule? (speeding, following too close, running light)</li>
+              <li>What evidence exists? (police report, photos, witnesses, surveillance)</li>
+              <li>Is liability clear or disputed?</li>
+              <li>What are client's injuries and treatment status?</li>
+              <li>Insurance coverage available? (liability limits, UM/UIM)</li>
+              <li>Any comparative negligence issues?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>CasePeer Workflow</h4>
+          <div class="status-flow">
+            <div class="status-step">New Intake → Initial Case Review</div>
+            <div class="status-step">Signed → Send LORs (Template 01) &amp; Obtain Records</div>
+            <div class="status-step">Treating → Monitor Client Progress (Template 14/18)</div>
+            <div class="status-step">Records Received → Attorney Review</div>
+            <div class="status-step">Demand Sent → Negotiation Phase (Template 08/09)</div>
+            <div class="status-step">Settlement Reached → Distribution (Template 106)</div>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Motor vehicle clients are often dealing with their first accident. Key communication points: explain the process clearly, set realistic timelines, monitor treatment compliance, and prepare them for insurance tactics. Per the Client Communication SOP, contact pre-lit clients every 14 days minimum.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(0)">← Back</button>
+      <button class="btn btn-primary" onclick="go(2)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 2: COMMERCIAL TRUCKING ══════════ -->
+<div class="screen" id="screen-2">
+  <div class="section-header">
+    <div class="section-label">Case Type 2 of 9</div>
+    <div class="section-title">Commercial Trucking Accidents</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🚛</div>
+        <div class="case-type-title">18-Wheeler &amp; Commercial Vehicle Crashes</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>18-wheeler vs. passenger car collisions</li>
+            <li>Jackknife accidents</li>
+            <li>Delivery truck crashes (FedEx, UPS, Amazon)</li>
+            <li>Construction vehicle accidents</li>
+            <li>Bus accidents (school bus, MARTA)</li>
+            <li>Overloaded or improperly secured cargo</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Commercial drivers must follow federal safety regulations and operate with extra care due to their vehicle's size and potential for catastrophic harm</div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Driver logbook compliance? (Hours of Service violations)</li>
+              <li>Vehicle maintenance records? (brake failures, tire issues)</li>
+              <li>Driver qualification? (CDL status, medical certification)</li>
+              <li>Company safety record and policies?</li>
+              <li>Insurance coverage? (Often $1M+ commercial policies)</li>
+              <li>Multiple defendants? (driver, trucking company, cargo owner)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Special Considerations</h4>
+          <p><strong>Evidence preservation is critical:</strong> Trucking companies have sophisticated legal teams and preserve evidence quickly. GLG must act fast to secure driver logs, maintenance records, and electronic data.</p>
+          <p><strong>Federal regulations apply:</strong> FMCSA rules create specific safety standards that strengthen safety rule arguments.</p>
+        </div>
+        <div class="case-section">
+          <h4>CasePeer Templates — Commercial Trucking</h4>
+          <div class="template-ref">
+            <span class="t-num">Template 01 — LOR At-Fault</span>
+            <span class="t-name"> (Commercial Vehicle LOR)</span>
+            <span class="t-use">Send to at-fault commercial carrier to open the claim immediately after sign-up. Time-sensitive in trucking cases.</span>
+          </div>
+          <div class="template-ref">
+            <span class="t-num">Template 31 — Spoliation Letter</span>
+            <span class="t-name"> (Evidence Preservation Demand)</span>
+            <span class="t-use">Send to trucking company immediately to preserve driver logs, maintenance records, EDR/black box data, and dashcam footage. Critical — trucking companies auto-delete after 6 months.</span>
+          </div>
+          <div class="template-ref">
+            <span class="t-num">Templates 90–91 — Trucking Discovery Set</span>
+            <span class="t-name"> (FMCSA Violation Discovery)</span>
+            <span class="t-use">Used in litigation to obtain FMCSA compliance records, driver qualifications, and Hours of Service data. Consult supervising attorney before deploying.</span>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Trucking accidents often involve catastrophic injuries. Clients need extensive medical care coordination and realistic timeline expectations. These cases take longer but often have higher values due to commercial insurance.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(1)">← Back</button>
+      <button class="btn btn-primary" onclick="go(3)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 3: MOTORCYCLE ACCIDENTS ══════════ -->
+<div class="screen" id="screen-3">
+  <div class="section-header">
+    <div class="section-label">Case Type 3 of 9</div>
+    <div class="section-title">Motorcycle Accidents</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🏍️</div>
+        <div class="case-type-title">Motorcycle vs. Vehicle Collisions</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Left-turn accidents (car turns in front of motorcycle)</li>
+            <li>"Didn't see the motorcycle" crashes</li>
+            <li>Lane-splitting incidents</li>
+            <li>Rear-end collisions</li>
+            <li>Road hazard crashes (debris, potholes)</li>
+            <li>Hit and run accidents</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">All drivers must actively look for motorcycles and share the road safely — motorcyclists have the same rights as any other vehicle operator</div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Visibility factors? (time of day, weather, motorcycle lighting)</li>
+              <li>Speed and lane position of both vehicles?</li>
+              <li>Right of way analysis?</li>
+              <li>Helmet use? (affects damages, not liability in Georgia)</li>
+              <li>Motorcycle experience/licensing?</li>
+              <li>Severity of injuries? (often more severe due to lack of protection)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Special Challenges</h4>
+          <p><strong>Bias against motorcyclists:</strong> Insurance adjusters and juries often assume motorcyclists are reckless. GLG must counter this with evidence of the car driver's violation of safety rules.</p>
+          <p><strong>Severe injuries common:</strong> Road rash, fractures, head trauma, and permanent disability are frequent outcomes requiring extensive medical documentation.</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Motorcycle clients often face long recovery periods and may be passionate about riding. Show empathy for their lifestyle while focusing on the other driver's responsibility to see and avoid them. Per the Pre-Lit SOP, document all treatment gaps with Template 14.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(2)">← Back</button>
+      <button class="btn btn-primary" onclick="go(4)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 4: SLIP AND FALL ══════════ -->
+<div class="screen" id="screen-4">
+  <div class="section-header">
+    <div class="section-label">Case Type 4 of 9</div>
+    <div class="section-title">Slip and Fall / Premises Liability</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🚶</div>
+        <div class="case-type-title">Premises Liability &amp; Property Accidents</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Wet floor slips (grocery stores, restaurants)</li>
+            <li>Uneven surfaces, cracked sidewalks</li>
+            <li>Inadequate lighting causing falls</li>
+            <li>Debris or merchandise in walkways</li>
+            <li>Defective stairs or handrails</li>
+            <li>Ice/snow accumulation</li>
+            <li>Swimming pool accidents</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Property owners must maintain safe conditions for all visitors and warn of known hazards that could cause serious injury</div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Was the hazard visible and obvious?</li>
+              <li>How long did the condition exist?</li>
+              <li>Did the property owner know or should have known?</li>
+              <li>Were there warnings posted?</li>
+              <li>What caused the fall? (constructive vs. actual notice)</li>
+              <li>Client's attention/awareness at time of fall?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Georgia Law Specifics</h4>
+          <p><strong>Notice requirement:</strong> Must prove owner had actual or constructive notice of the dangerous condition.</p>
+          <p><strong>Open and obvious doctrine:</strong> Property owner may not be liable for hazards that are open and obvious to visitors.</p>
+          <p><strong>Comparative negligence applies:</strong> Client's failure to pay attention can reduce recovery.</p>
+        </div>
+        <div class="case-section">
+          <h4>Evidence Collection Priority</h4>
+          <p>Photos of scene, witness statements, incident reports, surveillance video, maintenance logs, and weather conditions are all critical and may disappear quickly. Use Template 31 (Spoliation Letter) if property owner has surveillance footage.</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Slip and fall clients often feel embarrassed about their accident. Reassure them that property owners have a legal duty to maintain safe premises. Focus on the violation of that duty.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(3)">← Back</button>
+      <button class="btn btn-primary" onclick="go(5)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 5: MEDICAL MALPRACTICE ══════════ -->
+<div class="screen" id="screen-5">
+  <div class="section-header">
+    <div class="section-label">Case Type 5 of 9</div>
+    <div class="section-title">Medical Malpractice</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">⚕️</div>
+        <div class="case-type-title">Healthcare Provider Negligence</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Misdiagnosis or delayed diagnosis</li>
+            <li>Surgical errors</li>
+            <li>Medication mistakes</li>
+            <li>Birth injuries</li>
+            <li>Hospital infections</li>
+            <li>Failure to obtain informed consent</li>
+            <li>Emergency room negligence</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Healthcare providers must follow accepted standards of medical care to protect every patient who entrusts them with their health and safety</div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>What is the standard of care that should have been followed?</li>
+              <li>How did the provider deviate from that standard?</li>
+              <li>Did the deviation cause the patient's injury?</li>
+              <li>What would have happened with proper care?</li>
+              <li>Expert witness needed to establish standard?</li>
+              <li>Damages calculation including future medical needs?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Georgia Medical Malpractice Requirements</h4>
+          <p><strong>Expert affidavit — O.C.G.A. § 9-11-9.1:</strong> The expert affidavit of an appropriate licensed professional must be filed <em>contemporaneously with the complaint</em>. Exception: if the statute of limitations will run within 10 days of filing, the complaint may be filed first and the affidavit must follow within 45 days.</p>
+          <p><strong>Statute of limitations:</strong> Generally 2 years from discovery of injury.</p>
+          <p><strong>Damage caps:</strong> Non-economic damages capped at $350,000 (with exceptions).</p>
+        </div>
+        <div class="case-section">
+          <h4>Special Considerations</h4>
+          <p><strong>High cost and complexity:</strong> Medical records review, multiple experts, and extended litigation make these cases expensive to pursue.</p>
+          <p><strong>Informed consent:</strong> Different standard than negligence — must prove patient would have refused treatment if properly informed.</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Medical malpractice clients have lost trust in the healthcare system. Provide clear explanations of the legal process and realistic timelines. These cases take 2–4 years to resolve.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(4)">← Back</button>
+      <button class="btn btn-primary" onclick="go(6)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 6: DOG BITE CASES ══════════ -->
+<div class="screen" id="screen-6">
+  <div class="section-header">
+    <div class="section-label">Case Type 6 of 9</div>
+    <div class="section-title">Dog Bite Cases</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🐕</div>
+        <div class="case-type-title">Dog Attacks &amp; Animal Injuries</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Dog bites on public property</li>
+            <li>Attacks on private property</li>
+            <li>Children injured by family dogs</li>
+            <li>Delivery worker/postal worker attacks</li>
+            <li>Dog park incidents</li>
+            <li>Leash law violations</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Dog owners must control their animals and prevent them from harming others, especially children and visitors who cannot protect themselves</div>
+        </div>
+        <div class="case-section">
+          <h4>Georgia Dog Bite Law</h4>
+          <p><strong>O.C.G.A. § 51-2-7:</strong> "Vicious propensity" or violation of leash law required for liability.</p>
+          <p><strong>Not strict liability:</strong> Unlike some states, Georgia requires proof of owner's knowledge of dog's vicious nature or violation of local ordinance.</p>
+          <p><strong>Leash law violations:</strong> Create presumption of negligence in many Georgia municipalities.</p>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Prior incidents or aggressive behavior by this dog?</li>
+              <li>Leash law violation? (check local ordinances)</li>
+              <li>Where did attack occur? (affects liability)</li>
+              <li>What provoked the attack, if anything?</li>
+              <li>Age of victim? (children given more protection)</li>
+              <li>Homeowner's/renter's insurance coverage?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Special Challenges</h4>
+          <p><strong>Insurance coverage:</strong> Many policies exclude dog bites or have breed restrictions.</p>
+          <p><strong>Emotional trauma:</strong> Especially in children, psychological counseling may be needed.</p>
+          <p><strong>Scarring and disfigurement:</strong> Require plastic surgery consultations and long-term treatment plans.</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Dog bite victims, especially children and parents, are traumatized by the attack. Focus on the owner's responsibility to control their animal and prevent exactly this type of community danger.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(5)">← Back</button>
+      <button class="btn btn-primary" onclick="go(7)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 7: WRONGFUL DEATH ══════════ -->
+<div class="screen" id="screen-7">
+  <div class="section-header">
+    <div class="section-label">Case Type 7 of 9</div>
+    <div class="section-title">Wrongful Death</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">💀</div>
+        <div class="case-type-title">Fatal Accident Cases</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Fatal car accidents</li>
+            <li>Trucking accident deaths</li>
+            <li>Medical malpractice deaths</li>
+            <li>Workplace fatalities</li>
+            <li>Defective product deaths</li>
+            <li>Premises liability deaths</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Same safety rule as underlying case — but the violation was so severe it took someone's life, leaving family members to suffer the ultimate consequence</div>
+        </div>
+        <div class="case-section">
+          <h4>Georgia Wrongful Death Law</h4>
+          <p><strong>O.C.G.A. § 51-4-1 et seq.:</strong> Spouse and children are preferred beneficiaries.</p>
+          <p><strong>Full value of life:</strong> Includes both economic and intangible value.</p>
+          <p><strong>Estate claim separate:</strong> Pain/suffering before death goes to estate.</p>
+          <p><strong>Priority of claimants:</strong> Spouse/children → parents → estate</p>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Who are the statutory beneficiaries?</li>
+              <li>Deceased's age, health, and life expectancy?</li>
+              <li>Income, earning capacity, and career trajectory?</li>
+              <li>Family relationships and dependencies?</li>
+              <li>Pain and suffering before death? (estate claim)</li>
+              <li>Available insurance coverage for wrongful death claim?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Special Considerations</h4>
+          <p><strong>Economic expert needed:</strong> Calculate lost future earnings and household services.</p>
+          <p><strong>Day in the life evidence:</strong> Document deceased's relationships and contributions to family.</p>
+          <p><strong>Immediate investigation critical:</strong> Evidence deteriorates quickly in fatal cases.</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Wrongful death families are grieving and may not be ready to discuss legal matters immediately. Provide compassionate support while preserving evidence. Explain that the legal process helps prevent similar tragedies.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(6)">← Back</button>
+      <button class="btn btn-primary" onclick="go(8)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 8: UBER/LYFT ACCIDENTS ══════════ -->
+<div class="screen" id="screen-8">
+  <div class="section-header">
+    <div class="section-label">Case Type 8 of 9</div>
+    <div class="section-title">Uber/Lyft Accidents</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🚗</div>
+        <div class="case-type-title">Rideshare Vehicle Accidents</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Passenger injured in rideshare vehicle</li>
+            <li>Rideshare driver causes crash injuring others</li>
+            <li>Another driver hits rideshare vehicle</li>
+            <li>Pedestrian struck by rideshare vehicle</li>
+            <li>Accidents during pickup/dropoff</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Rideshare drivers must drive safely and follow all traffic laws while carrying passengers who have entrusted them with their safety</div>
+        </div>
+        <div class="case-section">
+          <h4>Complex Insurance Coverage</h4>
+          <p><strong>Driver's personal insurance:</strong> Often excludes commercial activity</p>
+          <p><strong>Uber/Lyft coverage depends on driver status:</strong></p>
+          <div class="status-flow">
+            <div class="status-step">App off → Driver's personal insurance only</div>
+            <div class="status-step">App on, no ride → Limited Uber/Lyft coverage</div>
+            <div class="status-step">Ride accepted → Full Uber/Lyft coverage ($1M+)</div>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>Driver's status at time of accident?</li>
+              <li>Was driver following Uber/Lyft policies?</li>
+              <li>Driver's qualification and background check?</li>
+              <li>Vehicle inspection and maintenance records?</li>
+              <li>App data and GPS tracking available?</li>
+              <li>Which insurance policy applies and limits?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Special Challenges</h4>
+          <p><strong>Technology evidence:</strong> App data, GPS routes, and driver ratings can be crucial but may require litigation to obtain.</p>
+          <p><strong>Corporate defendants:</strong> Uber/Lyft argue they are technology platforms, not transportation companies.</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Rideshare accident clients often don't understand the complex insurance issues. Explain that coverage depends on driver status and that GLG will navigate the insurance maze for them.</p>
+        </div>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(7)">← Back</button>
+      <button class="btn btn-primary" onclick="go(9)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 9: PREMISES LIABILITY (BEYOND SLIP & FALL) ══════════ -->
+<div class="screen" id="screen-9">
+  <div class="section-header">
+    <div class="section-label">Case Type 9 of 9</div>
+    <div class="section-title">Premises Liability (Beyond Slip &amp; Fall)</div>
+  </div>
+  <div class="content-card">
+    <div class="case-type-detailed">
+      <div class="case-type-header">
+        <div class="case-type-icon">🏢</div>
+        <div class="case-type-title">Property-Related Injuries</div>
+      </div>
+      <div class="case-type-body">
+        <div class="case-section">
+          <h4>Common Scenarios</h4>
+          <ul>
+            <li>Inadequate security (assaults, robberies)</li>
+            <li>Swimming pool drownings</li>
+            <li>Balcony/deck collapses</li>
+            <li>Falling objects (construction sites)</li>
+            <li>Elevator/escalator malfunctions</li>
+            <li>Fire safety violations</li>
+            <li>Toxic exposure on property</li>
+          </ul>
+        </div>
+        <div class="safety-rule-box">
+          <div class="rule-label">Safety Rule</div>
+          <div class="rule-text">Property owners must maintain safe conditions and provide adequate security to protect all visitors from foreseeable harm</div>
+        </div>
+        <div class="case-section">
+          <h4>Case Evaluation Checklist</h4>
+          <div class="eval-checklist">
+            <ul>
+              <li>What specific hazard or security failure occurred?</li>
+              <li>Was the condition or risk foreseeable?</li>
+              <li>Did owner/manager know or should have known?</li>
+              <li>What safety measures should have been in place?</li>
+              <li>Prior similar incidents at this location?</li>
+              <li>Building code or safety violations?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="case-section">
+          <h4>Special Evidence Needs</h4>
+          <p><strong>Inadequate security cases:</strong> Crime statistics, prior incidents, security assessments, lighting studies</p>
+          <p><strong>Structural failures:</strong> Engineering reports, building permits, inspection records</p>
+          <p><strong>Code violations:</strong> Municipal records, fire department reports, OSHA citations</p>
+        </div>
+        <div class="case-section">
+          <h4>Georgia Premises Liability Categories</h4>
+          <p><strong>Invitee:</strong> Business visitor — highest duty of care</p>
+          <p><strong>Licensee:</strong> Social guest — duty to warn of known hazards</p>
+          <p><strong>Trespasser:</strong> Unauthorized presence — limited duty except to children</p>
+        </div>
+        <div class="case-section">
+          <h4>Client Communication Focus</h4>
+          <p>Premises liability clients often feel the property owner "should have known better." Focus on the owner's duty to maintain safe conditions for everyone who might be on the property.</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout green">
+      <span class="callout-icon">🎉</span>
+      <span>You've learned about all 9 GLG case types! You understand the safety rule approach, case evaluation criteria, and client service considerations for each practice area. Ready to test your knowledge?</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(8)">← Back</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Take the Quiz →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN: QUIZ ══════════ -->
+<div class="screen" id="screen-quiz">
+  <div class="section-header">
+    <div class="section-label" id="quiz-section-label">Question 1 of 12</div>
+    <div class="section-title">Knowledge Check</div>
+  </div>
+  <div class="content-card">
+    <div class="quiz-progress" id="quizDots"></div>
+    <div class="question-num" id="qNum">Question 1 of 12</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options" id="qOptions"></div>
+    <div class="feedback-box" id="qFeedback"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="qNextBtn" onclick="nextQuestion()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN: RESULTS ══════════ -->
+<div class="screen" id="screen-results">
+  <div class="section-header">
+    <div class="section-label">Quiz Complete</div>
+    <div class="section-title">Your Results</div>
+  </div>
+  <div class="content-card">
+    <div class="result-hero">
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-banner" id="resultBanner"></div>
+      <div class="result-label" id="resultLabel"></div>
+      <div class="result-badge" id="resultBadge"></div>
+    </div>
+    <div id="badgeContainer" style="text-align:center;margin:16px 0;"></div>
+    <div id="reviewSection" style="margin-top:1.25rem;">
+      <h3 style="font-family:var(--font-b);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.13em;color:var(--navy2);margin-bottom:0.75rem;font-weight:700;padding-bottom:0.4rem;border-bottom:2px solid #eff0f2;">Review</h3>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+    <div class="btn-row" style="margin-top:1.25rem;" id="resultButtons"></div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN: CERTIFICATE ══════════ -->
+<div class="screen" id="screen-cert">
+  <div class="section-header">
+    <div class="section-label">Completion</div>
+    <div class="section-title">Certificate of Completion</div>
+  </div>
+  <div class="content-card">
+    <!-- Feedback Form -->
+    <div style="margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-family:var(--font-b);font-size:16px;font-weight:800;margin-bottom:14px;">📝 Quick Feedback</h4>
+      <div class="fb-question">
+        <label>How clear was the content? (1 = confusing, 5 = crystal clear)</label>
+        <select id="fb-clarity">
+          <option value="">Select rating…</option>
+          <option>1 — Very confusing</option>
+          <option>2 — Somewhat confusing</option>
+          <option>3 — Mostly clear</option>
+          <option>4 — Clear</option>
+          <option>5 — Crystal clear</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>How was the difficulty level?</label>
+        <select id="fb-difficulty">
+          <option value="">Select…</option>
+          <option>Too easy — I already knew all of this</option>
+          <option>About right — challenging but fair</option>
+          <option>Too hard — needs more context</option>
+          <option>Mixed — some sections were hard, some easy</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>Did this module feel like a real work situation?</label>
+        <select id="fb-realistic">
+          <option value="">Select…</option>
+          <option>Yes — felt like actual GLG work</option>
+          <option>Mostly — a few parts felt generic</option>
+          <option>Not really — too textbook-style</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>What's one thing that would make this training better?</label>
+        <textarea id="fb-suggestions" placeholder="Your suggestion here…"></textarea>
+      </div>
+    </div>
+    <!-- Score Submission Form -->
+    <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-family:var(--font-b);font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+      <p style="font-family:var(--font-b);font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-family:var(--font-b);font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+        style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-family:var(--font-b);font-size:15px;margin-bottom:12px;">
+      <button class="btn" onclick="submitScoreAndBuildCert()" style="background:#188038;color:white;padding:12px 24px;border:none;border-radius:8px;font-family:var(--font-b);font-size:15px;font-weight:700;cursor:pointer;width:100%;">✅ Submit Score &amp; View Certificate</button>
+    </div>
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #27ae60;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-family:var(--font-b);font-size:14px;font-weight:600;">
+      ✅ Score submitted! Your results have been recorded.
+    </div>
+    <div id="cert-content" style="display:none;">
+      <div class="cert-wrap" id="certWrap">
+        <div class="cert-firm">Gunn Law Group — Atlanta, Georgia</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-subtitle">GLG Training &amp; Development Program</div>
+        <div class="cert-presents">This certifies that</div>
+        <div class="cert-name" id="certNameDisplay">___________________</div>
+        <div class="cert-for">has successfully completed</div>
+        <div class="cert-module">NH-3 — PI Case Types</div>
+        <span class="cert-seal">⚖️</span>
+        <div class="cert-score" id="certScore"></div>
+        <div class="cert-meta" id="certMeta"></div>
+        <div class="cert-badges" id="certBadges"></div>
+        <div class="cert-signature">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">Harrell Gunn</div>
+          <div class="cert-sig-title">Managing Attorney</div>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="go('results')">← Results</button>
+        <button class="btn btn-green" onclick="window.print()">🖨️ Print Certificate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main-wrap -->
+
+<script>
+// ══════════════════════════════════════════════════════════
+// NH-3 — PI Case Types
+// Module ID: nh3  |  Pass threshold: 10/12 (80%)
+// ══════════════════════════════════════════════════════════
+
+const TOTAL_SECTIONS = 10; // 0=welcome, 1-9=case types, quiz
+var currentScreen = 0;
+var currentQ = 0;
+var answers = [];
+var score = 0;
+var maxVisited = 0;
+
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
+
+var questions = [
+  {
+    q: "What is the safety rule for motor vehicle accidents?",
+    options: [
+      "Cars must have insurance",
+      "Every driver must follow traffic laws and drive with reasonable care",
+      "Drivers must maintain their vehicles",
+      "Speed limits must be obeyed"
+    ],
+    correct: 1,
+    explanation: "The universal safety rule for motor vehicle cases is that every driver must follow traffic laws and drive with reasonable care to protect all road users."
+  },
+  {
+    q: "What federal regulations strengthen trucking accident cases?",
+    options: [
+      "DOT regulations",
+      "FMCSA (Federal Motor Carrier Safety Administration) rules",
+      "EPA emissions standards",
+      "IRS tax codes"
+    ],
+    correct: 1,
+    explanation: "FMCSA regulations govern commercial drivers and create specific safety standards that strengthen safety rule arguments in trucking cases."
+  },
+  {
+    q: "What is a key challenge in motorcycle accident cases?",
+    options: [
+      "Helmet laws don't exist",
+      "Insurance doesn't cover motorcycles",
+      "Bias against motorcyclists",
+      "Motorcycles can't be in accidents"
+    ],
+    correct: 2,
+    explanation: "Insurance adjusters and juries often assume motorcyclists are reckless. GLG must counter this bias with evidence of the car driver's violation of safety rules."
+  },
+  {
+    q: "In slip and fall cases, what must be proven regarding the property owner's knowledge?",
+    options: [
+      "They must have caused the hazard",
+      "They had actual or constructive notice of the dangerous condition",
+      "They must have posted warnings",
+      "They must have insurance"
+    ],
+    correct: 1,
+    explanation: "Georgia law requires proving the property owner had actual knowledge or constructive notice (should have known) about the dangerous condition."
+  },
+  {
+    q: "Under O.C.G.A. § 9-11-9.1, when must the expert affidavit be filed in Georgia medical malpractice cases?",
+    options: [
+      "Within 120 days of the complaint",
+      "Contemporaneously with the complaint (or within 45 days if the SOL is about to run)",
+      "Within 60 days of the complaint",
+      "At any time before trial"
+    ],
+    correct: 1,
+    explanation: "O.C.G.A. § 9-11-9.1 requires the expert affidavit to be filed contemporaneously with the complaint. A 45-day extension applies only when the statute of limitations would run within 10 days of filing, leaving no time to prepare the affidavit first."
+  },
+  {
+    q: "Georgia dog bite law (O.C.G.A. § 51-2-7) requires what for owner liability?",
+    options: [
+      "Strict liability (no fault needed)",
+      "Vicious propensity or leash law violation",
+      "Registration of the dog",
+      "Homeowner's insurance"
+    ],
+    correct: 1,
+    explanation: "Georgia requires proof of the dog's vicious propensity (prior incidents) or violation of a local leash law for owner liability — it is not a strict liability state."
+  },
+  {
+    q: "In Georgia wrongful death cases, who are the preferred beneficiaries?",
+    options: [
+      "Estate only",
+      "Spouse and children",
+      "Parents",
+      "Siblings"
+    ],
+    correct: 1,
+    explanation: "Under O.C.G.A. § 51-4-1, spouse and children are the preferred beneficiaries in wrongful death cases, followed by parents, then the estate."
+  },
+  {
+    q: "Uber/Lyft insurance coverage depends on what factor?",
+    options: [
+      "Time of day",
+      "Driver's status (app off, on, or ride accepted)",
+      "Vehicle type",
+      "Number of passengers"
+    ],
+    correct: 1,
+    explanation: "Coverage varies based on driver status: app off (personal insurance only), app on but no ride (limited coverage), ride accepted (full $1M+ coverage)."
+  },
+  {
+    q: "What is the highest duty of care in premises liability?",
+    options: [
+      "Owed to invitees (business visitors)",
+      "Owed to licensees (social guests)",
+      "Owed to trespassers",
+      "Same duty to everyone"
+    ],
+    correct: 0,
+    explanation: "Invitees (business visitors) receive the highest duty of care from property owners, including the duty to inspect and discover hazards."
+  },
+  {
+    q: "What type of evidence is critical in inadequate security cases?",
+    options: [
+      "Weather reports",
+      "Crime statistics and prior incidents at the location",
+      "Building blueprints",
+      "Insurance policies"
+    ],
+    correct: 1,
+    explanation: "Crime statistics, prior similar incidents, and security assessments help prove the owner knew or should have known about security risks."
+  },
+  {
+    q: "According to GLG's case evaluation principles, what should be included in client counseling?",
+    options: [
+      "Only the legal issues",
+      "Creating options, working out each precisely, explaining clearly, and maintaining empathy",
+      "Just the damages calculation",
+      "Only the client's story"
+    ],
+    correct: 1,
+    explanation: "The Four Challenges in counseling: create options beyond the obvious, work out each precisely, explain clearly, and maintain professional empathy."
+  },
+  {
+    q: "What makes a good safety rule for PI cases?",
+    options: [
+      "It's complex and technical",
+      "It's simple, universal, and protects everyone including jurors",
+      "It only applies to this specific case",
+      "It maximizes damages"
+    ],
+    correct: 1,
+    explanation: "Safety rules must be simple and clear, applicable broadly to protect everyone (not just this plaintiff), and something jurors themselves rely on every day."
+  }
+];
+
+// ── NAV PILL MAPPING ──
+var TOP_BAR_PCT = { 0:0, 1:9, 2:18, 3:27, 4:36, 5:45, 6:54, 7:63, 8:72, 9:82, 'quiz':90, 'results':96, 'cert':100 };
+var PILL_IDS = ['pill-0','pill-1','pill-2','pill-3','pill-4','pill-5','pill-6','pill-7','pill-8','pill-9','pill-quiz'];
+var PILL_SCREENS = [0,1,2,3,4,5,6,7,8,9,'quiz'];
+
+function updateTopBar(screen) {
+  var pct = TOP_BAR_PCT[screen] !== undefined ? TOP_BAR_PCT[screen] : 0;
+  var el = document.getElementById('topBarFill');
+  if (el) el.style.width = pct + '%';
+}
+
+function updateNavPills(screen) {
+  var isQuizOrAfter = (screen === 'quiz' || screen === 'results' || screen === 'cert');
+  PILL_IDS.forEach(function(id, i) {
+    var pill = document.getElementById(id);
+    if (!pill) return;
+    var ps = PILL_SCREENS[i];
+    var isActive = (screen === ps) || (isQuizOrAfter && ps === 'quiz');
+    var isDone = !isActive && (typeof ps === 'number' ? (isQuizOrAfter ? true : ps < screen) : (screen === 'results' || screen === 'cert'));
+    pill.classList.remove('active', 'done');
+    if (isActive) { pill.classList.add('active'); pill.setAttribute('aria-current', 'step'); }
+    else if (isDone) { pill.classList.add('done'); pill.removeAttribute('aria-current'); pill.onclick = function(){ go(ps); }; }
+    else { pill.removeAttribute('aria-current'); pill.onclick = null; }
+  });
+}
+
+function updateProgress(screen) {
+  var fill = document.getElementById('progressFill');
+  var label = document.getElementById('progressLabel');
+  var pct = 0, txt = '';
+  if (screen === 'quiz' || screen === 'results' || screen === 'cert') { pct = 100; txt = 'Quiz'; }
+  else { var s = parseInt(screen); pct = (s / 9) * 100; txt = s === 0 ? 'Intro' : s + ' / 9'; }
+  if (fill) fill.style.width = pct + '%';
+  if (label) label.textContent = txt;
+}
+
+function go(screen) {
+  document.querySelectorAll('.screen').forEach(function(s) { s.classList.remove('active','slide-in','fade-enter'); });
+  var el;
+  if (screen === 'quiz')    el = document.getElementById('screen-quiz');
+  else if (screen === 'results') el = document.getElementById('screen-results');
+  else if (screen === 'cert')    el = document.getElementById('screen-cert');
+  else el = document.getElementById('screen-' + screen);
+  if (el) { el.classList.add('active', 'fade-enter'); }
+  currentScreen = screen;
+  updateProgress(screen);
+  updateNavPills(screen);
+  updateTopBar(screen);
+  window.scrollTo(0, 0);
+}
+
+function startQuiz() {
+  if (!audioCtx) { try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e){} }
+  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  currentQ = 0;
+  answers = new Array(questions.length).fill(null);
+  score = 0;
+  streakCount = 0; maxStreak = 0;
+  questionsFirstTry = 0; incorrectCount = 0; totalQuestionsAnswered = 0;
+  milestonesTriggered = {};
+  moduleStartTime = Date.now();
+  renderQuizDots();
+  renderQuestion();
+  go('quiz');
+}
+
+function renderQuizDots() {
+  var d = document.getElementById('quizDots');
+  d.innerHTML = questions.map(function(_,i) { return '<div class="quiz-dot" id="dot-' + i + '"></div>'; }).join('');
+}
+
+function renderQuestion() {
+  var q = questions[currentQ];
+  document.getElementById('quiz-section-label').textContent = 'Question ' + (currentQ+1) + ' of ' + questions.length;
+  document.getElementById('qNum').textContent = 'Question ' + (currentQ+1) + ' of ' + questions.length;
+  document.getElementById('qText').textContent = q.q;
+  var letters = ['A','B','C','D'];
+  document.getElementById('qOptions').innerHTML = q.options.map(function(opt,i) {
+    return '<button class="option-btn" id="opt-' + i + '" onclick="selectOption(' + i + ')">'
+      + '<span class="option-letter">' + letters[i] + '</span> ' + opt + '</button>';
+  }).join('');
+  var fb = document.getElementById('qFeedback');
+  fb.style.display = 'none'; fb.className = 'feedback-box';
+  document.getElementById('qNextBtn').disabled = true;
+  document.getElementById('qNextBtn').textContent = currentQ < questions.length-1 ? 'Next →' : 'See Results';
+}
+
+function selectOption(idx) {
+  if (answers[currentQ] !== null) return;
+  answers[currentQ] = idx;
+  var q = questions[currentQ];
+  var isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+
+  var opts = document.querySelectorAll('.option-btn');
+  opts.forEach(function(o,i) {
+    o.disabled = true;
+    if (i === q.correct) o.classList.add('correct');
+    else if (i === idx && !isCorrect) o.classList.add('wrong');
+  });
+
+  var dot = document.getElementById('dot-' + currentQ);
+  dot.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  var fb = document.getElementById('qFeedback');
+  fb.style.display = 'block';
+  fb.className = 'feedback-box ' + (isCorrect ? 'correct' : 'wrong');
+  fb.innerHTML = (isCorrect ? '✅ <strong>Correct!</strong> ' : '❌ <strong>Incorrect.</strong> ') + q.explanation;
+
+  document.getElementById('qNextBtn').disabled = false;
+
+  // Update score header
+  var hdrScore = document.getElementById('hdr-score');
+  if (hdrScore) hdrScore.textContent = score + '/' + questions.length;
+
+  // Gamification
+  updateStreak(isCorrect);
+  mascotReact(isCorrect ? 'correct' : 'incorrect');
+  updateGlobalProgress(currentQ + 1, questions.length);
+}
+
+function nextQuestion() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  } else {
+    showResults();
+  }
+}
+
+// ── SCORE COUNTER ANIMATION ──
+function animateCounter(start, end, max, el, duration) {
+  var t0 = null;
+  function step(ts) {
+    if (!t0) t0 = ts;
+    var prog = Math.min((ts - t0) / duration, 1);
+    var eased = 1 - Math.pow(1 - prog, 3);
+    el.textContent = Math.round(start + (end - start) * eased) + '/' + max;
+    if (prog < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function showResults() {
+  mascotReact('complete');
+  spawnParticles(document.querySelector('header'));
+  updateGlobalProgress(questions.length, questions.length);
+  var passThreshold = 10;
+  var passed = score >= passThreshold;
+  var pct = Math.round((score / questions.length) * 100);
+
+  var scoreEl = document.getElementById('resultScore');
+  scoreEl.className = 'result-score ' + (passed ? 'pass' : 'fail');
+  scoreEl.textContent = '0/' + questions.length;
+
+  var bannerEl = document.getElementById('resultBanner');
+  bannerEl.textContent = passed ? '✓ Gate Passed' : '✗ Retake Required';
+  bannerEl.className = 'result-banner ' + (passed ? 'pass' : 'fail');
+
+  document.getElementById('resultLabel').textContent = passed ? 'You Passed! 🎉' : 'Not Quite — Try Again';
+  var badge = document.getElementById('resultBadge');
+  badge.textContent = passed ? 'PASSED — ' + pct + '%' : 'FAILED — ' + pct + '% (Need 80%)';
+  badge.className = 'result-badge ' + (passed ? 'badge-pass' : 'badge-fail');
+
+  var badgeContainer = document.getElementById('badgeContainer');
+  if (badgeContainer) renderBadges(calculateBadges(), badgeContainer);
+
+  var letters = ['A','B','C','D'];
+  var reviewList = document.getElementById('reviewList');
+  var reviewItems = questions.map(function(q, i) {
+    var correct = answers[i] === q.correct;
+    return '<div class="review-item ' + (correct ? 'correct' : 'wrong') + '" style="opacity:0;transform:translateY(8px);transition:opacity 0.25s ease,transform 0.25s ease;" data-review-idx="' + i + '">'
+      + '<div class="ri-q">' + (i+1) + '. ' + q.q + '</div>'
+      + '<div class="ri-ans">'
+      + (correct ? '✅' : '❌') + ' Your answer: <strong>' + letters[answers[i]] + '. ' + q.options[answers[i]] + '</strong>'
+      + (!correct ? '<br>✅ Correct: <strong>' + letters[q.correct] + '. ' + q.options[q.correct] + '</strong>' : '')
+      + (!correct ? '<br><em style="color:#666;font-size:0.8rem;">' + q.explanation + '</em>' : '')
+      + '</div></div>';
+  }).join('');
+  reviewList.innerHTML = reviewItems;
+
+  // Staggered reveal
+  var reviewEls = reviewList.querySelectorAll('[data-review-idx]');
+  reviewEls.forEach(function(el, i) {
+    setTimeout(function() {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      playTickSound();
+    }, i * 150);
+  });
+
+  var btns = document.getElementById('resultButtons');
+  if (passed) {
+    btns.innerHTML = '<button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button>'
+                   + '<button class="btn btn-green" onclick="showCert()">Get Certificate 🏆</button>';
+  } else {
+    btns.innerHTML = '<button class="btn btn-secondary" onclick="go(1)">Review Content</button>'
+                   + '<button class="btn btn-primary" onclick="startQuiz()">Try Again</button>';
+  }
+
+  go('results');
+  setTimeout(function() { animateCounter(0, score, questions.length, scoreEl, 900); }, 150);
+}
+
+function showCert() {
+  var certScore = document.getElementById('certScore');
+  certScore.textContent = 'Score: ' + score + '/12 (' + Math.round(score/12*100) + '%) — PASSED';
+  var now = new Date();
+  document.getElementById('certMeta').textContent = 'Issued: ' + now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+  go('cert');
+}
+
+function updateCertName() {
+  var inp = document.getElementById('trainee-name-input');
+  var val = inp ? inp.value.trim() : '';
+  document.getElementById('certNameDisplay').textContent = val || '___________________';
+}
+
+function submitScoreAndBuildCert() {
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('certNameDisplay').textContent = name;
+  document.getElementById('score-submit-form').style.display = 'none';
+  document.getElementById('cert-content').style.display = 'block';
+
+  // Render badge pills on certificate
+  var certBadgesEl = document.getElementById('certBadges');
+  if (certBadgesEl) {
+    var badges = calculateBadges();
+    badges.push({icon: '⚖️', name: 'NH-3 Complete', desc: 'Completed module NH-3'});
+    certBadgesEl.innerHTML = '';
+    badges.forEach(function(b, i) {
+      var pill = document.createElement('span');
+      pill.className = 'cert-badge-pill';
+      pill.textContent = b.icon + ' ' + b.name;
+      pill.style.animationDelay = (i * 0.15) + 's';
+      certBadgesEl.appendChild(pill);
+    });
+  }
+
+  setTimeout(function() {
+    launchConfetti();
+    playTaDa();
+    mascotReact('complete');
+  }, 350);
+
+  if (TRACKER_URL) {
+    var payload = {
+      employeeName: name,
+      moduleId: 'nh3',
+      moduleName: 'NH-3 — PI Case Types',
+      score: score,
+      maxScore: 12,
+      bonusScore: 0,
+      maxStreak: maxStreak,
+      badges: calculateBadges().map(function(b){ return b.name; }).join(', '),
+      elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
+      passedAt: new Date().toISOString(),
+      feedback: {
+        clarity: document.getElementById('fb-clarity').value || '',
+        difficulty: document.getElementById('fb-difficulty').value || '',
+        realistic: document.getElementById('fb-realistic').value || '',
+        suggestions: document.getElementById('fb-suggestions').value || ''
+      }
+    };
+    fetch(TRACKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    }).then(function() {
+      document.getElementById('score-confirmation').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please screenshot your results and email to hgunn@thegunnlawgroup.com';
+      document.getElementById('score-confirmation').style.background = '#fff3cd';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+      document.getElementById('score-confirmation').style.color = '#856404';
+      document.getElementById('score-confirmation').style.display = 'block';
+    });
+  } else {
+    document.getElementById('score-confirmation').innerHTML = 'ℹ️ Please screenshot your results and email to hgunn@thegunnlawgroup.com';
+    document.getElementById('score-confirmation').style.display = 'block';
+  }
+}
+
+// Init
+updateProgress(0);
+updateNavPills(0);
+updateTopBar(0);
+
+// ══════════════════════════════════════
+// GLG GAMIFICATION ENGINE — NH-1 chassis
+// ══════════════════════════════════════
+
+// ── SOUND ENGINE (Web Audio API) ──
+var audioCtx = null;
+var soundEnabled = false;
+var _audioKeepalive = null;
+var streakCount = 0;
+var maxStreak = 0;
+var moduleStartTime = Date.now();
+var questionsFirstTry = 0;
+var totalQuestionsAnswered = 0;
+var incorrectCount = 0;
+var milestonesTriggered = {};
+
+function ensureAudioCtx() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return false; }
+  }
+  if (audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+  if (!_audioKeepalive && audioCtx) {
+    try {
+      var silentOsc = audioCtx.createOscillator();
+      var silentGain = audioCtx.createGain();
+      silentGain.gain.value = 0;
+      silentOsc.connect(silentGain);
+      silentGain.connect(audioCtx.destination);
+      silentOsc.start();
+      _audioKeepalive = silentOsc;
+    } catch(e) {}
+  }
+  return true;
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  if (soundEnabled) ensureAudioCtx();
+  document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+  localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
+}
+
+function playTone(freq, duration, type, gainVal, scheduleAt) {
+  if (!soundEnabled || !audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+  var startTime = (scheduleAt !== undefined) ? audioCtx.currentTime + scheduleAt : audioCtx.currentTime;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.type = type || 'sine';
+  o.frequency.value = freq;
+  g.gain.setValueAtTime(gainVal || 0.15, startTime);
+  g.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(startTime); o.stop(startTime + duration + 0.01);
+}
+
+function playDing() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  playTone(523, 0.15, 'sine', 0.13, 0);
+  playTone(659, 0.18, 'sine', 0.11, 0.1);
+}
+
+function playWrongTone() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  // 520 Hz → 440 Hz descending triangle — audible on phone speakers
+  playTone(520, 0.12, 'triangle', 0.12, 0);
+  playTone(440, 0.15, 'triangle', 0.10, 0.08);
+}
+
+function playTickSound() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(800, 0.05, 'triangle', 0.06);
+}
+
+function playTaDa() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+  var notes = [
+    {f:262, t:0,    d:0.30, type:'triangle', g:0.14},
+    {f:330, t:0,    d:0.30, type:'sine',     g:0.11},
+    {f:392, t:0,    d:0.30, type:'sine',     g:0.09},
+    {f:523, t:0.15, d:0.22, type:'sine',     g:0.13},
+    {f:659, t:0.30, d:0.22, type:'sine',     g:0.12},
+    {f:784, t:0.45, d:0.22, type:'sine',     g:0.11},
+    {f:523, t:0.65, d:0.80, type:'sine',     g:0.13},
+    {f:659, t:0.65, d:0.80, type:'sine',     g:0.11},
+    {f:784, t:0.65, d:0.80, type:'sine',     g:0.09},
+    {f:1047,t:0.65, d:0.80, type:'triangle', g:0.07},
+    {f:1319,t:0.75, d:0.55, type:'sine',     g:0.04},
+    {f:1568,t:0.85, d:0.45, type:'sine',     g:0.03}
+  ];
+  notes.forEach(function(n) {
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = n.type || 'sine';
+    osc.frequency.value = n.f;
+    gain.gain.setValueAtTime(n.g, now + n.t);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(now + n.t); osc.stop(now + n.t + n.d + 0.05);
+  });
+}
+
+function playCorrectChime() { playDing(); }
+function playIncorrectTone() { playWrongTone(); }
+function playStreakChime()   { playDing(); }
+
+// ── STREAK SYSTEM ──
+function updateStreak(isCorrect) {
+  var el = document.getElementById('streak-display');
+  if (isCorrect) {
+    streakCount++;
+    if (streakCount > maxStreak) maxStreak = streakCount;
+    questionsFirstTry++;
+    if (el) el.textContent = streakCount + ' 🔥';
+    playDing();
+    if (streakCount >= 3) showStreakBadge(streakCount);
+    if (streakCount === 5) spawnParticles(document.querySelector('.score-bar-mini'));
+  } else {
+    if (streakCount >= 3) showStreakEnd();
+    streakCount = 0;
+    incorrectCount++;
+    if (el) el.textContent = '0 🔥';
+    playWrongTone();
+  }
+  totalQuestionsAnswered++;
+}
+
+function showStreakBadge(count) {
+  var badge = document.createElement('div');
+  badge.textContent = count + ' in a row! 🔥';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#dcb161,#e8c87a);color:#141C2C;padding:8px 20px;border-radius:20px;font-weight:700;font-size:14px;z-index:10001;animation:streakPop 0.4s ease-out,fadeUp 0.4s ease-in 1.5s forwards;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 2000);
+}
+
+function showStreakEnd() {
+  var badge = document.createElement('div');
+  badge.textContent = 'Streak ended';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#333;color:#999;padding:6px 16px;border-radius:16px;font-size:12px;z-index:10001;opacity:0.8;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 1500);
+}
+
+// ── MILESTONE TOASTS ──
+function checkMilestone(current, total) {
+  var pct = Math.round((current / total) * 100);
+  var milestones = {25:'Quarter complete! 💪', 50:'Halfway there! 🎯', 75:'Almost there! ⚡', 100:'Final stretch! 🏆'};
+  for (var m in milestones) {
+    if (pct >= parseInt(m) && !milestonesTriggered[m]) {
+      milestonesTriggered[m] = true;
+      showToast(milestones[m]);
+    }
+  }
+}
+
+function showToast(msg) {
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;top:-50px;left:50%;transform:translateX(-50%);background:#141C2C;color:#dcb161;padding:10px 24px;border-radius:12px;font-weight:700;font-size:14px;z-index:10002;transition:top 0.4s ease;box-shadow:0 4px 20px rgba(0,0,0,0.3);';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.top = '20px'; });
+  setTimeout(function(){ t.style.top = '-50px'; setTimeout(function(){ t.remove(); }, 500); }, 2500);
+}
+
+// ── GLOBAL PROGRESS BAR ──
+function updateGlobalProgress(current, total) {
+  var fill = document.getElementById('globalProgressFill');
+  if (fill) fill.style.width = Math.round((current / total) * 100) + '%';
+  checkMilestone(current, total);
+}
+
+// ── PARTICLES (gold champagne burst) ──
+function spawnParticles(anchor) {
+  var rect = anchor ? anchor.getBoundingClientRect() : {left: window.innerWidth/2, top: window.innerHeight/2, width:0};
+  for (var i = 0; i < 20; i++) {
+    var p = document.createElement('div');
+    var size = 4 + Math.random() * 6;
+    var angle = (Math.PI * 2 * i) / 20 + (Math.random() * 0.3);
+    var dist = 60 + Math.random() * 80;
+    p.style.cssText = 'position:fixed;width:' + size + 'px;height:' + size + 'px;background:#dcb161;border-radius:50%;left:' + (rect.left + rect.width/2) + 'px;top:' + (rect.top) + 'px;z-index:10003;pointer-events:none;opacity:1;transition:all 0.8s ease-out;';
+    document.body.appendChild(p);
+    (function(pp, a, d) {
+      requestAnimationFrame(function() {
+        pp.style.left = (parseFloat(pp.style.left) + Math.cos(a) * d) + 'px';
+        pp.style.top  = (parseFloat(pp.style.top)  + Math.sin(a) * d) + 'px';
+        pp.style.opacity = '0';
+      });
+      setTimeout(function(){ pp.remove(); }, 900);
+    })(p, angle, dist);
+  }
+}
+
+// ── FLOATING MASCOT — ⚖️ SCALES OF JUSTICE ──
+function initMascot() {
+  var el = document.createElement('div');
+  el.id = 'mascotFloat';
+  el.innerHTML = '<svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:58px;">'
+    + '<rect x="27" y="18" width="6" height="38" rx="1.5" fill="#8B7D3C"/>'
+    + '<rect x="18" y="54" width="24" height="5" rx="2.5" fill="#6B5E2E"/>'
+    + '<rect x="22" y="52" width="16" height="4" rx="1" fill="#8B7D3C"/>'
+    + '    + '<rect x="6" y="16" width="48" height="4" rx="2" fill="#8B7D3C"/>'
+    + '<circle cx="30" cy="12" r="5" fill="#dcb161" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<text x="30" y="14.5" text-anchor="middle" font-size="7" font-weight="bold" fill="#141C2C">⚖</text>'
+    + '<line x1="12" y1="20" x2="12" y2="32" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<line x1="48" y1="20" x2="48" y2="32" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<path d="M4 33 Q8 38 12 33 Q16 38 20 33" stroke="#dcb161" stroke-width="1.5" fill="none"/>'
+    + '<ellipse cx="12" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3"/>'
+    + '<path d="M40 33 Q44 38 48 33 Q52 38 56 33" stroke="#dcb161" stroke-width="1.5" fill="none"/>'
+    + '<ellipse cx="48" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3"/>'
+    + '</svg>';
+  el.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9998;cursor:pointer;animation:scaleBob 3s ease-in-out infinite;opacity:0.7;transition:opacity 0.3s,transform 0.3s;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));';
+  el.onmouseenter = function(){ this.style.opacity='1'; this.style.transform='scale(1.1)'; };
+  el.onmouseleave = function(){ this.style.opacity='0.7'; this.style.transform='scale(1)'; };
+  document.body.appendChild(el);
+}
+
+function mascotReact(type) {
+  var g = document.getElementById('mascotFloat');
+  if (!g) return;
+  g.style.animation = 'none';
+  void g.offsetHeight;
+  if (type === 'correct') {
+    g.style.animation = 'scaleCelebrate 0.5s ease-out, scaleBob 3s ease-in-out 0.6s infinite';
+  } else if (type === 'incorrect') {
+    g.style.animation = 'scaleTilt 0.6s ease-in-out, scaleBob 3s ease-in-out 0.7s infinite';
+  } else if (type === 'complete') {
+    g.style.animation = 'scaleTriumph 1.5s ease-in-out, scaleBob 3s ease-in-out 1.6s infinite';
+    g.style.opacity = '1';
+    g.style.transform = 'scale(1.15)';
+  }
+}
+
+// ── CONFETTI SYSTEM (Canvas-based, GLG colors) ──
+var confettiActive = false;
+function launchConfetti() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var colors = ['#dcb161', '#c0c0c0', '#141c2c'];
+  var particles = [];
+  var cx = canvas.width / 2;
+  var cy = canvas.height / 2;
+  for (var i = 0; i < 150; i++) {
+    var angle = Math.random() * Math.PI * 2;
+    var speed = 3 + Math.random() * 9;
+    particles.push({
+      x: cx, y: cy,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed - 5,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      w: 4 + Math.random() * 6,
+      h: 2 + Math.random() * 4,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 12,
+      gravity: 0.10 + Math.random() * 0.08,
+      opacity: 1,
+      shape: Math.random() > 0.4 ? 'rect' : 'circle'
+    });
+  }
+  confettiActive = true;
+  var startTime = Date.now();
+  function animate() {
+    if (!confettiActive) return;
+    var elapsed = Date.now() - startTime;
+    if (elapsed > 4000) { confettiActive = false; ctx.clearRect(0, 0, canvas.width, canvas.height); return; }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      p.x += p.vx; p.vy += p.gravity; p.y += p.vy; p.vx *= 0.99;
+      p.rotation += p.rotSpeed;
+      if (elapsed > 2500) p.opacity = Math.max(0, p.opacity - 0.02);
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rotation * Math.PI / 180);
+      ctx.globalAlpha = p.opacity;
+      ctx.fillStyle = p.color;
+      if (p.shape === 'rect') { ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h); }
+      else { ctx.beginPath(); ctx.arc(0, 0, p.w/2, 0, Math.PI*2); ctx.fill(); }
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+// ── ACHIEVEMENT BADGES ──
+function calculateBadges() {
+  var badges = [];
+  var totalQ = questions.length;
+  var pct = Math.round((score / totalQ) * 100);
+  var elapsed = (Date.now() - moduleStartTime) / 60000;
+  if (questionsFirstTry === totalQ && incorrectCount === 0) badges.push({icon:'⭐', name:'Perfect Pass', desc:'All correct on first try'});
+  if (incorrectCount === 0) badges.push({icon:'🎯', name:'No Stumbles', desc:'Zero incorrect'});
+  if (elapsed < 15) badges.push({icon:'⚡', name:'Speed Run', desc:'Under 15 minutes'});
+  if (pct >= 90) badges.push({icon:'🏆', name:'Master', desc:'Above 90%'});
+  if (incorrectCount > 3 && pct >= 70) badges.push({icon:'💪', name:'Persistent', desc:'Finished despite struggles'});
+  return badges;
+}
+
+function renderBadges(badges, container) {
+  badges.forEach(function(b, i) {
+    setTimeout(function() {
+      var el = document.createElement('span');
+      el.className = 'achievement-badge';
+      el.textContent = b.icon + ' ' + b.name;
+      el.title = b.desc;
+      el.style.cssText = 'display:inline-block;background:#dcb161;color:#141C2C;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;margin:4px;animation:badgeFlip 0.5s ease-out;';
+      container.appendChild(el);
+    }, i * 400);
+  });
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('glg_sound') === '1') {
+    soundEnabled = true;
+    var btn = document.getElementById('soundToggle');
+    if (btn) btn.textContent = '🔊';
+  }
+  function initAudioOnFirstClick() {
+    ensureAudioCtx();
+    document.removeEventListener('click', initAudioOnFirstClick);
+    document.removeEventListener('touchstart', initAudioOnFirstClick);
+    document.removeEventListener('touchend', initAudioOnFirstClick);
+  }
+  document.addEventListener('click', initAudioOnFirstClick);
+  document.addEventListener('touchstart', initAudioOnFirstClick);
+  document.addEventListener('touchend', initAudioOnFirstClick);
+
+  // Persistent iOS AudioContext keepalive
+  function resumeAudioOnGesture() {
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  document.addEventListener('touchstart', resumeAudioOnGesture, true);
+  document.addEventListener('touchend', resumeAudioOnGesture, true);
+  document.addEventListener('click', resumeAudioOnGesture, true);
+
+  // iOS touch event fix
+  document.querySelectorAll('[onclick]').forEach(function(el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var fn = el.getAttribute('onclick');
+      if (fn) { eval(fn); }
+    }, {passive: false});
+  });
+
+  if (!document.querySelector('.screen.active')) {
+    var first = document.getElementById('screen-0');
+    if (first) first.classList.add('active');
+  }
+
+  initMascot();
+});
+
+</script>
+</body>
+</html>
