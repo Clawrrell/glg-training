@@ -1,7 +1,7 @@
 <!--
-LA-4 — Settlement Negotiations & Release Documents
+CM-2 — Settlement Negotiations & Release Documents
 Built: June 2026 | Base: site/module-la3.html (LA-track canonical chassis)
-CasePeer Stages: Pending Demand → Settling → Settled | moduleId: la4
+CasePeer Stages: Pending Demand → Settling → Settled | moduleId: cm2
 Base: 20 questions × 10 pts = 200 | Bonus: 5 boss tasks × 10 bonus pts = 50 max | Pass: 170/200 (85%)
 Answer Key: q1→C q2→B q3→C q4→B  q5→B q6→any(calibration) q7→C q8→C
             q9→B q10→B q11→D q12→B  q13→B q14→B q15→B q16→C
@@ -15,7 +15,7 @@ Sources: System-4-GLG-MASTER.md, CasePeer_Section_Template_Mapping.md, Holt_Dema
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>LA-4 — Settlement Negotiations &amp; Release Documents | Gunn Law Group</title>
+  <title>CM-2 — Settlement Negotiations &amp; Release Documents | Gunn Law Group</title>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
@@ -244,8 +244,8 @@ Sources: System-4-GLG-MASTER.md, CasePeer_Section_Template_Mapping.md, Holt_Dema
 ════════════════════════════════════════════ -->
 <header>
   <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
-  <div class="day-badge">LA-4 · Settlement Negotiations &amp; Release Documents</div>
-  <h1>LA-4 — Settlement Negotiations &amp; Release Documents</h1>
+  <div class="day-badge">CM-2 · Settlement Negotiations &amp; Release Documents</div>
+  <h1>CM-2 — Settlement Negotiations &amp; Release Documents</h1>
   <p>Gunn Law Group · Legal Assistant Training</p>
   <div class="score-bar">
     <div>
@@ -329,7 +329,7 @@ Sources: System-4-GLG-MASTER.md, CasePeer_Section_Template_Mapping.md, Holt_Dema
         <li>The five failure modes GLG's negotiation system is built to prevent</li>
       </ul>
     </div>
-    <div class="callout callout-warn"><strong>Prerequisites:</strong> LA-2 (CasePeer status transitions, disbursement math) and LA-3 (lien hold formulas, 15% cushion rule) are tested in this module through retrieval callbacks. Both prior modules build directly into LA-4 content.</div>
+    <div class="callout callout-warn"><strong>Prerequisites:</strong> LA-2 (CasePeer status transitions, disbursement math) and LA-3 (lien hold formulas, 15% cushion rule) are tested in this module through retrieval callbacks. Both prior modules build directly into CM-2 content.</div>
     <div class="callout callout-info"><strong>Scoring:</strong> 20 questions × 10 pts = 200 base pts possible. Pass gate: 170/200 (85%). Boss Challenge adds up to 50 bonus points. Bonus points do not count toward the pass gate but do appear on your certificate.</div>
     <div class="btn-group"><button class="btn btn-primary btn-block" onclick="goToSection(1)">Begin: The Demand-to-Agreement Pipeline &rarr;</button></div>
   </div>
@@ -917,7 +917,7 @@ Sources: System-4-GLG-MASTER.md, CasePeer_Section_Template_Mapping.md, Holt_Dema
         <div class="cert-presents">This certifies that</div>
         <div class="cert-name" id="certNameDisplay">Training Participant</div>
         <div class="cert-for">has successfully completed</div>
-        <div class="cert-module">LA-4 — Settlement Negotiations &amp; Release Documents</div>
+        <div class="cert-module">CM-2 — Settlement Negotiations &amp; Release Documents</div>
         <div class="cert-score" id="certScore"></div>
         <div class="cert-meta" id="certMeta"></div>
         <span class="cert-seal">⚖️</span>
@@ -1270,7 +1270,7 @@ function checkSectionComplete(sectionIdx) {
 // NAVIGATION
 // ═══════════════════════════════════════════════
 function goToSection(idx) {
-  if (idx === 8 && !window._la4Passed) {
+  if (idx === 8 && !window._cm2Passed) {
     showToast('⚠️ 85% required for certificate', false);
     return;
   }
@@ -1332,7 +1332,7 @@ function restartQuiz() {
   incorrectCount = 0;
   totalQuestionsAnswered = 0;
   moduleStartTime = Date.now();
-  window._la4Passed = false;
+  window._cm2Passed = false;
 
   document.querySelectorAll('.question-block').forEach(function(block) {
     block.classList.remove('answered', 'answered-wrong');
@@ -1437,7 +1437,7 @@ function buildResults() {
     if (counterEl) counterEl.textContent = totalQs + '/' + totalQs + ' ✓ Review Complete';
   }, reviewEls.length * 120 + 200);
 
-  window._la4Passed = pass;
+  window._cm2Passed = pass;
 
   var bodyEl = document.getElementById('results-body');
   var buttonsHtml;
@@ -1481,8 +1481,8 @@ function buildResults() {
 function submitScoreToTracker() {
   if (!TRACKER_URL) return;
   var payload = {
-    moduleId:   'la4',
-    moduleName: 'LA-4 Settlement Negotiations & Release Documents',
+    moduleId:   'cm2',
+    moduleName: 'CM-2 Settlement Negotiations & Release Documents',
     score:      baseScore,
     maxScore:   200,
     bonusScore: bonusPoints,
@@ -1509,7 +1509,7 @@ function submitScoreToTracker() {
 // SUBMIT SCORE + BUILD CERTIFICATE
 // ═══════════════════════════════════════════════
 function submitScoreAndBuildCert() {
-  if (!window._la4Passed) {
+  if (!window._cm2Passed) {
     showToast('⚠️ 85% required for certificate', false);
     return;
   }
@@ -1528,7 +1528,7 @@ function submitScoreAndBuildCert() {
   var certBadgesEl = document.getElementById('certBadges');
   if (certBadgesEl) {
     var badges = calculateBadges();
-    badges.push({icon: '🎓', name: 'LA-4 Complete', desc: 'Completed module LA-4'});
+    badges.push({icon: '🎓', name: 'CM-2 Complete', desc: 'Completed module CM-2'});
     certBadgesEl.innerHTML = '';
     badges.forEach(function(b, i) {
       var pill = document.createElement('span');
@@ -1548,8 +1548,8 @@ function submitScoreAndBuildCert() {
   if (TRACKER_URL) {
     var payload = {
       employeeName: name,
-      moduleId: 'la4',
-      moduleName: 'LA-4 Settlement Negotiations & Release Documents',
+      moduleId: 'cm2',
+      moduleName: 'CM-2 Settlement Negotiations & Release Documents',
       score: baseScore,
       maxScore: 200,
       bonusScore: bonusPoints,
@@ -1582,7 +1582,7 @@ function submitScoreAndBuildCert() {
 }
 
 // ═══════════════════════════════════════════════
-// GLG GAMIFICATION ENGINE v1.0 — LA-4 CHASSIS
+// GLG GAMIFICATION ENGINE v1.0 — CM-2 CHASSIS
 // ═══════════════════════════════════════════════
 
 // ── SOUND ENGINE ──
