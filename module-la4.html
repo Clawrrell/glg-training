@@ -1,0 +1,1909 @@
+<!--
+LA-4 — Settlement Negotiations & Release Documents
+Built: June 2026 | Base: site/module-la3.html (LA-track canonical chassis)
+CasePeer Stages: Pending Demand → Settling → Settled | moduleId: la4
+Base: 20 questions × 10 pts = 200 | Bonus: 5 boss tasks × 10 bonus pts = 50 max | Pass: 170/200 (85%)
+Answer Key: q1→C q2→B q3→C q4→B  q5→B q6→any(calibration) q7→C q8→C
+            q9→B q10→B q11→D q12→B  q13→B q14→B q15→B q16→C
+            q17→C q18→B q19→B q20→B
+            q21→B(boss) q22→A(boss) q23→B(boss) q24→B(boss) q25→B(boss)
+Boss Challenge: Camille Reyes, GLG-2026-1587
+Sources: System-4-GLG-MASTER.md, CasePeer_Section_Template_Mapping.md, Holt_Demand_Checklist.md
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LA-4 — Settlement Negotiations &amp; Release Documents | Gunn Law Group</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
+
+    /* ── HEADER ── */
+    header{background:linear-gradient(135deg,#141C2C 0%,#0E1420 100%);color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#1C2433;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;color:#ffffff;}
+    header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1C2433;border-radius:10px;}
+    .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
+    .score-value{color:#fff;font-size:22px;font-weight:800;}
+
+    /* ── PROGRESS ── */
+    .progress-wrap{background:#1C2433;padding:10px 16px;}
+    .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#0E1420;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+
+    /* ── NAV PILLS ── */
+    .section-nav{display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
+    .nav-pill{padding:7px 11px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:11px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+    .nav-pill.active{background:#141C2C;color:#fff;border-color:#141C2C;}
+    .nav-pill.done{border-color:#10774A;color:#10774A;}
+    .nav-pill.done::after{content:' ✓';}
+
+    /* ── MAIN / CARDS ── */
+    main{max-width:800px;margin:0 auto;padding:0 0 60px;}
+    .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:visible;}
+    .section-card.active{display:block;}
+    .section-header{background:#141C2C;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
+    .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
+    .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
+    .section-body{padding:20px;}
+
+    /* ── SCENARIO BOX ── */
+    .scenario{background:#141C2C;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border-left:3px solid #dcb161;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
+    .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
+    .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
+    .scenario .highlight{color:#dcb161;font-weight:700;}
+    .scenario .urgent{color:#e74c3c;font-weight:700;}
+
+    /* ── INFO BLOCKS ── */
+    .info-block{background:#f0f4f8;border-radius:10px;padding:16px;margin-bottom:14px;}
+    .info-block h4{color:#141c2c;font-size:14px;font-weight:700;margin-bottom:8px;}
+    .info-block p,.info-block li{font-size:14px;color:#444;line-height:1.6;}
+    .info-block ul,.info-block ol{padding-left:18px;}
+
+    /* ── QUESTIONS ── */
+    .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
+    .question-block.answered{border-color:#10774A;}
+    .question-block.answered-wrong{border-color:#870101;}
+    .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
+    .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
+    .options{display:flex;flex-direction:column;gap:10px;}
+    .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
+    .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
+    .option-btn.correct{border-color:#10774A!important;background:#e8f8ee!important;color:#10774A!important;}
+    .option-btn.incorrect{border-color:#870101!important;background:#fce8e8!important;color:#870101!important;}
+    .option-btn.disabled{pointer-events:none;opacity:.75;}
+    .opt-letter{background:#141C2C;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-text{flex:1;line-height:1.5;}
+
+    /* ── FEEDBACK ── */
+    .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #870101;color:#721c24;}
+    .feedback-box.show{display:block;}
+
+    /* ── POINTS TOAST ── */
+    .points-toast{position:fixed;top:80px;right:16px;background:#10774A;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast.show{transform:translateY(0);opacity:1;}
+    .points-toast.bonus{background:#dcb161;color:#141C2C;}
+
+    /* ── SECTION SCORE ── */
+    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;}
+    .section-score .score-display{font-size:32px;font-weight:800;color:#141c2c;}
+    .section-score .score-label{font-size:13px;color:#666;margin-top:2px;}
+
+    /* ── CASE FILE ── */
+    .case-file{background:#fff;border:2px solid #141c2c;border-radius:12px;padding:18px;margin-bottom:20px;}
+    .case-file-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #f0f4f8;}
+    .case-file-icon{background:#141c2c;color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .case-file-title{font-weight:800;color:#141c2c;font-size:15px;}
+    .case-file-sub{font-size:12px;color:#888;}
+    .case-detail{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px;}
+    .case-detail:last-child{border-bottom:none;}
+    .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
+    .case-val{color:#444;}
+    .case-val .flag{display:inline-block;background:#870101;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#10774A;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+
+    /* ── BOSS CHALLENGE ── */
+    .boss-header{background:linear-gradient(135deg,#870101 0%,#5a0000 100%);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;}
+    .boss-header .boss-icon{font-size:40px;margin-bottom:10px;}
+    .boss-header h3{font-size:clamp(17px,4.5vw,22px);font-weight:800;margin-bottom:8px;}
+    .boss-header p{font-size:14px;opacity:.9;line-height:1.5;}
+
+    /* ── RESULTS ── */
+    .results-header{padding:28px 20px;text-align:center;color:#fff;}
+    .results-header.pass{background:linear-gradient(135deg,#10774A,#0a5c38);}
+    .results-header.fail{background:linear-gradient(135deg,#870101,#6b0000);}
+    .results-grade{font-size:56px;font-weight:900;line-height:1;}
+    .results-label{font-size:16px;margin-top:6px;opacity:.9;}
+    .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
+    .breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f4f8;font-size:15px;}
+    .breakdown-row:last-child{border-bottom:none;}
+    .breakdown-name{color:#333;font-weight:600;}
+    .breakdown-pts{font-weight:800;color:#141c2c;}
+    .achievement-grid{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+    .badge{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:2px solid #e0e3e8;color:#888;background:#f8f9fa;}
+    .badge.earned{border-color:#dcb161;background:#fffaed;color:#7a5c00;}
+    .badge .badge-icon{font-size:20px;}
+
+    /* ── CERTIFICATE ── */
+    .cert-wrap{background:linear-gradient(180deg,#ffffff 0%,#fafaf5 100%);border:4px double #141c2c;border-radius:14px;padding:2.5rem 1.75rem;text-align:center;margin-bottom:1rem;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(20,28,44,0.10);animation:certPopIn 0.8s 0.1s cubic-bezier(0.34,1.56,0.64,1) both;}
+    @keyframes certPopIn{0%{opacity:0;transform:scale(0.7);box-shadow:0 2px 8px rgba(20,28,44,0.05)}60%{opacity:1;transform:scale(1.04);box-shadow:0 8px 32px rgba(20,28,44,0.18)}80%{transform:scale(0.98)}100%{opacity:1;transform:scale(1);box-shadow:0 10px 40px rgba(20,28,44,0.16)}}
+    .cert-wrap::before{content:'';position:absolute;inset:10px;border:1px solid #dcb161;border-radius:8px;pointer-events:none;opacity:0.45;}
+    .cert-wrap::after{content:'\2696\FE0F';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:180px;opacity:0.03;pointer-events:none;z-index:0;}
+    .cert-firm{font-size:0.67rem;letter-spacing:0.22em;text-transform:uppercase;color:#232e54;font-weight:600;margin-bottom:0.6rem;position:relative;z-index:1;}
+    .cert-title{font-size:clamp(1.5rem,5vw,1.9rem);font-weight:800;color:#141c2c;margin-bottom:0.3rem;text-transform:uppercase;letter-spacing:0.04em;position:relative;z-index:1;}
+    .cert-subtitle{font-size:0.8rem;color:#888;margin-bottom:1.4rem;position:relative;z-index:1;}
+    .cert-presents{font-size:0.85rem;color:#777;font-style:italic;margin-bottom:0.3rem;position:relative;z-index:1;}
+    .cert-name{font-size:clamp(1.6rem,6vw,2.2rem);font-weight:700;color:#232e54;font-style:italic;border-bottom:2px solid #dcb161;display:inline-block;padding:0 0.75rem 0.2rem;margin-bottom:0.85rem;min-width:60%;position:relative;z-index:1;}
+    .cert-for{font-size:0.85rem;color:#666;margin-bottom:0.35rem;position:relative;z-index:1;}
+    .cert-module{font-size:1.05rem;font-weight:600;color:#141c2c;margin-bottom:1.1rem;position:relative;z-index:1;}
+    .cert-meta{font-size:0.8rem;color:#888;position:relative;z-index:1;}
+    .cert-score{font-size:1.1rem;font-weight:700;color:#10774A;margin-top:0.5rem;position:relative;z-index:1;}
+    .cert-seal{font-size:2.5rem;margin:0.85rem 0 0.3rem;display:block;position:relative;z-index:1;}
+    .cert-signature{margin-top:1.5rem;position:relative;z-index:1;}
+    .cert-sig-line{width:200px;border-top:1px solid #141c2c;margin:0 auto 0.3rem;}
+    .cert-sig-name{font-size:1rem;font-weight:600;color:#141c2c;font-style:italic;}
+    .cert-sig-title{font-size:0.75rem;color:#888;letter-spacing:0.05em;}
+    .cert-badges{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px;position:relative;z-index:1;}
+    .cert-badge-pill{display:inline-block;background:#dcb161;color:#141C2C;font-size:0.68rem;font-weight:700;padding:4px 12px;border-radius:14px;letter-spacing:0.03em;animation:badgeFlip 0.5s ease-out backwards;}
+    #confettiCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:10005;}
+
+    /* ── REVIEW LIST ── */
+    .review-list{display:flex;flex-direction:column;gap:0.65rem;margin-top:1rem;}
+    .review-item{background:#f8f9fa;border-radius:10px;padding:0.8rem 1.1rem;border-left:4px solid #ddd;font-size:0.88rem;transition:transform 0.15s ease;}
+    .review-item:hover{transform:translateX(2px);}
+    .review-item.correct{border-color:#10774A;}
+    .review-item.wrong{border-color:#870101;}
+    .review-item .ri-q{font-weight:600;margin-bottom:0.35rem;color:#141c2c;}
+    .review-item .ri-ans{font-size:0.82rem;}
+
+    /* ── NAME INPUT ── */
+    .name-input-wrap{margin-bottom:1rem;}
+    .name-input-wrap label{display:block;font-size:0.85rem;font-weight:600;color:#232e54;margin-bottom:0.4rem;}
+    .name-input{width:100%;padding:0.82rem 1rem;border:2px solid #e0e3e8;border-radius:9px;font-size:1rem;color:#333;background:#fff;transition:border-color 0.2s ease,box-shadow 0.2s ease;-webkit-appearance:none;}
+    .name-input:focus{outline:none;border-color:#232e54;box-shadow:0 0 0 3px rgba(35,46,84,0.1);}
+
+    /* ── FEEDBACK FORM ── */
+    .fb-question{margin-bottom:18px;}
+    .fb-question label{display:block;font-weight:700;color:#141c2c;font-size:15px;margin-bottom:8px;}
+    .fb-question select,.fb-question textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:9px;font-size:14px;background:#fff;color:#333;-webkit-appearance:none;transition:border-color 0.2s ease;font-family:inherit;}
+    .fb-question select:focus,.fb-question textarea:focus{outline:none;border-color:#141c2c;}
+    .fb-question textarea{resize:vertical;min-height:80px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
+    .btn-primary{background:#141C2C;color:#fff;}
+    .btn-primary:hover{background:#232e54;}
+    .btn-secondary{background:#f0f4f8;color:#141c2c;}
+    .btn-block{width:100%;margin-top:12px;}
+    .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
+    .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
+    .callout strong{font-weight:700;}
+
+    /* ── STAT TABLE ── */
+    .stat-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px;}
+    .stat-table th{background:#141c2c;color:#dcb161;padding:8px 10px;text-align:left;font-weight:700;}
+    .stat-table td{padding:7px 10px;border-bottom:1px solid #e0e3e8;vertical-align:top;}
+    .stat-table tr:last-child td{border-bottom:none;}
+    .stat-table tr:nth-child(even) td{background:#f8f9fa;}
+    .stat-num{font-weight:800;color:#141c2c;white-space:nowrap;}
+    .stat-warn{background:#fff3cd !important;font-weight:700;}
+    .stat-void{background:#fce8e8 !important;color:#721c24;font-weight:700;}
+    .stat-ok{background:#d4edda !important;color:#155724;font-weight:700;}
+
+    /* ── DIVIDER / TAGS / UTILS ── */
+    .divider{border:none;border-top:2px solid #f0f4f8;margin:16px 0;}
+    .tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+    .tag-warn{background:#fff3cd;color:#856404;}
+    .tag-danger{background:#fce8e8;color:#7b1a1a;}
+    .tag-success{background:#d4edda;color:#155724;}
+    .tag-info{background:#d6e8f8;color:#174a7e;}
+    .tag-gold{background:#fffaed;color:#7a5c00;border:1px solid #dcb161;}
+    .text-center{text-align:center;}
+    .mt-4{margin-top:16px;}
+    .mb-4{margin-bottom:16px;}
+
+    /* ── SCORE CONFIRM ── */
+    .score-confirm{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;background:#d4edda;border-left:4px solid #10774A;color:#155724;display:none;}
+
+    .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
+
+    /* ── GAMIFICATION ANIMATIONS ── */
+    @keyframes streakPop{0%{transform:translateX(-50%) scale(0.5);opacity:0}50%{transform:translateX(-50%) scale(1.15)}100%{transform:translateX(-50%) scale(1);opacity:1}}
+    @keyframes fadeUp{to{opacity:0;transform:translateX(-50%) translateY(-20px);}}
+    @keyframes scaleBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+    @keyframes scaleCelebrate{0%{transform:scale(1) rotate(0)}25%{transform:scale(1.2) rotate(-8deg)}50%{transform:scale(1.15) rotate(5deg)}75%{transform:scale(1.1) rotate(-3deg)}100%{transform:scale(1) rotate(0)}}
+    @keyframes scaleTilt{0%{transform:rotate(0)}30%{transform:rotate(10deg)}70%{transform:rotate(-8deg)}100%{transform:rotate(0)}}
+    @keyframes scaleTriumph{0%{transform:scale(1)}20%{transform:scale(1.3)}40%{transform:scale(1.25) rotate(-5deg)}60%{transform:scale(1.25) rotate(5deg)}80%{transform:scale(1.3)}100%{transform:scale(1)}}
+    @keyframes badgeFlip{0%{transform:rotateY(90deg) scale(0.5);opacity:0}60%{transform:rotateY(-10deg) scale(1.05)}100%{transform:rotateY(0) scale(1);opacity:1}}
+    @keyframes correctPulse{0%{box-shadow:0 0 0 0 rgba(39,174,96,0.4)}70%{box-shadow:0 0 0 12px rgba(39,174,96,0)}100%{box-shadow:0 0 0 0 rgba(39,174,96,0)}}
+    @keyframes incorrectShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+    .option-btn.correct{animation:correctPulse 0.6s ease-out;}
+    .option-btn.incorrect{animation:incorrectShake 0.4s ease-out;}
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════ -->
+<header>
+  <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
+  <div class="day-badge">LA-4 · Settlement Negotiations &amp; Release Documents</div>
+  <h1>LA-4 — Settlement Negotiations &amp; Release Documents</h1>
+  <p>Gunn Law Group · Legal Assistant Training</p>
+  <div class="score-bar">
+    <div>
+      <div class="score-label">BASE SCORE</div>
+      <div class="score-value" id="total-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">POSSIBLE</div>
+      <div class="score-value">200</div>
+    </div>
+    <div>
+      <div class="score-label">BONUS</div>
+      <div class="score-value" id="bonus-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">STREAK</div>
+      <div class="score-value" id="streak-display">0 🔥</div>
+    </div>
+  </div>
+</header>
+
+<!-- Sound Toggle -->
+<button id="soundToggle" style="position:fixed;top:12px;right:12px;z-index:10000;background:#1C2433;color:#c0c0c0;border:1px solid #333;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:16px;" onclick="toggleSound()" title="Toggle Sound">🔇</button>
+<!-- Global Progress Bar -->
+<div id="globalProgress" style="position:fixed;top:0;left:0;width:100%;height:4px;background:#1C2433;z-index:9999;"><div id="globalProgressFill" style="height:100%;width:0%;background:linear-gradient(90deg,#dcb161,#e8c87a);transition:width 0.5s ease;"></div></div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="prog-label">Section 1 of 9</span>
+    <span id="prog-pct">0%</span>
+  </div>
+  <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="section-nav" id="section-nav">
+  <button class="nav-pill active" id="nav-0" onclick="goToSection(0)">1. Intro</button>
+  <button class="nav-pill" id="nav-1" onclick="goToSection(1)">2. Pipeline</button>
+  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. Roles</button>
+  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Templates</button>
+  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. Client Side</button>
+  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. Documentation</button>
+  <button class="nav-pill" id="nav-6" onclick="goToSection(6)">7. Boss</button>
+  <button class="nav-pill" id="nav-7" onclick="goToSection(7)">8. Results</button>
+  <button class="nav-pill" id="nav-8" onclick="goToSection(8)">9. Feedback</button>
+</nav>
+
+<!-- Points Toast -->
+<div class="points-toast" id="points-toast"></div>
+
+<!-- Confetti Canvas -->
+<canvas id="confettiCanvas"></canvas>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     SECTION 0 — INTRO / WELCOME
+════════════════════════════════════════════ -->
+<div class="section-card active" id="section-0">
+  <div class="section-header">
+    <div class="section-num">Section 1 · Welcome</div>
+    <h2>Settlement Negotiations &amp; Release Documents</h2>
+    <div class="section-subhead">The money moment. Where everything the firm has built gets converted — or lost.</div>
+  </div>
+  <div class="section-body">
+    <div class="scenario">
+      <div class="scenario-tag">LA Track — Module 4</div>
+      <h3>The demand went out 45 days ago. No counter has been sent.</h3>
+      <p>GEICO responded on Day 12 with $18,500. The attorney said: "Counter at $62,000." The CM drafted the counter but never sent it. Today is Day 45. GEICO called twice and left messages. The file shows <span class="highlight">Pending Demand</span> status in CasePeer. No worksheet. No counter. No client update. <span class="urgent">The firm just lost 33 days of leverage — and GEICO is now pricing this as a firm that doesn't negotiate.</span></p>
+    </div>
+    <div class="info-block">
+      <h4>📋 What You Will Learn</h4>
+      <ul>
+        <li>The demand-to-agreement pipeline: CasePeer status transitions, the 30-day follow-up clock, and the 48-hour counter rule</li>
+        <li>Attorney vs. CM authority: who sets negotiation parameters and who executes them</li>
+        <li>The pre-negotiation worksheet: seven required components before any first-offer call</li>
+        <li>Four negotiation templates: #22, #23, #24, #32 — and when each one applies</li>
+        <li>The client side: net projections, written acceptance, and the three-confirmation standard</li>
+        <li>Release documents: Templates #25, #106, #109 — routing, sequence, and signature requirements</li>
+        <li>The five failure modes GLG's negotiation system is built to prevent</li>
+      </ul>
+    </div>
+    <div class="callout callout-warn"><strong>Prerequisites:</strong> LA-2 (CasePeer status transitions, disbursement math) and LA-3 (lien hold formulas, 15% cushion rule) are tested in this module through retrieval callbacks. Both prior modules build directly into LA-4 content.</div>
+    <div class="callout callout-info"><strong>Scoring:</strong> 20 questions × 10 pts = 200 base pts possible. Pass gate: 170/200 (85%). Boss Challenge adds up to 50 bonus points. Bonus points do not count toward the pass gate but do appear on your certificate.</div>
+    <div class="btn-group"><button class="btn btn-primary btn-block" onclick="goToSection(1)">Begin: The Demand-to-Agreement Pipeline &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1 — THE DEMAND-TO-AGREEMENT PIPELINE (Q1–Q4)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-1">
+  <div class="section-header">
+    <div class="section-num">Section 2 · The Demand-to-Agreement Pipeline · Up to 40 pts</div>
+    <h2>Timelines, Status Transitions, and Negotiation Discipline</h2>
+    <div class="section-subhead">Momentum is leverage. A fast counter signals a firm ready to file. A slow one signals a file collecting dust — and adjusters price that in.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>⏱ CasePeer Status Flow &amp; Mandatory Deadlines</h4>
+      <table class="stat-table">
+        <tr><th>Status</th><th>Trigger / Required Action</th><th>Template</th></tr>
+        <tr><td class="stat-num">Pending Demand</td><td>Demand sent; awaiting adjuster response</td><td>—</td></tr>
+        <tr class="stat-warn"><td class="stat-num">Day 30</td><td><strong>No response in 30 days → Template #22 goes out immediately. No exceptions. No waiting.</strong></td><td>#22</td></tr>
+        <tr><td class="stat-num">Settling</td><td>Adjuster has made a first offer; active negotiation begins</td><td>#23</td></tr>
+        <tr><td class="stat-num">48-Hour Rule</td><td><strong>Every counter — not just the first — must be responded to within 48 hours of receipt</strong></td><td>#23</td></tr>
+        <tr class="stat-ok"><td class="stat-num">Settled</td><td>Triggered ONLY by written client acceptance of specific settlement number</td><td>#35</td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h4>💰 GLG Fee Structure — Know This Cold</h4>
+      <p><strong>Pre-litigation: 33.3%</strong> — applies when no lawsuit has been filed</p>
+      <p style="margin-top:6px;"><strong>Litigation: 40%</strong> — applies after a lawsuit is filed</p>
+      <p style="margin-top:6px;">On a $90,000 settlement: pre-lit fee = $30,000; lit fee = $36,000. The client's net changes by $6,000 depending on when they accept. Every client conversation about whether to accept or litigate requires this distinction.</p>
+    </div>
+    <div class="callout callout-danger"><strong>The Specials Test:</strong> If the adjuster's offer does not clear the client's documented out-of-pocket losses (medical bills, lost wages, other specials), stop negotiating and escalate to the attorney immediately. An offer below specials is not a negotiation gap — it is a litigation signal.</div>
+    <div class="callout callout-warn"><strong>No Zombie Negotiations:</strong> A stalled negotiation past its stage deadline must be escalated. Waiting without escalation is a process violation visible on the firm dashboard.</div>
+
+    <div class="question-block" id="q1-block">
+      <div class="q-num">Question 1 of 20 &middot; 10 pts</div>
+      <div class="q-text">Scenario: A demand letter was sent to GEICO 31 days ago. No response has been received. The file is sitting in "Pending Demand" status in CasePeer. What is the correct action right now?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q1','a',false)" id="q1-a"><span class="opt-letter">A</span><span class="opt-text">Wait — adjusters typically need 45–60 days to respond; 31 days is too early</span></button>
+        <button class="option-btn" onclick="answer('q1','b',false)" id="q1-b"><span class="opt-letter">B</span><span class="opt-text">Call GEICO and confirm receipt verbally; document the call and wait for their written response</span></button>
+        <button class="option-btn" onclick="answer('q1','c',true)" id="q1-c"><span class="opt-letter">C</span><span class="opt-text">Generate Template #22 (30-Day Demand Follow) and send it immediately</span></button>
+        <button class="option-btn" onclick="answer('q1','d',false)" id="q1-d"><span class="opt-letter">D</span><span class="opt-text">Escalate to the attorney for filing authorization — 30 days with no response is the litigation trigger</span></button>
+      </div>
+      <div class="feedback-box" id="q1-fb"></div>
+    </div>
+
+    <div class="question-block" id="q2-block">
+      <div class="q-num">Question 2 of 20 &middot; 10 pts</div>
+      <div class="q-text">GEICO has responded with their first offer: $18,500. The attorney reviewed the file, set the negotiation parameters, and said: "Counter at $62,000." It is currently Monday morning. By when must the counteroffer letter go out?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q2','a',false)" id="q2-a"><span class="opt-letter">A</span><span class="opt-text">By end of the week — there is no deadline once the negotiation has begun</span></button>
+        <button class="option-btn" onclick="answer('q2','b',true)" id="q2-b"><span class="opt-letter">B</span><span class="opt-text">Within 48 hours — by Wednesday morning</span></button>
+        <button class="option-btn" onclick="answer('q2','c',false)" id="q2-c"><span class="opt-letter">C</span><span class="opt-text">Within 24 hours — by Tuesday morning</span></button>
+        <button class="option-btn" onclick="answer('q2','d',false)" id="q2-d"><span class="opt-letter">D</span><span class="opt-text">The attorney must draft and personally send the counter</span></button>
+      </div>
+      <div class="feedback-box" id="q2-fb"></div>
+    </div>
+
+    <div class="question-block" id="q3-block">
+      <div class="q-num">Question 3 of 20 &middot; 10 pts &middot; LA-2 Retrieval Callback — CasePeer Status Transitions</div>
+      <div class="q-text">The case has just been confirmed as settled — the adjuster verbally told the CM the agreed-upon figure. At what point does the CM move the CasePeer status from "Settling" to "Settled"?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q3','a',false)" id="q3-a"><span class="opt-letter">A</span><span class="opt-text">Immediately upon the adjuster's verbal confirmation of the settlement number</span></button>
+        <button class="option-btn" onclick="answer('q3','b',false)" id="q3-b"><span class="opt-letter">B</span><span class="opt-text">After the client verbally agrees to the settlement amount</span></button>
+        <button class="option-btn" onclick="answer('q3','c',true)" id="q3-c"><span class="opt-letter">C</span><span class="opt-text">After written client acceptance of the specific settlement number has been captured in CasePeer</span></button>
+        <button class="option-btn" onclick="answer('q3','d',false)" id="q3-d"><span class="opt-letter">D</span><span class="opt-text">After the release document is signed and returned by the adjuster</span></button>
+      </div>
+      <div class="feedback-box" id="q3-fb"></div>
+    </div>
+
+    <div class="question-block" id="q4-block">
+      <div class="q-num">Question 4 of 20 &middot; 10 pts</div>
+      <div class="q-text">Your client has received an offer of $45,000. They ask: "If I accept this now — before anything gets filed — what's the attorney fee percentage?" Under GLG's fee structure, what is the correct answer?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q4','a',false)" id="q4-a"><span class="opt-letter">A</span><span class="opt-text">40% — GLG's standard contingency fee applies regardless of case stage</span></button>
+        <button class="option-btn" onclick="answer('q4','b',true)" id="q4-b"><span class="opt-letter">B</span><span class="opt-text">33.3% — the pre-litigation fee rate applies because no lawsuit has been filed</span></button>
+        <button class="option-btn" onclick="answer('q4','c',false)" id="q4-c"><span class="opt-letter">C</span><span class="opt-text">33.3% applies to the settlement, but 40% applies to any case costs that follow</span></button>
+        <button class="option-btn" onclick="answer('q4','d',false)" id="q4-d"><span class="opt-letter">D</span><span class="opt-text">The fee percentage depends on which attorney is assigned to the case</span></button>
+      </div>
+      <div class="feedback-box" id="q4-fb"></div>
+    </div>
+
+    <div class="section-score" id="s1-score" style="display:none;"><div class="score-display" id="s1-score-val"></div><div class="score-label">Section 2 Score</div></div>
+    <div class="btn-group" id="s1-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(2)">Next: Attorney vs. CM — Roles, Authority &amp; the Worksheet &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2 — ATTORNEY VS. CM — ROLES, AUTHORITY (Q5–Q8)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-2">
+  <div class="section-header">
+    <div class="section-num">Section 3 · Attorney vs. CM — Roles &amp; Authority · Up to 40 pts</div>
+    <h2>Pre-Negotiation Worksheet &amp; Role Delineation</h2>
+    <div class="section-subhead">The attorney sets all parameters before the phone rings. The CM executes the plan. These roles never reverse.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>⚖️ Role Ownership — What the CM Controls vs. What the Attorney Controls</h4>
+      <table class="stat-table">
+        <tr><th>CM Executes</th><th>Attorney Owns</th></tr>
+        <tr><td>30-day follow-up clock (Template #22)</td><td>All negotiation parameters — set before any first-offer call</td></tr>
+        <tr><td>Counter-offer letter generation (Templates #22, #23)</td><td>True floor — the minimum the firm will accept</td></tr>
+        <tr><td>CasePeer logging of every offer and counter</td><td>Pseudo-floor, concession increments, walk-away trigger</td></tr>
+        <tr><td>Client communication updates during negotiation</td><td>Specials test threshold determination</td></tr>
+        <tr><td>Written client acceptance confirmation</td><td>Litigation authorization — the filing decision</td></tr>
+        <tr class="stat-void"><td><strong>CANNOT DO without attorney authorization:</strong></td><td>Accept below floor · Commit to carrier · Issue Holt demand · Tell client case dollar value</td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h4>📋 The Pre-Negotiation Worksheet — 7 Required Components</h4>
+      <p>The attorney completes this worksheet BEFORE any first-offer call. A CM conducting negotiations without a completed worksheet is improvising with the client's money.</p>
+      <ol style="margin-top:8px;padding-left:18px;">
+        <li style="margin-bottom:4px;"><strong>Case facts FOR</strong> — key strengths: clear liability, treatment compliance, objective findings, documented wage loss, credible client</li>
+        <li style="margin-bottom:4px;"><strong>Case facts AGAINST</strong> — weaknesses the adjuster will raise: treatment gaps, pre-existing conditions, credibility issues, prior accidents</li>
+        <li style="margin-bottom:4px;"><strong>True floor</strong> — the minimum the attorney will accept; the CM must NEVER disclose this to the adjuster</li>
+        <li style="margin-bottom:4px;"><strong>Pseudo-floor</strong> — the number the CM states as the apparent minimum; NOT the true floor; creates room between stated minimum and real minimum</li>
+        <li style="margin-bottom:4px;"><strong>Concession increments</strong> — the planned sequence of counters (e.g., $65K → $58K → $52K → $48K); decreasing increments signal an approaching limit</li>
+        <li style="margin-bottom:4px;"><strong>Walk-away trigger</strong> — the specific condition that authorizes filing suit</li>
+        <li><strong>Specials test threshold</strong> — the out-of-pocket loss minimum that must be cleared; if the adjuster will not clear specials, escalate immediately</li>
+      </ol>
+    </div>
+    <div class="callout callout-warn"><strong>Ripeness Check:</strong> Before any first-offer call, verify: Has the adjuster received the demand? Have they had time to review it? Do they have settlement authority? A call made before the other side is ready wastes leverage.</div>
+
+    <div class="question-block" id="q5-block">
+      <div class="q-num">Question 5 of 20 &middot; 10 pts</div>
+      <div class="q-text">State Farm calls and makes a first offer of $28,000. The attorney's worksheet shows: floor $35,000 / pseudo-floor $38,000 / counter $65,000. What does the CM do?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q5','a',false)" id="q5-a"><span class="opt-letter">A</span><span class="opt-text">Accept $28,000 — it is a reasonable first offer and the client needs the money quickly</span></button>
+        <button class="option-btn" onclick="answer('q5','b',true)" id="q5-b"><span class="opt-letter">B</span><span class="opt-text">Counter at $65,000 as the worksheet directs, and document State Farm's $28,000 offer in CasePeer</span></button>
+        <button class="option-btn" onclick="answer('q5','c',false)" id="q5-c"><span class="opt-letter">C</span><span class="opt-text">Tell State Farm you will get back to them after discussing with the client</span></button>
+        <button class="option-btn" onclick="answer('q5','d',false)" id="q5-d"><span class="opt-letter">D</span><span class="opt-text">Counter at $35,000 — the floor — to signal the firm is reasonable and close to the number</span></button>
+      </div>
+      <div class="feedback-box" id="q5-fb"></div>
+    </div>
+
+    <div class="question-block" id="q6-block">
+      <div class="q-num">Question 6 of 20 &middot; 10 pts &middot; Calibration Check</div>
+      <div class="q-text">A case is entering active negotiations. The attorney hands you the completed pre-negotiation worksheet. On a scale of 1–5, how confident are you that you know every item that belongs on that worksheet and what each line requires? Select your answer to reveal the complete worksheet contents.</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q6','a',true)" id="q6-a"><span class="opt-letter">A</span><span class="opt-text">1–2 — Not confident. I know the concept but would struggle to list every required item.</span></button>
+        <button class="option-btn" onclick="answer('q6','b',true)" id="q6-b"><span class="opt-letter">B</span><span class="opt-text">3 — Somewhat confident. I could name most items but am not certain I have them all.</span></button>
+        <button class="option-btn" onclick="answer('q6','c',true)" id="q6-c"><span class="opt-letter">C</span><span class="opt-text">4 — Fairly confident. I know the items and their purpose but haven't tested myself.</span></button>
+        <button class="option-btn" onclick="answer('q6','d',true)" id="q6-d"><span class="opt-letter">D</span><span class="opt-text">5 — Fully confident. I could write out all seven items and explain each one without guidance.</span></button>
+      </div>
+      <div class="feedback-box" id="q6-fb"></div>
+    </div>
+
+    <div class="question-block" id="q7-block">
+      <div class="q-num">Question 7 of 20 &middot; 10 pts &middot; Interleaving — LA-3: Lien Negotiation Formulas</div>
+      <div class="q-text">On an initial adjuster call with State Farm, the CM presents the case. State Farm opens at $11,500. The case has $34,000 in documented medical specials. What should the CM do?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q7','a',false)" id="q7-a"><span class="opt-letter">A</span><span class="opt-text">Counter at the worksheet's opening number — negotiation is just getting started</span></button>
+        <button class="option-btn" onclick="answer('q7','b',false)" id="q7-b"><span class="opt-letter">B</span><span class="opt-text">Apply the pro-rata reduction formula: $11,500 ÷ $34,000 = 33.8%; offer State Farm a proportional reduction</span></button>
+        <button class="option-btn" onclick="answer('q7','c',true)" id="q7-c"><span class="opt-letter">C</span><span class="opt-text">Trigger the specials test — escalate to the attorney immediately; an offer that does not clear specials is the litigation signal</span></button>
+        <button class="option-btn" onclick="answer('q7','d',false)" id="q7-d"><span class="opt-letter">D</span><span class="opt-text">Accept $11,500 and file a bad faith claim to recover the balance through litigation</span></button>
+      </div>
+      <div class="feedback-box" id="q7-fb"></div>
+    </div>
+
+    <div class="question-block" id="q8-block">
+      <div class="q-num">Question 8 of 20 &middot; 10 pts &middot; Consequence Story — Zombie Negotiation</div>
+      <div class="q-text">A case has been in active negotiations for 71 days. The adjuster is at $44,000. The attorney's floor is $57,000. The adjuster claims they cannot go higher without supervisor approval. No movement in 3 weeks. What is the correct action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q8','a',false)" id="q8-a"><span class="opt-letter">A</span><span class="opt-text">Accept $44,000 — waiting costs the client more than the $13,000 gap</span></button>
+        <button class="option-btn" onclick="answer('q8','b',false)" id="q8-b"><span class="opt-letter">B</span><span class="opt-text">Keep countering — persistent negotiation eventually closes gaps like this</span></button>
+        <button class="option-btn" onclick="answer('q8','c',true)" id="q8-c"><span class="opt-letter">C</span><span class="opt-text">Flag the file to the attorney as a stalled negotiation past its stage deadline; present a clear decision menu: accept, file, or Holt demand</span></button>
+        <button class="option-btn" onclick="answer('q8','d',false)" id="q8-d"><span class="opt-letter">D</span><span class="opt-text">Reduce the counter unilaterally to $50,000 — narrowing the gap should unlock supervisor approval</span></button>
+      </div>
+      <div class="feedback-box" id="q8-fb"></div>
+    </div>
+
+    <div class="section-score" id="s2-score" style="display:none;"><div class="score-display" id="s2-score-val"></div><div class="score-label">Section 3 Score</div></div>
+    <div class="btn-group" id="s2-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(3)">Next: Counteroffer Templates — #22, #23, #24, and the Holt Protocol &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3 — COUNTEROFFER TEMPLATES (Q9–Q12)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-3">
+  <div class="section-header">
+    <div class="section-num">Section 4 · Counteroffer Templates · Up to 40 pts</div>
+    <h2>Templates #22, #23, #24, and the Holt Protocol (#32)</h2>
+    <div class="section-subhead">Four templates. Four distinct contexts. Using the wrong one at the wrong moment wastes leverage and time.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>📄 The Four Negotiation Templates</h4>
+      <table class="stat-table">
+        <tr><th>Template</th><th>Name</th><th>When Used</th><th>Authorization</th></tr>
+        <tr><td class="stat-num">#22</td><td>30_Day_Demand_Follow</td><td>No adjuster response within 30 days of demand; restarts response clock</td><td>CM (mandatory)</td></tr>
+        <tr><td class="stat-num">#23</td><td>Counteroffer_Letter</td><td>Every counter-offer after first response; communicates attorney's counter number</td><td>CM per worksheet</td></tr>
+        <tr><td class="stat-num">#24</td><td>Policy_Limits_Demand</td><td>Damages clearly exceed policy limits; formal demand for full limits; creates bad faith exposure</td><td>CM per attorney</td></tr>
+        <tr class="stat-void"><td class="stat-num">#32</td><td>Time_Limited_Demand_Holt</td><td>Strategic time-limited demand creating enforceable consequences for carrier; requires complete packet</td><td><strong>Attorney authorization REQUIRED — every time</strong></td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h4>⚠️ Holt Demand — 5 Required Components</h4>
+      <p>A Holt demand missing any element is NOT a valid Holt demand — it is an ordinary demand letter with a deadline and creates no additional legal leverage. Required components:</p>
+      <ol style="margin-top:8px;padding-left:18px;">
+        <li style="margin-bottom:4px;"><strong>Specific dollar amount</strong> — not a range</li>
+        <li style="margin-bottom:4px;"><strong>Clear deadline</strong> — typically 30 days; must be a real deadline, not a placeholder</li>
+        <li style="margin-bottom:4px;"><strong>Medical records attached</strong> — the carrier must have everything needed to evaluate and accept without further discovery</li>
+        <li style="margin-bottom:4px;"><strong>Explicit expiration statement</strong> — the offer will not be renewed after the deadline</li>
+        <li><strong>Attorney authorization</strong> — explicit sign-off on every Holt demand, without exception</li>
+      </ol>
+    </div>
+    <div class="callout callout-danger"><strong>Filing is a one-way door:</strong> Once a lawsuit is filed, prior negotiations are off the table. The decision to file belongs to the attorney. A defective Holt that the carrier can challenge is a wasted litigation trigger.</div>
+
+    <div class="question-block" id="q9-block">
+      <div class="q-num">Question 9 of 20 &middot; 10 pts</div>
+      <div class="q-text">Progressive has responded to your demand with an offer of $22,000. The attorney's worksheet says "counter at $78,000." Which template do you generate?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q9','a',false)" id="q9-a"><span class="opt-letter">A</span><span class="opt-text">Template #24 (Policy Limits Demand) — the low offer signals this case has limits exposure</span></button>
+        <button class="option-btn" onclick="answer('q9','b',true)" id="q9-b"><span class="opt-letter">B</span><span class="opt-text">Template #23 (Counteroffer Letter) — the standard counter-offer mechanism</span></button>
+        <button class="option-btn" onclick="answer('q9','c',false)" id="q9-c"><span class="opt-letter">C</span><span class="opt-text">Template #32 (Time-Limited Demand Holt) — a lowball first offer triggers the Holt protocol</span></button>
+        <button class="option-btn" onclick="answer('q9','d',false)" id="q9-d"><span class="opt-letter">D</span><span class="opt-text">Template #22 (30-Day Demand Follow) — to re-establish the response clock after the delay</span></button>
+      </div>
+      <div class="feedback-box" id="q9-fb"></div>
+    </div>
+
+    <div class="question-block" id="q10-block">
+      <div class="q-num">Question 10 of 20 &middot; 10 pts &middot; Generation Activity</div>
+      <div class="q-text">The attorney says: "This case needs a Holt demand — policy limits are $50,000 and the client's injuries clearly exceed that. Prepare Template #32 immediately." Before reading the options — list every required component of a valid Holt demand. Then select the complete answer below.</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q10','a',false)" id="q10-a"><span class="opt-letter">A</span><span class="opt-text">A dollar amount and a deadline — those are the two core elements of any time-limited demand</span></button>
+        <button class="option-btn" onclick="answer('q10','b',true)" id="q10-b"><span class="opt-letter">B</span><span class="opt-text">Dollar amount, clear deadline, medical records attached, explicit expiration statement, and attorney authorization</span></button>
+        <button class="option-btn" onclick="answer('q10','c',false)" id="q10-c"><span class="opt-letter">C</span><span class="opt-text">Dollar amount, a 30-day deadline, and a summary of the client's injuries — the Holt demand is a standard demand letter with a shorter window</span></button>
+        <button class="option-btn" onclick="answer('q10','d',false)" id="q10-d"><span class="opt-letter">D</span><span class="opt-text">The template generates all required components from CasePeer case data; the CM just needs to confirm attorney authorization</span></button>
+      </div>
+      <div class="feedback-box" id="q10-fb"></div>
+    </div>
+
+    <div class="question-block" id="q11-block">
+      <div class="q-num">Question 11 of 20 &middot; 10 pts</div>
+      <div class="q-text">A client's case has $140,000 in documented medical bills and a surgical recommendation. The at-fault carrier (Allstate) has a $100,000 BI limit. Negotiations have stalled at $76,000. The attorney approves filing. Before filing, what additional template action is appropriate — and who makes that decision?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q11','a',false)" id="q11-a"><span class="opt-letter">A</span><span class="opt-text">Template #23 — one final counteroffer at $100,000 to force a decision before filing</span></button>
+        <button class="option-btn" onclick="answer('q11','b',false)" id="q11-b"><span class="opt-letter">B</span><span class="opt-text">Template #24 (Policy Limits Demand) only — formally demand the full policy limits before filing</span></button>
+        <button class="option-btn" onclick="answer('q11','c',false)" id="q11-c"><span class="opt-letter">C</span><span class="opt-text">Template #32 (Holt) only — issue a time-limited demand giving Allstate 30 days to pay limits before suit</span></button>
+        <button class="option-btn" onclick="answer('q11','d',true)" id="q11-d"><span class="opt-letter">D</span><span class="opt-text">Both Template #24 and Template #32 are strategically valid options; the attorney decides which to deploy</span></button>
+      </div>
+      <div class="feedback-box" id="q11-fb"></div>
+    </div>
+
+    <div class="question-block" id="q12-block">
+      <div class="q-num">Question 12 of 20 &middot; 10 pts &middot; Retrieval Callback — LA-3: Anchoring Discipline</div>
+      <div class="q-text">During a negotiation call, the CM says: "The absolute minimum we would accept on this case is $47,000." The attorney's worksheet shows: true floor $47,000 / pseudo-floor $55,000 / counter sequence $72K → $63K → $57K → $52K. What just happened — and what is the consequence?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q12','a',false)" id="q12-a"><span class="opt-letter">A</span><span class="opt-text">Nothing — being transparent about minimums builds trust with the adjuster and accelerates settlement</span></button>
+        <button class="option-btn" onclick="answer('q12','b',true)" id="q12-b"><span class="opt-letter">B</span><span class="opt-text">The CM disclosed the true floor; the adjuster now knows $47,000 is the realistic bottom and has no reason to offer more</span></button>
+        <button class="option-btn" onclick="answer('q12','c',false)" id="q12-c"><span class="opt-letter">C</span><span class="opt-text">The CM disclosed the pseudo-floor, not the true floor — this is within bounds</span></button>
+        <button class="option-btn" onclick="answer('q12','d',false)" id="q12-d"><span class="opt-letter">D</span><span class="opt-text">Floor disclosures are protected as settlement communications; the adjuster cannot use this information</span></button>
+      </div>
+      <div class="feedback-box" id="q12-fb"></div>
+    </div>
+
+    <div class="section-score" id="s3-score" style="display:none;"><div class="score-display" id="s3-score-val"></div><div class="score-label">Section 4 Score</div></div>
+    <div class="btn-group" id="s3-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(4)">Next: The Client Side — Approvals, Net Projections &amp; Release Documents &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4 — THE CLIENT SIDE (Q13–Q16)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-4">
+  <div class="section-header">
+    <div class="section-num">Section 5 · The Client Side · Up to 40 pts</div>
+    <h2>Net Projections, Written Acceptance &amp; Release Documents</h2>
+    <div class="section-subhead">The settlement has two sides. The carrier side is the number. The client side is the experience. Both require their own protocol.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>📊 Conservative Net Projection Formula</h4>
+      <p>Run BEFORE asking the client to accept. The client decides on the conservative take-home number — not the gross offer.</p>
+      <p style="margin-top:8px;"><strong>Formula:</strong> Settlement − Attorney Fee − Case Costs − Estimated Lien Hold (with 15% cushion) = Conservative Net</p>
+      <p style="margin-top:8px;"><strong>Always project BELOW what you expect to deliver.</strong> The disbursement moment where the client receives MORE than promised is exactly the story they tell their network. "Under-promise, over-deliver" is a referral generation strategy embedded in every settlement conversation.</p>
+    </div>
+    <div class="info-block">
+      <h4>📋 Client-Side Template Suite</h4>
+      <table class="stat-table">
+        <tr><th>Template</th><th>Name</th><th>Purpose</th><th>Recipient</th></tr>
+        <tr><td class="stat-num">#106</td><td>Settlement_Statement</td><td>Financial breakdown: gross settlement, attorney fee, costs, lien holds, projected net — every deduction itemized</td><td>Client</td></tr>
+        <tr><td class="stat-num">#25</td><td>Settlement_Release_Cover</td><td>Cover letter enclosing Template #109 for client signature</td><td>Client</td></tr>
+        <tr class="stat-void"><td class="stat-num">#109</td><td>General_Release_All_Claims</td><td><strong>The binding release of the client's legal claims — rights extinguished on signature. Not reversible.</strong></td><td>Client</td></tr>
+      </table>
+    </div>
+    <div class="callout callout-danger"><strong>Three-Confirmation Standard before the client signs Template #109:</strong> (1) Client confirms they understand the gross settlement amount. (2) Client confirms they understand their net recovery (from Template #106). (3) Client affirmatively states they are satisfied with the resolution. A client who signs without understanding all three points has grounds to dispute — and the firm has no protective documentation.</div>
+    <div class="callout callout-warn"><strong>Written acceptance is required:</strong> Text, email, or signed CasePeer memo — of the specific settlement number — BEFORE the CM confirms to the carrier. Verbal acceptance is not sufficient.</div>
+
+    <div class="question-block" id="q13-block">
+      <div class="q-num">Question 13 of 20 &middot; 10 pts</div>
+      <div class="q-text">GEICO has just agreed to pay $85,000. The attorney is satisfied with the number. The CM is ready to relay the news to the client. What is the correct sequence before confirming acceptance to GEICO?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q13','a',false)" id="q13-a"><span class="opt-letter">A</span><span class="opt-text">Confirm to GEICO immediately — the attorney's approval is sufficient; client notification follows</span></button>
+        <button class="option-btn" onclick="answer('q13','b',true)" id="q13-b"><span class="opt-letter">B</span><span class="opt-text">Run the net-to-client projection, explain it to the client, get their written acceptance of the $85,000 figure, then confirm to GEICO</span></button>
+        <button class="option-btn" onclick="answer('q13','c',false)" id="q13-c"><span class="opt-letter">C</span><span class="opt-text">Send GEICO Template #35 (Settlement Confirmation) first to lock in the number; then get client written acceptance</span></button>
+        <button class="option-btn" onclick="answer('q13','d',false)" id="q13-d"><span class="opt-letter">D</span><span class="opt-text">Call the client and document "client verbally accepted $85,000" in CasePeer notes</span></button>
+      </div>
+      <div class="feedback-box" id="q13-fb"></div>
+    </div>
+
+    <div class="question-block" id="q14-block">
+      <div class="q-num">Question 14 of 20 &middot; 10 pts &middot; Consequence Story — Over-Projection</div>
+      <div class="q-text">A CM is excited about a $72,000 settlement and tells the client: "You should walk away with around $37,000 — probably a bit more once we get the liens down." The final disbursement is $33,400. What went wrong — and what should the CM have said?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q14','a',false)" id="q14-a"><span class="opt-letter">A</span><span class="opt-text">Nothing went wrong — $33,400 is reasonably close to $37,000; the estimate was a good-faith approximation</span></button>
+        <button class="option-btn" onclick="answer('q14','b',true)" id="q14-b"><span class="opt-letter">B</span><span class="opt-text">The CM over-projected the net; the correct method is to project conservatively — below the expected outcome — not at or above it</span></button>
+        <button class="option-btn" onclick="answer('q14','c',false)" id="q14-c"><span class="opt-letter">C</span><span class="opt-text">The CM should not have mentioned liens during the settlement call — that information belongs to the post-settlement phase only</span></button>
+        <button class="option-btn" onclick="answer('q14','d',false)" id="q14-d"><span class="opt-letter">D</span><span class="opt-text">The CM used an incorrect fee percentage — 40% should have been applied since the case was in litigation</span></button>
+      </div>
+      <div class="feedback-box" id="q14-fb"></div>
+    </div>
+
+    <div class="question-block" id="q15-block">
+      <div class="q-num">Question 15 of 20 &middot; 10 pts</div>
+      <div class="q-text">Settlement is confirmed at $92,000 (pre-lit fee). Attorney fee: $30,644. Costs: $3,800. Estimated lien hold with 15% cushion: $11,500. The CM generates Template #106. What does this document contain?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q15','a',false)" id="q15-a"><span class="opt-letter">A</span><span class="opt-text">The cover letter to the adjuster confirming the agreed settlement amount and requesting the release forms</span></button>
+        <button class="option-btn" onclick="answer('q15','b',true)" id="q15-b"><span class="opt-letter">B</span><span class="opt-text">The financial breakdown for the client: gross settlement, attorney fee, costs, lien holds, and projected net — every deduction itemized</span></button>
+        <button class="option-btn" onclick="answer('q15','c',false)" id="q15-c"><span class="opt-letter">C</span><span class="opt-text">The binding release of all legal claims that the client must sign before disbursement</span></button>
+        <button class="option-btn" onclick="answer('q15','d',false)" id="q15-d"><span class="opt-letter">D</span><span class="opt-text">The wire instructions to the trust account for the settlement check</span></button>
+      </div>
+      <div class="feedback-box" id="q15-fb"></div>
+    </div>
+
+    <div class="question-block" id="q16-block">
+      <div class="q-num">Question 16 of 20 &middot; 10 pts</div>
+      <div class="q-text">The client has given written acceptance of the $92,000 settlement. The next step is to send the release. Which template combination is used — and what is the three-confirmation standard before the client signs?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q16','a',false)" id="q16-a"><span class="opt-letter">A</span><span class="opt-text">Template #109 only — send the release directly; written acceptance already covers confirmation</span></button>
+        <button class="option-btn" onclick="answer('q16','b',false)" id="q16-b"><span class="opt-letter">B</span><span class="opt-text">Template #35 (Settlement Confirmation to adjuster) first, then Template #109 — confirm the deal with the carrier before releasing</span></button>
+        <button class="option-btn" onclick="answer('q16','c',true)" id="q16-c"><span class="opt-letter">C</span><span class="opt-text">Template #25 (Settlement Release Cover) enclosing Template #109 (General Release) — with three confirmations before the client signs: gross amount understood, net recovery understood, satisfied with the resolution</span></button>
+        <button class="option-btn" onclick="answer('q16','d',false)" id="q16-d"><span class="opt-letter">D</span><span class="opt-text">Template #108 (Limited Liability Release) — the general release applies only in litigated cases</span></button>
+      </div>
+      <div class="feedback-box" id="q16-fb"></div>
+    </div>
+
+    <div class="section-score" id="s4-score" style="display:none;"><div class="score-display" id="s4-score-val"></div><div class="score-label">Section 5 Score</div></div>
+    <div class="btn-group" id="s4-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(5)">Next: Settlement Documentation, Failure Modes &amp; File Completion &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5 — DOCUMENTATION, FAILURE MODES, FILE COMPLETION (Q17–Q20)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-5">
+  <div class="section-header">
+    <div class="section-num">Section 6 · Settlement Documentation &amp; Failure Modes · Up to 40 pts</div>
+    <h2>Template #35, the Five Failure Modes &amp; the Settlement Note</h2>
+    <div class="section-subhead">The settlement note is both the record and the handoff. It starts the post-settlement clock the moment it is logged.</div>
+  </div>
+  <div class="section-body">
+    <div class="info-block">
+      <h4>📄 Template #35 — Settlement Confirmation to Adjuster</h4>
+      <p>Template #35 (35_Settlement_Confirmation) is sent to the adjuster after written client acceptance is secured. It confirms the agreed settlement amount, identifies the case, and requests the carrier's release form and settlement check. Recipient: the adjuster — not the client.</p>
+    </div>
+    <div class="info-block">
+      <h4>🚫 The Five Banned Failure Modes — Prohibited by GLG's System</h4>
+      <table class="stat-table">
+        <tr><th>#</th><th>Failure Mode</th><th>What It Causes</th></tr>
+        <tr class="stat-void"><td class="stat-num">1</td><td><strong>Slow counters</strong> — missing the 48-hour response clock on any round</td><td>Adjuster prices the firm as a low-urgency file; leverage lost</td></tr>
+        <tr class="stat-void"><td class="stat-num">2</td><td><strong>No negotiation plan</strong> — CM initiating or conducting negotiations without the pre-negotiation worksheet</td><td>Improvising with the client's money; floor exposure</td></tr>
+        <tr class="stat-void"><td class="stat-num">3</td><td><strong>Verbal-only settlement</strong> — moving to Settled status based on oral confirmation without documented written client acceptance</td><td>Client can dispute; firm has no protective documentation</td></tr>
+        <tr class="stat-void"><td class="stat-num">4</td><td><strong>Over-projecting net</strong> — quoting the client a take-home at or above expected disbursement</td><td>Client disappointment; no referral story; trust damage</td></tr>
+        <tr class="stat-void"><td class="stat-num">5</td><td><strong>Zombie negotiations</strong> — stalled negotiation past stage deadline without escalation</td><td>Adjuster prices stall as a weak file; client's case held hostage</td></tr>
+      </table>
+    </div>
+    <div class="info-block">
+      <h4>📝 The CasePeer Settlement Note — Required Contents</h4>
+      <p>The settlement note must contain all five elements before the status changes to Settled:</p>
+      <ol style="margin-top:8px;padding-left:18px;">
+        <li style="margin-bottom:4px;">Settlement amount</li>
+        <li style="margin-bottom:4px;">Date confirmed</li>
+        <li style="margin-bottom:4px;">Template(s) used (e.g., "Template #35 sent to adjuster")</li>
+        <li style="margin-bottom:4px;">Client acceptance documentation reference (e.g., "Client text confirmation 6/22/2026 3:14 PM")</li>
+        <li>Attorney who approved</li>
+      </ol>
+      <p style="margin-top:8px;"><strong>Handoff trigger:</strong> The Settled status change starts the post-settlement clock. Day 0 obligations begin the moment this note is logged and status changes.</p>
+    </div>
+
+    <div class="question-block" id="q17-block">
+      <div class="q-num">Question 17 of 20 &middot; 10 pts</div>
+      <div class="q-text">Settlement has been confirmed with Nationwide at $68,000. The client has provided written acceptance. What does the CM send to Nationwide immediately after?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q17','a',false)" id="q17-a"><span class="opt-letter">A</span><span class="opt-text">Template #109 (General Release) — the release is sent to the carrier before everything else</span></button>
+        <button class="option-btn" onclick="answer('q17','b',false)" id="q17-b"><span class="opt-letter">B</span><span class="opt-text">Template #23 (Counteroffer Letter) — to formally close out the negotiation record</span></button>
+        <button class="option-btn" onclick="answer('q17','c',true)" id="q17-c"><span class="opt-letter">C</span><span class="opt-text">Template #35 (Settlement Confirmation) — to confirm the agreed amount and request the release and check</span></button>
+        <button class="option-btn" onclick="answer('q17','d',false)" id="q17-d"><span class="opt-letter">D</span><span class="opt-text">Template #106 (Settlement Statement) — the financial breakdown confirms the deal with the carrier</span></button>
+      </div>
+      <div class="feedback-box" id="q17-fb"></div>
+    </div>
+
+    <div class="question-block" id="q18-block">
+      <div class="q-num">Question 18 of 20 &middot; 10 pts &middot; Consequence Story — The Worst Outcome</div>
+      <div class="q-text">It is Monday, 4:45 PM. An adjuster calls. The attorney is unavailable. The adjuster says: "I can do $55,000 but only if we close this today." The CM, not wanting to lose the offer, tells the adjuster: "Deal — we accept." The CM then calls the client to deliver the news. At 8 PM the client says: "I thought we were going to get at least $70,000. I'm not accepting that." What has gone wrong — and what are the consequences?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q18','a',false)" id="q18-a"><span class="opt-letter">A</span><span class="opt-text">The CM made a reasonable decision under time pressure; the client's later rejection is the real problem</span></button>
+        <button class="option-btn" onclick="answer('q18','b',true)" id="q18-b"><span class="opt-letter">B</span><span class="opt-text">The CM committed to a settlement without attorney authorization and without written client acceptance — the firm now has a dispute with both the adjuster and the client</span></button>
+        <button class="option-btn" onclick="answer('q18','c',false)" id="q18-c"><span class="opt-letter">C</span><span class="opt-text">The CM should always ask the adjuster to call back the next business day — deadline pressure is never legitimate</span></button>
+        <button class="option-btn" onclick="answer('q18','d',false)" id="q18-d"><span class="opt-letter">D</span><span class="opt-text">The settlement is binding because the CM is an authorized representative of the firm</span></button>
+      </div>
+      <div class="feedback-box" id="q18-fb"></div>
+    </div>
+
+    <div class="question-block" id="q19-block">
+      <div class="q-num">Question 19 of 20 &middot; 10 pts</div>
+      <div class="q-text">Settlement is confirmed. The CM is transitioning the file to Settled status and preparing the handoff to the post-settlement team. What information MUST appear in the CasePeer settlement note before the status changes?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q19','a',false)" id="q19-a"><span class="opt-letter">A</span><span class="opt-text">Settlement amount and the date the settlement check was received</span></button>
+        <button class="option-btn" onclick="answer('q19','b',true)" id="q19-b"><span class="opt-letter">B</span><span class="opt-text">Settlement amount, date confirmed, template(s) used, client acceptance documentation reference, and attorney who approved</span></button>
+        <button class="option-btn" onclick="answer('q19','c',false)" id="q19-c"><span class="opt-letter">C</span><span class="opt-text">A full summary of every negotiation round — all offers and counters from start to finish</span></button>
+        <button class="option-btn" onclick="answer('q19','d',false)" id="q19-d"><span class="opt-letter">D</span><span class="opt-text">Settlement amount and a note that "client was informed"</span></button>
+      </div>
+      <div class="feedback-box" id="q19-fb"></div>
+    </div>
+
+    <div class="question-block" id="q20-block">
+      <div class="q-num">Question 20 of 20 &middot; 10 pts &middot; Retrieval Callback — LA-2 + LA-3: Fee Math + Conservative Net Synthesis</div>
+      <div class="q-text">A case settles for $110,000. No lawsuit was filed. Case costs are $4,200. The client has health insurance (Anthem, fully insured) with an estimated subrogation claim of $18,000. Template 26 has not yet been sent. Using GLG's conservative net projection method with the 15% cushion rule, what is the conservative net you quote the client when requesting their written acceptance?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q20','a',false)" id="q20-a"><span class="opt-letter">A</span><span class="opt-text">Quote approximately $69,000 — subtract fees and costs only; skip the lien hold until Template 26 resolves</span></button>
+        <button class="option-btn" onclick="answer('q20','b',true)" id="q20-b"><span class="opt-letter">B</span><span class="opt-text">Quote approximately $44,000–$46,000 — fees ($36,663) + costs ($4,200) + lien cushion ($20,700) deducted from $110,000, then quoted slightly below that calculation</span></button>
+        <button class="option-btn" onclick="answer('q20','c',false)" id="q20-c"><span class="opt-letter">C</span><span class="opt-text">Quote approximately $49,000 — deduct fees, costs, and the raw $18,000 lien estimate without any cushion</span></button>
+        <button class="option-btn" onclick="answer('q20','d',false)" id="q20-d"><span class="opt-letter">D</span><span class="opt-text">Do not quote any net until Template 26 has been sent and the 30-day wait is complete</span></button>
+      </div>
+      <div class="feedback-box" id="q20-fb"></div>
+    </div>
+
+    <div class="section-score" id="s5-score" style="display:none;"><div class="score-display" id="s5-score-val"></div><div class="score-label">Section 6 Score</div></div>
+    <div class="btn-group" id="s5-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="goToSection(6)">Next: Boss Challenge — The Camille Reyes Case &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6 — BOSS CHALLENGE
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-6">
+  <div class="section-header">
+    <div class="section-num">Section 7 · Boss Challenge · Up to 50 Bonus Points</div>
+    <h2>The Camille Reyes Case</h2>
+    <div class="section-subhead">All five content sections converge. Real file pressure. One chance to demonstrate mastery.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="boss-header">
+      <div class="boss-icon">⚖️</div>
+      <h3>BOSS CHALLENGE — GLG-2026-1587</h3>
+      <p>Five tasks. Five sections of the module applied simultaneously under realistic case pressure. Each correct answer earns 10 bonus points. Bonus points do not affect the pass gate — but they do appear on your certificate.</p>
+    </div>
+
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">📁</div>
+        <div>
+          <div class="case-file-title">Camille Reyes — GLG-2026-1587</div>
+          <div class="case-file-sub">DeKalb County · At-Fault Carrier: Allstate</div>
+        </div>
+      </div>
+      <div class="case-detail"><span class="case-key">Client</span><span class="case-val">Camille Reyes, age 31</span></div>
+      <div class="case-detail"><span class="case-key">Incident</span><span class="case-val">Struck at intersection, red light violation — clear liability (eyewitnesses + dash cam)</span></div>
+      <div class="case-detail"><span class="case-key">Treatment</span><span class="case-val">Emory Decatur Hospital (2-night admission) · Spine &amp; Sport Rehab (18 sessions) · Southeast Orthopedic Specialists (MRI review, conservative management)</span></div>
+      <div class="case-detail"><span class="case-key">MRI Finding</span><span class="case-val">L4-L5 disc protrusion confirmed · orthopedic recommends conservative management</span></div>
+      <div class="case-detail"><span class="case-key">Specials</span><span class="case-val">$49,600 total (hospital $20,400 · chiro $17,100 · ortho $12,100)</span></div>
+      <div class="case-detail"><span class="case-key">Carrier / Limits</span><span class="case-val">Allstate · BI limits: $100,000</span></div>
+      <div class="case-detail"><span class="case-key">Demand Status</span><span class="case-val">Sent 7 weeks ago for $100,000 (policy limits) · Template #22 sent at Day 30 · Allstate first offer: $38,000</span></div>
+      <div class="case-detail"><span class="case-key">Attorney Fee</span><span class="case-val">33.3% (pre-litigation)</span></div>
+      <div class="case-detail"><span class="case-key">Case Costs</span><span class="case-val">$3,400</span></div>
+      <div class="case-detail"><span class="case-key">Health Insurance</span><span class="case-val">United Healthcare <span class="flag">SELF-FUNDED ERISA</span> (confirmed with plan administrator; documented in CasePeer)</span></div>
+      <div class="case-detail"><span class="case-key">ERISA Subrogation</span><span class="case-val">Estimated $21,000 (Made Whole Doctrine does NOT apply — self-funded plan)</span></div>
+      <div class="case-detail"><span class="case-key">Hospital Lien</span><span class="case-val">Emory filed valid lien: $20,400 billed · UHC billed and paid $7,800 · Enforceable lien = <strong>$12,600</strong> <span class="flag-ok">2023 Rule satisfied</span></span></div>
+    </div>
+
+    <!-- BOSS TASK 1 -->
+    <div class="question-block" id="q21-block">
+      <div class="q-num">Boss Task 1 of 5 &middot; 10 Bonus pts &middot; Specials Test &amp; Template Selection</div>
+      <div class="q-text">Allstate's first offer is $38,000. Specials are $49,600. What does the CM do immediately — and which template framework applies?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q21','a',false)" id="q21-a"><span class="opt-letter">A</span><span class="opt-text">Counter with Template #23 at the worksheet's opening number — Allstate's first offer is just Round 1, negotiate normally</span></button>
+        <button class="option-btn" onclick="answer('q21','b',true)" id="q21-b"><span class="opt-letter">B</span><span class="opt-text">Apply the specials test: $38,000 does not clear $49,600 in specials — escalate to the attorney immediately with documentation; the attorney decides between Template #32 (Holt for policy limits) or filing; the CM does not make that choice</span></button>
+        <button class="option-btn" onclick="answer('q21','c',false)" id="q21-c"><span class="opt-letter">C</span><span class="opt-text">Apply the specials test, then issue Template #32 immediately — attorney authorization is implied when specials are not cleared</span></button>
+        <button class="option-btn" onclick="answer('q21','d',false)" id="q21-d"><span class="opt-letter">D</span><span class="opt-text">Send Template #24 (Policy Limits Demand) — the case clearly has limits exposure given the $100,000 BI limit</span></button>
+      </div>
+      <div class="feedback-box" id="q21-fb"></div>
+    </div>
+
+    <!-- BOSS TASK 2 -->
+    <div class="question-block" id="q22-block">
+      <div class="q-num">Boss Task 2 of 5 &middot; 10 Bonus pts &middot; Conservative Net Projection with ERISA</div>
+      <div class="q-text">The attorney authorizes Template #32 (Holt demand sent: $100,000, 30-day deadline, records attached, expiration language, attorney authorized). Allstate responds Day 28 with $86,500 — above the attorney's floor of $80,000. The attorney approves accepting $86,500. Which answer correctly shows the net projection AND the ERISA treatment?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q22','a',true)" id="q22-a"><span class="opt-letter">A</span><span class="opt-text">Net: $86,500 − $28,805 (33.3%) − $3,400 (costs) − $14,490 (Emory $12,600 × 1.15) − $24,150 (ERISA $21,000 × 1.15) = $15,655 → quote "at least $13,000–$14,000"; ERISA = no Made Whole Doctrine, hold full amount + 15% cushion; then get written client acceptance; then confirm to Allstate</span></button>
+        <button class="option-btn" onclick="answer('q22','b',false)" id="q22-b"><span class="opt-letter">B</span><span class="opt-text">Net: $86,500 − $28,805 − $3,400 − $12,600 (Emory flat) − $21,000 (ERISA flat via Template 26, 30-day wait) = $40,695 → quote to client; send Template 26 to UHC before confirming acceptance</span></button>
+        <button class="option-btn" onclick="answer('q22','c',false)" id="q22-c"><span class="opt-letter">C</span><span class="opt-text">Get written client acceptance first before running any net projection — never quote numbers before acceptance is secured</span></button>
+        <button class="option-btn" onclick="answer('q22','d',false)" id="q22-d"><span class="opt-letter">D</span><span class="opt-text">Do not project any net until the ERISA subrogation claim is fully resolved — ERISA uncertainty makes any projection misleading</span></button>
+      </div>
+      <div class="feedback-box" id="q22-fb"></div>
+    </div>
+
+    <!-- BOSS TASK 3 -->
+    <div class="question-block" id="q23-block">
+      <div class="q-num">Boss Task 3 of 5 &middot; 10 Bonus pts &middot; Template Suite Routing</div>
+      <div class="q-text">Written client acceptance of $86,500 is in hand. Walk through every template the CM generates to complete the settlement — and identify each template's correct recipient.</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q23','a',false)" id="q23-a"><span class="opt-letter">A</span><span class="opt-text">Template #23 (counter close) to Allstate → Template #109 (release) directly to Camille → Template #106 (statement) to Camille</span></button>
+        <button class="option-btn" onclick="answer('q23','b',true)" id="q23-b"><span class="opt-letter">B</span><span class="opt-text">Template #35 (Settlement Confirmation) → Allstate · Template #25 (Release Cover) + Template #109 (General Release) → Camille · Template #106 (Settlement Statement) → Camille; three-confirmation standard before Camille signs #109: gross amount, net recovery, satisfied with resolution</span></button>
+        <button class="option-btn" onclick="answer('q23','c',false)" id="q23-c"><span class="opt-letter">C</span><span class="opt-text">Template #35 → Allstate · Template #109 directly to Camille (no cover letter needed since written acceptance is already in hand) · Template #106 → Camille</span></button>
+        <button class="option-btn" onclick="answer('q23','d',false)" id="q23-d"><span class="opt-letter">D</span><span class="opt-text">Template #32 (close) → Allstate · Template #25 + Template #109 → Camille · Template #106 → Camille</span></button>
+      </div>
+      <div class="feedback-box" id="q23-fb"></div>
+    </div>
+
+    <!-- BOSS TASK 4 -->
+    <div class="question-block" id="q24-block">
+      <div class="q-num">Boss Task 4 of 5 &middot; 10 Bonus pts &middot; CasePeer Documentation &amp; Status Transitions</div>
+      <div class="q-text">Complete the CasePeer settlement note and walk through every required status transition and logged action before this file hands off to the post-settlement team. Which answer captures all required documentation?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q24','a',false)" id="q24-a"><span class="opt-letter">A</span><span class="opt-text">Settlement note: amount + date + "client accepted"; status: Settling → Settled; confirm #35 sent to Allstate; confirm #109 returned signed; status: Settled → Lien Negotiations</span></button>
+        <button class="option-btn" onclick="answer('q24','b',true)" id="q24-b"><span class="opt-letter">B</span><span class="opt-text">Settlement note: all 5 required elements (amount $86,500, date, templates used #22 #32 #35 #25 #109 #106, client acceptance reference with timestamp, approving attorney); Settling → Settled (written acceptance trigger); #35 to Allstate logged; #25 + #109 to Camille logged; signed #109 return receipt logged; #106 provided; Settled → Lien Negotiations with ERISA handoff flag: Made Whole does NOT apply to UHC self-funded; Common Fund Doctrine is the available reduction tool</span></button>
+        <button class="option-btn" onclick="answer('q24','c',false)" id="q24-c"><span class="opt-letter">C</span><span class="opt-text">Settlement note: amount + date + templates used; status Settling → Settled; confirm all templates sent and #109 returned; status Settled → Closed (lien negotiations are the post-settlement team's full responsibility)</span></button>
+        <button class="option-btn" onclick="answer('q24','d',false)" id="q24-d"><span class="opt-letter">D</span><span class="opt-text">Settlement note: amount + client acceptance + attorney approval; no status change until #109 is returned signed; all templates logged without dates</span></button>
+      </div>
+      <div class="feedback-box" id="q24-fb"></div>
+    </div>
+
+    <!-- BOSS TASK 5 -->
+    <div class="question-block" id="q25-block">
+      <div class="q-num">Boss Task 5 of 5 &middot; 10 Bonus pts &middot; Client Communication Under Pressure</div>
+      <div class="q-text">Camille calls after receiving Template #106. She is frustrated: "I can't believe I only get $13,000–$14,000 after everything I went through. This injury affected my work for months. I thought this was worth $100,000. Why did you settle for $86,500?" Which response meets GLG's client communication standard?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer('q25','a',false)" id="q25-a"><span class="opt-letter">A</span><span class="opt-text">"Ms. Reyes, I understand your frustration. We'll keep working on the liens to get you more money. Let me check with the attorney on what's possible."</span></button>
+        <button class="option-btn" onclick="answer('q25','b',true)" id="q25-b"><span class="opt-letter">B</span><span class="opt-text">Acknowledge frustration without defensiveness → explain the Holt demand outcome and attorney approval of $86,500 (above the set floor) → break down each deduction: 33.3% pre-lit fee, $3,400 costs, two temporary holds (Emory $14,490 and UHC $24,150 — both conservative and negotiable) → clarify holds are temporary, every dollar reduced goes to Camille → explain next steps: post-settlement team takes over, 14-day update; do NOT promise a specific lien reduction amount</span></button>
+        <button class="option-btn" onclick="answer('q25','c',false)" id="q25-c"><span class="opt-letter">C</span><span class="opt-text">"Ms. Reyes, $86,500 was the best we could get from Allstate — they rejected our $100,000 demand. After attorney fees and costs, that's your net. The liens will take a few months."</span></button>
+        <button class="option-btn" onclick="answer('q25','d',false)" id="q25-d"><span class="opt-letter">D</span><span class="opt-text">"Ms. Reyes, I'll connect you with the post-settlement team — they're the experts on the lien calculations and can walk you through the numbers."</span></button>
+      </div>
+      <div class="feedback-box" id="q25-fb"></div>
+    </div>
+
+    <div class="section-score" id="s6-score" style="display:none;"><div class="score-display" id="s6-score-val"></div><div class="score-label">Boss Challenge Bonus Points</div></div>
+    <div class="btn-group" id="s6-next" style="display:none;"><button class="btn btn-primary btn-block" onclick="showResults()">See Results &amp; Score &rarr;</button></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7 — RESULTS
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-7">
+  <div id="results-header-wrap"></div>
+  <div class="section-body">
+    <div id="results-body"></div>
+    <div id="badgeContainer" class="achievement-grid"></div>
+    <div style="margin-top:12px;">
+      <div style="font-weight:700;color:#141c2c;margin-bottom:8px;display:flex;align-items:center;gap:8px;"><span id="reviewCounter">Reviewing questions...</span></div>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+    <div id="score-submit-form" style="display:none;margin-top:24px;">
+      <div class="name-input-wrap">
+        <label for="trainee-name-input">Your Name (for certificate)</label>
+        <input type="text" id="trainee-name-input" class="name-input" placeholder="Enter your full name" autocomplete="name">
+      </div>
+      <button class="btn btn-primary btn-block" onclick="submitScoreAndBuildCert()">Submit Score &amp; Get Certificate →</button>
+    </div>
+    <div class="score-confirm" id="score-confirmation"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8 — FEEDBACK & CERTIFICATE
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-8">
+  <div class="section-header">
+    <div class="section-num">Section 9 · Feedback &amp; Certificate</div>
+    <h2>Module Feedback &amp; Completion Certificate</h2>
+    <div class="section-subhead">Your feedback makes the next version better for every person after you.</div>
+  </div>
+  <div class="section-body">
+
+    <div id="cert-content" style="display:none;">
+      <div class="cert-wrap">
+        <div class="cert-firm">Gunn Law Group · Legal Assistant Training</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-subtitle">LA Track — Module 4</div>
+        <div class="cert-presents">This certifies that</div>
+        <div class="cert-name" id="certNameDisplay">Training Participant</div>
+        <div class="cert-for">has successfully completed</div>
+        <div class="cert-module">LA-4 — Settlement Negotiations &amp; Release Documents</div>
+        <div class="cert-score" id="certScore"></div>
+        <div class="cert-meta" id="certMeta"></div>
+        <span class="cert-seal">⚖️</span>
+        <div class="cert-signature">
+          <div class="cert-sig-line"></div>
+          <div class="cert-sig-name">H. Gunn</div>
+          <div class="cert-sig-title">Managing Attorney · Gunn Law Group</div>
+        </div>
+        <div class="cert-badges" id="certBadges"></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:24px;">
+      <h4 style="color:#141c2c;font-weight:700;margin-bottom:14px;">Quick Feedback (Optional)</h4>
+      <div class="fb-question">
+        <label>How clear was the content in this module? (1 = confusing, 5 = crystal clear)</label>
+        <select id="fb-clarity">
+          <option value="">Select...</option>
+          <option>1 — Very confusing</option>
+          <option>2 — Somewhat confusing</option>
+          <option>3 — Neutral</option>
+          <option>4 — Mostly clear</option>
+          <option>5 — Crystal clear</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>How difficult was this module? (1 = too easy, 5 = too hard)</label>
+        <select id="fb-difficulty">
+          <option value="">Select...</option>
+          <option>1 — Too easy</option>
+          <option>2 — Somewhat easy</option>
+          <option>3 — Just right</option>
+          <option>4 — Somewhat hard</option>
+          <option>5 — Too hard</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>Did this feel like real GLG settlement work?</label>
+        <select id="fb-realistic">
+          <option value="">Select...</option>
+          <option>Yes — exactly what we deal with</option>
+          <option>Mostly — some scenarios were realistic</option>
+          <option>Partially — some felt artificial</option>
+          <option>No — most scenarios felt generic</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>One thing you'd change about this module:</label>
+        <textarea id="fb-suggestions" placeholder="Optional — your feedback shapes the next revision"></textarea>
+      </div>
+    </div>
+
+    <div style="background:#f0f4f8;border-radius:12px;padding:18px;margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-weight:700;margin-bottom:12px;">📝 Reflection Prompt</h4>
+      <p style="font-size:14px;color:#444;line-height:1.7;font-style:italic;">"Think about the last time a negotiation — in any context — stalled or produced a disappointing outcome. What would have been different if you had entered that conversation with a written plan: your minimum acceptable result, the opening position you stated out loud (not your real minimum), your intended sequence of moves, and a clear rule for when to walk away? Now apply that structure to a GLG settlement scenario. What would the pre-negotiation worksheet look like on a case you've seen here?"</p>
+    </div>
+
+    <div class="score-confirm" id="score-confirmation" style="display:none;"></div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary btn-block" onclick="goToSection(0)">Back to Start</button>
+      <button class="btn btn-secondary btn-block" onclick="restartQuiz()">Retake Module</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+var currentSection = 0;
+var baseScore = 0;
+var bonusPoints = 0;
+var qDone = {};
+var firstAttemptStillAvailable = {};
+var sectionScores = {};
+var streakCount = 0;
+var maxStreak = 0;
+var questionsFirstTry = 0;
+var incorrectCount = 0;
+var totalQuestionsAnswered = 0;
+var milestonesTriggered = {};
+var moduleStartTime = Date.now();
+var audioCtx = null;
+var soundEnabled = false;
+var _audioKeepalive = null;
+
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
+var TOTAL_SECTIONS = 9;
+var PASS_THRESHOLD = 170;
+var BASE_MAX = 200;
+
+// ═══════════════════════════════════════════════
+// QUESTION CONFIG
+// Sections 1-5 = base pts (10 each); Section 6 = boss bonus only
+// ═══════════════════════════════════════════════
+var Q_CONFIG = {
+  'q1':  {section:1, pts:10, isBonus:false, correct:'c'},
+  'q2':  {section:1, pts:10, isBonus:false, correct:'b'},
+  'q3':  {section:1, pts:10, isBonus:false, correct:'c'},
+  'q4':  {section:1, pts:10, isBonus:false, correct:'b'},
+  'q5':  {section:2, pts:10, isBonus:false, correct:'b'},
+  'q6':  {section:2, pts:10, isBonus:false, correct:'a'},
+  'q7':  {section:2, pts:10, isBonus:false, correct:'c'},
+  'q8':  {section:2, pts:10, isBonus:false, correct:'c'},
+  'q9':  {section:3, pts:10, isBonus:false, correct:'b'},
+  'q10': {section:3, pts:10, isBonus:false, correct:'b'},
+  'q11': {section:3, pts:10, isBonus:false, correct:'d'},
+  'q12': {section:3, pts:10, isBonus:false, correct:'b'},
+  'q13': {section:4, pts:10, isBonus:false, correct:'b'},
+  'q14': {section:4, pts:10, isBonus:false, correct:'b'},
+  'q15': {section:4, pts:10, isBonus:false, correct:'b'},
+  'q16': {section:4, pts:10, isBonus:false, correct:'c'},
+  'q17': {section:5, pts:10, isBonus:false, correct:'c'},
+  'q18': {section:5, pts:10, isBonus:false, correct:'b'},
+  'q19': {section:5, pts:10, isBonus:false, correct:'b'},
+  'q20': {section:5, pts:10, isBonus:false, correct:'b'},
+  'q21': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'b'},
+  'q22': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'a'},
+  'q23': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'b'},
+  'q24': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'b'},
+  'q25': {section:6, pts:0,  isBonus:true,  bonusPts:10, correct:'b'}
+};
+
+// Section questions map (all questions including bonus, for completion detection)
+var SECTION_QUESTIONS = {
+  1: ['q1','q2','q3','q4'],
+  2: ['q5','q6','q7','q8'],
+  3: ['q9','q10','q11','q12'],
+  4: ['q13','q14','q15','q16'],
+  5: ['q17','q18','q19','q20'],
+  6: ['q21','q22','q23','q24','q25']
+};
+
+// ═══════════════════════════════════════════════
+// FEEDBACK TEXT
+// ═══════════════════════════════════════════════
+var FEEDBACK = {
+  'q1': {
+    t: '✅ The 30-day follow-up is not a suggestion — it is a mandatory deadline. When 30 days pass with no adjuster response, Template #22 (30_Day_Demand_Follow) goes out immediately. Per GLG\'s Negotiation System: "The 48-hour response clock applies to every counter, not just the first. Momentum is leverage; a fast counter signals a firm ready to file, a slow one signals a file collecting dust — and adjusters price that in." Template #22 is the official mechanism to reestablish momentum and generate a timestamped CasePeer record. A verbal phone call (Option B) is insufficient — no trackable record. Litigation (Option D) is not the automatic trigger at Day 30; the specials test governs that escalation.',
+    f: '❌ The 30-day follow-up is a mandatory deadline, not a guideline. Option A (wait 45-60 days) ignores the mandatory deadline entirely. Option B (verbal call) creates no trackable CasePeer record. Option D misidentifies the litigation trigger — the specials test governs escalation to litigation, not elapsed time alone. Template #22 goes out at Day 30 — no exceptions.'
+  },
+  'q2': {
+    t: '✅ The 48-hour counter-response rule applies to EVERY counter in the negotiation — not just the first response to the demand. Per GLG\'s Negotiation System: "A fast counter signals a firm ready to file; a slow one signals a file collecting dust, and adjusters price that in." Monday morning + 48 hours = Wednesday morning. The CM is responsible for executing the counter at the direction of the attorney (Option D is wrong — the attorney sets parameters, the CM executes them). "By end of the week" (Option A) is exactly the slow-counter behavior that costs the client leverage. Slow is not neutral.',
+    f: '❌ The 48-hour rule applies to every counter, not just the first. Monday morning + 48 hours = Wednesday morning — not end of week, not Tuesday morning (that would be 24 hours). The attorney sets the parameters; the CM executes the counter within the 48-hour window. "By end of the week" gives the adjuster 5 days to price this file as low-urgency — GLG\'s system is specifically designed to prevent that.'
+  },
+  'q3': {
+    t: '✅ Per GLG\'s Settlement Confirmation Protocol: "No settlement without written client acceptance. Documented acceptance — text/email confirmation or signed memo in CasePeer — of the specific number, every time. \'Client said yes on the phone\' is how the worst outcome happens: a settled case the client rejects." The adjuster confirming (Option A) has zero bearing on CasePeer status — the client must accept in writing. Moving to Settled before written acceptance creates a false record and exposes the firm to a client dispute with no documentation. Written acceptance in CasePeer is the prerequisite for the status change.',
+    f: '❌ The CM moves to Settled ONLY after written client acceptance of the specific settlement number. Not after the adjuster confirms verbally (A). Not after the client confirms verbally (B). Not after the signed release returns (D). Written acceptance in CasePeer — text, email, or signed memo — of the specific number, every time. This is the rule that prevents the firm\'s worst outcome: a confirmed settlement the client disputes.'
+  },
+  'q4': {
+    t: '✅ GLG\'s fee structure: 33.3% pre-lit (before a lawsuit is filed); 40% lit (after a lawsuit is filed). On a $45,000 pre-lit settlement: attorney fee = $15,000 — not $18,000. That $3,000 difference belongs to the client. Every time a client weighs accepting a pre-lit offer versus going to litigation, this fee structure is part of the honest answer: their net changes when the fee jumps from 33.3% to 40%. Option D is wrong — the fee is set by GLG\'s retainer agreement, not by attorney assignment.',
+    f: '❌ GLG\'s fee structure: 33.3% pre-lit, 40% lit. On a $45,000 pre-lit settlement: $45,000 × 33.3% = $15,000. Not $18,000 (that\'s 40%). The $3,000 difference belongs to the client. Option C misunderstands the structure — 33.3% applies to the gross settlement, not separately to costs. Option D is wrong — the fee is defined by the retainer agreement, not by attorney assignment.'
+  },
+  'q5': {
+    t: '✅ The pre-negotiation worksheet exists precisely so this moment is not improvised under pressure. The attorney set $65,000 as the opening counter — the CM\'s job is to execute that counter within 48 hours and log State Farm\'s $28,000 offer in CasePeer. Option A is a rules violation — no CM may accept below the attorney\'s stated floor without authorization. Option D exposes the true floor in Round 1, destroying all remaining leverage; once the adjuster knows $35,000 is the real minimum, they have no reason to offer more. Per GLG\'s Negotiation System: "The negotiation is decided before the phone rings; the call executes the plan."',
+    f: '❌ The CM executes the worksheet — does not deviate from it. Accepting $28,000 (Option A) is below the floor — unauthorized. Consulting the client before countering (Option C) is out of sequence. Countering at the true floor in Round 1 (Option D) reveals the real minimum to the adjuster and eliminates all remaining leverage. Per GLG\'s Negotiation System: execute the worksheet. The attorney set $65,000 as the opening counter for a reason.'
+  },
+  'q6': {
+    t: '📋 GLG Pre-Negotiation Worksheet — Required Contents (attorney-completed before first offer call):<br><br>1. <strong>Case facts FOR</strong> — strengths: clear liability, treatment compliance, objective findings (MRI/surgery), documented wage loss, credible client<br>2. <strong>Case facts AGAINST</strong> — weaknesses: treatment gaps, pre-existing conditions, credibility issues, prior accidents<br>3. <strong>True floor</strong> — the minimum the attorney will accept; the CM must NEVER disclose this to the adjuster<br>4. <strong>Pseudo-floor</strong> — the number stated to the adjuster as the apparent minimum; NOT the true floor; creates room between stated minimum and real minimum<br>5. <strong>Concession increments</strong> — planned counter sequence; decreasing increments signal an approaching limit<br>6. <strong>Walk-away trigger</strong> — the specific condition that authorizes filing suit<br>7. <strong>Specials test threshold</strong> — if the adjuster will not clear specials, escalate immediately<br><br>The CM does not set any of these figures. The CM executes them. This is the attorney\'s supervision mechanism for CM-run negotiations.',
+    f: '📋 Same worksheet contents revealed: 1. Case facts FOR. 2. Case facts AGAINST. 3. True floor (never disclosed to adjuster). 4. Pseudo-floor (stated apparent minimum, not the real one). 5. Concession increments (planned counter sequence). 6. Walk-away trigger (filing authorization condition). 7. Specials test threshold (escalation gate). All confidence levels get the same complete process — the point is to identify any gap between your confidence and your actual working knowledge of all seven items.'
+  },
+  'q7': {
+    t: '✅ The specials test is clear and immediate: if the adjuster\'s offer does not cover the client\'s documented out-of-pocket losses, stop negotiating and escalate. Per GLG\'s Negotiation System: "If the other side will not even clear specials, stop talking — a lawsuit needs to be filed." $11,500 against $34,000 in specials is not a negotiation gap — it is a carrier that is not taking the case seriously. Option B applies the pro-rata formula from lien negotiation (LA-3) — a real formula that has no place in adjuster negotiations. Lien reduction tools are not adjuster negotiation triggers. Option A (keep countering) wastes leverage and ignores the specials test entirely.',
+    f: '❌ The specials test applies here: $11,500 against $34,000 in documented specials = specials test failure. Option A (counter normally) ignores the specials test entirely. Option B applies the pro-rata lien negotiation formula — a formula for negotiating with medical providers, not insurance adjusters. That formula has no application to adjuster negotiations. Option D is a litigation strategy, not a CM unilateral decision. Escalate to the attorney immediately when specials are not cleared.'
+  },
+  'q8': {
+    t: '✅ A stalled negotiation past its stage deadline is a zombie negotiation — and GLG\'s system does not tolerate them. Per GLG\'s Negotiation System: "No zombie negotiations — a stalled negotiation is a case past its stage deadline on the firm dashboard." 71 days with zero movement for 3 weeks is not a negotiation — it is a file holding the client\'s recovery hostage. The CM\'s job is to surface the stall to the attorney with a clean decision menu: accept, file, or Holt demand. Option D (reducing the counter unilaterally) breaches worksheet authority — the attorney set $57,000 as the floor, not $50,000. Option B (keep waiting) is the zombie behavior the system is designed to prevent.',
+    f: '❌ 71 days with 3 weeks of zero movement is a zombie negotiation. Accepting $44,000 (Option A) is below the attorney\'s floor — unauthorized. Continuing to counter without escalation (Option B) is the zombie behavior GLG\'s system prohibits. Reducing the counter unilaterally to $50,000 (Option D) violates worksheet authority — the attorney set the floor at $57,000. The CM\'s obligation is to escalate to the attorney with a clean decision menu: accept at current, file suit, or issue a Holt demand.'
+  },
+  'q9': {
+    t: '✅ Template #23 (Counteroffer_Letter) is the standard mechanism for executing the attorney\'s counter. It restates the demand\'s substance, states the counter number ($78,000), and requests a 10-day response. Template #24 (Policy Limits Demand) is reserved for situations where damages clearly exceed policy limits — a specific strategic escalation, not a default response to a low first offer. Template #32 (Holt) requires attorney authorization and is deployed for time-limited legal consequences — not triggered because Round 1 came in low. Template #22 is a follow-up for silence, not a response to an offer. Using the wrong template at this stage wastes leverage and time.',
+    f: '❌ Template #23 (Counteroffer_Letter) is the correct template for executing a counter-offer. Template #24 is for policy limits exposure — not a default low-offer response. Template #32 (Holt) requires attorney authorization and creates time-limited legal consequences — it is not triggered by a lowball first offer. Template #22 is used when there is no response to the demand, not when an offer has been received. Each template has a specific context — using the wrong one is a process and strategy error.'
+  },
+  'q10': {
+    t: '✅ A Holt demand missing any required element is not a valid Holt demand — it is just a demand letter with a deadline and creates no additional legal leverage. Per GLG\'s Holt Demand Checklist: the five required components are: (1) specific dollar amount — not a range; (2) clear deadline — typically 30 days, must be a real deadline; (3) medical records attached — the carrier must have everything needed to evaluate and accept without further discovery; (4) explicit expiration statement — the offer will not be renewed after the deadline; (5) attorney authorization — a CM may not send Template #32 without explicit attorney sign-off, every time. A defective Holt that the carrier can challenge is a wasted litigation trigger.',
+    f: '❌ A Holt demand missing any required element is just an ordinary demand letter with a deadline — not a valid Holt demand. The five required components: (1) specific dollar amount; (2) clear deadline (typically 30 days); (3) medical records attached; (4) explicit expiration statement; (5) attorney authorization. Option A (only amount + deadline) is missing records, expiration language, and authorization. Option C describes a standard demand letter. Option D is wrong — the template does not auto-populate all required elements; the CM must confirm every element, especially attorney authorization.'
+  },
+  'q11': {
+    t: '✅ When damages clearly exceed policy limits and filing is authorized, both Template #24 (Policy Limits Demand) and Template #32 (Holt demand) are legitimate pre-filing tools — and the correct answer is that the attorney chooses the strategy, not the CM. Template #24 formally puts the carrier on notice that the client will accept limits; Template #32 creates time-limited bad-faith exposure if the carrier refuses. Some attorneys deploy both in sequence; others prefer one approach based on the carrier\'s track record. The CM\'s role is to be ready to execute either or both on the attorney\'s instruction. Per GLG\'s Negotiation System: filing is one-way — once filed, prior negotiations are off the table.',
+    f: '❌ Both #24 and #32 are legitimate pre-filing tools when limits exposure is the issue — but the attorney chooses which to deploy, not the CM. Option A (one more standard counter) is the least strategically significant action when filing is already authorized. Option B (only #24) and Option C (only #32) each assume the CM selects the template — the CM\'s role is to execute on attorney instruction. The correct answer acknowledges both are valid and that the attorney decides.'
+  },
+  'q12': {
+    t: '✅ The pseudo-floor exists specifically to protect the true floor. The CM stated "$47,000 is the minimum" — and $47,000 IS the true floor on the worksheet. The adjuster now knows the case settles for $47,000 and will never offer more. Per GLG\'s Negotiation System: "Pseudo-floor. State a low that is not the true low; it motivates the counterparty toward their real top." The pseudo-floor ($55,000) is what the CM should have stated as the apparent minimum — not the true floor. This is the exact failure mode that improvising without worksheet discipline produces.',
+    f: '❌ The CM disclosed the TRUE floor, not the pseudo-floor. $47,000 is listed as the true floor on the worksheet. The pseudo-floor ($55,000) should have been stated as the apparent minimum. Option C is wrong — $47,000 is not the pseudo-floor, it is the real bottom. Option D is wrong — informal negotiation statements are not privileged. The adjuster now anchors to $47,000 and has no incentive to offer more. The firm lost all remaining leverage above $47,000.'
+  },
+  'q13': {
+    t: '✅ The correct sequence: (1) run the net-to-client projection; (2) explain it clearly to the client; (3) get written acceptance of the specific number (text, email, or signed memo in CasePeer); (4) only then confirm to GEICO. Per GLG\'s Settlement Confirmation Protocol: "No settlement without written client acceptance. Documented acceptance of the specific number, every time." Confirming to the carrier first (Option A) is a violation — the client must accept before the firm commits. Template #35 is the adjuster confirmation, not the client acceptance step (Option C reverses the sequence). Verbal documentation (Option D) is insufficient — written acceptance is required every time.',
+    f: '❌ The sequence matters critically: net projection → client explanation → written client acceptance → THEN confirm to carrier. Never in reverse. Confirming to GEICO first (Option A) commits the firm before the client has agreed. Template #35 is the adjuster confirmation — sending it first (Option C) reverses the critical sequence. Verbal documentation (Option D) is insufficient and is specifically cited as how the worst outcome happens: a confirmed settlement the client rejects.'
+  },
+  'q14': {
+    t: '✅ Per GLG\'s Settlement Confirmation Protocol: "Under-promise, over-deliver: always state a net below what you believe you will achieve." The CM projected approximately $37,000 and delivered $33,400 — a $3,600 shortfall from what the client expected. That client\'s story is now about disappointment. If the CM had projected $29,000, a $33,400 disbursement feels like a victory. The referral engine runs on exactly this gap — every dollar the client receives above the quoted number is a story they tell. Option C is wrong — proactively mentioning liens is correct practice, not a mistake. Option D applies only if the case was in litigation.',
+    f: '❌ A $3,600 shortfall from the CM\'s own projection is not "reasonably close" — it is a broken expectation. The correct method is to project conservatively: below the expected disbursement, not at it. If the projection was $29,000 and delivery is $33,400, the client\'s story is "they told me at least $29,000 and I got $33,400." That is the referral story. Option C is wrong — proactively explaining liens is correct practice. Option D only applies to litigated cases.'
+  },
+  'q15': {
+    t: '✅ Template #106 (Settlement_Statement) is the financial breakdown document prepared for the client — it shows every deduction in clear, itemized terms: gross settlement, attorney fee, case costs, lien holds, and the projected client net. In this scenario: $92,000 − $30,644 (fees) − $3,800 (costs) − $11,500 (lien hold) = $46,056 projected client net. Option A describes Template #35 (Settlement Confirmation to adjuster). Option C describes Template #109 (the General Release the client signs). Confusing #106 with #109 is the most common template error in this section — they are adjacent in the workflow and serve completely different purposes.',
+    f: '❌ Template #106 is the Settlement_Statement — the client\'s financial breakdown document. Option A describes Template #35 (which goes to the adjuster, not the client). Option C describes Template #109 (the binding release the client signs — a completely different document). Option D describes wire instructions, not a template. The calculation: $92,000 − $30,644 − $3,800 − $11,500 = $46,056 projected client net. Know which template does what.'
+  },
+  'q16': {
+    t: '✅ The correct release package pairs Template #25 (Settlement_Release_Cover) as the cover letter with Template #109 (General_Release_All_Claims) for the client\'s signature. The three-confirmation standard before the client signs: (1) client confirms they understand the gross settlement; (2) client confirms they understand their net recovery (from Template #106); (3) client affirmatively states they are satisfied. Template #109 is the binding release of ALL legal claims — once signed, the client\'s rights against the at-fault party are extinguished. A client who signs without understanding all three points has grounds to dispute — and the firm has no protective documentation.',
+    f: '❌ The correct package is Template #25 (cover) + Template #109 (release). Sending #109 alone (Option A) skips the cover letter and three-confirmation structure. Template #35 is the adjuster confirmation — sending it first (Option B) routes to the wrong recipient and reverses the sequence. Template #108 is a Limited Liability Release for a different legal context (Option D). Template #109 is final — rights extinguished on signing — which is exactly why three explicit confirmations are required before the client picks up a pen.'
+  },
+  'q17': {
+    t: '✅ Template #35 (35_Settlement_Confirmation) is the official written confirmation to the adjuster — it confirms the agreed settlement amount, identifies the case, and requests the carrier\'s release form and settlement check. Template #109 goes to the CLIENT for signature, not to the adjuster (Option A routes it wrong). Template #23 (Counteroffer) is a negotiation tool — the negotiation is over (Option B). Template #106 (Settlement Statement) is a client financial document, not a carrier confirmation (Option D). Each template routes to a specific recipient for a specific purpose — routing any of these to the wrong party is a process violation.',
+    f: '❌ Template #35 (Settlement Confirmation) goes to the ADJUSTER to confirm the agreed amount and request the release/check. Template #109 goes to the client, not the adjuster (Option A). Template #23 is a negotiation counter — the negotiation is finished (Option B). Template #106 is the client\'s financial breakdown document (Option D). Every template has a specific route: adjuster or client. Sending to the wrong party creates confusion, documentation gaps, and potential disputes.'
+  },
+  'q18': {
+    t: '✅ Two violations occurred simultaneously: (1) The CM committed to a settlement without attorney authorization — the attorney sets the floor, and $55,000 may be below it; (2) The CM committed before getting written client acceptance — the client hadn\'t even said yes. Per GLG\'s Settlement Confirmation Protocol: "Client said yes on the phone is how the worst outcome happens: a settled case the client rejects." Here the client didn\'t say yes at all. Option D is wrong — a CM is not authorized to bind the firm to a settlement independently. The "only if we close today" pressure is a documented adjuster tactic designed to force exactly this error. Correct response: "I need to confirm with my supervising attorney before we can accept — I\'ll call you back within the hour."',
+    f: '❌ Time pressure does not authorize a CM to bypass attorney authorization AND written client acceptance. Both violations happened: (1) committed without attorney sign-off; (2) committed without client acceptance. Option A treats the CM\'s judgment as sufficient — it is not. Option C goes too far the other way — the correct response is not to refuse engagement, but to request an hour to confirm with the attorney. Option D is wrong — CMs cannot independently bind the firm to settlement. The firm now has a commitment the attorney may not have authorized and a client who refuses to honor it.'
+  },
+  'q19': {
+    t: '✅ The CasePeer settlement note is the official handoff record — it must be complete enough that any team member picking up the file afterward knows exactly what happened and who approved it. Required: (1) settlement amount; (2) date confirmed; (3) template(s) used; (4) client acceptance documentation reference (specific — e.g., "Client text confirmation 6/22/2026 3:14 PM"); (5) attorney who approved. Option A is incomplete — the check receipt is a post-settlement event, not the confirmation note. Option D ("client was informed") is too vague. The complete note also starts the post-settlement clock: Day 0 begins the moment this note is logged and the status changes to Settled.',
+    f: '❌ The settlement note requires all five elements, not just amount and date. Missing elements from wrong answers: template(s) used (specific, not implied), client acceptance documentation reference (with timestamp and method — not just "client agreed"), and the approving attorney\'s name. Option A misidentifies the check receipt as the key milestone. Option D ("client was informed") describes notification, not documented acceptance. The note is also the handoff trigger: it starts the post-settlement clock and Day 0 obligations.'
+  },
+  'q20': {
+    t: '✅ Conservative net projection method: (1) Pre-lit fee: $110,000 × 33.3% = $36,663; (2) Costs: $4,200; (3) Lien cushion: $18,000 × 1.15 = $20,700; (4) Conservative net: $110,000 − $36,663 − $4,200 − $20,700 = $48,437 → then quote BELOW this: "you will receive at least $44,000–$46,000." The under-promise is intentional — the final disbursement should exceed the quoted figure. Option A skips the lien hold entirely, setting the client up for a surprise. Option C applies no cushion — every estimate without a cushion becomes a shortfall. Option D delays written acceptance for 30 days; per GLG method, include the conservative hold now, get acceptance now, then beat the projection at disbursement.',
+    f: '❌ Apply all three deductions including the 15% lien cushion: $110,000 − $36,663 (33.3% pre-lit fee) − $4,200 (costs) − $20,700 ($18,000 × 1.15 cushion) = $48,437 — then quote BELOW: "at least $44,000–$46,000." Option A omits the lien hold entirely. Option C applies no cushion, making every estimate a shortfall. Option D unnecessarily delays written acceptance — the 15% cushion accounts for uncertainty; get acceptance now with the conservative hold built in, then beat the projection at disbursement.'
+  },
+  'q21': {
+    t: '✅ The specials test is the governing rule: Allstate\'s $38,000 does not clear specials ($49,600). Per GLG\'s Negotiation System: "If the other side will not even clear specials, stop talking — a lawsuit needs to be filed." The CM\'s immediate task is to escalate to the attorney with documentation that specials were not cleared. The attorney then decides: Template #32 (Holt for policy limits) or file suit — both require attorney authorization. The CM does NOT choose the next template unilaterally. This is the specials test at work: not a negotiation gap, but a signal that the carrier is not engaging seriously.',
+    f: '❌ $38,000 against $49,600 in specials is not a normal low-first-offer situation. Option A (counter normally) ignores the specials test entirely. Option C (issue Template #32 immediately) skips attorney authorization — no CM may issue a Holt demand without explicit attorney sign-off every time. Option D (send Template #24) may be part of the attorney\'s decision, but the CM cannot make that template choice unilaterally. Escalate to the attorney first with documentation that specials were not cleared.'
+  },
+  'q22': {
+    t: '✅ The correct sequence: net projection FIRST, explain to client, get written acceptance, THEN confirm to Allstate. The ERISA distinction is critical: UHC is a self-funded ERISA plan — the Made Whole Doctrine does NOT apply (federal law preempts Georgia law). Template 26 is wrong for ERISA (Option B). Hold the full $21,000 + 15% cushion = $24,150. Emory lien hold: $12,600 × 1.15 = $14,490. Net: $86,500 − $28,805 − $3,400 − $14,490 − $24,150 = $15,655 → quote "at least $13,000–$14,000." Every dollar above that at disbursement is the story Camille tells her network.',
+    f: '❌ The correct sequence is net projection BEFORE confirming to Allstate — Options C and D get the sequence wrong. The ERISA distinction: UHC is self-funded → Made Whole Doctrine does NOT apply → Template 26 is wrong (Option B applies Template 26 to a self-funded ERISA plan). Hold the full $21,000 + 15% cushion = $24,150, not the flat $21,000. Net: $86,500 − $28,805 (33.3%) − $3,400 (costs) − $14,490 (Emory × 1.15) − $24,150 (ERISA × 1.15) = $15,655 → quote conservatively below that.'
+  },
+  'q23': {
+    t: '✅ The complete four-template suite: Template #35 (Settlement Confirmation) → to Allstate to confirm the agreed number and request the release and check; Template #25 (Settlement Release Cover) → to Camille as the cover letter; Template #109 (General Release of All Claims) → to Camille for signature, enclosed with #25; Template #106 (Settlement Statement) → to Camille showing the financial breakdown. Three-confirmation standard before Camille signs #109: (1) she confirms she understands the $86,500 gross; (2) she confirms she understands her conservative net; (3) she confirms she is satisfied with the resolution. Template #109 is binding and irreversible — all three confirmations must be explicit.',
+    f: '❌ The complete four-template suite: #35 → Allstate; #25 + #109 → Camille; #106 → Camille. Option A uses Template #23 (a counter-offer template — the negotiation is over) and skips #25. Option C sends #109 directly without the #25 cover and skips the three-confirmation standard. Option D uses Template #32 to close (wrong — #32 is a Holt demand, not a settlement confirmation). Template #109 is the binding release of ALL legal claims — once signed, Camille\'s rights are extinguished. The three-confirmation structure protects both Camille and the firm.'
+  },
+  'q24': {
+    t: '✅ Complete documentation: (1) Settlement note with all 5 required elements: amount $86,500, date, templates used (#22 #32 #35 #25 #109 #106), client acceptance reference with timestamp, approving attorney; (2) Settling → Settled (written acceptance trigger); (3) #35 to Allstate, send date logged; (4) #25 + #109 to Camille, send date logged; (5) Signed #109 returned, receipt date logged; (6) #106 generated and provided; (7) Settled → Lien Negotiations with ERISA handoff flag: Made Whole Doctrine does NOT apply to UHC (self-funded); Common Fund Doctrine is the available reduction tool. The ERISA flag is not optional — without it, the post-settlement team may misapply Template 26.',
+    f: '❌ The complete checklist has 7 items, not 5. Missing from wrong answers: the ERISA handoff flag (critical — Made Whole does NOT apply to UHC self-funded; Common Fund Doctrine is the tool). Option A skips templates used, client acceptance timestamp, approving attorney, and the ERISA flag. Option C transitions to Closed, bypassing Lien Negotiations — the post-settlement team must work the liens. Option D delays the Settled status until #109 returns — the status change triggers on written acceptance, not on release return.'
+  },
+  'q25': {
+    t: '✅ All five elements: (1) Acknowledge frustration without defensiveness — "I hear you, let me walk through every dollar"; (2) Explain the Holt demand outcome — $86,500 is above the attorney-approved floor; (3) Break down each deduction: 33.3% pre-lit fee, $3,400 costs, two temporary holds (Emory $14,490, UHC $24,150) — emphasize that the holds are temporary, not final losses; (4) Every dollar reduced from those holds goes directly to Camille — the post-settlement team\'s job is to fight them down; (5) Explain next steps: post-settlement team takes over, 14-day update. Do NOT promise a specific lien reduction amount. Do NOT suggest she reverse the settlement.',
+    f: '❌ Option A is vague — "we\'ll keep working on it" without specifics erodes trust. Option C is defensive and incomplete — it labels $86,500 as "the best we could get" without explaining the Holt demand process, and "the liens will take a few months" is not reassuring specificity. Option D routes Camille to the post-settlement team without first explaining the deductions — she called with a specific frustration and needs a specific answer before the handoff. The correct response addresses every deduction by name and gives Camille a realistic timeline with context.'
+  }
+};
+
+// ═══════════════════════════════════════════════
+// ANSWER HANDLER
+// ═══════════════════════════════════════════════
+function answer(qId, choice, isCorrect) {
+  if (qDone[qId]) return;
+
+  var cfg = Q_CONFIG[qId];
+  var block = document.getElementById(qId + '-block');
+  var fb = document.getElementById(qId + '-fb');
+  var btns = block.querySelectorAll('.option-btn');
+
+  btns.forEach(function(b){ b.classList.add('disabled'); });
+
+  var clickedBtn = document.getElementById(qId + '-' + choice);
+  var correctBtn = document.getElementById(qId + '-' + cfg.correct);
+
+  if (isCorrect) {
+    clickedBtn.classList.add('correct');
+    block.classList.add('answered');
+    qDone[qId] = true;
+
+    if (!cfg.isBonus) {
+      baseScore += cfg.pts;
+      sectionScores[cfg.section] = (sectionScores[cfg.section] || 0) + cfg.pts;
+      var isFirst = (firstAttemptStillAvailable[qId] !== false);
+      if (isFirst) {
+        bonusPoints += 5;
+        showToast('+' + cfg.pts + ' pts  +5 bonus ⚡', false);
+      } else {
+        showToast('+' + cfg.pts + ' pts', false);
+      }
+    } else {
+      var bonusPts = (firstAttemptStillAvailable[qId] !== false) ? cfg.bonusPts : Math.floor(cfg.bonusPts / 3);
+      bonusPoints += bonusPts;
+      sectionScores[cfg.section] = (sectionScores[cfg.section] || 0) + bonusPts;
+      showToast('+' + bonusPts + ' BONUS ⚡', true);
+    }
+
+    document.getElementById('total-score').textContent = baseScore;
+    document.getElementById('bonus-score').textContent = bonusPoints;
+    fb.className = 'feedback-box correct show';
+
+  } else {
+    clickedBtn.classList.add('incorrect');
+    if (correctBtn) {
+      correctBtn.classList.remove('disabled');
+      correctBtn.classList.add('correct');
+      correctBtn.classList.add('disabled');
+    }
+    block.classList.add('answered-wrong');
+    firstAttemptStillAvailable[qId] = false;
+    qDone[qId] = true;
+    fb.className = 'feedback-box incorrect show';
+  }
+
+  var fbData = FEEDBACK[qId];
+  fb.innerHTML = fbData ? (isCorrect ? fbData.t : fbData.f) : (isCorrect ? '✅ Correct!' : '❌ Incorrect.');
+
+  updateStreak(isCorrect);
+  mascotReact(isCorrect ? 'correct' : 'incorrect');
+  var totalQs = Object.keys(Q_CONFIG).length;
+  var answeredCount = Object.keys(qDone).length;
+  updateGlobalProgress(answeredCount, totalQs);
+
+  updateProgress();
+  checkSectionComplete(cfg.section);
+}
+
+// ═══════════════════════════════════════════════
+// SECTION COMPLETION CHECK
+// ═══════════════════════════════════════════════
+function checkSectionComplete(sectionIdx) {
+  var qs = SECTION_QUESTIONS[sectionIdx];
+  if (!qs) return;
+
+  var allDone = qs.every(function(q){ return !!qDone[q]; });
+  if (!allDone) return;
+
+  var scoreEl = document.getElementById('s' + sectionIdx + '-score');
+  var scoreVal = document.getElementById('s' + sectionIdx + '-score-val');
+  var nextEl   = document.getElementById('s' + sectionIdx + '-next');
+
+  var pts = sectionScores[sectionIdx] || 0;
+
+  if (scoreVal) {
+    if (sectionIdx <= 5) {
+      var sectionMax = 0;
+      var sqList = SECTION_QUESTIONS[sectionIdx];
+      if (sqList) {
+        sqList.forEach(function(qId) {
+          var cfg = Q_CONFIG[qId];
+          sectionMax += cfg.isBonus ? (cfg.bonusPts || 0) : cfg.pts;
+        });
+      }
+      scoreVal.textContent = pts + ' / ' + sectionMax + ' pts';
+    } else {
+      scoreVal.textContent = pts + ' bonus pts earned';
+    }
+  }
+  if (scoreEl) scoreEl.style.display = 'block';
+  if (nextEl)  nextEl.style.display  = 'flex';
+
+  var pill = document.getElementById('nav-' + sectionIdx);
+  if (pill) pill.classList.add('done');
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+function goToSection(idx) {
+  if (idx === 8 && !window._la4Passed) {
+    showToast('⚠️ 85% required for certificate', false);
+    return;
+  }
+  document.querySelectorAll('.section-card').forEach(function(c){ c.classList.remove('active'); });
+  document.querySelectorAll('.nav-pill').forEach(function(p){ p.classList.remove('active'); });
+
+  var card = document.getElementById('section-' + idx);
+  var pill = document.getElementById('nav-' + idx);
+  if (card) card.classList.add('active');
+  if (pill) pill.classList.add('active');
+
+  currentSection = idx;
+  var pct = Math.round((idx / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-label').textContent = 'Section ' + (idx + 1) + ' of ' + TOTAL_SECTIONS;
+  window.scrollTo(0, 0);
+}
+
+// ═══════════════════════════════════════════════
+// PROGRESS BAR
+// ═══════════════════════════════════════════════
+function updateProgress() {
+  var baseQs = Object.keys(Q_CONFIG).filter(function(k){ return !Q_CONFIG[k].isBonus; });
+  var answered = baseQs.filter(function(k){ return !!qDone[k]; }).length;
+  var pct = Math.round((answered / baseQs.length) * 100);
+  var navPct = Math.round((currentSection / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = Math.max(pct, navPct) + '%';
+  document.getElementById('prog-pct').textContent = Math.max(pct, navPct) + '%';
+}
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+function showToast(msg, isBonus) {
+  var t = document.getElementById('points-toast');
+  t.textContent = msg;
+  t.className = 'points-toast' + (isBonus ? ' bonus' : '') + ' show';
+  setTimeout(function(){ t.classList.remove('show'); }, 1800);
+}
+
+// ═══════════════════════════════════════════════
+// FINISH MODULE
+// ═══════════════════════════════════════════════
+function showResults() {
+  goToSection(7);
+  buildResults();
+}
+
+function restartQuiz() {
+  baseScore = 0;
+  bonusPoints = 0;
+  qDone = {};
+  firstAttemptStillAvailable = {};
+  sectionScores = {};
+  streakCount = 0;
+  maxStreak = 0;
+  questionsFirstTry = 0;
+  incorrectCount = 0;
+  totalQuestionsAnswered = 0;
+  moduleStartTime = Date.now();
+  window._la4Passed = false;
+
+  document.querySelectorAll('.question-block').forEach(function(block) {
+    block.classList.remove('answered', 'answered-wrong');
+    block.querySelectorAll('.option-btn').forEach(function(btn) {
+      btn.classList.remove('correct', 'incorrect', 'disabled');
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    });
+    var fb = block.querySelector('.feedback-box');
+    if (fb) { fb.className = 'feedback-box'; fb.innerHTML = ''; }
+  });
+
+  for (var i = 1; i <= 6; i++) {
+    var scoreEl = document.getElementById('s' + i + '-score');
+    var nextEl = document.getElementById('s' + i + '-next');
+    if (scoreEl) scoreEl.style.display = 'none';
+    if (nextEl) nextEl.style.display = 'none';
+    var pill = document.getElementById('nav-' + i);
+    if (pill) pill.classList.remove('done');
+  }
+
+  document.getElementById('total-score').textContent = '0';
+  document.getElementById('bonus-score').textContent = '0';
+  document.getElementById('streak-display').textContent = '0 🔥';
+
+  Object.keys(Q_CONFIG).forEach(function(k) { firstAttemptStillAvailable[k] = true; });
+
+  goToSection(0);
+}
+
+function buildResults() {
+  mascotReact('complete');
+  spawnParticles(document.querySelector('header'));
+  var totalQs = Object.keys(Q_CONFIG).length;
+  updateGlobalProgress(totalQs, totalQs);
+
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
+
+  var headerEl = document.getElementById('results-header-wrap');
+  headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
+    + '<div class="results-grade">' + pct + '%</div>'
+    + '<div class="results-label">' + (pass ? '🏆 Assessment Passed!' : '📚 Not Yet — 85% Required to Pass') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '</div>';
+
+  var letters = ['a','b','c','d'];
+  var letterLabels = ['A','B','C','D'];
+  var reviewList = document.getElementById('reviewList');
+  var reviewHTML = '';
+  Object.keys(Q_CONFIG).forEach(function(qId, idx) {
+    var cfg = Q_CONFIG[qId];
+    var block = document.getElementById(qId + '-block');
+    if (!block) return;
+    var qText = block.querySelector('.q-text');
+    var questionText = qText ? qText.textContent : 'Question ' + (idx+1);
+    var isAnswered = !!qDone[qId];
+    var wasCorrect = isAnswered && block.classList.contains('answered');
+    var correctLetter = cfg.correct.toUpperCase();
+    var correctBtn = document.getElementById(qId + '-' + cfg.correct);
+    var correctText = correctBtn ? correctBtn.querySelector('.opt-text').textContent : '';
+    var userAnswer = '(not answered)';
+    var userLetter = '';
+    if (isAnswered) {
+      letters.forEach(function(l, li) {
+        var btn = document.getElementById(qId + '-' + l);
+        if (btn && (btn.classList.contains('correct') || btn.classList.contains('incorrect'))) {
+          if (btn.classList.contains('incorrect') || (btn.classList.contains('correct') && !block.classList.contains('answered-wrong'))) {
+            userAnswer = btn.querySelector('.opt-text').textContent;
+            userLetter = letterLabels[li];
+          }
+        }
+      });
+      if (wasCorrect && !userLetter) {
+        userAnswer = correctText;
+        userLetter = correctLetter;
+      }
+    }
+
+    reviewHTML += '<div class="review-item ' + (wasCorrect ? 'correct' : 'wrong') + '" style="opacity:0;transform:translateY(8px);transition:opacity 0.25s ease,transform 0.25s ease;" data-review-idx="' + idx + '">'
+      + '<div class="ri-q">' + (idx+1) + '. ' + questionText.substring(0,120) + (questionText.length>120?'…':'') + '</div>'
+      + '<div class="ri-ans">'
+      + (wasCorrect ? '✅' : '❌') + ' Your answer: <strong>' + userLetter + '. ' + userAnswer.substring(0,100) + (userAnswer.length>100?'…':'') + '</strong>'
+      + (!wasCorrect ? '<br>✅ Correct: <strong>' + correctLetter + '. ' + correctText.substring(0,100) + (correctText.length>100?'…':'') + '</strong>' : '')
+      + '</div></div>';
+  });
+  reviewList.innerHTML = reviewHTML;
+
+  var reviewEls = reviewList.querySelectorAll('[data-review-idx]');
+  reviewEls.forEach(function(el, i) {
+    setTimeout(function() {
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+      playTickSound();
+      var counterEl = document.getElementById('reviewCounter');
+      if (counterEl) counterEl.textContent = 'Reviewing ' + (i+1) + '/' + totalQs;
+    }, i * 120);
+  });
+
+  setTimeout(function() {
+    var counterEl = document.getElementById('reviewCounter');
+    if (counterEl) counterEl.textContent = totalQs + '/' + totalQs + ' ✓ Review Complete';
+  }, reviewEls.length * 120 + 200);
+
+  window._la4Passed = pass;
+
+  var bodyEl = document.getElementById('results-body');
+  var buttonsHtml;
+  if (pass) {
+    buttonsHtml = '<div class="btn-group">'
+      + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback &amp; Get Certificate →</button>'
+      + '</div>';
+  } else {
+    buttonsHtml = '<div class="btn-group" style="display:flex;gap:10px;">'
+      + '<button class="btn btn-secondary" style="flex:1;" onclick="goToSection(0)">Review Content</button>'
+      + '<button class="btn btn-primary" style="flex:1;" onclick="restartQuiz()">Try Again</button>'
+      + '</div>';
+  }
+  bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
+    + '<div class="score-display">' + baseScore + '/200</div>'
+    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
+    + '</div>'
+    + '<div class="callout ' + (pass ? 'callout-success' : 'callout-warn') + '">'
+    + (pass
+        ? '<strong>✅ Gate Passed.</strong> You have demonstrated competency in settlement negotiation timelines, attorney/CM role delineation, the pre-negotiation worksheet, GLG\'s four counteroffer templates, client-side net projections and release documents, and settlement documentation standards. You are cleared to progress in the LA track.'
+        : '<strong>⚠️ Gate Not Cleared.</strong> You need 170/200 (85%) to pass. Review the sections where you missed questions — the feedback explains exactly what to remember. Retake when ready.')
+    + '</div>'
+    + buttonsHtml;
+
+  submitScoreToTracker();
+
+  var badgeContainer = document.getElementById('badgeContainer');
+  if (badgeContainer) {
+    var gamBadges = calculateBadges();
+    renderBadges(gamBadges, badgeContainer);
+  }
+
+  if (pass) {
+    document.getElementById('score-submit-form').style.display = 'block';
+  }
+}
+
+// ═══════════════════════════════════════════════
+// AUTO-SUBMIT SCORE
+// ═══════════════════════════════════════════════
+function submitScoreToTracker() {
+  if (!TRACKER_URL) return;
+  var payload = {
+    moduleId:   'la4',
+    moduleName: 'LA-4 Settlement Negotiations & Release Documents',
+    score:      baseScore,
+    maxScore:   200,
+    bonusScore: bonusPoints,
+    maxStreak:  maxStreak,
+    badges:     calculateBadges().map(function(b){ return b.name; }).join(', '),
+    elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
+    passedAt:   new Date().toISOString()
+  };
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload),
+    mode: 'no-cors'
+  }).then(function(){
+    var el = document.getElementById('score-confirmation');
+    if (el) { el.innerHTML = '✅ Score submitted automatically.'; el.style.display = 'block'; }
+  }).catch(function(){
+    var el = document.getElementById('score-confirmation');
+    if (el) { el.innerHTML = '⚠️ Auto-submit failed — screenshot results and email hgunn@thegunnlawgroup.com'; el.style.display = 'block'; }
+  });
+}
+
+// ═══════════════════════════════════════════════
+// SUBMIT SCORE + BUILD CERTIFICATE
+// ═══════════════════════════════════════════════
+function submitScoreAndBuildCert() {
+  if (!window._la4Passed) {
+    showToast('⚠️ 85% required for certificate', false);
+    return;
+  }
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('certNameDisplay').textContent = name;
+  document.getElementById('score-submit-form').style.display = 'none';
+  document.getElementById('cert-content').style.display = 'block';
+
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
+  document.getElementById('certScore').textContent = 'Score: ' + baseScore + '/200 (' + pct + '%) — ' + (pass ? 'PASSED' : 'NOT PASSED');
+  var now = new Date();
+  document.getElementById('certMeta').textContent = 'Issued: ' + now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'});
+
+  var certBadgesEl = document.getElementById('certBadges');
+  if (certBadgesEl) {
+    var badges = calculateBadges();
+    badges.push({icon: '🎓', name: 'LA-4 Complete', desc: 'Completed module LA-4'});
+    certBadgesEl.innerHTML = '';
+    badges.forEach(function(b, i) {
+      var pill = document.createElement('span');
+      pill.className = 'cert-badge-pill';
+      pill.textContent = b.icon + ' ' + b.name;
+      pill.style.animationDelay = (i * 0.15) + 's';
+      certBadgesEl.appendChild(pill);
+    });
+  }
+
+  setTimeout(function() {
+    launchConfetti();
+    playTaDa();
+    mascotReact('complete');
+  }, 350);
+
+  if (TRACKER_URL) {
+    var payload = {
+      employeeName: name,
+      moduleId: 'la4',
+      moduleName: 'LA-4 Settlement Negotiations & Release Documents',
+      score: baseScore,
+      maxScore: 200,
+      bonusScore: bonusPoints,
+      maxStreak: maxStreak,
+      badges: calculateBadges().map(function(b){ return b.name; }).join(', '),
+      elapsedMinutes: Math.round((Date.now() - moduleStartTime) / 60000),
+      passedAt: new Date().toISOString(),
+      feedback: {
+        clarity: document.getElementById('fb-clarity').value || '',
+        difficulty: document.getElementById('fb-difficulty').value || '',
+        realistic: document.getElementById('fb-realistic').value || '',
+        suggestions: document.getElementById('fb-suggestions').value || ''
+      }
+    };
+    fetch(TRACKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    }).then(function() {
+      document.getElementById('score-confirmation').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please screenshot your results and email to hgunn@thegunnlawgroup.com';
+      document.getElementById('score-confirmation').style.background = '#fff3cd';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+      document.getElementById('score-confirmation').style.color = '#856404';
+      document.getElementById('score-confirmation').style.display = 'block';
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════
+// GLG GAMIFICATION ENGINE v1.0 — LA-4 CHASSIS
+// ═══════════════════════════════════════════════
+
+// ── SOUND ENGINE ──
+function ensureAudioCtx() {
+  if (!audioCtx) {
+    try { audioCtx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return false; }
+  }
+  if (audioCtx.state === 'suspended') { audioCtx.resume().catch(function(){}); }
+  if (!_audioKeepalive && audioCtx) {
+    try {
+      var silentOsc = audioCtx.createOscillator();
+      var silentGain = audioCtx.createGain();
+      silentGain.gain.value = 0;
+      silentOsc.connect(silentGain);
+      silentGain.connect(audioCtx.destination);
+      silentOsc.start();
+      _audioKeepalive = silentOsc;
+    } catch(e) {}
+  }
+  return true;
+}
+
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  if (soundEnabled) ensureAudioCtx();
+  document.getElementById('soundToggle').textContent = soundEnabled ? '🔊' : '🔇';
+  localStorage.setItem('glg_sound', soundEnabled ? '1' : '0');
+}
+
+function playTone(freq, duration, type, gainVal, scheduleAt) {
+  if (!soundEnabled || !audioCtx) return;
+  if (audioCtx.state === 'suspended') audioCtx.resume().catch(function(){});
+  var startTime = (scheduleAt !== undefined) ? audioCtx.currentTime + scheduleAt : audioCtx.currentTime;
+  var o = audioCtx.createOscillator();
+  var g = audioCtx.createGain();
+  o.type = type || 'sine';
+  o.frequency.value = freq;
+  g.gain.setValueAtTime(gainVal || 0.15, startTime);
+  g.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+  o.connect(g); g.connect(audioCtx.destination);
+  o.start(startTime); o.stop(startTime + duration + 0.01);
+}
+
+function playDing() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  playTone(523, 0.15, 'sine', 0.13, 0);
+  playTone(659, 0.18, 'sine', 0.11, 0.1);
+}
+
+function playWrongTone() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(520, 0.12, 'triangle', 0.12, 0);
+  playTone(440, 0.15, 'triangle', 0.10, 0.08);
+}
+
+function playTickSound() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  playTone(800, 0.05, 'triangle', 0.06);
+}
+
+function playTaDa() {
+  if (!soundEnabled) return;
+  ensureAudioCtx();
+  if (!audioCtx) return;
+  var now = audioCtx.currentTime;
+  var notes = [
+    {f:262,t:0,d:0.30,type:'triangle',g:0.14},{f:330,t:0,d:0.30,type:'sine',g:0.11},
+    {f:392,t:0,d:0.30,type:'sine',g:0.09},{f:523,t:0.15,d:0.22,type:'sine',g:0.13},
+    {f:659,t:0.30,d:0.22,type:'sine',g:0.12},{f:784,t:0.45,d:0.22,type:'sine',g:0.11},
+    {f:523,t:0.65,d:0.80,type:'sine',g:0.13},{f:659,t:0.65,d:0.80,type:'sine',g:0.11},
+    {f:784,t:0.65,d:0.80,type:'sine',g:0.09},{f:1047,t:0.65,d:0.80,type:'triangle',g:0.07},
+    {f:1319,t:0.75,d:0.55,type:'sine',g:0.04},{f:1568,t:0.85,d:0.45,type:'sine',g:0.03}
+  ];
+  notes.forEach(function(n) {
+    var osc = audioCtx.createOscillator();
+    var gain = audioCtx.createGain();
+    osc.type = n.type || 'sine';
+    osc.frequency.value = n.f;
+    gain.gain.setValueAtTime(n.g, now + n.t);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + n.t + n.d);
+    osc.connect(gain); gain.connect(audioCtx.destination);
+    osc.start(now + n.t); osc.stop(now + n.t + n.d + 0.05);
+  });
+}
+
+// ── STREAK SYSTEM ──
+function updateStreak(isCorrect) {
+  if (isCorrect) {
+    streakCount++;
+    if (streakCount > maxStreak) maxStreak = streakCount;
+    questionsFirstTry++;
+    var el = document.getElementById('streak-display');
+    if (el) el.textContent = streakCount + ' 🔥';
+    playDing();
+    if (streakCount >= 3) showStreakBadge(streakCount);
+    if (streakCount === 5) spawnParticles(document.querySelector('.score-bar'));
+  } else {
+    if (streakCount >= 3) showStreakEnd();
+    streakCount = 0;
+    incorrectCount++;
+    var el = document.getElementById('streak-display');
+    if (el) el.textContent = '0 🔥';
+    playWrongTone();
+  }
+  totalQuestionsAnswered++;
+}
+
+function showStreakBadge(count) {
+  var badge = document.createElement('div');
+  badge.textContent = count + ' in a row! 🔥';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#dcb161,#e8c87a);color:#141C2C;padding:8px 20px;border-radius:20px;font-weight:700;font-size:14px;z-index:10001;animation:streakPop 0.4s ease-out,fadeUp 0.4s ease-in 1.5s forwards;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 2000);
+}
+
+function showStreakEnd() {
+  var badge = document.createElement('div');
+  badge.textContent = 'Streak ended';
+  badge.style.cssText = 'position:fixed;top:60px;left:50%;transform:translateX(-50%);background:#333;color:#999;padding:6px 16px;border-radius:16px;font-size:12px;z-index:10001;opacity:0.8;';
+  document.body.appendChild(badge);
+  setTimeout(function(){ badge.remove(); }, 1500);
+}
+
+// ── MILESTONE TOASTS ──
+function checkMilestone(current, total) {
+  var pct = Math.round((current / total) * 100);
+  var milestones = {25:'Quarter complete! 💪',50:'Halfway there! 🎯',75:'Almost there! ⚡',100:'Final stretch! 🏆'};
+  for (var m in milestones) {
+    if (pct >= parseInt(m) && !milestonesTriggered[m]) {
+      milestonesTriggered[m] = true;
+      showMilestoneToast(milestones[m]);
+    }
+  }
+}
+
+function showMilestoneToast(msg) {
+  var t = document.createElement('div');
+  t.textContent = msg;
+  t.style.cssText = 'position:fixed;top:-50px;left:50%;transform:translateX(-50%);background:#141C2C;color:#dcb161;padding:10px 24px;border-radius:12px;font-weight:700;font-size:14px;z-index:10002;transition:top 0.4s ease;box-shadow:0 4px 20px rgba(0,0,0,0.3);';
+  document.body.appendChild(t);
+  requestAnimationFrame(function(){ t.style.top = '20px'; });
+  setTimeout(function(){ t.style.top = '-50px'; setTimeout(function(){ t.remove(); }, 500); }, 2500);
+}
+
+// ── GLOBAL PROGRESS BAR ──
+function updateGlobalProgress(current, total) {
+  var fill = document.getElementById('globalProgressFill');
+  if (fill) fill.style.width = Math.round((current / total) * 100) + '%';
+  checkMilestone(current, total);
+}
+
+// ── PARTICLES ──
+function spawnParticles(anchor) {
+  var rect = anchor ? anchor.getBoundingClientRect() : {left:window.innerWidth/2,top:window.innerHeight/2,width:0};
+  for (var i = 0; i < 20; i++) {
+    var p = document.createElement('div');
+    var size = 4 + Math.random() * 6;
+    var angle = (Math.PI * 2 * i) / 20 + (Math.random() * 0.3);
+    var dist = 60 + Math.random() * 80;
+    p.style.cssText = 'position:fixed;width:' + size + 'px;height:' + size + 'px;background:#dcb161;border-radius:50%;left:' + (rect.left + rect.width/2) + 'px;top:' + (rect.top) + 'px;z-index:10003;pointer-events:none;opacity:1;transition:all 0.8s ease-out;';
+    document.body.appendChild(p);
+    requestAnimationFrame(function(pp, a, d) { return function() {
+      pp.style.left = (parseFloat(pp.style.left) + Math.cos(a) * d) + 'px';
+      pp.style.top = (parseFloat(pp.style.top) + Math.sin(a) * d) + 'px';
+      pp.style.opacity = '0';
+    }; }(p, angle, dist));
+    setTimeout(function(pp){ pp.remove(); }.bind(null, p), 900);
+  }
+}
+
+// ── MASCOT (Scales of Justice) ──
+function initMascot() {
+  var gavel = document.createElement('div');
+  gavel.id = 'mascotFloat';
+  gavel.innerHTML = '<svg viewBox="0 0 60 70" xmlns="http://www.w3.org/2000/svg" style="width:50px;height:58px;">'
+    + '<rect x="27" y="18" width="6" height="38" rx="1.5" fill="#8B7D3C"/>'
+    + '<rect x="18" y="54" width="24" height="5" rx="2.5" fill="#6B5E2E"/>'
+    + '<rect x="22" y="52" width="16" height="4" rx="1" fill="#8B7D3C"/>'
+    + '<rect x="6" y="16" width="48" height="4" rx="2" fill="#8B7D3C"/>'
+    + '<circle cx="30" cy="12" r="5" fill="#dcb161" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<text x="30" y="14.5" text-anchor="middle" font-size="7" font-weight="bold" fill="#141C2C">⚖</text>'
+    + '<line x1="12" y1="20" x2="12" y2="32" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<line x1="48" y1="20" x2="48" y2="32" stroke="#8B7D3C" stroke-width="1.5"/>'
+    + '<path d="M4 33 Q8 38 12 33 Q16 38 20 33" stroke="#dcb161" stroke-width="1.5" fill="none"/>'
+    + '<ellipse cx="12" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3"/>'
+    + '<path d="M40 33 Q44 38 48 33 Q52 38 56 33" stroke="#dcb161" stroke-width="1.5" fill="none"/>'
+    + '<ellipse cx="48" cy="34" rx="9" ry="2.5" fill="#dcb161" opacity="0.3"/>'
+    + '</svg>';
+  gavel.style.cssText = 'position:fixed;bottom:16px;right:16px;z-index:9998;cursor:pointer;animation:scaleBob 3s ease-in-out infinite;opacity:0.7;transition:opacity 0.3s,transform 0.3s;filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));';
+  gavel.onmouseenter = function(){ this.style.opacity='1';this.style.transform='scale(1.1)'; };
+  gavel.onmouseleave = function(){ this.style.opacity='0.7';this.style.transform='scale(1)'; };
+  document.body.appendChild(gavel);
+}
+
+function mascotReact(type) {
+  var g = document.getElementById('mascotFloat');
+  if (!g) return;
+  g.style.animation = 'none';
+  void g.offsetHeight;
+  if (type === 'correct') {
+    g.style.animation = 'scaleCelebrate 0.5s ease-out, scaleBob 3s ease-in-out 0.6s infinite';
+  } else if (type === 'incorrect') {
+    g.style.animation = 'scaleTilt 0.6s ease-in-out, scaleBob 3s ease-in-out 0.7s infinite';
+  } else if (type === 'complete') {
+    g.style.animation = 'scaleTriumph 1.5s ease-in-out, scaleBob 3s ease-in-out 1.6s infinite';
+    g.style.opacity = '1';
+    g.style.transform = 'scale(1.15)';
+  }
+}
+
+// ── CONFETTI ──
+var confettiActive = false;
+function launchConfetti() {
+  var canvas = document.getElementById('confettiCanvas');
+  if (!canvas) return;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var ctx = canvas.getContext('2d');
+  var colors = ['#dcb161','#c0c0c0','#141c2c'];
+  var particles = [];
+  var cx = canvas.width / 2;
+  var cy = canvas.height / 2;
+  for (var i = 0; i < 150; i++) {
+    var angle = Math.random() * Math.PI * 2;
+    var speed = 3 + Math.random() * 9;
+    particles.push({
+      x:cx, y:cy,
+      vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed-5,
+      color:colors[Math.floor(Math.random()*colors.length)],
+      w:4+Math.random()*6, h:2+Math.random()*4,
+      rotation:Math.random()*360, rotSpeed:(Math.random()-0.5)*12,
+      gravity:0.10+Math.random()*0.08, opacity:1,
+      shape:Math.random()>0.4?'rect':'circle'
+    });
+  }
+  confettiActive = true;
+  var startTime = Date.now();
+  function animate() {
+    if (!confettiActive) return;
+    var elapsed = Date.now() - startTime;
+    if (elapsed > 4000) {
+      confettiActive = false;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      p.x+=p.vx; p.vy+=p.gravity; p.y+=p.vy; p.vx*=0.99; p.rotation+=p.rotSpeed;
+      if (elapsed>2500) p.opacity=Math.max(0,p.opacity-0.02);
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rotation*Math.PI/180);
+      ctx.globalAlpha=p.opacity; ctx.fillStyle=p.color;
+      if (p.shape==='rect'){ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);}
+      else{ctx.beginPath();ctx.arc(0,0,p.w/2,0,Math.PI*2);ctx.fill();}
+      ctx.restore();
+    });
+    requestAnimationFrame(animate);
+  }
+  requestAnimationFrame(animate);
+}
+
+// ── ACHIEVEMENT BADGES ──
+function calculateBadges() {
+  var badges = [];
+  var pct = Math.round((baseScore / BASE_MAX) * 100);
+  var elapsed = (Date.now() - moduleStartTime) / 60000;
+  var baseQCount = Object.keys(Q_CONFIG).filter(function(k){ return !Q_CONFIG[k].isBonus; }).length;
+  if (questionsFirstTry === baseQCount && incorrectCount === 0) badges.push({icon:'⭐', name:'Perfect Pass', desc:'All correct on first try'});
+  if (incorrectCount === 0 && totalQuestionsAnswered > 0) badges.push({icon:'🎯', name:'No Stumbles', desc:'Zero incorrect'});
+  if (elapsed < 30) badges.push({icon:'⚡', name:'Speed Run', desc:'Under 30 minutes'});
+  if (pct >= 90) badges.push({icon:'🏆', name:'Master', desc:'Above 90%'});
+  if (incorrectCount > 3 && pct >= 70) badges.push({icon:'💪', name:'Persistent', desc:'Finished despite struggles'});
+  return badges;
+}
+
+function renderBadges(badges, container) {
+  badges.forEach(function(b, i) {
+    setTimeout(function() {
+      var el = document.createElement('span');
+      el.textContent = b.icon + ' ' + b.name;
+      el.title = b.desc;
+      el.style.cssText = 'display:inline-block;background:#dcb161;color:#141C2C;font-size:12px;font-weight:700;padding:5px 12px;border-radius:14px;margin:4px;animation:badgeFlip 0.5s ease-out;';
+      container.appendChild(el);
+    }, i * 400);
+  });
+}
+
+// ── GAMIFICATION INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  if (localStorage.getItem('glg_sound') === '1') {
+    soundEnabled = true;
+    var btn = document.getElementById('soundToggle');
+    if (btn) btn.textContent = '🔊';
+  }
+
+  function initAudioOnFirstClick() {
+    ensureAudioCtx();
+    document.removeEventListener('click', initAudioOnFirstClick);
+    document.removeEventListener('touchstart', initAudioOnFirstClick);
+    document.removeEventListener('touchend', initAudioOnFirstClick);
+  }
+  document.addEventListener('click', initAudioOnFirstClick);
+  document.addEventListener('touchstart', initAudioOnFirstClick);
+  document.addEventListener('touchend', initAudioOnFirstClick);
+
+  function resumeAudioOnGesture() {
+    if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  }
+  document.addEventListener('touchstart', resumeAudioOnGesture, true);
+  document.addEventListener('touchend', resumeAudioOnGesture, true);
+  document.addEventListener('click', resumeAudioOnGesture, true);
+
+  initMascot();
+});
+
+// Init
+goToSection(0);
+</script>
+</body>
+</html>
