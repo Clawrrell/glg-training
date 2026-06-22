@@ -1,0 +1,1501 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Module A1: GLG Operations — How We Work
+References Loaded: 10 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/e-myth-memo.md (systems thinking, franchise prototype)
+  - /glg/books/memos/traction-eos-memo.md (EOS framework, accountability chart, rocks)
+  - /glg/books/memos/atomic-habits-memo.md (habit loops, system design)
+  - /glg/books/memos/essential-lawyering-memo.md (PI operations, case management)
+  - /glg/books/memos/client-centered-law-firm-memo.md (client experience)
+  - /glg/books/memos/radical-candor-memo.md (feedback culture)
+  - /glg/books/memos/crucial-conversations-memo.md (difficult conversations)
+  - /glg/books/memos/reptile-mist-memo.md (safety rule framework)
+  - /glg/books/memos/influence-cialdini-memo.md (persuasion principles)
+Existing Docs Checked: Previous module-a1-glg-operations.html, GLG Team Member Handbook, REFERENCE.md
+QA Checklist: ✅ PASSED
+  - Systems Test: Creates repeatable systems, not just instructions
+  - EOS Alignment: Ties to firm accountability structure and scorecard
+  - Client-Centered: All operations serve client experience
+  - References actual GLG processes, not generic content
+Competency Gate Mapping:
+  - Gate: Week 1 Orientation — GLG Operations Foundation
+  - Milestone: Feeds 30-Day Gate
+  - Competency: Understands firm structure, CasePeer workflow, communication standards, and operating principles
+  - Roles: All (CM, LA, Intake)
+  - Requirement: 80%+ base score to pass gate
+  - Caseload Impact: Must pass before onboarding progression to PI-specific modules
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>GLG Operations — How We Work | Gunn Law Group</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #141c2c;
+    --navy2: #232e54;
+    --text: #333333;
+    --green: #27ae60;
+    --red: #c0392b;
+    --amber: #f39c12;
+    --bg: #f8f9fa;
+    --white: #ffffff;
+    --radius: 10px;
+    --shadow: 0 2px 12px rgba(20,28,44,0.10);
+  }
+
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .app-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 1rem 1.25rem 0.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  }
+  .header-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .header-logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .header-logo span { display: block; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em; opacity: 0.7; text-transform: uppercase; }
+  .module-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .progress-wrap {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .progress-bar-bg {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: #4fc3f7;
+    border-radius: 6px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-label {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.8);
+    white-space: nowrap;
+    min-width: 52px;
+    text-align: right;
+  }
+
+  /* ── MAIN ── */
+  .main-wrap {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* transitions */
+  .screen.slide-in {
+    animation: slideIn 0.3s ease forwards;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(30px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-header {
+    background: var(--navy2);
+    color: var(--white);
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 1.1rem 1.25rem 0.9rem;
+  }
+  .section-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 0.3rem;
+  }
+  .section-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  /* ── CONTENT CARD ── */
+  .content-card {
+    background: var(--white);
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 1.25rem 1.25rem 1.5rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.25rem;
+  }
+
+  /* ── SUBSECTION ── */
+  .subsection {
+    margin-bottom: 1.4rem;
+  }
+  .subsection:last-child { margin-bottom: 0; }
+  .subsection h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--navy2);
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid var(--bg);
+  }
+  .subsection p { margin-bottom: 0.6rem; font-size: 0.95rem; }
+  .subsection p:last-child { margin-bottom: 0; }
+  .subsection ul, .subsection ol {
+    padding-left: 1.3rem;
+    font-size: 0.95rem;
+  }
+  .subsection li { margin-bottom: 0.4rem; }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin: 1rem 0;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 0.9rem;
+  }
+  .callout-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.05rem; }
+  .callout.green { background: #e8f8ef; border-left: 4px solid var(--green); }
+  .callout.amber { background: #fff8e8; border-left: 4px solid var(--amber); }
+  .callout.red   { background: #fdf0ef; border-left: 4px solid var(--red); }
+  .callout.navy  { background: #eef0f5; border-left: 4px solid var(--navy2); }
+
+  /* ── LIFECYCLE FLOW ── */
+  .lifecycle {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .lifecycle-step {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .lifecycle-num {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* ── FRAMEWORK CARDS ── */
+  .framework-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .framework-card {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    border-left: 4px solid var(--navy2);
+  }
+  .framework-card h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .framework-card p {
+    font-size: 0.88rem;
+    color: #555;
+    margin-bottom: 0.4rem;
+  }
+  .framework-card p:last-child { margin-bottom: 0; }
+
+  /* ── ACCOUNTABILITY CHART ── */
+  .accountability-chart {
+    background: var(--white);
+    border: 2px solid var(--navy2);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  .chart-title {
+    text-align: center;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .org-level {
+    margin-bottom: 0.75rem;
+  }
+  .org-level:last-child { margin-bottom: 0; }
+  .org-node {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 6px;
+    padding: 0.6rem 0.8rem;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+  }
+  .org-node.secondary {
+    background: var(--navy2);
+  }
+  .org-node.tertiary {
+    background: #4a5568;
+    font-size: 0.8rem;
+  }
+  .org-row {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  .org-row .org-node {
+    flex: 1;
+  }
+
+  /* ── SCORECARD TABLE (STACKED CARDS on mobile) ── */
+  .scorecard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 0.75rem 0;
+  }
+  .scorecard-row {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    align-items: flex-start;
+    border-left: 4px solid var(--navy2);
+  }
+  .scorecard-row.sample { border-color: var(--amber); }
+  .metric-name {
+    font-weight: 700;
+    color: var(--navy);
+    flex: 1;
+    min-width: 120px;
+    font-size: 0.9rem;
+  }
+  .metric-owner {
+    font-size: 0.8rem;
+    color: #666;
+    min-width: 80px;
+  }
+  .metric-target {
+    font-size: 0.85rem;
+    color: var(--green);
+    font-weight: 600;
+    min-width: 60px;
+  }
+
+  /* ── BUTTONS ── */
+  .btn-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    min-height: 48px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.1s;
+    flex: 1;
+    min-width: 120px;
+  }
+  .btn:active { opacity: 0.8; transform: scale(0.97); }
+  .btn-primary { background: var(--navy); color: var(--white); }
+  .btn-secondary { background: var(--bg); color: var(--navy); border: 2px solid var(--navy); }
+  .btn-green { background: var(--green); color: var(--white); }
+  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* ── QUIZ ── */
+  .quiz-progress {
+    display: flex;
+    gap: 0.3rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .quiz-dot {
+    width: 28px;
+    height: 6px;
+    border-radius: 3px;
+    background: #ddd;
+    transition: background 0.3s;
+  }
+  .quiz-dot.answered { background: var(--navy2); }
+  .quiz-dot.correct  { background: var(--green); }
+  .quiz-dot.wrong    { background: var(--red); }
+
+  .question-num {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--navy2);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .question-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: var(--navy);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .option-btn {
+    background: var(--bg);
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    font-size: 0.92rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.15s;
+    min-height: 48px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    font-family: inherit;
+  }
+  .option-btn:hover:not(:disabled) { border-color: var(--navy2); background: #eef0f5; }
+  .option-btn.selected { border-color: var(--navy); background: #eef0f5; }
+  .option-btn.correct  { border-color: var(--green); background: #e8f8ef; color: #1a6b3c; font-weight: 600; }
+  .option-btn.wrong    { border-color: var(--red); background: #fdf0ef; color: var(--red); }
+  .option-btn:disabled { cursor: default; }
+  .option-letter {
+    font-weight: 700;
+    color: var(--navy2);
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  .feedback-box {
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    display: none;
+  }
+  .feedback-box.correct { background: #e8f8ef; border-left: 4px solid var(--green); color: #1a6b3c; }
+  .feedback-box.wrong   { background: #fdf0ef; border-left: 4px solid var(--red); color: #8b1a1a; }
+
+  /* ── RESULTS ── */
+  .result-hero {
+    text-align: center;
+    padding: 1.5rem 1rem 1rem;
+  }
+  .result-score {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .result-score.pass { color: var(--green); }
+  .result-score.fail { color: var(--red); }
+  .result-label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+  .result-badge {
+    display: inline-block;
+    border-radius: 20px;
+    padding: 0.3rem 1.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+  }
+  .badge-pass { background: #e8f8ef; color: var(--green); }
+  .badge-fail { background: #fdf0ef; color: var(--red); }
+
+  .review-list { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1rem; }
+  .review-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid #ddd;
+    font-size: 0.88rem;
+  }
+  .review-item.correct { border-color: var(--green); }
+  .review-item.wrong   { border-color: var(--red); }
+  .review-item .ri-q   { font-weight: 600; margin-bottom: 0.3rem; color: var(--navy); }
+  .review-item .ri-ans { font-size: 0.82rem; }
+
+  /* ── CERTIFICATE ── */
+  .cert-wrap {
+    background: var(--white);
+    border: 3px solid var(--navy);
+    border-radius: 12px;
+    padding: 2rem 1.25rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .cert-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--navy2);
+    border-radius: 8px;
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  .cert-firm { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--navy2); font-weight: 600; margin-bottom: 0.5rem; }
+  .cert-title { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: 0.3rem; }
+  .cert-subtitle { font-size: 0.8rem; color: #666; margin-bottom: 1.2rem; }
+  .cert-presents { font-size: 0.85rem; color: #666; font-style: italic; margin-bottom: 0.25rem; }
+  .cert-name { font-size: 1.8rem; font-weight: 700; color: var(--navy2); border-bottom: 2px solid var(--navy2); display: inline-block; padding: 0 0.5rem 0.1rem; margin-bottom: 0.75rem; min-width: 60%; }
+  .cert-for { font-size: 0.85rem; color: #555; margin-bottom: 0.3rem; }
+  .cert-module { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 1rem; }
+  .cert-meta { font-size: 0.8rem; color: #777; }
+  .cert-score { font-size: 1.1rem; font-weight: 700; color: var(--green); margin-top: 0.5rem; }
+  .cert-seal {
+    font-size: 2.5rem;
+    margin: 0.75rem 0 0.25rem;
+    display: block;
+  }
+
+  /* ── NAME INPUT ── */
+  .name-input-wrap {
+    margin-bottom: 1rem;
+  }
+  .name-input-wrap label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy2);
+    margin-bottom: 0.4rem;
+  }
+  .name-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s;
+  }
+  .name-input:focus { outline: none; border-color: var(--navy2); }
+
+  /* ── FEEDBACK FORM ── */
+  .fb-question { margin-bottom: 18px; }
+  .fb-question label { display: block; font-weight: 700; color: var(--navy); font-size: 15px; margin-bottom: 8px; }
+  .fb-question select, .fb-question textarea { width: 100%; padding: 12px; border: 2px solid #e0e3e8; border-radius: 8px; font-size: 14px; font-family: inherit; background: #fff; color: #333; -webkit-appearance: none; }
+  .fb-question select:focus, .fb-question textarea:focus { outline: none; border-color: var(--navy); }
+  .fb-question textarea { resize: vertical; min-height: 80px; }
+
+  /* ── WELCOME SCREEN ── */
+  .welcome-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+    border-radius: var(--radius);
+    padding: 2rem 1.5rem;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .welcome-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .welcome-hero h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.4rem; }
+  .welcome-hero p  { font-size: 0.9rem; opacity: 0.85; line-height: 1.5; }
+  .module-info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .module-info-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+  .module-info-item span:first-child { font-size: 1.2rem; flex-shrink: 0; }
+
+  @media print {
+    .app-header, .btn-row, .screen:not(.active) { display: none !important; }
+    .cert-wrap { border: 3px solid var(--navy) !important; }
+    body { background: white; }
+  }
+
+  @media (max-width: 480px) {
+    .section-title { font-size: 1.1rem; }
+    .content-card { padding: 1rem 0.9rem 1.2rem; }
+    .main-wrap { padding: 1rem 0.75rem 2rem; }
+    .welcome-hero { padding: 1.5rem 1rem; }
+    .welcome-hero h1 { font-size: 1.2rem; }
+    .cert-name { font-size: 1.3rem; }
+    .result-score { font-size: 2.8rem; }
+  }
+
+/* iOS TOUCH FIX */
+button, .btn, .option-btn, [onclick] {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+  touch-action: manipulation;
+  -webkit-appearance: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* Ensure screens display properly */
+.screen { display: none; }
+.screen.active { display: block !important; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-top">
+    <div class="header-logo">
+      GUNN LAW GROUP
+      <span>Training & Development</span>
+    </div>
+    <div class="module-badge">MODULE A1</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">0 / 7</div>
+  </div>
+</header>
+
+<div class="main-wrap">
+
+<!-- ══════════ SCREEN 0: WELCOME ══════════ -->
+<div class="screen active" id="screen-0">
+  <div class="welcome-hero">
+    <div class="welcome-icon">⚙️</div>
+    <h1>GLG Operations —<br>How We Work</h1>
+    <p>Your foundation for understanding GLG's systems, culture, and operating principles. Built on proven business frameworks.</p>
+  </div>
+  <div class="content-card" style="border-radius: var(--radius);">
+    <div class="module-info-grid">
+      <div class="module-info-item"><span>📚</span><span><strong>6 Sections</strong> of operational training</span></div>
+      <div class="module-info-item"><span>📝</span><span><strong>12-Question Quiz</strong> at the end</span></div>
+      <div class="module-info-item"><span>🎯</span><span><strong>80% required</strong> to pass (10 of 12)</span></div>
+      <div class="module-info-item"><span>🏆</span><span><strong>Completion Certificate</strong> generated on pass</span></div>
+      <div class="module-info-item"><span>⏱️</span><span><strong>~25 minutes</strong> estimated time</span></div>
+    </div>
+    <div style="background:#f0f7ff;border-left:4px solid #2980b9;border-radius:8px;padding:14px 16px;margin:12px 0;">
+      <h4 style="margin:0 0 6px;color:#2c3e50;font-size:14px;">📋 Competency Gate: Week 1 Orientation</h4>
+      <p style="font-size:13px;color:#555;margin:0 0 6px;">This module maps to your <strong>30-Day Competency Milestone</strong>. Passing confirms you understand GLG's operating systems, communication standards, and CasePeer workflow.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Day 30 Gate</span>
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">All Roles</span>
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">80% Required</span>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="go(1)">Start Module →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 1: THE SYSTEMS FOUNDATION ══════════ -->
+<div class="screen" id="screen-1">
+  <div class="section-header">
+    <div class="section-label">Section 1 of 6</div>
+    <div class="section-title">The Systems Foundation</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>Why Systems Matter More Than Talent</h3>
+      <div class="callout navy">
+        <span class="callout-icon">🎯</span>
+        <span><strong>Core Principle:</strong> "You don't rise to the level of your goals — you fall to the level of your systems." GLG runs on systems, not heroics. When the system works, clients win consistently.</span>
+      </div>
+      <p>Most law firms fail because they're organized around the owner's personal involvement. The attorney does everything. When they're out, nothing happens. That's not a business — it's a job.</p>
+      <p>GLG is built differently. We operate on the <strong>Franchise Prototype</strong> model. Every process is documented. Every role has clear accountability. The firm works whether Harrell is here or not.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Three Personalities in Every Business</h3>
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>The Entrepreneur (Visionary)</h4>
+          <p>Dreams big, sets direction, drives change. At GLG: Harrell sets the vision and strategy.</p>
+        </div>
+        <div class="framework-card">
+          <h4>The Manager (Integrator)</h4>
+          <p>Creates order, builds systems, ensures accountability. At GLG: Our operations team and case managers.</p>
+        </div>
+        <div class="framework-card">
+          <h4>The Technician (Doer)</h4>
+          <p>Does the actual work — legal research, client calls, document prep. At GLG: Every team member executes their role.</p>
+        </div>
+      </div>
+      <p><strong>The key insight:</strong> All three must work together. When staff just "do the work" without understanding the system, cases stall. When there's vision but no management, nothing gets executed. GLG balances all three.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Working ON the Business, Not IN It</h3>
+      <div class="callout green">
+        <span class="callout-icon">🔧</span>
+        <span>Every GLG team member works <strong>ON</strong> the business by following systems that improve client outcomes. You're not just processing cases — you're building a machine that serves injured Georgians.</span>
+      </div>
+      <p>When you document every case note in CasePeer, you're working ON the business. When you follow the callback SOP exactly, you're working ON the business. These systems compound over time into competitive advantage.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(0)">← Back</button>
+      <button class="btn btn-primary" onclick="go(2)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 2: EOS & ACCOUNTABILITY ══════════ -->
+<div class="screen" id="screen-2">
+  <div class="section-header">
+    <div class="section-label">Section 2 of 6</div>
+    <div class="section-title">EOS & Accountability Structure</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>GLG's Accountability Chart</h3>
+      <p>We use our <strong>accountability chart</strong> model. Unlike traditional org charts that show reporting relationships, our Accountability Chart shows who owns what function.</p>
+      <div class="accountability-chart">
+        <div class="chart-title">GLG Accountability Chart</div>
+        <div class="org-level">
+          <div class="org-node">Managing Attorney<br><small>(Visionary)</small></div>
+        </div>
+        <div class="org-level">
+          <div class="org-row">
+            <div class="org-node secondary">Pre-Litigation<br><small>Case Management</small></div>
+            <div class="org-node secondary">Litigation<br><small>Case Management</small></div>
+          </div>
+        </div>
+        <div class="org-level">
+          <div class="org-row">
+            <div class="org-node tertiary">Intake</div>
+            <div class="org-node tertiary">Records</div>
+            <div class="org-node tertiary">Demands</div>
+            <div class="org-node tertiary">Distribution</div>
+          </div>
+        </div>
+      </div>
+      <p><strong>Every seat has one accountable person.</strong> When something goes wrong, we know exactly who owns the solution. No finger-pointing. No confusion.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Quarterly Rocks System</h3>
+      <div class="callout amber">
+        <span class="callout-icon">🎯</span>
+        <span><strong>Rocks are the 3-7 most important priorities</strong> for the next 90 days. "When everything is important, nothing is important." Rocks create focus.</span>
+      </div>
+      <p>Every quarter, GLG sets company Rocks. Examples of what a quarterly Rock might look like:</p>
+      <ul>
+        <li>Achieve 85% communication compliance across all CMs</li>
+        <li>Complete PITT evaluation on all active cases</li>
+        <li>Hire and onboard a new team member for a key role</li>
+      </ul>
+      <p>Your performance directly impacts these Rocks. When you hit your metrics, the firm hits its Rocks.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Weekly Pulse</h3>
+      <p>EOS requires a <strong>weekly Level 10 Meeting</strong> with leadership. Same time, same agenda:</p>
+      <div class="lifecycle">
+        <div class="lifecycle-step"><div class="lifecycle-num">1</div><div><strong>Scorecard Review</strong> — Are we on track? What's red?</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">2</div><div><strong>Rock Update</strong> — Progress on quarterly priorities</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">3</div><div><strong>Client & Staff Headlines</strong> — Good news to share</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">4</div><div><strong>Issues List</strong> — What needs solving this week?</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">5</div><div><strong>IDS</strong> — Identify, Discuss, Solve top issues</div></div>
+      </div>
+      <p>Your department metrics and issues get surfaced in these meetings. Good performance gets recognized. Problems get solved quickly.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(1)">← Back</button>
+      <button class="btn btn-primary" onclick="go(3)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 3: THE GLG SCORECARD ══════════ -->
+<div class="screen" id="screen-3">
+  <div class="section-header">
+    <div class="section-label">Section 3 of 6</div>
+    <div class="section-title">The GLG Scorecard</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>Data-Driven Performance</h3>
+      <div class="callout navy">
+        <span class="callout-icon">📊</span>
+        <span><strong>Data-Driven Principle:</strong> "Numbers cut through murky subjective communication." The GLG Scorecard eliminates guesswork. We measure what matters.</span>
+      </div>
+      <p>Every team member has 3-5 weekly metrics that predict case success. These are <strong>leading indicators</strong> — they tell us what will happen, not what already happened.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Sample Scorecard Metrics</h3>
+      <div class="scorecard-grid">
+        <div class="scorecard-row sample">
+          <div class="metric-name">Communication Compliance</div>
+          <div class="metric-owner">All CMs</div>
+          <div class="metric-target">85%</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">New Intakes Signed</div>
+          <div class="metric-owner">Intake Team</div>
+          <div class="metric-target">12/week</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">Records Requests Sent</div>
+          <div class="metric-owner">Records Coord.</div>
+          <div class="metric-target">25/week</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">Demands Sent</div>
+          <div class="metric-owner">Attorney</div>
+          <div class="metric-target">8/week</div>
+        </div>
+        <div class="scorecard-row sample">
+          <div class="metric-name">Settlement Distribution Days</div>
+          <div class="metric-owner">Paralegal</div>
+          <div class="metric-target">&lt;14 days</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Green vs. Red Performance</h3>
+      <div class="callout green">
+        <span class="callout-icon">✅</span>
+        <span><strong>Green:</strong> You hit or exceed your weekly target. This is the expectation. Green performers drive raises, bonuses, and advancement.</span>
+      </div>
+      <div class="callout red">
+        <span class="callout-icon">❌</span>
+        <span><strong>Red:</strong> You missed your target. One red week happens. Two in a row requires coaching. Three triggers performance improvement discussion.</span>
+      </div>
+      <p>The scorecard isn't punishment — it's clarity. You always know where you stand and what needs improvement.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>How Scorecards Drive Client Success</h3>
+      <p>Every scorecard metric connects to client outcomes:</p>
+      <ul>
+        <li><strong>Communication compliance</strong> → Clients trust us and cooperate with treatment</li>
+        <li><strong>Fast records retrieval</strong> → Demands go out sooner, settlements happen faster</li>
+        <li><strong>Timely distributions</strong> → Clients recommend us to family and friends</li>
+        <li><strong>Callback responsiveness</strong> → Clients feel heard and supported</li>
+      </ul>
+      <p>When you hit your numbers, clients win. When clients win, GLG grows. When GLG grows, your career grows.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(2)">← Back</button>
+      <button class="btn btn-primary" onclick="go(4)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 4: DAILY HABITS & SYSTEMS ══════════ -->
+<div class="screen" id="screen-4">
+  <div class="section-header">
+    <div class="section-label">Section 4 of 6</div>
+    <div class="section-title">Building Winning Habits</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>The Power of 1% Improvements</h3>
+      <div class="callout green">
+        <span class="callout-icon">📈</span>
+        <span><strong>Core Principle:</strong> "You do not rise to the level of your goals. You fall to the level of your systems." Small daily improvements compound into extraordinary results.</span>
+      </div>
+      <p>A 1% daily improvement leads to 37x better performance over one year. Conversely, 1% daily decline compounds toward zero. At GLG, every small action either builds toward client success or undermines it.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The GLG Habit Loop</h3>
+      <p>Every reliable behavior follows the same pattern: <strong>Cue → Craving → Response → Reward</strong></p>
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>Cue: Make It Obvious</h4>
+          <p>Environmental triggers that prompt good behavior. CasePeer notifications, callback logs on your desk, daily huddle check-ins.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Craving: Make It Attractive</h4>
+          <p>The motivation to act. Recognition for compliance, team celebrations, knowing you're helping injured clients.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Response: Make It Easy</h4>
+          <p>The actual behavior. Templates that take 30 seconds, one-click CasePeer updates, streamlined call scripts.</p>
+        </div>
+        <div class="framework-card">
+          <h4>Reward: Make It Satisfying</h4>
+          <p>The payoff that reinforces the loop. Green scorecard metrics, client thank-you notes, performance bonuses.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Implementation at GLG</h3>
+      <div class="callout amber">
+        <span class="callout-icon">🎯</span>
+        <span><strong>Habit Stacking:</strong> "After I update a case note in CasePeer, I will check if any callbacks are due before closing the tab." Link new habits to existing ones.</span>
+      </div>
+      <p><strong>The Two-Minute Rule:</strong> When establishing a new system, start small. "Check callback log" becomes "Open callback log." Once the habit of showing up is established, improvement follows naturally.</p>
+      <p><strong>Never Miss Twice:</strong> One missed callback is an error. Two in a row is the start of a bad habit. The scorecard catches these patterns before they become entrenched.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Identity-Based Habits</h3>
+      <div class="callout navy">
+        <span class="callout-icon">🏆</span>
+        <span>"Every action is a vote for the type of person you want to become." At GLG, we ARE a firm that communicates with clients, follows systems, and delivers results. That's our identity.</span>
+      </div>
+      <p>Don't think "I need to hit my callback targets." Think "I am a case manager who never lets clients wonder if we forgot them." Identity drives behavior more powerfully than goals.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(3)">← Back</button>
+      <button class="btn btn-primary" onclick="go(5)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 5: CLIENT-CENTERED OPERATIONS ══════════ -->
+<div class="screen" id="screen-5">
+  <div class="section-header">
+    <div class="section-label">Section 5 of 6</div>
+    <div class="section-title">Client-Centered Operations</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>The GLG Client Experience</h3>
+      <div class="callout navy">
+        <span class="callout-icon">❤️</span>
+        <span><strong>Client-Centered Principle:</strong> Clients judge us on the legal result AND the experience of receiving it. Both matter equally.</span>
+      </div>
+      <p>Personal injury clients are scared, hurt, and dealing with insurance companies for the first time. The experience we provide — communication, empathy, professionalism — is what they remember and refer to others.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Client Journey at GLG</h3>
+      <div class="lifecycle">
+        <div class="lifecycle-step"><div class="lifecycle-num">1</div><div><strong>Intake:</strong> First impression sets expectations for entire relationship</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">2</div><div><strong>Onboarding:</strong> Welcome packet, what to expect, clear next steps</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">3</div><div><strong>During Case:</strong> Regular updates, treatment monitoring, consistent communication</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">4</div><div><strong>Settlement:</strong> Clear explanation of numbers, realistic expectations</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">5</div><div><strong>Distribution:</strong> Fast payment, detailed breakdown, thank you</div></div>
+        <div class="lifecycle-step"><div class="lifecycle-num">6</div><div><strong>Post-Case:</strong> Referral request, stay in touch for future needs</div></div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3>Communication as Competitive Advantage</h3>
+      <div class="callout green">
+        <span class="callout-icon">📞</span>
+        <span>Research shows 84% of customer disloyalty comes from <strong>effort</strong> — having to contact a company multiple times to resolve issues. GLG calls clients before they call us.</span>
+      </div>
+      <p><strong>Pre-litigation clients:</strong> Contact every 14 days</p>
+      <p><strong>Litigation clients:</strong> Contact every 30 days</p>
+      <p><strong>All callbacks:</strong> Returned within 24 hours</p>
+      <p>This isn't just policy — it's how we differentiate from other firms. Clients stay engaged, cooperate with treatment, and refer family members because they trust us.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Every Touchpoint Matters</h3>
+      <p>Client experience is built through every interaction:</p>
+      <ul>
+        <li><strong>Phone manner:</strong> Professional, empathetic, never rushed</li>
+        <li><strong>Email responses:</strong> Same-day replies, clear explanations</li>
+        <li><strong>Case updates:</strong> Proactive information sharing</li>
+        <li><strong>Settlement calls:</strong> Patient education, not pressure</li>
+        <li><strong>Distribution:</strong> Fast turnaround, detailed explanations</li>
+      </ul>
+      <p>Every team member contributes to the client experience. You may not see the client face-to-face, but your work directly impacts their perception of GLG.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(4)">← Back</button>
+      <button class="btn btn-primary" onclick="go(6)">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 6: CORE PI SKILLS ══════════ -->
+<div class="screen" id="screen-6">
+  <div class="section-header">
+    <div class="section-label">Section 6 of 6</div>
+    <div class="section-title">PI Operations Excellence</div>
+  </div>
+  <div class="content-card">
+
+    <div class="subsection">
+      <h3>Core Legal Practice Principles</h3>
+      <div class="callout amber">
+        <span class="callout-icon">⚖️</span>
+        <span><strong>Core Insight:</strong> "Excellent lawyering is built on interviewing, counseling, negotiation, and persuasive fact analysis — not just knowing the law." GLG staff apply these same principles.</span>
+      </div>
+      <p>You don't have to be an attorney to use these frameworks. Every client interaction — intake calls, case updates, settlement discussions — benefits from professional communication skills.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>Inquiring Mode vs. Persuasion Mode</h3>
+      <div class="framework-grid">
+        <div class="framework-card">
+          <h4>Inquiring Mode</h4>
+          <p><strong>When to use:</strong> Learning about client's situation, understanding concerns, gathering case facts.</p>
+          <p><strong>How it sounds:</strong> "Tell me what happened after the accident." "What's your biggest concern right now?"</p>
+        </div>
+        <div class="framework-card">
+          <h4>Persuasion Mode</h4>
+          <p><strong>When to use:</strong> Explaining process, presenting options, guiding decisions.</p>
+          <p><strong>How it sounds:</strong> "Here's what we recommend next." "Based on cases like yours, this is typical."</p>
+        </div>
+      </div>
+      <p><strong>The mistake:</strong> Jumping to persuasion mode too quickly. Always understand the client's real concerns before explaining solutions.</p>
+    </div>
+
+    <div class="subsection">
+      <h3>The Four Challenges in Client Counseling</h3>
+      <p>Whether you're discussing settlement offers, treatment plans, or case timelines:</p>
+      <ol>
+        <li><strong>Create options</strong> beyond the obvious first choice</li>
+        <li><strong>Work out each option precisely</strong> with real numbers and timelines</li>
+        <li><strong>Explain clearly</strong> so the client truly understands</li>
+        <li><strong>Maintain professional empathy</strong> — caring but intellectually detached</li>
+      </ol>
+    </div>
+
+    <div class="subsection">
+      <h3>CasePeer as Documentation System</h3>
+      <div class="callout red">
+        <span class="callout-icon">💻</span>
+        <span><strong>Non-negotiable rule:</strong> If it's not documented in CasePeer, it didn't happen. Every call, email, and case action must be logged immediately.</span>
+      </div>
+      <p>This protects the client, the firm, and you. Six months from now, nobody will remember the details of a phone call. CasePeer will.</p>
+    </div>
+
+    <div class="callout green">
+      <span class="callout-icon">🎉</span>
+      <span>You've completed all 6 sections! You understand GLG's operational foundation: operational systems, accountability, habit formation, client-centered service, and PI excellence. Ready for the knowledge check?</span>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="go(5)">← Back</button>
+      <button class="btn btn-primary" onclick="startQuiz()">Take the Quiz →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 7: QUIZ ══════════ -->
+<div class="screen" id="screen-quiz">
+  <div class="section-header">
+    <div class="section-label" id="quiz-section-label">Question 1 of 12</div>
+    <div class="section-title">Knowledge Check</div>
+  </div>
+  <div class="content-card">
+    <div class="quiz-progress" id="quizDots"></div>
+    <div class="question-num" id="qNum">Question 1 of 12</div>
+    <div class="question-text" id="qText"></div>
+    <div class="options" id="qOptions"></div>
+    <div class="feedback-box" id="qFeedback"></div>
+    <div class="btn-row">
+      <button class="btn btn-primary" id="qNextBtn" onclick="nextQuestion()" disabled>Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 8: RESULTS ══════════ -->
+<div class="screen" id="screen-results">
+  <div class="section-header">
+    <div class="section-label">Quiz Complete</div>
+    <div class="section-title">Your Results</div>
+  </div>
+  <div class="content-card">
+    <div class="result-hero">
+      <div class="result-score" id="resultScore"></div>
+      <div class="result-label" id="resultLabel"></div>
+      <div class="result-badge" id="resultBadge"></div>
+    </div>
+    <div id="reviewSection" style="margin-top:1.25rem;">
+      <h3 style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--navy2);margin-bottom:0.75rem;font-weight:700;">Review</h3>
+      <div class="review-list" id="reviewList"></div>
+    </div>
+    <div class="btn-row" style="margin-top:1.25rem;" id="resultButtons"></div>
+  </div>
+</div>
+
+<!-- ══════════ SCREEN 9: CERTIFICATE ══════════ -->
+<div class="screen" id="screen-cert">
+  <div class="section-header">
+    <div class="section-label">Completion</div>
+    <div class="section-title">Certificate of Completion</div>
+  </div>
+  <div class="content-card">
+    <!-- Feedback Form -->
+    <div style="margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:14px;">📝 Quick Feedback</h4>
+      <div class="fb-question">
+        <label>How clear was the content? (1 = confusing, 5 = crystal clear)</label>
+        <select id="fb-clarity">
+          <option value="">Select rating…</option>
+          <option>1 — Very confusing</option>
+          <option>2 — Somewhat confusing</option>
+          <option>3 — Mostly clear</option>
+          <option>4 — Clear</option>
+          <option>5 — Crystal clear</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>How was the difficulty level?</label>
+        <select id="fb-difficulty">
+          <option value="">Select…</option>
+          <option>Too easy — I already knew all of this</option>
+          <option>About right — challenging but fair</option>
+          <option>Too hard — needs more context</option>
+          <option>Mixed — some sections were hard, some easy</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>Did this module feel like a real work situation?</label>
+        <select id="fb-realistic">
+          <option value="">Select…</option>
+          <option>Yes — felt like actual GLG work</option>
+          <option>Mostly — a few parts felt generic</option>
+          <option>Not really — too textbook-style</option>
+        </select>
+      </div>
+      <div class="fb-question">
+        <label>What's one thing that would make this training better?</label>
+        <textarea id="fb-suggestions" placeholder="Your suggestion here…"></textarea>
+      </div>
+    </div>
+
+    <!-- Score Submission Form -->
+    <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+      <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+        style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;">
+      <button class="btn" onclick="submitScoreAndBuildCert()" style="background:#188038;color:white;padding:12px 24px;border:none;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;">✅ Submit Score &amp; View Certificate</button>
+    </div>
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #27ae60;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">
+      ✅ Score submitted! Your results have been recorded.
+    </div>
+    <div id="cert-content" style="display:none;">
+      <div class="cert-wrap" id="certWrap">
+        <div class="cert-firm">Gunn Law Group — Atlanta, Georgia</div>
+        <div class="cert-title">Certificate of Completion</div>
+        <div class="cert-subtitle">GLG Training &amp; Development Program</div>
+        <div class="cert-presents">This certifies that</div>
+        <div class="cert-name" id="certNameDisplay">___________________</div>
+        <div class="cert-for">has successfully completed</div>
+        <div class="cert-module">Module A1: GLG Operations — How We Work</div>
+        <span class="cert-seal">⚙️</span>
+        <div class="cert-score" id="certScore"></div>
+        <div class="cert-meta" id="certMeta"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-secondary" onclick="go('results')">← Results</button>
+        <button class="btn btn-green" onclick="window.print()">🖨️ Print Certificate</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main-wrap -->
+
+<script>
+const TOTAL_SECTIONS = 7; // 0=welcome, 1-6=sections, quiz=7
+let currentScreen = 0;
+let quizData = [];
+let currentQ = 0;
+let answers = [];
+let score = 0;
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+
+const questions = [
+  {
+    q: "According to systems principles, what's the main difference between working IN the business versus ON the business?",
+    options: ["Working IN means doing legal work, ON means management", "Working IN is reactive daily tasks, ON is building systems", "Working IN requires more skill, ON requires less", "There's no real difference"],
+    correct: 1,
+    explanation: "Working ON the business means building systems, processes, and infrastructure that make the business run independently. Working IN means just doing daily tasks without improving the underlying systems."
+  },
+  {
+    q: "In GLG's EOS Accountability Chart, what's the key principle about who owns each function?",
+    options: ["Multiple people should own each function for backup", "The most senior person owns each function", "Every seat has exactly one accountable person", "Functions are owned by committees"],
+    correct: 2,
+    explanation: "EOS requires that every seat has exactly one accountable person. This eliminates confusion and ensures clear ownership when problems arise."
+  },
+  {
+    q: "What are Quarterly Rocks in GLG's accountability system?",
+    options: ["Monthly performance reviews", "The 3-7 most important priorities for the next 90 days", "Daily accountability metrics", "Annual strategic goals"],
+    correct: 1,
+    explanation: "Rocks are the 3-7 most important priorities for the next 90 days. They create focus by ensuring the team concentrates on what matters most each quarter."
+  },
+  {
+    q: "According to the improvement principle, what happens with 1% daily improvement over one year?",
+    options: ["3.65x better performance", "37x better performance", "No significant change", "10x better performance"],
+    correct: 1,
+    explanation: "1% daily improvement compounds to 37x better performance over one year. This demonstrates the power of small, consistent improvements."
+  },
+  {
+    q: "What are the four steps in the GLG Habit Loop?",
+    options: ["Plan, Execute, Review, Improve", "Cue, Craving, Response, Reward", "Start, Continue, Complete, Celebrate", "Think, Act, Measure, Adjust"],
+    correct: 1,
+    explanation: "The habit formation framework uses Cue (trigger), Craving (motivation), Response (behavior), and Reward (payoff) to build lasting habits."
+  },
+  {
+    q: "Why does GLG use leading indicators instead of lagging indicators in the scorecard?",
+    options: ["They're easier to measure", "They predict future results rather than report past results", "They make people feel better", "They're required by law"],
+    correct: 1,
+    explanation: "Leading indicators predict what will happen (like communication compliance), while lagging indicators report what already happened (like settled cases). Leading indicators let us course-correct before problems become outcomes."
+  },
+  {
+    q: "In client-centered operations, what percentage of customer disloyalty comes from effort-related issues?",
+    options: ["45%", "84%", "62%", "93%"],
+    correct: 1,
+    explanation: "Research shows 84% of customer disloyalty comes from effort-related issues, particularly having to contact a company multiple times to resolve problems. This is why GLG calls clients proactively."
+  },
+  {
+    q: "What is 'Inquiring Mode' versus 'Persuasion Mode' in client communication?",
+    options: ["Different types of legal questions", "Inquiring is for learning, Persuasion is for guiding decisions", "They're the same thing", "Inquiring is for new clients, Persuasion for existing ones"],
+    correct: 1,
+    explanation: "Inquiring Mode is open-ended curiosity aimed at learning about the client's situation. Persuasion Mode is strategic communication aimed at guiding decisions. Always inquire first, then shift to persuasion."
+  },
+  {
+    q: "How often must pre-litigation clients be contacted according to GLG standards?",
+    options: ["Every 7 days", "Every 14 days", "Every 30 days", "Only when there's an update"],
+    correct: 1,
+    explanation: "Pre-litigation clients must be contacted every 14 days. This builds trust, ensures cooperation with treatment, and differentiates GLG from other firms."
+  },
+  {
+    q: "What's GLG's rule about CasePeer documentation?",
+    options: ["Document major events only", "If it's not in CasePeer, it didn't happen", "CasePeer is just for attorneys", "Documentation is optional"],
+    correct: 1,
+    explanation: "If it's not documented in CasePeer, it didn't happen as far as GLG is concerned. This protects the client, the firm, and you by creating a complete record."
+  },
+  {
+    q: "In the 'Never Miss Twice' rule, what does two missed callbacks in a row indicate?",
+    options: ["Normal variation in performance", "The start of a bad habit forming", "Time for vacation", "Nothing significant"],
+    correct: 1,
+    explanation: "One missed callback is an error. Two in a row is the start of a bad habit forming. The scorecard tracks patterns, not just individual incidents."
+  },
+  {
+    q: "What are the GLG address and phone number?",
+    options: ["950 E. Paces Ferry Rd NE, Suite 1550 / (770) 800-0945", "1550 Peachtree St / (404) 555-0123", "950 Paces Ferry Rd / (678) 123-4567", "1550 E. Paces Ferry / (770) 555-0945"],
+    correct: 0,
+    explanation: "GLG is located at 950 E. Paces Ferry Rd NE, Suite 1550, Atlanta, GA 30326. Phone: (770) 800-0945. This is our primary Atlanta office."
+  }
+];
+
+function updateProgress(screen) {
+  const fill = document.getElementById('progressFill');
+  const label = document.getElementById('progressLabel');
+  let pct = 0;
+  let txt = '';
+  if (screen === 'quiz' || screen === 'results' || screen === 'cert') {
+    pct = 100;
+    txt = 'Quiz';
+  } else {
+    const s = parseInt(screen);
+    pct = (s / 6) * 100;
+    txt = s === 0 ? 'Intro' : `${s} / 6`;
+  }
+  fill.style.width = pct + '%';
+  label.textContent = txt;
+}
+
+function go(screen) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active','slide-in'));
+  let el;
+  if (screen === 'quiz') el = document.getElementById('screen-quiz');
+  else if (screen === 'results') el = document.getElementById('screen-results');
+  else if (screen === 'cert') el = document.getElementById('screen-cert');
+  else el = document.getElementById('screen-' + screen);
+  if (el) { el.classList.add('active','slide-in'); }
+  currentScreen = screen;
+  updateProgress(screen);
+  window.scrollTo(0, 0);
+}
+
+function startQuiz() {
+  currentQ = 0;
+  answers = new Array(questions.length).fill(null);
+  score = 0;
+  renderQuizDots();
+  renderQuestion();
+  go('quiz');
+}
+
+function renderQuizDots() {
+  const d = document.getElementById('quizDots');
+  d.innerHTML = questions.map((_,i) => `<div class="quiz-dot" id="dot-${i}"></div>`).join('');
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('quiz-section-label').textContent = `Question ${currentQ+1} of ${questions.length}`;
+  document.getElementById('qNum').textContent = `Question ${currentQ+1} of ${questions.length}`;
+  document.getElementById('qText').textContent = q.q;
+  const letters = ['A','B','C','D'];
+  document.getElementById('qOptions').innerHTML = q.options.map((opt,i) =>
+    `<button class="option-btn" id="opt-${i}" onclick="selectOption(${i})">
+       <span class="option-letter">${letters[i]}</span> ${opt}
+     </button>`
+  ).join('');
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'none';
+  fb.className = 'feedback-box';
+  document.getElementById('qNextBtn').disabled = true;
+  document.getElementById('qNextBtn').textContent = currentQ < questions.length-1 ? 'Next →' : 'See Results';
+}
+
+function selectOption(idx) {
+  if (answers[currentQ] !== null) return;
+  answers[currentQ] = idx;
+  const q = questions[currentQ];
+  const isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+
+  const opts = document.querySelectorAll('.option-btn');
+  opts.forEach((o,i) => {
+    o.disabled = true;
+    if (i === q.correct) o.classList.add('correct');
+    else if (i === idx && !isCorrect) o.classList.add('wrong');
+  });
+
+  const dot = document.getElementById('dot-' + currentQ);
+  dot.classList.add(isCorrect ? 'correct' : 'wrong');
+
+  const fb = document.getElementById('qFeedback');
+  fb.style.display = 'block';
+  fb.className = 'feedback-box ' + (isCorrect ? 'correct' : 'wrong');
+  fb.innerHTML = (isCorrect ? '✅ <strong>Correct!</strong> ' : '❌ <strong>Incorrect.</strong> ') + q.explanation;
+
+  document.getElementById('qNextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (currentQ < questions.length - 1) {
+    currentQ++;
+    renderQuestion();
+    window.scrollTo(0, 0);
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  const passThreshold = 10; // 80% of 12 = 9.6, round up to 10
+  const passed = score >= passThreshold;
+  const pct = Math.round((score / questions.length) * 100);
+
+  document.getElementById('resultScore').textContent = `${score}/12`;
+  document.getElementById('resultScore').className = 'result-score ' + (passed ? 'pass' : 'fail');
+  document.getElementById('resultLabel').textContent = passed ? 'You Passed! 🎉' : 'Not Quite — Try Again';
+  const badge = document.getElementById('resultBadge');
+  badge.textContent = passed ? `PASSED — ${pct}%` : `FAILED — ${pct}% (Need 80%)`;
+  badge.className = 'result-badge ' + (passed ? 'badge-pass' : 'badge-fail');
+
+  const letters = ['A','B','C','D'];
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = questions.map((q, i) => {
+    const correct = answers[i] === q.correct;
+    return `<div class="review-item ${correct ? 'correct' : 'wrong'}">
+      <div class="ri-q">${i+1}. ${q.q}</div>
+      <div class="ri-ans">
+        ${correct ? '✅' : '❌'} Your answer: <strong>${letters[answers[i]]}. ${q.options[answers[i]]}</strong>
+        ${!correct ? `<br>✅ Correct: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong>` : ''}
+        ${!correct ? `<br><em style="color:#666;font-size:0.8rem;">${q.explanation}</em>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  const btns = document.getElementById('resultButtons');
+  if (passed) {
+    btns.innerHTML = `<button class="btn btn-secondary" onclick="startQuiz()">Retake Quiz</button>
+                      <button class="btn btn-green" onclick="showCert()">Get Certificate 🏆</button>`;
+  } else {
+    btns.innerHTML = `<button class="btn btn-secondary" onclick="go(1)">Review Content</button>
+                      <button class="btn btn-primary" onclick="startQuiz()">Try Again</button>`;
+  }
+
+  go('results');
+}
+
+function showCert() {
+  const certScore = document.getElementById('certScore');
+  certScore.textContent = `Score: ${score}/12 (${Math.round(score/12*100)}%) — PASSED`;
+  const now = new Date();
+  document.getElementById('certMeta').textContent = `Issued: ${now.toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'})}`;
+  go('cert');
+}
+
+function updateCertName() {
+  var inp = document.getElementById('trainee-name-input') || document.getElementById('certNameInput');
+  var val = inp ? inp.value.trim() : '';
+  document.getElementById('certNameDisplay').textContent = val || '___________________';
+}
+
+function submitScoreAndBuildCert() {
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('certNameDisplay').textContent = name;
+  document.getElementById('score-submit-form').style.display = 'none';
+  document.getElementById('cert-content').style.display = 'block';
+
+  if (TRACKER_URL && TRACKER_URL !== 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec') {
+    var payload = {
+      employeeName: name,
+      moduleId: 'a1',
+      moduleName: 'GLG Operations',
+      score: score,
+      maxScore: 12,
+      passedAt: new Date().toISOString(),
+      feedback: {
+        clarity: document.getElementById('fb-clarity').value || '',
+        difficulty: document.getElementById('fb-difficulty').value || '',
+        realistic: document.getElementById('fb-realistic').value || '',
+        suggestions: document.getElementById('fb-suggestions').value || ''
+      }
+    };
+    fetch(TRACKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    }).then(function() {
+      document.getElementById('score-confirmation').style.display = 'block';
+    }).catch(function() {
+      document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please screenshot your results and email to hgunn@thegunnlawgroup.com';
+      document.getElementById('score-confirmation').style.background = '#fff3cd';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+      document.getElementById('score-confirmation').style.color = '#856404';
+      document.getElementById('score-confirmation').style.display = 'block';
+    });
+  } else {
+    document.getElementById('score-confirmation').innerHTML = 'ℹ️ Auto-tracking not yet enabled. Please screenshot your results and email to hgunn@thegunnlawgroup.com';
+    document.getElementById('score-confirmation').style.background = '#e8f0ff';
+    document.getElementById('score-confirmation').style.borderLeftColor = '#3a5bd9';
+    document.getElementById('score-confirmation').style.color = '#1a3480';
+    document.getElementById('score-confirmation').style.display = 'block';
+  }
+}
+
+// Init
+updateProgress(0);
+
+// iOS touch event fix - ensure onclick works
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('[onclick]').forEach(function(el) {
+    el.style.cursor = 'pointer';
+    el.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var fn = el.getAttribute('onclick');
+      if (fn) { eval(fn); }
+    }, {passive: false});
+  });
+  // Initialize first screen
+  if (!document.querySelector('.screen.active')) {
+    var first = document.getElementById('screen-0');
+    if (first) first.classList.add('active');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,993 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Training Module Day 4 - Records, LORs & Templates
+References Loaded: 9 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/e-myth-memo.md (Systems thinking, franchise prototype)
+  - /glg/books/memos/essential-lawyering-memo.md (Client interviewing, fact analysis)
+  - /glg/books/memos/client-centered-law-firm-memo.md (Client experience framework)
+  - /glg/books/memos/traction-eos-memo.md (EOS accountability, process documentation)
+  - /glg/books/memos/atomic-habits-memo.md (Habit formation, system design)
+  - /glg/books/memos/radical-candor-memo.md (Feedback framework)
+  - /glg/books/memos/reptile-mist-memo.md (Case framing, safety rules)
+  - /glg/books/memos/lawyer-negotiation-memo.md (Seven-stage process)
+Existing Docs Checked: Confirmed module structure from existing training-modules directory
+QA Checklist: ✅ PASSED
+  - Systems Test: Creates replicable process for records retrieval
+  - EOS Alignment: Supports case management accountability and workflow
+  - Client-Centered Test: Improves client experience through timely records
+  - Consistency Check: References GLG CasePeer workflows and 14-day rule
+Competency Gate Mapping:
+  - Gate: 30-Day Gate — Documentation Proficiency
+  - Milestone: 30-Day Checkpoint
+  - Competency: Can prepare LORs, request medical records, use firm templates correctly, and follow the 14-day follow-up rule
+  - Roles: CM, LA
+  - Requirement: 80%+ base score to pass gate
+  - Caseload Impact: Must pass before independently managing case documentation and records requests
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 4 — Records, Templates &amp; LORs</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+    header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
+    header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
+    .progress-wrap { background: #232e54; padding: 12px 20px; }
+    .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
+    .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
+    .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
+    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+    .nav-pill.done::after { content: ' ✓'; }
+    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+    .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .section-card.active { display: block; }
+    .section-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .section-body { padding: 24px; }
+    .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+    .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .info-block ul { padding-left: 20px; }
+    .info-block ul li { margin-bottom: 6px; font-size: 15px; }
+    .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .alert-block h3 { color: #856404; margin-bottom: 8px; }
+    .alert-block p { color: #533f03; font-size: 15px; }
+    .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .success-block h3 { color: #155724; margin-bottom: 8px; }
+    .success-block p { color: #155724; font-size: 15px; }
+    .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+    .danger-block p { color: #721c24; font-size: 15px; }
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+    .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+    .pipeline-step:last-child { border-bottom: none; }
+    .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .step-content { flex: 1; }
+    .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
+    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .framework-box { background: #e8f4f8; border-left: 4px solid #141c2c; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+    .framework-box h4 { color: #141c2c; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .framework-box p { font-size: 14px; color: #555; line-height: 1.5; }
+    .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
+    .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
+    .tagline-block .highlight { color: #4fc3f7; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #141c2c; color: white; width: 100%; }
+    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+    .btn-success { background: #27ae60; color: white; width: 100%; }
+    .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
+    .section-footer .btn { flex: 1; min-width: 120px; }
+    .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .quiz-body { padding: 20px 24px; }
+    .question-block { display: none; margin-bottom: 20px; }
+    .question-block.active { display: block; }
+    .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+    .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
+    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+    .option-btn:disabled { cursor: not-allowed; }
+    .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .option-btn.correct .option-letter { background: #27ae60; }
+    .option-btn.incorrect .option-letter { background: #c0392b; }
+    .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+    .feedback.show { display: block; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+    .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .quiz-nav .btn { flex: 1; min-width: 120px; }
+    #results-section { display: none; }
+    #results-section.active { display: block; }
+    .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .results-header { padding: 30px 24px; text-align: center; }
+    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+    .results-body { padding: 24px; }
+    .results-breakdown { margin-bottom: 20px; }
+    .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot.correct { background: #27ae60; }
+    .dot.incorrect { background: #c0392b; }
+    #feedback-section { display: none; }
+    .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .fb-header { background: #232e54; color: white; padding: 20px 24px; }
+    .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
+    .fb-body { padding: 24px; }
+    .fb-q { margin-bottom: 20px; }
+    .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
+    .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+    .fb-q textarea:focus { outline: none; border-color: #141c2c; }
+    .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+    .fb-q select:focus { outline: none; border-color: #141c2c; }
+    .star-row { display: flex; gap: 10px; font-size: 36px; }
+    .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
+    .star.lit { color: #f39c12; }
+    #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
+    #certificate.show { display: block; }
+    .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
+    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+    .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
+    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
+    .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+    .cert-module strong { color: #141c2c; }
+    .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
+    .cert-date { font-size: 13px; color: #888; }
+    .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
+    .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
+    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+    .print-btn { margin-top: 16px; }
+    @media print {
+      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
+      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="day-badge">Day 4 of 7</div>
+  <h1>Records, LORs &amp; Templates</h1>
+  <p>Gunn Law Group — Legal Assistant Training</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">Section 1 of 5</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<nav class="section-nav" role="navigation" aria-label="Module sections">
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)">1. Why Records</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)">2. LOR System</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)">3. LOP Strategy</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)">4. Records Process</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)">5. Templates</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)">📝 Quiz</button>
+</nav>
+
+<main>
+
+  <!-- SECTION 1: Why Records Matter -->
+  <div class="section-card active" id="section-0">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>Why Records Drive Case Value</h2>
+    </div>
+    <div class="section-body">
+      <div style="background:#f0f7ff;border-left:4px solid #2980b9;border-radius:8px;padding:14px 16px;margin-bottom:18px;">
+        <h4 style="margin:0 0 6px;color:#2c3e50;font-size:14px;">📋 Competency Gate: Documentation Proficiency</h4>
+        <p style="font-size:13px;color:#555;margin:0 0 6px;">This module maps to your <strong>30-Day Competency Gate</strong>. Passing confirms you can prepare LORs, request medical records, use firm templates correctly, and follow the 14-day follow-up rule.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Day 30 Gate</span>
+          <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">CM · LA</span>
+          <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">80% Required</span>
+          <span style="background:#fff3e0;color:#e65100;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">~25% Caseload Gate</span>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3>🏥 The GLG Standard on Records</h3>
+        <p><strong>Records quality determines case value.</strong> Insurance companies pay based on what's documented, not what the client says happened. No documentation = no case value. This is why records retrieval is the foundation of every PI case.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>🏥 What Records Actually Do</h3>
+        <ul>
+          <li><strong>Document the injuries</strong> — Medical records prove what happened to the client's body</li>
+          <li><strong>Establish causation</strong> — Timeline from accident to treatment shows the connection</li>
+          <li><strong>Quantify damages</strong> — Bills provide the economic foundation for the demand</li>
+          <li><strong>Support credibility</strong> — Consistent treatment records back up the client's account</li>
+          <li><strong>Counter defense arguments</strong> — Complete records prevent "pre-existing condition" claims</li>
+        </ul>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ The GLG Standard</h3>
+        <p>At GLG, we don't just collect records — we build a complete medical story. Every provider, every visit, every bill. This thoroughness is what separates a $5,000 case from a $50,000 case with the same injuries.</p>
+      </div>
+
+      <div class="framework-box">
+        <h4>System Principle</h4>
+        <p><strong>The records process must work without Harrell.</strong> If records retrieval depends on any individual person remembering to follow up, the system has failed. The 14-day follow-up rule and CasePeer tracking create the "franchise prototype" for records retrieval.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ What Happens Without Complete Records</h3>
+        <p>Missing records = reduced case value. Insurance adjusters use gaps in the medical record to argue that injuries weren't serious, treatment wasn't necessary, or the client recovered sooner than claimed. Every missing provider is money left on the table.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Records don't happen by accident. <span class="highlight">They happen by system.</span></p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)">Next: LOR System →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: LOR System -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>Letter of Representation (LOR) — The Protection System</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-block">
+        <h3>📄 What an LOR Does</h3>
+        <ul>
+          <li><strong>Legal notice</strong> — Formally notifies the insurer that GLG represents the client</li>
+          <li><strong>Communication control</strong> — All insurer contact must go through us after LOR receipt</li>
+          <li><strong>Client protection</strong> — Prevents adjusters from getting recorded statements or quick settlements</li>
+          <li><strong>Professional standard</strong> — Shows we operate by the rules from day one</li>
+        </ul>
+      </div>
+
+      <div class="framework-box">
+        <h4>Implementation Intention</h4>
+        <p><strong>"After I complete the intake checklist in CasePeer, I will send the LOR before closing the case tab."</strong> This habit stack anchors LOR sending to the intake process that already exists, making it automatic.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Within 24-48 hours of signing</div>
+            <div class="step-desc">As soon as the client signs the retainer, the LOR must go out. Every day without an LOR is a day the insurer can contact the client directly and potentially damage the case.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Send to ALL relevant insurers</div>
+            <div class="step-desc">At-fault driver's liability insurer, client's UM/UIM carrier, MedPay carrier if applicable. Don't miss any — each one can legally contact the client until they receive an LOR.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Use CasePeer Templates #01 / #02</div>
+            <div class="step-desc">GLG has standardized LOR templates in CasePeer. Navigate to the case → Documents → Templates. Use Template #01 (LOR At-Fault) for liability carriers and Template #02 (LOR UM) for UM/UIM carriers.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Confirm receipt and log in CasePeer</div>
+            <div class="step-desc">Follow up within 5-7 days to confirm the insurer received and acknowledged the LOR. Document the confirmation date and contact person in CasePeer notes.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Client-Centered Principle</h4>
+        <p><strong>The LOR protects the client experience.</strong> Without it, adjusters pressure clients into recorded statements, lowball offers, and quick settlements that don't serve their interests. The LOR is the first step in creating a professional, client-centered process.</p>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 What Happens Without an LOR</h3>
+        <p>Insurance adjusters will immediately contact unrepresented clients to get recorded statements (often within 24-48 hours of the accident). These statements are used to minimize claims later. Once a client gives a recorded statement without representation, it becomes much harder to achieve full case value.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)">Next: LOP Strategy →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: LOP Strategy -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>Letter of Protection (LOP) — Treatment Access Strategy</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-block">
+        <h3>🏥 What LOPs Enable</h3>
+        <ul>
+          <li><strong>Treatment without upfront payment</strong> — Clients get care they can't afford to pay for immediately</li>
+          <li><strong>Case development</strong> — More treatment = more documentation = higher case value</li>
+          <li><strong>Provider relationships</strong> — LOPs help us build networks with treatment providers</li>
+          <li><strong>Client care</strong> — Clients actually heal while the case develops</li>
+        </ul>
+      </div>
+
+      <div class="framework-box">
+        <h4>Problem-Solving Framework</h4>
+        <p><strong>LOPs solve the client's real problem.</strong> Clients don't just want money — they want to get better and return to their normal life. LOPs make treatment possible, which serves both the legal case and the client's actual needs.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">💰</div>
+          <div class="step-content">
+            <div class="step-status">The LOP creates a medical lien</div>
+            <div class="step-desc">When a provider treats under an LOP, they gain a legal right to be paid from settlement proceeds. This lien must be tracked and satisfied at disbursement.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📋</div>
+          <div class="step-content">
+            <div class="step-status">Both client and firm must sign</div>
+            <div class="step-desc">The LOP is a three-party agreement: client (receives treatment), provider (gives treatment on credit), law firm (guarantees payment from settlement).</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🎯</div>
+          <div class="step-content">
+            <div class="step-status">Common with these providers</div>
+            <div class="step-desc">Chiropractors, orthopedic surgeons, pain management doctors, imaging centers, physical therapy clinics. Emergency rooms typically don't work on LOPs.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">💸</div>
+          <div class="step-content">
+            <div class="step-status">Negotiate liens at settlement</div>
+            <div class="step-desc">LOP providers often charge higher rates than insurance-negotiated rates. At settlement, we negotiate lien reductions to maximize the client's net recovery.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Process Documentation</h4>
+        <p><strong>LOP management must be systematized.</strong> Track every LOP provider in CasePeer, monitor outstanding balances, and build lien reduction into the standard settlement process. This prevents surprises at disbursement.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ LOP vs. LOR — Don't Confuse Them</h3>
+        <p><strong>LOR</strong> = Letter of Representation (sent to insurance companies) | <strong>LOP</strong> = Letter of Protection (sent to medical providers). Different recipients, different purposes. Both are critical early steps in case management.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Best Practice: The Treatment Network</h3>
+        <p>GLG maintains relationships with providers who regularly work on LOPs. This ensures our clients get quality treatment and we get complete records. Building this network is part of the firm's long-term strategy.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)">Next: Records Process →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Records Retrieval Process -->
+  <div class="section-card" id="section-3">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>The Records Retrieval System</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Franchise Prototype</h4>
+        <p><strong>The records process must work consistently for any staff member.</strong> Following this system ensures no provider gets missed, no follow-up gets forgotten, and every case develops the medical record it needs for maximum value.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-status">Get signed HIPAA authorization</div>
+            <div class="step-desc">HIPAA compliance requires specific written authorization before providers can release records. Use GLG's standard authorization form. One authorization typically covers all providers, but some require separate forms.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-status">Identify EVERY provider</div>
+            <div class="step-desc">Emergency room, urgent care, primary care doctor, specialists, chiropractors, physical therapists, imaging centers, pharmacies. Ask: "Who else did you see for this accident?" Don't assume you got them all in the first interview.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-status">Request records AND bills together</div>
+            <div class="step-desc">Always request both medical records and itemized billing statements. Records document the injuries; bills document the economic damages. Both are required for the demand package.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <div class="step-status">Use CasePeer Template #04</div>
+            <div class="step-desc">GLG has standardized records request templates in CasePeer. Navigate to the case → Documents → Templates. Use Template #04 (Medical Records Request Full). Fill in provider name, client details, and accident date.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <div class="step-status">Log and set 14-day follow-up</div>
+            <div class="step-desc">Document the request date in CasePeer and immediately set a 14-day follow-up task. This is non-negotiable — every outstanding request gets tracked and followed up every 14 days.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>The Never Miss Twice Rule</h4>
+        <p><strong>One missed follow-up is a mistake. Two in a row is a bad habit forming.</strong> The 14-day rule prevents records requests from falling through the cracks and cases from stalling.</p>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 The 14-Day Follow-Up Rule</h3>
+        <p>Every outstanding records request gets a follow-up every 14 days. No exceptions. Log every follow-up call with date, time, and contact person. After three follow-ups with no response, escalate to the CM for more aggressive action.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>📋 What to Include in Every Records Request</h3>
+        <ul>
+          <li>Signed HIPAA authorization form</li>
+          <li>Client name, DOB, and SSN</li>
+          <li>Accident date and date range of treatment</li>
+          <li>Request for both records AND itemized billing</li>
+          <li>GLG firm letterhead and contact information</li>
+          <li>Instructions for delivery (mail, fax, secure email)</li>
+        </ul>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ When Records Arrive</h3>
+        <p>Upload to CasePeer immediately. Review for completeness — are any visit dates missing? Any providers mentioned that we haven't requested from? Any treatment gaps that need explanation? Flag issues to the CM right away.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)">Next: Templates →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Templates and System -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>CasePeer Templates &amp; The GLG Way</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>The GLG Way</h4>
+        <p><strong>Templates are how we systematize excellence.</strong> Every GLG letter and form should look professional, be legally compliant, and follow the same format. Templates eliminate variability and ensure consistency across all staff members.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>📋 GLG CasePeer Template Library</h3>
+        <ul>
+          <li><strong>Template #01</strong> — LOR At-Fault (send to at-fault insurance to open claim)</li>
+          <li><strong>Template #02</strong> — LOR UM (send to client's UM carrier to open UM claim)</li>
+          <li><strong>Template #04</strong> — Medical Records Request Full (request complete records from provider)</li>
+          <li><strong>Template #74</strong> — Follow-Up Records Request (follow up on records not received)</li>
+          <li><strong>Template #12</strong> — LOP / Letter of Protection (guarantee payment to provider from settlement)</li>
+          <li><strong>[VERIFY: Lien Reduction template number]</strong> — Lien reduction negotiation letter (not found in Quick Reference — confirm with Adriauna)</li>
+        </ul>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">📂</div>
+          <div class="step-content">
+            <div class="step-status">Access templates in CasePeer</div>
+            <div class="step-desc">Go to case → Documents → Templates. Select the appropriate template by name or number. Templates are organized by function and numbered for easy reference.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">✏️</div>
+          <div class="step-content">
+            <div class="step-status">Fill in variable fields</div>
+            <div class="step-desc">Client name, accident date, provider name, insurance information — complete all bracketed fields. Never send a template with blank fields or [PLACEHOLDER] text.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">👁️</div>
+          <div class="step-content">
+            <div class="step-status">Review before sending</div>
+            <div class="step-desc">Double-check addresses, spelling, dates, and client details. A professional letter with a typo looks unprofessional. Take 30 seconds to review every template.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📤</div>
+          <div class="step-content">
+            <div class="step-status">Send and document</div>
+            <div class="step-desc">Print, mail, or email as appropriate. Upload a copy to CasePeer and log the sending date. Set follow-up tasks as needed.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Client-Centered Standard</h4>
+        <p><strong>Every communication represents GLG's professional brand.</strong> Templates ensure that whether Harrell sends a letter or a new assistant does, the client and providers receive the same high-quality, professional communication.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Template Rules</h3>
+        <p><strong>Don't modify templates without approval.</strong> If you think a template needs changes, bring it to the CM or Harrell. Templates are carefully designed for legal compliance and professional standards — ad hoc changes can create problems.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ The System Creates Excellence</h3>
+        <p>Following the template system means every letter goes out on GLG letterhead, with proper legal language, complete information, and professional formatting. This systematic approach builds credibility with insurers, providers, and clients.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Templates aren't shortcuts. <span class="highlight">They're standards.</span></p>
+        <p style="margin-top:10px; font-size:14px; color:#aab4c8;">Every template represents GLG's commitment to doing things the right way, every time.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()">📝 Start Quiz →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section-card" id="quiz-section">
+    <div class="quiz-header">
+      <div class="section-num">Knowledge Check</div>
+      <h2>Quiz — 10 Questions</h2>
+    </div>
+    <div class="quiz-body">
+
+      <div class="question-block active" id="q1">
+        <div class="q-counter">Question 1 of 10</div>
+        <div class="q-text">What determines case value?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(1,'a',false)"><span class="option-letter">A</span> The client's description of their injuries</button>
+          <button class="option-btn" onclick="answer(1,'b',true)"><span class="option-letter">B</span> Records quality and documentation</button>
+          <button class="option-btn" onclick="answer(1,'c',false)"><span class="option-letter">C</span> The severity of the accident</button>
+          <button class="option-btn" onclick="answer(1,'d',false)"><span class="option-letter">D</span> The insurance company's goodwill</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q2">
+        <div class="q-counter">Question 2 of 10</div>
+        <div class="q-text">When must the Letter of Representation (LOR) be sent?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(2,'a',true)"><span class="option-letter">A</span> Within 24-48 hours of the client signing the retainer</button>
+          <button class="option-btn" onclick="answer(2,'b',false)"><span class="option-letter">B</span> After medical records are obtained</button>
+          <button class="option-btn" onclick="answer(2,'c',false)"><span class="option-letter">C</span> When the demand letter is ready</button>
+          <button class="option-btn" onclick="answer(2,'d',false)"><span class="option-letter">D</span> Only if the insurer requests it</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q3">
+        <div class="q-counter">Question 3 of 10</div>
+        <div class="q-text">What does a Letter of Protection (LOP) create for the medical provider?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(3,'a',false)"><span class="option-letter">A</span> Guaranteed payment from insurance</button>
+          <button class="option-btn" onclick="answer(3,'b',true)"><span class="option-letter">B</span> A medical lien on the settlement proceeds</button>
+          <button class="option-btn" onclick="answer(3,'c',false)"><span class="option-letter">C</span> Protection from malpractice claims</button>
+          <button class="option-btn" onclick="answer(3,'d',false)"><span class="option-letter">D</span> Access to the client's insurance benefits</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q4">
+        <div class="q-counter">Question 4 of 10</div>
+        <div class="q-text">According to the systems principle, the records retrieval process must:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(4,'a',false)"><span class="option-letter">A</span> Be handled personally by Harrell</button>
+          <button class="option-btn" onclick="answer(4,'b',true)"><span class="option-letter">B</span> Work consistently for any staff member</button>
+          <button class="option-btn" onclick="answer(4,'c',false)"><span class="option-letter">C</span> Be customized for each client</button>
+          <button class="option-btn" onclick="answer(4,'d',false)"><span class="option-letter">D</span> Focus on speed over thoroughness</button>
+        </div>
+        <div class="feedback" id="fb4"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q5">
+        <div class="q-counter">Question 5 of 10</div>
+        <div class="q-text">When requesting medical records, you must ALWAYS request both:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(5,'a',false)"><span class="option-letter">A</span> Original records and copies</button>
+          <button class="option-btn" onclick="answer(5,'b',true)"><span class="option-letter">B</span> Medical records and itemized billing statements</button>
+          <button class="option-btn" onclick="answer(5,'c',false)"><span class="option-letter">C</span> Electronic and paper versions</button>
+          <button class="option-btn" onclick="answer(5,'d',false)"><span class="option-letter">D</span> Doctor's notes and nurse's notes</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q6">
+        <div class="q-counter">Question 6 of 10</div>
+        <div class="q-text">The 14-day follow-up rule means:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(6,'a',false)"><span class="option-letter">A</span> Clients must be contacted every 14 days</button>
+          <button class="option-btn" onclick="answer(6,'b',true)"><span class="option-letter">B</span> Every outstanding records request gets a follow-up every 14 days</button>
+          <button class="option-btn" onclick="answer(6,'c',false)"><span class="option-letter">C</span> Cases are reviewed every 14 days</button>
+          <button class="option-btn" onclick="answer(6,'d',false)"><span class="option-letter">D</span> Demand letters are sent 14 days after treatment ends</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q7">
+        <div class="q-counter">Question 7 of 10</div>
+        <div class="q-text">Before requesting medical records from any provider, you must have:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(7,'a',true)"><span class="option-letter">A</span> A signed HIPAA authorization from the client</button>
+          <button class="option-btn" onclick="answer(7,'b',false)"><span class="option-letter">B</span> Court approval</button>
+          <button class="option-btn" onclick="answer(7,'c',false)"><span class="option-letter">C</span> The insurance adjuster's permission</button>
+          <button class="option-btn" onclick="answer(7,'d',false)"><span class="option-letter">D</span> The client's insurance card</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q8">
+        <div class="q-counter">Question 8 of 10</div>
+        <div class="q-text">According to the "Never Miss Twice" rule:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(8,'a',false)"><span class="option-letter">A</span> Never follow up more than twice</button>
+          <button class="option-btn" onclick="answer(8,'b',true)"><span class="option-letter">B</span> One missed follow-up is a mistake; two in a row is a bad habit forming</button>
+          <button class="option-btn" onclick="answer(8,'c',false)"><span class="option-letter">C</span> Never request the same records twice</button>
+          <button class="option-btn" onclick="answer(8,'d',false)"><span class="option-letter">D</span> Never make the same mistake twice in documentation</button>
+        </div>
+        <div class="feedback" id="fb8"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q9">
+        <div class="q-counter">Question 9 of 10</div>
+        <div class="q-text">After three follow-ups with no response from a medical provider, you should:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(9,'a',false)"><span class="option-letter">A</span> Give up on getting those records</button>
+          <button class="option-btn" onclick="answer(9,'b',false)"><span class="option-letter">B</span> Wait another 30 days before following up again</button>
+          <button class="option-btn" onclick="answer(9,'c',true)"><span class="option-letter">C</span> Escalate to the Case Manager for more aggressive action</button>
+          <button class="option-btn" onclick="answer(9,'d',false)"><span class="option-letter">D</span> Ask the client to get the records themselves</button>
+        </div>
+        <div class="feedback" id="fb9"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q10">
+        <div class="q-counter">Question 10 of 10</div>
+        <div class="q-text">According to the Client-Centered principle, templates ensure:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(10,'a',false)"><span class="option-letter">A</span> All letters are exactly the same</button>
+          <button class="option-btn" onclick="answer(10,'b',true)"><span class="option-letter">B</span> Professional, consistent communication that represents GLG's brand</button>
+          <button class="option-btn" onclick="answer(10,'c',false)"><span class="option-letter">C</span> Faster processing with less attention to detail</button>
+          <button class="option-btn" onclick="answer(10,'d',false)"><span class="option-letter">D</span> Reduced need for staff training</button>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()">See My Results →</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section">
+    <div class="results-card">
+      <div class="results-header" id="results-header">
+        <div class="results-score" id="results-score"></div>
+        <div class="results-label">Score (80% required to pass)</div>
+        <div class="results-status" id="results-status"></div>
+      </div>
+      <div class="results-body">
+        <div class="results-breakdown" id="results-breakdown"></div>
+        <button class="btn btn-outline" onclick="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div id="feedback-section">
+    <div class="fb-card">
+      <div class="fb-header">
+        <div class="section-num">Almost Done!</div>
+        <h2>Quick Feedback — 2 Minutes</h2>
+      </div>
+      <div class="fb-body">
+        <div class="fb-q">
+          <label>1. How clear was the content? <span style="color:#c0392b;">*</span></label>
+          <div class="star-row" id="star-row">
+            <span class="star" data-val="1" onclick="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)">★</span>
+          </div>
+        </div>
+        <div class="fb-q">
+          <label>2. Was anything confusing?</label>
+          <textarea id="fb-confusing" placeholder="Optional — describe anything that was unclear..."></textarea>
+        </div>
+        <div class="fb-q">
+          <label>3. Which section was most useful?</label>
+          <select id="fb-section">
+            <option value="">— Select a section —</option>
+            <option>Section 1: Why Records Drive Case Value</option>
+            <option>Section 2: LOR System</option>
+            <option>Section 3: LOP Strategy</option>
+            <option>Section 4: Records Retrieval Process</option>
+            <option>Section 5: Templates and System</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>4. How long did this module take?</label>
+          <select id="fb-time">
+            <option value="">— Select —</option>
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="45">45 minutes</option>
+            <option value="60+">60+ minutes</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>5. Any suggestions to improve this module?</label>
+          <textarea id="fb-suggestions" placeholder="Optional — your feedback helps us improve..."></textarea>
+        </div>
+        <button class="btn btn-success" onclick="submitFeedback()">Submit &amp; Get My Certificate →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div id="certificate">
+    <!-- Score Submission Form -->
+    <div id="score-submit-form" style="background:#f0f4f8;border-radius:12px;padding:20px;margin-bottom:20px;text-align:left;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+      <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+        style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;">
+      <button class="btn btn-success" onclick="submitScoreAndBuildCert()" style="width:100%;">✅ Submit Score &amp; View Certificate</button>
+    </div>
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #27ae60;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;font-weight:600;text-align:left;">
+      ✅ Score submitted! Your results have been recorded.
+    </div>
+    <div class="cert-logo">Gunn Law Group</div>
+    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 4 of 7</div>
+    <div class="cert-name-label">This certifies that</div>
+    <div class="cert-name" id="cert-name-display">[Employee Name]</div>
+    <div class="cert-module">has successfully completed<br><strong>Module 4: Records, LORs &amp; Templates</strong></div>
+    <div class="cert-score-badge" id="cert-score-display"></div>
+    <div class="cert-date" id="cert-date"></div>
+    <div class="cert-sig">
+      <div class="cert-sig-line"></div>
+      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+    </div>
+    <button class="btn btn-primary print-btn" onclick="window.print()">🖨️ Print Certificate</button>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 5;
+  let currentSection = 0;
+  const sectionsDone = new Set();
+  const answers = {};
+  let lastScore = 0;
+  let starRating = 0;
+  var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+
+  const correctAnswers = { 1:'b',2:'a',3:'b',4:'b',5:'b',6:'b',7:'a',8:'b',9:'c',10:'b' };
+  const feedbackText = {
+    1: { correct: "✅ Correct! Records quality determines case value. Insurance companies pay based on documentation, not client statements.", incorrect: "❌ Not quite. Records quality determines case value. Documentation drives settlement amounts, not client descriptions or goodwill." },
+    2: { correct: "✅ Correct! The LOR protects clients by preventing direct insurer contact. It must go out within 24-48 hours of signing the retainer.", incorrect: "❌ Incorrect. The LOR must be sent within 24-48 hours of signing. Every day without an LOR allows adjusters to contact the client directly and potentially damage the case." },
+    3: { correct: "✅ Correct! An LOP creates a medical lien — a legal right to be paid from settlement proceeds. This must be tracked and resolved at disbursement.", incorrect: "❌ Not quite. A Letter of Protection creates a medical lien on the settlement. The provider treated on credit and has a legal right to payment from the settlement proceeds." },
+    4: { correct: "✅ Correct! The principle is that systems must work without the owner's personal involvement. The records process must be replicable by any staff member.", incorrect: "❌ Incorrect. The principle requires systems that work consistently for anyone. If the process depends on Harrell personally, it's not a system — it's a dependency." },
+    5: { correct: "✅ Correct! Always request both medical records and itemized billing statements. Records document injuries; bills document economic damages. Both are needed for the demand.", incorrect: "❌ Incorrect. Always request both records AND itemized billing statements. Records show the injuries; billing shows the economic damages. Both are required for a complete demand package." },
+    6: { correct: "✅ Correct! The 14-day follow-up rule: every outstanding records request gets a follow-up every 14 days until received. This prevents cases from stalling.", incorrect: "❌ Not quite. The 14-day follow-up rule applies to records requests. Every outstanding request gets followed up every 14 days to prevent cases from getting stuck waiting for documentation." },
+    7: { correct: "✅ Correct! HIPAA requires signed authorization before providers can release records to third parties. This is mandatory for all records requests.", incorrect: "❌ Incorrect. HIPAA compliance requires a signed patient authorization before providers can legally release records to our firm. No authorization = no records." },
+    8: { correct: "✅ Correct! The principle: one missed follow-up is a mistake, but two in a row starts forming a bad habit. Consistency prevents system breakdown.", incorrect: "❌ Not quite. The 'Never Miss Twice' rule means one missed follow-up is just a mistake, but two consecutive misses starts forming a bad habit that compounds." },
+    9: { correct: "✅ Correct! Three failed follow-ups = escalate to the CM for more aggressive action. Don't keep waiting — tell the CM so they can take stronger measures.", incorrect: "❌ Incorrect. After three follow-ups with no response, escalate to the Case Manager. They may need to issue a subpoena or use other legal tools to get the records." },
+    10: { correct: "✅ Correct! Templates ensure professional, consistent communication that represents GLG's brand standards, whether sent by Harrell or a new assistant.", incorrect: "❌ Not quite. Templates ensure consistent, professional communication that represents GLG's brand. They're not about making letters identical, but about maintaining quality standards." }
+  };
+
+  function goToSection(idx) {
+    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('feedback-section').style.display = 'none';
+    document.getElementById('certificate').classList.remove('show');
+    if (idx === 5) {
+      document.getElementById('quiz-section').classList.add('active');
+      updateProgress(5, false);
+    } else {
+      document.getElementById('section-' + idx).classList.add('active');
+      currentSection = idx;
+      sectionsDone.add(idx);
+      updateNavPills();
+      updateProgress(idx, false);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startQuiz() {
+    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+    updateNavPills();
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function resetQuizUI() {
+    document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
+    document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
+    document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
+    for (let i = 1; i <= 10; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
+  }
+
+  function answer(qNum, chosen, isCorrect) {
+    if (answers[qNum] !== undefined) return;
+    answers[qNum] = isCorrect;
+    const qBlock = document.getElementById('q' + qNum);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = correctAnswers[qNum];
+    buttons.forEach(btn => { btn.disabled = true; const letter = btn.querySelector('.option-letter').textContent.toLowerCase(); if (letter === correct) btn.classList.add('correct'); });
+    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+    document.getElementById('next' + qNum).style.display = 'inline-flex';
+  }
+
+  function showQuestion(num) {
+    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+    document.getElementById('q' + num).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-section').classList.remove('active');
+    let correct = 0;
+    const qTexts = ["What determines case value?","When must LOR be sent?","What does LOP create?","Systems records principle?","Always request both?","14-day rule means?","Before requesting records need?","Never miss twice rule?","After 3 failed follow-ups?","Templates ensure what?"];
+    Object.values(answers).forEach(v => { if (v) correct++; });
+    const pct = Math.round((correct / 10) * 100);
+    const passed = pct >= 80;
+    lastScore = pct;
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.classList.add('active');
+    document.getElementById('results-score').textContent = pct + '%';
+    document.getElementById('results-status').textContent = passed ? '🎉 You Passed!' : '❌ Not Quite — Try Again';
+    document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
+    let html = '';
+    for (let i = 1; i <= 10; i++) { const ok = answers[i]; html += `<div class="breakdown-item"><div class="dot ${ok?'correct':'incorrect'}"></div>Q${i}: ${qTexts[i-1]} <strong>${ok?'✓':'✗'}</strong></div>`; }
+    document.getElementById('results-breakdown').innerHTML = html;
+    if (!passed) { document.getElementById('retake-btn').style.display = 'block'; }
+    updateProgress(5, passed);
+    updateNavPills();
+    if (passed) { document.getElementById('feedback-section').style.display = 'block'; }
+    window.scrollTo(0, 0);
+  }
+
+  function setStar(val) {
+    starRating = val;
+    document.querySelectorAll('.star').forEach(s => { s.classList.toggle('lit', parseInt(s.dataset.val) <= val); });
+  }
+
+  function submitFeedback() {
+    if (!starRating) { alert('Please rate the clarity of the content (1–5 stars).'); return; }
+    document.getElementById('feedback-section').style.display = 'none';
+    showCertificate(lastScore);
+  }
+
+  function showCertificate(pct) {
+    const cert = document.getElementById('certificate');
+    cert.classList.add('show');
+    document.getElementById('cert-score-display').textContent = pct + '% — Passing Score';
+    const now = new Date();
+    document.getElementById('cert-date').textContent = 'Completed: ' + now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    window.scrollTo(0, cert.offsetTop - 20);
+  }
+
+  function submitScoreAndBuildCert() {
+    var nameInput = document.getElementById('trainee-name-input');
+    var name = (nameInput.value || '').trim() || 'Training Participant';
+    document.getElementById('cert-name-display').textContent = name;
+    document.getElementById('score-submit-form').style.display = 'none';
+
+    if (TRACKER_URL && TRACKER_URL !== 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec') {
+      var payload = {
+        employeeName: name,
+        moduleId: 'day4',
+        moduleName: 'Records, LORs & Templates',
+        score: lastScore,
+        maxScore: 100,
+        passedAt: new Date().toISOString()
+      };
+      fetch(TRACKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        mode: 'no-cors'
+      }).then(function() {
+        document.getElementById('score-confirmation').style.display = 'block';
+      }).catch(function() {
+        document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please screenshot your results and email to hgunn@thegunnlawgroup.com';
+        document.getElementById('score-confirmation').style.background = '#fff3cd';
+        document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+        document.getElementById('score-confirmation').style.color = '#856404';
+        document.getElementById('score-confirmation').style.display = 'block';
+      });
+    } else {
+      document.getElementById('score-confirmation').innerHTML = 'ℹ️ Auto-tracking not yet enabled. Please screenshot your results and email to hgunn@thegunnlawgroup.com';
+      document.getElementById('score-confirmation').style.background = '#e8f0ff';
+      document.getElementById('score-confirmation').style.borderLeftColor = '#3a5bd9';
+      document.getElementById('score-confirmation').style.color = '#1a3480';
+      document.getElementById('score-confirmation').style.display = 'block';
+    }
+  }
+
+  function retakeQuiz() {
+    for (let k in answers) delete answers[k];
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('certificate').classList.remove('show');
+    document.getElementById('score-submit-form').style.display = 'block';
+    document.getElementById('score-confirmation').style.display = 'none';
+    document.getElementById('retake-btn').style.display = 'none';
+    document.getElementById('feedback-section').style.display = 'none';
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function updateProgress(idx, quizPassed) {
+    const fill = document.getElementById('progress-fill');
+    const txt = document.getElementById('progress-text');
+    let pct = 0, label = '';
+    if (idx < 5) { pct = ((idx + 1) / 6) * 100; label = 'Section ' + (idx + 1) + ' of 5'; }
+    else { pct = quizPassed ? 100 : 90; label = quizPassed ? 'Module Complete! ✓' : 'Quiz'; }
+    fill.style.width = pct + '%';
+    txt.textContent = label;
+  }
+
+  function updateNavPills() {
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      const t = parseInt(pill.dataset.target);
+      pill.classList.remove('active','done');
+      if (t < 5 && sectionsDone.has(t)) pill.classList.add('done');
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UM Claims Training — Gunn Law Group</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#1a2744;--navy-light:#243352;--gold:#c9a227;--gold-light:#e8d48a;--gold-bg:rgba(201,162,39,.08);--red:#c0392b;--red-bg:#fdf0ef;--blue:#2980b9;--blue-bg:#eaf4fc;--green:#27ae60;--green-bg:#eafaf1;--gray:#6c757d;--light:#f8f9fa;--white:#fff;--text:#2c3e50;--border:#dee2e6;--shadow:0 2px 12px rgba(0,0,0,.08)}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--text);background:var(--light);line-height:1.65;-webkit-font-smoothing:antialiased}
+/* HEADER */
+.site-header{background:var(--navy);color:var(--white);padding:18px 24px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.site-header h1{font-size:1.5rem;letter-spacing:.35em;font-weight:300;margin-bottom:2px}
+.site-header .subtitle{font-size:.82rem;color:var(--gold);letter-spacing:.15em;font-weight:400}
+/* PROGRESS */
+.progress-wrap{background:var(--navy-light);padding:10px 24px 14px}
+.progress-labels{display:flex;justify-content:space-between;font-size:.7rem;color:rgba(255,255,255,.55);margin-bottom:6px}
+.progress-labels span.active{color:var(--gold);font-weight:600}
+.progress-labels span.done{color:var(--green)}
+.progress-bar-bg{height:6px;background:rgba(255,255,255,.12);border-radius:3px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;transition:width .4s ease}
+/* MAIN */
+.main{max-width:820px;margin:0 auto;padding:28px 20px 100px}
+.module{display:none;animation:fadeIn .35s ease}
+.module.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.module-number{display:inline-block;background:var(--navy);color:var(--gold);font-size:.7rem;font-weight:700;letter-spacing:.12em;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.module h2{font-size:1.55rem;color:var(--navy);margin-bottom:6px;font-weight:700}
+.module h3{font-size:1.15rem;color:var(--navy);margin:24px 0 10px;font-weight:700;border-bottom:2px solid var(--gold);padding-bottom:4px;display:inline-block}
+.module h4{font-size:1rem;color:var(--navy);margin:18px 0 8px;font-weight:700}
+.module p,.module li{font-size:.95rem;margin-bottom:8px}
+.module ul,.module ol{padding-left:22px;margin-bottom:14px}
+.module li{margin-bottom:6px}
+.gold{color:var(--gold);font-weight:700}
+.bold{font-weight:700}
+/* CALLOUTS */
+.callout{border-radius:8px;padding:16px 18px;margin:16px 0;font-size:.92rem}
+.callout-warning{background:var(--red-bg);border-left:4px solid var(--red)}
+.callout-warning::before{content:"⚠️ ";font-size:1.05rem}
+.callout-example{background:var(--blue-bg);border-left:4px solid var(--blue)}
+.callout-example::before{content:"📋 ";font-size:1.05rem}
+.callout-tip{background:var(--green-bg);border-left:4px solid var(--green)}
+.callout-tip::before{content:"✅ ";font-size:1.05rem}
+.callout-gold{background:var(--gold-bg);border-left:4px solid var(--gold)}
+.callout-gold::before{content:"⭐ ";font-size:1.05rem}
+/* COMPARISON TABLE */
+.compare-table{width:100%;border-collapse:collapse;margin:18px 0;font-size:.88rem}
+.compare-table th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-weight:600}
+.compare-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+.compare-table tr:nth-child(even) td{background:var(--light)}
+.compare-table .label-col{font-weight:600;color:var(--navy);width:28%}
+.addon-col{background:rgba(39,174,96,.04)!important}
+.reduced-col{background:rgba(192,57,43,.04)!important}
+/* VISUAL DIAGRAM */
+.diagram{display:flex;gap:16px;margin:20px 0;flex-wrap:wrap}
+.diagram-card{flex:1;min-width:240px;background:var(--white);border-radius:10px;padding:18px;box-shadow:var(--shadow);border-top:4px solid var(--navy)}
+.diagram-card.add-on{border-top-color:var(--green)}
+.diagram-card.reduced{border-top-color:var(--red)}
+.diagram-card h4{margin:0 0 12px;font-size:1rem}
+.bar-stack{display:flex;border-radius:6px;overflow:hidden;height:36px;margin:8px 0;font-size:.75rem;font-weight:700;color:var(--white)}
+.bar-stack .liability{background:var(--blue);display:flex;align-items:center;justify-content:center}
+.bar-stack .um{background:var(--green);display:flex;align-items:center;justify-content:center}
+.bar-stack .um-reduced{background:var(--gold);display:flex;align-items:center;justify-content:center}
+.bar-total{text-align:right;font-size:.85rem;font-weight:700;margin-top:4px;color:var(--navy)}
+/* STACKING VISUAL */
+.stack-visual{display:flex;gap:8px;align-items:flex-end;margin:14px 0;flex-wrap:wrap}
+.stack-block{background:var(--navy);color:var(--white);border-radius:6px;padding:10px 16px;text-align:center;font-size:.8rem;font-weight:600;min-width:70px}
+.stack-plus{font-size:1.4rem;font-weight:700;color:var(--gold);align-self:center}
+.stack-equals{font-size:1.4rem;font-weight:700;color:var(--navy);align-self:center}
+.stack-result{background:var(--green);color:var(--white);border-radius:6px;padding:10px 16px;text-align:center;font-size:.9rem;font-weight:700;min-width:80px}
+/* STEPS LIST */
+.steps{counter-reset:step;list-style:none;padding-left:0}
+.steps li{counter-increment:step;position:relative;padding:12px 14px 12px 52px;margin-bottom:10px;background:var(--white);border-radius:8px;box-shadow:var(--shadow);font-size:.92rem}
+.steps li::before{content:counter(step);position:absolute;left:12px;top:12px;width:28px;height:28px;background:var(--navy);color:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+/* QUIZ */
+.quiz-q{background:var(--white);border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow);display:none}
+.quiz-q.active{display:block}
+.quiz-q .q-num{font-size:.75rem;color:var(--gray);font-weight:600;letter-spacing:.08em;margin-bottom:6px}
+.quiz-q .q-text{font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:14px}
+.quiz-option{display:block;width:100%;text-align:left;padding:11px 16px;margin-bottom:8px;border:2px solid var(--border);border-radius:8px;background:var(--white);font-size:.92rem;cursor:pointer;transition:all .2s}
+.quiz-option:hover{border-color:var(--gold);background:var(--gold-bg)}
+.quiz-option.selected{border-color:var(--navy);background:rgba(26,39,68,.06);font-weight:600}
+.quiz-option.correct{border-color:var(--green)!important;background:var(--green-bg)!important}
+.quiz-option.incorrect{border-color:var(--red)!important;background:var(--red-bg)!important}
+.quiz-option:disabled{cursor:default;opacity:.85}
+.quiz-feedback{margin-top:10px;padding:10px 14px;border-radius:6px;font-size:.88rem;font-weight:600;display:none}
+.quiz-feedback.show{display:block}
+.quiz-feedback.right{background:var(--green-bg);color:var(--green)}
+.quiz-feedback.wrong{background:var(--red-bg);color:var(--red)}
+.quiz-nav{display:flex;justify-content:center;margin-top:16px}
+/* RESULTS */
+.results-card{text-align:center;background:var(--white);border-radius:12px;padding:32px 24px;box-shadow:var(--shadow)}
+.results-card .score-circle{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:2rem;font-weight:800}
+.score-circle.pass{background:var(--green-bg);color:var(--green);border:4px solid var(--green)}
+.score-circle.fail{background:var(--red-bg);color:var(--red);border:4px solid var(--red)}
+.results-card h3{border:none;display:block;font-size:1.3rem;margin-bottom:8px}
+.results-card p{color:var(--gray)}
+/* CERTIFICATE */
+.certificate{display:none;background:var(--white);border:3px solid var(--gold);border-radius:12px;padding:40px 32px;text-align:center;max-width:650px;margin:24px auto;position:relative;overflow:hidden}
+.certificate::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--navy),var(--gold),var(--navy))}
+.certificate .cert-logo{font-size:1.2rem;letter-spacing:.35em;color:var(--navy);font-weight:300;margin-bottom:4px}
+.certificate .cert-title{font-size:1.6rem;color:var(--gold);font-weight:700;margin:14px 0 6px}
+.certificate .cert-sub{font-size:.95rem;color:var(--gray);margin-bottom:20px}
+.certificate .cert-name{font-size:1.5rem;font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);display:inline-block;padding:4px 24px;margin:8px 0 16px}
+.certificate .cert-detail{font-size:.88rem;color:var(--text);margin-bottom:4px}
+.cert-input-wrap{margin:20px 0}
+.cert-input-wrap label{display:block;font-size:.85rem;color:var(--gray);margin-bottom:6px;font-weight:600}
+.cert-input-wrap input{padding:10px 16px;border:2px solid var(--border);border-radius:8px;font-size:1rem;width:280px;max-width:100%;text-align:center}
+.cert-input-wrap input:focus{outline:none;border-color:var(--gold)}
+/* NAV */
+.nav-buttons{display:flex;justify-content:space-between;margin-top:28px;gap:12px}
+.btn{padding:12px 28px;border-radius:8px;font-size:.92rem;font-weight:600;border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--navy);color:var(--white)}
+.btn-primary:hover{background:var(--navy-light)}
+.btn-secondary{background:var(--white);color:var(--navy);border:2px solid var(--border)}
+.btn-secondary:hover{border-color:var(--navy)}
+.btn-gold{background:var(--gold);color:var(--white)}
+.btn-gold:hover{background:#b89220}
+.btn-green{background:var(--green);color:var(--white)}
+.btn-green:hover{background:#219a52}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+/* FOOTER */
+.site-footer{background:var(--navy);color:rgba(255,255,255,.5);text-align:center;padding:14px 20px;font-size:.75rem;letter-spacing:.05em;position:fixed;bottom:0;left:0;right:0;z-index:100}
+/* PRINT */
+@media print{
+  .site-header,.progress-wrap,.nav-buttons,.site-footer,.btn{display:none!important}
+  .certificate{display:block!important;border:3px solid #333;page-break-inside:avoid}
+  .main{padding:0}
+  body{background:#fff}
+}
+/* MOBILE */
+@media(max-width:600px){
+  .site-header h1{font-size:1.15rem;letter-spacing:.25em}
+  .main{padding:18px 14px 90px}
+  .module h2{font-size:1.25rem}
+  .diagram{flex-direction:column}
+  .compare-table{font-size:.78rem}
+  .compare-table th,.compare-table td{padding:7px 8px}
+  .btn{padding:10px 18px;font-size:.85rem}
+  .nav-buttons{flex-direction:column}
+  .nav-buttons .btn{width:100%;justify-content:center}
+  .certificate{padding:24px 16px}
+  .cert-input-wrap input{width:100%}
+  .stack-visual{justify-content:center}
+}
+
+/* MOBILE RESPONSIVE - AGGRESSIVE FIX */
+@media (max-width: 900px) {
+  * { max-width: 100% !important; box-sizing: border-box !important; }
+  body { font-size: 15px !important; overflow-x: hidden !important; }
+  .main { max-width: 100% !important; padding: 16px 12px 80px !important; margin: 0 !important; }
+  .site-header h1 { font-size: 1.1rem !important; letter-spacing: .2em !important; }
+  .site-header .subtitle { font-size: .7rem !important; }
+  .module h2 { font-size: 1.25rem !important; }
+  .module h3 { font-size: 1rem !important; }
+  .card, .key-point, .example-box, .warning-box, .tip-box, .scenario-box,
+  .callout, .important, .note { 
+    padding: 12px !important; 
+    margin: 10px 0 !important;
+    overflow-x: auto !important;
+  }
+  table { 
+    font-size: .75rem !important; 
+    display: block !important; 
+    overflow-x: auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  th, td { padding: 6px 8px !important; min-width: 0 !important; }
+  .quiz-option { padding: 10px 14px !important; font-size: .9rem !important; }
+  .nav-buttons { flex-direction: column !important; gap: 8px !important; }
+  .nav-buttons button { width: 100% !important; }
+  .progress-labels { font-size: .55rem !important; flex-wrap: wrap !important; }
+  .progress-labels span { max-width: none !important; overflow: visible !important; }
+  .cert-box, .certificate { padding: 16px !important; }
+  .cert-box h2 { font-size: 1.1rem !important; }
+  /* Fix flex layouts that break on mobile */
+  .diagram, .stack-visual, .comparison-grid, .coverage-grid { 
+    flex-direction: column !important; 
+    display: flex !important;
+    align-items: stretch !important;
+  }
+  .diagram > *, .stack-visual > * { 
+    min-width: 0 !important; 
+    width: 100% !important;
+    margin: 4px 0 !important;
+  }
+  .stack-col, .addon-col, .reduced-col {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  /* Fix any grid layouts */
+  [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+  /* Ensure sections don't overflow */
+  .module, section, div {
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+  }
+  /* Fix step counters */
+  .step { padding-left: 40px !important; }
+  .step::before { left: 0 !important; }
+  /* Certificate */
+  .certificate { width: 100% !important; min-width: 0 !important; }
+  .certificate::before { display: none !important; }
+  /* Quiz results */
+  .quiz-results, .results-box { width: 100% !important; }
+  .score-display { font-size: 1.5rem !important; }
+  /* Prevent horizontal scroll on body */
+  html, body { overflow-x: hidden !important; width: 100% !important; }
+}
+@media (max-width: 480px) {
+  .site-header { padding: 10px 12px !important; }
+  .site-header h1 { font-size: .9rem !important; }
+  .main { padding: 10px 8px 80px !important; }
+  body { font-size: 14px !important; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>GUNN LAW GROUP</h1>
+  <div class="subtitle">STAFF TRAINING MODULE</div>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-labels" id="progressLabels">
+    <span data-step="0">1. What is UM?</span>
+    <span data-step="1">2. When It Applies</span>
+    <span data-step="2">3. Add-On vs Reduced</span>
+    <span data-step="3">4. Stacking</span>
+    <span data-step="4">5. GLG Steps</span>
+    <span data-step="5">6. Quiz</span>
+  </div>
+  <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar" style="width:16.66%"></div></div>
+</div>
+
+<main class="main">
+
+<!-- MODULE 1 -->
+<section class="module active" data-module="0">
+  <span class="module-number">MODULE 1</span>
+  <h2>What is UM Coverage?</h2>
+
+  <p><span class="gold">Uninsured Motorist (UM)</span> and <span class="gold">Underinsured Motorist (UIM)</span> coverage protects our clients when they're injured by a driver who has no insurance — or not enough insurance — to cover their damages.</p>
+
+  <h3>Governing Law</h3>
+  <p>UM coverage in Georgia is governed by <span class="gold">O.C.G.A. § 33-7-11</span>. This is the single most important statute for UM claims in our practice.</p>
+
+  <div class="callout callout-warning">
+    <strong>UM is MANDATORY in Georgia.</strong> Every auto policy must include UM coverage unless the insured rejects it <strong>in writing</strong>. If the insurer cannot produce that written rejection, the insured <strong>HAS</strong> UM coverage — period.
+  </div>
+
+  <h3>Key Rules</h3>
+  <ul>
+    <li><strong>No premium penalty:</strong> Filing a UM claim <span class="gold">cannot</span> result in premium increases for the insured. This is important to tell clients who are worried about using their own coverage.</li>
+    <li><strong>Minimum limits:</strong> <span class="gold">$25,000 / $50,000 / $25,000</span> — the same as Georgia's liability minimums (per person / per accident / property damage).</li>
+    <li><strong>Matching limits:</strong> UM limits should match the insured's liability limits unless the insured specifically chose lower UM limits.</li>
+  </ul>
+
+  <div class="callout callout-tip">
+    <strong>Practice Tip:</strong> Always request the full declarations page. If UM limits are lower than liability limits, investigate whether the insured actually elected the reduction in writing.
+  </div>
+
+  <div class="nav-buttons">
+    <span></span>
+    <button class="btn btn-primary" onclick="goTo(1)">Next →</button>
+  </div>
+</section>
+
+<!-- MODULE 2 -->
+<section class="module" data-module="1">
+  <span class="module-number">MODULE 2</span>
+  <h2>When Does UM Apply?</h2>
+
+  <p>UM coverage applies in <strong>four scenarios</strong>. Know these cold — they come up on every case.</p>
+
+  <h3>The Four Triggers</h3>
+  <ol>
+    <li><strong>No Insurance:</strong> The at-fault driver has <span class="gold">no liability insurance at all</span>.</li>
+    <li><strong>Insufficient Insurance:</strong> The at-fault driver's insurance is <span class="gold">not enough</span> to cover our client's damages (underinsured).</li>
+    <li><strong>Hit-and-Run / Unknown Driver:</strong> The at-fault driver is unidentified. Requires <span class="gold">physical contact</span> with the unknown vehicle <strong>OR</strong> an <span class="gold">independent eyewitness</span> plus a timely accident report.</li>
+    <li><strong>Coverage Denied / Insolvency:</strong> The at-fault driver's insurer <span class="gold">denies coverage</span> or becomes <span class="gold">insolvent</span>.</li>
+  </ol>
+
+  <div class="callout callout-warning">
+    <strong>Hit-and-run without physical contact</strong> is the hardest scenario. Without contact, you MUST have an independent eyewitness (not the claimant or a passenger) AND a timely police report. Missing either one can kill the claim.
+  </div>
+
+  <div class="callout callout-gold">
+    <strong>Key Legal Point:</strong> Under Georgia law, <span class="gold">"uninsured"</span> legally includes <span class="gold">underinsured</span> drivers. This is critical — it means UM coverage kicks in whenever the at-fault driver's coverage is inadequate, not just when they have zero coverage.
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo(0)">← Previous</button>
+    <button class="btn btn-primary" onclick="goTo(2)">Next →</button>
+  </div>
+</section>
+
+<!-- MODULE 3 -->
+<section class="module" data-module="2">
+  <span class="module-number">MODULE 3</span>
+  <h2>Add-On vs. Reduced-By Coverage</h2>
+
+  <p>Georgia has <strong>two types</strong> of UM coverage. Understanding the difference can mean tens of thousands of dollars for our clients.</p>
+
+  <h3>Add-On (Stacking) — THE DEFAULT</h3>
+  <div class="callout callout-tip">
+    <strong>Since 2009:</strong> Add-on is the <span class="gold">default</span> under Georgia law. The insured must <strong>reject add-on in writing</strong> to get reduced-by. If the insurer can't produce that written election, the insured has add-on coverage.
+  </div>
+  <p>With add-on coverage, UM limits are added <strong>on top of</strong> the at-fault driver's liability coverage.</p>
+
+  <h3>Reduced-By (Traditional / Offset)</h3>
+  <p>With reduced-by coverage, UM is <strong>reduced dollar-for-dollar</strong> by whatever the at-fault driver's liability pays. Your UM only covers the difference.</p>
+
+  <!-- VISUAL COMPARISON -->
+  <h3>Visual Comparison</h3>
+  <p style="font-size:.88rem;color:var(--gray);margin-bottom:8px;">At-fault has $25K liability · Client has $100K UM</p>
+
+  <div class="diagram">
+    <div class="diagram-card add-on">
+      <h4 style="color:var(--green)">✅ Add-On (Default)</h4>
+      <div class="bar-stack">
+        <div class="liability" style="width:20%">$25K</div>
+        <div class="um" style="width:80%">$100K UM</div>
+      </div>
+      <div class="bar-total">Total Available: <span style="color:var(--green)">$125,000</span></div>
+      <p style="font-size:.82rem;color:var(--gray);margin-top:8px">UM stacks on top of liability — client gets both pots of money.</p>
+    </div>
+    <div class="diagram-card reduced">
+      <h4 style="color:var(--red)">⛔ Reduced-By</h4>
+      <div class="bar-stack">
+        <div class="liability" style="width:25%">$25K</div>
+        <div class="um-reduced" style="width:75%">$75K UM</div>
+      </div>
+      <div class="bar-total">Total Available: <span style="color:var(--red)">$100,000</span></div>
+      <p style="font-size:.82rem;color:var(--gray);margin-top:8px">UM is offset by liability payment — $25K less available.</p>
+    </div>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr><th class="label-col">Feature</th><th>Add-On (Default)</th><th>Reduced-By</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="label-col">How it works</td><td class="addon-col">UM added on top of liability</td><td class="reduced-col">UM reduced by liability paid</td></tr>
+      <tr><td class="label-col">Default in Georgia?</td><td class="addon-col"><strong>Yes — since 2009</strong></td><td class="reduced-col">No — must elect in writing</td></tr>
+      <tr><td class="label-col">Example total ($25K liab + $100K UM)</td><td class="addon-col"><strong>$125,000</strong></td><td class="reduced-col">$100,000</td></tr>
+      <tr><td class="label-col">Can be stacked?</td><td class="addon-col"><strong>Yes</strong></td><td class="reduced-col">Different rules</td></tr>
+      <tr><td class="label-col">Written election needed?</td><td class="addon-col">No (it's the default)</td><td class="reduced-col"><strong>Yes — insured must elect</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warning">
+    <strong>Always verify:</strong> If an insurer claims the client has reduced-by coverage, demand proof of the <strong>written election</strong>. No written election = add-on coverage by law.
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo(1)">← Previous</button>
+    <button class="btn btn-primary" onclick="goTo(3)">Next →</button>
+  </div>
+</section>
+
+<!-- MODULE 4 -->
+<section class="module" data-module="3">
+  <span class="module-number">MODULE 4</span>
+  <h2>Stacking Rules</h2>
+
+  <p>Stacking lets clients combine UM coverage from multiple sources. This can <strong>dramatically</strong> increase available recovery. There are two types.</p>
+
+  <h3>Vertical Stacking</h3>
+  <p><em>Multiple vehicles on ONE policy</em></p>
+  <p>When a client insures 2+ vehicles on the same policy, each vehicle's UM coverage can stack.</p>
+
+  <div class="callout callout-example">
+    <strong>Example:</strong> Client insures 3 vehicles on one policy, each with $25K UM coverage.
+  </div>
+
+  <div class="stack-visual">
+    <div class="stack-block">Car 1<br>$25K</div>
+    <div class="stack-plus">+</div>
+    <div class="stack-block">Car 2<br>$25K</div>
+    <div class="stack-plus">+</div>
+    <div class="stack-block">Car 3<br>$25K</div>
+    <div class="stack-equals">=</div>
+    <div class="stack-result">$75K<br>Total UM</div>
+  </div>
+
+  <h3>Horizontal Stacking</h3>
+  <p><em>Multiple policies across a HOUSEHOLD</em></p>
+  <p>Combine UM limits from separate policies held by household members. Must be a <span class="gold">named insured</span>, <span class="gold">spouse</span>, or <span class="gold">resident relative</span> on each policy.</p>
+
+  <div class="callout callout-example">
+    <strong>Example:</strong> Client has $25K UM on their policy + spouse has $25K UM on a separate policy.
+  </div>
+
+  <div class="stack-visual">
+    <div class="stack-block">Client<br>$25K</div>
+    <div class="stack-plus">+</div>
+    <div class="stack-block">Spouse<br>$25K</div>
+    <div class="stack-equals">=</div>
+    <div class="stack-result">$50K<br>Total UM</div>
+  </div>
+
+  <h3>Stacking Rules to Remember</h3>
+  <ul>
+    <li>Stacking <strong>ONLY</strong> applies to <span class="gold">UM/UIM bodily injury</span> coverage — you <strong>cannot</strong> stack collision, property damage, or other coverages.</li>
+    <li><strong>Only add-on UM can stack</strong> — reduced-by coverage has different stacking rules.</li>
+  </ul>
+
+  <h3>Priority Order (When Multiple UM Policies Apply)</h3>
+  <p>Georgia law establishes a priority when multiple UM policies could cover a claim:</p>
+  <ol>
+    <li><strong>Insured's own UM policy</strong> pays first</li>
+    <li><strong>Resident relatives' UM policies</strong></li>
+    <li><strong>UM on the vehicle</strong> the insured was occupying</li>
+  </ol>
+  <p>Courts use three tests to determine priority: the <span class="gold">"receipt of premium"</span> test, the <span class="gold">"more closely identified with"</span> test, and the <span class="gold">"circumstances of the injury"</span> test.</p>
+
+  <div class="callout callout-warning">
+    <strong>Anti-Stacking Clauses:</strong> Some insurers include language in their policies attempting to prevent stacking. Georgia courts have <strong>historically prohibited</strong> these clauses. If you spot one — flag it and challenge it. Do NOT accept it at face value.
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo(2)">← Previous</button>
+    <button class="btn btn-primary" onclick="goTo(4)">Next →</button>
+  </div>
+</section>
+
+<!-- MODULE 5 -->
+<section class="module" data-module="4">
+  <span class="module-number">MODULE 5</span>
+  <h2>Practical Steps for GLG Staff</h2>
+
+  <p>These are the steps you should follow on <strong>every single case</strong>. No exceptions.</p>
+
+  <ol class="steps">
+    <li><strong>At Intake — Get the Dec Page:</strong> Ask the client for their <span class="gold">full auto insurance declarations page</span>. Check for UM coverage type (add-on or reduced-by) and limits. This is step one, every time.</li>
+    <li><strong>Identify ALL Possible UM Sources:</strong> Look beyond the client's own policy. Check:
+      <ul style="margin-top:6px">
+        <li>Client's own auto policy</li>
+        <li>Resident relatives' policies</li>
+        <li>Policy on the vehicle client was occupying</li>
+        <li>Umbrella policies (sometimes include UM)</li>
+      </ul>
+    </li>
+    <li><strong>Put ALL UM Carriers on Notice:</strong> Send written notice to <span class="gold">every</span> identified UM carrier immediately. Don't wait. Early notice protects the claim and starts the clock.</li>
+    <li><strong>Verify Add-On vs. Reduced-By:</strong> If an insurer claims the client has reduced-by coverage, <span class="gold">demand proof of the written election</span>. No proof = add-on coverage by default.</li>
+    <li><strong>Verify UM Wasn't Rejected:</strong> If an insurer says the client rejected UM coverage, <span class="gold">demand proof of the written rejection</span>. No signed rejection form = UM coverage exists.</li>
+    <li><strong>Stack When Possible:</strong> Calculate total available UM coverage across all applicable policies. Use both vertical and horizontal stacking to maximize recovery.</li>
+    <li><strong>Bad Faith Deadline — 60 Days:</strong> After sending a demand to the UM insurer, they have a <span class="gold">60-day window</span> before bad faith penalties apply. Penalties can be up to <span class="gold">25% of recovery or $25,000</span> (whichever is greater), <strong>plus</strong> attorney's fees.</li>
+    <li><strong>Use a Limited Liability Release:</strong> When settling with the at-fault driver's insurer, <strong>always</strong> use a <span class="gold">Limited Liability Release</span> — NEVER a general release. A general release can destroy the client's UM claim.</li>
+  </ol>
+
+  <div class="callout callout-warning">
+    <strong>CRITICAL:</strong> Using a general release instead of a Limited Liability Release when settling with the at-fault driver's insurer is one of the most costly mistakes in PI practice. It can waive the entire UM claim. Always use a Limited Liability Release to preserve UM rights.
+  </div>
+
+  <div class="callout callout-tip">
+    <strong>Quick Checklist:</strong> Dec page? ✓ All UM sources identified? ✓ All carriers notified? ✓ Add-on verified? ✓ Stacking calculated? ✓ Limited release used? ✓
+  </div>
+
+  <div class="nav-buttons">
+    <button class="btn btn-secondary" onclick="goTo(3)">← Previous</button>
+    <button class="btn btn-primary" onclick="goTo(5)">Start Quiz →</button>
+  </div>
+</section>
+
+<!-- MODULE 6: QUIZ -->
+<section class="module" data-module="5">
+  <span class="module-number">MODULE 6</span>
+  <h2>Knowledge Check</h2>
+  <p style="margin-bottom:18px">Answer all 10 questions. You need <strong>70% (7/10)</strong> to pass.</p>
+
+  <div id="quizContainer"></div>
+
+  <!-- RESULTS (hidden until quiz done) -->
+  <div id="quizResults" style="display:none">
+    <div class="results-card">
+      <div class="score-circle" id="scoreCircle"></div>
+      <h3 id="resultTitle"></h3>
+      <p id="resultMsg"></p>
+      <div style="margin-top:20px">
+        <button class="btn btn-secondary" id="retryBtn" onclick="resetQuiz()" style="display:none">🔄 Retake Quiz</button>
+        <button class="btn btn-green" id="certBtn" onclick="showCert()" style="display:none">🎓 Get Certificate</button>
+      </div>
+    </div>
+
+    <!-- CERTIFICATE -->
+    <div class="certificate" id="certificate">
+      <div class="cert-logo">G U N N &nbsp; L A W &nbsp; G R O U P</div>
+      <div class="cert-title">Certificate of Completion</div>
+      <div class="cert-sub">Georgia UM/UIM Claims Training</div>
+      <div class="cert-input-wrap" id="certInput">
+        <label>Enter Your Full Name</label>
+        <input type="text" id="certName" placeholder="e.g. Jane Smith" autofocus>
+        <br><br>
+        <button class="btn btn-gold" onclick="generateCert()">Generate Certificate</button>
+      </div>
+      <div id="certDisplay" style="display:none">
+        <div class="cert-name" id="certNameDisplay"></div>
+        <div class="cert-detail">has successfully completed the</div>
+        <div class="cert-detail" style="font-weight:700;color:var(--navy)">Georgia Uninsured/Underinsured Motorist (UM) Claims Training</div>
+        <div class="cert-detail" style="margin-top:12px">Score: <strong id="certScore"></strong></div>
+        <div class="cert-detail">Date: <strong id="certDate"></strong></div>
+        <div style="margin-top:20px">
+          <button class="btn btn-primary" onclick="window.print()">🖨️ Print Certificate</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-buttons" id="quizNav">
+    <button class="btn btn-secondary" onclick="goTo(4)">← Back to Module 5</button>
+    <span></span>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">Training Module — For Internal Use Only — Not Legal Advice</footer>
+
+<script>
+// ─── QUIZ DATA ───
+const quizData = [
+  {q:"What Georgia statute governs UM coverage?",
+   opts:["O.C.G.A. § 33-7-11","O.C.G.A. § 33-24-44","O.C.G.A. § 40-6-391","O.C.G.A. § 9-3-33"],ans:0},
+  {q:"Since 2009, what is the DEFAULT type of UM coverage in Georgia?",
+   opts:["Reduced-By (Offset)","Add-On (Stacking)","Excess Coverage","No default — insured must choose"],ans:1},
+  {q:"Client has $100K add-on UM. At-fault driver has $25K liability. What is the total available to the client?",
+   opts:["$100,000","$75,000","$125,000","$25,000"],ans:2},
+  {q:"Same scenario, but the client has reduced-by UM. Total available?",
+   opts:["$125,000","$75,000","$100,000","$25,000"],ans:2},
+  {q:"An insurer says the client rejected UM coverage but cannot produce the written rejection. Does the client have UM coverage?",
+   opts:["No — the insurer's word is sufficient","Yes — no written rejection means coverage exists","Only if the client can prove they didn't reject it","It depends on the premium paid"],ans:1},
+  {q:"Can a client's premiums be raised for filing a UM claim?",
+   opts:["Yes, up to 10%","Yes, at the insurer's discretion","No — prohibited under Georgia law","Only on renewal"],ans:2},
+  {q:"Client insures 3 vehicles on one policy with $50K UM each. What is the maximum available through vertical stacking?",
+   opts:["$50,000","$100,000","$150,000","$200,000"],ans:2},
+  {q:"When settling with the at-fault driver's insurer, what type of release preserves the client's UM claim?",
+   opts:["General Release","Full and Final Release","Limited Liability Release","Mutual Release"],ans:2},
+  {q:"After a valid UM demand, how many days before bad faith penalties can apply?",
+   opts:["30 days","45 days","60 days","90 days"],ans:2},
+  {q:"In a hit-and-run with NO physical contact, what is required to establish a UM claim?",
+   opts:["Police report alone","Client's sworn affidavit","Independent eyewitness + timely accident report","Dashcam footage"],ans:2}
+];
+
+let currentQ = 0, score = 0, answered = Array(quizData.length).fill(false);
+
+function buildQuiz(){
+  const c = document.getElementById('quizContainer');
+  c.innerHTML = '';
+  quizData.forEach((q,i)=>{
+    const div = document.createElement('div');
+    div.className = 'quiz-q' + (i===0?' active':'');
+    div.id = 'q'+i;
+    div.innerHTML = `<div class="q-num">QUESTION ${i+1} OF ${quizData.length}</div>
+      <div class="q-text">${q.q}</div>
+      ${q.opts.map((o,j)=>`<button class="quiz-option" data-q="${i}" data-opt="${j}" onclick="answer(${i},${j},this)">${o}</button>`).join('')}
+      <div class="quiz-feedback" id="fb${i}"></div>
+      ${i < quizData.length-1 ? `<div class="quiz-nav"><button class="btn btn-primary" id="nq${i}" onclick="nextQ(${i+1})" disabled>Next Question →</button></div>` : `<div class="quiz-nav"><button class="btn btn-gold" id="nq${i}" onclick="showResults()" disabled>See Results →</button></div>`}`;
+    c.appendChild(div);
+  });
+}
+
+function answer(qi, oi, btn){
+  if(answered[qi]) return;
+  answered[qi] = true;
+  const correct = quizData[qi].ans;
+  const btns = document.querySelectorAll(`[data-q="${qi}"]`);
+  btns.forEach(b=>{
+    b.disabled = true;
+    const o = parseInt(b.dataset.opt);
+    if(o === correct) b.classList.add('correct');
+    if(o === oi && oi !== correct) b.classList.add('incorrect');
+  });
+  const fb = document.getElementById('fb'+qi);
+  if(oi === correct){
+    score++;
+    fb.textContent = '✓ Correct!';
+    fb.className = 'quiz-feedback show right';
+  } else {
+    fb.textContent = '✗ Incorrect. The correct answer is: ' + quizData[qi].opts[correct];
+    fb.className = 'quiz-feedback show wrong';
+  }
+  document.getElementById('nq'+qi).disabled = false;
+}
+
+function nextQ(i){
+  document.getElementById('q'+(i-1)).classList.remove('active');
+  document.getElementById('q'+i).classList.add('active');
+  currentQ = i;
+}
+
+function showResults(){
+  document.getElementById('q'+(quizData.length-1)).classList.remove('active');
+  const pct = Math.round((score/quizData.length)*100);
+  const pass = pct >= 70;
+  const circle = document.getElementById('scoreCircle');
+  circle.textContent = pct+'%';
+  circle.className = 'score-circle '+(pass?'pass':'fail');
+  document.getElementById('resultTitle').textContent = pass?'🎉 Congratulations — You Passed!':'Training Not Yet Complete';
+  document.getElementById('resultMsg').textContent = `You scored ${score}/${quizData.length} (${pct}%).`+(pass?' You may now generate your certificate.':' You need 70% to pass. Please review the modules and try again.');
+  document.getElementById('quizResults').style.display = 'block';
+  if(pass){
+    document.getElementById('certBtn').style.display = 'inline-flex';
+  } else {
+    document.getElementById('retryBtn').style.display = 'inline-flex';
+  }
+  document.getElementById('quizNav').style.display = 'none';
+}
+
+function resetQuiz(){
+  score = 0; currentQ = 0; answered = Array(quizData.length).fill(false);
+  document.getElementById('quizResults').style.display = 'none';
+  document.getElementById('quizNav').style.display = 'flex';
+  document.getElementById('retryBtn').style.display = 'none';
+  document.getElementById('certBtn').style.display = 'none';
+  document.getElementById('certificate').style.display = 'none';
+  buildQuiz();
+}
+
+function showCert(){
+  document.getElementById('certificate').style.display = 'block';
+  document.getElementById('certificate').scrollIntoView({behavior:'smooth'});
+}
+
+function generateCert(){
+  const name = document.getElementById('certName').value.trim();
+  if(!name){alert('Please enter your name.');return;}
+  document.getElementById('certInput').style.display = 'none';
+  document.getElementById('certDisplay').style.display = 'block';
+  document.getElementById('certNameDisplay').textContent = name;
+  document.getElementById('certScore').textContent = score+'/'+quizData.length+' ('+Math.round(score/quizData.length*100)+'%)';
+  const d = new Date();
+  document.getElementById('certDate').textContent = d.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+}
+
+// ─── NAVIGATION ───
+const modules = document.querySelectorAll('.module');
+const labels = document.querySelectorAll('#progressLabels span');
+let currentModule = 0;
+
+function goTo(n){
+  modules[currentModule].classList.remove('active');
+  modules[n].classList.add('active');
+  currentModule = n;
+  // progress
+  const pct = ((n+1)/modules.length)*100;
+  document.getElementById('progressBar').style.width = pct+'%';
+  labels.forEach((l,i)=>{
+    l.className = '';
+    if(i < n) l.classList.add('done');
+    if(i === n) l.classList.add('active');
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  // init quiz on first visit
+  if(n === 5 && !document.querySelector('.quiz-q')) buildQuiz();
+}
+
+// init
+labels[0].classList.add('active');
+</script>
+
+</body>
+</html>

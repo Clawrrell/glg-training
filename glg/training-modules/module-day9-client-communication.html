@@ -1,0 +1,1749 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 15, 2026
+Deliverable: Training Module Day 9 — Client Communication & CasePeer Logging
+References Loaded: 10 files
+  - /glg/training-modules/module-day8-lien-basics-v2.html (template)
+  - /glg/drive-downloads/training/Communication_Logging_Standards.txt
+  - /glg/drive-downloads/training/New_Client_Welcome_Call_Script.txt
+  - /glg/drive-downloads/training/Treatment_Check_In_Call_Script.txt
+  - /glg/drive-downloads/training/Treatment_Gap_Call_Script.txt
+  - /glg/drive-downloads/training/Demand_Update_Call_Script.txt
+  - /glg/drive-downloads/training/Settlement_Offer_Call_Script.txt
+  - /glg/drive-downloads/training/Settlement_Acceptance_Call_Script.txt
+  - /glg/drive-downloads/training/Litigation_Handoff_Call_Script.txt
+  - /glg/drive-downloads/training/Case_Drop_Call_Script.txt
+  - /glg/drive-downloads/training/Client_Difficult_Conversation_Guide.txt
+QA Checklist: ✅ PASSED
+  - Forces recall, does not re-teach content
+  - Mixed question types (MC, scenario-based, multi-step)
+  - Progressive difficulty: easy → medium → hard → Boss Challenge
+  - Continuous case thread (Keisha Williams) through Sections 1-5
+  - New complex case (Marcus Thompson) for Boss Challenge
+  - Points + achievement badges + immediate consequence-based feedback
+  - Mobile-first, 44px tap targets, no horizontal scroll
+  - Zero book/framework names in visible output
+  - Base score tracked SEPARATELY from bonus score
+  - No leaderboards — single-player mechanics only
+  - Mandatory feedback form: clarity / difficulty / realism / "name one thing you'd change"
+  - Score tracking: base=200 max, bonus tracked separately (Boss Challenge)
+  - TRACKER_URL + day9 / Client Communication & Logging
+  - POST fields: employeeName, moduleId, moduleName, score, maxScore, bonusScore, passedAt
+  - 2 interleaved questions from prior modules (Day 7 coverage verification, Day 8 lien basics)
+  - Boss Challenge combines knowledge from Days 6-8 + Day 9
+  - Pass threshold: 85% (170/200 base)
+Competency Gate Mapping:
+  - Gate: 30-Day Gate — Client Communication & CasePeer Logging
+  - Milestone: 30-Day Checkpoint
+  - Competency: Can apply the 14-day contact rule, log all communications in CasePeer, execute call scripts for every case phase, handle difficult conversations, and escalate appropriately
+  - Roles: CM, LA
+  - Requirement: 85%+ base score (170/200) to pass gate
+  - Caseload Impact: Must pass before handling client calls independently
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 9 — Client Communication &amp; Logging | Gunn Law Group</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
+    .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
+
+    /* ── HEADER ── */
+    header{background:linear-gradient(135deg,#141C2C 0%,#0E1420 100%);color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#1C2433;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;}
+    header h1{color:#ffffff;}
+    header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1C2433;border-radius:10px;}
+    .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
+    .score-value{color:#fff;font-size:22px;font-weight:800;}
+
+    /* ── PROGRESS ── */
+    .progress-wrap{background:#1C2433;padding:10px 16px;}
+    .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#0E1420;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+
+    /* ── NAV PILLS ── */
+    .section-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
+    .nav-pill{padding:8px 12px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+    .nav-pill.active{background:#00339B;color:#fff;border-color:#00339B;}
+    .nav-pill.done{border-color:#10774A;color:#10774A;}
+    .nav-pill.done::after{content:' ✓';}
+
+    /* ── MAIN / CARDS ── */
+    main{max-width:800px;margin:0 auto;padding:0 0 60px;}
+    .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;}
+    .section-card.active{display:block;}
+    .section-header{background:#141C2C;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
+    .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
+    .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
+    .section-body{padding:20px;}
+
+    /* ── SCENARIO BOX ── */
+    .scenario{background:#141C2C;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border-left:3px solid #dcb161;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
+    .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
+    .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
+    .scenario .highlight{color:#f39c12;font-weight:700;}
+    .scenario .urgent{color:#e74c3c;font-weight:700;}
+
+    /* ── INFO BLOCKS ── */
+    .info-block{background:#f0f4f8;border-radius:10px;padding:16px;margin-bottom:14px;}
+    .info-block h4{color:#141c2c;font-size:14px;font-weight:700;margin-bottom:8px;}
+    .info-block p,.info-block li{font-size:14px;color:#444;line-height:1.6;}
+    .info-block ul{padding-left:18px;}
+    .info-block ol{padding-left:18px;}
+
+    /* ── QUESTIONS ── */
+    .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
+    .question-block.answered{border-color:#10774A;}
+    .question-block.answered-wrong{border-color:#870101;}
+    .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
+    .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
+    .options{display:flex;flex-direction:column;gap:10px;}
+    .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
+    .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
+    .option-btn.correct{border-color:#10774A!important;background:#e8f8ee!important;color:#10774A!important;}
+    .option-btn.incorrect{border-color:#870101!important;background:#fce8e8!important;color:#870101!important;}
+    .option-btn.disabled{pointer-events:none;opacity:.75;}
+    .opt-letter{background:#141C2C;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-text{flex:1;line-height:1.5;}
+
+    /* ── FEEDBACK ── */
+    .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #870101;color:#721c24;}
+    .feedback-box.show{display:block;}
+
+    /* ── POINTS TOAST ── */
+    .points-toast{position:fixed;top:80px;right:16px;background:#10774A;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast.show{transform:translateY(0);opacity:1;}
+
+    /* ── SECTION SCORE ── */
+    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;}
+    .section-score .score-display{font-size:32px;font-weight:800;color:#141c2c;}
+    .section-score .score-label{font-size:13px;color:#666;margin-top:2px;}
+
+    /* ── CASE FILE ── */
+    .case-file{background:#fff;border:2px solid #141c2c;border-radius:12px;padding:18px;margin-bottom:20px;}
+    .case-file-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #f0f4f8;}
+    .case-file-icon{background:#141c2c;color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .case-file-title{font-weight:800;color:#141c2c;font-size:15px;}
+    .case-file-sub{font-size:12px;color:#888;}
+    .case-detail{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px;}
+    .case-detail:last-child{border-bottom:none;}
+    .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
+    .case-val{color:#444;}
+    .case-val .flag{display:inline-block;background:#870101;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#10774A;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+
+    /* ── SCRIPT CARD ── */
+    .script-card{background:#fff;border:2px solid #232e54;border-radius:12px;padding:18px;margin-bottom:16px;}
+    .script-card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid #f0f4f8;}
+    .script-card-icon{background:#232e54;color:#dcb161;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+    .script-card-title{font-weight:800;color:#232e54;font-size:14px;}
+    .script-step{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid #f4f4f4;font-size:14px;line-height:1.5;}
+    .script-step:last-child{border-bottom:none;}
+    .step-num{background:#141c2c;color:#dcb161;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px;}
+    .step-text{flex:1;color:#444;}
+    .step-text strong{color:#141c2c;}
+
+    /* ── NOTE EXAMPLE ── */
+    .note-example{border-radius:10px;padding:14px 16px;margin:12px 0;font-size:13px;line-height:1.7;font-family:monospace;}
+    .note-bad{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
+    .note-good{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .note-example strong{font-weight:700;}
+
+    /* ── CHECKLIST ── */
+    .checklist{background:#fff;border:2px solid #e0e3e8;border-radius:12px;padding:16px;margin-bottom:16px;}
+    .checklist h4{color:#141c2c;font-size:14px;font-weight:800;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;}
+    .check-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f4f4f4;font-size:14px;line-height:1.5;}
+    .check-item:last-child{border-bottom:none;}
+    .check-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
+    .check-text{flex:1;color:#444;}
+    .check-text strong{color:#141c2c;}
+
+    /* ── TIMELINE ── */
+    .timeline{margin-bottom:16px;}
+    .timeline-item{display:flex;gap:14px;padding:10px 0;position:relative;}
+    .timeline-item::before{content:'';position:absolute;left:15px;top:36px;bottom:-10px;width:2px;background:#e0e3e8;}
+    .timeline-item:last-child::before{display:none;}
+    .timeline-dot{width:32px;height:32px;border-radius:50%;background:#141c2c;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;z-index:1;}
+    .timeline-dot.urgent{background:#870101;}
+    .timeline-dot.important{background:#f39c12;}
+    .timeline-content{flex:1;}
+    .timeline-day{font-weight:800;color:#141c2c;font-size:13px;}
+    .timeline-desc{font-size:13px;color:#555;line-height:1.5;}
+
+    /* ── BOSS CHALLENGE ── */
+    .boss-header{background:linear-gradient(135deg,#870101 0%,#6b0000 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;}
+    .boss-header .boss-icon{font-size:36px;margin-bottom:8px;}
+    .boss-header h3{font-size:clamp(16px,4vw,20px);font-weight:800;margin-bottom:6px;}
+    .boss-header p{font-size:13px;opacity:.9;}
+
+    /* ── RESULTS ── */
+    .results-header{padding:28px 20px;text-align:center;color:#fff;border-radius:0;}
+    .results-header.pass{background:linear-gradient(135deg,#10774A,#0a5c38);}
+    .results-header.fail{background:linear-gradient(135deg,#870101,#6b0000);}
+    .results-grade{font-size:56px;font-weight:900;line-height:1;}
+    .results-label{font-size:16px;margin-top:6px;opacity:.9;}
+    .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
+    .breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f4f8;font-size:15px;}
+    .breakdown-row:last-child{border-bottom:none;}
+    .breakdown-name{color:#333;font-weight:600;}
+    .breakdown-pts{font-weight:800;color:#141c2c;}
+    .achievement-grid{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+    .badge{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:2px solid #e0e3e8;color:#888;background:#f8f9fa;}
+    .badge.earned{border-color:#f39c12;background:#fff8e6;color:#856404;}
+    .badge .badge-icon{font-size:20px;}
+
+    /* ── FEEDBACK FORM ── */
+    .fb-question{margin-bottom:18px;}
+    .fb-question label{display:block;font-weight:700;color:#141c2c;font-size:15px;margin-bottom:8px;}
+    .fb-question select,.fb-question textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;color:#333;-webkit-appearance:none;}
+    .fb-question select:focus,.fb-question textarea:focus{outline:none;border-color:#141c2c;}
+    .fb-question textarea{resize:vertical;min-height:80px;}
+    .fb-rating-row{display:flex;gap:8px;flex-wrap:wrap;}
+    .fb-rating-btn{padding:10px 16px;border:2px solid #e0e3e8;border-radius:8px;background:#fff;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+    .fb-rating-btn.selected{background:#141c2c;color:#fff;border-color:#141c2c;}
+
+    /* ── CERTIFICATE ── */
+    .cert{border:3px solid #141c2c;border-radius:14px;padding:24px;text-align:center;margin-top:20px;background:#fff;}
+    .cert-logo{font-size:28px;margin-bottom:8px;}
+    .cert h3{font-size:18px;font-weight:800;color:#141c2c;margin-bottom:4px;}
+    .cert-name{font-size:22px;font-weight:800;color:#232e54;margin:12px 0 4px;}
+    .cert-details{font-size:13px;color:#666;line-height:1.8;}
+    .cert-achievements{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}
+    .cert-badge{background:#f39c12;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
+    .btn-primary{background:#141c2c;color:#fff;}
+    .btn-primary:hover{background:#232e54;}
+    .btn-secondary{background:#f0f4f8;color:#141c2c;}
+    .btn-secondary:hover{background:#e0e5ec;}
+    .btn-success{background:#10774A;color:#fff;}
+    .btn-danger{background:#870101;color:#fff;}
+    .btn-warning{background:#f39c12;color:#fff;}
+    .btn-block{width:100%;margin-top:12px;}
+    .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
+    .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
+    .callout strong{font-weight:700;}
+
+    /* ── CALC TABLE ── */
+    .calc-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
+    .calc-table td{padding:8px 12px;border-bottom:1px solid #e0e3e8;}
+    .calc-table td:first-child{font-weight:600;color:#141c2c;}
+    .calc-table td:last-child{text-align:right;font-weight:700;}
+    .calc-table tr.total td{border-top:2px solid #141c2c;font-weight:800;font-size:15px;}
+    .calc-table tr.total td:last-child{color:#10774A;}
+    .calc-table tr.deduction td:last-child{color:#870101;}
+
+    /* ── UTILITIES ── */
+    .text-center{text-align:center;}
+    .mt-4{margin-top:16px;}
+    .mb-4{margin-bottom:16px;}
+    .divider{border:none;border-top:2px solid #f0f4f8;margin:16px 0;}
+    .tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+    .tag-warn{background:#fff3cd;color:#856404;}
+    .tag-danger{background:#fce8e8;color:#7b1a1a;}
+    .tag-success{background:#d4edda;color:#155724;}
+    .tag-info{background:#d6e8f8;color:#174a7e;}
+
+    @media(max-width:480px){
+      .case-detail{flex-direction:column;gap:2px;}
+      .case-key{min-width:auto;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
+  <div class="day-badge">Day 9 · Client Communication</div>
+  <h1>Client Communication &amp; CasePeer Logging</h1>
+  <p>Gunn Law Group · New Hire Training (NH-9)</p>
+  <div class="score-bar">
+    <div>
+      <div class="score-label">YOUR SCORE</div>
+      <div class="score-value" id="total-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">POSSIBLE</div>
+      <div class="score-value">200</div>
+    </div>
+    <div>
+      <div class="score-label">BONUS</div>
+      <div class="score-value" id="bonus-score">0</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="prog-label">Section 1 of 9</span>
+    <span id="prog-pct">0%</span>
+  </div>
+  <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="section-nav" id="section-nav">
+  <button class="nav-pill active" id="nav-0" onclick="goToSection(0)">1. Intro</button>
+  <button class="nav-pill" id="nav-1" onclick="goToSection(1)">2. 14-Day Rule</button>
+  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. Call Scripts</button>
+  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Treatment Gaps</button>
+  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. Settlement Calls</button>
+  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. Difficult Convos</button>
+  <button class="nav-pill" id="nav-6" onclick="goToSection(6)">7. Boss</button>
+  <button class="nav-pill" id="nav-7" onclick="goToSection(7)">8. Results</button>
+  <button class="nav-pill" id="nav-8" onclick="goToSection(8)">9. Feedback</button>
+</nav>
+
+<div class="points-toast" id="points-toast"></div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     SECTION 0: INTRO
+════════════════════════════════════════════ -->
+<div class="section-card active" id="section-0">
+  <div class="section-header">
+    <div class="section-num">Section 1 · 2 min</div>
+    <h2>The Call That Changes Everything</h2>
+    <div class="section-subhead">How you communicate is how clients experience justice.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">⚡ Previously on Day 8</div>
+      <h3>You learned how liens work — hospital liens on GSCCCA, health insurance subrogation, the Made Whole Doctrine, lien negotiation, and the post-settlement disbursement timeline. You can now protect a client's net recovery.</h3>
+      <p>But here's what Day 8 didn't tell you: <span class="highlight">none of that lien work matters if the client thinks you've abandoned them.</span> The #1 source of client complaints at GLG isn't bad outcomes — it's feeling ignored.</p>
+      <p style="margin-top:10px;">Today we fix that. <span class="urgent">Systematic communication. Every call logged. Every client touched. Every 14 days.</span></p>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-tag">🚨 Friday Morning · 9:47 AM</div>
+      <h3>You open your CasePeer queue. Keisha Williams — auto accident client, 3 months in, still treating. You pull up her file to prep a check-in call. The last CasePeer note reads: "Called client 5/27 - she's good."</h3>
+      <p>Today's date: June 13. That's <span class="highlight">17 days ago.</span> No method. No full date. No what was discussed. No next steps. No follow-up text logged. Just "she's good."</p>
+      <p style="margin-top:10px;">And then your phone buzzes. It's a text from Keisha: <span class="urgent">"Is anyone working on my case? I haven't heard anything."</span></p>
+      <p style="margin-top:10px;">Two violations. One unhappy client. One very fixable problem — if you know the standard.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>🎯 What You'll Master Today</h4>
+      <ol>
+        <li>The 14-day contact rule — non-negotiable, pre-lit vs. litigation frequency</li>
+        <li>CasePeer logging: the exact format required for every communication</li>
+        <li>Call scripts for every case phase: welcome, treatment check-in, treatment gap, demand update, settlement offer, case drop</li>
+        <li>How to handle difficult conversations: angry clients, treatment refusers, fee disputes, clients who want to fire the firm</li>
+        <li>When to handle it yourself vs. when to escalate to the attorney — and what happens if you get that call wrong</li>
+      </ol>
+    </div>
+
+    <div class="callout callout-info">
+      <strong>⏱ Estimated time:</strong> 15–20 minutes. You'll follow Keisha Williams from a missed check-in through a difficult settlement conversation — and then face the Boss Challenge with a case that's completely off the rails.
+    </div>
+
+    <div style="background:#f0f7ff;border-left:4px solid #2980b9;border-radius:8px;padding:14px 16px;margin-bottom:16px;">
+      <h4 style="margin:0 0 6px;color:#2c3e50;font-size:14px;">📋 Competency Gate: Client Communication &amp; CasePeer Logging</h4>
+      <p style="font-size:13px;color:#555;margin:0 0 6px;">This module maps to your <strong>30-Day Competency Gate</strong>. Passing confirms you can execute every call script, maintain the 14-day contact cadence, log communications correctly in CasePeer, handle difficult conversations, and escalate appropriately.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Day 30 Gate</span>
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">CM · LA</span>
+        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">85% Required (170/200)</span>
+        <span style="background:#fff3e0;color:#e65100;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Required Before Independent Client Calls</span>
+      </div>
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>⚠️ Next up — Day 10:</strong> Demand Package Preparation. How to build the demand, calculate damages, write the narrative, and send it out. Everything you learned today about communicating with clients feeds directly into the demand process.
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary btn-block" onclick="goToSection(1)">Let's Go — Start Section 2 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1: 14-DAY RULE & CASEPEER LOGGING (40 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-1">
+  <div class="section-header">
+    <div class="section-num">Section 2 · 40 pts available</div>
+    <h2>The 14-Day Rule &amp; CasePeer Standards</h2>
+    <div class="section-subhead">If it's not logged, it didn't happen.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — The Violation</div>
+      <h3>You're staring at Keisha's file. 17 days without contact. A note that says "Called client 5/27 - she's good." She's texting asking if anyone is working her case.</h3>
+      <p>The 14-day rule isn't a suggestion — it's the minimum standard for pre-litigation cases. And that CasePeer note? It's nearly useless. No method, no what was discussed, no next steps. If you handed this file to a colleague right now, they'd have no idea what happened or what to do next.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>📞 Contact Frequency Standards</h4>
+      <ul>
+        <li><strong>Pre-Litigation (before lawsuit filed):</strong> Contact the client every <strong>14 days minimum</strong> — even if nothing is new. Check in, confirm treatment, update on timeline.</li>
+        <li><strong>Litigation (after lawsuit filed):</strong> Contact every <strong>30 days minimum</strong> — update on litigation milestones.</li>
+        <li><strong>Settlement offer received:</strong> Call within <strong>24 hours</strong></li>
+        <li><strong>Demand sent:</strong> Notify within <strong>48 hours</strong></li>
+        <li><strong>Incoming client call/voicemail:</strong> Return within <strong>24 hours</strong> on business days</li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h4>📝 CasePeer Note Format — Required Every Time</h4>
+      <p style="margin-bottom:10px;">Every communication note must include all five elements:</p>
+      <div class="note-example note-bad">
+        ❌ BAD NOTE:<br>
+        "Called client 5/27 - she's good."<br><br>
+        <strong>Why it's useless:</strong> No method. No phone number. No what was discussed. No next steps. If you're ever in litigation and a client claims we never called, this note proves nothing.
+      </div>
+      <div class="note-example note-good">
+        ✅ GOOD NOTE:<br>
+        <strong>6/13/2026 — Phone (outbound)</strong> to Keisha Williams at (404) 555-1234. Called for 14-day treatment check-in. Client reports knee still painful, attending bi-weekly chiropractic at Atlanta Chiro Associates. Asked about case timeline — explained still in treatment phase, demand not yet sent. Client asked about cost of treatment — confirmed LOP, no out-of-pocket. Sent follow-up text after call. <strong>Next: set task for 6/27 — next 14-day check-in.</strong>
+      </div>
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>📱 Follow-Up Text Rule:</strong> After EVERY call attempt (answered OR not), send a follow-up text immediately. Texts create a written record and clients see them far more than voicemails.
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Apply this to Keisha's file:</p>
+
+    <!-- Q1-1 -->
+    <div class="question-block" id="q-1-1">
+      <div class="q-num">Question 1 of 4 · 10 pts</div>
+      <div class="q-text">Keisha's pre-lit file shows 17 days since last contact. The only CasePeer note reads: "Called client 5/27 - she's good." How many violations are present here, and what are they?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">One violation — the 14-day rule was broken at 17 days</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">One violation — the CasePeer note is poorly formatted</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-1',true,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">Two violations: (1) the 14-day rule was broken at 17 days, AND (2) the CasePeer note is completely inadequate — missing method, specifics of what was discussed, and next steps</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">No violations — the note confirms contact was made, and 17 days is within reasonable range</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-1"></div>
+    </div>
+
+    <!-- Q1-2 -->
+    <div class="question-block" id="q-1-2">
+      <div class="q-num">Question 2 of 4 · 10 pts</div>
+      <div class="q-text">You just finished a treatment check-in call with Keisha. She reported her knee is still painful, she's attending bi-weekly chiropractic at Atlanta Chiro, and she asked about her case timeline — you explained it's still in the treatment phase. Which CasePeer note is CORRECT?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">"Spoke with Keisha today. Treatment ongoing. Explained timeline. All good."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">"6/13 — Called Keisha. She's treating at Atlanta Chiro. Will call again in 2 weeks."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-2',true,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">"6/13/2026 — Phone (outbound) to Keisha Williams at (404) 555-1234. 14-day treatment check-in. Client reports knee still painful, bi-weekly chiro at Atlanta Chiro Associates. Explained case still in treatment phase, demand not yet sent. Sent follow-up text post-call. Next: task for 6/27 — 14-day check-in."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">"Treatment check-in completed. Client acknowledged the process. Follow-up scheduled."</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-2"></div>
+    </div>
+
+    <!-- Q1-3 -->
+    <div class="question-block" id="q-1-3">
+      <div class="q-num">Question 3 of 4 · 10 pts</div>
+      <div class="q-text">You try to call Keisha for her check-in. No answer. You leave a voicemail. Per GLG's Communication Standards, what MUST you do IMMEDIATELY after leaving the voicemail?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">Log the voicemail in CasePeer and wait for her to call back</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">Try calling from a different number</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-3',true,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">Send a follow-up text to Keisha immediately, then log both the voicemail AND the text in CasePeer</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">Send a formal letter — voicemails are insufficient and the letter is the required backup</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-3"></div>
+    </div>
+
+    <!-- Q1-4 -->
+    <div class="question-block" id="q-1-4">
+      <div class="q-num">Question 4 of 4 · 10 pts</div>
+      <div class="q-text">Keisha's case is pre-litigation — demand hasn't been sent yet. What is the MINIMUM required contact frequency?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">Every 30 days — that's the contact standard</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">Once a month is fine as long as nothing major is happening</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',true,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">Every 14 days minimum — pre-litigation requires more frequent contact than litigation phase</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">Only when there is a significant update to share</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-4"></div>
+    </div>
+
+    <div class="section-score" id="s1-score" style="display:none;">
+      <div class="score-display" id="s1-score-val">0/40</div>
+      <div class="score-label">Section 2 Score</div>
+    </div>
+
+    <div class="btn-group" id="s1-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(2)">Continue — Section 3: Call Scripts →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2: WELCOME & TREATMENT CHECK-IN SCRIPTS (40 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-2">
+  <div class="section-header">
+    <div class="section-num">Section 3 · 40 pts available</div>
+    <h2>The Welcome Call &amp; Treatment Check-In</h2>
+    <div class="section-subhead">First impression. Ongoing relationship. Both require a script.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Three Months Earlier</div>
+      <h3>Let's go back to Keisha's first day as a client. The welcome call is the single most important impression the firm makes. Get it right and you set up a trusting, compliant relationship. Get it wrong and you spend the next six months managing a client who has no idea what's happening.</h3>
+      <p>And every 14 days after that welcome call — the treatment check-in — is how you keep that trust alive.</p>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header">
+        <div class="script-card-icon">👋</div>
+        <div class="script-card-title">New Client Welcome Call — Key Steps</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Introduce yourself</strong> — name, role (case manager), you're their point of contact start to finish</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Explain the process</strong> — treatment phase → records collection → demand → negotiation → settlement. Be realistic about timelines.</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Confirm treatment</strong> — is the client treating? If not, issue a LOP referral IMMEDIATELY during the call</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Explain LOP</strong> — providers are paid from the settlement. Zero out-of-pocket right now.</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">5</div>
+        <div class="step-text"><strong>Collect missing info</strong> — adverse insurance, own insurance carrier, police report, photos, prior injuries</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">6</div>
+        <div class="step-text"><strong>Set communication expectations</strong> — 24-hour callback commitment. Client must return our calls promptly.</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">7</div>
+        <div class="step-text"><strong>Document in CasePeer SAME DAY</strong> — date, type, what was covered, next steps</div>
+      </div>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>🚫 NEVER on a welcome call:</strong> Promise a specific settlement amount. Predict exactly how long the case will take. Discuss liability details without attorney review.
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header">
+        <div class="script-card-icon">🩺</div>
+        <div class="script-card-title">Treatment Check-In Call — Before You Dial</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">Pull from CasePeer: client name, treating provider(s), <strong>last known appointment date</strong>, prior call notes, current case status</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">Ask about: how they're feeling, missed appointments, <strong>any new symptoms</strong></div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">If new symptoms: tell them to inform doctor next visit + flag for <strong>attorney review</strong></div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">If gap identified (2+ weeks): <strong>switch to Treatment Gap Script</strong></div>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Apply the scripts to Keisha's case:</p>
+
+    <!-- Q2-1 -->
+    <div class="question-block" id="q-2-1">
+      <div class="q-num">Question 1 of 4 · 10 pts</div>
+      <div class="q-text">During Keisha's welcome call, she says: "My cousin got $100,000 for a fender bender. I want at least that much from my case." What is the correct response?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">"That sounds about right for a serious case — let's see what we can do for you."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',true,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">"I understand, and we're going to fight hard for you. I can't promise a specific number — every case is different — but the best thing you can do right now is stay consistent with treatment. Strong medical records build a strong case."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">"Your cousin's case is completely different. Please don't compare them."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">"I'll ask the attorney, but I can't say for sure what your case will be worth."</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-1"></div>
+    </div>
+
+    <!-- Q2-2 -->
+    <div class="question-block" id="q-2-2">
+      <div class="q-num">Question 2 of 4 · 10 pts</div>
+      <div class="q-text">During the welcome call, Keisha tells you she doesn't have a doctor yet — she hasn't seen anyone since the accident. What is your IMMEDIATE action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Tell her to find her own doctor and call back when she has one set up</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">Finish the welcome call, then send a referral by email later today</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-2',true,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">Issue a LOP (Letter of Protection) referral to a treating provider in CasePeer immediately — collect her address/preference and get her scheduled before ending the call</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Ask her to go to urgent care on her own and bring back the records</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-2"></div>
+    </div>
+
+    <!-- Q2-3 -->
+    <div class="question-block" id="q-2-3">
+      <div class="q-num">Question 3 of 4 · 10 pts</div>
+      <div class="q-text">During a treatment check-in call three months later, Keisha mentions her shoulder has been hurting since the accident — but she never reported it at intake. This is the first you're hearing about it. What are the TWO required actions?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Note it in CasePeer and ask Keisha to send a written description of the shoulder pain</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">Tell her it's probably not related to the accident since she didn't mention it before</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',true,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">Tell Keisha to report the shoulder pain to her doctor at the NEXT appointment, AND flag it in CasePeer for attorney review</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Schedule a separate call to discuss the new injury in more detail before doing anything else</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-3"></div>
+    </div>
+
+    <!-- Q2-4 -->
+    <div class="question-block" id="q-2-4">
+      <div class="q-num">Question 4 of 4 · 10 pts</div>
+      <div class="q-text">You're about to make a treatment check-in call to Keisha. Per the Treatment Check-In Script, what information should you have ready BEFORE you dial?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Just her phone number and current case status</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',true,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">Client name, treating provider(s), last known appointment date from CasePeer, any open action items from prior notes, and current case status</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">Her complete medical records, treatment history, and billing details</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Only the last CasePeer note, so you know where you left off</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-4"></div>
+    </div>
+
+    <div class="section-score" id="s2-score" style="display:none;">
+      <div class="score-display" id="s2-score-val">0/40</div>
+      <div class="score-label">Section 3 Score</div>
+    </div>
+
+    <div class="btn-group" id="s2-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(3)">Continue — Section 4: Treatment Gaps →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3: TREATMENT GAPS & NON-RESPONSIVE (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-3">
+  <div class="section-header">
+    <div class="section-num">Section 4 · 30 pts available</div>
+    <h2>Treatment Gaps &amp; Non-Responsive Clients</h2>
+    <div class="section-subhead">Insurance companies are watching. Every gap costs the client money.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Month Three</div>
+      <h3>Your records show Keisha's last chiropractic appointment was 23 days ago. No explanation in the notes. No voicemail, no text, no call since. You've been managing other cases and let this one slip. Now you're looking at a treatment gap that insurance will weaponize.</h3>
+      <p>A two-week gap with no explanation <span class="highlight">signals "minor injury" to an adjuster.</span> A three-week gap starts costing money. A month-long gap can destroy a case value entirely.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot urgent">2 WK</div>
+        <div class="timeline-content">
+          <div class="timeline-day">2-Week Gap: Trigger Point</div>
+          <div class="timeline-desc">Switch from Treatment Check-In Script to <strong>Treatment Gap Call Script</strong>. Find out why and solve it.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot important">30d</div>
+        <div class="timeline-content">
+          <div class="timeline-day">30-Day Gap: Serious Red Flag</div>
+          <div class="timeline-desc">Escalate to attorney IMMEDIATELY. Attorney decides whether to continue, adjust strategy, or begin case review.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot urgent">ATT</div>
+        <div class="timeline-content">
+          <div class="timeline-day">Client Wants to Stop: Always Escalate</div>
+          <div class="timeline-desc"><strong>Never accept</strong> a client's decision to stop treatment without attorney approval. Always escalate to Harrell or Adriauna.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h4>🚫 Three Unanswered Attempts — The Protocol</h4>
+      <ul>
+        <li><strong>Attempt 1:</strong> Call → voicemail → text → log → set task for 3 business days</li>
+        <li><strong>Attempt 2:</strong> Call again (try different time) → voicemail → text → try alternate number → log → set task</li>
+        <li><strong>Attempt 3:</strong> Send formal letter AND email — "We have been trying to reach you... please contact us within 10 days." Set task for 10 business days.</li>
+        <li><strong>Still no response:</strong> Flag to supervisor → supervisor/attorney decides to continue or begin case close review</li>
+      </ul>
+    </div>
+
+    <div class="callout callout-success">
+      <strong>💡 Common Gap Reasons — Always Ask Before Lecturing:</strong><br>
+      Transportation issues → Help coordinate. Billing confusion → Correct it (LOP means $0 out of pocket). Scheduling conflict → Find different time/provider. Feeling better → Explain consequences, escalate to attorney.
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Handle Keisha's treatment gap:</p>
+
+    <!-- Q3-1 -->
+    <div class="question-block" id="q-3-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">Keisha's last chiropractic appointment was 23 days ago with no explanation in CasePeer. Which script do you use for this call, and what is the exact threshold that triggers it?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">Regular Treatment Check-In Script — 23 days isn't a significant gap</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',true,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">Treatment Gap Call Script — triggered when a client has not treated in 2+ weeks (14 days) with no explanation. At 23 days, this is well past the trigger.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Skip the call and send a formal letter first — that's the protocol for gaps over 3 weeks</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">Escalate directly to the attorney — 23 days is automatically serious enough to require it</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-1"></div>
+    </div>
+
+    <!-- Q3-2 -->
+    <div class="question-block" id="q-3-2">
+      <div class="q-num">Question 2 of 3 · 10 pts</div>
+      <div class="q-text">On the Treatment Gap call, Keisha says: "Honestly, I've been feeling a lot better lately. I don't think I need to keep going to the chiropractor." What is the CORRECT response sequence?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">"That's great news! If you feel better, we can wrap up your treatment and start the demand." (accepting without attorney involvement)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">"You have to keep going or your case is worthless." (too aggressive, threatens the relationship)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',true,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Acknowledge she's feeling better, explain that insurance uses self-stops as evidence the injuries were minor (which lowers settlements), then ESCALATE TO THE ATTORNEY before accepting her decision to stop</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">"Okay, I'll note that you're stopping treatment." (accepting without attorney sign-off)</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-2"></div>
+    </div>
+
+    <!-- Q3-3 -->
+    <div class="question-block" id="q-3-3">
+      <div class="q-num">Question 3 of 3 · 10 pts</div>
+      <div class="q-text">You've now attempted to reach Keisha 3 times over 14 days (pre-lit). You've called, left voicemails, and sent texts each time. Zero response. Per GLG's Communication Standards, what is the NEXT required step?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">Escalate immediately to the attorney and recommend dropping the case</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">Keep trying for another 14 days — three attempts is not enough to escalate</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',true,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Send a formal letter AND email: "We have been trying to reach you… please contact our office within 10 days." Set a follow-up task for 10 business days. If still no response after that — flag to supervisor.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">Log a note that the client is unreachable and close the file</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-3"></div>
+    </div>
+
+    <div class="section-score" id="s3-score" style="display:none;">
+      <div class="score-display" id="s3-score-val">0/30</div>
+      <div class="score-label">Section 4 Score</div>
+    </div>
+
+    <div class="btn-group" id="s3-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(4)">Continue — Section 5: Demand &amp; Settlement Calls →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4: DEMAND UPDATE & SETTLEMENT CALLS (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-4">
+  <div class="section-header">
+    <div class="section-num">Section 5 · 30 pts available</div>
+    <h2>Demand Update &amp; Settlement Offer Calls</h2>
+    <div class="section-subhead">Big milestones. High stakes. Specific scripts for a reason.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Six Months Later</div>
+      <h3>Keisha got back on track with treatment. The demand was sent last week. Now the insurance company has responded with an offer. These are the two most important calls you'll make in a client's case — and they both have precise scripts for a reason.</h3>
+      <p>Mess up the demand update call and she talks to the adjuster directly. Mess up the settlement offer call and she makes a life-altering financial decision without full information. <span class="urgent">Both mistakes create legal exposure for the firm.</span></p>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header">
+        <div class="script-card-icon">📬</div>
+        <div class="script-card-title">Demand Update Call — Key Points</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">1</div>
+        <div class="step-text">Call proactively — don't wait for the client to ask. "I'm calling with an update — good news!"</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">2</div>
+        <div class="step-text">Explain what a demand IS in plain English (not legal jargon)</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">3</div>
+        <div class="step-text">Set the 30-day response window expectation — may take longer</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">⚠</div>
+        <div class="step-text"><strong>CRITICAL:</strong> "Do NOT speak to the insurance company directly. Tell them you are represented by Gunn Law Group and to call us."</div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header">
+        <div class="script-card-icon">💰</div>
+        <div class="script-card-title">Settlement Offer Call — Must-Haves Before You Dial</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">The offer amount from the insurance company</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">Estimated attorney fee (per fee agreement)</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">Estimated case expenses (records fees, costs advanced)</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">✓</div>
+        <div class="step-text">Estimated net to client (after all deductions)</div>
+      </div>
+      <div class="script-step">
+        <div class="step-num">⚠</div>
+        <div class="step-text"><strong>MANDATORY:</strong> The attorney's recommendation — accept or counter, and why. You cannot present an offer without this.</div>
+      </div>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>🚨 Never pressure a client to accept or reject.</strong> Present the facts neutrally. Present the attorney's recommendation and reasoning. If the client is upset about the offer, escalate to Harrell or Adriauna immediately — do not argue about the number.
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Handle Keisha's demand and offer:</p>
+
+    <!-- Q4-1 -->
+    <div class="question-block" id="q-4-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">The demand was sent two days ago. Keisha texts: "Did yall send my demand? how much did u ask for?" What is the correct action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">Text back: "Yes, we asked for $95,000. Now we wait for insurance to respond."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">Wait until the insurance company responds before calling — that's the point to update the client</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',true,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">Call Keisha using the Demand Update Call Script — confirm the demand was sent (and the amount since she asked), explain what a demand is, set the 30-day response window expectation, and CRITICALLY remind her not to speak to insurance directly</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">Text back: "Yes it was sent — we'll call you when insurance responds."</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-1"></div>
+    </div>
+
+    <!-- Q4-2 -->
+    <div class="question-block" id="q-4-2">
+      <div class="q-num">Question 2 of 3 · 10 pts</div>
+      <div class="q-text">The insurance company calls with a $35,000 offer on Keisha's case. Before you call Keisha with the offer, what MUST you have ready?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">Just the offer amount — you can work through the math together during the call</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">The offer amount and a copy of the fee agreement</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',true,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">The offer amount, attorney fee estimate, case expenses on file, estimated net to Keisha, AND the attorney's recommendation on whether to accept or counter</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">The offer amount and the attorney's recommendation only — clients don't need the full financial breakdown</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-2"></div>
+    </div>
+
+    <!-- Q4-3: DAY 7 INTERLEAVE -->
+    <div class="question-block" id="q-4-3">
+      <div class="q-num">Question 3 of 3 · 10 pts · <span class="tag tag-info">Day 7 Review</span></div>
+      <div class="q-text">While preparing for the settlement offer call, you realize no one ever confirmed whether Keisha's own auto policy includes UM/UIM coverage. The at-fault driver's liability limit was $25,000, and the current insurance offer is exactly at that limit. Why does this REQUIRE attorney review before you proceed?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">It doesn't — the offer matches the at-fault policy limits, which is the most you can get</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',true,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">If Keisha has UM/UIM coverage on her own policy and her damages exceed $25,000, she may have additional recovery available from her own carrier. Accepting at-fault limits without exploring UM/UIM could leave significant money on the table.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">UM/UIM only applies to uninsured drivers — since the at-fault driver had insurance, it's not relevant here</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">Coverage verification is an intake task — at this stage of the case it's too late to change anything</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-3"></div>
+    </div>
+
+    <div class="section-score" id="s4-score" style="display:none;">
+      <div class="score-display" id="s4-score-val">0/30</div>
+      <div class="score-label">Section 5 Score</div>
+    </div>
+
+    <div class="btn-group" id="s4-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(5)">Continue — Section 6: Difficult Conversations →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5: DIFFICULT CONVERSATIONS & ESCALATION (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-5">
+  <div class="section-header">
+    <div class="section-num">Section 6 · 30 pts available</div>
+    <h2>Difficult Conversations &amp; When to Escalate</h2>
+    <div class="section-subhead">You won't always have easy conversations. Know what to say — and what never to say.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — It Gets Hard</div>
+      <h3>The settlement offer came in lower than Keisha expected. She's been waiting eight months. She has questions she's not getting answered. And she's starting to get angry. This is where you earn your keep — or where the case goes sideways.</h3>
+      <p>Every difficult conversation has a protocol. The worst thing you can do is improvise when you're flustered. Know these responses cold.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>💬 Core Principle: Restore Safety Before Content</h4>
+      <p>When a client is upset, they cannot process information. Your first job is always to restore their sense that you are on their side. Lead with acknowledgment, not explanation. Validate the emotion before you address the content. Never get defensive.</p>
+    </div>
+
+    <div class="checklist">
+      <h4>🚨 When to Escalate to the Attorney (Non-Negotiable)</h4>
+      <div class="check-item">
+        <span class="check-icon">⬆</span>
+        <span class="check-text"><strong>Client threatens to fire the firm or transfer the case</strong> — attorney must be involved immediately</span>
+      </div>
+      <div class="check-item">
+        <span class="check-icon">⬆</span>
+        <span class="check-text"><strong>Client wants to stop treatment</strong> — never accept without attorney approval</span>
+      </div>
+      <div class="check-item">
+        <span class="check-icon">⬆</span>
+        <span class="check-text"><strong>Client is upset about the settlement offer</strong> — don't argue numbers; escalate</span>
+      </div>
+      <div class="check-item">
+        <span class="check-icon">⬆</span>
+        <span class="check-text"><strong>Fee dispute continues after your explanation</strong> — escalate to attorney</span>
+      </div>
+      <div class="check-item">
+        <span class="check-icon">⬆</span>
+        <span class="check-text"><strong>Client has not treated in 30+ days and is unresponsive</strong> — attorney decides next steps</span>
+      </div>
+      <div class="check-item">
+        <span class="check-icon">⬆</span>
+        <span class="check-text"><strong>Client mentions a new accident or new serious injury</strong> — flag immediately</span>
+      </div>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>🚫 NEVER SAY (in any difficult conversation):</strong><br>
+      "That's not my department." · "That's not my fault." · "I already told you that." · "You need to calm down." · "There's nothing I can do right now." · "No other attorney will take your case."
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Handle Keisha's difficult moments:</p>
+
+    <!-- Q5-1 -->
+    <div class="question-block" id="q-5-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">Keisha calls, clearly upset: "I haven't heard from anyone in WEEKS. Nobody calls me back. I am calling another attorney — this is ridiculous!" What is the CORRECT first response?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">"I'm so sorry Ms. Williams. Let me look into this and I'll call you back in a few minutes." (still deflecting — she's on the phone NOW)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-1',true,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">"Keisha, I hear you. Your frustration makes complete sense — and I want to fix it right now. Let me pull up your file this second and give you a full update." Then stay on the call and deliver the update immediately.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">"Ms. Williams, we have many clients and our team works very hard for each one. We do call regularly." (defensive, invalidating)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">"I'm going to transfer you to the attorney right now." (escalating before attempting to resolve)</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-1"></div>
+    </div>
+
+    <!-- Q5-2: DAY 8 INTERLEAVE -->
+    <div class="question-block" id="q-5-2">
+      <div class="q-num">Question 2 of 3 · 10 pts · <span class="tag tag-info">Day 8 Review</span></div>
+      <div class="q-text">During this call, Keisha mentions: "By the way — Northside Hospital called me directly. They said they have a lien on my case for $9,200 and want to know when they'll get paid." What is your FIRST action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">Tell Keisha that $9,200 will come out of her settlement and she should expect a lower net</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',true,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">Tell Keisha not to discuss payment with providers — that goes through the firm. Then verify on GSCCCA whether Northside actually filed a court lien. A phone call claiming a lien is NOT the same as a filed lien. Flag for attorney review.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">Call Northside immediately to negotiate the $9,200 down before the settlement is finalized</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">Log "Northside Hospital lien: $9,200 verified" in CasePeer based on what Keisha reported</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-2"></div>
+    </div>
+
+    <!-- Q5-3 -->
+    <div class="question-block" id="q-5-3">
+      <div class="q-num">Question 3 of 3 · 10 pts</div>
+      <div class="q-text">Keisha says: "My sister's lawyer only charges 25%. Why does Gunn Law Group charge 33.3%? That seems unfair." This is a fee dispute. What do you do?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">"Fees vary by firm — there's nothing I can do about our rate." (dismissive, doesn't address her concern)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">Offer to reduce the fee to 30% to resolve the dispute and keep the client happy</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',true,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">Walk through the fee agreement she signed at intake, apply the math to her specific case (gross × 33.3% = fee, then show the full breakdown). If she continues disputing after the clear explanation, escalate to the attorney.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">"All personal injury firms in Georgia charge the same rate — 33.3% is industry standard." (factually incorrect)</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-3"></div>
+    </div>
+
+    <div class="section-score" id="s5-score" style="display:none;">
+      <div class="score-display" id="s5-score-val">0/30</div>
+      <div class="score-label">Section 6 Score</div>
+    </div>
+
+    <div class="btn-group" id="s5-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(6)">⚔️ Enter the Boss Challenge →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6: BOSS CHALLENGE (30 base + bonus)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-6">
+  <div class="section-header">
+    <div class="section-num">Section 7 · 30 base pts + bonus</div>
+    <h2>⚔️ Boss Challenge: Marcus Thompson</h2>
+    <div class="section-subhead">A case that's completely off the rails. Everything you know — Days 2 through 9 — in one scenario.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="boss-header">
+      <div class="boss-icon">⚔️</div>
+      <h3>Boss Challenge: Marcus Thompson</h3>
+      <p>A case in crisis. Multiple communication failures. An angry client. And a lien that could change the math entirely.</p>
+    </div>
+
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">📁</div>
+        <div>
+          <div class="case-file-title">Marcus Thompson — Active Case File</div>
+          <div class="case-file-sub">Case #GLG-2026-0612 · 8 Months Active</div>
+        </div>
+      </div>
+      <div class="case-detail"><span class="case-key">Incident</span><span class="case-val">T-bone collision at Peachtree/Pharr Rd, October 2025. Clear liability — at-fault driver ran red light.</span></div>
+      <div class="case-detail"><span class="case-key">Demand Sent</span><span class="case-val">42 days ago <span class="flag-warn">RESPONSE OVERDUE</span></span></div>
+      <div class="case-detail"><span class="case-key">Insurance Offer (today)</span><span class="case-val">$22,000 — just received from adjuster <span class="flag">LOW BALL</span></span></div>
+      <div class="case-detail"><span class="case-key">Last CasePeer Log</span><span class="case-val">25 days ago — "Spoke with client" <span class="flag">POOR FORMAT + 14-DAY VIOLATION</span></span></div>
+      <div class="case-detail"><span class="case-key">Missed Callbacks</span><span class="case-val">Marcus has called the office 3 times this week. Zero callbacks. <span class="flag">24-HR VIOLATION</span></span></div>
+      <div class="case-detail"><span class="case-key">Marcus's latest text</span><span class="case-val"><span class="urgent">"I'm calling another attorney. This is ridiculous."</span></span></div>
+      <div class="case-detail"><span class="case-key">Hospital Lien</span><span class="case-val">Northside Hospital — $8,400 <span class="flag-warn">NEEDS VERIFICATION</span></span></div>
+      <div class="case-detail"><span class="case-key">Lien Details</span><span class="case-val">Discharged Jan 5 · Lien filed Feb 19 (Day 45) · Certified mail Feb 4 (15 days before filing) · Northside billed Aetna — denied</span></div>
+      <div class="case-detail"><span class="case-key">Attorney Fees</span><span class="case-val">33.3% (pre-litigation rate)</span></div>
+      <div class="case-detail"><span class="case-key">Case Expenses</span><span class="case-val">$1,200 (records fees, investigation costs)</span></div>
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>⚠️ This is the real deal.</strong> The Boss Challenge combines communication standards (Day 9), lien verification (Day 8), and coverage/escalation protocol (Days 6-7). Every question has meaningful consequences. Points are higher — focus up.
+    </div>
+
+    <hr class="divider">
+
+    <!-- BOSS Q1 (base 10 pts) -->
+    <div class="question-block" id="q-6-1">
+      <div class="q-num">Boss Question 1 of 5 · 10 pts (base)</div>
+      <div class="q-text">You just discovered all of this about Marcus's file. Multiple violations, an angry client threatening to leave, a settlement offer just received. What is the SINGLE MOST URGENT action to take RIGHT NOW?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">Catch up on CasePeer documentation — get all the missed logs recorded before anything else</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">Pull together all the lien information, case expenses, and offer details for an attorney briefing</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',true,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">Call Marcus IMMEDIATELY. The 24-hour callback rule has already been violated multiple times. He says he's leaving. Every minute spent on admin instead of calling is a minute he might be dialing a competitor.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Prepare case transfer documentation in case Marcus follows through on leaving</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-1"></div>
+    </div>
+
+    <!-- BOSS Q2 (base 10 pts) -->
+    <div class="question-block" id="q-6-2">
+      <div class="q-num">Boss Question 2 of 5 · 10 pts (base)</div>
+      <div class="q-text">Marcus answers the phone. You can hear from his tone that he's genuinely angry. Which is the correct opening?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">"Hi Marcus, I'm so sorry for the delay — we've been really busy with a lot of cases lately."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">"Mr. Thompson, I'm calling because we received an important settlement offer that I need to walk you through."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',true,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">"Marcus, I hear you. Having to wait 25 days for a callback is unacceptable — I own that. I'm here right now and I want to give you the full picture on your case. Can you give me five minutes?"</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">"Hi Marcus, I understand you're thinking about going to another attorney — let me tell you why that would be a mistake."</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-2"></div>
+    </div>
+
+    <!-- BOSS Q3 (base 10 pts) -->
+    <div class="question-block" id="q-6-3">
+      <div class="q-num">Boss Question 3 of 5 · 10 pts (base)</div>
+      <div class="q-text">Marcus calms down and asks: "Should I take the $22,000 offer?" Before you answer, what THREE things must you have — that clearly weren't ready when this call started?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">The demand amount we originally sent and the adjuster's reasoning for the offer</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',true,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">The attorney's recommendation (accept or counter, and why), the full financial breakdown (offer → fees → expenses → lien(s) → net to Marcus), AND the Northside Hospital lien status verified on GSCCCA — because the net-to-client calculation isn't trustworthy until that's confirmed</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">A copy of the original demand letter and Marcus's signed fee agreement</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Marcus's verbal consent to discuss the offer and the adjuster's contact information</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-3"></div>
+    </div>
+
+    <!-- BOSS Q4 (BONUS 15 pts) — Day 8 integration -->
+    <div class="question-block" id="q-6-4">
+      <div class="q-num">Boss Question 4 of 5 · 15 pts (BONUS) · <span class="tag tag-danger">Day 8 Review</span></div>
+      <div class="q-text">You check the Northside Hospital lien details: Marcus was discharged January 5. Lien filed February 19 (45 days after discharge). Certified mail notice sent February 4 (exactly 15 days before filing). Northside submitted to Aetna and received a denial. Is this lien valid — and if so, what is Marcus's net recovery if he accepts the $22,000 offer (fees: 33.3%, expenses: $1,200, Northside lien at face value: $8,400)?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6b')">
+          <span class="opt-letter">A</span><span class="opt-text">Lien is INVALID — "exactly 15 days" does not meet the 15-day certified mail requirement. It must be MORE than 15 days. Net is $13,474 (fees + expenses only).</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-4',true,'s6b')">
+          <span class="opt-letter">B</span><span class="opt-text">Lien is VALID — all four requirements are met. 45 days is within the 75-day hospital window. "At least 15 days" means 15 days meets it. Northside billed Aetna first. Net: $22,000 − $7,326 (fees) − $1,200 (expenses) − $8,400 (lien) = $5,074. This is why the offer must be countered.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6b')">
+          <span class="opt-letter">C</span><span class="opt-text">Lien is INVALID — Northside cannot lien because Aetna already received the billing and denied it, exhausting their right.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6b')">
+          <span class="opt-letter">D</span><span class="opt-text">Lien is valid but does not affect the settlement calculation — medical liens are paid separately by the client after distribution.</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-4"></div>
+    </div>
+
+    <!-- BOSS Q5 (BONUS 20 pts) -->
+    <div class="question-block" id="q-6-5">
+      <div class="q-num">Boss Question 5 of 5 · 20 pts (BONUS)</div>
+      <div class="q-text">After you present everything, Marcus says: "I've already made up my mind. I want to fire Gunn Law Group. End of discussion." What is your EXACT response, and what MUST happen next?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6b')">
+          <span class="opt-letter">A</span><span class="opt-text">"I understand. I'll start preparing the withdrawal documentation and send over your file." (accepting termination without attorney involvement)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-5',true,'s6b')">
+          <span class="opt-letter">B</span><span class="opt-text">"Marcus, I respect that — it is absolutely your right. Before any final decision, I want to ask: what specifically hasn't worked for you? And I need to get Attorney Gunn on the phone with you before we proceed, because he needs to be part of this conversation. Can I set that up today?" Then ESCALATE IMMEDIATELY to Harrell or Adriauna.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6b')">
+          <span class="opt-letter">C</span><span class="opt-text">"If you leave the firm, we will file a fee lien on any settlement you receive from another attorney." (threatening — potential ethical violation)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6b')">
+          <span class="opt-letter">D</span><span class="opt-text">"Marcus, no other attorney is going to take this case at this stage with a $22,000 offer on the table." (manipulative, factually questionable)</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-5"></div>
+    </div>
+
+    <div class="section-score" id="s6-score" style="display:none;">
+      <div class="score-display" id="s6-score-val">0/30 base</div>
+      <div class="score-label">Boss Challenge Base Score</div>
+    </div>
+
+    <div class="btn-group" id="s6-next" style="display:none;">
+      <button class="btn btn-success btn-block" onclick="finishModule()">See Your Results →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7: RESULTS
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-7">
+  <div class="section-header">
+    <div class="section-num">Results</div>
+    <h2>Your Performance</h2>
+  </div>
+  <div id="results-header-wrap"></div>
+  <div class="section-body" id="results-body"></div>
+  <div id="score-submit-form" style="display:none;background:#f0f4f8;border-radius:12px;padding:20px;margin:16px 0;">
+    <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+    <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+    <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+    <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+      style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;">
+    <button class="btn btn-success btn-block" onclick="submitScoreAndBuildCert()">✅ Submit Score &amp; View Certificate</button>
+  </div>
+  <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #10774A;color:#155724;border-radius:8px;padding:14px 16px;margin:0 0 16px;font-size:14px;font-weight:600;">
+    ✅ Score submitted! Your results have been recorded.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8: FEEDBACK + CERTIFICATE
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-8">
+  <div class="section-header">
+    <div class="section-num">Feedback · Required</div>
+    <h2>Help Us Improve This Module</h2>
+    <div class="section-subhead">Your feedback directly shapes future training.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="fb-question">
+      <label>How clear was the content?</label>
+      <div class="fb-rating-row" id="fb-clarity">
+        <button class="fb-rating-btn" onclick="setRating('clarity',1,this)">😕 Confusing</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',2,this)">🤔 Okay</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',3,this)">👍 Clear</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',4,this)">🌟 Very Clear</button>
+      </div>
+    </div>
+
+    <div class="fb-question">
+      <label>How was the difficulty?</label>
+      <div class="fb-rating-row" id="fb-difficulty">
+        <button class="fb-rating-btn" onclick="setRating('difficulty',1,this)">😴 Too Easy</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',2,this)">👍 Just Right</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',3,this)">😤 Challenging</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',4,this)">🔥 Very Hard</button>
+      </div>
+    </div>
+
+    <div class="fb-question">
+      <label>How realistic were the scenarios?</label>
+      <div class="fb-rating-row" id="fb-realism">
+        <button class="fb-rating-btn" onclick="setRating('realism',1,this)">🤷 Not Realistic</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',2,this)">😐 Somewhat</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',3,this)">👍 Realistic</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',4,this)">🎯 Very Realistic</button>
+      </div>
+    </div>
+
+    <div class="fb-question">
+      <label>Name one thing you'd change about this module:</label>
+      <textarea id="fb-change" placeholder="Be specific — 'Suggestions: None' is not accepted. What would make this better for the next person?"></textarea>
+    </div>
+
+    <div class="callout callout-danger" id="fb-error" style="display:none;">
+      <strong>⚠️ All fields are required.</strong> Please rate clarity, difficulty, and realism, and provide at least one suggestion.
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-success btn-block" onclick="submitFeedback()">Submit Feedback &amp; Complete Module ✓</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────
+var TOTAL_SECTIONS = 9;
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+var currentSection = 0;
+var baseScore = 0;
+var bonusPoints = 0;
+var qDone = {};
+var sectionScores = {s1:0,s2:0,s3:0,s4:0,s5:0,s6:0};
+var sectionTotals = {s1:40,s2:40,s3:30,s4:30,s5:30,s6:30};
+var ratings = {};
+
+// ─── ANSWER HANDLER ──────────────────────────────
+function answer(btn, qId, correct, section) {
+  if (qDone[qId]) return;
+  qDone[qId] = true;
+
+  var block = document.getElementById(qId);
+  var fb = document.getElementById('fb-' + qId);
+  var btns = block.querySelectorAll('.option-btn');
+
+  btns.forEach(function(b){ b.classList.add('disabled'); });
+
+  var isBonus = (section === 's6b');
+  var pts = 0;
+
+  if (correct) {
+    btn.classList.add('correct');
+    if (isBonus) {
+      if (qId === 'q-6-5') pts = 20;
+      else pts = 15;
+      bonusPoints += pts;
+      document.getElementById('bonus-score').textContent = bonusPoints;
+      showToast('+' + pts + ' BONUS');
+    } else {
+      pts = 10;
+      baseScore += pts;
+      sectionScores[section] = (sectionScores[section] || 0) + pts;
+      document.getElementById('total-score').textContent = baseScore;
+      showToast('+' + pts + ' pts');
+    }
+    block.classList.add('answered');
+    fb.className = 'feedback-box correct show';
+  } else {
+    btn.classList.add('incorrect');
+    btns.forEach(function(b){
+      var isCorr = b.getAttribute('onclick').indexOf('true') !== -1;
+      if (isCorr) b.classList.add('correct');
+    });
+    block.classList.add('answered-wrong');
+    fb.className = 'feedback-box incorrect show';
+  }
+
+  fb.innerHTML = getFeedback(qId, correct);
+  checkSectionComplete(section);
+}
+
+// ─── FEEDBACK TEXT ────────────────────────────────
+function getFeedback(qId, correct) {
+  var map = {
+    'q-1-1': {
+      t: '✅ Correct — you caught BOTH violations. (1) The 14-day rule was broken: pre-lit clients must hear from us every 14 days minimum. 17 days is a violation with no excuses. (2) The CasePeer note is completely inadequate — missing method, specific date format, what was discussed, and next steps. Both violations leave the firm exposed if the client ever challenges whether she was contacted.',
+      f: '❌ There are TWO problems here. (1) 17 days without contact violates the 14-day minimum for pre-lit cases. (2) "Called client 5/27 - she\'s good" is a useless note — it has no method, no proper date format, nothing about what was discussed, and no next steps. One bad note and one missed window is exactly what a client uses to support a neglect complaint.'
+    },
+    'q-1-2': {
+      t: '✅ Correct. Option C has all five required elements: proper date format, method (phone outbound), contact with number, specific summary (what was covered, her treatment status, her question and your answer), follow-up text confirmation, and a specific next step with a date. This note can stand on its own in any audit or client dispute.',
+      f: '❌ Options A, B, and D are all missing critical elements. A complete CasePeer note requires: full date (MM/DD/YYYY), method (Phone — Outbound), contact name and number, specific summary of what was discussed, confirmation that a follow-up text was sent, and a specific next step with a date. Vague notes like "all good" or "will call again" create zero accountability and zero protection.'
+    },
+    'q-1-3': {
+      t: '✅ Correct. The follow-up text rule is non-negotiable at GLG. After EVERY call attempt — answered or not — you send a text immediately. Text: "Hi Keisha, this is [Name] from Gunn Law Group. We tried to reach you about your case. Please call us back at (770) 800-0945 at your convenience." Then log both the voicemail AND the text as separate entries in CasePeer.',
+      f: '❌ Waiting for a callback after a voicemail is not the standard. GLG requires a follow-up text AFTER EVERY CALL ATTEMPT. Texts create a written trail, clients see them more than voicemails, and they give the client an easy way to respond on their schedule. Log both the voicemail and the text separately in CasePeer.'
+    },
+    'q-1-4': {
+      t: '✅ Correct. Pre-litigation = 14-day minimum contact. Not 30 days. Not "when there\'s news." Every 14 days — even if nothing has changed. You call because the client deserves to know we\'re still here. The 30-day standard is specifically for LITIGATION phase (after a lawsuit is filed), which is a smaller portion of your caseload.',
+      f: '❌ The 30-day standard is for LITIGATION phase only. Pre-litigation — which covers the majority of active cases — requires contact every 14 days minimum. This is one of the most commonly confused standards and one of the most frequently violated. "There\'s nothing to update" is not an excuse. You call because relationships require consistent contact.'
+    },
+    'q-2-1': {
+      t: '✅ Correct. Option B does three things right: (1) validates her desire for a strong outcome, (2) clearly states you cannot promise a number, and (3) redirects to what she CAN control — treatment consistency. Never hint at a range, never compare cases, never say "that sounds about right." Those words become complaints or disputes when the settlement lands lower.',
+      f: '❌ Any response that suggests a specific number — even implicitly ("that sounds about right") — creates an expectation you cannot guarantee. If the case settles for $45K instead of $100K, you\'ve set up a client dispute. The Welcome Call script is clear: no amount promises, ever. Redirect to treatment and remind her that the attorney will review value as the case develops.'
+    },
+    'q-2-2': {
+      t: '✅ Correct. No provider at intake = LOP referral DURING the call. Every day without documented medical treatment is a day the insurance company can argue she wasn\'t really injured. Getting her into treatment immediately is the single highest-impact thing you can do on the welcome call. Collect her address/preference, issue the referral in CasePeer, confirm the appointment — before you hang up.',
+      f: '❌ "Call back when you have a doctor" and "send a referral by email later" both delay treatment documentation — and delay means the insurance company has ammunition. LOP referrals happen on the welcome call, not after. Delays in starting treatment are one of the top ways adjusters challenge injury severity.'
+    },
+    'q-2-3': {
+      t: '✅ Correct — both steps are mandatory. (1) Tell her to report the new symptom to her doctor at the NEXT visit, not the one after. New injuries must be in the medical records to legally exist. (2) Flag in CasePeer for attorney review. A new injury claim changes case strategy, may affect liability arguments, and could affect the demand amount. This is above case manager authority to evaluate alone.',
+      f: '❌ "Not related because she didn\'t mention it before" is a legal conclusion you are not qualified to make — and it could kill a valid injury claim. Both steps are required: get it into the medical records (tell her to inform her doctor next visit), and flag for attorney review. The attorney decides whether the new symptom affects the case. Your job is to surface it, not evaluate it.'
+    },
+    'q-2-4': {
+      t: '✅ Correct. Preparation is professionalism. Walking into a check-in call without knowing Keisha\'s last appointment date means you\'ll ask questions she\'s already answered — which signals nobody\'s paying attention to her case. The Treatment Check-In Script specifies exactly what to pull: client name, treating provider(s), last known appointment date from CasePeer, prior notes, and current case status.',
+      f: '❌ "Just the phone number and case status" is unprepared. The Check-In Script specifies five things to have ready before you call: client name, treating provider(s), last appointment date from CasePeer, any open action items from prior notes, and current case status. Walking in blind means asking the client to re-explain their situation — a signal that no one is managing their case.'
+    },
+    'q-3-1': {
+      t: '✅ Correct. Two weeks (14 days) with no treatment and no explanation is the exact trigger for the Treatment Gap Call Script. At 23 days, Keisha is nine days past the trigger. Use the gap script — it\'s specifically designed to surface barriers, offer solutions, and escalate if the client wants to stop. Do not use the standard check-in script when a gap exists.',
+      f: '❌ A 14-day treatment gap with no explanation is the trigger for the Treatment Gap Script. At 23 days, Keisha is well past the threshold. The gap script exists specifically to address WHY treatment stopped and to solve it. The standard check-in script doesn\'t have the escalation protocols or barrier-solving steps you need when treatment has lapsed.'
+    },
+    'q-3-2': {
+      t: '✅ Correct. Three steps: (1) Acknowledge — "I\'m really glad you\'re feeling better." (2) Explain the consequence — the insurance company will argue the injuries resolved quickly and lower their offer. (3) ESCALATE — never accept a client\'s decision to stop treatment without attorney approval. The script is explicit: escalate to Harrell or Adriauna before accepting. The attorney must evaluate whether the case value is sufficient at the current treatment level.',
+      f: '❌ Accepting a treatment stop without attorney approval is a case manager\'s #1 authority violation. The attorney must decide whether the current treatment level supports the case strategy. You cannot make that call. Always: acknowledge the good news, explain the insurance consequence, and escalate. Never say "okay, we\'ll wrap it up" — that\'s a decision above your authority.'
+    },
+    'q-3-3': {
+      t: '✅ Correct. Three attempts in 14 days triggers the formal letter step — NOT immediate case drop. The letter goes by both mail AND email: "We have been trying to reach you regarding your case. Please contact our office within 10 days." Set a task for 10 business days. If still nothing — flag to supervisor. Every attempt is logged. This documentation is your defense if the client later claims abandonment.',
+      f: '❌ Three unanswered attempts is not automatic grounds for case drop — there\'s a required intermediate step first: the formal letter. Letter + email, both sent, with a 10-day response window. Supervisor escalation only comes AFTER the letter period expires. This documentation chain is critical: if the case is ever dropped and the client claims they were never contacted, every logged step is your protection.'
+    },
+    'q-4-1': {
+      t: '✅ Correct. A demand going out is a major milestone — Keisha deserves a call, not just a text confirmation. The Demand Update Script covers everything: confirm it was sent (and the amount since she asked), explain what a demand IS in plain English, set 30-day response window expectations, and critically — remind her not to speak to the insurance company directly. That last point alone is worth the entire call.',
+      f: '❌ A text saying "Yes, we asked for $X" misses the most important part of the demand call: "Do NOT speak to the insurance company directly." If Keisha talks to an adjuster and gives a recorded statement, it can severely damage her case. The demand update call is a scripted interaction for a reason — it protects the client from their own good intentions.'
+    },
+    'q-4-2': {
+      t: '✅ Correct — and the attorney\'s recommendation is the non-negotiable piece. You are NOT authorized to recommend accepting or rejecting a settlement offer. That is the attorney\'s call. Your job is to present all the information clearly: gross → fees → expenses → medical → net, then convey what the attorney recommends and why. Never present a settlement offer without all five elements.',
+      f: '❌ Presenting a settlement offer without the full breakdown — especially the attorney\'s recommendation — puts the firm at risk. If you say "the offer is $35K" and the client accepts based only on the gross number, then is surprised by fees and liens, you\'ve created a complaint. Get the full breakdown and attorney recommendation BEFORE calling.'
+    },
+    'q-4-3': {
+      t: '✅ Correct — Day 7 recall! At-fault policy limits is not the ceiling when UM/UIM exists. If Keisha\'s own policy has UM/UIM coverage and her total damages exceed $25,000, her own carrier may owe additional recovery. This is exactly why coverage verification at intake matters — and why you never accept policy limits without checking. Accepting $25K without exploring UM/UIM could cost Keisha tens of thousands of dollars.',
+      f: '❌ Review Day 7. UM/UIM coverage on the CLIENT\'S OWN policy provides recovery when the at-fault driver doesn\'t have enough. "$25K is all there is" is only true if Keisha has no UM/UIM. If she has $100K UM/UIM and her damages exceed $25K, there may be $75K more available. Always verify UM/UIM before accepting at-fault limits — and if you didn\'t at intake, flag for attorney review NOW.'
+    },
+    'q-5-1': {
+      t: '✅ Correct. Tactical empathy first — name the frustration specifically, take responsibility, then redirect to action. The key is STAYING ON THE CALL. Don\'t promise to call back later. Don\'t transfer her. Pull up the file immediately and give a real update while she\'s on the phone. She called because she needed someone to show up — show up.',
+      f: '❌ Option A (callback promise) and Option D (immediate transfer) both abandon the client who is actively on the phone needing attention. Option C (defensive) invalidates her concern. When someone is angry, they cannot process information until they feel heard. Lead with empathy, name the specific cause of frustration, then go into the file and give specifics — while she\'s on the phone.'
+    },
+    'q-5-2': {
+      t: '✅ Correct — Day 8 recall! A provider CALLING and saying they have a lien is NOT the same as a filed lien. Your FIRST step is always GSCCCA verification. If no lien is filed with the court, Northside has zero legal power over settlement funds. Also: tell Keisha she should not be taking payment calls from providers — all payment discussions go through the firm. Log the call and flag for attorney review.',
+      f: '❌ Day 8 core principle: verify on GSCCCA before treating any provider claim as a filed lien. A phone call claiming "we have a lien" proves nothing. If Northside hasn\'t filed with the court, they have no legal right to settlement funds — it\'s a billing claim at most. Logging "$9,200 verified" based on what a client heard over the phone could set up an incorrect settlement calculation.'
+    },
+    'q-5-3': {
+      t: '✅ Correct. Fee dispute protocol: (1) Go to the fee agreement she signed at intake — that\'s the binding contract she agreed to. (2) Walk through the math together right now: gross × 33.3% = fee, then show the full breakdown. (3) If she\'s still unhappy after a clear, calm explanation — escalate to the attorney. Never offer a discount on your own. Never argue. The signed agreement is your foundation.',
+      f: '❌ "Nothing I can do" is the wrong response to ANY client concern. Walk through the numbers together — use the fee agreement she signed, apply the math to her actual case, show her the full breakdown. If she\'s still unhappy, escalate. You are not authorized to reduce fees — only the attorney can address that. But you CAN walk through the numbers clearly, and that resolves 90% of fee confusion.'
+    },
+    'q-6-1': {
+      t: '✅ Correct. Documentation, attorney briefing, and transfer prep are all valid — but none of them are the FIRST step. Marcus said he\'s leaving the firm. Relationships are saved in real time, not in CasePeer. Every minute you spend on admin is a minute he might be dialing a competitor. Call now. Document immediately after. The call is the only thing that matters at this exact moment.',
+      f: '❌ CasePeer can wait 30 minutes. The attorney briefing can wait 30 minutes. Marcus cannot. He\'s actively threatening to leave. The 24-hour callback rule has already been violated multiple times. When a client says "I\'m firing you," the clock is running. Call immediately. Everything else follows the call.'
+    },
+    'q-6-2': {
+      t: '✅ Correct. Option C does three things right: (1) names the specific cause of frustration ("waiting 25 days"), (2) takes ownership without excuses ("I own that"), and (3) redirects to action ("I\'m here right now"). This sequence restores safety before content. Only after safety is restored can Marcus hear the case update. Busy excuses and jumping straight to content both make it worse.',
+      f: '❌ "We\'ve been really busy" is an excuse that invalidates his frustration. Jumping straight to the settlement offer before addressing his emotional state means he can\'t hear it. First restore safety: name the specific cause of frustration, take responsibility, offer to be present. Then deliver the content.'
+    },
+    'q-6-3': {
+      t: '✅ Correct. Three things, all mandatory: (1) Attorney recommendation — you cannot recommend accepting or rejecting on your own authority. (2) Full financial breakdown — gross → fees → expenses → lien(s) → net. (3) Lien verification — the Northside lien status is unverified, and if it\'s valid, the net-to-client calculation changes significantly. Presenting an offer without verified numbers is presenting incomplete information.',
+      f: '❌ Settlement offers require three things: attorney recommendation, full financial breakdown, and verified lien status. Walking into this call without all three means Marcus may make a life-changing financial decision based on incomplete data — and that\'s a firm liability issue if it goes wrong.'
+    },
+    'q-6-4': {
+      t: '✅ EXCELLENT — +15 BONUS! The lien is valid. All four requirements met: (1) Authorized filer (hospital ✓), (2) Filed within 75-day hospital window (Day 45 ✓), (3) Certified mail at least 15 days before — exactly 15 meets the minimum (✓), (4) Billed Aetna first and received denial (✓). Net: $22,000 − $7,326 (33.3%) − $1,200 (expenses) − $8,400 (Northside) = $5,074. That\'s why this offer must be countered strongly.',
+      f: '❌ "Exactly 15 days" DOES meet the requirement — the statute says "at least 15 days," which means 15 or more. All four requirements are met. The lien is valid at $8,400. Net: $22,000 − $7,326 − $1,200 − $8,400 = $5,074. Marcus would walk away with barely $5K after 8 months. This offer must be countered — and understanding the lien math is how you explain why.'
+    },
+    'q-6-5': {
+      t: '✅ EXCELLENT — +20 BONUS! Option B is exactly right. Three moves: (1) Acknowledge his right without being defensive. (2) Ask what specifically hasn\'t worked — sometimes this surfaces a fixable problem. (3) ESCALATE IMMEDIATELY — an attorney must be involved in any case termination. You do not have authority to accept a termination. Threatening a fee lien before the client has left is a potential ethical violation that can trigger a bar complaint.',
+      f: '❌ Accepting termination without attorney involvement violates GLG policy. Threatening fee liens before the client leaves is a potential ethical violation. Manipulation is wrong and may not be accurate. Correct sequence: acknowledge the right, ask what\'s not working, get the attorney on the phone BEFORE any decision is finalized. You are not authorized to accept a case termination.'
+    }
+  };
+  var item = map[qId];
+  if (!item) return correct ? '✅ Correct!' : '❌ Incorrect — review the section.';
+  return correct ? item.t : item.f;
+}
+
+// ─── SECTION COMPLETION ──────────────────────────
+function checkSectionComplete(section) {
+  var sectionQMap = {
+    s1: ['q-1-1','q-1-2','q-1-3','q-1-4'],
+    s2: ['q-2-1','q-2-2','q-2-3','q-2-4'],
+    s3: ['q-3-1','q-3-2','q-3-3'],
+    s4: ['q-4-1','q-4-2','q-4-3'],
+    s5: ['q-5-1','q-5-2','q-5-3'],
+    s6: ['q-6-1','q-6-2','q-6-3'],
+    s6b: ['q-6-4','q-6-5']
+  };
+
+  var checkSection = (section === 's6b') ? 's6' : section;
+  var allQ = sectionQMap[checkSection] || [];
+  if (section === 's6' || section === 's6b') {
+    allQ = sectionQMap['s6'].concat(sectionQMap['s6b']);
+  }
+
+  var allDone = allQ.every(function(q){ return qDone[q]; });
+  if (!allDone) return;
+
+  var sectionIndex = {s1:1, s2:2, s3:3, s4:4, s5:5, s6:6};
+  var idx = (section === 's6b') ? 6 : sectionIndex[section];
+  if (!idx) return;
+
+  var scoreEl = document.getElementById('s' + idx + '-score');
+  var scoreVal = document.getElementById('s' + idx + '-score-val');
+  var nextEl  = document.getElementById('s' + idx + '-next');
+
+  if (scoreEl) {
+    var pts = (idx === 6) ? (sectionScores['s6'] || 0) : (sectionScores[section] || 0);
+    var max = (idx === 6) ? 30 : (sectionTotals[section] || 0);
+    var label = (idx === 6) ? (pts + '/' + max + ' base') : (pts + '/' + max);
+    if (scoreVal) scoreVal.textContent = label;
+    scoreEl.style.display = 'block';
+  }
+  if (nextEl) nextEl.style.display = 'flex';
+}
+
+// ─── NAVIGATION ──────────────────────────────────
+function goToSection(idx) {
+  var cards = document.querySelectorAll('.section-card');
+  var pills = document.querySelectorAll('.nav-pill');
+  cards.forEach(function(c){ c.classList.remove('active'); });
+  pills.forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('section-' + idx).classList.add('active');
+  document.getElementById('nav-' + idx).classList.add('active');
+  if (currentSection > 0 && currentSection !== idx) {
+    document.getElementById('nav-' + currentSection).classList.add('done');
+  }
+  currentSection = idx;
+  var pct = Math.round((idx / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-label').textContent = 'Section ' + (idx + 1) + ' of ' + TOTAL_SECTIONS;
+  window.scrollTo(0, 0);
+}
+
+// ─── TOAST ───────────────────────────────────────
+function showToast(msg) {
+  var t = document.getElementById('points-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 1800);
+}
+
+// ─── FINISH MODULE ───────────────────────────────
+function finishModule() {
+  goToSection(7);
+  buildResults();
+}
+
+function buildResults() {
+  var pct = Math.round((baseScore / 200) * 100);
+  var pass = baseScore >= 170;
+  var grade = pct + '%';
+
+  var headerEl = document.getElementById('results-header-wrap');
+  headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
+    + '<div class="results-grade">' + grade + '</div>'
+    + '<div class="results-label">' + (pass ? '🏆 Module Passed!' : '📚 Keep Practicing — 85% Required') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '</div>';
+
+  var badges = [];
+  if (baseScore >= 200) badges.push({icon:'🌟', name:'Perfect Score'});
+  if (baseScore >= 190) badges.push({icon:'🔥', name:'Communication Champion'});
+  if (bonusPoints >= 35) badges.push({icon:'💎', name:'Boss Slayer'});
+  if (bonusPoints >= 15) badges.push({icon:'⚡', name:'Lien + Comms Specialist'});
+  if (sectionScores['s1'] === 40) badges.push({icon:'📋', name:'Logging Master'});
+  if (sectionScores['s2'] === 40) badges.push({icon:'📞', name:'Script Ace'});
+  if (sectionScores['s5'] === 30) badges.push({icon:'💬', name:'Difficult Convo Pro'});
+  if (sectionScores['s6'] === 30) badges.push({icon:'🔴', name:'Boss Challenger'});
+  if (pass) badges.push({icon:'🎓', name:'Day 9 Complete'});
+
+  var badgeHTML = '';
+  badges.forEach(function(b){
+    badgeHTML += '<div class="badge earned"><span class="badge-icon">' + b.icon + '</span>' + b.name + '</div>';
+  });
+
+  var bodyEl = document.getElementById('results-body');
+  bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
+    + '<div class="score-display">' + baseScore + '/200</div>'
+    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
+    + '</div>'
+    + '<div class="info-block"><h4>📊 Section Breakdown</h4>'
+    + '<div class="breakdown-row"><span class="breakdown-name">14-Day Rule &amp; CasePeer Logging</span><span class="breakdown-pts">' + (sectionScores['s1']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Welcome &amp; Treatment Check-In Scripts</span><span class="breakdown-pts">' + (sectionScores['s2']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Treatment Gap &amp; Non-Responsive</span><span class="breakdown-pts">' + (sectionScores['s3']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Demand Update &amp; Settlement Calls</span><span class="breakdown-pts">' + (sectionScores['s4']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Difficult Conversations &amp; Escalation</span><span class="breakdown-pts">' + (sectionScores['s5']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (base)</span><span class="breakdown-pts">' + (sectionScores['s6']||0) + '/30</span></div>'
+    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#10774A;font-size:18px;">' + baseScore + '/200</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Bonus Points</span><span class="breakdown-pts" style="color:#f39c12;">' + bonusPoints + ' pts</span></div>'
+    + '</div>'
+    + '<div class="info-block"><h4>🏅 Achievements Earned</h4>'
+    + (badgeHTML ? '<div class="achievement-grid">' + badgeHTML + '</div>' : '<p style="color:#888;">Complete more questions correctly to earn badges.</p>')
+    + '</div>'
+    + '<div class="btn-group">'
+    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete →</button>'
+    + '</div>';
+
+  document.getElementById('score-submit-form').style.display = 'block';
+}
+
+// ─── FEEDBACK RATINGS ────────────────────────────
+function setRating(field, val, btn) {
+  ratings[field] = val;
+  var row = document.getElementById('fb-' + field);
+  row.querySelectorAll('.fb-rating-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+}
+
+// ─── SCORE SUBMISSION ─────────────────────────────
+function submitScoreAndBuildCert() {
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('score-submit-form').style.display = 'none';
+
+  var payload = {
+    employeeName: name,
+    moduleId: 'day9',
+    moduleName: 'Client Communication & Logging',
+    score: baseScore,
+    maxScore: 200,
+    bonusScore: bonusPoints,
+    passedAt: new Date().toISOString()
+  };
+
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    mode: 'no-cors'
+  }).then(function() {
+    document.getElementById('score-confirmation').style.display = 'block';
+  }).catch(function() {
+    document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please complete the feedback form to submit.';
+    document.getElementById('score-confirmation').style.background = '#fff3cd';
+    document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+    document.getElementById('score-confirmation').style.color = '#856404';
+    document.getElementById('score-confirmation').style.display = 'block';
+  });
+}
+
+// ─── SUBMIT FEEDBACK ──────────────────────────────
+function submitFeedback() {
+  var change = document.getElementById('fb-change').value.trim();
+  var errEl = document.getElementById('fb-error');
+
+  if (!ratings.clarity || !ratings.difficulty || !ratings.realism || !change) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  var name = prompt('Enter your full name to complete the module:');
+  if (!name || !name.trim()) { alert('Name is required to submit.'); return; }
+  name = name.trim();
+
+  var payload = {
+    employeeName: name,
+    moduleId: 'day9',
+    moduleName: 'Client Communication & Logging',
+    score: baseScore,
+    maxScore: 200,
+    bonusScore: bonusPoints,
+    passedAt: new Date().toISOString(),
+    feedback: {
+      clarity: ratings.clarity,
+      difficulty: ratings.difficulty,
+      realism: ratings.realism,
+      change: change
+    }
+  };
+
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  }).catch(function(){});
+
+  showCertificate(name);
+}
+
+function showCertificate(name) {
+  var pct = Math.round((baseScore / 200) * 100);
+  var fbSection = document.getElementById('section-8');
+  fbSection.querySelector('.section-body').innerHTML = '<div class="cert">'
+    + '<div class="cert-logo">🏆</div>'
+    + '<h3>Certificate of Completion</h3>'
+    + '<div style="font-size:13px;color:#888;margin-bottom:8px;">Gunn Law Group Training System</div>'
+    + '<div class="cert-name">' + name + '</div>'
+    + '<div class="cert-details">'
+    + 'Day 9: Client Communication &amp; CasePeer Logging<br>'
+    + 'Score: <strong>' + baseScore + '/200 (' + pct + '%)</strong> · Bonus: <strong>' + bonusPoints + ' pts</strong><br>'
+    + 'Completed: ' + new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
+    + '</div>'
+    + '<div class="cert-achievements">'
+    + (baseScore >= 200 ? '<span class="cert-badge">🌟 Perfect Score</span>' : '')
+    + (bonusPoints >= 35 ? '<span class="cert-badge">💎 Boss Slayer</span>' : '')
+    + (bonusPoints >= 15 ? '<span class="cert-badge">⚡ Lien + Comms</span>' : '')
+    + '<span class="cert-badge">🎓 Day 9 Complete</span>'
+    + '</div>'
+    + '</div>'
+    + '<div class="callout callout-success" style="margin-top:16px;"><strong>✅ Score submitted successfully.</strong> Excellent work, ' + name.split(' ')[0] + '. You now have the communication standards, call scripts, and escalation protocols to manage client relationships professionally. Every 14-day check-in you complete, every well-logged CasePeer note, and every difficult conversation you handle with empathy is how GLG earns client loyalty — and referrals.</div>'
+    + '<div class="callout callout-info" style="margin-top:12px;"><strong>📅 Up Next — Day 10: Demand Package Preparation.</strong> How to build the demand, calculate damages, write the narrative, and send it out. Everything you learned today about communicating with clients feeds directly into how you set expectations around the demand.</div>';
+  document.getElementById('nav-8').classList.add('done');
+}
+
+// Init
+goToSection(0);
+</script>
+</body>
+</html>

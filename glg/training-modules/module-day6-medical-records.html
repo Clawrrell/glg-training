@@ -1,0 +1,1006 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 8, 2026
+Deliverable: Training Module Day 6 - Medical Records Deep Dive
+References Loaded: 9 files
+  - /glg/GATES/COO-GATES.md
+  - /glg/books/memos/e-myth-memo.md (Systems for record analysis)
+  - /glg/books/memos/essential-lawyering-memo.md (Fact analysis, evidence evaluation)
+  - /glg/books/memos/client-centered-law-firm-memo.md (Client communication about medical findings)
+  - /glg/books/memos/traction-eos-memo.md (Process documentation for record review)
+  - /glg/books/memos/atomic-habits-memo.md (Habit formation for record analysis)
+  - /glg/books/memos/radical-candor-memo.md (Clear communication about medical issues)
+  - /glg/books/memos/reptile-mist-memo.md (Medical evidence supporting safety rule violations)
+  - /glg/books/memos/lawyer-negotiation-memo.md (Medical evidence in settlement negotiations)
+Existing Docs Checked: Referenced /glg/training/ medical terminology resources
+QA Checklist: ✅ PASSED
+  - E-Myth Systems Test: Creates systematic approach to record analysis
+  - EOS Alignment: Supports case value development process
+  - Client-Centered Test: Enables clear client communication about medical findings
+  - Consistency Check: References actual GLG medical terminology resources
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 6 — Medical Records Deep Dive</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #333333; font-size: 16px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+    header { background: #141c2c; color: white; padding: 24px 20px; text-align: center; }
+    header .day-badge { display: inline-block; background: #232e54; color: #aab4c8; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px; }
+    header h1 { font-size: clamp(18px, 5vw, 26px); font-weight: 700; line-height: 1.3; }
+    header p { margin-top: 8px; color: #aab4c8; font-size: 14px; }
+    .progress-wrap { background: #232e54; padding: 12px 20px; }
+    .progress-label { color: #aab4c8; font-size: 12px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+    .progress-bar-bg { background: #141c2c; border-radius: 4px; height: 8px; width: 100%; }
+    .progress-bar-fill { background: #27ae60; height: 8px; border-radius: 4px; width: 0%; transition: width 0.4s ease; }
+    .section-nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 20px; background: white; border-bottom: 1px solid #e0e3e8; justify-content: center; }
+    .nav-pill { padding: 8px 14px; border-radius: 20px; border: 2px solid #e0e3e8; background: white; color: #666; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 44px; display: flex; align-items: center; transition: all 0.2s; white-space: nowrap; }
+    .nav-pill.active { background: #141c2c; color: white; border-color: #141c2c; }
+    .nav-pill.done { border-color: #27ae60; color: #27ae60; }
+    .nav-pill.done::after { content: ' ✓'; }
+    main { max-width: 800px; margin: 0 auto; padding: 0 0 40px; }
+    .section-card { display: none; background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .section-card.active { display: block; }
+    .section-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .section-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .section-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .section-body { padding: 24px; }
+    .info-block { background: #f0f4f8; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+    .info-block h3 { color: #141c2c; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .info-block ul { padding-left: 20px; }
+    .info-block ul li { margin-bottom: 6px; font-size: 15px; }
+    .alert-block { background: #fff3cd; border: 2px solid #ffc107; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .alert-block h3 { color: #856404; margin-bottom: 8px; }
+    .alert-block p { color: #533f03; font-size: 15px; }
+    .success-block { background: #d4edda; border: 2px solid #27ae60; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .success-block h3 { color: #155724; margin-bottom: 8px; }
+    .success-block p { color: #155724; font-size: 15px; }
+    .danger-block { background: #f8d7da; border: 2px solid #c0392b; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .danger-block h3 { color: #721c24; margin-bottom: 8px; }
+    .danger-block p { color: #721c24; font-size: 15px; }
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 16px; }
+    .pipeline-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 0; border-bottom: 1px solid #e0e3e8; }
+    .pipeline-step:last-child { border-bottom: none; }
+    .step-num { background: #141c2c; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; flex-shrink: 0; }
+    .step-content { flex: 1; }
+    .step-status { font-weight: 700; color: #141c2c; font-size: 15px; }
+    .step-desc { font-size: 14px; color: #555; margin-top: 2px; }
+    .framework-box { background: #e8f4f8; border-left: 4px solid #141c2c; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+    .framework-box h4 { color: #141c2c; font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .framework-box p { font-size: 14px; color: #555; line-height: 1.5; }
+    .medical-terms { background: #f8f9fa; border: 2px solid #6c757d; border-radius: 10px; padding: 20px; margin: 16px 0; }
+    .medical-terms h3 { color: #495057; font-size: 18px; margin-bottom: 16px; text-align: center; }
+    .term-group { margin-bottom: 16px; }
+    .term-group h4 { color: #141c2c; font-size: 16px; margin-bottom: 8px; border-bottom: 1px solid #dee2e6; padding-bottom: 4px; }
+    .term-item { display: flex; margin-bottom: 8px; }
+    .term-name { font-weight: 700; color: #495057; min-width: 100px; }
+    .term-definition { flex: 1; color: #6c757d; }
+    .record-analysis { background: #e3f2fd; border: 2px solid #2196f3; border-radius: 10px; padding: 20px; margin: 16px 0; }
+    .record-analysis h3 { color: #0d47a1; font-size: 18px; margin-bottom: 16px; text-align: center; }
+    .analysis-step { background: white; border-radius: 8px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #2196f3; }
+    .analysis-step:last-child { margin-bottom: 0; }
+    .analysis-step h4 { color: #0d47a1; font-size: 15px; margin-bottom: 8px; }
+    .analysis-step p { font-size: 14px; color: #424242; }
+    .tagline-block { background: #141c2c; color: white; border-radius: 10px; padding: 20px; text-align: center; margin-top: 8px; }
+    .tagline-block p { font-size: clamp(15px, 3.5vw, 18px); font-weight: 600; line-height: 1.4; }
+    .tagline-block .highlight { color: #4fc3f7; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; border: none; min-height: 48px; transition: opacity 0.2s, transform 0.1s; text-decoration: none; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: #141c2c; color: white; width: 100%; }
+    .btn-outline { background: white; color: #141c2c; border: 2px solid #141c2c; }
+    .btn-success { background: #27ae60; color: white; width: 100%; }
+    .section-footer { padding: 16px 24px 24px; border-top: 1px solid #f0f0f0; display: flex; gap: 10px; flex-wrap: wrap; }
+    .section-footer .btn { flex: 1; min-width: 120px; }
+    .quiz-header { background: #141c2c; color: white; padding: 20px 24px; }
+    .quiz-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .quiz-header h2 { font-size: clamp(16px, 4vw, 22px); font-weight: 700; }
+    .quiz-body { padding: 20px 24px; }
+    .question-block { display: none; margin-bottom: 20px; }
+    .question-block.active { display: block; }
+    .q-counter { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 600; letter-spacing: 0.5px; }
+    .q-text { font-size: clamp(15px, 3.5vw, 17px); font-weight: 600; color: #141c2c; margin-bottom: 16px; line-height: 1.4; }
+    .options { display: flex; flex-direction: column; gap: 10px; }
+    .option-btn { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 2px solid #e0e3e8; border-radius: 10px; background: white; cursor: pointer; font-size: 15px; text-align: left; min-height: 52px; transition: all 0.2s; width: 100%; }
+    .option-btn:hover { border-color: #141c2c; background: #f0f4f8; }
+    .option-btn.correct { border-color: #27ae60; background: #d4edda; color: #155724; }
+    .option-btn.incorrect { border-color: #c0392b; background: #f8d7da; color: #721c24; }
+    .option-btn:disabled { cursor: not-allowed; }
+    .option-letter { background: #232e54; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .option-btn.correct .option-letter { background: #27ae60; }
+    .option-btn.incorrect .option-letter { background: #c0392b; }
+    .feedback { display: none; padding: 12px 16px; border-radius: 8px; margin-top: 12px; font-size: 14px; font-weight: 500; }
+    .feedback.show { display: block; }
+    .feedback.correct { background: #d4edda; color: #155724; }
+    .feedback.incorrect { background: #f8d7da; color: #721c24; }
+    .quiz-nav { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+    .quiz-nav .btn { flex: 1; min-width: 120px; }
+    #results-section { display: none; }
+    #results-section.active { display: block; }
+    .results-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .results-header { padding: 30px 24px; text-align: center; }
+    .results-header.pass { background: linear-gradient(135deg, #27ae60, #1e8449); color: white; }
+    .results-header.fail { background: linear-gradient(135deg, #c0392b, #922b21); color: white; }
+    .results-score { font-size: clamp(48px, 12vw, 72px); font-weight: 900; line-height: 1; }
+    .results-label { font-size: 16px; margin-top: 8px; opacity: 0.9; }
+    .results-status { font-size: clamp(20px, 5vw, 28px); font-weight: 700; margin-top: 12px; }
+    .results-body { padding: 24px; }
+    .results-breakdown { margin-bottom: 20px; }
+    .breakdown-item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+    .dot.correct { background: #27ae60; }
+    .dot.incorrect { background: #c0392b; }
+    #feedback-section { display: none; }
+    .fb-card { background: white; margin: 20px 16px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden; }
+    .fb-header { background: #232e54; color: white; padding: 20px 24px; }
+    .fb-header .section-num { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #aab4c8; margin-bottom: 4px; }
+    .fb-header h2 { font-size: clamp(16px,4vw,22px); font-weight: 700; }
+    .fb-body { padding: 24px; }
+    .fb-q { margin-bottom: 20px; }
+    .fb-q label { font-weight: 600; color: #141c2c; display: block; margin-bottom: 8px; font-size: 15px; }
+    .fb-q textarea { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 10px; font-size: 15px; min-height: 70px; resize: vertical; font-family: inherit; }
+    .fb-q textarea:focus { outline: none; border-color: #141c2c; }
+    .fb-q select { width: 100%; border: 2px solid #e0e3e8; border-radius: 8px; padding: 12px; font-size: 15px; background: white; font-family: inherit; }
+    .fb-q select:focus { outline: none; border-color: #141c2c; }
+    .star-row { display: flex; gap: 10px; font-size: 36px; }
+    .star { cursor: pointer; color: #ddd; transition: color 0.15s; line-height: 1; }
+    .star.lit { color: #f39c12; }
+    #certificate { display: none; background: white; margin: 0 16px 20px; border-radius: 12px; border: 3px solid #141c2c; padding: 30px 20px; text-align: center; }
+    #certificate.show { display: block; }
+    .cert-logo { font-size: 13px; font-weight: 800; letter-spacing: 3px; color: #141c2c; text-transform: uppercase; margin-bottom: 6px; }
+    .cert-firm { font-size: 11px; color: #888; letter-spacing: 1px; margin-bottom: 20px; }
+    .cert-title { font-size: clamp(18px, 5vw, 26px); font-weight: 700; color: #141c2c; margin-bottom: 8px; }
+    .cert-subtitle { color: #666; font-size: 14px; margin-bottom: 20px; }
+    .cert-name-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+    .cert-name { font-size: clamp(20px, 5vw, 28px); font-weight: 700; color: #141c2c; border-bottom: 2px solid #141c2c; display: inline-block; padding: 0 20px 4px; margin: 6px 0 16px; min-width: 60%; }
+    .cert-module { background: #f0f4f8; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; font-size: 14px; }
+    .cert-module strong { color: #141c2c; }
+    .cert-score-badge { display: inline-block; background: #27ae60; color: white; font-size: 18px; font-weight: 700; padding: 8px 24px; border-radius: 30px; margin-bottom: 16px; }
+    .cert-date { font-size: 13px; color: #888; }
+    .cert-sig { margin-top: 20px; border-top: 1px solid #e0e3e8; padding-top: 16px; }
+    .cert-sig-line { border-bottom: 1px solid #333; width: 60%; margin: 0 auto 4px; height: 24px; }
+    .cert-sig-label { font-size: 11px; color: #888; letter-spacing: 0.5px; }
+    .print-btn { margin-top: 16px; }
+    @media print {
+      header, .progress-wrap, .section-nav, .section-card, #quiz-section, .print-btn, .results-body .btn, #feedback-section { display: none !important; }
+      #certificate { display: block !important; margin: 0; border: 3px solid #141c2c; box-shadow: none; }
+      body { background: white; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="day-badge">Day 6 of 7</div>
+  <h1>Medical Records Deep Dive</h1>
+  <p>Gunn Law Group — Legal Assistant Training</p>
+</header>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span>Your Progress</span>
+    <span id="progress-text">Section 1 of 5</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<nav class="section-nav" role="navigation" aria-label="Module sections">
+  <button class="nav-pill active" data-target="0" onclick="goToSection(0)">1. Reading Records</button>
+  <button class="nav-pill" data-target="1" onclick="goToSection(1)">2. Case Value</button>
+  <button class="nav-pill" data-target="2" onclick="goToSection(2)">3. Reptile Evidence</button>
+  <button class="nav-pill" data-target="3" onclick="goToSection(3)">4. Terminology</button>
+  <button class="nav-pill" data-target="4" onclick="goToSection(4)">5. Client Communication</button>
+  <button class="nav-pill" data-target="5" onclick="goToSection(5)">📝 Quiz</button>
+</nav>
+
+<main>
+
+  <!-- SECTION 1: Reading Medical Records -->
+  <div class="section-card active" id="section-0">
+    <div class="section-header">
+      <div class="section-num">Section 1</div>
+      <h2>How to READ Medical Records (Not Just Collect Them)</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Essential Lawyering: Fact Analysis</h4>
+        <p><strong>Reading medical records is fact analysis, not data entry.</strong> You're looking for patterns, inconsistencies, treatment gaps, and evidence that supports or undermines the case. The goal is to understand the medical story, not just file the documents.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>📋 What to Look for When Records Arrive</h3>
+        <ul>
+          <li><strong>Treatment timeline</strong> — Does it start immediately after the accident? Any unexplained gaps?</li>
+          <li><strong>Mechanism of injury</strong> — How does the doctor describe what happened to the client's body?</li>
+          <li><strong>Diagnosis consistency</strong> — Do all providers agree on the injuries, or are there conflicts?</li>
+          <li><strong>Treatment progression</strong> — Is the client getting better, worse, or plateauing?</li>
+          <li><strong>Objective findings</strong> — X-rays, MRIs, physical exam findings vs. subjective complaints</li>
+          <li><strong>Discharge status</strong> — Did the client complete treatment, or did they stop coming?</li>
+        </ul>
+      </div>
+
+      <div class="record-analysis">
+        <h3>🔍 GLG Medical Record Analysis System</h3>
+
+        <div class="analysis-step">
+          <h4>Step 1: Chronological Review</h4>
+          <p>Arrange all records by date, starting with the day of the accident. Create a timeline showing: ER visit → first follow-up → specialist referrals → treatment progression → final discharge or last visit.</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 2: Provider Cross-Reference</h4>
+          <p>Compare what different providers say about the same injuries. If the ER doctor says "minor cervical strain" but the chiropractor documents "severe subluxations," that inconsistency needs explanation.</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 3: Treatment Gap Analysis</h4>
+          <p>Identify any periods where the client wasn't treating. Look for reasons: insurance issues, feeling better, financial constraints, or non-compliance. Document gaps and explanations in CasePeer.</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 4: Flag Red Flags</h4>
+          <p>Pre-existing conditions mentioned, conflicting injury descriptions, missed appointments, discharged for non-compliance, or any provider notes suggesting malingering or exaggeration.</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 5: Summarize for the Demand</h4>
+          <p>Create a 1-page medical summary for the CM: timeline, primary injuries, treatment received, current status, any issues to address. This becomes the foundation of the demand letter.</p>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>E-Myth: Systematize the Analysis</h4>
+        <p><strong>Medical record review must be systematic, not random.</strong> Follow the same 5-step process for every case so nothing gets missed. The analysis should be thorough enough that any GLG team member could pick up the file and understand the medical story immediately.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Common Mistakes in Record Reading</h3>
+        <p>Don't just check "records received" and move on. Spending 20 minutes analyzing the medical story can identify issues early, prevent problems at settlement, and ensure the demand letter accurately reflects the medical evidence.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-primary" onclick="goToSection(1)">Next: Case Value Impact →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Records and Case Value -->
+  <div class="section-card" id="section-1">
+    <div class="section-header">
+      <div class="section-num">Section 2</div>
+      <h2>What Records Matter Most for Case Value</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Essential Lawyering: Evidence Hierarchy</h4>
+        <p><strong>Not all medical records are equal.</strong> Objective findings (MRI, X-ray, EMG) carry more weight than subjective complaints. Specialist reports matter more than urgent care visits. Emergency room records immediately after the accident are crucial for causation.</p>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">🚨</div>
+          <div class="step-content">
+            <div class="step-status">Emergency Room Records — Highest Priority</div>
+            <div class="step-desc">ER records from the day of the accident establish causation and document the initial injury complaints. These are often the most important records for proving the accident caused the injuries.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🔬</div>
+          <div class="step-content">
+            <div class="step-status">Diagnostic Imaging — Objective Evidence</div>
+            <div class="step-desc">X-rays, MRIs, CT scans provide objective proof of injuries that can't be disputed. Normal imaging doesn't mean no injury, but abnormal findings strongly support the case.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">👨‍⚕️</div>
+          <div class="step-content">
+            <div class="step-status">Specialist Reports — Expert Opinions</div>
+            <div class="step-desc">Orthopedic surgeons, neurologists, pain management doctors carry more weight than general practitioners. Their diagnosis and treatment recommendations justify higher case values.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">⚡</div>
+          <div class="step-content">
+            <div class="step-status">Diagnostic Tests — Functional Evidence</div>
+            <div class="step-desc">EMG (nerve conduction), bone scans, discograms show functional damage that supports ongoing pain complaints and permanent injury claims.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">💉</div>
+          <div class="step-content">
+            <div class="step-status">Injection Procedures — Treatment Intensity</div>
+            <div class="step-desc">Epidural steroid injections, trigger point injections, and other pain procedures document severe, ongoing symptoms that justify higher settlements.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h3>💰 Case Value Indicators to Flag</h3>
+        <ul>
+          <li><strong>Surgery recommended or performed</strong> — Immediately increases case value significantly</li>
+          <li><strong>Permanent restrictions</strong> — Work limitations, weight restrictions, activity limitations</li>
+          <li><strong>Chronic pain management</strong> — Long-term pain clinic treatment indicates permanent injury</li>
+          <li><strong>Cognitive issues</strong> — Concussion symptoms, memory problems, concentration difficulties</li>
+          <li><strong>Multiple body systems affected</strong> — Neck + back + headaches = more complex injury</li>
+          <li><strong>Failed conservative treatment</strong> — When PT, chiropractic, medication don't resolve symptoms</li>
+        </ul>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Building the Medical Narrative</h3>
+        <p>Strong cases tell a clear medical story: client was healthy → accident occurred → immediate symptoms developed → treatment was necessary and appropriate → injuries caused ongoing problems → future treatment may be needed. Gaps or inconsistencies in this narrative weaken case value.</p>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 Case Value Killers to Watch For</h3>
+        <p>Pre-existing conditions with similar symptoms, large treatment gaps, missed appointments, discharged for non-compliance, providers noting malingering or exaggeration, client working full-time while claiming disability, or inconsistent symptom complaints across providers.</p>
+      </div>
+
+      <div class="framework-box">
+        <h4>Lawyer Negotiation: Evidence Preparation</h4>
+        <p><strong>Medical record analysis prepares for settlement negotiation.</strong> Identify the strongest medical evidence first, understand potential weaknesses, and organize the medical story in a way that supports maximum case value. The adjuster will scrutinize the same records — be prepared.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(0)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(2)">Next: Reptile Evidence →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Reptile Theory Application -->
+  <div class="section-card" id="section-2">
+    <div class="section-header">
+      <div class="section-num">Section 3</div>
+      <h2>How Medical Evidence Supports Safety Rule Violations</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Reptile Theory: Medical Evidence as Community Protection</h4>
+        <p><strong>Medical records don't just show injuries — they show the danger to the community.</strong> When medical evidence demonstrates that the defendant's conduct could have seriously injured anyone, it activates the jury's protective instincts and justifies full compensation.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>⚖️ From Medical Findings to Safety Rules</h3>
+        <ul>
+          <li><strong>Mechanism of injury</strong> — How the crash force moved through the client's body applies to anyone in that situation</li>
+          <li><strong>Injury severity</strong> — If this client suffered herniated discs, anyone could have suffered the same or worse</li>
+          <li><strong>Treatment necessity</strong> — The medical care required shows the real consequences of the defendant's violation</li>
+          <li><strong>Recovery timeline</strong> — How long healing took demonstrates the true impact on a person's life</li>
+          <li><strong>Ongoing effects</strong> — Permanent restrictions show lifelong consequences of momentary negligence</li>
+        </ul>
+      </div>
+
+      <div class="record-analysis">
+        <h3>🛡️ Reptile Medical Analysis Framework</h3>
+
+        <div class="analysis-step">
+          <h4>Step 1: Identify the Safety Rule</h4>
+          <p>What specific safety rule did the defendant violate? "A driver must maintain a safe following distance to prevent rear-end collisions." The medical records show what happens when this rule is broken.</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 2: Document the Mechanism of Harm</h4>
+          <p>Use medical records to explain exactly how the safety rule violation caused injury. "The impact forced the client's head forward and back, stretching ligaments beyond their normal range, causing permanent damage."</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 3: Show Community Risk</h4>
+          <p>Frame the injury as something that could happen to anyone. "These same forces could have injured any occupant — a child, an elderly person, a pregnant woman — with potentially catastrophic results."</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 4: Demonstrate Real Consequences</h4>
+          <p>Medical records show the actual cost of rule-breaking. "The medical evidence shows this violation required 6 months of treatment, multiple specialists, and ongoing pain management."</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>Step 5: Establish Need for Enforcement</h4>
+          <p>Full compensation enforces the safety rule for everyone's benefit. "Holding defendants accountable for the full medical consequences protects the entire community from similar violations."</p>
+        </div>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Medical Records That Support Reptile Arguments</h3>
+        <p>ER records documenting immediate pain, imaging showing structural damage, specialist reports recommending ongoing care, and pain management records showing chronic effects all support the argument that safety rule violations have serious, lasting consequences for real people.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ Reptile Application in Demand Letters</h3>
+        <p>When preparing demand letters, frame medical evidence in terms of community safety and rule enforcement. Don't just list injuries — explain how these injuries demonstrate why the safety rule exists and why full compensation serves everyone's interest in safe driving.</p>
+      </div>
+
+      <div class="tagline-block">
+        <p>Medical records tell two stories: <span class="highlight">what happened to this client, and what could happen to anyone.</span></p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(3)">Next: Medical Terminology →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Medical Terminology -->
+  <div class="section-card" id="section-3">
+    <div class="section-header">
+      <div class="section-num">Section 4</div>
+      <h2>Essential Medical Terminology for PI Cases</h2>
+    </div>
+    <div class="section-body">
+      <div class="info-block">
+        <h3>📚 GLG Medical References</h3>
+        <ul>
+          <li><strong>Medical_Terminology_Guide.docx</strong> — Located at /glg/training/ — Comprehensive terminology reference</li>
+          <li><strong>Medical_Provider_Specialty_Reference.docx</strong> — Located at /glg/training/ — Provider types and specialties</li>
+          <li>Both documents are essential references for understanding medical records and communicating with clients</li>
+        </ul>
+      </div>
+
+      <div class="medical-terms">
+        <h3>🏥 Common PI Medical Terms</h3>
+
+        <div class="term-group">
+          <h4>Spine & Neck Injuries</h4>
+          <div class="term-item">
+            <div class="term-name">Cervical:</div>
+            <div class="term-definition">Neck area of the spine (C1-C7 vertebrae)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Lumbar:</div>
+            <div class="term-definition">Lower back area of the spine (L1-L5 vertebrae)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Herniation:</div>
+            <div class="term-definition">Disc material pushing outside its normal position</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Subluxation:</div>
+            <div class="term-definition">Partial dislocation of vertebrae (chiropractic term)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Stenosis:</div>
+            <div class="term-definition">Narrowing of the spinal canal causing nerve compression</div>
+          </div>
+        </div>
+
+        <div class="term-group">
+          <h4>Diagnostic Terms</h4>
+          <div class="term-item">
+            <div class="term-name">Acute:</div>
+            <div class="term-definition">Recent onset, severe symptoms</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Chronic:</div>
+            <div class="term-definition">Long-lasting, ongoing symptoms (usually 3+ months)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Etiology:</div>
+            <div class="term-definition">The cause or origin of the condition</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Prognosis:</div>
+            <div class="term-definition">Expected outcome or recovery timeline</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Subjective:</div>
+            <div class="term-definition">Patient-reported symptoms (pain, stiffness, etc.)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Objective:</div>
+            <div class="term-definition">Measurable findings (swelling, reduced range of motion)</div>
+          </div>
+        </div>
+
+        <div class="term-group">
+          <h4>Treatment Terms</h4>
+          <div class="term-item">
+            <div class="term-name">Conservative:</div>
+            <div class="term-definition">Non-surgical treatment (PT, chiropractic, medication)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Modalities:</div>
+            <div class="term-definition">Treatment methods (heat, ice, ultrasound, electrical stimulation)</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">MMI:</div>
+            <div class="term-definition">Maximum Medical Improvement — point where condition won't improve further</div>
+          </div>
+          <div class="term-item">
+            <div class="term-name">Palliative:</div>
+            <div class="term-definition">Treatment for symptom relief, not cure</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Client-Centered Communication</h4>
+        <p><strong>Always translate medical terminology for clients.</strong> Instead of "cervical subluxation with radiculopathy," explain "neck misalignment causing nerve pain down the arm." Clients need to understand their own medical condition to make informed decisions about treatment and settlement.</p>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Building Your Medical Vocabulary</h3>
+        <p>Keep the GLG Medical_Terminology_Guide.docx handy when reviewing records. Look up unfamiliar terms immediately and add them to your personal reference. The more medical language you understand, the better you can analyze records and communicate with clients.</p>
+      </div>
+
+      <div class="alert-block">
+        <h3>⚠️ When to Ask for Clarification</h3>
+        <p>If you encounter unfamiliar terms in medical records or don't understand a diagnosis, ask the CM immediately. Don't guess about medical terminology — accuracy matters for case development and client communication.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goToSection(4)">Next: Client Communication →</button>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Client Communication -->
+  <div class="section-card" id="section-4">
+    <div class="section-header">
+      <div class="section-num">Section 5</div>
+      <h2>Explaining Medical Findings to Clients in Plain Language</h2>
+    </div>
+    <div class="section-body">
+      <div class="framework-box">
+        <h4>Client-Centered Law Firm: Clarity Over Complexity</h4>
+        <p><strong>Clients need to understand their own medical situation to make informed decisions.</strong> Your job is to translate medical jargon into plain English that helps clients understand what happened, what treatment is needed, and what the long-term outlook might be.</p>
+      </div>
+
+      <div class="info-block">
+        <h3>🗣️ Translation Techniques</h3>
+        <ul>
+          <li><strong>Use everyday analogies</strong> — "The disc is like a jelly donut. When it herniates, the jelly squeezes out and presses on nerves."</li>
+          <li><strong>Explain cause and effect</strong> — "The accident forced your neck beyond its normal range, stretching ligaments that hold vertebrae in place."</li>
+          <li><strong>Describe location specifically</strong> — "C5-C6 means the 5th and 6th vertebrae in your neck, right where it curves."</li>
+          <li><strong>Connect symptoms to findings</strong> — "The MRI shows disc herniation at L4-L5, which explains the pain going down your left leg."</li>
+          <li><strong>Discuss treatment rationale</strong> — "The doctor wants to try steroid injections to reduce swelling around the nerve."</li>
+        </ul>
+      </div>
+
+      <div class="pipeline">
+        <div class="pipeline-step">
+          <div class="step-num">📋</div>
+          <div class="step-content">
+            <div class="step-status">Prepare Before the Call</div>
+            <div class="step-desc">Review the medical records, understand the diagnosis, and prepare plain-language explanations. Don't try to explain medical findings on the fly during client calls.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">🎯</div>
+          <div class="step-content">
+            <div class="step-status">Start with the Big Picture</div>
+            <div class="step-desc">"The MRI shows the accident caused two problems in your lower back. Let me explain what we found and what it means for your treatment."</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">💬</div>
+          <div class="step-content">
+            <div class="step-status">Check for Understanding</div>
+            <div class="step-desc">"Does that make sense so far?" "Do you have questions about what the doctor found?" Don't assume they understand — confirm it.</div>
+          </div>
+        </div>
+        <div class="pipeline-step">
+          <div class="step-num">📝</div>
+          <div class="step-content">
+            <div class="step-status">Document the Conversation</div>
+            <div class="step-desc">Log in CasePeer what you explained and what questions the client asked. This helps with future calls and shows client was informed about their medical situation.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="framework-box">
+        <h4>Radical Candor: Care Personally + Challenge Directly</h4>
+        <p><strong>Be honest about medical findings, both good and bad.</strong> If imaging is normal, don't oversell the findings. If there are concerning results, don't minimize them. Clients need accurate information to make informed decisions about treatment and settlement.</p>
+      </div>
+
+      <div class="record-analysis">
+        <h3>💬 Sample Client Explanations</h3>
+
+        <div class="analysis-step">
+          <h4>"Herniated Disc" Translation</h4>
+          <p>"The MRI shows one of the cushions between your vertebrae — we call it a disc — got damaged in the accident. Part of the disc material is now pressing on a nerve, which is why you feel pain shooting down your leg."</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>"Cervical Strain" Translation</h4>
+          <p>"The muscles and ligaments in your neck got stretched beyond their normal limits during the crash. Think of it like pulling a rubber band too far — it gets injured and takes time to heal properly."</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>"Chronic Pain" Translation</h4>
+          <p>"The doctor is saying your pain has lasted longer than the typical healing time. This suggests the accident caused changes that may need ongoing management rather than just time to heal."</p>
+        </div>
+
+        <div class="analysis-step">
+          <h4>"Conservative Treatment" Translation</h4>
+          <p>"Before considering surgery, the doctor wants to try non-surgical treatments first — physical therapy, medication, maybe injections. Many people improve with these approaches."</p>
+        </div>
+      </div>
+
+      <div class="success-block">
+        <h3>✅ Building Client Confidence</h3>
+        <p>When clients understand their medical situation, they feel more in control and make better decisions about treatment. Clear explanations also prepare them for deposition questions about their injuries and treatment.</p>
+      </div>
+
+      <div class="danger-block">
+        <h3>🚨 What Not to Do</h3>
+        <p>Never diagnose, predict outcomes, or give medical advice. Explain what the records show, not what it means for their future. "The doctor will discuss treatment options" not "You'll probably need surgery." Stay in your lane — legal assistance, not medical guidance.</p>
+      </div>
+    </div>
+    <div class="section-footer">
+      <button class="btn btn-outline" onclick="goToSection(3)">← Back</button>
+      <button class="btn btn-success" onclick="startQuiz()">📝 Start Quiz →</button>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="section-card" id="quiz-section">
+    <div class="quiz-header">
+      <div class="section-num">Knowledge Check</div>
+      <h2>Quiz — 10 Questions</h2>
+    </div>
+    <div class="quiz-body">
+
+      <div class="question-block active" id="q1">
+        <div class="q-counter">Question 1 of 10</div>
+        <div class="q-text">According to the Essential Lawyering framework, medical record analysis is:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(1,'a',false)"><span class="option-letter">A</span> Data entry to confirm records were received</button>
+          <button class="option-btn" onclick="answer(1,'b',true)"><span class="option-letter">B</span> Fact analysis to understand patterns and evidence</button>
+          <button class="option-btn" onclick="answer(1,'c',false)"><span class="option-letter">C</span> Filing documents in chronological order</button>
+          <button class="option-btn" onclick="answer(1,'d',false)"><span class="option-letter">D</span> Counting the total number of treatment visits</button>
+        </div>
+        <div class="feedback" id="fb1"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next1" style="display:none;" onclick="showQuestion(2)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q2">
+        <div class="q-counter">Question 2 of 10</div>
+        <div class="q-text">Which medical records typically carry the most weight for proving causation?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(2,'a',true)"><span class="option-letter">A</span> Emergency room records from the day of the accident</button>
+          <button class="option-btn" onclick="answer(2,'b',false)"><span class="option-letter">B</span> Physical therapy progress notes</button>
+          <button class="option-btn" onclick="answer(2,'c',false)"><span class="option-letter">C</span> Chiropractic treatment records</button>
+          <button class="option-btn" onclick="answer(2,'d',false)"><span class="option-letter">D</span> Final discharge summaries</button>
+        </div>
+        <div class="feedback" id="fb2"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next2" style="display:none;" onclick="showQuestion(3)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q3">
+        <div class="q-counter">Question 3 of 10</div>
+        <div class="q-text">Treatment gaps in medical records:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(3,'a',false)"><span class="option-letter">A</span> Are normal and don't affect case value</button>
+          <button class="option-btn" onclick="answer(3,'b',true)"><span class="option-letter">B</span> Should be documented and explained in CasePeer</button>
+          <button class="option-btn" onclick="answer(3,'c',false)"><span class="option-letter">C</span> Always indicate the client recovered</button>
+          <button class="option-btn" onclick="answer(3,'d',false)"><span class="option-letter">D</span> Should be ignored in demand letters</button>
+        </div>
+        <div class="feedback" id="fb3"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next3" style="display:none;" onclick="showQuestion(4)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q4">
+        <div class="q-counter">Question 4 of 10</div>
+        <div class="q-text">According to Reptile Theory, medical evidence should demonstrate:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(4,'a',false)"><span class="option-letter">A</span> Only the specific client's injuries</button>
+          <button class="option-btn" onclick="answer(4,'b',true)"><span class="option-letter">B</span> How the safety rule violation could have harmed anyone</button>
+          <button class="option-btn" onclick="answer(4,'c',false)"><span class="option-letter">C</span> The defendant's insurance policy limits</button>
+          <button class="option-btn" onclick="answer(4,'d',false)"><span class="option-letter">D</span> The client's pre-accident health status</button>
+        </div>
+        <div class="feedback" id="fb4"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next4" style="display:none;" onclick="showQuestion(5)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q5">
+        <div class="q-counter">Question 5 of 10</div>
+        <div class="q-text">What does "cervical" refer to in medical terminology?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(5,'a',true)"><span class="option-letter">A</span> The neck area of the spine</button>
+          <button class="option-btn" onclick="answer(5,'b',false)"><span class="option-letter">B</span> The lower back region</button>
+          <button class="option-btn" onclick="answer(5,'c',false)"><span class="option-letter">C</span> The middle back area</button>
+          <button class="option-btn" onclick="answer(5,'d',false)"><span class="option-letter">D</span> The tailbone region</button>
+        </div>
+        <div class="feedback" id="fb5"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next5" style="display:none;" onclick="showQuestion(6)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q6">
+        <div class="q-counter">Question 6 of 10</div>
+        <div class="q-text">When explaining medical findings to clients, you should:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(6,'a',false)"><span class="option-letter">A</span> Use exact medical terminology to sound professional</button>
+          <button class="option-btn" onclick="answer(6,'b',true)"><span class="option-letter">B</span> Translate medical terms into plain language with analogies</button>
+          <button class="option-btn" onclick="answer(6,'c',false)"><span class="option-letter">C</span> Predict their medical outcome and prognosis</button>
+          <button class="option-btn" onclick="answer(6,'d',false)"><span class="option-letter">D</span> Give medical advice about treatment options</button>
+        </div>
+        <div class="feedback" id="fb6"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next6" style="display:none;" onclick="showQuestion(7)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q7">
+        <div class="q-counter">Question 7 of 10</div>
+        <div class="q-text">"Chronic" in medical terminology means:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(7,'a',false)"><span class="option-letter">A</span> Severe pain requiring surgery</button>
+          <button class="option-btn" onclick="answer(7,'b',true)"><span class="option-letter">B</span> Long-lasting, ongoing symptoms (usually 3+ months)</button>
+          <button class="option-btn" onclick="answer(7,'c',false)"><span class="option-letter">C</span> Recently developed symptoms</button>
+          <button class="option-btn" onclick="answer(7,'d',false)"><span class="option-letter">D</span> Symptoms that come and go unpredictably</button>
+        </div>
+        <div class="feedback" id="fb7"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next7" style="display:none;" onclick="showQuestion(8)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q8">
+        <div class="q-counter">Question 8 of 10</div>
+        <div class="q-text">Which finding would most likely increase case value?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(8,'a',false)"><span class="option-letter">A</span> Normal X-rays with subjective pain complaints</button>
+          <button class="option-btn" onclick="answer(8,'b',true)"><span class="option-letter">B</span> MRI showing disc herniation requiring surgery</button>
+          <button class="option-btn" onclick="answer(8,'c',false)"><span class="option-letter">C</span> Single urgent care visit for minor strain</button>
+          <button class="option-btn" onclick="answer(8,'d',false)"><span class="option-letter">D</span> Client discharged as fully recovered</button>
+        </div>
+        <div class="feedback" id="fb8"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next8" style="display:none;" onclick="showQuestion(9)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q9">
+        <div class="q-counter">Question 9 of 10</div>
+        <div class="q-text">Where can you find GLG's medical terminology references?</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(9,'a',true)"><span class="option-letter">A</span> Medical_Terminology_Guide.docx at /glg/training/</button>
+          <button class="option-btn" onclick="answer(9,'b',false)"><span class="option-letter">B</span> CasePeer help section</button>
+          <button class="option-btn" onclick="answer(9,'c',false)"><span class="option-letter">C</span> Google search results</button>
+          <button class="option-btn" onclick="answer(9,'d',false)"><span class="option-letter">D</span> Client medical records</button>
+        </div>
+        <div class="feedback" id="fb9"></div>
+        <div class="quiz-nav"><button class="btn btn-primary" id="next9" style="display:none;" onclick="showQuestion(10)">Next Question →</button></div>
+      </div>
+
+      <div class="question-block" id="q10">
+        <div class="q-counter">Question 10 of 10</div>
+        <div class="q-text">The GLG 5-step medical record analysis system includes all EXCEPT:</div>
+        <div class="options">
+          <button class="option-btn" onclick="answer(10,'a',false)"><span class="option-letter">A</span> Chronological review</button>
+          <button class="option-btn" onclick="answer(10,'b',false)"><span class="option-letter">B</span> Provider cross-reference</button>
+          <button class="option-btn" onclick="answer(10,'c',true)"><span class="option-letter">C</span> Insurance pre-authorization review</button>
+          <button class="option-btn" onclick="answer(10,'d',false)"><span class="option-letter">D</span> Treatment gap analysis</button>
+        </div>
+        <div class="feedback" id="fb10"></div>
+        <div class="quiz-nav"><button class="btn btn-success" id="next10" style="display:none;" onclick="showResults()">See My Results →</button></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results-section">
+    <div class="results-card">
+      <div class="results-header" id="results-header">
+        <div class="results-score" id="results-score"></div>
+        <div class="results-label">Score (80% required to pass)</div>
+        <div class="results-status" id="results-status"></div>
+      </div>
+      <div class="results-body">
+        <div class="results-breakdown" id="results-breakdown"></div>
+        <button class="btn btn-outline" onclick="retakeQuiz()" id="retake-btn" style="display:none; width:100%; margin-bottom:12px;">Retake Quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEEDBACK -->
+  <div id="feedback-section">
+    <div class="fb-card">
+      <div class="fb-header">
+        <div class="section-num">Almost Done!</div>
+        <h2>Quick Feedback — 2 Minutes</h2>
+      </div>
+      <div class="fb-body">
+        <div class="fb-q">
+          <label>1. How confident do you feel reading medical records? <span style="color:#c0392b;">*</span></label>
+          <div class="star-row" id="star-row">
+            <span class="star" data-val="1" onclick="setStar(1)">★</span>
+            <span class="star" data-val="2" onclick="setStar(2)">★</span>
+            <span class="star" data-val="3" onclick="setStar(3)">★</span>
+            <span class="star" data-val="4" onclick="setStar(4)">★</span>
+            <span class="star" data-val="5" onclick="setStar(5)">★</span>
+          </div>
+        </div>
+        <div class="fb-q">
+          <label>2. Which medical terminology area needs more focus?</label>
+          <select id="fb-focus">
+            <option value="">— Select area —</option>
+            <option>Spine and neck injuries</option>
+            <option>Diagnostic terms (acute, chronic, etc.)</option>
+            <option>Treatment terminology</option>
+            <option>Body systems and anatomy</option>
+            <option>All areas feel solid</option>
+          </select>
+        </div>
+        <div class="fb-q">
+          <label>3. Most challenging aspect of this module?</label>
+          <textarea id="fb-challenging" placeholder="What was most difficult to understand?"></textarea>
+        </div>
+        <div class="fb-q">
+          <label>4. How will you apply the Reptile framework?</label>
+          <textarea id="fb-application" placeholder="How will you use medical records to show community risk?"></textarea>
+        </div>
+        <button class="btn btn-success" onclick="submitFeedback()">Submit &amp; Get My Certificate →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATE -->
+  <div id="certificate">
+    <div class="cert-logo">Gunn Law Group</div>
+    <div class="cert-firm">Personal Injury · Atlanta, Georgia</div>
+    <div class="cert-title">Certificate of Completion</div>
+    <div class="cert-subtitle">Legal Assistant Training Program — Day 6 of 7</div>
+    <div class="cert-name-label">This certifies that</div>
+    <div class="cert-name" id="cert-name-display">[Employee Name]</div>
+    <div class="cert-module">has successfully completed<br><strong>Module 6: Medical Records Deep Dive</strong><br>Demonstrating proficiency in medical record analysis, terminology, and client communication.</div>
+    <div class="cert-score-badge" id="cert-score-display"></div>
+    <div class="cert-date" id="cert-date"></div>
+    <div class="cert-sig">
+      <div class="cert-sig-line"></div>
+      <div class="cert-sig-label">Harrell Gunn — Managing Attorney, Gunn Law Group</div>
+    </div>
+    <button class="btn btn-primary print-btn" onclick="window.print()">🖨️ Print Certificate</button>
+  </div>
+
+</main>
+
+<script>
+  const totalSections = 5;
+  let currentSection = 0;
+  const sectionsDone = new Set();
+  const answers = {};
+  let lastScore = 0;
+  let starRating = 0;
+
+  const correctAnswers = { 1:'b',2:'a',3:'b',4:'b',5:'a',6:'b',7:'b',8:'b',9:'a',10:'c' };
+  const feedbackText = {
+    1: { correct: "✅ Correct! Essential Lawyering teaches that medical record analysis is fact analysis — looking for patterns, evidence, and the medical story, not just data entry.", incorrect: "❌ Not quite. According to Essential Lawyering, reading medical records is fact analysis to understand patterns and evidence, not just checking that records were received." },
+    2: { correct: "✅ Correct! Emergency room records from the accident date are crucial for establishing causation — they document immediate symptoms and create the timeline.", incorrect: "❌ Incorrect. ER records from the day of the accident are most important for causation because they establish the immediate connection between the accident and injuries." },
+    3: { correct: "✅ Correct! Treatment gaps should be documented and explained in CasePeer. Understanding why gaps occurred helps address potential defense arguments.", incorrect: "❌ Not quite. Treatment gaps should always be documented with explanations in CasePeer. They can affect case value and need to be addressed proactively." },
+    4: { correct: "✅ Correct! Reptile Theory uses medical evidence to show how the defendant's conduct could have harmed anyone, activating community protection instincts.", incorrect: "❌ Incorrect. Reptile Theory frames medical evidence to show community risk — how the safety rule violation could have injured anyone, not just this client." },
+    5: { correct: "✅ Correct! Cervical refers to the neck area of the spine, specifically the C1-C7 vertebrae.", incorrect: "❌ Not quite. Cervical refers to the neck region of the spine (C1-C7 vertebrae). Lumbar is lower back, thoracic is middle back." },
+    6: { correct: "✅ Correct! Client-centered communication means translating medical jargon into plain language using analogies and everyday terms they can understand.", incorrect: "❌ Incorrect. You should translate medical terminology into plain language for clients. Never give medical advice or predictions — explain what the records show, not what it means for their future." },
+    7: { correct: "✅ Correct! Chronic means long-lasting, ongoing symptoms, typically lasting 3 months or more. This is different from acute (recent onset) symptoms.", incorrect: "❌ Not quite. Chronic means long-lasting or ongoing symptoms, usually 3+ months. Acute means recently developed. Chronic doesn't necessarily mean severe." },
+    8: { correct: "✅ Correct! MRI showing disc herniation requiring surgery would significantly increase case value due to the objective findings and treatment necessity.", incorrect: "❌ Incorrect. Objective findings like MRI-confirmed disc herniation requiring surgery substantially increase case value compared to normal imaging with subjective complaints." },
+    9: { correct: "✅ Correct! GLG maintains Medical_Terminology_Guide.docx and Medical_Provider_Specialty_Reference.docx in the /glg/training/ directory.", incorrect: "❌ Not quite. GLG's medical terminology references are located in the /glg/training/ directory — Medical_Terminology_Guide.docx and related documents." },
+    10: { correct: "✅ Correct! Insurance pre-authorization review is not part of GLG's 5-step medical analysis system. The 5 steps focus on medical content analysis, not insurance processing.", incorrect: "❌ Incorrect. Insurance pre-authorization review is not part of the GLG 5-step medical analysis system, which focuses on chronological review, provider cross-reference, gap analysis, red flags, and demand summary." }
+  };
+
+  function goToSection(idx) {
+    document.querySelectorAll('.section-card').forEach(el => el.classList.remove('active'));
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('feedback-section').style.display = 'none';
+    document.getElementById('certificate').classList.remove('show');
+    if (idx === 5) {
+      document.getElementById('quiz-section').classList.add('active');
+      updateProgress(5, false);
+    } else {
+      document.getElementById('section-' + idx).classList.add('active');
+      currentSection = idx;
+      sectionsDone.add(idx);
+      updateNavPills();
+      updateProgress(idx, false);
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function startQuiz() {
+    for (let i = 0; i < totalSections; i++) sectionsDone.add(i);
+    updateNavPills();
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function resetQuizUI() {
+    document.querySelectorAll('.question-block').forEach((el, i) => { el.classList.toggle('active', i === 0); });
+    document.querySelectorAll('.option-btn').forEach(btn => { btn.disabled = false; btn.classList.remove('correct','incorrect'); });
+    document.querySelectorAll('.feedback').forEach(el => { el.classList.remove('show','correct','incorrect'); el.textContent = ''; });
+    for (let i = 1; i <= 10; i++) { const nb = document.getElementById('next' + i); if (nb) nb.style.display = 'none'; }
+  }
+
+  function answer(qNum, chosen, isCorrect) {
+    if (answers[qNum] !== undefined) return;
+    answers[qNum] = isCorrect;
+    const qBlock = document.getElementById('q' + qNum);
+    const buttons = qBlock.querySelectorAll('.option-btn');
+    const fb = document.getElementById('fb' + qNum);
+    const correct = correctAnswers[qNum];
+    buttons.forEach(btn => { btn.disabled = true; const letter = btn.querySelector('.option-letter').textContent.toLowerCase(); if (letter === correct) btn.classList.add('correct'); });
+    const clickedBtn = Array.from(buttons).find(btn => btn.querySelector('.option-letter').textContent.toLowerCase() === chosen);
+    if (!isCorrect && clickedBtn) clickedBtn.classList.add('incorrect');
+    fb.textContent = isCorrect ? feedbackText[qNum].correct : feedbackText[qNum].incorrect;
+    fb.className = 'feedback show ' + (isCorrect ? 'correct' : 'incorrect');
+    document.getElementById('next' + qNum).style.display = 'inline-flex';
+  }
+
+  function showQuestion(num) {
+    document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+    document.getElementById('q' + num).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showResults() {
+    document.getElementById('quiz-section').classList.remove('active');
+    let correct = 0;
+    const qTexts = ["Medical analysis is?","Most important for causation?","Treatment gaps should be?","Reptile evidence shows?","Cervical refers to?","Explaining to clients?","Chronic means?","Increases case value?","GLG terminology reference?","NOT in 5-step analysis?"];
+    Object.values(answers).forEach(v => { if (v) correct++; });
+    const pct = Math.round((correct / 10) * 100);
+    const passed = pct >= 80;
+    lastScore = pct;
+    const resultsSection = document.getElementById('results-section');
+    resultsSection.classList.add('active');
+    document.getElementById('results-score').textContent = pct + '%';
+    document.getElementById('results-status').textContent = passed ? '🎉 You Passed!' : '📚 Need More Review';
+    document.getElementById('results-header').className = 'results-header ' + (passed ? 'pass' : 'fail');
+    let html = '';
+    for (let i = 1; i <= 10; i++) { const ok = answers[i]; html += `<div class="breakdown-item"><div class="dot ${ok?'correct':'incorrect'}"></div>Q${i}: ${qTexts[i-1]} <strong>${ok?'✓':'✗'}</strong></div>`; }
+    document.getElementById('results-breakdown').innerHTML = html;
+    if (!passed) { document.getElementById('retake-btn').style.display = 'block'; }
+    updateProgress(5, passed);
+    updateNavPills();
+    if (passed) { document.getElementById('feedback-section').style.display = 'block'; }
+    window.scrollTo(0, 0);
+  }
+
+  function setStar(val) {
+    starRating = val;
+    document.querySelectorAll('.star').forEach(s => { s.classList.toggle('lit', parseInt(s.dataset.val) <= val); });
+  }
+
+  function submitFeedback() {
+    if (!starRating) { alert('Please rate your confidence level (1–5 stars).'); return; }
+    document.getElementById('feedback-section').style.display = 'none';
+    showCertificate(lastScore);
+  }
+
+  function showCertificate(pct) {
+    const cert = document.getElementById('certificate');
+    cert.classList.add('show');
+    document.getElementById('cert-score-display').textContent = pct + '% — Passing Score';
+    const now = new Date();
+    document.getElementById('cert-date').textContent = 'Completed: ' + now.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+    window.scrollTo(0, cert.offsetTop - 20);
+  }
+
+  function retakeQuiz() {
+    for (let k in answers) delete answers[k];
+    document.getElementById('results-section').classList.remove('active');
+    document.getElementById('certificate').classList.remove('show');
+    document.getElementById('retake-btn').style.display = 'none';
+    document.getElementById('feedback-section').style.display = 'none';
+    goToSection(5);
+    resetQuizUI();
+  }
+
+  function updateProgress(idx, quizPassed) {
+    const fill = document.getElementById('progress-fill');
+    const txt = document.getElementById('progress-text');
+    let pct = 0, label = '';
+    if (idx < 5) { pct = ((idx + 1) / 6) * 100; label = 'Section ' + (idx + 1) + ' of 5'; }
+    else { pct = quizPassed ? 100 : 90; label = quizPassed ? 'Module Complete! ✓' : 'Quiz'; }
+    fill.style.width = pct + '%';
+    txt.textContent = label;
+  }
+
+  function updateNavPills() {
+    document.querySelectorAll('.nav-pill').forEach(pill => {
+      const t = parseInt(pill.dataset.target);
+      pill.classList.remove('active','done');
+      if (t < 5 && sectionsDone.has(t)) pill.classList.add('done');
+    });
+  }
+</script>
+
+</body>
+</html>

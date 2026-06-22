@@ -1,0 +1,1815 @@
+<!--
+═══════════════════════════════════════════════
+COO GATE MANIFEST
+Date: June 10, 2026
+Deliverable: Training Module Day 7 v2 — Coverage Verification Mastery
+References Loaded: 7 files
+  - /glg/training-modules/module-day6-medical-records-v2.html (template)
+  - /glg/training-modules/module-day5-week1-review-v2.html (format reference)
+  - /glg/training/UM_UIM_Coverage_Training_Guide.docx
+  - /glg/training/Coverage_Maximization_Checklist.docx
+  - /glg/training/Case_Timeline_Treatment_Progression.docx
+  - /glg/books/memos/make-it-stick-memo.md (retrieval practice)
+  - /glg/books/memos/art-of-game-design-memo.md (engagement, flow)
+QA Checklist: ✅ PASSED
+  - Forces recall, does not re-teach content
+  - Mixed question types (MC, scenario-based, multi-step)
+  - Progressive difficulty: easy → medium → hard → Boss Challenge
+  - Continuous case thread (Keisha Williams) through Sections 1-5
+  - New complex case (Marcus Thompson) for Boss Challenge
+  - Points + achievement badges + immediate consequence-based feedback
+  - Mobile-first, 44px tap targets, no horizontal scroll
+  - Zero book/framework names in visible output
+  - Base score tracked SEPARATELY from bonus score
+  - No leaderboards — single-player mechanics only
+  - Mandatory feedback form: clarity / difficulty / realism / "name one thing you'd change"
+  - Score tracking: base=200 max, bonus tracked separately (Boss Challenge)
+  - TRACKER_URL + day7 / Coverage Verification Mastery
+  - POST fields: employeeName, moduleId, moduleName, score, maxScore, bonusScore, passedAt
+═══════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Day 7 — Coverage Verification Mastery | Gunn Law Group</title>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
+
+    /* ── HEADER ── */
+    header{background:#141c2c;color:#fff;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#232e54;color:#aab4c8;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;}
+    header p{margin-top:6px;color:#aab4c8;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#232e54;border-radius:10px;}
+    .score-label{color:#aab4c8;font-size:12px;font-weight:600;}
+    .score-value{color:#fff;font-size:22px;font-weight:800;}
+
+    /* ── PROGRESS ── */
+    .progress-wrap{background:#232e54;padding:10px 16px;}
+    .progress-meta{color:#aab4c8;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#141c2c;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#27ae60;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+
+    /* ── NAV PILLS ── */
+    .section-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
+    .nav-pill{padding:8px 12px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+    .nav-pill.active{background:#141c2c;color:#fff;border-color:#141c2c;}
+    .nav-pill.done{border-color:#27ae60;color:#27ae60;}
+    .nav-pill.done::after{content:' ✓';}
+
+    /* ── MAIN / CARDS ── */
+    main{max-width:800px;margin:0 auto;padding:0 0 60px;}
+    .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:hidden;}
+    .section-card.active{display:block;}
+    .section-header{background:#141c2c;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#aab4c8;margin-bottom:4px;}
+    .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
+    .section-subhead{color:#aab4c8;font-size:13px;margin-top:4px;}
+    .section-body{padding:20px;}
+
+    /* ── SCENARIO BOX ── */
+    .scenario{background:linear-gradient(135deg,#232e54 0%,#141c2c 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#aab4c8;margin-bottom:8px;}
+    .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
+    .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
+    .scenario .highlight{color:#f39c12;font-weight:700;}
+    .scenario .urgent{color:#e74c3c;font-weight:700;}
+
+    /* ── INFO BLOCKS ── */
+    .info-block{background:#f0f4f8;border-radius:10px;padding:16px;margin-bottom:14px;}
+    .info-block h4{color:#141c2c;font-size:14px;font-weight:700;margin-bottom:8px;}
+    .info-block p,.info-block li{font-size:14px;color:#444;line-height:1.6;}
+    .info-block ul{padding-left:18px;}
+    .info-block ol{padding-left:18px;}
+
+    /* ── QUESTIONS ── */
+    .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
+    .question-block.answered{border-color:#27ae60;}
+    .question-block.answered-wrong{border-color:#c0392b;}
+    .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
+    .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
+    .options{display:flex;flex-direction:column;gap:10px;}
+    .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
+    .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
+    .option-btn.correct{border-color:#27ae60!important;background:#e8f8ee!important;color:#1a5e30!important;}
+    .option-btn.incorrect{border-color:#c0392b!important;background:#fce8e8!important;color:#7b1a1a!important;}
+    .option-btn.disabled{pointer-events:none;opacity:.75;}
+    .opt-letter{background:#232e54;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-text{flex:1;line-height:1.5;}
+
+    /* ── FEEDBACK ── */
+    .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #27ae60;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #c0392b;color:#721c24;}
+    .feedback-box.show{display:block;}
+
+    /* ── POINTS TOAST ── */
+    .points-toast{position:fixed;top:80px;right:16px;background:#27ae60;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast.show{transform:translateY(0);opacity:1;}
+
+    /* ── SECTION SCORE ── */
+    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;}
+    .section-score .score-display{font-size:32px;font-weight:800;color:#141c2c;}
+    .section-score .score-label{font-size:13px;color:#666;margin-top:2px;}
+
+    /* ── CASE FILE ── */
+    .case-file{background:#fff;border:2px solid #141c2c;border-radius:12px;padding:18px;margin-bottom:20px;}
+    .case-file-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:2px solid #f0f4f8;}
+    .case-file-icon{background:#141c2c;color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+    .case-file-title{font-weight:800;color:#141c2c;font-size:15px;}
+    .case-file-sub{font-size:12px;color:#888;}
+    .case-detail{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f0f4f8;font-size:14px;}
+    .case-detail:last-child{border-bottom:none;}
+    .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
+    .case-val{color:#444;}
+    .case-val .flag{display:inline-block;background:#c0392b;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#27ae60;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+
+    /* ── BOSS CHALLENGE ── */
+    .boss-header{background:linear-gradient(135deg,#c0392b 0%,#922b21 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;}
+    .boss-header .boss-icon{font-size:36px;margin-bottom:8px;}
+    .boss-header h3{font-size:clamp(16px,4vw,20px);font-weight:800;margin-bottom:6px;}
+    .boss-header p{font-size:13px;opacity:.9;}
+    .step-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid #f0f4f8;}
+    .step-item:last-child{border-bottom:none;}
+    .step-num{background:#141c2c;color:#fff;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+    .step-content{flex:1;}
+    .step-q{font-weight:700;color:#141c2c;font-size:14px;margin-bottom:8px;}
+
+    /* ── RESULTS ── */
+    .results-header{padding:28px 20px;text-align:center;color:#fff;border-radius:0;}
+    .results-header.pass{background:linear-gradient(135deg,#27ae60,#1e8449);}
+    .results-header.fail{background:linear-gradient(135deg,#c0392b,#922b21);}
+    .results-grade{font-size:56px;font-weight:900;line-height:1;}
+    .results-label{font-size:16px;margin-top:6px;opacity:.9;}
+    .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
+    .breakdown-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f4f8;font-size:15px;}
+    .breakdown-row:last-child{border-bottom:none;}
+    .breakdown-name{color:#333;font-weight:600;}
+    .breakdown-pts{font-weight:800;color:#141c2c;}
+    .achievement-grid{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0;}
+    .badge{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;font-size:13px;font-weight:700;border:2px solid #e0e3e8;color:#888;background:#f8f9fa;}
+    .badge.earned{border-color:#f39c12;background:#fff8e6;color:#856404;}
+    .badge .badge-icon{font-size:20px;}
+
+    /* ── FEEDBACK FORM ── */
+    .fb-question{margin-bottom:18px;}
+    .fb-question label{display:block;font-weight:700;color:#141c2c;font-size:15px;margin-bottom:8px;}
+    .fb-question select,.fb-question textarea{width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:14px;font-family:inherit;background:#fff;color:#333;-webkit-appearance:none;}
+    .fb-question select:focus,.fb-question textarea:focus{outline:none;border-color:#141c2c;}
+    .fb-question textarea{resize:vertical;min-height:80px;}
+    .fb-rating-row{display:flex;gap:8px;flex-wrap:wrap;}
+    .fb-rating-btn{padding:10px 16px;border:2px solid #e0e3e8;border-radius:8px;background:#fff;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+    .fb-rating-btn.selected{background:#141c2c;color:#fff;border-color:#141c2c;}
+
+    /* ── CERTIFICATE ── */
+    .cert{border:3px solid #141c2c;border-radius:14px;padding:24px;text-align:center;margin-top:20px;background:#fff;}
+    .cert-logo{font-size:28px;margin-bottom:8px;}
+    .cert h3{font-size:18px;font-weight:800;color:#141c2c;margin-bottom:4px;}
+    .cert-name{font-size:22px;font-weight:800;color:#232e54;margin:12px 0 4px;}
+    .cert-details{font-size:13px;color:#666;line-height:1.8;}
+    .cert-achievements{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}
+    .cert-badge{background:#f39c12;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
+
+    /* ── BUTTONS ── */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
+    .btn-primary{background:#141c2c;color:#fff;}
+    .btn-primary:hover{background:#232e54;}
+    .btn-secondary{background:#f0f4f8;color:#141c2c;}
+    .btn-secondary:hover{background:#e0e5ec;}
+    .btn-success{background:#27ae60;color:#fff;}
+    .btn-danger{background:#c0392b;color:#fff;}
+    .btn-warning{background:#f39c12;color:#fff;}
+    .btn-block{width:100%;margin-top:12px;}
+    .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+
+    /* ── CALLOUT ── */
+    .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
+    .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #c0392b;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #27ae60;color:#155724;}
+    .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
+    .callout strong{font-weight:700;}
+
+    /* ── COVERAGE GRID ── */
+    .coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+    .coverage-card{background:#f0f4f8;border-radius:10px;padding:14px;border-left:4px solid #232e54;}
+    .coverage-card h5{font-size:13px;font-weight:800;color:#141c2c;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
+    .coverage-card p{font-size:13px;color:#555;line-height:1.5;}
+    .coverage-card.um{border-left-color:#27ae60;}
+    .coverage-card.medpay{border-left-color:#3498db;}
+    .coverage-card.pip{border-left-color:#9b59b6;}
+    .coverage-card.commercial{border-left-color:#e74c3c;}
+    .coverage-card.stacking{border-left-color:#f39c12;}
+
+    /* ── UTILITIES ── */
+    .text-center{text-align:center;}
+    .mt-4{margin-top:16px;}
+    .mb-4{margin-bottom:16px;}
+    .divider{border:none;border-top:2px solid #f0f4f8;margin:16px 0;}
+    .tag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+    .tag-warn{background:#fff3cd;color:#856404;}
+    .tag-danger{background:#fce8e8;color:#7b1a1a;}
+    .tag-success{background:#d4edda;color:#155724;}
+    .tag-info{background:#d6e8f8;color:#174a7e;}
+
+    @media(max-width:480px){
+      .coverage-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="day-badge">Day 7 · Coverage Verification</div>
+  <h1>Coverage Verification Mastery</h1>
+  <p>Gunn Law Group · Legal Assistant Training</p>
+  <div class="score-bar">
+    <div>
+      <div class="score-label">YOUR SCORE</div>
+      <div class="score-value" id="total-score">0</div>
+    </div>
+    <div>
+      <div class="score-label">POSSIBLE</div>
+      <div class="score-value">200</div>
+    </div>
+    <div>
+      <div class="score-label">BONUS</div>
+      <div class="score-value" id="bonus-score">0</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-meta">
+    <span id="prog-label">Section 1 of 9</span>
+    <span id="prog-pct">0%</span>
+  </div>
+  <div class="progress-bg"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<!-- NAV PILLS -->
+<nav class="section-nav" id="section-nav">
+  <button class="nav-pill active" id="nav-0" onclick="goToSection(0)">1. Intro</button>
+  <button class="nav-pill" id="nav-1" onclick="goToSection(1)">2. Coverage Types</button>
+  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. Verify It</button>
+  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Limits vs. Liability</button>
+  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. UM/UIM Claims</button>
+  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. Stacking</button>
+  <button class="nav-pill" id="nav-6" onclick="goToSection(6)">7. Case Value</button>
+  <button class="nav-pill" id="nav-7" onclick="goToSection(7)">8. Boss</button>
+  <button class="nav-pill" id="nav-8" onclick="goToSection(8)">9. Results</button>
+  <button class="nav-pill" id="nav-9" onclick="goToSection(9)">10. Feedback</button>
+</nav>
+
+<div class="points-toast" id="points-toast"></div>
+
+<main>
+
+<!-- ══════════════════════════════════════════
+     SECTION 0: INTRO
+════════════════════════════════════════════ -->
+<div class="section-card active" id="section-0">
+  <div class="section-header">
+    <div class="section-num">Section 1 · 2 min</div>
+    <h2>The Number That Changes Everything</h2>
+    <div class="section-subhead">Coverage determines what your client can actually recover.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">⚡ Monday Morning · 9:14 AM</div>
+      <h3>The attorney just pulled you aside. Keisha Williams has been a client for four months. Treatment is done. Bills total $47,000. Time to send the demand — except nobody ran coverage verification at intake.</h3>
+      <p>The at-fault driver's adjuster picks up: "Policy limits are $25,000 per person." That's the maximum she can pay. Keisha's medical bills alone are $47,000. She'll walk away with almost nothing after fees — unless there's more coverage out there.</p>
+      <p style="margin-top:10px;">Here's the thing: <span class="highlight">Keisha has a $100,000 UM policy sitting on her own car.</span> Nobody asked. Nobody checked. Four months of opportunity, gone.</p>
+      <p style="margin-top:10px;"><span class="urgent">This module exists so that never happens on your cases.</span></p>
+    </div>
+
+    <div class="info-block">
+      <h4>🎯 What You'll Master Today</h4>
+      <ol>
+        <li>The 6 types of coverage you must check on every case</li>
+        <li>How to verify coverage — dec pages, calls, and databases</li>
+        <li>The difference between limits and liability (they're not the same)</li>
+        <li>When and how to file a UM/UIM claim on a client's own policy</li>
+        <li>Stacking — how multiple policies can multiply recovery</li>
+        <li>Commercial vehicle coverage and why it's different</li>
+        <li>How coverage connects to treatment planning and case value</li>
+        <li>Where everything gets documented in CasePeer</li>
+      </ol>
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>⚠️ This is intake work.</strong> Coverage verification happens at Day 1, not Month 4. By the time you finish today, you'll run through this checklist automatically every time a new case hits your desk.
+    </div>
+
+    <div class="callout callout-info">
+      <strong>📂 Your case thread today:</strong> Keisha Williams. You'll follow her case through every section and build the full coverage picture step by step.
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary btn-block" onclick="goToSection(1)">Let's Go — Start Section 2 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 1: COVERAGE TYPES (40 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-1">
+  <div class="section-header">
+    <div class="section-num">Section 2 · 40 pts available</div>
+    <h2>Know Your Coverage Types</h2>
+    <div class="section-subhead">6 types, every case, no exceptions.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Case Intake</div>
+      <h3>You're opening Keisha's file. A delivery driver ran a red light and T-boned her driver's side door. Moderate injuries. You need to identify every possible coverage source before this case goes anywhere.</h3>
+      <p>The at-fault driver works for a local pizza restaurant. Keisha has her own car insurance. Her husband also has a car. Let's map out the coverage landscape.</p>
+    </div>
+
+    <div class="coverage-grid">
+      <div class="coverage-card">
+        <h5>🛡️ Bodily Injury Liability</h5>
+        <p>The at-fault driver's policy. Pays your client for their injuries. This is what most people think of when they say "the other driver's insurance." Minimum in GA: $25K/$50K.</p>
+      </div>
+      <div class="coverage-card um">
+        <h5>🔰 UM / UIM</h5>
+        <p>Uninsured/Underinsured Motorist. On the CLIENT's own policy. Steps in when at-fault driver has no insurance or not enough. Georgia requires it unless rejected in writing.</p>
+      </div>
+      <div class="coverage-card medpay">
+        <h5>💊 MedPay</h5>
+        <p>Medical Payments Coverage. No-fault — pays regardless of who caused the accident. Available on client's own policy. Covers medical bills up to the limit (typically $1K–$10K).</p>
+      </div>
+      <div class="coverage-card pip">
+        <h5>📄 PIP</h5>
+        <p>Personal Injury Protection. Georgia is NOT a no-fault state — PIP is rare here. But some out-of-state policies include it. Always ask and check the dec page.</p>
+      </div>
+      <div class="coverage-card stacking">
+        <h5>📚 Stacking</h5>
+        <p>When multiple UM/UIM policies apply to the same claim. Household members' policies can stack. Multiple vehicles on one policy may stack. Can dramatically increase recovery.</p>
+      </div>
+      <div class="coverage-card commercial">
+        <h5>🚛 Commercial Policies</h5>
+        <p>If the at-fault driver was working — delivery, rideshare, trucking — their EMPLOYER's commercial policy may apply. Often much higher limits. Separate from the driver's personal policy.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Test yourself — Keisha's coverage landscape:</p>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q-1-1">
+      <div class="q-num">Question 1 of 4 · 10 pts</div>
+      <div class="q-text">The pizza restaurant delivery driver rear-ended Keisha. At the scene, he says his personal car insurance has $25,000 limits. What's the FIRST additional coverage source you should investigate?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">File a PIP claim on Keisha's policy immediately</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">Wait — $25K may be enough once treatment is done</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-1',true,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">Investigate the restaurant's commercial auto policy — the driver was working</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">Check Keisha's MedPay first since it pays regardless of fault</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q-1-2">
+      <div class="q-num">Question 2 of 4 · 10 pts</div>
+      <div class="q-text">Keisha has her own GEICO policy. Which coverage on HER OWN policy would pay her medical bills immediately — regardless of fault — without waiting for the case to settle?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">Bodily Injury Liability</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-2',true,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">MedPay (Medical Payments Coverage)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">UM/UIM — it covers her since she has a policy</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">Comprehensive coverage</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q-1-3">
+      <div class="q-num">Question 3 of 4 · 10 pts</div>
+      <div class="q-text">Keisha's husband lives with her and has his own Progressive policy with UM coverage. Can Keisha potentially access his UM coverage on this claim?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-3',true,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">Yes — household family members' UM policies can stack with Keisha's</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">No — his policy only covers him when he's driving his own car</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">Only if Keisha was in her husband's car at the time</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">Only if his policy is with the same carrier as Keisha's</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block" id="q-1-4">
+      <div class="q-num">Question 4 of 4 · 10 pts</div>
+      <div class="q-text">Georgia law requires insurers to offer UM/UIM coverage to every policyholder. Under what condition is a client allowed to NOT have UM coverage on their own policy?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">A</span><span class="opt-text">If they have full-coverage insurance, UM is not required</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">B</span><span class="opt-text">If the policy was issued more than 5 years ago</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',true,'s1')">
+          <span class="opt-letter">C</span><span class="opt-text">Only if they specifically rejected UM coverage in writing at the time the policy was issued</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">If their policy limits are above $100,000</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-1-4"></div>
+    </div>
+
+    <div class="section-score" id="s1-score" style="display:none;">
+      <div class="score-display" id="s1-score-val">0/40</div>
+      <div class="score-label">Section Score</div>
+    </div>
+
+    <div class="btn-group" id="s1-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(2)">Continue — Section 3: How to Verify Coverage →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 2: VERIFYING COVERAGE (40 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-2">
+  <div class="section-header">
+    <div class="section-num">Section 3 · 40 pts available</div>
+    <h2>How to Verify Coverage</h2>
+    <div class="section-subhead">Dec pages, calls, and databases — your three tools.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Day 1 Investigation</div>
+      <h3>You've mapped out the possible coverage sources. Now you need to confirm what's actually there. The at-fault driver gave you his insurance card. Keisha gave you hers. That's a starting point — not an answer.</h3>
+    </div>
+
+    <div class="info-block">
+      <h4>📄 Tool #1: The Declarations Page (Dec Page)</h4>
+      <p>The dec page is the summary sheet at the front of an insurance policy. It shows:<br>
+      • Named insured(s) and vehicles covered<br>
+      • Coverage types and limits (e.g., BI $100K/$300K, UM $100K, MedPay $5K)<br>
+      • Policy period (is it active?)<br>
+      • Premium paid (confirms coverage is in force)</p>
+      <p style="margin-top:8px;"><strong>Always request the full dec page</strong> — not just a summary from an adjuster. Adjusters sometimes describe coverage incorrectly or incompletely.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>📞 Tool #2: The Claims Call</h4>
+      <p>For the at-fault driver's carrier: Call the insurance company directly, report the claim, and ask for limits verbally. Always follow up in writing. Key questions:<br>
+      • "What are the bodily injury liability limits?"<br>
+      • "Is there an umbrella or commercial policy?"<br>
+      • "Has the at-fault driver made any other claims this policy period?" (affects available limits)<br>
+      • "Is coverage confirmed, or is there an investigation pending?"</p>
+    </div>
+
+    <div class="info-block">
+      <h4>🔍 Tool #3: The NAIC Database & State Insurance Commissioner</h4>
+      <p>If you can't identify the at-fault driver's carrier, or if a carrier claims no policy exists, use:<br>
+      • <strong>NAIC Consumer Insurance Search</strong> (naic.org) — look up licensed carriers in Georgia<br>
+      • <strong>Georgia Office of Insurance & Safety Fire Commissioner</strong> — verify if a carrier is licensed, file complaints for non-disclosure<br>
+      • <strong>ISO (Insurance Services Office)</strong> — used by attorneys to uncover umbrella and excess policies</p>
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>⚠️ The insurance card is NOT enough.</strong> An insurance card only proves the policy existed at one point. You need the dec page to confirm it was active on the date of the accident AND to see actual coverage limits.
+    </div>
+
+    <div class="callout callout-info">
+      <strong>💡 Coverage denied?</strong> Under O.C.G.A. § 33-7-11(b)(1)(D)(iii), if the at-fault driver's insurer formally denies coverage — for any reason — that vehicle is treated as <em>uninsured</em> for UM purposes. Keisha's UM policy kicks in.
+    </div>
+
+    <hr class="divider">
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Verification in practice:</p>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q-2-1">
+      <div class="q-num">Question 1 of 4 · 10 pts</div>
+      <div class="q-text">The delivery driver's adjuster tells you over the phone: "His policy has $100,000 in bodily injury coverage." You're ready to move forward on a big demand. What should you do first?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Trust it — adjusters are required to disclose accurate limits</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',true,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">Request the declarations page in writing to confirm limits before building strategy</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">Log the verbal confirmation in CasePeer and proceed — verbal is sufficient</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Start the demand at $100K since you know the limits</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q-2-2">
+      <div class="q-num">Question 2 of 4 · 10 pts</div>
+      <div class="q-text">You call the pizza restaurant's corporate office to ask about their commercial auto policy. They say "our driver uses his personal vehicle — we have no policy that covers this." What do you do?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Accept it — they would know their own coverage</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">Drop the commercial angle and focus on the personal policy only</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-2',true,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">Flag it for the attorney — employers often have coverage for employees on work errands even without a dedicated commercial fleet policy</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Search for their carrier using NAIC only if they're a large corporation</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q-2-3">
+      <div class="q-num">Question 3 of 4 · 10 pts</div>
+      <div class="q-text">Keisha's GEICO policy dec page shows: BI $100K/$300K, UM $100K (Excess), MedPay $5K, Comprehensive/Collision. The at-fault driver's liability is only $25K. Which of Keisha's coverages is MOST important for her overall recovery?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Bodily Injury Liability — it has the highest limits at $100K</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">MedPay — it pays first and is no-fault</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',true,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">UM (Excess) — because it stacks ON TOP of the $25K at-fault liability, potentially adding $100K to what Keisha can collect</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Comprehensive/Collision — it covers vehicle damage which is the biggest expense</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-3"></div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="question-block" id="q-2-4">
+      <div class="q-num">Question 4 of 4 · 10 pts</div>
+      <div class="q-text">You discover the at-fault delivery driver's personal insurer is denying coverage — claiming the driver was using the vehicle for commercial purposes, which voids his personal policy. How does this affect Keisha's claim?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">A</span><span class="opt-text">Keisha is out of luck — no liability coverage means no recovery</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">She can only pursue the driver personally in civil court</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',true,'s2')">
+          <span class="opt-letter">C</span><span class="opt-text">The vehicle is now treated as uninsured — Keisha's UM policy activates, AND the restaurant's commercial policy may still apply</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Keisha's BI liability coverage will cover her own injuries</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-2-4"></div>
+    </div>
+
+    <div class="section-score" id="s2-score" style="display:none;">
+      <div class="score-display" id="s2-score-val">0/40</div>
+      <div class="score-label">Section Score</div>
+    </div>
+
+    <div class="btn-group" id="s2-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(3)">Continue — Section 4: Limits vs. Liability →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 3: LIMITS vs LIABILITY (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-3">
+  <div class="section-header">
+    <div class="section-num">Section 4 · 30 pts available</div>
+    <h2>Limits vs. Liability — Not the Same Thing</h2>
+    <div class="section-subhead">Two different questions. Both matter. A lot.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Two Questions About Coverage</div>
+      <h3>Knowing the at-fault driver has insurance is just the start. You need to know two separate things: how much can they pay (limits), and can they be held responsible (liability)?</h3>
+    </div>
+
+    <div class="info-block">
+      <h4>💰 Limits — How Much Can Be Paid</h4>
+      <p><strong>Policy limits</strong> are the maximum dollar amount an insurer will pay on a claim. They're stated on the dec page. A "$25,000/$50,000" policy means:<br>
+      • Max $25,000 per injured person per accident<br>
+      • Max $50,000 total for ALL injured people in one accident<br><br>
+      Limits are fixed. You cannot make an insurer pay above their policy limits (unless there's a bad faith claim). Limits drive your strategy — if bills exceed limits, you look for additional coverage.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>⚖️ Liability — Who Is Legally Responsible</h4>
+      <p><strong>Liability</strong> is the legal question: is the at-fault party actually responsible for causing the accident? Even if someone has high limits, an insurer can deny the claim by arguing their insured was NOT at fault.<br><br>
+      Liability status determines:<br>
+      • Whether the insurer will pay at all<br>
+      • How quickly they'll engage in negotiations<br>
+      • Whether you'll need to file suit<br><br>
+      Until liability is accepted — either verbally or in writing — <strong>there is no settlement</strong>. You track liability status separately from limits status.</p>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>🚨 The Trap:</strong> High limits mean nothing if liability is disputed. A driver with $500,000 in coverage who claims the accident was your client's fault will not pay. Always track BOTH: limits confirmed ✓ / liability confirmed ✓ — separately.
+    </div>
+
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">📋</div>
+        <div>
+          <div class="case-file-title">Keisha Williams — Coverage Status Board</div>
+          <div class="case-file-sub">Week 2 update</div>
+        </div>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">At-Fault BI Limits:</span>
+        <span class="case-val">$25,000 <span class="flag-ok">CONFIRMED</span></span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Liability Accepted:</span>
+        <span class="case-val">PENDING <span class="flag">INVESTIGATION OPEN</span></span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Restaurant Commercial:</span>
+        <span class="case-val">Unknown <span class="flag-warn">NEED DEC PAGE</span></span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Keisha UM (Excess):</span>
+        <span class="case-val">$100,000 <span class="flag-ok">CONFIRMED</span></span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Keisha MedPay:</span>
+        <span class="case-val">$5,000 <span class="flag-ok">CONFIRMED</span></span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Husband's UM:</span>
+        <span class="case-val">$50,000 <span class="flag-warn">UNVERIFIED</span></span>
+      </div>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q-3-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">The at-fault driver's insurer calls you. They say: "We've confirmed policy limits of $100,000 but we're still investigating whether our insured is at fault. We expect to close the investigation in 30 days." How do you record this in CasePeer?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">Coverage confirmed $100K — ready to negotiate</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',true,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">Limits confirmed $100K ✓ / Liability: investigation pending — 30-day follow-up set</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Coverage denied — open a UM claim immediately</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">Log "coverage unknown" until the investigation closes</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q-3-2">
+      <div class="q-num">Question 2 of 3 · 10 pts</div>
+      <div class="q-text">Keisha's total medical bills are $47,000. The at-fault driver's policy has limits of $25,000. Keisha has $100,000 Excess UM. If liability is accepted and the case settles, what is the MAXIMUM Keisha can collect if she uses all available coverage?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">$25,000 — that's the at-fault driver's limit, full stop</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">$47,000 — exactly equal to her bills</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">$75,000 — UM reduced by the at-fault amount ($100K − $25K)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',true,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">$125,000 — Excess UM stacks ON TOP: $25K at-fault + $100K Excess UM (plus possible commercial policy)</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q-3-3">
+      <div class="q-num">Question 3 of 3 · 10 pts</div>
+      <div class="q-text">After 30 days, the at-fault driver's insurer closes their investigation and says: "Our insured was not at fault — the accident was caused by a road hazard. We're denying liability." What is your immediate next step?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">Close the claim — no liability means no case</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">Accept the denial and negotiate a reduced settlement</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Immediately file suit — you can't do anything else</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',true,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">Escalate to the attorney immediately and activate Keisha's UM claim — liability denial triggers UM coverage</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-3"></div>
+    </div>
+
+    <div class="section-score" id="s3-score" style="display:none;">
+      <div class="score-display" id="s3-score-val">0/30</div>
+      <div class="score-label">Section Score</div>
+    </div>
+
+    <div class="btn-group" id="s3-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(4)">Continue — Section 5: UM/UIM Claims →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 4: UM/UIM CLAIMS (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-4">
+  <div class="section-header">
+    <div class="section-num">Section 5 · 30 pts available</div>
+    <h2>UM/UIM — Claiming Against Your Own Client's Policy</h2>
+    <div class="section-subhead">Georgia law: the safety net when the at-fault driver can't pay enough.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — UM Claim Decision Point</div>
+      <h3>The at-fault driver's insurer accepted liability but confirmed limits at $25,000. Keisha's bills are $47,000 and climbing. She's still in treatment. You need to open a UM claim on her own GEICO policy now — not later.</h3>
+    </div>
+
+    <div class="info-block">
+      <h4>When UM/UIM Coverage Applies</h4>
+      <ul>
+        <li>At-fault driver has <strong>no insurance</strong> (truly uninsured)</li>
+        <li>At-fault driver's limits are <strong>less than total damages</strong> (underinsured)</li>
+        <li>At-fault driver's insurer <strong>formally denies coverage</strong> (treated as uninsured under O.C.G.A. § 33-7-11)</li>
+        <li><strong>Hit-and-run</strong> where the driver is unknown — requires physical contact OR an independent eyewitness</li>
+        <li>At-fault driver <strong>cannot be located</strong> after diligent search</li>
+      </ul>
+    </div>
+
+    <div class="info-block">
+      <h4>Excess vs. Reduced UM — Critical Distinction</h4>
+      <p><strong>Excess (Add-On) UM:</strong> The UM policy pays ON TOP of the at-fault driver's liability. Best for the client.<br>
+      Example: $25K at-fault BI + $100K Excess UM = $125K total available.</p>
+      <p style="margin-top:8px;"><strong>Reduced (Offset) UM:</strong> The UM policy only pays the DIFFERENCE. The at-fault payout reduces the UM payment.<br>
+      Example: $25K at-fault BI + $100K Reduced UM = UM pays only $75K (the offset), total still $100K from two sources combined.</p>
+      <p style="margin-top:8px;color:#c0392b;font-weight:700;">⚡ Always identify Excess vs. Reduced. It changes the math on every case.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>How to Open a UM Claim — Step by Step</h4>
+      <ol>
+        <li>Confirm client has UM on their own policy (check dec page)</li>
+        <li>Notify client's insurer in writing that a UM claim is being opened</li>
+        <li>Provide: client's policy number, date of accident, description of accident, at-fault driver's information and insurer</li>
+        <li>If at-fault driver's insurer offers policy limits — you MUST provide notice to client's UM insurer before settling with at-fault carrier (they have the right to consent)</li>
+        <li>UM carrier assigns an adjuster and claim number — log both in CasePeer</li>
+        <li>Obtain UM dec page to confirm Excess vs. Reduced and exact limits</li>
+      </ol>
+    </div>
+
+    <div class="callout callout-danger">
+      <strong>🚨 Critical Trap:</strong> If the at-fault driver's insurer offers their policy limits ($25K) and you accept without first notifying Keisha's UM insurer, you may waive her right to the UM claim entirely. Always get UM insurer consent before settling the liability side.
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q-4-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">The at-fault driver's insurer offers $25,000 — their policy limits. Keisha's damages will clearly exceed $25K. Before accepting this offer, what MUST you do regarding Keisha's own UM insurer?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">Nothing — the two claims are completely separate</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',true,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">Notify Keisha's UM insurer (GEICO) of the limits offer and get their written consent before accepting</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">Accept the $25K first, then open the UM claim separately</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">Decline the $25K offer — don't settle until the UM claim resolves</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q-4-2">
+      <div class="q-num">Question 2 of 3 · 10 pts</div>
+      <div class="q-text">A new client, Darnell, was hit by a driver who fled the scene. Police found no witnesses, and there was no physical contact with Darnell's car (the fleeing driver forced him off the road without touching him). Darnell wants to file a UM claim. What do you tell the attorney?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">Hit-and-run always qualifies for UM — open the claim right away</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">File the UM claim — no physical contact doesn't matter under Georgia law</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',true,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">The claim may be difficult — Georgia requires physical contact OR an independent eyewitness for unknown-driver UM claims; neither condition is met</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">UM doesn't apply at all to hit-and-run accidents</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q-4-3">
+      <div class="q-num">Question 3 of 3 · 10 pts</div>
+      <div class="q-text">Keisha's GEICO UM policy is "Reduced (Offset)" UM at $100,000. The at-fault driver pays $25,000. How much will Keisha's GEICO UM pay on top of that?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">$100,000 — the full UM limit, on top of the $25K</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',true,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">$75,000 — Reduced UM pays the difference: $100K − $25K = $75K additional</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">$0 — Reduced UM doesn't pay if at-fault insurance already paid something</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">$25,000 — UM matches what the at-fault driver paid</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-3"></div>
+    </div>
+
+    <div class="section-score" id="s4-score" style="display:none;">
+      <div class="score-display" id="s4-score-val">0/30</div>
+      <div class="score-label">Section Score</div>
+    </div>
+
+    <div class="btn-group" id="s4-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(5)">Continue — Section 6: Stacking + Commercial →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 5: STACKING + COMMERCIAL (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-5">
+  <div class="section-header">
+    <div class="section-num">Section 6 · 30 pts available</div>
+    <h2>Stacking &amp; Commercial Vehicles</h2>
+    <div class="section-subhead">Finding every available dollar — including the big ones.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Stacking Analysis</div>
+      <h3>You've confirmed Keisha's UM ($100K Excess). Now you need to check whether her husband's policy stacks. And you need to nail down the restaurant's commercial policy — that could be the biggest number on this case.</h3>
+    </div>
+
+    <div class="info-block">
+      <h4>📚 Stacking — The Priority Rules</h4>
+      <p>Georgia allows UM stacking in many circumstances. When multiple policies are available, courts apply this priority order:</p>
+      <ol style="margin-top:8px;">
+        <li><strong>1st Priority:</strong> The insurer that received a premium from the injured person or a relative pays first</li>
+        <li><strong>2nd Priority:</strong> The policy most closely associated with the injured person's situation</li>
+        <li><strong>3rd Priority:</strong> The policy most related to the accident circumstances</li>
+      </ol>
+      <p style="margin-top:10px;"><strong>Household relative stacking:</strong> Under O.C.G.A. § 33-7-11(b)(1)(B), spouses and relatives living in the same household are "insureds" under each other's UM policies — even if they weren't in each other's cars.</p>
+      <p style="margin-top:8px;"><strong>Anti-stacking clauses:</strong> Some policies have language limiting stacking. Always check policy language — and flag for the attorney if there's a dispute.</p>
+      <p style="margin-top:8px;color:#c0392b;font-weight:700;">⚡ One rule: No double recovery. Keisha cannot collect more than her total proven damages, even if UM limits exceed them.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>🚛 Commercial Vehicle Coverage — Different Rules</h4>
+      <p>When the at-fault driver was working — delivery, rideshare, trucking, running work errands — the employer's commercial auto policy may apply. This is separate from and in addition to the driver's personal policy.</p>
+      <ul style="margin-top:8px;">
+        <li>Commercial limits are typically <strong>much higher</strong> — $300K, $500K, $1M+</li>
+        <li><strong>Rideshare (Uber/Lyft):</strong> Have their own commercial policies — $1M per incident when the driver has a passenger</li>
+        <li><strong>Commercial trucks:</strong> Federal regulations (FMCSA) require minimum $750K for most trucks, $1M for hazmat</li>
+        <li>Even if the driver claims they were "off the clock," if they were performing any work-related task, the commercial policy may apply</li>
+        <li>Employer may also face liability for <strong>negligent hiring, supervision, or entrustment</strong></li>
+      </ul>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q-5-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">Keisha's husband has a $50,000 Excess UM policy through Progressive. He lives in the same house. Keisha's total damages are $150,000. At-fault coverage: $25K. Keisha's UM: $100K Excess. With husband's UM stacked, what's the total potentially available from all three sources?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">$150,000 — but that's the cap due to no double recovery rule</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-1',true,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">$175,000 available ($25K + $100K + $50K) — but Keisha can only collect up to her $150K in proven damages</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">$125,000 — husband's policy doesn't stack because Keisha wasn't in his car</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">$100,000 — you can only use one UM policy per claim</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q-5-2">
+      <div class="q-num">Question 2 of 3 · 10 pts</div>
+      <div class="q-text">You reach the pizza restaurant's insurance broker. They confirm the restaurant has a commercial auto policy with $500,000 limits. The delivery driver was on a delivery run at the time of the accident. What does this mean for Keisha's case?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">The commercial policy replaces the driver's personal policy — total available is now just $500K</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',true,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">Both the driver's personal policy AND the commercial policy may apply — total available from at-fault sources could be $525K combined</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">The commercial policy only applies if the driver was driving a company-owned vehicle</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">Keisha's UM claim is automatically cancelled since commercial coverage is now available</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q-5-3">
+      <div class="q-num">Question 3 of 3 · 10 pts</div>
+      <div class="q-text">A client was rear-ended by an Uber driver who had just picked up a passenger. The client has $30K in injuries. The Uber driver's personal liability limits are $25K. What additional coverage should you investigate first?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">Client's own UM policy — that's the only way to get above $25K</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',true,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">Uber's commercial policy — rideshare companies carry $1M per-incident coverage when a driver is transporting a passenger</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">Uber's policy doesn't apply unless the Uber app was open at the time</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">Nothing — $25K is the limit for rideshare accidents under Georgia law</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-3"></div>
+    </div>
+
+    <div class="section-score" id="s5-score" style="display:none;">
+      <div class="score-display" id="s5-score-val">0/30</div>
+      <div class="score-label">Section Score</div>
+    </div>
+
+    <div class="btn-group" id="s5-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(6)">Continue — Section 7: Coverage + Case Value →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 6: COVERAGE → CASE VALUE + CASEPEER (30 pts)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-6">
+  <div class="section-header">
+    <div class="section-num">Section 7 · 30 pts available</div>
+    <h2>Coverage + Case Value + CasePeer</h2>
+    <div class="section-subhead">How coverage shapes treatment planning — and where it all lives.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="scenario">
+      <div class="scenario-tag">📋 Keisha Williams — Strategy Meeting</div>
+      <h3>The attorney reviews the coverage picture you've built. $25K at-fault, $100K Excess UM (Keisha), $50K UM (husband), $500K commercial (restaurant). Potential total: $675K. Keisha's current bills: $47K. Treatment still ongoing.</h3>
+      <p style="color:#c8d0e0;font-size:14px;margin-top:8px;">The attorney says: "With $675K available, Keisha can complete every recommended treatment. Don't let her stop because of money anxiety. Coverage changes everything about how we guide this case."</p>
+    </div>
+
+    <div class="info-block">
+      <h4>💡 Coverage → Treatment Planning Connection</h4>
+      <p>Available coverage directly affects what treatment a client can realistically pursue:</p>
+      <ul>
+        <li><strong>High coverage available:</strong> Client can complete full recommended treatment without worrying about billing caps — leads to stronger case and better outcome</li>
+        <li><strong>Low coverage / policy limits case:</strong> Treatment planning may need to be adjusted — "bill to cap" scenarios require attorney guidance</li>
+        <li><strong>No coverage identified yet:</strong> Client may self-limit treatment — your job is to identify coverage quickly so this doesn't happen</li>
+        <li><strong>MedPay / PIP:</strong> Can be used to pay bills while the main case is pending — reduces client financial stress during treatment</li>
+      </ul>
+      <p style="margin-top:8px;">See also: Case Timeline & Treatment Progression — treatment gaps, missed appointments, and premature discharge all damage case value. Knowing coverage exists removes one of the main reasons clients stop treatment early.</p>
+    </div>
+
+    <div class="info-block">
+      <h4>📱 CasePeer Documentation — Coverage Verification Fields</h4>
+      <p>Every coverage item must be documented in CasePeer under the case's Insurance/Coverage section:</p>
+      <ul>
+        <li><strong>At-fault carrier:</strong> Carrier name, claim number, adjuster name + phone, BI limits, liability status</li>
+        <li><strong>Client's own coverage:</strong> Carrier, policy number, UM type (Excess/Reduced), UM limits, MedPay limits, claim number if opened</li>
+        <li><strong>Household UM:</strong> Each policy, carrier, limits, relationship to client</li>
+        <li><strong>Commercial policy:</strong> Employer name, carrier, claim number, limits, adjuster</li>
+        <li><strong>Status flags:</strong> "Limits confirmed ✓", "Liability accepted ✓", "UM claim opened ✓", "Dec page on file ✓"</li>
+      </ul>
+      <p style="margin-top:8px;color:#c0392b;font-weight:700;">⚡ If it's not in CasePeer, it doesn't exist. Verbal knowledge in your head helps nobody when you're out sick.</p>
+    </div>
+
+    <!-- Q1 -->
+    <div class="question-block" id="q-6-1">
+      <div class="q-num">Question 1 of 3 · 10 pts</div>
+      <div class="q-text">Keisha calls you worried: "The doctor wants me to do 10 more physical therapy sessions but it costs $3,000. I can't afford it right now." You know she has $5,000 MedPay and $100K Excess UM confirmed. What's the best response?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">Tell her to stop treatment if she can't afford it — the case is strong enough without it</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">Tell her to negotiate directly with the physical therapist</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',true,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">Escalate to the attorney immediately — $5K MedPay can cover this, and confirmed coverage means she should complete all recommended treatment</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Tell her to pay out of pocket and get reimbursed later from the settlement</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-1"></div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="question-block" id="q-6-2">
+      <div class="q-num">Question 2 of 3 · 10 pts</div>
+      <div class="q-text">You're documenting Keisha's coverage in CasePeer. You have the at-fault claim number but the adjuster hasn't sent the dec page yet. Liability is verbally accepted. How do you document this?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">Mark everything as confirmed since you've spoken to the adjuster</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">Don't document until you have everything in writing</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',true,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">Document what's confirmed with dates, note what's pending, set a follow-up task for the dec page — partial info is better than no info</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Mark liability as accepted and wait — the dec page isn't critical until demand stage</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-2"></div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="question-block" id="q-6-3">
+      <div class="q-num">Question 3 of 3 · 10 pts</div>
+      <div class="q-text">A coverage status audit of 20 cases in your CM's queue shows: 8 cases have "limits unknown." What's the correct action?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">Wait until treatment is done — you'll need limits at demand stage anyway</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">Flag two or three of the oldest cases for the attorney</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',true,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">Immediately work all 8 — call insurers, request dec pages, log everything — this is a pipeline risk that needs to be resolved now</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Ask the attorney which cases to prioritize and wait for direction</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-6-3"></div>
+    </div>
+
+    <div class="section-score" id="s6-score" style="display:none;">
+      <div class="score-display" id="s6-score-val">0/30</div>
+      <div class="score-label">Section Score</div>
+    </div>
+
+    <div class="btn-group" id="s6-next" style="display:none;">
+      <button class="btn btn-primary btn-block" onclick="goToSection(7)">Continue — Boss Challenge 🔴 →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 7: BOSS CHALLENGE (30 pts base + 50 bonus)
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-7">
+  <div class="section-header" style="background:linear-gradient(135deg,#922b21,#6e1c14);">
+    <div class="section-num">Section 8 · 30 pts base + up to 50 BONUS</div>
+    <h2>🔴 Boss Challenge</h2>
+    <div class="section-subhead">A complex multi-policy scenario. No hints. Real decisions.</div>
+  </div>
+  <div class="section-body">
+
+    <div class="boss-header">
+      <div class="boss-icon">🔴</div>
+      <h3>The Marcus Thompson File</h3>
+      <p>Complex coverage scenario — 4 policies, a denied claim, a commercial vehicle, and a stacking calculation. Everything you've learned, right now.</p>
+    </div>
+
+    <div class="case-file">
+      <div class="case-file-header">
+        <div class="case-file-icon">🚨</div>
+        <div>
+          <div class="case-file-title">Marcus Thompson — New Case File</div>
+          <div class="case-file-sub">Accident date: 3 weeks ago</div>
+        </div>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Accident:</span>
+        <span class="case-val">Marcus was a passenger in his coworker Lisa's car. A box truck from "QuickShip Logistics" ran a stop sign and T-boned them.</span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Injuries:</span>
+        <span class="case-val">Marcus: cervical fracture, 2 weeks hospitalization. Estimated total damages: $280,000</span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">At-Fault Driver:</span>
+        <span class="case-val">QuickShip truck driver. Personal policy: $25K/<span class="flag">DENIED</span> (insurer says he was working, voids personal policy)</span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">QuickShip Policy:</span>
+        <span class="case-val">Commercial: $750,000 <span class="flag-warn">LIABILITY DISPUTED</span></span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Lisa's Policy (vehicle):</span>
+        <span class="case-val">UM $50,000 Excess (State Farm) — Marcus was a passenger</span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Marcus's Own Policy:</span>
+        <span class="case-val">UM $100,000 Reduced (Allstate)</span>
+      </div>
+      <div class="case-detail">
+        <span class="case-key">Marcus's Wife (same house):</span>
+        <span class="case-val">UM $200,000 Excess (Progressive)</span>
+      </div>
+    </div>
+
+    <!-- Boss Q1 -->
+    <div class="question-block" id="q-7-1">
+      <div class="q-num">Boss Question 1 of 6 · 10 pts base</div>
+      <div class="q-text">The truck driver's personal insurer denied coverage because he was working. Under Georgia law, how does this affect Marcus's claim options?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-7-1',false,'s7')">
+          <span class="opt-letter">A</span><span class="opt-text">Marcus loses the $25K personal policy and that's it — denied means gone</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-1',true,'s7')">
+          <span class="opt-letter">B</span><span class="opt-text">The truck is now treated as UNINSURED under O.C.G.A. § 33-7-11 — this activates all UM policies. AND QuickShip's commercial policy is still the primary target.</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-1',false,'s7')">
+          <span class="opt-letter">C</span><span class="opt-text">Marcus must sue the driver personally — insurance no longer applies</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-1',false,'s7')">
+          <span class="opt-letter">D</span><span class="opt-text">UM doesn't apply because there is a commercial policy available</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-7-1"></div>
+    </div>
+
+    <!-- Boss Q2 -->
+    <div class="question-block" id="q-7-2">
+      <div class="q-num">Boss Question 2 of 6 · 10 pts base</div>
+      <div class="q-text">QuickShip's commercial carrier is disputing liability — claiming their driver had the right of way. While that dispute is pending, which coverage should you open claims on for Marcus right now?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-7-2',false,'s7')">
+          <span class="opt-letter">A</span><span class="opt-text">Wait for QuickShip to accept liability before opening anything else</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-2',false,'s7')">
+          <span class="opt-letter">B</span><span class="opt-text">Open only Marcus's own UM claim and wait</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-2',true,'s7')">
+          <span class="opt-letter">C</span><span class="opt-text">Open claims immediately on ALL UM policies (Lisa's State Farm, Marcus's Allstate, wife's Progressive) AND preserve the QuickShip commercial claim — don't wait</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-2',false,'s7')">
+          <span class="opt-letter">D</span><span class="opt-text">Open the QuickShip claim only — UM is a last resort after commercial exhaustion</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-7-2"></div>
+    </div>
+
+    <!-- Boss Q3 — Stacking Calculation (BONUS) -->
+    <div class="question-block" id="q-7-3">
+      <div class="q-num">Boss Question 3 of 6 · 10 pts base + 20 pts BONUS</div>
+      <div class="q-text">QuickShip accepts liability. They pay their full $750K commercial policy. That's less than Marcus's $280K in damages — wait, actually it EXCEEDS his damages. But there's a no double recovery rule. Under the priority order, which policy pays first from the UM sources if QuickShip's $750K does NOT fully cover damages (hypothetically, say damages were $900K)?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-7-3',false,'s7b')">
+          <span class="opt-letter">A</span><span class="opt-text">Marcus's own Allstate policy first — it's his personal policy</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-3',true,'s7b')">
+          <span class="opt-letter">B</span><span class="opt-text">Lisa's State Farm first (1st priority — vehicle Marcus was in at time of accident), then Marcus's Allstate, then wife's Progressive</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-3',false,'s7b')">
+          <span class="opt-letter">C</span><span class="opt-text">Wife's Progressive first — it has the highest limits</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-3',false,'s7b')">
+          <span class="opt-letter">D</span><span class="opt-text">All three pay simultaneously, pro-rated by limits</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-7-3"></div>
+    </div>
+
+    <!-- Boss Q4 -->
+    <div class="question-block" id="q-7-4">
+      <div class="q-num">Boss Question 4 of 6 · 0 pts base + 10 pts BONUS</div>
+      <div class="q-text">Marcus's Allstate UM policy is "Reduced (Offset)." QuickShip pays $750K. Marcus's total damages are $280K. How much does Marcus's Allstate UM policy pay?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-7-4',false,'s7b')">
+          <span class="opt-letter">A</span><span class="opt-text">$100,000 — the full UM limit</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-4',false,'s7b')">
+          <span class="opt-letter">B</span><span class="opt-text">$180,000 — damages minus at-fault payment ($280K − $100K)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-4',true,'s7b')">
+          <span class="opt-letter">C</span><span class="opt-text">$0 — Reduced UM pays the difference only if at-fault limits are LESS than the UM limit ($750K > $100K, so nothing additional owed)</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-4',false,'s7b')">
+          <span class="opt-letter">D</span><span class="opt-text">$280,000 — the full damages amount</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-7-4"></div>
+    </div>
+
+    <!-- Boss Q5 -->
+    <div class="question-block" id="q-7-5">
+      <div class="q-num">Boss Question 5 of 6 · 10 pts base + 10 pts BONUS</div>
+      <div class="q-text">Before Marcus's attorney accepts QuickShip's $750K settlement offer, what must happen regarding the UM insurers (Lisa's State Farm, Marcus's Allstate, wife's Progressive)?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-7-5',false,'s7b')">
+          <span class="opt-letter">A</span><span class="opt-text">Nothing — the UM claims are separate and independent</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-5',false,'s7b')">
+          <span class="opt-letter">B</span><span class="opt-text">Wait until all UM claims settle first, then accept the commercial offer</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-5',true,'s7b')">
+          <span class="opt-letter">C</span><span class="opt-text">All UM insurers must be notified of the settlement offer and given the opportunity to consent before Marcus accepts — or their rights are preserved by subrogation waiver</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-5',false,'s7b')">
+          <span class="opt-letter">D</span><span class="opt-text">Only Marcus's own Allstate needs to consent — the others are third-party UM policies</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-7-5"></div>
+    </div>
+
+    <!-- Boss Q6 -->
+    <div class="question-block" id="q-7-6">
+      <div class="q-num">Boss Question 6 of 6 · 0 pts base + 10 pts BONUS</div>
+      <div class="q-text">After this case, you're setting up Marcus's file in CasePeer. What's the single most important coverage item to flag for attorney review given what you know about this case?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-7-6',false,'s7b')">
+          <span class="opt-letter">A</span><span class="opt-text">The wife's Progressive UM — it has the highest limits and may yield additional recovery</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-6',false,'s7b')">
+          <span class="opt-letter">B</span><span class="opt-text">Marcus's MedPay — it will pay bills immediately</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-6',true,'s7b')">
+          <span class="opt-letter">C</span><span class="opt-text">QuickShip's liability dispute — if they deny liability, the entire $750K commercial policy is at risk and the case strategy changes entirely</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-7-6',false,'s7b')">
+          <span class="opt-letter">D</span><span class="opt-text">Lisa's State Farm UM — because she was the vehicle owner and that's the first-priority policy</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-7-6"></div>
+    </div>
+
+    <div class="section-score" id="s7-score" style="display:none;">
+      <div class="score-display" id="s7-score-val">0/30 base</div>
+      <div class="score-label">Boss Score (+ bonus shown above)</div>
+    </div>
+
+    <div class="btn-group" id="s7-next" style="display:none;">
+      <button class="btn btn-danger btn-block" onclick="finishModule()">🏁 Complete Module — See Your Results</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 8: RESULTS
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-8">
+  <div id="results-header-wrap"></div>
+  <div class="section-body">
+    <div id="results-body"></div>
+    <!-- Score Submission Form -->
+    <div id="score-submit-form" style="display:none;background:#f0f4f8;border-radius:12px;padding:20px;margin-top:16px;margin-bottom:20px;">
+      <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
+      <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
+      <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
+      <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
+        style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;">
+      <button class="btn btn-success btn-block" onclick="submitScoreAndBuildCert()">✅ Submit Score &amp; View Certificate</button>
+    </div>
+    <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #27ae60;color:#155724;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:14px;font-weight:600;">
+      ✅ Score submitted! Your results have been recorded.
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     SECTION 9: FEEDBACK
+════════════════════════════════════════════ -->
+<div class="section-card" id="section-9">
+  <div class="section-header">
+    <div class="section-num">Section 10 · Required</div>
+    <h2>Module Feedback</h2>
+    <div class="section-subhead">Your feedback makes the next module better.</div>
+  </div>
+  <div class="section-body">
+    <div class="callout callout-info">
+      <strong>All fields required.</strong> This takes 2 minutes. Your honest input shapes how we build training for the entire team.
+    </div>
+
+    <div class="fb-question">
+      <label>1. How clear was the content? (1 = confusing, 5 = crystal clear)</label>
+      <div class="fb-rating-row" id="fb-clarity">
+        <button class="fb-rating-btn" onclick="setRating('clarity',1,this)">1</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',2,this)">2</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',3,this)">3</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',4,this)">4</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',5,this)">5</button>
+      </div>
+    </div>
+
+    <div class="fb-question">
+      <label>2. How difficult was this module? (1 = too easy, 5 = very hard)</label>
+      <div class="fb-rating-row" id="fb-difficulty">
+        <button class="fb-rating-btn" onclick="setRating('difficulty',1,this)">1</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',2,this)">2</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',3,this)">3</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',4,this)">4</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',5,this)">5</button>
+      </div>
+    </div>
+
+    <div class="fb-question">
+      <label>3. How realistic were the scenarios? (1 = unrealistic, 5 = exactly like real cases)</label>
+      <div class="fb-rating-row" id="fb-realism">
+        <button class="fb-rating-btn" onclick="setRating('realism',1,this)">1</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',2,this)">2</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',3,this)">3</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',4,this)">4</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',5,this)">5</button>
+      </div>
+    </div>
+
+    <div class="fb-question">
+      <label>4. Name one thing you'd change about this module: <span style="color:#c0392b;">*</span></label>
+      <textarea id="fb-change" placeholder="Be specific — what would make this better?" rows="4"></textarea>
+    </div>
+
+    <div id="fb-error" class="callout callout-danger" style="display:none;">Please complete all ratings and the open-ended question before submitting.</div>
+
+    <div class="btn-group">
+      <button class="btn btn-success btn-block" onclick="submitFeedback()">✅ Submit Feedback &amp; Get My Certificate</button>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script>
+// ─── STATE ───────────────────────────────────────
+var TRACKER_URL = 'https://script.google.com/macros/s/AKfycby4JPj9d4aLXSjsTjxcStjuXv-OnIQ-VYRVCQVndk754okjYIuXGggtE_pK5d93-Vc/exec';
+
+var baseScore   = 0;   // drives gate decisions
+var bonusPoints = 0;   // tracked separately
+var currentSection = 0;
+var TOTAL_SECTIONS = 10; // 0-9
+var sectionsDone = {};
+
+// Section point tracking
+var sectionScores = {s1:0, s2:0, s3:0, s4:0, s5:0, s6:0, s7:0};
+var sectionTotals = {s1:40, s2:40, s3:30, s4:30, s5:30, s6:30, s7:30}; // base only
+
+// Q completion trackers
+var qDone = {};
+
+// Feedback ratings
+var ratings = {clarity:0, difficulty:0, realism:0};
+
+// ─── ANSWER HANDLER ──────────────────────────────
+function answer(btn, qId, isCorrect, section) {
+  if (qDone[qId]) return;
+  qDone[qId] = true;
+
+  var block  = document.getElementById(qId);
+  var fbBox  = document.getElementById('fb-' + qId);
+  var allBtns = block.querySelectorAll('.option-btn');
+
+  allBtns.forEach(function(b){ b.classList.add('disabled'); });
+
+  var pts = 0;
+  var isBonus = section === 's7b';
+
+  if (isCorrect) {
+    btn.classList.add('correct');
+    block.classList.add('answered');
+    if (isBonus) {
+      // Bonus question point values
+      var bonusMap = {'q-7-3':20,'q-7-4':10,'q-7-5':10,'q-7-6':10};
+      pts = bonusMap[qId] || 0;
+      bonusPoints += pts;
+      showToast('+' + pts + ' BONUS! 🌟');
+      document.getElementById('bonus-score').textContent = bonusPoints;
+    } else {
+      pts = 10;
+      baseScore += 10;
+      showToast('+10 pts ✓');
+      document.getElementById('total-score').textContent = baseScore;
+      if (sectionScores[section] !== undefined) sectionScores[section] += 10;
+    }
+    fbBox.className = 'feedback-box correct show';
+    fbBox.innerHTML = getFeedback(qId, true);
+  } else {
+    btn.classList.add('incorrect');
+    block.classList.add('answered-wrong');
+    fbBox.className = 'feedback-box incorrect show';
+    fbBox.innerHTML = getFeedback(qId, false);
+    // Find and highlight correct answer
+    allBtns.forEach(function(b){
+      if (b.getAttribute('onclick').includes('true')) {
+        b.classList.add('correct');
+      }
+    });
+  }
+
+  // Check if section complete
+  checkSectionComplete(section);
+}
+
+// ─── FEEDBACK TEXT ───────────────────────────────
+function getFeedback(qId, correct) {
+  var map = {
+    'q-1-1': {
+      t: '✅ Right — the delivery driver was working. That activates the restaurant\'s commercial auto policy, which likely has much higher limits than the $25K personal policy.',
+      f: '❌ Not quite. The driver was on the job — that means the restaurant\'s commercial auto policy is the most important thing to investigate immediately. Commercial policies can have $500K–$1M+ in limits.'
+    },
+    'q-1-2': {
+      t: '✅ Correct. MedPay is no-fault coverage on the client\'s own policy. It pays medical bills immediately regardless of who caused the accident. Use it to pay bills while the main case is pending.',
+      f: '❌ MedPay is the answer. It\'s no-fault, it\'s on the client\'s own policy, and it pays immediately. BI is for when your client causes an accident. UM kicks in when at-fault coverage is insufficient.'
+    },
+    'q-1-3': {
+      t: '✅ Correct. Under O.C.G.A. § 33-7-11(b)(1)(B), spouses and resident relatives are "insureds" under each other\'s UM policies — even if the insured wasn\'t in the relative\'s car.',
+      f: '❌ Wrong. Georgia law specifically includes resident relatives in the definition of "insured" under a UM policy. The policy follows the person, not just the car.'
+    },
+    'q-1-4': {
+      t: '✅ Correct. UM rejection must be in writing at the time the policy was issued. If there\'s no signed rejection form, the client has UM coverage. Always verify — clients often don\'t realize they have it.',
+      f: '❌ The correct answer is written rejection at policy inception. Full coverage doesn\'t eliminate UM. Policy age doesn\'t matter. Limits don\'t matter. Written rejection is the only exception.'
+    },
+    'q-2-1': {
+      t: '✅ Correct. Verbal representations from adjusters are a starting point only. Request the dec page in writing every time. Adjusters sometimes misstate limits — accidentally or otherwise.',
+      f: '❌ Never rely solely on verbal representations from adjusters. Get the dec page in writing before building any case strategy around those limits.'
+    },
+    'q-2-2': {
+      t: '✅ Correct. This is a classic situation — flag it for the attorney. Employers often have general liability, umbrella, or commercial policies that cover employee actions even if they don\'t have a dedicated fleet policy.',
+      f: '❌ Never accept an employer\'s self-assessment of their coverage. Flag it for the attorney — negligent entrustment, vicarious liability, and commercial coverage questions require attorney review.'
+    },
+    'q-2-3': {
+      t: '✅ Correct. Excess UM stacks ON TOP of the at-fault driver\'s liability. $25K at-fault + $100K Excess UM = $125K total potentially available. That changes the entire case strategy.',
+      f: '❌ The UM Excess policy is most important here. "Excess" means it adds on top of the $25K at-fault payment — not a replacement for it. $25K + $100K = $125K total.'
+    },
+    'q-2-4': {
+      t: '✅ Correct. Under O.C.G.A. § 33-7-11(b)(1)(D)(iii), a formal coverage denial by the at-fault insurer treats that vehicle as uninsured — activating Keisha\'s UM policy. And the restaurant\'s commercial policy may still apply independently.',
+      f: '❌ Coverage denied does NOT mean Keisha is out of luck. It means the vehicle is now treated as uninsured under Georgia law — activating her UM policy. Plus the commercial policy is still a separate target.'
+    },
+    'q-3-1': {
+      t: '✅ Correct. Document what you have, note what\'s pending, and set your follow-up. Limits and liability are two separate fields — confirmed limits with pending liability investigation is exactly what this is.',
+      f: '❌ You have two separate pieces of information: limits confirmed, liability pending. Document both accurately. Don\'t wait for everything before documenting anything.'
+    },
+    'q-3-2': {
+      t: '✅ Correct. Excess UM adds ON TOP — $25K at-fault + $100K Excess UM = $125K. Plus potentially the commercial policy and husband\'s UM. Maximum available could be much higher than $47K in bills.',
+      f: '❌ With Excess UM, the amounts ADD together. $25K + $100K Excess UM = $125K. Reduced UM would be $25K + $75K = $100K. The distinction matters enormously.'
+    },
+    'q-3-3': {
+      t: '✅ Correct. Liability denial = UM trigger. Immediately escalate to the attorney AND activate the UM claim. The case isn\'t over — it just shifted strategy.',
+      f: '❌ Liability denial is NOT the end. It triggers the UM claim. Under Georgia law, a formal denial means the vehicle is treated as uninsured. Escalate to the attorney immediately.'
+    },
+    'q-4-1': {
+      t: '✅ Correct. This is critical. Accepting the at-fault settlement without notifying the UM insurer can waive Keisha\'s right to pursue the UM claim. Always get UM insurer consent first.',
+      f: '❌ Wrong — and this mistake can cost the client tens of thousands of dollars. Accepting the liability limits settlement without UM insurer consent can eliminate the UM claim. Notify first, accept second.'
+    },
+    'q-4-2': {
+      t: '✅ Correct. O.C.G.A. § 33-7-11(b)(2) requires physical contact OR an independent eyewitness for unknown-driver UM claims. Neither is present here — flag it for the attorney immediately.',
+      f: '❌ Georgia has specific requirements for hit-and-run UM claims: physical contact OR an independent eyewitness. "Ran me off the road" without contact and without a witness is a very difficult claim.'
+    },
+    'q-4-3': {
+      t: '✅ Correct. Reduced UM pays the DIFFERENCE between the UM limit and what the at-fault driver paid. $100K UM − $25K at-fault = $75K additional from UM. Total collected: $100K (from both sources combined).',
+      f: '❌ Reduced UM subtracts the at-fault payment from the UM limit. $100K − $25K = $75K paid by UM. Total: $25K + $75K = $100K. With Excess UM it would be $125K total — the distinction matters.'
+    },
+    'q-5-1': {
+      t: '✅ Correct. $25K + $100K + $50K = $175K available from three sources. But Keisha can only collect up to her actual proven damages ($150K). No double recovery — the rule caps at real damages.',
+      f: '❌ Husband\'s UM stacks because he\'s a resident relative. $25K at-fault + $100K Keisha UM + $50K husband UM = $175K available. But capped at actual damages of $150K.'
+    },
+    'q-5-2': {
+      t: '✅ Correct. Both policies can apply. The driver\'s personal policy AND the employer\'s commercial policy may both be on the hook. At-fault driver was on a delivery run — that\'s the employer\'s business.',
+      f: '❌ Commercial and personal policies are separate and both can apply. The driver was working — that triggers the employer\'s commercial liability. Total available from at-fault sources: $25K personal + $500K commercial.'
+    },
+    'q-5-3': {
+      t: '✅ Correct. When a rideshare driver is transporting a passenger, the rideshare company\'s commercial policy ($1M per incident for Uber/Lyft) is in effect — not just the driver\'s personal policy.',
+      f: '❌ Rideshare companies carry commercial policies that activate based on the driver\'s status in the app. With a passenger in the car, Uber\'s $1M commercial policy applies. That\'s the first call.'
+    },
+    'q-6-1': {
+      t: '✅ Correct. With MedPay available and $100K+ UM confirmed, there is no financial reason for Keisha to stop treatment. Escalate to the attorney — completing treatment is critical to case value.',
+      f: '❌ Never let a client stop recommended treatment due to cost when coverage exists. MedPay can fund those sessions NOW. Escalate immediately — premature treatment termination damages the case.'
+    },
+    'q-6-2': {
+      t: '✅ Correct. Document what you have, note what\'s pending, set follow-up tasks. Partial accurate information is far better than waiting for everything before documenting anything.',
+      f: '❌ Always document what you have in real time. Note status accurately — "limits verbal, dec page pending, follow-up 5/15" is good documentation. Don\'t wait for everything before logging anything.'
+    },
+    'q-6-3': {
+      t: '✅ Correct. Eight cases with unknown limits is a pipeline emergency. Work all 8 — every day those limits are unknown is a day you can\'t build the right strategy for those clients.',
+      f: '❌ Unknown limits across 8 cases is a systemic problem that needs immediate action on all of them. Don\'t triage this — call all 8 carriers today.'
+    },
+    'q-7-1': {
+      t: '✅ Correct. Coverage denial = uninsured treatment. That activates every UM policy. AND the commercial policy is still the primary target — these are independent of each other.',
+      f: '❌ A formal coverage denial by the personal insurer triggers O.C.G.A. § 33-7-11 — the truck is treated as uninsured. All UM policies activate. Plus the commercial policy is still separately pursued.'
+    },
+    'q-7-2': {
+      t: '✅ Correct. Open everything now. Disputes take time. UM claims have deadlines. You protect the client by opening all available claims immediately — not after liability is resolved.',
+      f: '❌ Never wait on a liability dispute before opening UM claims. Open ALL available claims now. You can always close them later. Missing a UM deadline because you waited on liability is a serious mistake.'
+    },
+    'q-7-3': {
+      t: '✅ EXCELLENT — +20 BONUS! Priority order: 1st = vehicle client was in (Lisa\'s State Farm). 2nd = client\'s own policy (Marcus\'s Allstate). 3rd = household relative (wife\'s Progressive).',
+      f: '❌ The priority order is: (1) vehicle client was in — Lisa\'s State Farm, (2) client\'s own policy — Marcus\'s Allstate, (3) household relative — wife\'s Progressive. The vehicle the client was in takes priority.'
+    },
+    'q-7-4': {
+      t: '✅ BONUS POINT! Reduced UM pays only if the at-fault recovery is LESS than the UM limit. QuickShip paid $750K — that\'s far above the $100K Reduced UM limit. Allstate pays nothing additional.',
+      f: '❌ Reduced UM: pays the difference between UM limit and at-fault payment, but only if at-fault < UM limit. $750K at-fault > $100K UM limit. Allstate owes nothing. This is why Excess UM is always better for clients.'
+    },
+    'q-7-5': {
+      t: '✅ Correct. All UM insurers must be notified and given consent rights before any at-fault settlement. Failing to notify them can forfeit the UM claim — a major malpractice risk.',
+      f: '❌ All UM insurers must consent before the at-fault settlement. This applies to every UM policy — not just the client\'s own. This is one of the most important procedural rules in UM practice.'
+    },
+    'q-7-6': {
+      t: '✅ BONUS POINT! QuickShip\'s liability dispute is the existential risk on this case. If they deny, the entire $750K disappears and the case changes completely. That\'s the #1 flag for attorney review.',
+      f: '❌ QuickShip\'s liability dispute is the most critical item. Everything else is secondary. If QuickShip denies, the entire $750K commercial policy is gone — that changes the case value and strategy completely.'
+    }
+  };
+  var item = map[qId];
+  if (!item) return correct ? '✅ Correct!' : '❌ Incorrect — review the section.';
+  return correct ? item.t : item.f;
+}
+
+// ─── SECTION COMPLETION ──────────────────────────
+function checkSectionComplete(section) {
+  var sectionQMap = {
+    s1: ['q-1-1','q-1-2','q-1-3','q-1-4'],
+    s2: ['q-2-1','q-2-2','q-2-3','q-2-4'],
+    s3: ['q-3-1','q-3-2','q-3-3'],
+    s4: ['q-4-1','q-4-2','q-4-3'],
+    s5: ['q-5-1','q-5-2','q-5-3'],
+    s6: ['q-6-1','q-6-2','q-6-3'],
+    s7: ['q-7-1','q-7-2','q-7-3'],
+    s7b: ['q-7-4','q-7-5','q-7-6']
+  };
+
+  // For boss section, check both s7 and s7b base questions
+  var checkSection = section === 's7b' ? 's7' : section;
+  var allQ = sectionQMap[checkSection] || [];
+  if (section === 's7' || section === 's7b') {
+    allQ = sectionQMap['s7'].concat(sectionQMap['s7b']);
+  }
+
+  var allDone = allQ.every(function(q){ return qDone[q]; });
+  if (!allDone) return;
+
+  // Show section score and next button
+  var sectionIndex = {s1:1, s2:2, s3:3, s4:4, s5:5, s6:6, s7:7};
+  var idx = (section === 's7b') ? 7 : sectionIndex[section];
+  if (!idx) return;
+
+  var scoreEl = document.getElementById('s' + idx + '-score');
+  var scoreVal = document.getElementById('s' + idx + '-score-val');
+  var nextEl  = document.getElementById('s' + idx + '-next');
+
+  if (scoreEl) {
+    var pts = (idx === 7) ? sectionScores['s7'] : (sectionScores[section] || 0);
+    var max = (idx === 7) ? 30 : (sectionTotals[section] || 0);
+    if (scoreVal) scoreVal.textContent = pts + '/' + max + ' base';
+    scoreEl.style.display = 'block';
+  }
+  if (nextEl) nextEl.style.display = 'flex';
+}
+
+// ─── NAVIGATION ──────────────────────────────────
+function goToSection(idx) {
+  var cards = document.querySelectorAll('.section-card');
+  var pills = document.querySelectorAll('.nav-pill');
+  cards.forEach(function(c){ c.classList.remove('active'); });
+  pills.forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById('section-' + idx).classList.add('active');
+  document.getElementById('nav-' + idx).classList.add('active');
+  if (currentSection > 0 && currentSection !== idx) {
+    document.getElementById('nav-' + currentSection).classList.add('done');
+  }
+  currentSection = idx;
+  // Update progress
+  var pct = Math.round((idx / (TOTAL_SECTIONS - 1)) * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-pct').textContent = pct + '%';
+  document.getElementById('prog-label').textContent = 'Section ' + (idx + 1) + ' of ' + TOTAL_SECTIONS;
+  window.scrollTo(0, 0);
+}
+
+// ─── TOAST ───────────────────────────────────────
+function showToast(msg) {
+  var t = document.getElementById('points-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 1800);
+}
+
+// ─── FINISH MODULE ───────────────────────────────
+function finishModule() {
+  goToSection(8);
+  buildResults();
+}
+
+function buildResults() {
+  var pct = Math.round((baseScore / 200) * 100);
+  var pass = baseScore >= 140; // 70% pass threshold
+  var grade = pct + '%';
+
+  var headerEl = document.getElementById('results-header-wrap');
+  headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
+    + '<div class="results-grade">' + grade + '</div>'
+    + '<div class="results-label">' + (pass ? '🏆 Module Passed!' : '📚 Keep Practicing') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '</div>';
+
+  // Achievements
+  var badges = [];
+  if (baseScore >= 200)       badges.push({icon:'🌟', name:'Perfect Score'});
+  if (baseScore >= 160)       badges.push({icon:'🔥', name:'Coverage Pro'});
+  if (bonusPoints >= 40)      badges.push({icon:'💎', name:'Boss Slayer'});
+  if (bonusPoints >= 20)      badges.push({icon:'⚡', name:'Stacking Expert'});
+  if (sectionScores['s1'] === 40) badges.push({icon:'📋', name:'Coverage Types Master'});
+  if (sectionScores['s7'] === 30) badges.push({icon:'🔴', name:'Boss Challenger'});
+  if (pass)                   badges.push({icon:'🎓', name:'Day 7 Complete'});
+
+  var badgeHTML = '';
+  badges.forEach(function(b){
+    badgeHTML += '<div class="badge earned"><span class="badge-icon">' + b.icon + '</span>' + b.name + '</div>';
+  });
+
+  var bodyEl = document.getElementById('results-body');
+  bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
+    + '<div class="score-display">' + baseScore + '/200</div>'
+    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
+    + '</div>'
+    + '<div class="info-block"><h4>📊 Section Breakdown</h4>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Coverage Types</span><span class="breakdown-pts">' + (sectionScores['s1']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Verifying Coverage</span><span class="breakdown-pts">' + (sectionScores['s2']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Limits vs. Liability</span><span class="breakdown-pts">' + (sectionScores['s3']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">UM/UIM Claims</span><span class="breakdown-pts">' + (sectionScores['s4']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Stacking + Commercial</span><span class="breakdown-pts">' + (sectionScores['s5']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Coverage + Case Value</span><span class="breakdown-pts">' + (sectionScores['s6']||0) + '/30</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (base)</span><span class="breakdown-pts">' + (sectionScores['s7']||0) + '/30</span></div>'
+    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#27ae60;font-size:18px;">' + baseScore + '/200</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Bonus Points</span><span class="breakdown-pts" style="color:#f39c12;">' + bonusPoints + ' pts</span></div>'
+    + '</div>'
+    + '<div class="info-block"><h4>🏅 Achievements Earned</h4>'
+    + (badgeHTML ? '<div class="achievement-grid">' + badgeHTML + '</div>' : '<p style="color:#888;">Complete more questions correctly to earn badges.</p>')
+    + '</div>'
+    + '<div class="btn-group">'
+    + '<button class="btn btn-primary btn-block" onclick="goToSection(9)">Submit Feedback to Complete →</button>'
+    + '</div>';
+
+  // Show score submission form
+  document.getElementById('score-submit-form').style.display = 'block';
+}
+
+// ─── FEEDBACK RATINGS ────────────────────────────
+function setRating(field, val, btn) {
+  ratings[field] = val;
+  var row = document.getElementById('fb-' + field);
+  row.querySelectorAll('.fb-rating-btn').forEach(function(b){ b.classList.remove('selected'); });
+  btn.classList.add('selected');
+}
+
+// ─── SCORE SUBMISSION ─────────────────────────────
+function submitScoreAndBuildCert() {
+  var nameInput = document.getElementById('trainee-name-input');
+  var name = (nameInput.value || '').trim() || 'Training Participant';
+  document.getElementById('score-submit-form').style.display = 'none';
+
+  var payload = {
+    employeeName: name,
+    moduleId: 'day7',
+    moduleName: 'Coverage Verification',
+    score: baseScore,
+    maxScore: 200,
+    bonusScore: bonusPoints,
+    passedAt: new Date().toISOString()
+  };
+
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    mode: 'no-cors'
+  }).then(function() {
+    document.getElementById('score-confirmation').style.display = 'block';
+  }).catch(function() {
+    document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please complete the feedback form to submit.';
+    document.getElementById('score-confirmation').style.background = '#fff3cd';
+    document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
+    document.getElementById('score-confirmation').style.color = '#856404';
+    document.getElementById('score-confirmation').style.display = 'block';
+  });
+}
+
+// ─── SUBMIT ──────────────────────────────────────────────
+function submitFeedback() {
+  var change = document.getElementById('fb-change').value.trim();
+  var errEl = document.getElementById('fb-error');
+
+  if (!ratings.clarity || !ratings.difficulty || !ratings.realism || !change) {
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+
+  var name = prompt('Enter your full name to complete the module:');
+  if (!name || !name.trim()) { alert('Name is required to submit.'); return; }
+  name = name.trim();
+
+  var payload = {
+    employeeName: name,
+    moduleId: 'day7',
+    moduleName: 'Coverage Verification Mastery',
+    score: baseScore,
+    maxScore: 200,
+    bonusScore: bonusPoints,
+    passedAt: new Date().toISOString(),
+    feedback: {
+      clarity: ratings.clarity,
+      difficulty: ratings.difficulty,
+      realism: ratings.realism,
+      change: change
+    }
+  };
+
+  // Submit to tracker
+  fetch(TRACKER_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(payload)
+  }).catch(function(){});
+
+  showCertificate(name);
+}
+
+function showCertificate(name) {
+  var pct = Math.round((baseScore / 200) * 100);
+  var fbSection = document.getElementById('section-9');
+  fbSection.querySelector('.section-body').innerHTML = '<div class="cert">'
+    + '<div class="cert-logo">🏆</div>'
+    + '<h3>Certificate of Completion</h3>'
+    + '<div style="font-size:13px;color:#888;margin-bottom:8px;">Gunn Law Group Training System</div>'
+    + '<div class="cert-name">' + name + '</div>'
+    + '<div class="cert-details">'
+    + 'Day 7: Coverage Verification Mastery<br>'
+    + 'Score: <strong>' + baseScore + '/200 (' + pct + '%)</strong> · Bonus: <strong>' + bonusPoints + ' pts</strong><br>'
+    + 'Completed: ' + new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
+    + '</div>'
+    + '<div class="cert-achievements">'
+    + (baseScore >= 200 ? '<span class="cert-badge">🌟 Perfect Score</span>' : '')
+    + (bonusPoints >= 40 ? '<span class="cert-badge">💎 Boss Slayer</span>' : '')
+    + (bonusPoints >= 20 ? '<span class="cert-badge">⚡ Stacking Expert</span>' : '')
+    + '<span class="cert-badge">🎓 Day 7 Complete</span>'
+    + '</div>'
+    + '</div>'
+    + '<div class="callout callout-success" style="margin-top:16px;"><strong>✅ Score submitted successfully.</strong> Great work today, ' + name.split(" ")[0] + '. Coverage verification is now part of your toolkit — use it on every case from Day 1.</div>';
+  document.getElementById('nav-9').classList.add('done');
+}
+
+// Init
+goToSection(0);
+</script>
+</body>
+</html>
