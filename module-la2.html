@@ -1255,7 +1255,20 @@ function checkSectionComplete(sectionIdx) {
   var pts = sectionScores[sectionIdx] || 0;
 
   if (scoreVal) {
-    scoreVal.textContent = sectionIdx <= 5 ? (pts + ' / 40 pts') : (pts + ' bonus pts earned');
+    if (sectionIdx <= 5) {
+      // Calculate section max dynamically (base + bonus)
+      var sectionMax = 0;
+      var qs = SECTION_QUESTIONS[sectionIdx];
+      if (qs) {
+        qs.forEach(function(qId) {
+          var cfg = Q_CONFIG[qId];
+          sectionMax += cfg.isBonus ? (cfg.bonusPts || 0) : cfg.pts;
+        });
+      }
+      scoreVal.textContent = pts + ' / ' + sectionMax + ' pts';
+    } else {
+      scoreVal.textContent = pts + ' bonus pts earned';
+    }
   }
   if (scoreEl) scoreEl.style.display = 'block';
   if (nextEl)  nextEl.style.display  = 'flex';
