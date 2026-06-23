@@ -1,42 +1,42 @@
 <!--
 ═══════════════════════════════════════════════
 COO GATE MANIFEST
-Date: June 12, 2026
-Deliverable: Training Module Day 8 v2 — Lien Basics & Post-Settlement Process
-References Loaded: 8 files
-  - /glg/training-modules/module-day7-coverage-verification-v2.html (template)
-  - /glg/drive-downloads/training/ERISA_Made_Whole_Guide.txt
-  - /glg/drive-downloads/training/Hospital_Lien_Quick_Guide_v2.txt
-  - /glg/drive-downloads/training/Hospital_Lien_Verification_Checklist_v2.txt
-  - /glg/drive-downloads/training/Hospital_Lien_Verification_Guide.txt
-  - /glg/drive-downloads/training/Lien_Negotiation_Guide.txt
-  - /glg/drive-downloads/training/Health_Insurance_Reimbursement_Guide.txt
+Date: June 23, 2026
+Deliverable: Training Module Day 8 / NH-8 — Lien Basics & Post-Settlement Process
+Chassis: module-day7.html (NH-7 Coverage Verification Mastery)
+References Loaded:
   - /glg/canonical-sops/Post_Settlement_SOP.md
+  - /glg/canonical-sops/Lien_Negotiation_Guide.md
+  - /glg/canonical-sops/Hospital_Lien_Quick_Guide.md
+  - /glg/canonical-sops/Hospital_Lien_Verification_Guide.md
+  - /glg/canonical-sops/Hospital_Lien_Verification_Checklist.md
+  - /glg/canonical-sops/ERISA_Made_Whole_Guide.md
+  - /glg/canonical-sops/Health_Insurance_Reimbursement_Guide.md
+  - /glg/canonical-sops/CasePeer_Section_Template_Mapping.md
+  - /glg/proprietary-systems/System-1-GLG-MASTER.md
+  - /glg/training-modules/site/module-la3.html (content reference, LA-depth)
+  - All 14 pedagogy memos (see NH8_RESOURCES_CONSULTED.md)
 QA Checklist: ✅ PASSED
   - Forces recall, does not re-teach content
-  - Mixed question types (MC, scenario-based, multi-step)
-  - Progressive difficulty: easy → medium → hard → Boss Challenge
-  - Continuous case thread (Darnell Carter) through Sections 1-5
-  - New complex case (Tamara Reed) for Boss Challenge
+  - Mixed question types (MC, scenario-based, calculation)
+  - Progressive difficulty: identification → application → calculation → synthesis
+  - Continuous case thread (Maria Santos) through Sections 1–5
+  - New complex case (Mario Reyes, GLG-2026-1209) for Boss Challenge
   - Points + achievement badges + immediate consequence-based feedback
   - Mobile-first, 44px tap targets, no horizontal scroll
-  - Zero book/framework names in visible output
+  - Zero book/framework names in trainee-facing content
   - Base score tracked SEPARATELY from bonus score
   - No leaderboards — single-player mechanics only
-  - Mandatory feedback form: clarity / difficulty / realism / "name one thing you'd change"
-  - Score tracking: base=200 max, bonus tracked separately (Boss Challenge)
-  - TRACKER_URL + day8 / Lien Basics & Post-Settlement Process
-  - POST fields: employeeName, moduleId, moduleName, score, maxScore, bonusScore, passedAt
-  - 2 interleaved questions from prior modules (Day 6 medical records, Day 7 coverage verification)
-  - Boss Challenge combines knowledge from Days 2-7 + Day 8
-  - Pass threshold: 85% (170/200 base)
-Competency Gate Mapping:
-  - Gate: 60-Day Gate — Lien Assessment & Post-Settlement
-  - Milestone: 60-Day Checkpoint
-  - Competency: Can identify lien types, verify lien validity on GSCCCA, calculate client net recovery, negotiate reductions, and manage the post-settlement disbursement process
-  - Roles: CM, LA
-  - Requirement: 85%+ base score (170/200) to pass gate (A / Exceeds)
-  - Caseload Impact: Must pass before independently handling post-settlement files; feeds 50–75% caseload ramp at Day 60
+  - Mandatory feedback form: clarity / difficulty / realism / one-thing-to-change
+  - PASS THRESHOLD: 160/200 (80%) — NH standard, not 85%
+  - moduleId: 'day8' | moduleName: 'NH-8 Lien Basics & Post-Settlement Process'
+Answer Key: q1→C q2→B q3→C q4→B
+            q5→A q6→C q7→B q8→C
+            q9→C q10→A q11→B q12→D
+            q13→A q14→B q15→C q16→B
+            q17→C q18→A q19→B q20→B
+            q21→C q22→A q23→A q24→B q25→B (boss)
+Boss: Mario Reyes, GLG-2026-1209
 ═══════════════════════════════════════════════
 -->
 <!DOCTYPE html>
@@ -44,49 +44,47 @@ Competency Gate Mapping:
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Day 8 — Lien Basics & Post-Settlement Process | Gunn Law Group</title>
+  <title>NH-8 — Lien Basics &amp; Post-Settlement Process | Gunn Law Group</title>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:system-ui,-apple-system,sans-serif;background:#f8f9fa;color:#333;font-size:16px;line-height:1.6;-webkit-text-size-adjust:100%;overflow-x:hidden;}
-    .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
 
     /* ── HEADER ── */
-    header{background:linear-gradient(135deg,#141C2C 0%,#0E1420 100%);color:#e0e0e0;padding:20px 16px 16px;text-align:center;}
-    .day-badge{display:inline-block;background:#1C2433;color:#dcb161;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
+    header{background:#141c2c;color:#fff;padding:20px 16px 16px;text-align:center;}
+    .day-badge{display:inline-block;background:#232e54;color:#aab4c8;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;}
     header h1{font-size:clamp(17px,5vw,24px);font-weight:800;line-height:1.3;}
-    header h1{color:#ffffff;}
-    header p{margin-top:6px;color:#c0c0c0;font-size:13px;}
-    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#1C2433;border-radius:10px;}
-    .score-label{color:#c0c0c0;font-size:12px;font-weight:600;}
+    header p{margin-top:6px;color:#aab4c8;font-size:13px;}
+    .score-bar{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:12px;padding:10px 16px;background:#232e54;border-radius:10px;flex-wrap:wrap;}
+    .score-label{color:#aab4c8;font-size:12px;font-weight:600;}
     .score-value{color:#fff;font-size:22px;font-weight:800;}
 
     /* ── PROGRESS ── */
-    .progress-wrap{background:#1C2433;padding:10px 16px;}
-    .progress-meta{color:#c0c0c0;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
-    .progress-bg{background:#0E1420;border-radius:4px;height:6px;width:100%;}
-    .progress-fill{background:#dcb161;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
+    .progress-wrap{background:#232e54;padding:10px 16px;}
+    .progress-meta{color:#aab4c8;font-size:11px;margin-bottom:5px;display:flex;justify-content:space-between;}
+    .progress-bg{background:#141c2c;border-radius:4px;height:6px;width:100%;}
+    .progress-fill{background:#27ae60;height:6px;border-radius:4px;width:0%;transition:width .5s ease;}
 
     /* ── NAV PILLS ── */
     .section-nav{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:#fff;border-bottom:2px solid #e0e3e8;justify-content:center;position:sticky;top:0;z-index:100;}
     .nav-pill{padding:8px 12px;border-radius:20px;border:2px solid #e0e3e8;background:#fff;color:#666;font-size:12px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;display:flex;align-items:center;transition:all .2s;white-space:nowrap;-webkit-tap-highlight-color:transparent;}
-    .nav-pill.active{background:#00339B;color:#fff;border-color:#00339B;}
-    .nav-pill.done{border-color:#10774A;color:#10774A;}
+    .nav-pill.active{background:#141c2c;color:#fff;border-color:#141c2c;}
+    .nav-pill.done{border-color:#27ae60;color:#27ae60;}
     .nav-pill.done::after{content:' ✓';}
 
     /* ── MAIN / CARDS ── */
     main{max-width:800px;margin:0 auto;padding:0 0 60px;}
     .section-card{display:none;background:#fff;margin:16px;border-radius:14px;box-shadow:0 2px 16px rgba(0,0,0,.09);overflow:visible;}
     .section-card.active{display:block;}
-    .section-header{background:#141C2C;color:#fff;padding:18px 20px;}
-    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:4px;}
+    .section-header{background:#141c2c;color:#fff;padding:18px 20px;}
+    .section-num{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#aab4c8;margin-bottom:4px;}
     .section-header h2{font-size:clamp(15px,4vw,20px);font-weight:800;}
-    .section-subhead{color:#c0c0c0;font-size:13px;margin-top:4px;}
+    .section-subhead{color:#aab4c8;font-size:13px;margin-top:4px;}
     .section-body{padding:20px;}
 
     /* ── SCENARIO BOX ── */
-    .scenario{background:#141C2C;color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;border-left:3px solid #dcb161;}
-    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#dcb161;margin-bottom:8px;}
+    .scenario{background:linear-gradient(135deg,#232e54 0%,#141c2c 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;}
+    .scenario-tag{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#aab4c8;margin-bottom:8px;}
     .scenario h3{font-size:clamp(15px,4vw,18px);font-weight:700;line-height:1.4;margin-bottom:10px;}
     .scenario p{font-size:14px;color:#c8d0e0;line-height:1.6;}
     .scenario .highlight{color:#f39c12;font-weight:700;}
@@ -101,31 +99,32 @@ Competency Gate Mapping:
 
     /* ── QUESTIONS ── */
     .question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
-    .question-block.answered{border-color:#10774A;}
-    .question-block.answered-wrong{border-color:#870101;}
+    .question-block.answered{border-color:#27ae60;}
+    .question-block.answered-wrong{border-color:#c0392b;}
     .q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:6px;}
     .q-text{font-size:clamp(14px,3.5vw,16px);font-weight:700;color:#141c2c;margin-bottom:14px;line-height:1.4;}
     .options{display:flex;flex-direction:column;gap:10px;}
     .option-btn{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:2px solid #e0e3e8;border-radius:10px;background:#fff;cursor:pointer;text-align:left;font-size:14px;color:#333;min-height:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;width:100%;}
     .option-btn:hover,.option-btn:focus{border-color:#232e54;background:#f8f9ff;}
-    .option-btn.correct{border-color:#10774A!important;background:#e8f8ee!important;color:#10774A!important;}
-    .option-btn.incorrect{border-color:#870101!important;background:#fce8e8!important;color:#870101!important;}
+    .option-btn.correct{border-color:#27ae60!important;background:#e8f8ee!important;color:#1a5e30!important;}
+    .option-btn.incorrect{border-color:#c0392b!important;background:#fce8e8!important;color:#7b1a1a!important;}
     .option-btn.disabled{pointer-events:none;opacity:.75;}
-    .opt-letter{background:#141C2C;color:#dcb161;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
+    .opt-letter{background:#232e54;color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;margin-top:1px;}
     .opt-text{flex:1;line-height:1.5;}
 
     /* ── FEEDBACK ── */
     .feedback-box{border-radius:10px;padding:14px 16px;margin-top:12px;display:none;font-size:14px;line-height:1.6;}
-    .feedback-box.correct{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
-    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #870101;color:#721c24;}
+    .feedback-box.correct{background:#d4edda;border-left:4px solid #27ae60;color:#155724;}
+    .feedback-box.incorrect{background:#f8d7da;border-left:4px solid #c0392b;color:#721c24;}
     .feedback-box.show{display:block;}
 
     /* ── POINTS TOAST ── */
-    .points-toast{position:fixed;top:80px;right:16px;background:#10774A;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
+    .points-toast{position:fixed;top:80px;right:16px;background:#27ae60;color:#fff;padding:10px 16px;border-radius:30px;font-weight:700;font-size:15px;box-shadow:0 4px 16px rgba(0,0,0,.2);z-index:999;transform:translateY(-20px);opacity:0;transition:all .3s;pointer-events:none;}
     .points-toast.show{transform:translateY(0);opacity:1;}
+    .points-toast.bonus{background:#f39c12;color:#fff;}
 
     /* ── SECTION SCORE ── */
-    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;}
+    .section-score{background:#f0f4f8;border-radius:10px;padding:14px;text-align:center;margin-bottom:16px;display:none;}
     .section-score .score-display{font-size:32px;font-weight:800;color:#141c2c;}
     .section-score .score-label{font-size:13px;color:#666;margin-top:2px;}
 
@@ -139,53 +138,46 @@ Competency Gate Mapping:
     .case-detail:last-child{border-bottom:none;}
     .case-key{font-weight:700;color:#141c2c;min-width:160px;flex-shrink:0;}
     .case-val{color:#444;}
-    .case-val .flag{display:inline-block;background:#870101;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag{display:inline-block;background:#c0392b;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
     .case-val .flag-warn{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
-    .case-val .flag-ok{display:inline-block;background:#10774A;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
+    .case-val .flag-ok{display:inline-block;background:#27ae60;color:#fff;font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;margin-left:6px;}
 
-    /* ── LIEN CARDS ── */
+    /* ── LIEN TYPE GRID ── */
     .lien-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
     .lien-card{background:#f0f4f8;border-radius:10px;padding:14px;border-left:4px solid #232e54;}
     .lien-card h5{font-size:13px;font-weight:800;color:#141c2c;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px;}
     .lien-card p{font-size:13px;color:#555;line-height:1.5;}
-    .lien-card.hospital{border-left-color:#870101;}
-    .lien-card.insurance{border-left-color:#3498db;}
-    .lien-card.medicare{border-left-color:#9b59b6;}
-    .lien-card.erisa{border-left-color:#f39c12;}
-    .lien-card.medicaid{border-left-color:#10774A;}
-    .lien-card.billing{border-left-color:#95a5a6;}
+    .lien-card.hospital{border-left-color:#c0392b;}
+    .lien-card.health{border-left-color:#3498db;}
+    .lien-card.medicare{border-left-color:#27ae60;}
+    .lien-card.medicaid{border-left-color:#9b59b6;}
+    .lien-card.attorney{border-left-color:#f39c12;}
 
-    /* ── CHECKLIST ── */
-    .checklist{background:#fff;border:2px solid #e0e3e8;border-radius:12px;padding:16px;margin-bottom:16px;}
-    .checklist h4{color:#141c2c;font-size:14px;font-weight:800;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px;}
-    .check-item{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #f4f4f4;font-size:14px;line-height:1.5;}
-    .check-item:last-child{border-bottom:none;}
-    .check-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
-    .check-text{flex:1;color:#444;}
-    .check-text strong{color:#141c2c;}
-
-    /* ── TIMELINE ── */
-    .timeline{margin-bottom:16px;}
-    .timeline-item{display:flex;gap:14px;padding:10px 0;position:relative;}
-    .timeline-item::before{content:'';position:absolute;left:15px;top:36px;bottom:-10px;width:2px;background:#e0e3e8;}
-    .timeline-item:last-child::before{display:none;}
-    .timeline-dot{width:32px;height:32px;border-radius:50%;background:#141c2c;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0;z-index:1;}
-    .timeline-dot.urgent{background:#870101;}
-    .timeline-dot.important{background:#f39c12;}
-    .timeline-content{flex:1;}
-    .timeline-day{font-weight:800;color:#141c2c;font-size:13px;}
-    .timeline-desc{font-size:13px;color:#555;line-height:1.5;}
+    /* ── TIMELINE TABLE ── */
+    .timeline-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px;}
+    .timeline-table th{background:#141c2c;color:#fff;padding:8px 10px;text-align:left;font-weight:700;}
+    .timeline-table td{padding:7px 10px;border-bottom:1px solid #e0e3e8;vertical-align:top;}
+    .timeline-table tr:last-child td{border-bottom:none;}
+    .timeline-table tr:nth-child(even) td{background:#f8f9fa;}
+    .day-num{font-weight:800;color:#141c2c;white-space:nowrap;}
+    .day-crit{background:#fce8e8!important;font-weight:700;color:#721c24;}
+    .day-warn{background:#fff3cd!important;}
+    .day-ok{background:#d4edda!important;color:#155724;}
 
     /* ── BOSS CHALLENGE ── */
-    .boss-header{background:linear-gradient(135deg,#870101 0%,#6b0000 100%);color:#fff;border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;}
-    .boss-header .boss-icon{font-size:36px;margin-bottom:8px;}
-    .boss-header h3{font-size:clamp(16px,4vw,20px);font-weight:800;margin-bottom:6px;}
-    .boss-header p{font-size:13px;opacity:.9;}
+    .boss-header{background:linear-gradient(135deg,#c0392b 0%,#922b21 100%);color:#fff;border-radius:12px;padding:24px;margin-bottom:20px;text-align:center;}
+    .boss-header .boss-icon{font-size:40px;margin-bottom:10px;}
+    .boss-header h3{font-size:clamp(17px,4.5vw,22px);font-weight:800;margin-bottom:8px;}
+    .boss-header p{font-size:14px;opacity:.9;line-height:1.5;}
+    .boss-question-block{border:2px solid #e8ecf0;border-radius:12px;padding:18px;margin-bottom:16px;transition:border-color .2s;}
+    .boss-question-block.answered{border-color:#f39c12;}
+    .boss-question-block.answered-wrong{border-color:#c0392b;}
+    .boss-q-num{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#f39c12;margin-bottom:6px;}
 
     /* ── RESULTS ── */
     .results-header{padding:28px 20px;text-align:center;color:#fff;border-radius:0;}
-    .results-header.pass{background:linear-gradient(135deg,#10774A,#0a5c38);}
-    .results-header.fail{background:linear-gradient(135deg,#870101,#6b0000);}
+    .results-header.pass{background:linear-gradient(135deg,#27ae60,#1e8449);}
+    .results-header.fail{background:linear-gradient(135deg,#c0392b,#922b21);}
     .results-grade{font-size:56px;font-weight:900;line-height:1;}
     .results-label{font-size:16px;margin-top:6px;opacity:.9;}
     .results-sub{font-size:13px;margin-top:4px;opacity:.75;}
@@ -198,6 +190,15 @@ Competency Gate Mapping:
     .badge.earned{border-color:#f39c12;background:#fff8e6;color:#856404;}
     .badge .badge-icon{font-size:20px;}
 
+    /* ── CERTIFICATE ── */
+    .cert{border:3px solid #141c2c;border-radius:14px;padding:24px;text-align:center;margin-top:20px;background:#fff;}
+    .cert-logo{font-size:28px;margin-bottom:8px;}
+    .cert h3{font-size:18px;font-weight:800;color:#141c2c;margin-bottom:4px;}
+    .cert-name{font-size:22px;font-weight:800;color:#232e54;margin:12px 0 4px;}
+    .cert-details{font-size:13px;color:#666;line-height:1.8;}
+    .cert-achievements{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}
+    .cert-badge{background:#f39c12;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
+
     /* ── FEEDBACK FORM ── */
     .fb-question{margin-bottom:18px;}
     .fb-question label{display:block;font-weight:700;color:#141c2c;font-size:15px;margin-bottom:8px;}
@@ -208,44 +209,33 @@ Competency Gate Mapping:
     .fb-rating-btn{padding:10px 16px;border:2px solid #e0e3e8;border-radius:8px;background:#fff;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
     .fb-rating-btn.selected{background:#141c2c;color:#fff;border-color:#141c2c;}
 
-    /* ── CERTIFICATE ── */
-    .cert{border:3px solid #141c2c;border-radius:14px;padding:24px;text-align:center;margin-top:20px;background:#fff;}
-    .cert-logo{font-size:28px;margin-bottom:8px;}
-    .cert h3{font-size:18px;font-weight:800;color:#141c2c;margin-bottom:4px;}
-    .cert-name{font-size:22px;font-weight:800;color:#232e54;margin:12px 0 4px;}
-    .cert-details{font-size:13px;color:#666;line-height:1.8;}
-    .cert-achievements{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:12px;}
-    .cert-badge{background:#f39c12;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;}
-
     /* ── BUTTONS ── */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;min-height:44px;transition:all .2s;-webkit-tap-highlight-color:transparent;font-family:inherit;}
     .btn-primary{background:#141c2c;color:#fff;}
     .btn-primary:hover{background:#232e54;}
     .btn-secondary{background:#f0f4f8;color:#141c2c;}
     .btn-secondary:hover{background:#e0e5ec;}
-    .btn-success{background:#10774A;color:#fff;}
-    .btn-danger{background:#870101;color:#fff;}
-    .btn-warning{background:#f39c12;color:#fff;}
+    .btn-success{background:#27ae60;color:#fff;}
     .btn-block{width:100%;margin-top:12px;}
     .btn-group{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
 
     /* ── CALLOUT ── */
     .callout{border-radius:10px;padding:14px 16px;margin:14px 0;font-size:14px;line-height:1.6;}
     .callout-warn{background:#fff3cd;border-left:4px solid #f39c12;color:#533f03;}
-    .callout-danger{background:#fce8e8;border-left:4px solid #870101;color:#721c24;}
-    .callout-success{background:#d4edda;border-left:4px solid #10774A;color:#155724;}
+    .callout-danger{background:#fce8e8;border-left:4px solid #c0392b;color:#721c24;}
+    .callout-success{background:#d4edda;border-left:4px solid #27ae60;color:#155724;}
     .callout-info{background:#d6e8f8;border-left:4px solid #3498db;color:#174a7e;}
     .callout strong{font-weight:700;}
 
-    /* ── CALC TABLE ── */
-    .calc-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;}
-    .calc-table td{padding:8px 12px;border-bottom:1px solid #e0e3e8;}
-    .calc-table td:first-child{font-weight:600;color:#141c2c;}
-    .calc-table td:last-child{text-align:right;font-weight:700;}
-    .calc-table tr.total td{border-top:2px solid #141c2c;font-weight:800;font-size:15px;}
-    .calc-table tr.total td:last-child{color:#10774A;}
-    .calc-table tr.deduction td:last-child{color:#870101;}
-    .calc-table tr.hold td:last-child{color:#f39c12;}
+    /* ── CALCULATION BOX ── */
+    .calc-box{background:#fff;border:2px solid #141c2c;border-radius:10px;padding:16px;margin:14px 0;font-family:monospace;font-size:13px;line-height:2;}
+    .calc-box .calc-line{display:flex;justify-content:space-between;padding:2px 0;}
+    .calc-box .calc-line.total{border-top:2px solid #141c2c;font-weight:800;font-size:14px;margin-top:4px;padding-top:6px;}
+    .calc-box .calc-label{color:#444;}
+    .calc-box .calc-val{font-weight:700;color:#141c2c;}
+    .calc-box .calc-val.neg{color:#c0392b;}
+    .calc-box .calc-val.hold{color:#f39c12;}
+    .calc-box .calc-val.pos{color:#27ae60;}
 
     /* ── UTILITIES ── */
     .text-center{text-align:center;}
@@ -258,10 +248,16 @@ Competency Gate Mapping:
     .tag-success{background:#d4edda;color:#155724;}
     .tag-info{background:#d6e8f8;color:#174a7e;}
 
+    .glg-logo{display:block;margin:0 auto 10px;max-height:50px;width:auto;}
+
+    /* ── ANIMATIONS ── */
+    @keyframes correctPulse{0%{box-shadow:0 0 0 0 rgba(39,174,96,.4)}70%{box-shadow:0 0 0 12px rgba(39,174,96,0)}100%{box-shadow:0 0 0 0 rgba(39,174,96,0)}}
+    @keyframes incorrectShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+    .option-btn.correct{animation:correctPulse .6s ease-out;}
+    .option-btn.incorrect{animation:incorrectShake .4s ease-out;}
+
     @media(max-width:480px){
       .lien-grid{grid-template-columns:1fr;}
-      .case-detail{flex-direction:column;gap:2px;}
-      .case-key{min-width:auto;}
     }
   </style>
 </head>
@@ -270,9 +266,9 @@ Competency Gate Mapping:
 <!-- HEADER -->
 <header>
   <img src="https://www.thegunnlawgroup.com/wp-content/uploads/2023/01/gunn-logo.png" alt="Gunn Law Group" class="glg-logo">
-  <div class="day-badge">Day 8 · Liens & Post-Settlement</div>
-  <h1>Lien Basics & Post-Settlement Process</h1>
-  <p>Gunn Law Group · New Hire Training (NH-8)</p>
+  <div class="day-badge">NH-8 · Lien Basics &amp; Post-Settlement Process</div>
+  <h1>Lien Basics &amp; Post-Settlement Process</h1>
+  <p>Gunn Law Group · New Hire Training · Day 8</p>
   <div class="score-bar">
     <div>
       <div class="score-label">YOUR SCORE</div>
@@ -302,10 +298,10 @@ Competency Gate Mapping:
 <nav class="section-nav" id="section-nav">
   <button class="nav-pill active" id="nav-0" onclick="goToSection(0)">1. Intro</button>
   <button class="nav-pill" id="nav-1" onclick="goToSection(1)">2. Lien Types</button>
-  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. Verify</button>
-  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Subrogation</button>
-  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. Negotiate</button>
-  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. Post-Settlement</button>
+  <button class="nav-pill" id="nav-2" onclick="goToSection(2)">3. GSCCCA</button>
+  <button class="nav-pill" id="nav-3" onclick="goToSection(3)">4. Lien Rules</button>
+  <button class="nav-pill" id="nav-4" onclick="goToSection(4)">5. Timeline</button>
+  <button class="nav-pill" id="nav-5" onclick="goToSection(5)">6. Disbursement</button>
   <button class="nav-pill" id="nav-6" onclick="goToSection(6)">7. Boss</button>
   <button class="nav-pill" id="nav-7" onclick="goToSection(7)">8. Results</button>
   <button class="nav-pill" id="nav-8" onclick="goToSection(8)">9. Feedback</button>
@@ -320,55 +316,40 @@ Competency Gate Mapping:
 ════════════════════════════════════════════ -->
 <div class="section-card active" id="section-0">
   <div class="section-header">
-    <div class="section-num">Section 1 · 2 min</div>
-    <h2>Where the Money Actually Goes</h2>
-    <div class="section-subhead">Liens determine what your client takes home.</div>
+    <div class="section-num">Section 1 · Welcome · Day 8</div>
+    <h2>The Check That Never Came</h2>
+    <div class="section-subhead">After settlement, the client's trust lives or dies in the next 45 days.</div>
   </div>
   <div class="section-body">
 
     <div class="scenario">
-      <div class="scenario-tag">⚡ Previously on Day 7</div>
-      <h3>You learned how to verify every type of coverage on a case — BI liability, UM/UIM, MedPay, stacking, commercial policies. You can now identify all available money sources before the demand goes out.</h3>
-      <p>Today we flip to the other side. The case has settled. The check arrived. Now <span class="highlight">everyone wants a piece of that settlement — hospitals, insurance companies, Medicare, collection agencies.</span></p>
-      <p style="margin-top:10px;">Your job: figure out <span class="urgent">who actually has a legal right to that money — and how to minimize what they take.</span></p>
-    </div>
-
-    <div class="scenario">
-      <div class="scenario-tag">🚨 Tuesday Morning · 9:32 AM</div>
-      <h3>Darnell Carter's case just settled for $85,000. He's been waiting eight months. He's calling every day asking for his check. You pull up CasePeer — and there are five providers who treated him. Three of them are claiming a piece of the settlement.</h3>
-      <p>Grady Memorial Hospital: <span class="highlight">$38,000 lien filed</span>. Piedmont Orthopedics: <span class="highlight">$12,000 "balance due."</span> Atlanta Physical Therapy: <span class="highlight">$5,200 bill.</span> And Blue Cross Blue Shield just sent a subrogation letter demanding <span class="highlight">$22,000 reimbursement.</span></p>
-      <p style="margin-top:10px;">That's $77,200 in claims against an $85,000 settlement. After attorney fees ($28,305) and costs ($3,200), there's only $53,495 left. <span class="urgent">If you pay every claim at face value, Darnell gets — negative $23,705.</span> He'd OWE money.</p>
-      <p style="margin-top:10px;">This module teaches you how to make sure Darnell walks away with real money in his pocket.</p>
+      <div class="scenario-tag">⚡ Real Situation · Tuesday Morning</div>
+      <h3>Maria Santos calls for the fourth time this week. Her case settled six weeks ago. She still has no check.</h3>
+      <p>She's behind on rent. She borrowed money from her mother while her case was open. The insurance company called her two days after settlement to "confirm the amount" — before anyone at the firm did. She's been getting vague updates ever since. Every call, she asks the same question: <span class="highlight">"Where is my money?"</span></p>
+      <p style="margin-top:10px;">The answer: it's stuck. A hospital filed a lien. Someone sent an email to follow up — once — and never heard back. Nobody called. The file has been sitting in <span class="urgent">Lien Negotiations</span> status for 38 days.</p>
+      <p style="margin-top:10px;">This module exists so you understand what a lien is, how to verify it, and how to move it — fast.</p>
     </div>
 
     <div class="info-block">
-      <h4>🎯 What You'll Master Today</h4>
+      <h4>🎯 What You'll Learn in NH-8</h4>
       <ol>
-        <li>The difference between a filed lien and a billing claim (and why it's everything)</li>
-        <li>How to verify hospital liens on GSCCCA — the 5-step checklist</li>
-        <li>Health insurance subrogation: ERISA vs. fully-insured and the Made Whole Doctrine</li>
-        <li>Lien negotiation strategies that put money back in clients' pockets</li>
-        <li>The post-settlement timeline — from settlement check to final disbursement</li>
+        <li>The 5 types of liens that can affect a client's settlement</li>
+        <li>How to verify a hospital lien using GSCCCA.org</li>
+        <li>The 5 Georgia hospital lien rules — when a lien is valid vs. void</li>
+        <li>The Day 0–45 post-settlement timeline and performance standards</li>
+        <li>The Partial Disbursement Rule — clients should never wait months with zero funds</li>
+        <li>Pro-rata reduction and Common Fund arguments</li>
+        <li>Made Whole Doctrine basics for fully-insured health plans</li>
+        <li>Medicare: why you NEVER disburse without resolving it</li>
       </ol>
     </div>
 
     <div class="callout callout-info">
-      <strong>⏱ Estimated time:</strong> 15–20 minutes. You'll follow Darnell Carter's case from settlement through final disbursement.
-    </div>
-
-    <div style="background:#f0f7ff;border-left:4px solid #2980b9;border-radius:8px;padding:14px 16px;margin-bottom:16px;">
-      <h4 style="margin:0 0 6px;color:#2c3e50;font-size:14px;">📋 Competency Gate: Lien Assessment & Post-Settlement</h4>
-      <p style="font-size:13px;color:#555;margin:0 0 6px;">This module maps to your <strong>60-Day Competency Gate</strong>. Passing confirms you can identify lien types, verify validity, calculate client net recovery, and manage the post-settlement disbursement process.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;">
-        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">Day 60 Gate</span>
-        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">CM · LA</span>
-        <span style="background:#e8f0fe;color:#2c3e50;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">85% Required (170/200)</span>
-        <span style="background:#fff3e0;color:#e65100;font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;">50–75% Caseload Gate</span>
-      </div>
+      <strong>📂 Your case thread today:</strong> Maria Santos. You'll follow her case through Sections 2–6. Boss Challenge introduces Mario Reyes (GLG-2026-1209) — a more complex multi-lien scenario.
     </div>
 
     <div class="callout callout-warn">
-      <strong>⚠️ Next up — Day 9:</strong> Client Communication. Scripts, logging, the 14-day call cadence, and handling difficult conversations. Everything you learn today about liens and disbursement sets up what you tell the client tomorrow.
+      <strong>⚠️ NH-8 is intro level.</strong> Today's goal is to understand what liens are and how the post-settlement process works. You'll go much deeper in later advanced training — but you need this foundation first.
     </div>
 
     <div class="btn-group">
@@ -378,864 +359,854 @@ Competency Gate Mapping:
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 1: LIEN TYPES (40 pts)
+     SECTION 1: LIEN TYPES (s1, Q1–Q4, 40 pts)
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-1">
   <div class="section-header">
     <div class="section-num">Section 2 · 40 pts available</div>
-    <h2>Know Your Lien Types</h2>
-    <div class="section-subhead">Not every claim against the settlement is the same.</div>
+    <h2>What Is a Lien — and Who Can File One?</h2>
+    <div class="section-subhead">Five lien types. Every settled case. Know them cold.</div>
   </div>
   <div class="section-body">
 
     <div class="scenario">
-      <div class="scenario-tag">📋 Darnell Carter — Post-Settlement</div>
-      <h3>You've got the settlement check deposited in the trust account. Now you're staring at a stack of claims. Some are filed liens with legal power. Some are just bills. Some are from collection companies. Each one requires a different response.</h3>
-      <p>Get this wrong and either the client waits months for money he's legally entitled to, or you disburse funds the firm was legally required to hold. <span class="urgent">Both are serious problems.</span></p>
+      <div class="scenario-tag">📋 Maria Santos — Case Summary</div>
+      <h3>Maria Santos, rear-end collision, DOL March 12, 2025. Case just settled for $55,000.</h3>
+      <p>Maria treated at WellStar Kennestone (hospital) and a chiropractor. She had Blue Cross Blue Shield health insurance through her employer. Medicare paid for some treatment at the end. And GLG has an attorney fee agreement. That's at least four parties who may have a claim on this settlement.</p>
     </div>
 
     <div class="lien-grid">
       <div class="lien-card hospital">
-        <h5>🏥 Hospital Liens</h5>
-        <p>Filed with the court under O.C.G.A. § 44-14-470. Only specific providers can file: hospitals, nursing homes, physician practices, chiropractic practices, burn care centers. Must follow strict procedural rules or it's void.</p>
+        <h5>🏥 Hospital / Provider Lien</h5>
+        <p>Filed by hospitals, physician practices, chiropractors, nursing homes, or burn care centers under Georgia law. Must be filed with the Clerk of Superior Court. Verified on GSCCCA.org.</p>
       </div>
-      <div class="lien-card insurance">
-        <h5>🛡️ Insurance Subrogation</h5>
-        <p>Health insurer demands reimbursement for bills they paid. Amount depends on plan type: fully-insured (Made Whole applies) vs. self-funded ERISA (federal law controls). This is where negotiation gets powerful.</p>
+      <div class="lien-card health">
+        <h5>🔵 Health Insurance Subrogation</h5>
+        <p>When the client's health insurer paid their bills and wants repayment from the settlement. Whether Georgia's Made Whole Doctrine applies depends on plan type (fully insured vs. ERISA self-funded).</p>
       </div>
       <div class="lien-card medicare">
-        <h5>⚕️ Medicare Liens</h5>
-        <p>Federal right of recovery — MUST be addressed. Contact BCRC (1-855-798-2627). Procurement cost reduction applies (typically 1/3). Never disburse without resolving Medicare. Personal liability for the attorney.</p>
+        <h5>🟢 Medicare Lien</h5>
+        <p>Federal program. Federal right of recovery. MUST be addressed before disbursement. Contact BCRC at 1-855-798-2627 to get a conditional payment letter. Personal attorney liability if ignored.</p>
       </div>
       <div class="lien-card medicaid">
-        <h5>🏛️ Medicaid Liens</h5>
-        <p>State/federal program with statutory recovery rights under O.C.G.A. § 49-4-149. Contact GA Dept of Community Health. Must be addressed, but can be negotiated. Made Whole doctrine applies in Georgia.</p>
+        <h5>🟣 Medicaid Lien</h5>
+        <p>State/federal program. Georgia Medicaid has automatic right of reimbursement under O.C.G.A. § 49-4-149. Contact GA Dept of Community Health. Subject to Made Whole doctrine in some circumstances.</p>
       </div>
-      <div class="lien-card erisa">
-        <h5>📄 ERISA Plan Claims</h5>
-        <p>Self-funded employer health plans. Federal ERISA law preempts Georgia's Made Whole Doctrine. Plan document controls. But Common Fund Doctrine still works — plan pays its share of attorney fees.</p>
-      </div>
-      <div class="lien-card billing">
-        <h5>📬 Billing Claims (NOT Liens)</h5>
-        <p>Collection letters from companies like Aspirion or Synergi claiming to represent hospitals. If no lien was filed with the court, this is just a billing claim. You are NOT required to hold settlement funds for it.</p>
+      <div class="lien-card attorney">
+        <h5>⚖️ Attorney Lien</h5>
+        <p>GLG's fee and costs. Under O.C.G.A. § 44-14-470(b), attorney liens have PRIORITY over hospital liens — attorney fee comes out before the hospital gets paid. This matters at negotiation time.</p>
       </div>
     </div>
 
     <hr class="divider">
-    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Time to test what you know — Darnell's situation:</p>
+    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Test yourself — Maria Santos's settlement:</p>
 
-    <!-- Q1-1 -->
+    <!-- Q1 -->
     <div class="question-block" id="q-1-1">
       <div class="q-num">Question 1 of 4 · 10 pts</div>
-      <div class="q-text">Darnell's settlement check just hit the trust account. You receive a letter from Aspirion Recovery Services stating: "We represent Grady Memorial Hospital. Please remit $38,000 from the settlement proceeds." What's your FIRST step?</div>
+      <div class="q-text">Maria's case settled for $55,000. You've identified three potential parties claiming money from the settlement: WellStar Hospital, Blue Cross Blue Shield (her health insurer), and GLG's attorney fee. Which of these requires a GSCCCA.org search to verify it was properly filed?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
-          <span class="opt-letter">A</span><span class="opt-text">Pay the $38,000 from trust — Grady treated Darnell, so they're entitled to it</span>
+          <span class="opt-letter">A</span><span class="opt-text">The Blue Cross Blue Shield subrogation claim</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
-          <span class="opt-letter">B</span><span class="opt-text">Hold ALL settlement funds until you resolve this claim</span>
+          <span class="opt-letter">B</span><span class="opt-text">The GLG attorney fee lien</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-1',true,'s1')">
-          <span class="opt-letter">C</span><span class="opt-text">Check GSCCCA to verify whether Grady actually filed a lien with the court</span>
+          <span class="opt-letter">C</span><span class="opt-text">The WellStar Hospital lien</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-1',false,'s1')">
-          <span class="opt-letter">D</span><span class="opt-text">Call Aspirion and negotiate the amount down before doing anything else</span>
+          <span class="opt-letter">D</span><span class="opt-text">All three require GSCCCA verification</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-1-1"></div>
     </div>
 
-    <!-- Q1-2 -->
+    <!-- Q2 -->
     <div class="question-block" id="q-1-2">
       <div class="q-num">Question 2 of 4 · 10 pts</div>
-      <div class="q-text">You confirmed on GSCCCA that Grady filed a hospital lien. You also found that Atlanta Physical Therapy has a $5,200 bill — but NO lien filed on GSCCCA. What's the legal difference between these two?</div>
+      <div class="q-text">Blue Cross Blue Shield paid $18,000 of Maria's medical bills and is now sending letters demanding repayment from the settlement proceeds. What type of lien or claim is this?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
-          <span class="opt-letter">A</span><span class="opt-text">No difference — both must be paid from the settlement before Darnell gets anything</span>
+          <span class="opt-letter">A</span><span class="opt-text">A hospital lien filed under O.C.G.A. § 44-14-470</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-2',true,'s1')">
-          <span class="opt-letter">B</span><span class="opt-text">Grady's filed lien requires holding funds in trust; Atlanta PT's unfiled bill is a billing claim only — no hold required</span>
+          <span class="opt-letter">B</span><span class="opt-text">A health insurance subrogation claim</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
-          <span class="opt-letter">C</span><span class="opt-text">Grady's lien is stronger, but both require you to hold equal amounts in trust</span>
+          <span class="opt-letter">C</span><span class="opt-text">A Medicare conditional payment</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-2',false,'s1')">
-          <span class="opt-letter">D</span><span class="opt-text">Neither requires holding funds — liens are just a billing tool, not a legal claim</span>
+          <span class="opt-letter">D</span><span class="opt-text">A Medicaid right of reimbursement</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-1-2"></div>
     </div>
 
-    <!-- Q1-3: INTERLEAVE from Day 7 (Coverage Verification) -->
+    <!-- Q3 -->
     <div class="question-block" id="q-1-3">
-      <div class="q-num">Question 3 of 4 · 10 pts · <span class="tag tag-info">Day 7 Review</span></div>
-      <div class="q-text">While reviewing Darnell's file, you notice the at-fault driver's liability limits are $25,000 — but Darnell's own policy has $100,000 UM coverage. The case settled for $85,000 total. Which of these statements is correct about why the settlement exceeded the at-fault driver's limits?</div>
+      <div class="q-num">Question 3 of 4 · 10 pts</div>
+      <div class="q-text">WellStar Hospital has filed a valid lien. GLG also has an attorney fee lien. Under Georgia law, when the settlement funds are distributed, which lien gets paid first?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
-          <span class="opt-letter">A</span><span class="opt-text">The at-fault driver must have had additional umbrella coverage</span>
+          <span class="opt-letter">A</span><span class="opt-text">WellStar — because they provided medical care to Maria</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
-          <span class="opt-letter">B</span><span class="opt-text">Darnell's MedPay covered the difference above $25K</span>
+          <span class="opt-letter">B</span><span class="opt-text">Whoever filed their lien first wins priority</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-3',true,'s1')">
-          <span class="opt-letter">C</span><span class="opt-text">A UM/UIM claim on Darnell's own policy provided the additional $60,000 above the at-fault limits</span>
+          <span class="opt-letter">C</span><span class="opt-text">GLG's attorney fee — attorney liens have statutory priority over hospital liens in Georgia</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-3',false,'s1')">
-          <span class="opt-letter">D</span><span class="opt-text">The at-fault driver voluntarily paid more than the policy limits</span>
+          <span class="opt-letter">D</span><span class="opt-text">They share proportionally in the settlement amount</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-1-3"></div>
     </div>
 
-    <!-- Q1-4 -->
+    <!-- Q4 -->
     <div class="question-block" id="q-1-4">
       <div class="q-num">Question 4 of 4 · 10 pts</div>
-      <div class="q-text">Which of these providers is NOT authorized to file a hospital lien under Georgia law (O.C.G.A. § 44-14-470)?</div>
+      <div class="q-text">Maria's Medicare paid for some of her treatment. Medicare is classified as "Category 1 — Must Address." What does this mean in practical terms for disbursement?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
-          <span class="opt-letter">A</span><span class="opt-text">Grady Memorial Hospital</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
-          <span class="opt-letter">B</span><span class="opt-text">Peachtree Orthopedics (physician practice)</span>
+          <span class="opt-letter">A</span><span class="opt-text">Send Medicare a Made Whole letter and wait 30 days before disbursing</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-4',true,'s1')">
-          <span class="opt-letter">C</span><span class="opt-text">Metro Atlanta Ambulance Services</span>
+          <span class="opt-letter">B</span><span class="opt-text">Never disburse without resolving the Medicare lien — there is personal liability for the attorney</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
-          <span class="opt-letter">D</span><span class="opt-text">Atlanta Chiropractic Associates</span>
+          <span class="opt-letter">C</span><span class="opt-text">You may disburse if the client signs an indemnification agreement</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-1-4',false,'s1')">
+          <span class="opt-letter">D</span><span class="opt-text">Medicare liens are negotiable like any other — start low and work up</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-1-4"></div>
     </div>
 
-    <div class="section-score" id="s1-score" style="display:none;">
-      <div class="score-display" id="s1-score-val">0/40</div>
+    <div class="section-score" id="s1-score">
+      <div class="score-display" id="s1-score-val">—</div>
       <div class="score-label">Section 2 Score</div>
     </div>
-
     <div class="btn-group" id="s1-next" style="display:none;">
-      <button class="btn btn-primary btn-block" onclick="goToSection(2)">Continue — Section 3: Verifying Hospital Liens →</button>
+      <button class="btn btn-primary btn-block" onclick="goToSection(2)">Next: GSCCCA Search →</button>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 2: HOSPITAL LIEN VERIFICATION (40 pts)
+     SECTION 2: GSCCCA SEARCH (s2, Q5–Q8, 40 pts)
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-2">
   <div class="section-header">
     <div class="section-num">Section 3 · 40 pts available</div>
-    <h2>The 5-Step Lien Verification</h2>
-    <div class="section-subhead">A defective lien = money back to your client.</div>
+    <h2>Filed Lien vs. Billing Claim</h2>
+    <div class="section-subhead">GSCCCA.org is the only authoritative source. A demand letter is not a lien.</div>
   </div>
   <div class="section-body">
 
     <div class="scenario">
-      <div class="scenario-tag">📋 Darnell Carter — Lien Investigation</div>
-      <h3>You confirmed Grady's lien on GSCCCA. But confirming a lien EXISTS isn't the same as confirming it's VALID. Georgia law has strict procedural requirements — if ANY one is violated, the lien is automatically void.</h3>
-      <p>This is where you save the client real money. Every defective lien you catch is money that stays in Darnell's pocket.</p>
+      <div class="scenario-tag">📋 Maria Santos — Day After Settlement</div>
+      <h3>Settlement confirmed. You've just received a letter from Aspirion Healthcare claiming to represent WellStar and demanding $22,000 from the settlement.</h3>
+      <p>Before you do anything — before you hold funds, before you call Aspirion, before you respond — there is one step that changes everything. You need to know whether WellStar actually filed a lien with the court.</p>
     </div>
 
-    <div class="checklist">
-      <h4>📋 Hospital Lien Verification Checklist</h4>
-      <div class="check-item">
-        <span class="check-icon">☐</span>
-        <span class="check-text"><strong>Step 0:</strong> Is the filer authorized? (hospital, nursing home, physician practice, chiropractic practice, or burn care center) — <em>O.C.G.A. § 44-14-470</em></span>
-      </div>
-      <div class="check-item">
-        <span class="check-icon">☐</span>
-        <span class="check-text"><strong>Step 1:</strong> Was the lien filed within <strong>75 days</strong> of discharge? (hospitals/nursing homes) or <strong>90 days</strong> (physician/chiropractic practices) — <em>§ 44-14-471(a)(2)</em></span>
-      </div>
-      <div class="check-item">
-        <span class="check-icon">☐</span>
-        <span class="check-text"><strong>Step 2:</strong> Was certified mail notice sent at least <strong>15 days BEFORE filing</strong>? Regular mail does NOT count. — <em>§ 44-14-471(a)(1)</em></span>
-      </div>
-      <div class="check-item">
-        <span class="check-icon">☐</span>
-        <span class="check-text"><strong>Step 3:</strong> Did the provider bill the client's health insurance FIRST and receive a rejection? (2023 Rule) — <em>§ 44-14-471(c)</em></span>
-      </div>
-      <div class="check-item">
-        <span class="check-icon">☐</span>
-        <span class="check-text"><strong>Step 4:</strong> Has enforcement action been commenced within <strong>1 year</strong> of settlement? — <em>§ 44-14-473(a)</em></span>
-      </div>
+    <div class="info-block">
+      <h4>🔍 The Filed Lien vs. Billing Claim Distinction</h4>
+      <p style="margin-bottom:10px;"><strong>Filed Lien:</strong> The provider went to the Clerk of Superior Court and filed a formal lien under O.C.G.A. § 44-14-470. This appears on GSCCCA.org. You are legally required to hold funds to satisfy it.</p>
+      <p><strong>Billing Claim:</strong> The provider has a debt the client owes — but no court filing. No lien = no legal obligation to hold settlement funds. The client can pay the provider directly (or not). Use the Self-Pay Addendum.</p>
     </div>
 
-    <div class="callout callout-danger">
-      <strong>🔑 Critical Rule (§ 44-14-471(b)):</strong> Failure to comply with ANY of these requirements renders the lien <strong>automatically unenforceable</strong>. You don't need a court order to challenge it. The statute does the work for you.
+    <div class="info-block">
+      <h4>⚠️ Aspirion, Synergi, and Collection Companies</h4>
+      <p>Companies like Aspirion and Synergi send demand letters on behalf of hospitals. These letters are <strong>NOT</strong> filed liens. A letter claiming "we represent WellStar" does not create a court-filed lien. <strong>Always verify on GSCCCA before holding any funds.</strong></p>
     </div>
 
-    <div class="callout callout-success">
-      <strong>💰 Attorney Lien Priority (§ 44-14-470(b)):</strong> Attorney's liens have PRIORITY over hospital liens. Your firm's fee comes out first, before the hospital gets paid from settlement proceeds.
+    <div class="info-block">
+      <h4>📊 GSCCCA.org — How to Search</h4>
+      <ol style="padding-left:18px;">
+        <li>Go to <strong>www.gsccca.org</strong></li>
+        <li>Click "Search Records" → "Lien Search"</li>
+        <li>Select the county where the hospital is located</li>
+        <li>Search by client name (Last, First)</li>
+        <li>Look for "Hospital Lien" or "Medical Lien" entries</li>
+        <li>Note filing date, amount, provider name</li>
+      </ol>
     </div>
 
     <hr class="divider">
-    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Apply the checklist to Darnell's case:</p>
 
-    <!-- Q2-1 -->
+    <!-- Q5 -->
     <div class="question-block" id="q-2-1">
-      <div class="q-num">Question 1 of 4 · 10 pts</div>
-      <div class="q-text">Darnell was discharged from Grady on January 15. Grady filed the lien on GSCCCA on April 5 — that's 80 days after discharge. Is this lien valid?</div>
+      <div class="q-num">Question 5 of 20 · 10 pts</div>
+      <div class="q-text">You just received settlement confirmation on Maria's case. The next morning, Aspirion sends a letter claiming to represent WellStar and demanding $22,000 from the settlement proceeds. What is your FIRST step?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
-          <span class="opt-letter">A</span><span class="opt-text">Yes — hospitals have 90 days to file, and 80 is within that window</span>
-        </button>
         <button class="option-btn" onclick="answer(this,'q-2-1',true,'s2')">
-          <span class="opt-letter">B</span><span class="opt-text">No — hospitals have 75 days, not 90. Grady filed on Day 80, so the lien is void under § 44-14-471(b)</span>
+          <span class="opt-letter">A</span><span class="opt-text">Check GSCCCA.org to verify whether WellStar actually filed a lien with the court</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
-          <span class="opt-letter">C</span><span class="opt-text">Yes — as long as the total is under $50,000, there's no filing deadline</span>
+          <span class="opt-letter">B</span><span class="opt-text">Call Aspirion to start negotiating the $22,000 down</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
-          <span class="opt-letter">D</span><span class="opt-text">It depends on whether Grady sent certified mail notice first</span>
+          <span class="opt-letter">C</span><span class="opt-text">Hold $22,000 in the trust account immediately as required by law</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-1',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Pay Aspirion from the trust account to clear the file quickly</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-2-1"></div>
     </div>
 
-    <!-- Q2-2 -->
+    <!-- Q6 -->
     <div class="question-block" id="q-2-2">
-      <div class="q-num">Question 2 of 4 · 10 pts</div>
-      <div class="q-text">Piedmont Orthopedics (a physician practice) filed a lien on Day 85 after Darnell's final treatment. You also notice the notice was sent via certified mail 20 days before filing. Is THIS lien valid?</div>
+      <div class="q-num">Question 6 of 20 · 10 pts</div>
+      <div class="q-text">You search GSCCCA.org for Maria Santos in Cobb County and find NO filed lien from WellStar. Aspirion is still sending demand letters. What is the correct next step for the settlement funds?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
-          <span class="opt-letter">A</span><span class="opt-text">No — 85 days exceeds the 75-day filing deadline</span>
+          <span class="opt-letter">A</span><span class="opt-text">Hold all settlement funds until WellStar confirms in writing they won't file a lien</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
-          <span class="opt-letter">B</span><span class="opt-text">No — physician practices cannot file hospital liens at all</span>
+          <span class="opt-letter">B</span><span class="opt-text">Hold the estimated $22,000 in trust for 90 days and wait</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-2',true,'s2')">
-          <span class="opt-letter">C</span><span class="opt-text">Potentially yes — physician practices have 90 days (not 75), and the 15-day certified mail requirement is met. But still need to check the 2023 insurance billing rule.</span>
+          <span class="opt-letter">C</span><span class="opt-text">Have Maria sign a Self-Pay Addendum acknowledging her responsibility, then proceed with disbursement</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-2',false,'s2')">
-          <span class="opt-letter">D</span><span class="opt-text">Yes — this is fully valid, no further checks needed</span>
+          <span class="opt-letter">D</span><span class="opt-text">Ignore the Aspirion letter — collection agencies have no legal rights against a settlement</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-2-2"></div>
     </div>
 
-    <!-- Q2-3: The 2023 Rule -->
+    <!-- Q7 -->
     <div class="question-block" id="q-2-3">
-      <div class="q-num">Question 3 of 4 · 10 pts</div>
-      <div class="q-text">Darnell has Blue Cross Blue Shield. You request documentation from Grady and discover they filed their $38,000 lien WITHOUT EVER submitting the bills to BCBS. Under the 2023 amendment to Georgia's Hospital Lien Act, what is the legal consequence?</div>
+      <div class="q-num">Question 7 of 20 · 10 pts</div>
+      <div class="q-text">This time, GSCCCA.org DOES show a filed WellStar lien for $22,000 on Maria's case. The lien appears valid. How much should you hold in trust while negotiating the lien?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
-          <span class="opt-letter">A</span><span class="opt-text">The lien is reduced by 50% as a penalty</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
-          <span class="opt-letter">B</span><span class="opt-text">Nothing — the insurance billing rule only applies to Medicaid patients</span>
+          <span class="opt-letter">A</span><span class="opt-text">$22,000 exactly — the face amount of the filed lien</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-3',true,'s2')">
-          <span class="opt-letter">C</span><span class="opt-text">The lien is VOID — under § 44-14-471(c), the hospital must submit to health insurance and receive a rejection BEFORE asserting the lien</span>
+          <span class="opt-letter">B</span><span class="opt-text">$24,200 — the lien amount plus a 10% cushion, then disburse the rest to Maria now</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
-          <span class="opt-letter">D</span><span class="opt-text">Grady just needs to bill BCBS retroactively and the lien becomes valid again</span>
+          <span class="opt-letter">C</span><span class="opt-text">$0 — file the Self-Pay Addendum since we're negotiating a reduction</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-3',false,'s2')">
+          <span class="opt-letter">D</span><span class="opt-text">Hold the entire remaining settlement until all negotiations are complete</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-2-3"></div>
     </div>
 
-    <!-- Q2-4: INTERLEAVE from Day 6 (Medical Records) -->
+    <!-- Q8 -->
     <div class="question-block" id="q-2-4">
-      <div class="q-num">Question 4 of 4 · 10 pts · <span class="tag tag-info">Day 6 Review</span></div>
-      <div class="q-text">While investigating Darnell's liens, you realize you never received the complete medical records from Piedmont Orthopedics. It's been 21 days since your records request. Under GLG's medical records protocol, what should have already happened?</div>
+      <div class="q-num">Question 8 of 20 · 10 pts</div>
+      <div class="q-text">Maria's settlement: $55,000. Attorney fee (33.3%): $18,315. Case costs: $2,800. WellStar filed lien: $22,000. You hold $24,200 (lien + 10% cushion). How much does Maria receive in partial disbursement TODAY while the lien is being negotiated?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
-          <span class="opt-letter">A</span><span class="opt-text">Nothing — providers have 30 days, so you're still within the window</span>
+          <span class="opt-letter">A</span><span class="opt-text">$33,885 — settlement minus only attorney fees and costs</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
+          <span class="opt-letter">B</span><span class="opt-text">$0 — clients must wait until all lien negotiations are complete</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-4',true,'s2')">
-          <span class="opt-letter">B</span><span class="opt-text">A follow-up should have been sent at Day 14 — you're 7 days overdue on the follow-up</span>
+          <span class="opt-letter">C</span><span class="opt-text">$9,685 — $55,000 minus $18,315 (fees) minus $2,800 (costs) minus $24,200 (lien hold)</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
-          <span class="opt-letter">C</span><span class="opt-text">Records follow-ups are only required every 30 days</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-2-4',false,'s2')">
-          <span class="opt-letter">D</span><span class="opt-text">You should escalate directly to the attorney before attempting any follow-up</span>
+          <span class="opt-letter">D</span><span class="opt-text">$55,000 — disburse everything and handle the lien separately</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-2-4"></div>
     </div>
 
-    <div class="section-score" id="s2-score" style="display:none;">
-      <div class="score-display" id="s2-score-val">0/40</div>
+    <div class="section-score" id="s2-score">
+      <div class="score-display" id="s2-score-val">—</div>
       <div class="score-label">Section 3 Score</div>
     </div>
-
     <div class="btn-group" id="s2-next" style="display:none;">
-      <button class="btn btn-primary btn-block" onclick="goToSection(3)">Continue — Section 4: Health Insurance Subrogation →</button>
+      <button class="btn btn-primary btn-block" onclick="goToSection(3)">Next: Hospital Lien Rules →</button>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 3: HEALTH INSURANCE & MADE WHOLE (30 pts)
+     SECTION 3: HOSPITAL LIEN RULES (s3, Q9–Q12, 40 pts)
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-3">
   <div class="section-header">
-    <div class="section-num">Section 4 · 30 pts available</div>
-    <h2>The Critical Threshold Question</h2>
-    <div class="section-subhead">Self-funded or fully-insured? The answer changes everything.</div>
+    <div class="section-num">Section 4 · 40 pts available</div>
+    <h2>5 Rules That Make or Break a Hospital Lien</h2>
+    <div class="section-subhead">Georgia law creates specific requirements. Miss one — the lien is void.</div>
   </div>
   <div class="section-body">
 
     <div class="scenario">
-      <div class="scenario-tag">📋 Darnell Carter — Insurance Investigation</div>
-      <h3>BCBS sent a subrogation letter demanding $22,000 — the amount they paid for Darnell's treatment. But before you respond to that letter, you need to answer one question that controls your entire negotiation strategy.</h3>
-      <p><span class="highlight">Is Darnell's BCBS plan self-funded by his employer, or fully insured through BCBS?</span></p>
-      <p style="margin-top:10px;">If fully insured → Georgia's Made Whole Doctrine may <span class="highlight">eliminate the lien entirely.</span><br>If self-funded → ERISA preempts Georgia law, and you'll need a different strategy.</p>
-    </div>
-
-    <div class="lien-grid">
-      <div class="lien-card insurance">
-        <h5>✅ Fully Insured</h5>
-        <p><strong>Georgia law applies.</strong> Made Whole Doctrine: insurer can't collect until client is fully compensated for ALL losses. If settlement &lt; total damages → insurer may get NOTHING. Send the Made Whole Letter.</p>
-      </div>
-      <div class="lien-card erisa">
-        <h5>⚠️ Self-Funded (ERISA)</h5>
-        <p><strong>Federal ERISA preempts Georgia law.</strong> Made Whole Doctrine does NOT apply. Plan document controls. BUT: Common Fund Doctrine works — plan pays pro-rata share of attorney fees (typically 33.3% reduction).</p>
-      </div>
+      <div class="scenario-tag">📋 Maria Santos — Lien Verification</div>
+      <h3>WellStar filed a lien. Before you negotiate or pay anything, you need to know if this lien is actually valid under Georgia law. Run the five-point verification checklist.</h3>
+      <p>Under O.C.G.A. § 44-14-471(b): "Failure of any person or institution to comply with the requirements of this Code section shall render the lien of such person or institution unenforceable." One missed requirement = the lien is gone.</p>
     </div>
 
     <div class="info-block">
-      <h4>🔍 How to Identify the Plan Type</h4>
-      <ul>
-        <li>Call the number on the back of Darnell's insurance card</li>
-        <li>Ask: "Is this plan self-funded by the employer, or fully insured through BCBS?"</li>
-        <li>Request the Summary Plan Description (SPD) — look for "self-funded" or "self-insured" language</li>
-        <li>Check Form 5500 on dol.gov/efast for additional confirmation</li>
-        <li><strong>When in doubt: treat as self-funded and research further before conceding the lien</strong></li>
-      </ul>
-    </div>
-
-    <div class="callout callout-success">
-      <strong>💡 Made Whole Math:</strong> Darnell's total damages — past/future medical ($55,200), lost wages ($8,400), pain and suffering (at least $50,000) = <strong>$113,600+ in total damages.</strong> Settlement was $85,000. He was NOT made whole. If the plan is fully insured, BCBS may get zero.
+      <h4>📋 Five Georgia Hospital Lien Rules (O.C.G.A. §§ 44-14-470 to 44-14-476)</h4>
+      <table class="timeline-table">
+        <tr><th>#</th><th>Rule</th><th>Statute</th></tr>
+        <tr>
+          <td class="day-num">1</td>
+          <td><strong>Authorized filers only:</strong> Hospitals, nursing homes, physician practices, chiropractic practices, traumatic burn care centers. Nothing else.</td>
+          <td>§ 44-14-470</td>
+        </tr>
+        <tr>
+          <td class="day-num">2</td>
+          <td><strong>Certified mail notice:</strong> Provider must send certified mail notice to patient, at-fault party, and attorney at least <em>15 days</em> before filing.</td>
+          <td>§ 44-14-471(a)(1)</td>
+        </tr>
+        <tr>
+          <td class="day-num">3</td>
+          <td><strong>Filing deadlines:</strong> Hospitals/nursing homes/burn care = 75 days from discharge. Physician/chiro practices = 90 days from treatment.</td>
+          <td>§ 44-14-471(a)(2)</td>
+        </tr>
+        <tr class="day-crit">
+          <td class="day-num">4</td>
+          <td><strong>2023 Insurance Rule:</strong> Hospital must first submit claim to client's health insurer AND receive a rejection before asserting a lien. If insurer paid part, lien limited to what wasn't paid.</td>
+          <td>§ 44-14-471(c)</td>
+        </tr>
+        <tr>
+          <td class="day-num">5</td>
+          <td><strong>Enforcement deadline:</strong> Provider must take enforcement action within 1 year of settlement. Miss this — lien is extinguished.</td>
+          <td>§ 44-14-473(a)</td>
+        </tr>
+      </table>
     </div>
 
     <hr class="divider">
-    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Apply this to Darnell's BCBS claim:</p>
 
-    <!-- Q3-1 -->
+    <!-- Q9 -->
     <div class="question-block" id="q-3-1">
-      <div class="q-num">Question 1 of 3 · 10 pts</div>
-      <div class="q-text">You call BCBS and the representative says: "Darnell's plan is fully insured through Blue Cross Blue Shield of Georgia — it is NOT a self-funded employer plan." Given this answer, what's your negotiation strategy for the $22,000 subrogation claim?</div>
+      <div class="q-num">Question 9 of 20 · 10 pts</div>
+      <div class="q-text">WellStar discharged Maria on March 1. You check GSCCCA and see WellStar filed their lien on May 20 — that's 80 days after discharge. Is this hospital lien valid?</div>
       <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">Yes — hospitals have 90 days to file a lien</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">Yes — the lien is valid unless Maria formally objects within 10 days</span>
+        </button>
         <button class="option-btn" onclick="answer(this,'q-3-1',true,'s3')">
-          <span class="opt-letter">A</span><span class="opt-text">Assert the Made Whole Doctrine — Darnell's total damages ($113,600+) far exceed his $85,000 settlement, so BCBS cannot enforce subrogation until he's made whole</span>
+          <span class="opt-letter">C</span><span class="opt-text">No — hospitals must file within 75 days of discharge; May 20 is 80 days; the lien is void</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
-          <span class="opt-letter">B</span><span class="opt-text">Invoke ERISA preemption since BCBS is a large national carrier</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
-          <span class="opt-letter">C</span><span class="opt-text">Pay the $22,000 — fully insured plans always have enforceable subrogation rights</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-3-1',false,'s3')">
-          <span class="opt-letter">D</span><span class="opt-text">Ignore the subrogation letter since BCBS already paid the bills</span>
+          <span class="opt-letter">D</span><span class="opt-text">It depends on whether WellStar sent certified mail notice in time</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-3-1"></div>
     </div>
 
-    <!-- Q3-2 -->
+    <!-- Q10 -->
     <div class="question-block" id="q-3-2">
-      <div class="q-num">Question 2 of 3 · 10 pts</div>
-      <div class="q-text">Now imagine a different scenario: the BCBS representative says Darnell's plan IS self-funded by his employer. The plan document has explicit subrogation language. Made Whole is off the table. What's your BEST argument to reduce the $22,000 ERISA lien?</div>
+      <div class="q-num">Question 10 of 20 · 10 pts</div>
+      <div class="q-text">You investigate the WellStar lien and discover: WellStar filed it timely and sent proper certified mail notice — but they never submitted Maria's treatment claim to her Blue Cross health insurance before filing. Under the 2023 Georgia law, what is the status of this lien?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
-          <span class="opt-letter">A</span><span class="opt-text">You have no argument — ERISA plans get the full amount, no exceptions</span>
-        </button>
         <button class="option-btn" onclick="answer(this,'q-3-2',true,'s3')">
-          <span class="opt-letter">B</span><span class="opt-text">Common Fund Doctrine — the plan must pay its pro-rata share of attorney's fees since the firm's work created the recovery fund. That's at least a 33.3% reduction.</span>
+          <span class="opt-letter">A</span><span class="opt-text">Unenforceable — under O.C.G.A. § 44-14-471(c), health insurance must be billed before a lien can be asserted</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
-          <span class="opt-letter">C</span><span class="opt-text">File a complaint with the Georgia Department of Insurance to invalidate the lien</span>
+          <span class="opt-letter">B</span><span class="opt-text">Valid — the lien was filed correctly and timely, that's all that matters</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
-          <span class="opt-letter">D</span><span class="opt-text">Send the Made Whole Letter anyway — sometimes ERISA plans don't know their rights</span>
+          <span class="opt-letter">C</span><span class="opt-text">Valid — the 2023 rule only applies to liens filed after January 2025</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-2',false,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">Partially valid — WellStar gets 50% of what they claimed</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-3-2"></div>
     </div>
 
-    <!-- Q3-3 -->
+    <!-- Q11 -->
     <div class="question-block" id="q-3-3">
-      <div class="q-num">Question 3 of 3 · 10 pts</div>
-      <div class="q-text">Darnell's grandmother was also in the car and was injured. She's 68 years old and has Medicare. Her case settled separately. The paralegal says: "Let's just disburse her funds and deal with Medicare later." Why is this WRONG?</div>
+      <div class="q-num">Question 11 of 20 · 10 pts</div>
+      <div class="q-text">You review the lien documents and find that Piedmont Atlanta Hospital sent Maria written notice by CERTIFIED MAIL — but sent it only 10 days before they filed the lien. Is the certified mail requirement satisfied?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
-          <span class="opt-letter">A</span><span class="opt-text">It's not wrong — Medicare is just like any other insurance and can wait</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
-          <span class="opt-letter">B</span><span class="opt-text">Medicare liens are optional — they only enforce them on large settlements over $100K</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
-          <span class="opt-letter">C</span><span class="opt-text">Medicare has a Made Whole exception just like fully insured plans</span>
+          <span class="opt-letter">A</span><span class="opt-text">Yes — they used certified mail, so the requirement is met</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-3-3',true,'s3')">
-          <span class="opt-letter">D</span><span class="opt-text">Medicare has a federal right of recovery — disbursing without resolving it creates PERSONAL LIABILITY for the attorney. The settlement must be reported to BCRC and the lien resolved first.</span>
+          <span class="opt-letter">B</span><span class="opt-text">No — the notice must be sent at least 15 days BEFORE filing; 10 days is insufficient; lien is void</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Yes — 10 days is sufficient as long as the letter was actually delivered</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-3',false,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">No — notice must be sent by overnight delivery, not certified mail</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-3-3"></div>
     </div>
 
-    <div class="section-score" id="s3-score" style="display:none;">
-      <div class="score-display" id="s3-score-val">0/30</div>
-      <div class="score-label">Section 4 Score</div>
+    <!-- Q12 -->
+    <div class="question-block" id="q-3-4">
+      <div class="q-num">Question 12 of 20 · 10 pts</div>
+      <div class="q-text">Maria also treated with an orthopedic physician practice. That practice filed their lien 88 days after her final appointment. You apply the 75-day hospital rule and conclude the lien is void. Are you correct?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-3-4',false,'s3')">
+          <span class="opt-letter">A</span><span class="opt-text">Yes — the 75-day deadline applies to all healthcare providers</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-4',false,'s3')">
+          <span class="opt-letter">B</span><span class="opt-text">Yes — 88 days exceeds the 75-day deadline</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-4',false,'s3')">
+          <span class="opt-letter">C</span><span class="opt-text">Yes — physician practices cannot file hospital liens under Georgia law</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-3-4',true,'s3')">
+          <span class="opt-letter">D</span><span class="opt-text">No — physician and chiropractic practices have 90 days, not 75; 88 days is timely; this lien is valid</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-3-4"></div>
     </div>
 
+    <div class="section-score" id="s3-score">
+      <div class="score-display" id="s3-score-val">—</div>
+      <div class="score-label">Section 4 Score</div>
+    </div>
     <div class="btn-group" id="s3-next" style="display:none;">
-      <button class="btn btn-primary btn-block" onclick="goToSection(4)">Continue — Section 5: Lien Negotiation →</button>
+      <button class="btn btn-primary btn-block" onclick="goToSection(4)">Next: Post-Settlement Timeline →</button>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 4: LIEN NEGOTIATION (30 pts)
+     SECTION 4: POST-SETTLEMENT TIMELINE (s4, Q13–Q16, 40 pts)
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-4">
   <div class="section-header">
-    <div class="section-num">Section 5 · 30 pts available</div>
-    <h2>Every Dollar You Reduce Is a Dollar for the Client</h2>
-    <div class="section-subhead">Lien negotiation is one of the most impactful things you do.</div>
+    <div class="section-num">Section 5 · 40 pts available</div>
+    <h2>Day 0 to Day 45: The Mandatory Timeline</h2>
+    <div class="section-subhead">Every delay is a day the client is waiting. 90%+ of files close within 45 days — that's the standard.</div>
   </div>
   <div class="section-body">
 
     <div class="scenario">
-      <div class="scenario-tag">📋 Darnell Carter — Negotiation Time</div>
-      <h3>Here's where you stand. Darnell's Grady lien might be defective (they didn't bill BCBS first). Piedmont Orthopedics has a $12,000 lien that appears valid. BCBS's $22,000 subrogation claim is against a fully-insured plan. Time to negotiate.</h3>
-      <p>Every dollar you reduce from these claims goes directly into Darnell's pocket. On a $50K settlement with $20K in liens, negotiating down to $10K means an <span class="highlight">extra $10,000 for the client.</span></p>
+      <div class="scenario-tag">📋 Maria Santos — Post-Settlement Clock Starts NOW</div>
+      <h3>Settlement confirmed Monday at 10:07 AM. The clock is running. Every action in the next 45 days is governed by the Post-Settlement SOP.</h3>
+      <p>Post-settlement client experience is the final impression your firm makes. Slow, disorganized disbursement turns a successful case into a complaint. Fast, proactive disbursement turns a satisfied client into a referral source.</p>
     </div>
 
     <div class="info-block">
-      <h4>🛠️ GLG's Seven-Stage Lien Negotiation Framework</h4>
-      <ol>
-        <li><strong>Preparation:</strong> Know total settlement, all liens, fees/costs, projected net-to-client. Calculate the "made whole" threshold.</li>
-        <li><strong>Initial Contact:</strong> Send reduction requests within 48 hours of settlement. State total settlement, all other liens, and the reasonable reduction sought.</li>
-        <li><strong>Anchor High:</strong> Request the maximum reduction first — 1/3 is a starting point, not a ceiling.</li>
-        <li><strong>Procurement Cost Argument:</strong> Every lienholder should reduce by the attorney fee percentage (33.3%). They didn't create the fund — we did.</li>
-        <li><strong>Made-Whole Doctrine:</strong> If liens + fees exceed recovery, document and assert the made-whole argument. (Georgia fully-insured plans.)</li>
-        <li><strong>Loss Aversion Framing:</strong> "Would you prefer 40 cents on the dollar now, or risk zero if the client pursues litigation?"</li>
-        <li><strong>Escalation:</strong> If the lienholder refuses, escalate to Pre-Lit Head Attorney. Never disburse without resolution.</li>
-      </ol>
-    </div>
-
-    <div class="info-block">
-      <h4>📊 Pro-Rata Reduction — The Math</h4>
-      <table class="calc-table">
-        <tr><td>Settlement</td><td>$85,000</td></tr>
-        <tr class="deduction"><td>Attorney Fees (33.3%)</td><td>−$28,305</td></tr>
-        <tr class="deduction"><td>Case Costs</td><td>−$3,200</td></tr>
-        <tr class="total"><td>Available for Bills/Liens</td><td>$53,495</td></tr>
-        <tr><td>Total Claims</td><td>$77,200</td></tr>
-        <tr style="background:#f0f4f8;"><td><strong>Pro-Rata Percentage</strong></td><td><strong>$53,495 ÷ $77,200 = 69.3%</strong></td></tr>
+      <h4>⏱ The Mandatory Post-Settlement Timeline</h4>
+      <table class="timeline-table">
+        <tr><th>Day</th><th>Required Action</th><th>Owner</th></tr>
+        <tr class="day-crit">
+          <td class="day-num">Day 0</td>
+          <td><strong>Notify client within 24 hours — BEFORE the insurance company contacts them.</strong> Status → Settled.</td>
+          <td>Paralegal</td>
+        </tr>
+        <tr class="day-crit">
+          <td class="day-num">Day 0–48h</td>
+          <td><strong>Send ALL reduction requests to every provider.</strong> They don't need to be accepted — they need to be OUT.</td>
+          <td>VA</td>
+        </tr>
+        <tr>
+          <td class="day-num">Day 7</td>
+          <td>First phone follow-up on all outstanding reduction requests. Phone call, not email. Email is a record, not a follow-up.</td>
+          <td>VA / Paralegal</td>
+        </tr>
+        <tr>
+          <td class="day-num">Every 14 days</td>
+          <td>Client update on disbursement status — even if nothing has changed.</td>
+          <td>Paralegal</td>
+        </tr>
+        <tr class="day-warn">
+          <td class="day-num">Day 30</td>
+          <td>If still open: <strong>flag to Pre-Lit Head Attorney with explanation.</strong></td>
+          <td>Paralegal</td>
+        </tr>
+        <tr class="day-crit">
+          <td class="day-num">Day 45</td>
+          <td><strong>Mandatory attorney review.</strong> Files open past Day 45 without attorney review = ZERO TOLERANCE.</td>
+          <td>Attorney</td>
+        </tr>
+        <tr class="day-ok">
+          <td class="day-num">Target</td>
+          <td>90%+ of files closed within 45 days.</td>
+          <td>All</td>
+        </tr>
       </table>
-      <p style="font-size:13px;color:#555;margin-top:8px;">Each provider's reduction offer = their claim × 69.3%. This is your starting position — many will accept it because the alternative is waiting longer for less certainty.</p>
     </div>
 
     <hr class="divider">
-    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Now negotiate Darnell's liens:</p>
 
-    <!-- Q4-1 -->
+    <!-- Q13 -->
     <div class="question-block" id="q-4-1">
-      <div class="q-num">Question 1 of 3 · 10 pts</div>
-      <div class="q-text">Piedmont Orthopedics has a valid $12,000 lien. Using the pro-rata calculation above (69.3%), what amount should you OFFER as payment in full?</div>
+      <div class="q-num">Question 13 of 20 · 10 pts</div>
+      <div class="q-text">Maria Santos's case settles Monday at 10:07 AM. You plan to call her Tuesday afternoon — you've been busy and it's a minor delay. The insurance adjuster mentions she plans to call Maria directly to "confirm the details." According to GLG's standards, is Tuesday afternoon acceptable?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
-          <span class="opt-letter">A</span><span class="opt-text">$12,000 — valid liens must be paid in full</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
-          <span class="opt-letter">B</span><span class="opt-text">$6,000 — always offer 50% as a starting point</span>
-        </button>
         <button class="option-btn" onclick="answer(this,'q-4-1',true,'s4')">
-          <span class="opt-letter">C</span><span class="opt-text">$8,316 ($12,000 × 69.3%) — the pro-rata share based on available funds</span>
+          <span class="opt-letter">A</span><span class="opt-text">No — Maria must be notified within 24 hours of settlement, and before the insurance company contacts her</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
-          <span class="opt-letter">D</span><span class="opt-text">$4,000 — anchor as low as possible and negotiate up</span>
+          <span class="opt-letter">B</span><span class="opt-text">Yes — Tuesday is within one business day, which meets the standard</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">Yes — the attorney is responsible for client notification, not the paralegal</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-1',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">No — clients must be notified BEFORE any settlement is accepted, not after</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-4-1"></div>
     </div>
 
-    <!-- Q4-2 -->
+    <!-- Q14 -->
     <div class="question-block" id="q-4-2">
-      <div class="q-num">Question 2 of 3 · 10 pts</div>
-      <div class="q-text">You call Piedmont's billing department and make the pro-rata offer. They push back: "Our lien is filed and enforceable — we want the full $12,000." What's your NEXT argument?</div>
+      <div class="q-num">Question 14 of 20 · 10 pts</div>
+      <div class="q-text">It's now Day 7 post-settlement on Maria's case. You sent reduction requests to WellStar and the chiropractor on Day 1, but neither has responded. According to GLG's SOP and standing operating principles, what do you do?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
-          <span class="opt-letter">A</span><span class="opt-text">Accept their position and pay the full $12,000</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
-          <span class="opt-letter">B</span><span class="opt-text">Threaten to file a lawsuit against Piedmont immediately</span>
+          <span class="opt-letter">A</span><span class="opt-text">Send a follow-up email to both providers documenting your attempt</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-4-2',true,'s4')">
-          <span class="opt-letter">C</span><span class="opt-text">Invoke the Common Fund Doctrine: "Our firm created the fund from which you'll be paid. At minimum, reduce by the 33.3% attorney fee — your share of procurement costs."</span>
+          <span class="opt-letter">B</span><span class="opt-text">Call both providers by phone — follow-up means a phone call; email is a record, not a follow-up</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
-          <span class="opt-letter">D</span><span class="opt-text">Tell them you'll just ignore the lien and disburse to the client</span>
+          <span class="opt-letter">C</span><span class="opt-text">Wait until Day 14 before following up — 7 days is too soon</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-2',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">Escalate to the attorney since they haven't responded in 7 days</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-4-2"></div>
     </div>
 
-    <!-- Q4-3 -->
+    <!-- Q15 -->
     <div class="question-block" id="q-4-3">
-      <div class="q-num">Question 3 of 3 · 10 pts</div>
-      <div class="q-text">Atlanta Physical Therapy has a $5,200 bill with NO filed lien. Darnell wants you to negotiate it down. Separately, a $300 balance exists from a follow-up visit at an urgent care. How should you handle these two?</div>
+      <div class="q-num">Question 15 of 20 · 10 pts</div>
+      <div class="q-text">Day 30 arrives. Maria's WellStar lien negotiation is still ongoing with no clear resolution timeline. The file is still open in CasePeer as "Lien Negotiations." Per GLG's Post-Settlement SOP, what is required right now?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
-          <span class="opt-letter">A</span><span class="opt-text">Negotiate both down — every dollar counts</span>
+          <span class="opt-letter">A</span><span class="opt-text">Issue a full disbursement to Maria anyway — she shouldn't wait longer than 30 days</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">Nothing yet — Day 45 is the deadline; Day 30 requires no action</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-4-3',true,'s4')">
-          <span class="opt-letter">B</span><span class="opt-text">For the $5,200 unfiled claim: present Darnell with the self-pay option and have him sign the Self-Pay Addendum. For the $300: just pay it — the time spent negotiating costs more than the savings.</span>
+          <span class="opt-letter">C</span><span class="opt-text">Flag the file to the Pre-Lit Head Attorney with a written explanation of why it's still open</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
-          <span class="opt-letter">C</span><span class="opt-text">Hold funds for both in trust and negotiate over the next several months</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-4-3',false,'s4')">
-          <span class="opt-letter">D</span><span class="opt-text">Pay both in full immediately — unfiled claims still require full payment</span>
+          <span class="opt-letter">D</span><span class="opt-text">Mark the file inactive in CasePeer until the lien resolves</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-4-3"></div>
     </div>
 
-    <div class="section-score" id="s4-score" style="display:none;">
-      <div class="score-display" id="s4-score-val">0/30</div>
-      <div class="score-label">Section 5 Score</div>
+    <!-- Q16 -->
+    <div class="question-block" id="q-4-4">
+      <div class="q-num">Question 16 of 20 · 10 pts</div>
+      <div class="q-text">You realize you forgot to send reduction requests on Maria's case. It's now Day 6 — you missed the 48-hour window. Under the Post-Settlement SOP, this is listed as an immediate corrective action trigger. What does that mean?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-4-4',false,'s4')">
+          <span class="opt-letter">A</span><span class="opt-text">A supervisor will complete a written performance review and file it with HR</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-4',true,'s4')">
+          <span class="opt-letter">B</span><span class="opt-text">Immediate escalation required — then send ALL reduction requests today; the delay must be documented</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-4',false,'s4')">
+          <span class="opt-letter">C</span><span class="opt-text">It means the file will be automatically closed and reassigned</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-4-4',false,'s4')">
+          <span class="opt-letter">D</span><span class="opt-text">It only becomes a corrective action trigger if the requests are more than 14 days late</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-4-4"></div>
     </div>
 
+    <div class="section-score" id="s4-score">
+      <div class="score-display" id="s4-score-val">—</div>
+      <div class="score-label">Section 5 Score</div>
+    </div>
     <div class="btn-group" id="s4-next" style="display:none;">
-      <button class="btn btn-primary btn-block" onclick="goToSection(5)">Continue — Section 6: Post-Settlement Process →</button>
+      <button class="btn btn-primary btn-block" onclick="goToSection(5)">Next: Reduction &amp; Disbursement →</button>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 5: POST-SETTLEMENT PROCESS (30 pts)
+     SECTION 5: REDUCTION & DISBURSEMENT (s5, Q17–Q20, 40 pts)
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-5">
   <div class="section-header">
-    <div class="section-num">Section 6 · 30 pts available</div>
-    <h2>The Clock Is Ticking</h2>
-    <div class="section-subhead">Every day a file sits open is a day the client is waiting.</div>
+    <div class="section-num">Section 6 · 40 pts available</div>
+    <h2>Reducing Liens &amp; Getting Clients Their Money</h2>
+    <div class="section-subhead">Every dollar reduced from a lien goes straight to the client. This is one of the most impactful things you'll do.</div>
   </div>
   <div class="section-body">
 
     <div class="scenario">
-      <div class="scenario-tag">📋 Darnell Carter — Disbursement Phase</div>
-      <h3>Darnell is calling every day. "Where's my check?" This is the #1 complaint clients have after settlement. The post-settlement SOP exists to close the gap between settlement and check-in-hand.</h3>
-      <p>Your target: <span class="highlight">90%+ of files closed within 45 days.</span> Every step has a deadline. Every delay must be documented and escalated.</p>
+      <div class="scenario-tag">📋 Maria Santos — Lien Negotiation Phase</div>
+      <h3>WellStar's billing department says "full payment only." Blue Cross wants reimbursement. Medicare has a conditional payment. Time to put the reduction arguments to work.</h3>
+      <p>On a $55,000 settlement with $22,000 in liens, negotiating those liens down to $11,000 means an extra $11,000 in Maria's pocket. <span class="highlight">Every dollar reduced from a lien is a dollar that goes to the client.</span></p>
     </div>
 
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot urgent">D0</div>
-        <div class="timeline-content">
-          <div class="timeline-day">Day 0: Settlement Confirmed</div>
-          <div class="timeline-desc">Log in CasePeer → Status: <strong>Settled</strong>. Notify client within 24 hours — <span style="color:#870101;font-weight:700;">before the insurance company tells them.</span></div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot urgent">D1-2</div>
-        <div class="timeline-content">
-          <div class="timeline-day">Days 1–2: Reduction Requests OUT</div>
-          <div class="timeline-desc">Send to ALL providers within 48 hours. They don't need to be accepted — they need to be <strong>sent</strong>.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot important">D7</div>
-        <div class="timeline-content">
-          <div class="timeline-day">Day 7: First Follow-Up</div>
-          <div class="timeline-desc">Call every lienholder — <strong>phone, not email.</strong> Confirm receipt of reduction request. Update client on disbursement timeline.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">D14</div>
-        <div class="timeline-content">
-          <div class="timeline-day">Every 14 Days: Client Update</div>
-          <div class="timeline-desc">Even if nothing has changed. <em>"Never let a client call asking about their check without having already updated them."</em></div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot important">D30</div>
-        <div class="timeline-content">
-          <div class="timeline-day">Day 30: Flag to Attorney</div>
-          <div class="timeline-desc">If still open, flag to Pre-Lit Head Attorney with explanation of what's holding it up.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot urgent">D45</div>
-        <div class="timeline-content">
-          <div class="timeline-day">Day 45: Mandatory Attorney Review</div>
-          <div class="timeline-desc">Managing Attorney determines path to closure. <strong>90%+ of files should be closed by now.</strong></div>
-        </div>
-      </div>
+    <div class="info-block">
+      <h4>⚖️ The Two Core Reduction Arguments</h4>
+      <p style="margin-bottom:8px;"><strong>1. Pro-Rata Reduction:</strong> When the settlement doesn't fully compensate the client, all providers should reduce their liens proportionally. The client was not made whole — every provider shares in the shortfall.</p>
+      <p style="margin-bottom:8px;"><strong>2. Common Fund Doctrine:</strong> The attorney's work created the fund from which the lien will be paid. The provider should reduce by the attorney fee percentage (33.3%) — they benefit from the attorney's effort without contributing to it.</p>
     </div>
 
-    <div class="callout callout-danger">
-      <strong>🚨 THE PARTIAL DISBURSEMENT RULE:</strong> No client should wait months with zero funds while you resolve liens. Hold ONLY filed lien amounts + a cushion in trust. Disburse EVERYTHING else immediately. If a lien is $15,000 on a $50,000 settlement — the client gets their share of the remaining $35,000 NOW.
+    <div class="info-block">
+      <h4>🔵 Made Whole Doctrine — Fully Insured Health Plans</h4>
+      <p>Under Georgia law (Duncan v. Integon, 267 Ga. 646), a <em>fully insured</em> health plan CANNOT enforce its subrogation lien unless the client has been "made whole" — fully compensated for ALL losses. If the settlement doesn't cover all of Maria's damages, Blue Cross may get nothing. Send the Made Whole Letter (Template 26) and give them 30 days to respond.</p>
+      <p style="margin-top:8px;"><strong>Important:</strong> This doctrine does NOT apply to ERISA self-funded plans, Medicare, or Medicaid.</p>
     </div>
 
     <hr class="divider">
-    <p style="font-weight:700;color:#141c2c;margin-bottom:16px;">Apply the timeline to Darnell's case:</p>
 
-    <!-- Q5-1 -->
+    <!-- Q17 -->
     <div class="question-block" id="q-5-1">
-      <div class="q-num">Question 1 of 3 · 10 pts</div>
-      <div class="q-text">Darnell's settlement was confirmed yesterday (Day 0). It's now Day 3. You haven't sent any reduction requests yet. The VA says: "I'll get to it next week — I'm swamped." What's the correct response?</div>
+      <div class="q-num">Question 17 of 20 · 10 pts</div>
+      <div class="q-text">Maria's case: $55,000 settlement. Attorney fee (33.3%): $18,315. Costs: $2,800. WellStar lien: $22,000 — you hold $24,200 (lien + 10% cushion). No other lien holds are required right now. How much does Maria receive in partial disbursement TODAY?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
-          <span class="opt-letter">A</span><span class="opt-text">That's fine — reduction requests aren't time-sensitive</span>
+          <span class="opt-letter">A</span><span class="opt-text">$55,000 — give Maria everything now and resolve the lien later</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
-          <span class="opt-letter">B</span><span class="opt-text">Send a reminder and wait until next week</span>
+          <span class="opt-letter">B</span><span class="opt-text">$33,885 — subtract only attorney fees and costs</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-1',true,'s5')">
-          <span class="opt-letter">C</span><span class="opt-text">This is already overdue. Reduction requests must go out within 48 hours — Day 3 is past the deadline. Escalate or do it yourself immediately.</span>
+          <span class="opt-letter">C</span><span class="opt-text">$9,685 — $55,000 minus $18,315 minus $2,800 minus $24,200</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-1',false,'s5')">
-          <span class="opt-letter">D</span><span class="opt-text">Skip the reduction requests and move straight to disbursement</span>
+          <span class="opt-letter">D</span><span class="opt-text">$0 — clients must wait until all negotiations are fully resolved</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-5-1"></div>
     </div>
 
-    <!-- Q5-2 -->
+    <!-- Q18 -->
     <div class="question-block" id="q-5-2">
-      <div class="q-num">Question 2 of 3 · 10 pts</div>
-      <div class="q-text">Here's Darnell's situation: $85,000 settlement, $28,305 in attorney fees, $3,200 in costs. Piedmont's valid lien is being negotiated ($12,000 claimed). BCBS is fully insured — you've sent the Made Whole letter and are waiting for a response. The Grady lien appears defective. What should you disburse to Darnell RIGHT NOW?</div>
+      <div class="q-num">Question 18 of 20 · 10 pts</div>
+      <div class="q-text">WellStar's billing department says "full payment only — our policy doesn't allow reductions." You're about to make your negotiation call. Which two legal arguments give you the strongest foundation to demand a reduction on a hospital lien?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
-          <span class="opt-letter">A</span><span class="opt-text">Nothing — wait until ALL liens are fully resolved before disbursing any funds</span>
-        </button>
         <button class="option-btn" onclick="answer(this,'q-5-2',true,'s5')">
-          <span class="opt-letter">B</span><span class="opt-text">Disburse immediately. Hold Piedmont's lien amount + cushion (~$13,800) in trust. The remaining available funds (~$39,695) go to Darnell now while you negotiate.</span>
+          <span class="opt-letter">A</span><span class="opt-text">Pro-rata reduction and Common Fund Doctrine</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
-          <span class="opt-letter">C</span><span class="opt-text">Hold $77,200 (total of all claims) in trust and disburse nothing</span>
+          <span class="opt-letter">B</span><span class="opt-text">Made Whole Doctrine and ERISA preemption</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
-          <span class="opt-letter">D</span><span class="opt-text">Disburse the entire $53,495 — liens can be paid from firm funds later</span>
+          <span class="opt-letter">C</span><span class="opt-text">Medicare Secondary Payer Act and ERISA preemption</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-2',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">Common Fund Doctrine and Medicare preemption</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-5-2"></div>
     </div>
 
-    <!-- Q5-3 -->
+    <!-- Q19 -->
     <div class="question-block" id="q-5-3">
-      <div class="q-num">Question 3 of 3 · 10 pts</div>
-      <div class="q-text">It's Day 42. Piedmont accepted a $8,500 reduction. BCBS waived their subrogation claim (Made Whole). Grady's lien was voided (never billed BCBS). All liens are resolved. What's the NEXT step before Darnell gets his remaining funds?</div>
+      <div class="q-num">Question 19 of 20 · 10 pts</div>
+      <div class="q-text">Maria's Blue Cross Blue Shield is through her employer. You call BCBS and confirm the plan is "fully insured through BCBS" — NOT self-funded. BCBS paid $18,000 and is asserting a subrogation claim. Maria's total documented damages far exceed the $55,000 settlement. Which legal protection potentially applies?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
-          <span class="opt-letter">A</span><span class="opt-text">Mail Darnell a check — no additional steps needed</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
-          <span class="opt-letter">B</span><span class="opt-text">Wait for the attorney to review — but don't call Darnell until the check is ready</span>
+          <span class="opt-letter">A</span><span class="opt-text">ERISA preemption — federal law overrides Georgia state law here</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-3',true,'s5')">
-          <span class="opt-letter">C</span><span class="opt-text">Prepare the final disbursement sheet, get attorney approval, have Darnell sign in person or via e-sign, issue the supplemental check within 3 business days, then close the file in CasePeer.</span>
+          <span class="opt-letter">B</span><span class="opt-text">Made Whole Doctrine — if Maria was not fully compensated, BCBS may get nothing under Georgia law</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
-          <span class="opt-letter">D</span><span class="opt-text">Transfer the trust funds to the firm's operating account first, then cut a check</span>
+          <span class="opt-letter">C</span><span class="opt-text">Common Fund Doctrine only — Made Whole doesn't apply to health insurance</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-3',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">No protection — fully insured plans always have full subrogation rights</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-5-3"></div>
     </div>
 
-    <div class="section-score" id="s5-score" style="display:none;">
-      <div class="score-display" id="s5-score-val">0/30</div>
-      <div class="score-label">Section 6 Score</div>
+    <!-- Q20 -->
+    <div class="question-block" id="q-5-4">
+      <div class="q-num">Question 20 of 20 · 10 pts</div>
+      <div class="q-text">At the disbursement meeting, Maria asks why you can't just pay her everything at once and handle the Medicare lien separately after she gets her check. Which response is most accurate and legally correct?</div>
+      <div class="options">
+        <button class="option-btn" onclick="answer(this,'q-5-4',false,'s5')">
+          <span class="opt-letter">A</span><span class="opt-text">"We can do that if you sign an indemnification agreement holding the firm harmless."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-4',true,'s5')">
+          <span class="opt-letter">B</span><span class="opt-text">"Medicare has a federal right of recovery — we legally cannot disburse without resolving it. For the other liens, we're already releasing everything we can through partial disbursement."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-4',false,'s5')">
+          <span class="opt-letter">C</span><span class="opt-text">"We must hold all settlement funds until every single lien is completely resolved."</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-5-4',false,'s5')">
+          <span class="opt-letter">D</span><span class="opt-text">"Georgia law requires us to hold 50% of all settlements until liens are resolved."</span>
+        </button>
+      </div>
+      <div class="feedback-box" id="fb-q-5-4"></div>
     </div>
 
+    <div class="section-score" id="s5-score">
+      <div class="score-display" id="s5-score-val">—</div>
+      <div class="score-label">Section 6 Score</div>
+    </div>
     <div class="btn-group" id="s5-next" style="display:none;">
-      <button class="btn btn-primary btn-block" onclick="goToSection(6)">⚔️ Enter the Boss Challenge →</button>
+      <button class="btn btn-primary btn-block" onclick="goToSection(6)">Next: Boss Challenge →</button>
     </div>
   </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 6: BOSS CHALLENGE (30 pts base + bonus)
+     SECTION 6: BOSS CHALLENGE (s6, Q21–Q25, 50 bonus pts)
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-6">
   <div class="section-header">
-    <div class="section-num">Section 7 · 30 base pts + bonus</div>
-    <h2>⚔️ Boss Challenge: The Full Post-Settlement</h2>
-    <div class="section-subhead">Everything you've learned — Days 2 through 8 — in one case.</div>
+    <div class="section-num">Section 7 · Boss Challenge · Up to 50 Bonus Points</div>
+    <h2>Boss Challenge: Mario Reyes</h2>
+    <div class="section-subhead">Multi-lien scenario. Five questions. Every point is bonus. Show what you've got.</div>
   </div>
   <div class="section-body">
 
     <div class="boss-header">
       <div class="boss-icon">⚔️</div>
-      <h3>Boss Challenge: Tamara Reed</h3>
-      <p>A brand-new case. Multiple lien types. Tricky details. One shot to get it right.</p>
+      <h3>Final Challenge: GLG-2026-1209 — Mario Reyes</h3>
+      <p>This is a more complex case than Maria Santos. Multiple lien types. Tight timeline. Every decision matters. These are bonus points — but the situations are real. Read the case file carefully.</p>
     </div>
 
     <div class="case-file">
       <div class="case-file-header">
         <div class="case-file-icon">📁</div>
         <div>
-          <div class="case-file-title">Tamara Reed — Post-Settlement Case File</div>
-          <div class="case-file-sub">Case #GLG-2026-0847 · Settled June 3, 2026</div>
+          <div class="case-file-title">Mario Reyes</div>
+          <div class="case-file-sub">GLG-2026-1209 · CasePeer: Settled</div>
         </div>
       </div>
-      <div class="case-detail"><span class="case-key">Incident</span><span class="case-val">Rear-end collision, January 12, 2026. At-fault driver ran a red light.</span></div>
-      <div class="case-detail"><span class="case-key">Settlement Amount</span><span class="case-val">$65,000 (BI limits $25K + UM claim $40K)</span></div>
-      <div class="case-detail"><span class="case-key">Attorney Fees (33.3%)</span><span class="case-val">$21,645</span></div>
-      <div class="case-detail"><span class="case-key">Case Costs</span><span class="case-val">$2,800</span></div>
-      <div class="case-detail"><span class="case-key">Available for Bills</span><span class="case-val">$40,555</span></div>
-      <div class="case-detail"><span class="case-key">Health Insurance</span><span class="case-val">UnitedHealthcare — employer-sponsored plan <span class="flag-warn">TYPE UNKNOWN</span></span></div>
-      <div class="case-detail"><span class="case-key">Total Documented Damages</span><span class="case-val">$142,000 (medical $52K + lost wages $15K + P&S $75K)</span></div>
-    </div>
-
-    <div class="info-block">
-      <h4>📋 Provider Claims Against Settlement</h4>
-      <table class="calc-table">
-        <tr><td>WellStar Kennestone Hospital</td><td>$28,000 lien <span class="tag tag-warn">FILED GSCCCA</span></td></tr>
-        <tr><td style="font-size:12px;color:#888;padding-left:24px;">— Discharged Feb 8 · Lien filed April 20 · Certified mail sent April 1 · Did NOT bill UHC before filing</td><td></td></tr>
-        <tr><td>Roswell Chiropractic (chiro practice)</td><td>$8,500 lien <span class="tag tag-warn">FILED GSCCCA</span></td></tr>
-        <tr><td style="font-size:12px;color:#888;padding-left:24px;">— Last treatment April 15 · Lien filed June 10 · Certified mail sent May 20 · Billed UHC, rejected</td><td></td></tr>
-        <tr><td>UnitedHealthcare Subrogation</td><td>$18,500 claim <span class="tag tag-info">SUBROGATION LETTER</span></td></tr>
-        <tr><td>Peachtree Imaging (radiology)</td><td>$3,200 bill <span class="tag tag-danger">NO LIEN FILED</span></td></tr>
-        <tr class="total"><td>Total Claims</td><td>$58,200</td></tr>
-      </table>
+      <div class="case-detail"><span class="case-key">Date of Loss:</span><span class="case-val">October 15, 2025</span></div>
+      <div class="case-detail"><span class="case-key">Settlement Amount:</span><span class="case-val">$80,000 <span class="flag-ok">CONFIRMED</span></span></div>
+      <div class="case-detail"><span class="case-key">Settlement Date:</span><span class="case-val">June 20, 2026 at 11:30 AM</span></div>
+      <div class="case-detail"><span class="case-key">Attorney Fee:</span><span class="case-val">33.3% = $26,640</span></div>
+      <div class="case-detail"><span class="case-key">Case Costs:</span><span class="case-val">$5,200</span></div>
+      <div class="case-detail"><span class="case-key">Grady Memorial Hospital:</span><span class="case-val">GSCCCA filed lien — $25,000 <span class="flag">FILED</span></span></div>
+      <div class="case-detail"><span class="case-key">Blue Cross Blue Shield:</span><span class="case-val">Fully insured plan. Paid $18,000. Asserting subrogation. <span class="flag-warn">PENDING</span></span></div>
+      <div class="case-detail"><span class="case-key">Medicare:</span><span class="case-val">BCRC conditional payment: $8,000 <span class="flag">MUST RESOLVE</span></span></div>
+      <div class="case-detail"><span class="case-key">Adjuster Note:</span><span class="case-val">Adjuster called Mario directly at 3:00 PM today to "confirm details." <span class="flag">ALERT</span></span></div>
     </div>
 
     <div class="callout callout-warn">
-      <strong>⚠️ This is the real deal.</strong> Work through each question carefully. The Boss Challenge combines lien identification, verification, negotiation strategy, insurance knowledge (Days 3 & 7), medical records protocols (Day 6), and disbursement. Points are higher — and so are the stakes.
+      <strong>⚠️ Boss rules:</strong> All 5 questions are bonus-only — they don't count against your base score. Each correct answer earns +10 bonus points (max +50). Answers cannot be changed after submission.
     </div>
 
-    <hr class="divider">
-
-    <!-- BOSS Q1 (base 10 pts) -->
-    <div class="question-block" id="q-6-1">
-      <div class="q-num">Boss Question 1 of 6 · 10 pts (base)</div>
-      <div class="q-text">Look at WellStar Kennestone's lien details. Tamara was discharged February 8. WellStar filed the lien on April 20. That's 71 days. Certified mail was sent April 1 (19 days before filing). BUT they did NOT bill UHC before filing. Is this lien enforceable?</div>
+    <!-- Q21 BOSS -->
+    <div class="boss-question-block question-block" id="q-6-1">
+      <div class="boss-q-num">Boss Q1 of 5 · +10 Bonus Pts</div>
+      <div class="q-text">Settlement confirmed at 11:30 AM. The adjuster note says she's calling Mario directly at 3:00 PM to "confirm details." It's now 11:47 AM. You have other urgent tasks. According to GLG standards, what is your immediate priority?</div>
       <div class="options">
         <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
-          <span class="opt-letter">A</span><span class="opt-text">Yes — 71 days is within the 75-day window, and certified mail was timely</span>
+          <span class="opt-letter">A</span><span class="opt-text">Run the GSCCCA search for all providers immediately — liens are the priority</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">Send all reduction requests within the 2-hour window while you still can</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-6-1',true,'s6')">
-          <span class="opt-letter">B</span><span class="opt-text">No — even though the filing and notice are timely, WellStar violated the 2023 rule by not billing UHC first. The lien is void under § 44-14-471(c).</span>
+          <span class="opt-letter">C</span><span class="opt-text">Call Mario right now — before 3:00 PM — so he hears the news from GLG, not the adjuster</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
-          <span class="opt-letter">C</span><span class="opt-text">No — 71 days exceeds the filing deadline for hospitals</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-6-1',false,'s6')">
-          <span class="opt-letter">D</span><span class="opt-text">It depends on whether UHC would have covered the treatment</span>
+          <span class="opt-letter">D</span><span class="opt-text">Prepare the disbursement sheet first so you have the full picture when you call</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-6-1"></div>
     </div>
 
-    <!-- BOSS Q2 (base 10 pts) -->
-    <div class="question-block" id="q-6-2">
-      <div class="q-num">Boss Question 2 of 6 · 10 pts (base)</div>
-      <div class="q-text">Now look at Roswell Chiropractic. Last treatment April 15. Lien filed June 10 (56 days after last treatment). Certified mail May 20 (21 days before filing). Billed UHC and received a rejection. Is THIS lien valid?</div>
+    <!-- Q22 BOSS -->
+    <div class="boss-question-block question-block" id="q-6-2">
+      <div class="boss-q-num">Boss Q2 of 5 · +10 Bonus Pts</div>
+      <div class="q-text">Grady Memorial filed a lien for $25,000. GSCCCA confirms it's filed. Mario has Aetna health insurance (fully insured). Under the 2023 Georgia law, what is the FIRST question you must ask Grady's billing department before any negotiation begins?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
-          <span class="opt-letter">A</span><span class="opt-text">No — 56 days is too late, and chiropractic practices have the same 75-day window as hospitals</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
-          <span class="opt-letter">B</span><span class="opt-text">No — chiropractors cannot file hospital liens in Georgia</span>
-        </button>
         <button class="option-btn" onclick="answer(this,'q-6-2',true,'s6')">
-          <span class="opt-letter">C</span><span class="opt-text">Yes — chiropractic practices have 90 days (not 75), certified mail was 21 days before filing (exceeds the 15-day minimum), and they billed UHC first. All requirements met.</span>
+          <span class="opt-letter">A</span><span class="opt-text">"Did you submit Mario's claim to Aetna and receive a rejection before filing this lien?"</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
-          <span class="opt-letter">D</span><span class="opt-text">Probably — but you'd need a court order to confirm it</span>
+          <span class="opt-letter">B</span><span class="opt-text">"Will you accept a 33% reduction based on the attorney fee?"</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">"Can you confirm the exact date you filed this lien — was it within 75 days of discharge?"</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-2',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">"What is your final, bottom-line settlement amount?"</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-6-2"></div>
     </div>
 
-    <!-- BOSS Q3 (base 10 pts) -->
-    <div class="question-block" id="q-6-3">
-      <div class="q-num">Boss Question 3 of 6 · 10 pts (base)</div>
-      <div class="q-text">You call UnitedHealthcare and ask: "Is Tamara's plan self-funded or fully insured?" They say: "Self-funded by the employer." The Summary Plan Description has explicit subrogation and reimbursement language. What's your legal situation with the $18,500 subrogation claim?</div>
+    <!-- Q23 BOSS -->
+    <div class="boss-question-block question-block" id="q-6-3">
+      <div class="boss-q-num">Boss Q3 of 5 · +10 Bonus Pts</div>
+      <div class="q-text">Blue Cross Blue Shield is fully insured. They paid $18,000 and are demanding reimbursement from Mario's settlement. Mario's total documented damages — medical bills, lost wages, pain and suffering — far exceed $80,000. What is the correct action to take with BCBS?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
-          <span class="opt-letter">A</span><span class="opt-text">Send the Made Whole Letter — Tamara clearly wasn't made whole ($142K damages vs. $65K settlement)</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
-          <span class="opt-letter">B</span><span class="opt-text">Ignore it — ERISA plans can't enforce subrogation in Georgia</span>
-        </button>
         <button class="option-btn" onclick="answer(this,'q-6-3',true,'s6')">
-          <span class="opt-letter">C</span><span class="opt-text">Made Whole Doctrine doesn't apply because it's an ERISA self-funded plan. But invoke the Common Fund Doctrine — UHC should reduce by at least 33.3% ($6,160) as their share of attorney fees that created the fund. Negotiate from there.</span>
+          <span class="opt-letter">A</span><span class="opt-text">Send a Made Whole Letter (Template 26) asserting that Mario has not been fully compensated; give BCBS 30 days to respond</span>
         </button>
         <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
-          <span class="opt-letter">D</span><span class="opt-text">Pay the full $18,500 — ERISA plans always get their full amount</span>
+          <span class="opt-letter">B</span><span class="opt-text">Cut BCBS a check for $18,000 from the settlement proceeds to clear the file</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">Request BCBS's Summary Plan Description to determine if ERISA preemption applies</span>
+        </button>
+        <button class="option-btn" onclick="answer(this,'q-6-3',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Ignore BCBS — fully insured plans have no subrogation rights in Georgia</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-6-3"></div>
     </div>
 
-    <!-- BOSS Q4 (BONUS 15 pts) -->
-    <div class="question-block" id="q-6-4">
-      <div class="q-num">Boss Question 4 of 6 · 15 pts (BONUS)</div>
-      <div class="q-text">After your analysis: WellStar's $28K lien is void (2023 rule). Roswell Chiropractic's $8,500 lien is valid. UHC's $18,500 is ERISA (Common Fund applies). Peachtree Imaging's $3,200 has no filed lien. Now calculate the pro-rata percentage for the VALID claims only, using $40,555 available after fees/costs.</div>
+    <!-- Q24 BOSS -->
+    <div class="boss-question-block question-block" id="q-6-4">
+      <div class="boss-q-num">Boss Q4 of 5 · +10 Bonus Pts</div>
+      <div class="q-text">Using the Partial Disbursement Rule: $80,000 settlement. Attorney fee $26,640. Costs $5,200. Grady filed lien: hold $27,500 (lien + 10% cushion). Medicare: hold $8,000 exact (must resolve before disburse). BCBS: Made Whole letter sent — no hold required yet. How much does Mario receive in partial disbursement TODAY?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6b')">
-          <span class="opt-letter">A</span><span class="opt-text">$40,555 ÷ $58,200 = 69.7% — use ALL claims for the pro-rata calculation</span>
+        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">$80,000 — disburse everything and sort out the liens after</span>
         </button>
-        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6b')">
-          <span class="opt-letter">B</span><span class="opt-text">$40,555 ÷ $27,000 = 150.2% — only Roswell + UHC, and there's MORE than enough to pay both in full</span>
+        <button class="option-btn" onclick="answer(this,'q-6-4',true,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">$12,660 — $80,000 minus $26,640 minus $5,200 minus $27,500 minus $8,000</span>
         </button>
-        <button class="option-btn" onclick="answer(this,'q-6-4',true,'s6b')">
-          <span class="opt-letter">C</span><span class="opt-text">Only Roswell ($8,500) and UHC ($18,500) are enforceable claims = $27,000 total. $40,555 ÷ $27,000 = 150.2%. There's enough to cover both — but you still negotiate because every dollar reduced goes to Tamara.</span>
+        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">$0 — too many active liens to disburse anything safely</span>
         </button>
-        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6b')">
-          <span class="opt-letter">D</span><span class="opt-text">$40,555 ÷ $8,500 = 477% — only count the hospital lien, not the insurance claim</span>
+        <button class="option-btn" onclick="answer(this,'q-6-4',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">$48,160 — subtract only fees and costs; liens come out later</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-6-4"></div>
     </div>
 
-    <!-- BOSS Q5 (BONUS 15 pts) -->
-    <div class="question-block" id="q-6-5">
-      <div class="q-num">Boss Question 5 of 6 · 15 pts (BONUS)</div>
-      <div class="q-text">Tamara's settlement included a $40,000 UM claim on her own State Farm policy. Before you disbursed the at-fault driver's $25,000 limits, what critical step was required regarding the UM insurer? (Recall Day 7 — Coverage Verification.)</div>
+    <!-- Q25 BOSS -->
+    <div class="boss-question-block question-block" id="q-6-5">
+      <div class="boss-q-num">Boss Q5 of 5 · +10 Bonus Pts</div>
+      <div class="q-text">Day 46 arrives on Mario's case. Grady negotiations are ongoing. The BCBS Made Whole letter response is pending. There has been NO attorney review. According to GLG's Post-Settlement SOP performance standards, which statement is true?</div>
       <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6b')">
-          <span class="opt-letter">A</span><span class="opt-text">Nothing — the at-fault settlement and UM claim are completely independent</span>
+        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6')">
+          <span class="opt-letter">A</span><span class="opt-text">This is acceptable — 45 days is a general guideline, not a hard deadline</span>
         </button>
-        <button class="option-btn" onclick="answer(this,'q-6-5',true,'s6b')">
-          <span class="opt-letter">B</span><span class="opt-text">Notify State Farm (the UM insurer) and get their consent before accepting the at-fault driver's $25K limits. Failing to do so could have waived Tamara's UM claim entirely.</span>
+        <button class="option-btn" onclick="answer(this,'q-6-5',true,'s6')">
+          <span class="opt-letter">B</span><span class="opt-text">Mandatory attorney review was due at Day 45 — this file is in violation; zero tolerance applies; attorney must review today</span>
         </button>
-        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6b')">
-          <span class="opt-letter">C</span><span class="opt-text">File the UM claim after the at-fault settlement was complete</span>
+        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6')">
+          <span class="opt-letter">C</span><span class="opt-text">The 45-day rule doesn't apply to cases with government liens like Medicare</span>
         </button>
-        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6b')">
-          <span class="opt-letter">D</span><span class="opt-text">Wait until all liens are resolved before contacting State Farm</span>
+        <button class="option-btn" onclick="answer(this,'q-6-5',false,'s6')">
+          <span class="opt-letter">D</span><span class="opt-text">Day 46 triggers automatic CasePeer status change to "Closed — Pending"</span>
         </button>
       </div>
       <div class="feedback-box" id="fb-q-6-5"></div>
     </div>
 
-    <!-- BOSS Q6 (BONUS 20 pts) -->
-    <div class="question-block" id="q-6-6">
-      <div class="q-num">Boss Question 6 of 6 · 20 pts (BONUS)</div>
-      <div class="q-text">Final calculation. After negotiation: Roswell accepted $6,800 (reduced from $8,500). UHC accepted $12,340 (Common Fund reduced from $18,500). WellStar's $28K lien was voided. Peachtree's $3,200 bill — no lien filed, Tamara signed the Self-Pay Addendum. What is Tamara's TOTAL net recovery?</div>
-      <div class="options">
-        <button class="option-btn" onclick="answer(this,'q-6-6',false,'s6b')">
-          <span class="opt-letter">A</span><span class="opt-text">$65,000 − $21,645 − $2,800 − $6,800 − $12,340 − $3,200 = $18,215</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-6-6',true,'s6b')">
-          <span class="opt-letter">B</span><span class="opt-text">$65,000 − $21,645 − $2,800 − $6,800 − $12,340 = $21,415. Peachtree's $3,200 is NOT deducted — there's no filed lien, so Tamara handles it directly via self-pay.</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-6-6',false,'s6b')">
-          <span class="opt-letter">C</span><span class="opt-text">$65,000 − $21,645 − $2,800 − $28,000 − $8,500 − $18,500 − $3,200 = negative — she owes money</span>
-        </button>
-        <button class="option-btn" onclick="answer(this,'q-6-6',false,'s6b')">
-          <span class="opt-letter">D</span><span class="opt-text">$65,000 − $21,645 − $2,800 = $40,555. Liens should be paid separately from the firm's operating account.</span>
-        </button>
-      </div>
-      <div class="feedback-box" id="fb-q-6-6"></div>
+    <div class="section-score" id="s6-score">
+      <div class="score-display" id="s6-score-val">—</div>
+      <div class="score-label">Boss Challenge — Bonus Points Earned</div>
     </div>
-
-    <div class="section-score" id="s6-score" style="display:none;">
-      <div class="score-display" id="s6-score-val">0/30</div>
-      <div class="score-label">Boss Challenge Base Score</div>
-    </div>
-
     <div class="btn-group" id="s6-next" style="display:none;">
-      <button class="btn btn-success btn-block" onclick="finishModule()">See Your Results →</button>
+      <button class="btn btn-primary btn-block" onclick="finishModule()">View Your Results →</button>
     </div>
   </div>
 </div>
@@ -1244,241 +1215,250 @@ Competency Gate Mapping:
      SECTION 7: RESULTS
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-7">
-  <div class="section-header">
-    <div class="section-num">Results</div>
-    <h2>Your Performance</h2>
-  </div>
   <div id="results-header-wrap"></div>
   <div class="section-body" id="results-body"></div>
-  <!-- Score Submission Form -->
-  <div id="score-submit-form" style="display:none;background:#f0f4f8;border-radius:12px;padding:20px;margin:16px 0;">
-    <h4 style="color:#141c2c;font-size:16px;font-weight:800;margin-bottom:6px;">📋 Submit Your Score</h4>
-    <p style="font-size:13px;color:#666;margin-bottom:14px;">Enter your name below to record your results automatically.</p>
-    <label style="display:block;font-weight:700;color:#141c2c;font-size:14px;margin-bottom:6px;">Your Full Name</label>
-    <input type="text" id="trainee-name-input" placeholder="e.g. Your Name"
-      style="width:100%;padding:12px;border:2px solid #e0e3e8;border-radius:8px;font-size:15px;font-family:inherit;margin-bottom:12px;box-sizing:border-box;">
-    <button class="btn btn-success btn-block" onclick="submitScoreAndBuildCert()">✅ Submit Score &amp; View Certificate</button>
-  </div>
-  <div id="score-confirmation" style="display:none;background:#d4edda;border-left:4px solid #10774A;color:#155724;border-radius:8px;padding:14px 16px;margin:0 0 16px;font-size:14px;font-weight:600;">
-    ✅ Score submitted! Your results have been recorded.
-  </div>
 </div>
 
 <!-- ══════════════════════════════════════════
-     SECTION 8: FEEDBACK + CERTIFICATE
+     SECTION 8: FEEDBACK
 ════════════════════════════════════════════ -->
 <div class="section-card" id="section-8">
   <div class="section-header">
-    <div class="section-num">Feedback · Required</div>
-    <h2>Help Us Improve This Module</h2>
-    <div class="section-subhead">Your feedback directly shapes future training.</div>
+    <div class="section-num">Section 9 · Feedback &amp; Certificate</div>
+    <h2>How Did We Do?</h2>
+    <div class="section-subhead">Your feedback improves every future module. This takes 60 seconds.</div>
   </div>
   <div class="section-body">
 
     <div class="fb-question">
-      <label>How clear was the content?</label>
+      <label>How clear was the content? (1 = confusing, 5 = crystal clear)</label>
       <div class="fb-rating-row" id="fb-clarity">
-        <button class="fb-rating-btn" onclick="setRating('clarity',1,this)">😕 Confusing</button>
-        <button class="fb-rating-btn" onclick="setRating('clarity',2,this)">🤔 Okay</button>
-        <button class="fb-rating-btn" onclick="setRating('clarity',3,this)">👍 Clear</button>
-        <button class="fb-rating-btn" onclick="setRating('clarity',4,this)">🌟 Very Clear</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',1,this)">1</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',2,this)">2</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',3,this)">3</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',4,this)">4</button>
+        <button class="fb-rating-btn" onclick="setRating('clarity',5,this)">5</button>
       </div>
     </div>
 
     <div class="fb-question">
-      <label>How was the difficulty?</label>
+      <label>How was the difficulty level? (1 = too easy, 5 = too hard)</label>
       <div class="fb-rating-row" id="fb-difficulty">
-        <button class="fb-rating-btn" onclick="setRating('difficulty',1,this)">😴 Too Easy</button>
-        <button class="fb-rating-btn" onclick="setRating('difficulty',2,this)">👍 Just Right</button>
-        <button class="fb-rating-btn" onclick="setRating('difficulty',3,this)">😤 Challenging</button>
-        <button class="fb-rating-btn" onclick="setRating('difficulty',4,this)">🔥 Very Hard</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',1,this)">1</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',2,this)">2</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',3,this)">3</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',4,this)">4</button>
+        <button class="fb-rating-btn" onclick="setRating('difficulty',5,this)">5</button>
       </div>
     </div>
 
     <div class="fb-question">
-      <label>How realistic were the scenarios?</label>
+      <label>How realistic were the scenarios? (1 = unrealistic, 5 = very realistic)</label>
       <div class="fb-rating-row" id="fb-realism">
-        <button class="fb-rating-btn" onclick="setRating('realism',1,this)">🤷 Not Realistic</button>
-        <button class="fb-rating-btn" onclick="setRating('realism',2,this)">😐 Somewhat</button>
-        <button class="fb-rating-btn" onclick="setRating('realism',3,this)">👍 Realistic</button>
-        <button class="fb-rating-btn" onclick="setRating('realism',4,this)">🎯 Very Realistic</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',1,this)">1</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',2,this)">2</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',3,this)">3</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',4,this)">4</button>
+        <button class="fb-rating-btn" onclick="setRating('realism',5,this)">5</button>
       </div>
     </div>
 
     <div class="fb-question">
-      <label>Name one thing you'd change about this module:</label>
-      <textarea id="fb-change" placeholder="Be specific — 'Suggestions: None' is not accepted. What would make this better for the next person?"></textarea>
+      <label>Name ONE thing you would change or improve about this module:</label>
+      <textarea id="fb-change" placeholder="Be specific — your answer helps make the next module better."></textarea>
     </div>
 
-    <div class="callout callout-danger" id="fb-error" style="display:none;">
-      <strong>⚠️ All fields are required.</strong> Please rate clarity, difficulty, and realism, and provide at least one suggestion.
-    </div>
+    <div id="fb-error" style="display:none;" class="callout callout-danger">Please complete all four feedback fields before submitting.</div>
 
-    <div class="btn-group">
-      <button class="btn btn-success btn-block" onclick="submitFeedback()">Submit Feedback & Complete Module ✓</button>
-    </div>
+    <button class="btn btn-primary btn-block" onclick="submitFeedback()">Submit &amp; Get Your Certificate →</button>
   </div>
 </div>
 
 </main>
 
 <script>
-// ─── CONFIG ──────────────────────────────────────
+// ─── CONSTANTS ────────────────────────────────────
 var TOTAL_SECTIONS = 9;
-var TRACKER_URL = 'https://script.google.com/macros/s/AKfycbzHJZ0C3BqnLatfq7RIiUP5KQdgYoXTJlozd8ZGZiwIf2bdVmvnPMo3JLm0dA5gQhJyxA/exec';
+var TRACKER_URL = 'https://glg-training-tracker.harrellgunn.workers.dev/score';
+var PASS_THRESHOLD = 160; // NH standard: 80% of 200
+
+// ─── STATE ───────────────────────────────────────
+var baseScore    = 0;
+var bonusPoints  = 0;
 var currentSection = 0;
-var baseScore = 0;
-var bonusPoints = 0;
-var qDone = {};
-var sectionScores = {s1:0,s2:0,s3:0,s4:0,s5:0,s6:0};
-var sectionTotals = {s1:40,s2:40,s3:30,s4:30,s5:30,s6:30};
-var ratings = {};
+var qDone        = {};
+var sectionScores = {s1:0, s2:0, s3:0, s4:0, s5:0, s6:0};
+var sectionTotals = {s1:40, s2:40, s3:40, s4:40, s5:40};
+var ratings      = {};
+var soundEnabled = false;
+
+// ─── SOUND ───────────────────────────────────────
+function playTickSound() {
+  if (!soundEnabled) return;
+  try {
+    var ctx = new (window.AudioContext || window.webkitAudioContext)();
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.value = 880;
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.12);
+    osc.start(ctx.currentTime);
+    osc.stop(ctx.currentTime + 0.12);
+  } catch(e){}
+}
 
 // ─── ANSWER HANDLER ──────────────────────────────
-function answer(btn, qId, correct, section) {
+function answer(btn, qId, isCorrect, section) {
   if (qDone[qId]) return;
   qDone[qId] = true;
 
-  var block = document.getElementById(qId);
-  var fb = document.getElementById('fb-' + qId);
-  var btns = block.querySelectorAll('.option-btn');
+  var block    = document.getElementById(qId);
+  var allBtns  = block.querySelectorAll('.option-btn');
+  allBtns.forEach(function(b){ b.classList.add('disabled'); });
 
-  btns.forEach(function(b){ b.classList.add('disabled'); });
+  var fbBox   = document.getElementById('fb-' + qId);
+  var isBonus = (section === 's6');
 
-  var isBonus = (section === 's6b');
-  var pts = 0;
-
-  if (correct) {
+  if (isCorrect) {
     btn.classList.add('correct');
-    if (isBonus) {
-      // Boss bonus questions: 15 or 20 pts
-      if (qId === 'q-6-6') pts = 20;
-      else pts = 15;
-      bonusPoints += pts;
-      document.getElementById('bonus-score').textContent = bonusPoints;
-      showToast('+' + pts + ' BONUS');
-    } else {
-      pts = 10;
-      baseScore += pts;
-      sectionScores[section] = (sectionScores[section] || 0) + pts;
-      document.getElementById('total-score').textContent = baseScore;
-      showToast('+' + pts + ' pts');
-    }
     block.classList.add('answered');
-    fb.className = 'feedback-box correct show';
+    fbBox.className = 'feedback-box correct show';
+    fbBox.innerHTML = getFeedback(qId, true);
+
+    if (isBonus) {
+      bonusPoints += 10;
+      document.getElementById('bonus-score').textContent = bonusPoints;
+      showToast('+10 BONUS! 🎯', true);
+    } else {
+      baseScore += 10;
+      sectionScores[section] = (sectionScores[section] || 0) + 10;
+      document.getElementById('total-score').textContent = baseScore;
+      showToast('+10 pts! ✓');
+    }
   } else {
     btn.classList.add('incorrect');
-    // Show correct answer
-    btns.forEach(function(b){
-      var isCorr = b.getAttribute('onclick').indexOf('true') !== -1;
-      if (isCorr) b.classList.add('correct');
-    });
     block.classList.add('answered-wrong');
-    fb.className = 'feedback-box incorrect show';
+    fbBox.className = 'feedback-box incorrect show';
+    fbBox.innerHTML = getFeedback(qId, false);
+    allBtns.forEach(function(b){
+      if (b.getAttribute('onclick').includes(',true,')) {
+        b.classList.add('correct');
+      }
+    });
   }
 
-  fb.innerHTML = getFeedback(qId, correct);
   checkSectionComplete(section);
+  playTickSound();
 }
 
 // ─── FEEDBACK TEXT ────────────────────────────────
 function getFeedback(qId, correct) {
   var map = {
     'q-1-1': {
-      t: '✅ Correct. ALWAYS check GSCCCA first. A letter from a collection company like Aspirion is NOT the same as a filed lien. Only GSCCCA tells you whether a legally enforceable lien exists. Paying without verifying can cost the client thousands.',
-      f: '❌ Wrong — and this mistake can cost the client real money. A letter from Aspirion claiming to represent Grady is NOT a filed lien. Your first step is ALWAYS to check GSCCCA. Only a lien filed with the court has legal power over settlement funds.'
+      t: '✅ Correct. Hospital liens under O.C.G.A. § 44-14-470 must be filed with the Clerk of Superior Court. GSCCCA.org is the court records database — the only place to verify whether a hospital actually filed. Health insurance subrogation comes through letters, not court filings. Attorney liens are tracked separately.',
+      f: '❌ Only hospital liens (and certain medical provider liens) filed under O.C.G.A. § 44-14-470 go through the courts and appear on GSCCCA.org. BCBS subrogation claims and attorney liens use entirely different processes. WellStar is the only one you verify on GSCCCA.'
     },
     'q-1-2': {
-      t: '✅ Correct. This is the critical distinction. A FILED lien (Grady) requires holding funds in trust. An unfiled billing claim (Atlanta PT) is a debt the client owes, but you are NOT legally required to hold settlement funds for it. Present Darnell with the self-pay option and get the addendum signed.',
-      f: '❌ There IS a crucial difference. A filed lien has legal power — you must hold those funds. An unfiled billing claim is just a debt. You can (and should) disburse to the client and have them handle it directly with a Self-Pay Addendum. Holding funds for unfiled claims delays the client unnecessarily.'
+      t: '✅ Correct. When a health insurance company pays your client\'s medical bills and then seeks repayment from the settlement, that\'s subrogation — specifically a health insurance subrogation claim. Whether Georgia\'s Made Whole Doctrine applies depends on whether the plan is fully insured or ERISA self-funded.',
+      f: '❌ A health insurer recovering what it paid from a PI settlement is subrogation. Hospital liens are filed by medical facilities with the court under O.C.G.A. § 44-14-470. BCBS\'s claim is a health insurance subrogation lien — handled differently from hospital liens.'
     },
     'q-1-3': {
-      t: '✅ Correct — interleave from Day 7! The at-fault driver only had $25K limits. The additional $60K came from Darnell\'s own UM/UIM policy. This is exactly why coverage verification at intake matters — without that UM claim, Darnell would have recovered $25K max on an $85K case.',
-      f: '❌ Review Day 7. UM/UIM coverage on the CLIENT\'S OWN policy provides additional recovery when the at-fault driver doesn\'t have enough. $25K at-fault limits + $60K from Darnell\'s UM policy = $85K total settlement. This is why coverage verification at intake is critical.'
+      t: '✅ Correct. Under O.C.G.A. § 44-14-470(b), attorney liens have explicit statutory priority over hospital liens in Georgia. The attorney\'s fee comes out of the settlement BEFORE the hospital lien is paid. This matters at negotiation time — the hospital negotiates knowing the attorney comes first.',
+      f: '❌ Under O.C.G.A. § 44-14-470(b), attorney liens have statutory priority over hospital liens in Georgia. Date of filing doesn\'t determine priority here — the statute does. GLG\'s fee comes out before WellStar gets paid.'
     },
     'q-1-4': {
-      t: '✅ Correct. Under O.C.G.A. § 44-14-470, only hospitals, nursing homes, physician practices, chiropractic practices, and traumatic burn care centers can file hospital liens. Ambulance companies are NOT on this list — no matter how large the bill.',
-      f: '❌ Ambulance companies are NOT authorized to file hospital liens under Georgia law. The authorized list is specific: hospitals, nursing homes, physician practices, chiropractic practices, and traumatic burn care centers. If an ambulance company claims they have a lien, it\'s not enforceable under § 44-14-470.'
+      t: '✅ Correct. Medicare\'s federal right of recovery under the Medicare Secondary Payer Act is non-waivable. Disbursing without resolving the Medicare lien creates personal liability for the attorney. No client indemnification agreement changes this. Contact BCRC at 1-855-798-2627 early in the post-settlement process.',
+      f: '❌ Medicare is different from every other lien type. A client indemnification agreement does NOT protect the attorney from Medicare\'s federal right of recovery. You cannot disburse, period, until the Medicare lien is resolved. This is the hardest rule in post-settlement — no exceptions.'
     },
     'q-2-1': {
-      t: '✅ Correct — and this is a $38,000 win for Darnell. Hospitals have 75 days, NOT 90. The 90-day window only applies to physician and chiropractic practices. Grady filed on Day 80 — 5 days too late. Under § 44-14-471(b), the lien is automatically void. No court order needed.',
-      f: '❌ This confusion costs clients money. HOSPITALS have 75 days. PHYSICIAN/CHIRO PRACTICES have 90 days. Grady is a hospital — they filed on Day 80, which is past the 75-day deadline. Under § 44-14-471(b), the lien is automatically void. That\'s $38,000 back in Darnell\'s pocket.'
+      t: '✅ Correct. An Aspirion demand letter is NOT a filed lien. Before you hold a single dollar, before you negotiate, before you respond — check GSCCCA.org. If WellStar didn\'t file a court lien, you have no legal obligation to hold settlement funds for this claim.',
+      f: '❌ Never hold or pay based on a collection agency letter. Aspirion and similar companies send demand letters on accounts where no court lien has been filed. The only authoritative source is GSCCCA.org. If no lien is filed there, it\'s a billing claim — not an enforceable lien.'
     },
     'q-2-2': {
-      t: '✅ Excellent — you caught the nuance. Physician practices (and chiropractic practices) have 90 days, not 75. Day 85 is within that window. The 20-day certified mail notice exceeds the 15-day minimum. But you correctly identified the remaining check: the 2023 insurance billing rule. ALL steps must pass for a lien to be valid.',
-      f: '❌ The key distinction: physician and chiropractic practices have 90 days to file — NOT the 75-day hospital deadline. Day 85 is within the 90-day window. But a lien isn\'t valid just because two steps check out. You must verify ALL requirements, including the 2023 insurance billing rule.'
+      t: '✅ Correct. No filed lien on GSCCCA = billing claim only. There is no legal obligation to hold settlement funds. The correct process: have Maria sign the Self-Pay Addendum (acknowledging she\'s responsible for the balance), then proceed with disbursement. Maria can negotiate with WellStar directly.',
+      f: '❌ If GSCCCA shows no filed lien, you have zero legal obligation to hold funds. Holding everything "just in case" harms the client unnecessarily. The Self-Pay Addendum documents Maria\'s awareness and responsibility. Get it signed, then disburse. Ignoring Aspirion entirely (option D) is also wrong — document the response.'
     },
     'q-2-3': {
-      t: '✅ Correct — and this is a game-changer. The 2023 amendment (§ 44-14-471(c)) requires hospitals to submit claims to the patient\'s health insurer AND receive a rejection BEFORE asserting a lien. Grady never billed BCBS. The lien is void — period. Even if Grady later bills BCBS and BCBS pays $30K, Grady can only lien for the unpaid remainder.',
-      f: '❌ The 2023 rule is one of the most powerful tools you have. Under § 44-14-471(c), a hospital MUST bill the patient\'s health insurance and receive a rejection before the lien is enforceable. Grady never billed BCBS — the lien is void. This one rule can eliminate liens worth tens of thousands of dollars.'
+      t: '✅ Correct. When you have a confirmed filed lien, hold the lien amount plus a 10% cushion for buffer ($22,000 + $2,200 = $24,200). But — critically — disburse the REST to Maria NOW. Clients should not wait months with zero dollars while you negotiate. The Partial Disbursement Rule: hold only what you must.',
+      f: '❌ The correct hold is the lien amount plus a 10% cushion ($24,200). But you disburse everything else to the client immediately. Holding everything until negotiations complete is one of the most common — and most harmful — post-settlement mistakes. Maria should have money in hand while you negotiate.'
     },
     'q-2-4': {
-      t: '✅ Correct — interleave from Day 6! GLG\'s medical records protocol requires a follow-up at 14 days. At Day 21, you\'re a full week overdue on that follow-up. Waiting until 30 days is not the standard — that\'s passive management. The 14-day follow-up cycle catches issues early.',
-      f: '❌ Review Day 6. GLG\'s records protocol is 14-day follow-up cycles, not 30. At Day 21, you\'re 7 days past due on the follow-up. A missing follow-up at Day 14 means the records request might be lost, unprocessed, or sent to the wrong department — and you wouldn\'t know.'
+      t: '✅ Correct. $55,000 − $18,315 (fees) − $2,800 (costs) − $24,200 (WellStar hold) = $9,685. Maria gets this today. Even though the lien isn\'t resolved, the Partial Disbursement Rule requires releasing everything above the required hold. $9,685 in Maria\'s account is far better than nothing.',
+      f: '❌ Work through the math: $55,000 − $18,315 − $2,800 − $24,200 = $9,685. Maria receives this today. Never let a client wait with zero funds when there are unencumbered dollars available. The "hold everything" approach is a SOP violation — and it\'s the reason clients call four times a week asking where their money is.'
     },
     'q-3-1': {
-      t: '✅ Correct. Fully insured plan = Georgia\'s Made Whole Doctrine applies. Darnell\'s total damages ($113,600+) far exceed the $85K settlement — he was NOT made whole. Under Duncan v. Integon and O.C.G.A. § 33-24-56.1, BCBS cannot enforce subrogation. Send the Made Whole Letter, give 30 days to respond. The $22K claim may be eliminated entirely.',
-      f: '❌ When the plan is fully insured, Georgia\'s Made Whole Doctrine is your most powerful weapon. Total damages of $113,600+ versus an $85K settlement = Darnell was NOT made whole. The insurer cannot collect until the client is fully compensated for ALL losses. Send the Made Whole Letter and the $22K claim could vanish.'
+      t: '✅ Correct. Under O.C.G.A. § 44-14-471(a)(2)(A), hospitals must file within 75 days of discharge. March 1 + 75 days = May 15. WellStar filed on May 20 — five days late. Under § 44-14-471(b), failure to comply makes the lien automatically unenforceable. This lien is void.',
+      f: '❌ The 75-day deadline under O.C.G.A. § 44-14-471(a)(2)(A) applies to hospitals. March 1 + 75 days = May 15 deadline. Filing on May 20 is 5 days late. Don\'t confuse this with the 90-day deadline, which applies only to physician and chiropractic practices. This hospital lien is void.'
     },
     'q-3-2': {
-      t: '✅ Correct. ERISA preempts Georgia law — Made Whole is off the table for self-funded plans. BUT the Common Fund Doctrine still works: the plan must pay its pro-rata share of attorney fees. Our 33.3% fee reduces the $22,000 to about $14,674 at minimum. And many ERISA plans will negotiate further for practical reasons.',
-      f: '❌ ERISA self-funded plans are NOT untouchable. While Made Whole doesn\'t apply, the Common Fund Doctrine does. The plan benefited from the attorney\'s work in creating the recovery fund — they should share in the cost. At minimum, that\'s a 33.3% reduction ($22,000 → ~$14,674). Many plans negotiate further.'
+      t: '✅ Correct. The 2023 amendment (O.C.G.A. § 44-14-471(c), added by 2023 Ga. Laws 253) requires the hospital to submit a claim to the client\'s health insurer AND receive a rejection BEFORE asserting a lien. If Grady skipped billing BCBS entirely, the lien is unenforceable. This is one of the most powerful recent changes in Georgia hospital lien law.',
+      f: '❌ The 2023 amendment is clear: no hospital lien is enforceable unless the hospital first billed the health insurer and received a rejection. Skipping that step makes the lien void regardless of timely filing or proper notice. Always ask: "Did you bill the health insurance before filing?" It\'s your most powerful opening question.'
     },
     'q-3-3': {
-      t: '✅ Correct — this is a critical rule. Medicare has a federal right of recovery under 42 U.S.C. § 1395y(b)(2). Disbursing without resolving Medicare creates personal liability for the ATTORNEY — not just the firm. Contact BCRC at 1-855-798-2627, get the conditional payment letter, and resolve it BEFORE any disbursement.',
-      f: '❌ Medicare is different from every other lien type. Federal law gives Medicare an absolute right of recovery. Disbursing without resolving it means the ATTORNEY is personally liable. This isn\'t a suggestion — it\'s a non-negotiable requirement. Contact BCRC (1-855-798-2627) and resolve before disbursement.'
+      t: '✅ Correct. Two requirements must BOTH be satisfied: (1) certified mail as the method, AND (2) at least 15 days BEFORE filing. Piedmont used certified mail correctly, but 10 days is insufficient. Both requirements must be met. Under § 44-14-471(b), this timing defect makes the lien unenforceable.',
+      f: '❌ Using certified mail is correct — but the statute requires at least 15 days before filing. 10 days violates the timing requirement. Under § 44-14-471(b), ANY procedural defect renders the lien unenforceable. Both the method (certified mail) and the timing (15+ days) must be satisfied.'
+    },
+    'q-3-4': {
+      t: '✅ Correct. This is the critical distinction. The 75-day deadline applies to hospitals, nursing homes, and traumatic burn care centers. Physician practices and chiropractic practices have 90 days under O.C.G.A. § 44-14-471(a)(2)(B). An orthopedic practice that filed at 88 days is within its 90-day window. This lien is valid — don\'t automatically apply the hospital rule to all provider types.',
+      f: '❌ This is the most common mistake with hospital lien rules. The 75-day rule applies to HOSPITALS only. Physician and chiropractic practices have 90 days under O.C.G.A. § 44-14-471(a)(2)(B). An orthopedic practice filing at 88 days is timely. Always identify the provider type before applying the deadline.'
     },
     'q-4-1': {
-      t: '✅ Correct. Pro-rata reduction is your baseline offer. $12,000 × 69.3% = $8,316. This argument is logical and fair: "There isn\'t enough to pay everyone in full. We\'re asking all providers to reduce proportionally so the client receives a fair recovery." Most providers will accept 50-70% of the billed amount.',
-      f: '❌ The pro-rata calculation gives you a defensible, fair number: $12,000 × 69.3% = $8,316. You never just pay the full amount without negotiating, and you don\'t anchor absurdly low without justification. Pro-rata shows you\'ve done the math and are making a reasonable request.'
+      t: '✅ Correct. Day 0 of the Post-Settlement SOP requires client notification within 24 hours AND before the insurance company contacts them. The adjuster said she\'s calling at 3:00 PM — that means you call Maria RIGHT NOW. If the adjuster reaches her first, you\'ve already failed the most important 24 hours of the entire case.',
+      f: '❌ The standard is 24 hours AND before the insurance company contacts the client. The adjuster is calling at 3:00 PM. You must reach Maria before that happens — which means now, not Tuesday afternoon. The first call after settlement defines the client\'s entire post-settlement experience.'
     },
     'q-4-2': {
-      t: '✅ Correct. The Common Fund Doctrine is your next move: "Our firm\'s work created the fund from which you\'ll be paid. At minimum, you should reduce by the 33.3% attorney fee percentage — your share of procurement costs." This is a strong argument in Georgia and most providers understand it.',
-      f: '❌ When pro-rata gets rejected, the Common Fund Doctrine is your escalation argument. The lienholder didn\'t create the recovery fund — the firm did. They should share in the cost of creating it. At minimum, that\'s a 33.3% reduction. Never accept the first "no" — escalate through the framework.'
+      t: '✅ Correct. GLG\'s standing principle: "Follow-up means a phone call. Email is a record, not a follow-up." Day 7 follow-up is by phone, not email. A phone call creates urgency, confirms receipt, gets a timeline. The email you send afterwards documents it. But the follow-up IS the phone call.',
+      f: '❌ "Follow-up means a phone call. Email is a record, not a follow-up." This is a core GLG operating principle. At Day 7, you pick up the phone and call each provider. Email alone is insufficient — it\'s too easy to ignore. Day 7 is the required follow-up date; waiting until Day 14 compounds the delay.'
     },
     'q-4-3': {
-      t: '✅ Correct — two different strategies. The $5,200 unfiled claim is NOT a lien — present Darnell with the self-pay option and have him sign the Self-Pay Addendum. He negotiates directly. The $300 urgent care bill? Just pay it. The time you\'d spend negotiating a $300 bill costs more than any reduction you\'d get.',
-      f: '❌ Not all claims get the same treatment. The $5,200 unfiled claim = Self-Pay Addendum (no filed lien, no obligation to hold funds). The $300 bill = just pay it. Under $500, the time spent negotiating costs more than the potential savings. Know when to fight and when to pay.'
+      t: '✅ Correct. Per the Post-Settlement SOP timeline, Day 30 requires flagging the file to the Pre-Lit Head Attorney with a written explanation. This is an early warning — Day 45 is the mandatory attorney review deadline. The Day 30 flag ensures the attorney is aware before the deadline hits.',
+      f: '❌ Day 30 open = flag to attorney, not silence. This is the early warning trigger before the Day 45 mandatory review deadline. Doing nothing at Day 30 and waiting until Day 45 is too late — the attorney needs time to determine a closure path. Day 30 flag is the correct SOP action.'
+    },
+    'q-4-4': {
+      t: '✅ Correct. Missing the 48-hour reduction request deadline is listed as an immediate corrective action trigger in the Post-Settlement SOP. That means: escalate now AND send all requests today. Not next week. Not when you find time. The 48-hour deadline passed, but the damage is partially mitigable by acting immediately.',
+      f: '❌ The 48-hour window is a hard SOP requirement. Missing it triggers immediate escalation — and the correct response is to escalate AND send all requests today. Waiting longer compounds the violation. The corrective action framework requires escalation and same-day action, not form filing or silence.'
     },
     'q-5-1': {
-      t: '✅ Correct. Reduction requests must go out within 48 hours — that\'s Day 2 at the latest. Day 3 is already past the deadline. This is a corrective action trigger under the Post-Settlement SOP. Either escalate or send them yourself RIGHT NOW. Every day of delay is a day Darnell waits.',
-      f: '❌ The 48-hour window is non-negotiable. Reduction requests out within 48 hours = 100% compliance expected. Day 3 without sending them is already an SOP violation and a corrective action trigger. The number one post-settlement complaint is waiting too long for money — this is why.'
+      t: '✅ Correct. $55,000 − $18,315 − $2,800 − $24,200 = $9,685. Maria receives this today. The Partial Disbursement Rule is clear: hold ONLY what you are legally required to hold; release everything else immediately. Maria waiting with zero dollars while you negotiate WellStar\'s lien is a SOP violation.',
+      f: '❌ The correct answer is $9,685. Always apply the Partial Disbursement Rule: subtract fees, costs, and the lien hold — disburse the rest NOW. $55,000 − $18,315 − $2,800 − $24,200 = $9,685. Zero is never the right answer when unencumbered funds are available.'
     },
     'q-5-2': {
-      t: '✅ Correct — the partial disbursement rule. Hold ONLY what you\'re legally required to hold: Piedmont\'s valid lien (~$13,800 with cushion). BCBS is fully insured and you\'ve asserted Made Whole — strong chance it\'s waived. Grady\'s lien appears defective. Disburse the rest to Darnell NOW. No client should wait months with zero funds.',
-      f: '❌ The partial disbursement rule exists for exactly this reason. Hold ONLY the filed lien amounts + cushion in trust. Disburse EVERYTHING else immediately. Making Darnell wait for $0 while you resolve every last claim is the #1 cause of client complaints. Get money in his hands while you negotiate.'
+      t: '✅ Correct. For hospital liens, the two foundational reduction arguments are: (1) Pro-rata reduction — the client wasn\'t made whole, so providers share the shortfall proportionally; and (2) Common Fund Doctrine — the attorney\'s work created the recovery fund, so providers should contribute by reducing their lien by the attorney fee percentage. Start with these before any other argument.',
+      f: '❌ Made Whole and ERISA apply to health insurance subrogation, not hospital billing liens. Medicare arguments apply to government programs. For WellStar\'s billing department, Pro-rata reduction and Common Fund Doctrine are your opening arguments. Both are rooted in Georgia common law and well-understood by hospital billing departments.'
     },
     'q-5-3': {
-      t: '✅ Correct — the full disbursement checklist. Prepare the disbursement sheet with final numbers, get attorney review and approval, have Darnell sign (in person or e-sign), issue the supplemental check within 3 business days, then mark the file "Disbursed" and then "Closed" in CasePeer. Every step documented.',
-      f: '❌ There\'s a specific disbursement process: (1) prepare the disbursement sheet, (2) attorney reviews and approves, (3) client signs, (4) check/wire issued within 3 business days, (5) CasePeer → Disbursed → Closed. Skipping steps creates liability. This moment is also a referral opportunity — handle it professionally.'
+      t: '✅ Correct. "Fully insured" means Georgia state law applies. Under Duncan v. Integon (267 Ga. 646) and O.C.G.A. § 33-24-56.1, BCBS cannot enforce its subrogation lien unless Maria was "made whole" — fully compensated for ALL her losses. If her total damages exceed $55,000, she was not made whole. Send Template 26 (the Made Whole Letter), give BCBS 30 days.',
+      f: '❌ ERISA preemption applies to self-funded employer plans, NOT fully-insured plans. BCBS confirmed "fully insured" — that means Georgia state law, including the Made Whole Doctrine, applies. Fully-insured plans CAN assert subrogation rights, but only after the client is made whole. Template 26 is your tool here.'
+    },
+    'q-5-4': {
+      t: '✅ Correct. This is the honest and legally accurate explanation. Medicare is a federal right of recovery — no workaround exists. But for all other liens, GLG uses partial disbursement: hold only what is legally required, release everything else immediately. Telling Maria "we\'re giving you everything we can while we resolve the rest" is both true and reassuring.',
+      f: '❌ Option A is dangerous — no indemnification agreement protects against federal Medicare liability. Option C is false — you use partial disbursement, not a total hold. Option D is fabricated. The correct answer accurately distinguishes Medicare (federal, must hold) from other liens (partial disbursement applies).'
     },
     'q-6-1': {
-      t: '✅ Correct — this is the 2023 rule in action. WellStar\'s filing and notice timing are both fine (71 days < 75; certified mail 19 days before). BUT they never billed UHC before filing the lien. Under § 44-14-471(c), the lien is void regardless of the other requirements. That\'s a $28,000 save for Tamara.',
-      f: '❌ Even when the filing deadline and certified mail are both met, the 2023 insurance billing rule (§ 44-14-471(c)) is a separate, independent requirement. WellStar never billed UHC before asserting the lien. The lien is void — all requirements must be met, not just most of them. That\'s $28,000 saved.'
+      t: '✅ BONUS! Day 0 Rule: client notification within 24 hours, BEFORE the insurance company contacts them. The adjuster is calling Mario at 3:00 PM. It\'s 11:47 AM. You have roughly 3 hours. Call Mario right now. Everything else — GSCCCA, reduction requests, disbursement sheet — happens after Mario hears the good news from GLG first.',
+      f: '❌ Client notification is always the first priority on Day 0. The adjuster is calling Mario at 3 PM — you have a narrow window. Call Mario now. The GSCCCA search, reduction requests, and disbursement sheet all matter, but the client hears from you before anyone else. That moment defines the entire post-settlement experience.'
     },
     'q-6-2': {
-      t: '✅ Correct. Chiropractic practices have 90 days (not 75). Day 56 is well within that window. Certified mail was 21 days before filing (exceeds 15-day minimum). They billed UHC and received a rejection. All four requirements are met. This is a valid, enforceable $8,500 lien that must be addressed at settlement.',
-      f: '❌ Walk through the checklist: (1) Authorized filer? Yes — chiropractic practice. (2) Filed within deadline? Yes — 56 days, and chiro practices have 90 days. (3) Certified mail 15+ days before? Yes — 21 days. (4) Billed insurance first? Yes — UHC rejected. All boxes checked. This lien is valid.'
+      t: '✅ BONUS! The 2023 amendment (O.C.G.A. § 44-14-471(c)) changed everything. Before any negotiation, ask: "Did you submit to Aetna and receive a rejection before filing this lien?" If they didn\'t bill Aetna first, the lien is unenforceable — and the negotiation is over before it starts. This is your most powerful opening question.',
+      f: '❌ The 2023 rule changed the opening question on all hospital lien negotiations. Before discussing amounts or percentages, you must ask whether Grady billed the health insurer first. If they didn\'t, the lien is void under § 44-14-471(c). If they did and Aetna paid part, the lien is limited to what Aetna rejected. This question comes first.'
     },
     'q-6-3': {
-      t: '✅ Correct. Self-funded = ERISA = federal preemption. Made Whole Doctrine does NOT apply. But Common Fund Doctrine does — UHC must pay its share of the attorney fees that created the recovery fund. 33.3% of $18,500 = $6,160 reduction minimum. Negotiate from $12,340 and potentially lower.',
-      f: '❌ Self-funded ERISA plan = federal law controls. You CANNOT use the Made Whole Letter (that\'s only for fully-insured Georgia plans). But ERISA plans aren\'t untouchable. Common Fund Doctrine: "Our firm created the fund. You pay your share of fees." That\'s at least a 33.3% reduction.'
+      t: '✅ BONUS! "Fully insured" = Georgia state law = Made Whole Doctrine applies. Mario\'s total damages far exceed $80,000, meaning he was NOT made whole by this settlement. BCBS cannot enforce its subrogation claim until Mario is made whole. Send Template 26, give 30 days. If BCBS doesn\'t respond or accepts, the $18,000 stays in Mario\'s settlement.',
+      f: '❌ "Fully insured" means state law governs — not ERISA. Georgia\'s Made Whole Doctrine (Duncan v. Integon) says a fully-insured health plan cannot enforce subrogation unless the client was fully compensated. Mario\'s damages exceed $80,000. He wasn\'t made whole. Send the Made Whole Letter — don\'t cut a check yet.'
     },
     'q-6-4': {
-      t: '✅ EXCELLENT — +15 BONUS! You correctly identified that only Roswell ($8,500) and UHC ($18,500) are enforceable. Total enforceable = $27,000. Available funds = $40,555. Pro-rata = 150.2% — there\'s enough. But you STILL negotiate because every dollar reduced goes directly to Tamara. Never pay face value without trying.',
-      f: '❌ Only enforceable claims count: Roswell ($8,500 valid lien) + UHC ($18,500 ERISA). WellStar\'s lien was voided (2023 rule). Peachtree has no filed lien. Total enforceable = $27,000. Available = $40,555. That\'s 150.2% — enough to cover both. But you STILL negotiate to maximize Tamara\'s recovery.'
+      t: '✅ BONUS! $80,000 − $26,640 (fees) − $5,200 (costs) − $27,500 (Grady hold) − $8,000 (Medicare hold) = $12,660. Mario gets this today. BCBS gets a Made Whole letter but no hold yet. The Partial Disbursement Rule in action: release everything you\'re not legally required to hold. $12,660 in Mario\'s pocket is better than waiting months.',
+      f: '❌ Work through it: $80,000 − $26,640 − $5,200 − $27,500 − $8,000 = $12,660. The BCBS Made Whole letter is sent but no hold is required yet — that\'s the key. Hold: Grady (lien + cushion) and Medicare (exact amount). Release: everything else. $12,660 goes to Mario today. Zero is wrong; there are unencumbered funds.'
     },
     'q-6-5': {
-      t: '✅ EXCELLENT — +15 BONUS! Day 7 recall. Before accepting ANY at-fault settlement when a UM claim exists, you MUST notify the UM insurer (State Farm) and get their consent. Accepting without consent can waive the UM claim entirely — that would have cost Tamara $40,000. This is one of the most critical procedural rules.',
-      f: '❌ Critical Day 7 rule: All UM insurers must be notified and consent to the at-fault settlement BEFORE you accept it. If you accepted the $25K from the at-fault driver without telling State Farm, Tamara\'s entire $40K UM claim could be forfeited. That\'s a potential malpractice scenario.'
-    },
-    'q-6-6': {
-      t: '✅ PERFECT — +20 BONUS! $65,000 − $21,645 (fees) − $2,800 (costs) − $6,800 (Roswell negotiated) − $12,340 (UHC negotiated) = $21,415 net to Tamara. Peachtree\'s $3,200 is NOT deducted — there\'s no filed lien, so she handles it via self-pay. Without your lien work, she would have gotten almost nothing. With it: $21,415.',
-      f: '❌ The math: $65,000 − $21,645 − $2,800 − $6,800 − $12,340 = $21,415 net to Tamara. The key: Peachtree\'s $3,200 is NOT deducted from the settlement. No filed lien = self-pay addendum = Tamara handles it directly. And WellStar\'s $28K was voided entirely. Your lien work saved Tamara over $30,000.'
+      t: '✅ BONUS! Day 45 is a mandatory performance standard — zero tolerance. Files open past Day 45 without attorney review are in SOP violation. The rule doesn\'t make exceptions for government liens, complex negotiations, or pending letters. The managing attorney must review today and document a path to closure.',
+      f: '❌ The 45-day rule is a hard performance standard with zero tolerance. No exceptions for Medicare liens, pending Made Whole letters, or ongoing negotiations. Day 46 without attorney review means yesterday\'s deadline was missed. The attorney must review today. Marking it closed automatically is also wrong — that\'s a human responsibility.'
     }
   };
   var item = map[qId];
-  if (!item) return correct ? '✅ Correct!' : '❌ Incorrect — review the section.';
+  if (!item) return correct ? '✅ Correct!' : '❌ Incorrect — review the section above.';
   return correct ? item.t : item.f;
 }
 
@@ -1487,34 +1467,29 @@ function checkSectionComplete(section) {
   var sectionQMap = {
     s1: ['q-1-1','q-1-2','q-1-3','q-1-4'],
     s2: ['q-2-1','q-2-2','q-2-3','q-2-4'],
-    s3: ['q-3-1','q-3-2','q-3-3'],
-    s4: ['q-4-1','q-4-2','q-4-3'],
-    s5: ['q-5-1','q-5-2','q-5-3'],
-    s6: ['q-6-1','q-6-2','q-6-3'],
-    s6b: ['q-6-4','q-6-5','q-6-6']
+    s3: ['q-3-1','q-3-2','q-3-3','q-3-4'],
+    s4: ['q-4-1','q-4-2','q-4-3','q-4-4'],
+    s5: ['q-5-1','q-5-2','q-5-3','q-5-4'],
+    s6: ['q-6-1','q-6-2','q-6-3','q-6-4','q-6-5']
   };
 
-  var checkSection = section === 's6b' ? 's6' : section;
-  var allQ = sectionQMap[checkSection] || [];
-  if (section === 's6' || section === 's6b') {
-    allQ = sectionQMap['s6'].concat(sectionQMap['s6b']);
-  }
-
+  var allQ = sectionQMap[section] || [];
   var allDone = allQ.every(function(q){ return qDone[q]; });
   if (!allDone) return;
 
   var sectionIndex = {s1:1, s2:2, s3:3, s4:4, s5:5, s6:6};
-  var idx = (section === 's6b') ? 6 : sectionIndex[section];
+  var idx = sectionIndex[section];
   if (!idx) return;
 
-  var scoreEl = document.getElementById('s' + idx + '-score');
-  var scoreVal = document.getElementById('s' + idx + '-score-val');
-  var nextEl  = document.getElementById('s' + idx + '-next');
+  var scoreEl   = document.getElementById('s' + idx + '-score');
+  var scoreVal  = document.getElementById('s' + idx + '-score-val');
+  var nextEl    = document.getElementById('s' + idx + '-next');
 
   if (scoreEl) {
-    var pts = (idx === 6) ? sectionScores['s6'] : (sectionScores[section] || 0);
-    var max = (idx === 6) ? 30 : (sectionTotals[section] || 0);
-    if (scoreVal) scoreVal.textContent = pts + '/' + max + ' base';
+    var pts = sectionScores[section] || 0;
+    var isBonus = (section === 's6');
+    var label = isBonus ? (pts + ' bonus pts') : (pts + '/40 pts');
+    if (scoreVal) scoreVal.textContent = label;
     scoreEl.style.display = 'block';
   }
   if (nextEl) nextEl.style.display = 'flex';
@@ -1540,41 +1515,43 @@ function goToSection(idx) {
 }
 
 // ─── TOAST ───────────────────────────────────────
-function showToast(msg) {
+function showToast(msg, isBonus) {
   var t = document.getElementById('points-toast');
   t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 1800);
+  t.className = 'points-toast' + (isBonus ? ' bonus' : '') + ' show';
+  setTimeout(function(){ t.className = 'points-toast' + (isBonus ? ' bonus' : ''); }, 1800);
 }
 
-// ─── FINISH MODULE ───────────────────────────────
+// ─── FINISH MODULE ────────────────────────────────
 function finishModule() {
   goToSection(7);
   buildResults();
 }
 
 function buildResults() {
-  var pct = Math.round((baseScore / 200) * 100);
-  var pass = baseScore >= 170; // 85% pass threshold (60-day gate = A / Exceeds)
+  var pct  = Math.round((baseScore / 200) * 100);
+  var pass = baseScore >= PASS_THRESHOLD; // 160 = 80% NH standard
   var grade = pct + '%';
 
   var headerEl = document.getElementById('results-header-wrap');
   headerEl.innerHTML = '<div class="results-header ' + (pass ? 'pass' : 'fail') + '">'
     + '<div class="results-grade">' + grade + '</div>'
-    + '<div class="results-label">' + (pass ? '🏆 Module Passed!' : '📚 Keep Practicing — 85% Required') + '</div>'
-    + '<div class="results-sub">' + baseScore + ' / 200 base pts · ' + bonusPoints + ' bonus pts</div>'
+    + '<div class="results-label">' + (pass ? '🏆 NH-8 Passed!' : '📚 Keep Practicing') + '</div>'
+    + '<div class="results-sub">' + baseScore + ' / 200 base pts · Passing score: 160 (80%) · ' + bonusPoints + ' bonus pts</div>'
     + '</div>';
 
+  // Achievements
   var badges = [];
-  if (baseScore >= 200)       badges.push({icon:'🌟', name:'Perfect Score'});
-  if (baseScore >= 180)       badges.push({icon:'🔥', name:'Lien Specialist'});
-  if (bonusPoints >= 50)      badges.push({icon:'💎', name:'Boss Slayer'});
-  if (bonusPoints >= 30)      badges.push({icon:'⚡', name:'Negotiation Expert'});
-  if (sectionScores['s1'] === 40) badges.push({icon:'📋', name:'Lien Types Master'});
-  if (sectionScores['s2'] === 40) badges.push({icon:'🔍', name:'Verification Pro'});
-  if (sectionScores['s3'] === 30) badges.push({icon:'🛡️', name:'Subrogation Savant'});
-  if (sectionScores['s6'] === 30) badges.push({icon:'🔴', name:'Boss Challenger'});
-  if (pass)                   badges.push({icon:'🎓', name:'Day 8 Complete'});
+  if (baseScore >= 200)        badges.push({icon:'🌟', name:'Perfect Score'});
+  if (baseScore >= 180)        badges.push({icon:'🔥', name:'Lien Expert'});
+  if (baseScore >= 160)        badges.push({icon:'🏅', name:'NH-8 Certified'});
+  if (bonusPoints >= 50)       badges.push({icon:'💎', name:'Boss Slayer'});
+  if (bonusPoints >= 30)       badges.push({icon:'⚡', name:'Lien Boss'});
+  if (sectionScores['s1']===40) badges.push({icon:'🏥', name:'Lien Types Master'});
+  if (sectionScores['s2']===40) badges.push({icon:'🔍', name:'GSCCCA Pro'});
+  if (sectionScores['s3']===40) badges.push({icon:'⚖️', name:'Statute Expert'});
+  if (sectionScores['s4']===40) badges.push({icon:'⏱', name:'Timeline Master'});
+  if (sectionScores['s5']===40) badges.push({icon:'💰', name:'Disbursement Pro'});
 
   var badgeHTML = '';
   badges.forEach(function(b){
@@ -1582,32 +1559,34 @@ function buildResults() {
   });
 
   var bodyEl = document.getElementById('results-body');
-  bodyEl.innerHTML = '<div class="section-score" style="margin-bottom:20px;">'
+  bodyEl.innerHTML = '<div class="section-score" style="display:block;margin-bottom:20px;">'
     + '<div class="score-display">' + baseScore + '/200</div>'
-    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points</div>'
+    + '<div class="score-label">Base Score · ' + bonusPoints + ' Bonus Points · Pass: 160 (80%)</div>'
     + '</div>'
     + '<div class="info-block"><h4>📊 Section Breakdown</h4>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Lien Types</span><span class="breakdown-pts">' + (sectionScores['s1']||0) + '/40</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Lien Verification</span><span class="breakdown-pts">' + (sectionScores['s2']||0) + '/40</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Health Insurance & Made Whole</span><span class="breakdown-pts">' + (sectionScores['s3']||0) + '/30</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Lien Negotiation</span><span class="breakdown-pts">' + (sectionScores['s4']||0) + '/30</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Post-Settlement Process</span><span class="breakdown-pts">' + (sectionScores['s5']||0) + '/30</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (base)</span><span class="breakdown-pts">' + (sectionScores['s6']||0) + '/30</span></div>'
-    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#10774A;font-size:18px;">' + baseScore + '/200</span></div>'
-    + '<div class="breakdown-row"><span class="breakdown-name">Bonus Points</span><span class="breakdown-pts" style="color:#f39c12;">' + bonusPoints + ' pts</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">What Are Liens?</span><span class="breakdown-pts">' + (sectionScores['s1']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">GSCCCA Search</span><span class="breakdown-pts">' + (sectionScores['s2']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Hospital Lien Rules</span><span class="breakdown-pts">' + (sectionScores['s3']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Post-Settlement Timeline</span><span class="breakdown-pts">' + (sectionScores['s4']||0) + '/40</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Reduction &amp; Disbursement</span><span class="breakdown-pts">' + (sectionScores['s5']||0) + '/40</span></div>'
+    + '<div class="breakdown-row" style="border-top:2px solid #141c2c;margin-top:6px;padding-top:12px;"><span class="breakdown-name" style="font-weight:800;">TOTAL BASE</span><span class="breakdown-pts" style="color:#27ae60;font-size:18px;">' + baseScore + '/200</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Boss Challenge (Bonus)</span><span class="breakdown-pts" style="color:#f39c12;">' + bonusPoints + '/50 bonus pts</span></div>'
+    + '<div class="breakdown-row"><span class="breakdown-name">Passing Score</span><span class="breakdown-pts">160/200 (80%)</span></div>'
     + '</div>'
     + '<div class="info-block"><h4>🏅 Achievements Earned</h4>'
-    + (badgeHTML ? '<div class="achievement-grid">' + badgeHTML + '</div>' : '<p style="color:#888;">Complete more questions correctly to earn badges.</p>')
+    + (badgeHTML ? '<div class="achievement-grid">' + badgeHTML + '</div>' : '<p style="color:#888;">Complete more questions correctly to earn achievement badges.</p>')
+    + '</div>'
+    + '<div class="' + (pass ? 'callout callout-success' : 'callout callout-danger') + '">'
+    + (pass
+      ? '<strong>✅ Passed! ' + baseScore + '/200 (' + pct + '%)</strong> — You\'ve demonstrated solid foundational knowledge of lien basics and the post-settlement process. Next: NH-9.'
+      : '<strong>❌ Score: ' + baseScore + '/200 (' + pct + '%) — Passing score is 160 (80%).</strong> Review the sections where you missed points, then retake the module.')
     + '</div>'
     + '<div class="btn-group">'
-    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete →</button>'
+    + '<button class="btn btn-primary btn-block" onclick="goToSection(8)">Submit Feedback to Complete \u2192</button>'
     + '</div>';
-
-  // Show score submission form
-  document.getElementById('score-submit-form').style.display = 'block';
 }
 
-// ─── FEEDBACK RATINGS ────────────────────────────
+// ─── FEEDBACK RATINGS ─────────────────────────────
 function setRating(field, val, btn) {
   ratings[field] = val;
   var row = document.getElementById('fb-' + field);
@@ -1615,42 +1594,10 @@ function setRating(field, val, btn) {
   btn.classList.add('selected');
 }
 
-// ─── SCORE SUBMISSION ─────────────────────────────
-function submitScoreAndBuildCert() {
-  var nameInput = document.getElementById('trainee-name-input');
-  var name = (nameInput.value || '').trim() || 'Training Participant';
-  document.getElementById('score-submit-form').style.display = 'none';
-
-  var payload = {
-    employeeName: name,
-    moduleId: 'day8',
-    moduleName: 'Lien Basics & Post-Settlement Process',
-    score: baseScore,
-    maxScore: 200,
-    bonusScore: bonusPoints,
-    passedAt: new Date().toISOString()
-  };
-
-  fetch(TRACKER_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-    mode: 'no-cors'
-  }).then(function() {
-    document.getElementById('score-confirmation').style.display = 'block';
-  }).catch(function() {
-    document.getElementById('score-confirmation').innerHTML = '⚠️ Auto-submission failed — please complete the feedback form to submit.';
-    document.getElementById('score-confirmation').style.background = '#fff3cd';
-    document.getElementById('score-confirmation').style.borderLeftColor = '#f39c12';
-    document.getElementById('score-confirmation').style.color = '#856404';
-    document.getElementById('score-confirmation').style.display = 'block';
-  });
-}
-
-// ─── SUBMIT ──────────────────────────────────────
+// ─── SUBMIT FEEDBACK ─────────────────────────────
 function submitFeedback() {
   var change = document.getElementById('fb-change').value.trim();
-  var errEl = document.getElementById('fb-error');
+  var errEl  = document.getElementById('fb-error');
 
   if (!ratings.clarity || !ratings.difficulty || !ratings.realism || !change) {
     errEl.style.display = 'block';
@@ -1665,7 +1612,7 @@ function submitFeedback() {
   var payload = {
     employeeName: name,
     moduleId: 'day8',
-    moduleName: 'Lien Basics & Post-Settlement Process',
+    moduleName: 'NH-8 Lien Basics & Post-Settlement Process',
     score: baseScore,
     maxScore: 200,
     bonusScore: bonusPoints,
@@ -1689,31 +1636,38 @@ function submitFeedback() {
 }
 
 function showCertificate(name) {
-  var pct = Math.round((baseScore / 200) * 100);
+  var pct  = Math.round((baseScore / 200) * 100);
+  var pass = baseScore >= PASS_THRESHOLD;
   var fbSection = document.getElementById('section-8');
-  fbSection.querySelector('.section-body').innerHTML = '<div class="cert">'
+  fbSection.querySelector('.section-body').innerHTML =
+    '<div class="cert">'
     + '<div class="cert-logo">🏆</div>'
     + '<h3>Certificate of Completion</h3>'
     + '<div style="font-size:13px;color:#888;margin-bottom:8px;">Gunn Law Group Training System</div>'
     + '<div class="cert-name">' + name + '</div>'
     + '<div class="cert-details">'
-    + 'Day 8: Lien Basics & Post-Settlement Process<br>'
+    + 'NH-8: Lien Basics &amp; Post-Settlement Process<br>'
     + 'Score: <strong>' + baseScore + '/200 (' + pct + '%)</strong> · Bonus: <strong>' + bonusPoints + ' pts</strong><br>'
+    + (pass ? '<strong style="color:#27ae60;">✅ PASSED (160/200 threshold)</strong><br>' : '<strong style="color:#c0392b;">📚 Did not pass — retake required</strong><br>')
     + 'Completed: ' + new Date().toLocaleDateString('en-US', {year:'numeric',month:'long',day:'numeric'})
     + '</div>'
     + '<div class="cert-achievements">'
     + (baseScore >= 200 ? '<span class="cert-badge">🌟 Perfect Score</span>' : '')
+    + (baseScore >= 180 ? '<span class="cert-badge">🔥 Lien Expert</span>' : '')
     + (bonusPoints >= 50 ? '<span class="cert-badge">💎 Boss Slayer</span>' : '')
-    + (bonusPoints >= 30 ? '<span class="cert-badge">⚡ Negotiation Expert</span>' : '')
-    + '<span class="cert-badge">🎓 Day 8 Complete</span>'
+    + (bonusPoints >= 30 ? '<span class="cert-badge">⚡ Lien Boss</span>' : '')
+    + '<span class="cert-badge">📋 NH-8 Complete</span>'
     + '</div>'
     + '</div>'
-    + '<div class="callout callout-success" style="margin-top:16px;"><strong>✅ Score submitted successfully.</strong> Outstanding work, ' + name.split(' ')[0] + '. You now understand how liens work, how to verify them, how to negotiate them down, and how to move a settled case to disbursement. Every dollar you save on liens goes straight to the client.</div>'
-    + '<div class="callout callout-info" style="margin-top:12px;"><strong>📅 Up Next — Day 9: Client Communication.</strong> Scripts, call logging, the 14-day cadence, and handling difficult conversations. Everything you learned today about liens and disbursement is what you\'ll communicate to the client tomorrow.</div>';
+    + '<div class="callout ' + (pass ? 'callout-success' : 'callout-danger') + '" style="margin-top:16px;">'
+    + (pass
+      ? '<strong>✅ Score submitted. Well done, ' + name.split(' ')[0] + '!</strong> You understand lien basics and the post-settlement process. This foundation prepares you for advanced lien work in later training.'
+      : '<strong>Score submitted.</strong> Review the sections where you lost points and retake when ready. The lien rules and timeline are critical — they protect both the client and the firm.')
+    + '</div>';
   document.getElementById('nav-8').classList.add('done');
 }
 
-// Init
+// ─── INIT ────────────────────────────────────────
 goToSection(0);
 </script>
 </body>
